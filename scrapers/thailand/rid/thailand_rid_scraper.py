@@ -224,7 +224,8 @@ def save_raw_json(path: Path, data: dict) -> None:
 
 def write_metadata_csv(path: Path, rows: Iterable[dict]) -> None:
     seen: "OrderedDict[str, dict]" = OrderedDict()
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    # Date-only to avoid churning `last_updated` (and the whole file) twice per day.
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     for r in rows:
         rid = r.get("reservoir_id")
         if not rid:
