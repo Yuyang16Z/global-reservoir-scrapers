@@ -41,6 +41,7 @@ are in **million m³** (ล้าน ลบ.ม.) per RID's convention — no un
 | `OUTPUT_DIR` | `./thailand_rid_outputs` next to this script | Where to write outputs |
 | `THAILAND_START_DATE` / `THAILAND_END_DATE` | unset | Inclusive backfill range (`YYYY-MM-DD`). If unset, scraper fetches yesterday+today (Bangkok) |
 | `SKIP_EXISTING_DAILY` | `1` | Skip dates whose CSV already exists. Set `0` to overwrite |
+| `SAVE_RAW_JSON` | `0` | Set `1` to also dump the raw API payloads under `<OUTPUT_DIR>/raw/`. Off by default — the rsvmiddles JSON is ~400 KB/day pretty-printed, which bloats the committed Actions repo |
 | `THAILAND_SLEEP` | `1.2` | Seconds between date requests (only matters for backfill) |
 
 ## Known quirks

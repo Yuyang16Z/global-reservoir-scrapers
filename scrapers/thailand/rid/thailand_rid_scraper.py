@@ -222,69 +222,81 @@ def save_raw_json(path: Path, data: dict) -> None:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def write_metadata_csv(path: Path, rows: Iterable[dict]) -> None:
-    seen: "OrderedDict[str, dict]" = OrderedDict()
-    # Date-only to avoid churning `last_updated` (and the whole file) twice per day.
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    for r in rows:
+def _row_to_meta(r: dict, now_str: str) -> dict:
+    return {
+        "reservoir_id": r.get("reservoir_id"),
+        "reservoir_name": r.get("reservoir_name"),
+        "reservoir_name_en": None,
+        "country": "Thailand",
+        "admin_unit": r.get("region_name_en") or r.get("region_name_th"),
+        "river": None,
+        "basin": None,
+        "lat": r.get("lat"),
+        "lon": r.get("lon"),
+        "capacity_total (million m^3)": r.get("capacity_total"),
+        "storage_capacity (million m^3)": r.get("storage_capacity"),
+        "usable_capacity (million m^3)": r.get("usable_capacity"),
+        "dead_storage (million m^3)": r.get("dead_storage"),
+        "avg_year_inflow (million m^3/year)": r.get("avg_year_inflow"),
+        "source_type": r.get("source_type"),
+        "province": r.get("province"),
+        "rid_office": r.get("rid_office"),
+        "project_name": r.get("project_name"),
+        "source_agency": SOURCE_AGENCY,
+        "source_url": SOURCE_URL,
+        "last_updated": now_str,
+    }
+
+
+def upsert_metadata(metadata_path: Path, fresh_rows: list[dict],
+                    raw_dams_dir: Path | None = None,
+                    raw_middles_dir: Path | None = None) -> int:
+    """Merge freshly-fetched rows into existing metadata CSV.
+
+    Keeps existing entries for reservoir_ids not seen this run. Re-flattens raw
+    JSONs if available (useful during backfill); otherwise works purely from
+    in-memory fresh rows + what's already in the CSV.
+    """
+    # Date-only to avoid churning `last_updated` twice a day.
+    now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    existing: "OrderedDict[str, dict]" = OrderedDict()
+    if metadata_path.exists():
+        try:
+            with open(metadata_path, encoding="utf-8-sig", newline="") as f:
+                for row in csv.DictReader(f):
+                    rid = row.get("reservoir_id")
+                    if rid:
+                        existing[rid] = row
+        except Exception as e:
+            print(f"[WARN] failed to read existing metadata {metadata_path}: {e}", file=sys.stderr)
+
+    # If raw JSONs exist (backfill case), include them as extra source rows.
+    all_rows = list(fresh_rows)
+    for d, flat in ((raw_dams_dir, flatten_large), (raw_middles_dir, flatten_middle)):
+        if not d or not d.exists():
+            continue
+        for p in sorted(d.glob("*.json")):
+            try:
+                all_rows.extend(flat(json.loads(p.read_text(encoding="utf-8"))))
+            except Exception as e:
+                print(f"[WARN] failed to parse {p}: {e}", file=sys.stderr)
+
+    for r in all_rows:
         rid = r.get("reservoir_id")
         if not rid:
             continue
-        # Prefer the most recent record per id (rows come in iterate order).
-        seen[rid] = {
-            "reservoir_id": rid,
-            "reservoir_name": r.get("reservoir_name"),
-            "reservoir_name_en": None,
-            "country": "Thailand",
-            "admin_unit": r.get("region_name_en") or r.get("region_name_th"),
-            "river": None,
-            "basin": None,
-            "lat": r.get("lat"),
-            "lon": r.get("lon"),
-            "capacity_total (million m^3)": r.get("capacity_total"),
-            "storage_capacity (million m^3)": r.get("storage_capacity"),
-            "usable_capacity (million m^3)": r.get("usable_capacity"),
-            "dead_storage (million m^3)": r.get("dead_storage"),
-            "avg_year_inflow (million m^3/year)": r.get("avg_year_inflow"),
-            "source_type": r.get("source_type"),
-            "province": r.get("province"),
-            "rid_office": r.get("rid_office"),
-            "project_name": r.get("project_name"),
-            "source_agency": SOURCE_AGENCY,
-            "source_url": SOURCE_URL,
-            "last_updated": now,
-        }
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=META_COLUMNS)
-        writer.writeheader()
-        writer.writerows(seen.values())
+        existing[rid] = _row_to_meta(r, now_str)
 
-
-def rebuild_metadata_from_disk(timeseries_daily_dir: Path, raw_dams_dir: Path,
-                               raw_middles_dir: Path, metadata_path: Path) -> int:
-    """Rebuild metadata by re-flattening whichever raw JSON files exist.
-
-    We prefer raw JSON (has all static fields) over daily CSV (which is slim).
-    Falls back to existing metadata rows if no raw exists yet.
-    """
-    all_rows: list[dict] = []
-    if raw_dams_dir.exists():
-        for p in sorted(raw_dams_dir.glob("*.json")):
-            try:
-                all_rows.extend(flatten_large(json.loads(p.read_text(encoding="utf-8"))))
-            except Exception as e:
-                print(f"[WARN] failed to parse {p}: {e}", file=sys.stderr)
-    if raw_middles_dir.exists():
-        for p in sorted(raw_middles_dir.glob("*.json")):
-            try:
-                all_rows.extend(flatten_middle(json.loads(p.read_text(encoding="utf-8"))))
-            except Exception as e:
-                print(f"[WARN] failed to parse {p}: {e}", file=sys.stderr)
-    if not all_rows:
+    if not existing:
         return 0
-    write_metadata_csv(metadata_path, all_rows)
-    return len({r.get("reservoir_id") for r in all_rows if r.get("reservoir_id")})
+
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(metadata_path, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=META_COLUMNS, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(existing.values())
+    return len(existing)
 
 
 def target_dates() -> list[str]:
@@ -316,6 +328,9 @@ def main() -> int:
 
     skip_existing = os.environ.get("SKIP_EXISTING_DAILY", "1") != "0"
     sleep_seconds = float(os.environ.get("THAILAND_SLEEP", "1.2"))
+    # Raw JSON payloads are large (rsvmiddles ≈ 400 KB/day pretty-printed). Keep
+    # them opt-in so the committed Actions repo doesn't grow indefinitely.
+    save_raw = os.environ.get("SAVE_RAW_JSON", "0") != "0"
 
     session = requests.Session()
     dates = target_dates()
@@ -323,6 +338,7 @@ def main() -> int:
 
     wrote_any = False
     errors = 0
+    fresh_rows: list[dict] = []
 
     for i, date_str in enumerate(dates):
         daily_path = daily_dir / f"thailand_timeseries_{date_str}.csv"
@@ -336,7 +352,8 @@ def main() -> int:
 
         try:
             dams_json = post_json(session, DAMS_URL, _dams_payload(date_str))
-            save_raw_json(raw_dams_dir / f"{date_str}.json", dams_json)
+            if save_raw:
+                save_raw_json(raw_dams_dir / f"{date_str}.json", dams_json)
             large_rows = flatten_large(dams_json)
         except Exception as e:
             errors += 1
@@ -345,7 +362,8 @@ def main() -> int:
 
         try:
             middles_json = post_json(session, MIDDLES_URL, _middles_payload(date_str))
-            save_raw_json(raw_middles_dir / f"{date_str}.json", middles_json)
+            if save_raw:
+                save_raw_json(raw_middles_dir / f"{date_str}.json", middles_json)
             middle_rows = flatten_middle(middles_json)
         except Exception as e:
             errors += 1
@@ -355,13 +373,18 @@ def main() -> int:
         combined = large_rows + middle_rows
         if combined:
             write_timeseries_csv(daily_path, combined)
+            fresh_rows.extend(combined)
             wrote_any = True
             print(f"[OK] {daily_path.name}  ({len(large_rows)} large + {len(middle_rows)} middle)")
 
         if i + 1 < len(dates):
             time.sleep(sleep_seconds)
 
-    count = rebuild_metadata_from_disk(daily_dir, raw_dams_dir, raw_middles_dir, metadata_path)
+    count = upsert_metadata(
+        metadata_path, fresh_rows,
+        raw_dams_dir if save_raw else None,
+        raw_middles_dir if save_raw else None,
+    )
     print(f"[METADATA] {count} reservoirs -> {metadata_path.name}")
 
     if errors and not wrote_any:
