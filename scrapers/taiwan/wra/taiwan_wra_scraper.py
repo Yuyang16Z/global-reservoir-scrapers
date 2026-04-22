@@ -532,10 +532,12 @@ def main() -> int:
             summary["errors"].append({"current_water_level_warning": str(e)})
 
         daily_success = 0
+        daily_skipped = 0
         for date_str in dates:
             daily_path = dirs["daily"] / f"taiwan_timeseries_{date_str}.csv"
             if skip_existing and daily_path.exists():
                 print(f"[SKIP] {daily_path.name}")
+                daily_skipped += 1
                 continue
 
             print(f"[FETCH] {date_str}")
@@ -561,7 +563,7 @@ def main() -> int:
             daily_success += 1
             time.sleep(0.4)
 
-        if daily_success == 0:
+        if daily_success == 0 and daily_skipped != len(dates):
             raise RuntimeError("No Taiwan daily datasets were fetched successfully.")
 
         count = upsert_metadata(
