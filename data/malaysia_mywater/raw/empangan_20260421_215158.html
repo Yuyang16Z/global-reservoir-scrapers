@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="google-site-verification" content="NtLqLQQHPylRBmObZvN85lw1o7QJa6HJZT1vTnERhxU" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /><meta http-equiv="X-UA-Compatible" content="IE=7;IE=8,IE=9,IE=10,IE=11,IE=edge" /><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /><link rel="icon" href="../../favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <title>JPS Dam - MyWater Portal</title>
+    <meta name="Keywords" content="mywater, mywater portal, smsa, did, water resources, jps dam" />
+    <meta name="Description" content="JPS dam MyWater Portal." />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto+Slab:wght@300&display=swap');
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4N8EZT5EH"></script>
+    <link href="/Portal/bundles/css?v=HuzB7XW8YJ5g3Gn85_mapvdBWZXtcR-EV5zpgCRO7ko1" rel="stylesheet"/>
+<script src="/Portal/bundles/js?v=ffHXUwV05VX56a4L2jW5RMrCYdjm3zgCx2eSbBVTD101"></script>
+
+    <script type="text/javascript">    
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X4N8EZT5EH');
+        jQuery.event.special.touchstart = {
+            setup: function (_, ns, handle) {
+                this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+            }
+        };
+        jQuery.event.special.touchmove = {
+            setup: function (_, ns, handle) {
+                this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+            }
+        };
+        jQuery.event.special.wheel = {
+            setup: function (_, ns, handle) {
+                this.addEventListener("wheel", handle, { passive: true });
+            }
+        };
+        jQuery.event.special.mousewheel = {
+            setup: function (_, ns, handle) {
+                this.addEventListener("mousewheel", handle, { passive: true });
+            }
+        };
+    </script>
+    <meta property="og:url" content="https://mywater.gov.my/portal/" /><meta property="og:image" content="https://mywater.gov.my/portal/images/logo-jps.png" /><meta property="og:title" content="MyWater Portal" /><meta property="og:description" content="MyWater portal as the main integration platform, a balance can be achieved between the planning, development and management of water resources for the sustainable development of the nation’s economy as well as welfare of the people and ecology." /><link href="/Portal/WebResource.axd?d=uhrWEWA86tzdSfaSAFq-GXZZq4RfdPWjdOUwPGwtltm4LbrM1DwSjPCduDLPRcP6yPc3Up4HdgFsswzGOAd-T4V5wWgFqDUB6-F7V3NaoAhdAvrUIFG7LZHkUY6pWF82PFQIYASJS0KvAeVnMpv60w2&amp;t=637486410116769679" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=jX9LnPzuAkU1RWSfUItqGU2NtuXn0S-blcUNV0c609dJSjzesDzF9WqHfct5HHtebB14PuJKzi3MPhCtt2oFW82_s3_9UrQTvz5P5g8WIPK-fxhd9ORsbYqRwmy6gxabFnUE2I0J5R0WOzAzCybkFauQFUd3WJC8LTn6ghs1Sz81&amp;t=637486410115986527" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=MdXEAQktXF5LnI0JAc7GQV3y0WRPDjaGY9dnljNugjakfUTpAQ1sBEBTgHXoQBL9gIfndz3u_uQOjnV2nUHx7_jplCJ6igMvWfrA7jGYs7-awqin362LvvU_D4w25wOVrRvqpkpOASxTp606hboGnA2&amp;t=637486410116769679" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=tXDgcJFxIx10zeFNdBCbb6t7cJZKbHXajP9bsRL9PTJyPRagne_cd6reKxQhheLT8CE0a2BBrG1Ogghs5C_ydmr4j4zygw7jKq5v86SStAiRRzTygHXJKg1tSJa-Is73sjoOReJgxPOj4UbKSX7TZZUSp2yj4MQTfA2Ios6ZIVE1&amp;t=637486410115986527" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=jATR2aT4MP7vIvfz8UagJL0PKR8eL-MBxzJS7khBGX64438RLFUiihnifP2T4EU9oa8WM1v3NNjiIjbNA8GzZAvfNzaSbkE3fKnqBUepWnVbuTnDxOI14XuK-QffAo_sUuJm849_jtekW_jAPRlhrQ2&amp;t=637486410116769679" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=-4fG9-3vmvMxWeRI2y5Bym-mCgr79xeeEeUHCZVpYi3UkuSEtJVD3qtcWCaDPsaZu9-ixywo6FeHb9OxO1LxRVTIhToMTGZaBeu-KwceSjMsg6apNQAscIY8TmQjzLnHbWXghi1UvbT-vi6Brhk0kluNQ4xe0W0QdeTJtAvOWSc1&amp;t=637486410115986527" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/Portal/WebResource.axd?d=urCACUaUZeT6oPoIZXShbvRRc1GXYkvnfhqp8f4AkDOnm5VxeDoLQ5uu3D7qlWMX6Fa6_ry0-UHK3GBzhA8hKRCX98VxOqS5YhT-7LPh1TZLQtB4WDhwcCqsj9I0kJ_A0&amp;t=637486410116769679" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><title>
+
+</title></head>
+
+<body>
+    <form method="post" action="./Empangan.aspx?key=17" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="ToolkitScriptManager1_HiddenField" id="ToolkitScriptManager1_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/Portal/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZArAdDSaD3uM3TNv3FEAIwQSrTHt9W1xKVFLv0ojWH3mfp1e-EIOUH3QeJZtsKu2IQ2&amp;t=638902059720898773" type="text/javascript"></script>
+
+
+<script src="/Portal/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LYue5WfSnxijNsCeSTtcKF02fp9UfFEO5VQX4sh7CiO8eC9tmKo2BVlM2sGfsLYX_aIFYwqMv2ad-Ma18oHTDWm0spZ5xdw6f1WkEoLNg-M50&amp;t=ffffffffe4ec58b9" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScCTSHpmUZOcX_M2kOFNCst7gcqaSrY6VJEtNEEmmsoix3wkQ5J2QN3DypLse-Emzb225NSQyau1NL6_l5WGQpfonkazf1v8asqYfd4gAHfSl0&amp;t=ffffffffe4ec58b9" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=BuIYViCW8Lpgvy8P_T6Nq33OyDGpsVf6Gx4xri5qggsFgw3ORB4QAPXHFC08yMzDfacqRyBo34_2fmANsdp03TloK4EGRNwMW7K1VXzjKFU3z04TYMJPJ5r5A-oJn97wIIXUPIRhcBF1A97F-OBf3Q2" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=TDVjdgRbdvNAY3tnbizUcMAMqXxjEtRMBI1kzbdxj3mw9fTaKp5b6Dj2sIiAYwXYj1OcmW62reEwcVlliXTReSfZFdX1ouqdr06uaBiDoLL2FXKS4ZMKOq32I1YbCvIg0&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=sF8Y0c2qLAfpveBK9gLo7F8zqv8y94vMLGmkNCe5kftsZpMfzHYaaEeBoJQKOUc2leXOahWoT2NASPKwzY4Wcv8Kw1Ue2K5wkF14ohM_boq_ZC_awtYVNASD6uX67Sp40&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=mbGZm65DzNC0tMTq0Elbce-wT11iGb5-YtXaxM2b98R9p36kT-Ssh1u6pq3psLQWoTmuoUhjjGn6oamN_sql7Qa2WV8hun4c1Ah9vfWsK3AwXt4QRwXx720zFby_lsc1fH2Y2jfY3Lqd3nvd4PI8WA2&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=cmIcXiVJ__exjjpjrN730oqtlinE6DtAgQL7489eK1fr64EJd8d_O-8bXhj568RQRKqdCZTz7eWghPiJV4aexNUNzjCLfTfEqTaLbDkaCgurSjeEyz3EoUaRtHCcyGEY6MoL6-uVsARP41CTlZAS-g2&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=aoSSiMnLNTC20U5L7LFIKonY6Buyo_pyr5o--TlRn7DbFhHvDWHn4dyHMzL_kc56uIlApx1n4j05m2jH1s_dm1i4Oc_MjIY3qt8TjtR1DeD_C7kaqn5AG9JLsM1K1ryvKx8f4NyzL3q6eBkUb69ZSQJJ3XDjCZn21w7djxeZ4u41&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=eKZhdBAoDXLAsQys5JFN8ss9lRz1ZeKEJ7SaHZTNKh9zU5m9C3M0_tgvb9YDE0uv9quneHR3IURoBhiuwWAZHVODqJ8fR66L_BnjrEq36kVwCmAk8Z7idok7OYES02JZlfmmvdbQVvGhYrRoDC_PuItsSO7yul_B61DAvhk81HA1&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=uZyysmNAhs23bID72ZUaSjSmlGE5Q6L_rgC44VKxCY1bIE9RPX-5JoybnzN_2YrUmTSjqgadZEDhmCfiU7tGRL_deJe1acS2W7TZyavn5_4Ji_ZmoW86Co2ovte4lDYbb3ysJD-HRKmuvdIqLuOUOTXPxbUH5j3H-cUH_wNCa141&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=pax2vc2WsuFH6A65GUAnpX0vNwubOdVWptzg7f6G-XtSsoywasKfRCcLtJ-MMbYaeB6meYGuBTFczp_QHzEpZLHZ6jmgnSdPVH6jHf6KCgBr-B6A1LcAent08eW3iTVfA7T2rHogPRFDLikrauQgo5_pKx6tD6S8j3Y5lq3PRuI1&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=jsREEuQJotslNUdHnktdprE2XawBz_nBT21Q2mrDqyE18I_1v7WueVBLnwQET7QPY79Rus5zaTWA5ADmttmfhmh1TnfqroGZ6l95XWIE4LU3dYzHdvDIPp_0wLAL0z8udtcOlwhh5hFqp6eGT24BYQ2&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=-9rjE8XFv-zikiBdee7RrnOEAJL5bzhOg9jX9OOtDbmA1ovGy_qRkpasy8wCYIpH8vjN63Y5Di3u83a2ClQyJbm4D57-28Inxw2zCqbBAu8XxmlYwqic73rUSB9Bw2hursJK4N4JhX7H0l0-EyTvHnLae_mUV4yTIDRkbhHQd_01&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=utaAJrK4EroNO-KNr3p19E39GptiCLpWqv27zdEpWYQApqwVKGyocckH9_CZ-O9ZTqmZTk5y1kT_Mv1V2odaSrqfrO6LXBxc1XBZ92aIBKnjTq5il55Y-afbg-xVEV5sGJe_asdNPYVFCBX_DSPwKA2&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=GiyGg6C7coGF_0YjOubjHUHrILkhg1MDxMxY77rdgdAaeZSCTy-ZEupoEz0H8G_xqbfLDj151GZaIO0xzhUnLiciETwg6iDVbkq6969WPt8YmO8LZMVZM2O-heu757r2yGMfSZ8orCfBV7U6LYirAw2&amp;t=2209a52" type="text/javascript"></script>
+<script src="/Portal/ScriptResource.axd?d=q-3cNXDJebFSYKMZTGHLhJh6imossNGe-4o_otHd7hcvzuw9oAZbcpB3uYNyfVtB8Tfqxyz73sHRGFWQ7KgA7L91eG4WrpLJYelcUgK5DW1t0dSMzQrrHS8ZUc8M5CZFns36-JYgoZpKVTSa2Ah_6Q2&amp;t=2209a52" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6F03AEBE" />
+	<input type="hidden" name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" />
+	<input type="hidden" name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="7a+hPr+8ZseZgSRuN8ykyWva0gYuCgNAudeQEgJ/CFs0V4slHtn+nWHFd4lg2vgmUdV6+Y+z6bx7eNqKQDbsqkhWpK6cHkd6MYKYz7Vzf+6541GHPMVM+V6vvyd6VwYoN7a3jr75FOac4WHF205PQNm+wZPs0gDYYPVWobkzlsmVmG+z7Z4y4LVYQTc+yyaWNMxqLzgG/7hAJgHuDjFVBJmLvFr+7KXgB+HkyiVCXbrQZNfywsrgoWkfstqEWdZujQs5lGHH+JKtfU6asiKRTjKYjRxKrdGGmsI/2KJamAQ=" />
+</div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.select2-ddl').select2({
+                });
+            });
+        </script>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'ctl01', ['tctl00$MainContent$ctl00$MainContent$ajaxPanelGridPanel','','tctl00$MainContent$ctl00$MainContent$ajaxPanelPanel','','tctl00$RadAjaxManagerSU','RadAjaxManagerSU'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        
+            <script type="text/javascript">
+                var hideDefaultLoadingPanel = false;
+                Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+                $(document).ready(function () {
+                    $('.select2-ddl').select2({
+                    });
+                });
+
+                function BeginRequestHandler(sender, args) {
+                    $('#div_annc > .RadGrid').find('tr').removeClass('rgRow').removeClass('rgAltRow');
+                    //niceSelectDropdown();
+                    $('[data-toggle="popover"]').popover();
+                }
+
+                function EndRequestHandler(sender, args) {
+                    if (!hideDefaultLoadingPanel) {
+                        setTimeout(function () { window.FocusPersister.focusLastActiveElement() }, 500);
+
+                        if (typeof PageAjaxRequestEndHandler == 'function') {
+                            PageAjaxRequestEndHandler(sender, args);
+                        }
+                        $('#div_annc > .RadGrid').find('tr').removeClass('rgRow').removeClass('rgAltRow');
+
+                        $('.select2-ddl').select2({
+                        });
+                    }
+                    $('[data-toggle="popover"]').popover();
+
+                    $('.select2-ddl').select2({
+                    });
+                }
+            </script>
+        
+        <!-- 2015.1.401.45 --><div id="RadAjaxManagerSU">
+	<span id="ctl00_RadAjaxManager" style="display:none;"></span>
+</div>
+        <span id="Validator" class="aspNetDisabled"></span>
+        <button id="btnGetTotal" style="display: none;"></button>
+        <div class="wrapper container-fluid">
+            <header class="bg-header">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 top-header ">
+                        <div class="pull-left">
+                            <i class="bi bi-mailbox2" style="font-size: 1.2rem; color: #505cff; vertical-align: middle;">&nbsp;</i>
+                            <span style="vertical-align: middle;" class="cryptedmail" data-name="portalsmsa" data-domain="water" data-tld1="gov" data-tld2="my"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld1 + '.' + this.dataset.tld2; return false;"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <i class="bi bi-pin-fill" style="font-size: 1.2rem; color: #505cff; vertical-align: middle;">&nbsp;</i>
+                            <span style="vertical-align: middle;"><a href="/Portal/ContactUs.aspx" target="_blank" style="color:#7E7E7E; text-decoration:none;"><span>Persiaran Rimba Permai, Cyber 8, 63000 Cyberjaya, Selangor Darul Ehsan</span></a></span>
+                        </div>
+                        <div class="pull-right">
+                            <table border="0" style="width: 100%;">
+                                <tr>
+                                    <td style="color: black; text-align: right; padding-right: 9px;">
+                                        <span><a id="btnLanguageEN" href="javascript:__doPostBack(&#39;ctl00$btnLanguageEN&#39;,&#39;&#39;)">
+                                            <img src="/Portal/images/en.png" width="18" height="12" alt="EN" title="EN" />
+                                            EN</a>
+                                        </span>
+                                        <span>| <a id="btnLanguageBM" href="javascript:__doPostBack(&#39;ctl00$btnLanguageBM&#39;,&#39;&#39;)">
+                                            <img src="/Portal/images/ms.png" width="18" height="12" alt="MY" title="MY" />
+                                            MY</a>
+                                        </span>
+                                    </td>
+                                    <td style="color: white;"><a href="#" id="small" style="color: black;">A</a> | </td>
+                                    <td style="color: white;"><a href="#" id="medium" style="color: black;">A</a> | </td>
+                                    <td style="color: white;"><a href="#" id="large" style="color: black;">A</a> | </td>
+                                    <td><a href="javascript:void(0);">
+                                        <img class="p-1" alt="Merah" id="w3c_red" src="/Portal/images/w3c/redw.png" /></a></td>
+                                    <td><a href="javascript:void(0);" class="selected2">
+                                        <img class="p-1" alt="Biru" id="w3c_blue" src="/Portal/images/w3c/bluew.png" /></a></td>
+                                    <td><a href="javascript:void(0);">
+                                        <img class="p-1" alt="Hijau" id="w3c_green" src="/Portal/images/w3c/greenw.png" /></a></td>
+                                    <td><a href="javascript:void(0);">
+                                        <img class="p-1" alt="Merah" id="w3c_redbg" src="/Portal/images/w3c/red.png" /></a></td>
+                                    <td><a href="javascript:void(0);">
+                                        <img class="p-1" alt="Biru" id="w3c_bluebg" src="/Portal/images/w3c/blue.png" /></a></td>
+                                    <td><a href="javascript:void(0);">
+                                        <img class="p-1" alt="Hijau" id="w3c_greenbg" src="/Portal/images/w3c/green.png" /></a></td>
+                                    <td><a href="javascript:void(0);">
+                                        <i class="fa fa-refresh" id="reset_style" style="color: black"></i></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xl-5 ToCenter">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <a href="/Portal/"><img src="/Portal/images/BannerTransNew.png" class="img-fluid" alt=""></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="Banner-Text-H1"><span>MyWater Portal</span></div>
+                                <div class="Banner-Text-JPS">Department of Irrigation and Drainage</div>
+                                <div class="Banner-Text-Ministry"><span>Ministry of Energy Transition and Water Transformation</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 agensi-menu">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="d-flex justify-content-end" style="padding-bottom: 5px;">
+                                    <div class="ft-Search_item">
+                                        <span><a href="/Portal/Modules/Pages/Page.aspx?Q=F3TRQUi5gY3x6xdUJwl1Og=="><span>FAQ</span></a>
+                                        </span>
+                                    </div>
+                                    <div class="ft-Search_item">
+                                        <span>| <a href="/Portal/ContactUs.aspx"><span>Contact Us</span></a>
+                                        </span>
+                                    </div>
+                                    <div class="ft-Search_item">
+                                        <span>| <a href="/Portal/Modules/Internal/Complain.aspx"><span>Feedback</span></a>
+                                        </span>
+                                    </div>
+                                    <div class="ft-Search_item">
+                                        <span>| <a href="/Portal/Sitemap.aspx"><span>Sitemap</span></a>
+                                        </span>
+                                    </div>
+                                    <div class="ft-Search_item">
+                                        <span>| <a href="https://mywater.gov.my/mywater/" target="_blank"><span>Login</span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="d-flex justify-content-end" id="main_nav">
+                                    <div id="ctl00_navMenu" title="Menu Utama" class="RadNavigation RadNavigation_Silk TopMenu" style="font-size:12pt;font-weight:bold;">
+	<div class="rnvRootGroupWrapper">
+		<ul class="rnvRootGroup rnvGroup">
+			<li class="rnvItem rnvFirst"><a class="rnvRootLink rnvLink" title="Laman Utama" href="https://mywater.gov.my/Portal"><span class="rnvText">Laman Utama</span></a></li><li class="rnvItem"><a class="rnvRootLink rnvLink" title="Mengenai Kami" href="javascript:void(0)"><span class="rnvText">Mengenai Kami</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+				<div class="radPopup rnvPopup">
+					<ul class="rnvUL">
+						<li class="rnvItem rnvFirst"><a class="rnvLink" title="Mengenai MyWater (SMSA)" href="../Pages/Page.aspx?Q=k/moWiNyDCZU7i4yY7kwlg=="><span class="rnvText">Mengenai MyWater (SMSA)</span></a></li><li class="rnvItem"><a class="rnvLink" title="Direktori Staf" href="../AboutUs/StaffDirectory.aspx?Q=9U4abDLxSW8="><span class="rnvText">Direktori Staf</span></a></li><li class="rnvItem"><a class="rnvLink" title="Carta Organisasi" href="../Pages/Page.aspx?Q=zDcxc0qH8/5czQHMvnb5Tg=="><span class="rnvText">Carta Organisasi</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Ucapan Aluan" href="../Pages/Page.aspx?Q=5gl0oIYrpkHLmbzpVPWNEQ=="><span class="rnvText">Ucapan Aluan</span></a></li>
+					</ul>
+				</div>
+			</div></li><li class="rnvItem"><a class="rnvRootLink rnvLink" title="Air Geo" href="javascript:void(0)"><span class="rnvText">Air Geo</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+				<div class="radPopup rnvPopup">
+					<ul class="rnvUL">
+						<li class="rnvItem rnvFirst"><a class="rnvLink" title="Sumber Air" href="javascript:void(0)"><span class="rnvText">Sumber Air</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+							<div class="radPopup rnvPopup">
+								<ul class="rnvUL">
+									<li class="rnvItem rnvFirst"><a class="rnvLink" title="Lembangan Sungai" href="../Internal/GISNew.aspx?Q=0tinfFkaf0n0x258tDQaAQ=="><span class="rnvText">Lembangan Sungai</span></a></li><li class="rnvItem"><a class="rnvLink" title="Pengurusan Lembangan Sungai Bersepadu" href="../Internal/GISNew.aspx?Q=4CtUQe5aUF2l0hprqxxnMw=="><span class="rnvText">Pengurusan Lembangan Sungai Bersepadu</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Denai Sungai Kebangsaan" href="javascript:void(0)"><span class="rnvText">Denai Sungai Kebangsaan</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+										<div class="radPopup rnvPopup">
+											<ul class="rnvUL">
+												<li class="rnvItem rnvFirst rnvLast"><a class="rnvLink" title="Sumber Air" href="../Internal/GISNew.aspx?Q=0I340ObKd5pjI/RIjT/F8g=="><span class="rnvText">Sumber Air</span></a></li>
+											</ul>
+										</div>
+									</div></li>
+								</ul>
+							</div>
+						</div></li><li class="rnvItem"><a class="rnvLink" title="Ancaman" href="../Internal/GISNew.aspx?Q=2gIlrXmGemYtW2vU1XOLFg=="><span class="rnvText">Ancaman</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Mitigasi" href="../Internal/GISNew.aspx?Q=E1oh9V2p7cKDCDcFcgPuVA=="><span class="rnvText">Mitigasi</span></a></li>
+					</ul>
+				</div>
+			</div></li><li class="rnvItem"><a class="rnvRootLink rnvLink" title="Info Air" href="javascript:void(0)"><span class="rnvText">Info Air</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+				<div class="radPopup rnvPopup">
+					<ul class="rnvUL">
+						<li class="rnvItem rnvFirst"><a class="rnvLink" title="Sumber Air" href="javascript:void(0)"><span class="rnvText">Sumber Air</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+							<div class="radPopup rnvPopup">
+								<ul class="rnvUL">
+									<li class="rnvItem rnvFirst"><a class="rnvLink" title="Lembangan Sungai Utama" href="Sungai.aspx?Q=KYVlnrQtfKw="><span class="rnvText">Lembangan Sungai Utama</span></a></li><li class="rnvItem"><a class="rnvLink" title="Empangan JPS" href="Empangan.aspx?Q=4RRbFpCg0pU="><span class="rnvText">Empangan JPS</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Pantai" href="Pantai.aspx?Q=qoXUv0Q2xO0="><span class="rnvText">Pantai</span></a></li>
+								</ul>
+							</div>
+						</div></li><li class="rnvItem"><a class="rnvLink" title="Hidro Met" href="javascript:void(0)"><span class="rnvText">Hidro Met</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+							<div class="radPopup rnvPopup">
+								<ul class="rnvUL">
+									<li class="rnvItem rnvFirst"><a class="rnvLink" title="Banjir" href="../HidroMet/Banjir.aspx?Q=HZ8s5GaAFPM="><span class="rnvText">Banjir</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Kemarau" href="../HidroMet/Drought.aspx?Q=JELZx4GlWIQ="><span class="rnvText">Kemarau</span></a></li>
+								</ul>
+							</div>
+						</div></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Akta Air" href="../Pages/Page.aspx?Q=B0QQAIvaYxwdA6mJjaKI+w=="><span class="rnvText">Akta Air</span></a></li>
+					</ul>
+				</div>
+			</div></li><li class="rnvItem"><a class="rnvRootLink rnvLink" title="Stesen Hidrologi" href="javascript:void(0)"><span class="rnvText">Stesen Hidrologi</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+				<div class="radPopup rnvPopup">
+					<ul class="rnvUL">
+						<li class="rnvItem rnvFirst"><a class="rnvLink" title="Stesen Hidrologi GIS" href="../Data/Index.aspx?Q=7tB995ObRrW4zaZbihLcJsI0PyHZP1Yw"><span class="rnvText">Stesen Hidrologi GIS</span></a></li><li class="rnvItem"><a class="rnvLink" title="Inventori Stesen Hidrologi JPS" href="../Telemetri/Index.aspx?Q=DGQF08iEj5A="><span class="rnvText">Inventori Stesen Hidrologi JPS</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Stesen Hidromekanikal" href="../Station/Hydromechanical.aspx?Q=nFv1ftCTS70="><span class="rnvText">Stesen Hidromekanikal</span></a></li>
+					</ul>
+				</div>
+			</div></li><li class="rnvItem rnvLast"><a class="rnvRootLink rnvLink" title="Perkongsian Data" href="javascript:void(0)"><span class="rnvText">Perkongsian Data</span><span class="rnvToggle radIcon"></span></a><div class="rnvSlide">
+				<div class="radPopup rnvPopup">
+					<ul class="rnvUL">
+						<li class="rnvItem rnvFirst"><a class="rnvLink" title="Katalog Data Geospatial" href="../Data/Katalog.aspx?Q=D38gWpZeXBu0eExfhqHmsw=="><span class="rnvText">Katalog Data Geospatial</span></a></li><li class="rnvItem"><a class="rnvLink" title="Senarai Kajian" href="../Penerbitan/Kajian.aspx?Q=J/Bb0S/PJwM="><span class="rnvText">Senarai Kajian</span></a></li><li class="rnvItem rnvLast"><a class="rnvLink" title="Prosedur Permohonan Data" href="../Pages/Page.aspx?Q=5k0vGbTqtUQJ5VZ1XiQnzQ=="><span class="rnvText">Prosedur Permohonan Data</span></a></li>
+					</ul>
+				</div>
+			</div></li>
+		</ul>
+	</div><div class="rnvHiddenGroups">
+		
+	</div><input id="ctl00_navMenu_ClientState" name="ctl00_navMenu_ClientState" type="hidden" />
+</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main>                                          
+                <div class="row reset-this">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        
+    
+        <script type="text/javascript" src="../../fusioncharts/fusioncharts.js"></script>
+        <script type="text/javascript" src="../../fusioncharts/themes/fusioncharts.theme.fusion.js"></script>
+        <script type="text/javascript" src="../../fusioncharts/updatepanelhook.fusioncharts.js"></script>
+    
+    <style type="text/css">
+        .card-deck p {
+            margin-bottom: 0px !important;
+        }
+
+        .card-deck .card-title {
+            margin-bottom: 2px !important;
+            font-size: 18px !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card-deck .card-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .sungai {
+            display: flex;
+        }
+
+        .jenis_doc {
+            display: flex;
+        }
+
+        .modal-open .modal {
+            margin-top: 50px !important;
+        }
+
+        .modal-header {
+            display: block;
+        }
+
+        .empangan_maintitle {
+            text-align: center;
+            /*text-decoration: underline;*/
+            margin-bottom: 0px !important;
+        }
+
+        .headermain {
+            display: flex;
+            color: white;
+            flex-grow: 4;
+            justify-content: space-between;
+        }
+
+        .headermain_item_left {
+            width: 90%;
+            font-weight: bold;
+            text-align: left;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .headermain_item_right {
+            width: 10%;
+            font-weight: bold;
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="RadAjaxPanel" id="ctl00_MainContent_ctl00_MainContent_ajaxPanelPanel">
+	<div id="ctl00_MainContent_ajaxPanel">
+		
+        <div class="mt-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="headermain">
+                        <div class="card-header" style="width: 100%; background-color: #3C8DBC;">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <h4>
+                                    <span id="MainContent_lblMainTitle" class="page-title" style="color: white;">JPS Dam</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="RadAjaxPanel" id="ctl00_MainContent_ctl00_MainContent_ajaxPanelGridPanel">
+			<div id="ctl00_MainContent_ajaxPanelGrid">
+				
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 " style="text-align: right">
+                                        <!-- Using ASP.NET FusionCharts Wrapper and JavaScript rendering --><!-- START Script Block for Chart 41a063e4_347d_4be6_995c_9e04ef990a12 -->
+<div id='41a063e4_347d_4be6_995c_9e04ef990a12_div' >
+Chart...
+</div>
+<script type="text/javascript">
+FusionCharts && FusionCharts.ready(function () {
+if (FusionCharts("41a063e4_347d_4be6_995c_9e04ef990a12") ) FusionCharts("41a063e4_347d_4be6_995c_9e04ef990a12").dispose();
+var chart_41a063e4_347d_4be6_995c_9e04ef990a12 = new FusionCharts({
+"width" : "100%", 
+"height" : "250", 
+"id" : "41a063e4_347d_4be6_995c_9e04ef990a12", 
+"type" : "column2d", 
+"dataSource" : {'chart':{'caption':'Total Dam By State','subcaption':'','bgcolor':'FFFFFF','xaxisname':'State','yaxisname':'Total Dam','showvalues':'1' ,'showLabels':'1' ,'showLegend':'0' ,'captionFontSize':'14','subcaptionFontSize':'12','legendItemFontSize':'12','subcaptionFontBold':'0' ,'numberprefix':'','animation':'0','thousandSeparatorPosition':'3','formatNumberScale':'0','basefontsize':'10' ,'drawcrossline':'1','plotgradientcolor':'','showalternatehgridcolor':'0','showplotborder':'0','divlinecolor':'CCCCCC','canvasborderalpha':'0','showBorder':'0',},'data':[{'label':'Johor','value':'4','link':'JavaScript:drillNext("Johor");'},{'label':'Kedah','value':'2','link':'JavaScript:drillNext("Kedah");'},{'label':'Kelantan','value':'1','link':'JavaScript:drillNext("Kelantan");'},{'label':'Pahang','value':'5','link':'JavaScript:drillNext("Pahang");'},{'label':'Perak','value':'2','link':'JavaScript:drillNext("Perak");'},{'label':'Perlis','value':'1','link':'JavaScript:drillNext("Perlis");'},{'label':'Selangor','value':'1','link':'JavaScript:drillNext("Selangor");'}]},events : {'dataplotClick': function(evt, args) { window.drillNext = function(val) { document.getElementById('MainContent_hdnVal').value = val; __doPostBack('lbDoPostBack', ''); };}}, 
+"dataFormat" : "json", 
+"renderAt" : "41a063e4_347d_4be6_995c_9e04ef990a12_div" 
+}).render();
+});
+</script>
+<!-- END Script Block for Chart 41a063e4_347d_4be6_995c_9e04ef990a12 -->
+
+                                    </div>
+                                </div>
+                                <div class="form-row float-right">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <a id="MainContent_btnReset" class="btn btn-primary" href="javascript:__doPostBack(&#39;ctl00$MainContent$btnReset&#39;,&#39;&#39;)"> Reset</a>
+                                        </div>
+                                        &nbsp;
+                                        <div class="dropdown form-group">
+                                            <button id="MainContent_btnExport" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Export</button>
+                                            <ul class="dropdown-menu" style="min-width: 100%;">
+                                                <li><a class="dropdown-item" href="javascript:DownloadPDF();">PDF</a></li>
+                                                <li><a class="dropdown-item" href="javascript:DownloadExcel();">Excel</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div id="ctl00_MainContent_gridSearch" class="RadGrid RadGrid_Bootstrap" style="border-width:0px;width:100%;">
+
+				<table class="rgMasterTable" id="ctl00_MainContent_gridSearch_ctl00" style="width:100%;table-layout:auto;empty-cells:show;">
+					<colgroup>
+		<col style="width:20%" />
+		<col style="width:10%" />
+		<col style="width:10%" />
+		<col style="width:12%" />
+		<col style="width:12%" />
+		<col style="width:12%" />
+		<col style="width:12%" />
+		<col style="width:12%" />
+	</colgroup>
+<thead>
+						<tr>
+							<th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:left;">Dam Name</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:left;">State</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Height (m)</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Crest Length (m)</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Crest Elevation (m)</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Catchment (sq.km)</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Capacity (mcm)</th><th scope="col" class="rgHeader" valign="middle" style="font-weight:bold;text-align:right;">Normal Level (NPL m)</th>
+						</tr>
+					</thead><tfoot>
+						<tr class=" rgPager">
+							<td class="rgPagerCell" colspan="8"><div class="NextPrevAndNumeric">
+								<div class="rgWrap rgArrPart1">
+									<img title="Halaman Pertama" src="/Portal/images/grid/PagingFirst.gif" alt="Halaman Pertama" />  <img title="Halaman Terdahulu" src="/Portal/images/grid/PagingPrev.gif" alt="Halaman Terdahulu" />
+								</div><div class="rgWrap rgNumPart">
+									<a onclick="return false;" class="rgCurrentPage" href="javascript:__doPostBack(&#39;ctl00$MainContent$gridSearch$ctl00$ctl03$ctl01$ctl05&#39;,&#39;&#39;)">1</a>
+								</div><div class="rgWrap rgArrPart2">
+									<img title="Halaman Sebelah" src="/Portal/images/grid/PagingNext.gif" alt="Halaman Sebelah" />  <img title="Halaman Terakhir" src="/Portal/images/grid/PagingLast.gif" alt="Halaman Terakhir" />
+								</div><div class="rgWrap rgAdvPart">
+									<span id="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_ChangePageSizeLabel" class="rgPagerLabel"></span><div id="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox" class="RadComboBox RadComboBox_Bootstrap" style="width:67px;white-space:normal;">
+										<span class="rcbInner rcbReadOnly"><input name="ctl00$MainContent$gridSearch$ctl00$ctl03$ctl01$PageSizeComboBox" type="text" class="rcbInput radPreventDecorate" id="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox_Input" value="20" readonly="readonly" /><button class="rcbActionButton" tabindex="-1" type="button"><span class="rcbIcon rcbIconDown" id="PageSizeComboBox_Arrow"><!-- &nbsp; --></span><span class="rcbButtonText">select</span></button></span><div class="rcbSlide" style="z-index:6000;display:none;"><div id="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox_DropDown" class="RadComboBoxDropDown RadComboBoxDropDown_Bootstrap "><div class="rcbScroll rcbWidth"><ul class="rcbList" style="list-style:none;margin:0;padding:0;zoom:1;"><li class="rcbItem">20</li><li class="rcbItem">30</li><li class="rcbItem">40</li><li class="rcbItem">50</li></ul></div></div></div><input id="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox_ClientState" name="ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox_ClientState" type="hidden" />
+									</div>
+								</div><div class="rgWrap rgInfoPart">
+									 Page 1 of 1, Total Record: 16.
+								</div>
+							</div></td>
+						</tr>
+					</tfoot><tbody>
+					<tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__0" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">ANAK ENDAU</td><td align="left" valign="middle" style="width:10%;">Pahang</td><td align="right" valign="middle" style="width:10%;">18.00</td><td align="right" valign="middle" style="width:12%;">700.00</td><td align="right" valign="middle" style="width:12%;">23.00</td><td align="right" valign="middle" style="width:12%;">36.00</td><td align="right" valign="middle" style="width:12%;">38.00</td><td align="right" valign="middle" style="width:12%;">19.00</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__1">
+						<td align="left" valign="middle" style="width:20%;">BATU</td><td align="left" valign="middle" style="width:10%;">Selangor</td><td align="right" valign="middle" style="width:10%;">44.00</td><td align="right" valign="middle" style="width:12%;">550.00</td><td align="right" valign="middle" style="width:12%;">109.00</td><td align="right" valign="middle" style="width:12%;">50.00</td><td align="right" valign="middle" style="width:12%;">36.60</td><td align="right" valign="middle" style="width:12%;">102.70</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__2" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">BEKOK</td><td align="left" valign="middle" style="width:10%;">Johor</td><td align="right" valign="middle" style="width:10%;">20.30</td><td align="right" valign="middle" style="width:12%;">3,460.00</td><td align="right" valign="middle" style="width:12%;">23.00</td><td align="right" valign="middle" style="width:12%;">326.00</td><td align="right" valign="middle" style="width:12%;">32.00</td><td align="right" valign="middle" style="width:12%;">16.00</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__3">
+						<td align="left" valign="middle" style="width:20%;">BERIS</td><td align="left" valign="middle" style="width:10%;">Kedah</td><td align="right" valign="middle" style="width:10%;">40.00</td><td align="right" valign="middle" style="width:12%;">155.00</td><td align="right" valign="middle" style="width:12%;">88.00</td><td align="right" valign="middle" style="width:12%;">116.00</td><td align="right" valign="middle" style="width:12%;">122.40</td><td align="right" valign="middle" style="width:12%;">84.00</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__4" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">BUKIT KWONG</td><td align="left" valign="middle" style="width:10%;">Kelantan</td><td align="right" valign="middle" style="width:10%;">7.62</td><td align="right" valign="middle" style="width:12%;">1,524.00</td><td align="right" valign="middle" style="width:12%;">18.29</td><td align="right" valign="middle" style="width:12%;">11.00</td><td align="right" valign="middle" style="width:12%;">14.30</td><td align="right" valign="middle" style="width:12%;">16.76</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__5">
+						<td align="left" valign="middle" style="width:20%;">BUKIT MERAH</td><td align="left" valign="middle" style="width:10%;">Perak</td><td align="right" valign="middle" style="width:10%;">9.10</td><td align="right" valign="middle" style="width:12%;">579.00</td><td align="right" valign="middle" style="width:12%;">11.28</td><td align="right" valign="middle" style="width:12%;">480.00</td><td align="right" valign="middle" style="width:12%;">74.98</td><td align="right" valign="middle" style="width:12%;">8.70</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__6" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">GOPENG</td><td align="left" valign="middle" style="width:10%;">Perak</td><td align="right" valign="middle" style="width:10%;">8.54</td><td align="right" valign="middle" style="width:12%;">85.00</td><td align="right" valign="middle" style="width:12%;">70.71</td><td align="right" valign="middle" style="width:12%;">0</td><td align="right" valign="middle" style="width:12%;">0</td><td align="right" valign="middle" style="width:12%;">0</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__7">
+						<td align="left" valign="middle" style="width:20%;">LABONG</td><td align="left" valign="middle" style="width:10%;">Johor</td><td align="right" valign="middle" style="width:10%;">10.67</td><td align="right" valign="middle" style="width:12%;">259.00</td><td align="right" valign="middle" style="width:12%;">10.67</td><td align="right" valign="middle" style="width:12%;">16.00</td><td align="right" valign="middle" style="width:12%;">12.80</td><td align="right" valign="middle" style="width:12%;">19.00</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__8" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">MACHAP</td><td align="left" valign="middle" style="width:10%;">Johor</td><td align="right" valign="middle" style="width:10%;">11.50</td><td align="right" valign="middle" style="width:12%;">550.00</td><td align="right" valign="middle" style="width:12%;">19.81</td><td align="right" valign="middle" style="width:12%;">77.00</td><td align="right" valign="middle" style="width:12%;">30.60</td><td align="right" valign="middle" style="width:12%;">15.85</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__9">
+						<td align="left" valign="middle" style="width:20%;">PADANG SAGA</td><td align="left" valign="middle" style="width:10%;">Kedah</td><td align="right" valign="middle" style="width:10%;">8.30</td><td align="right" valign="middle" style="width:12%;">61.00</td><td align="right" valign="middle" style="width:12%;">23.01</td><td align="right" valign="middle" style="width:12%;">12.00</td><td align="right" valign="middle" style="width:12%;">0.20</td><td align="right" valign="middle" style="width:12%;">21.18</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__10" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">PERTING</td><td align="left" valign="middle" style="width:10%;">Pahang</td><td align="right" valign="middle" style="width:10%;">21.50</td><td align="right" valign="middle" style="width:12%;">139.00</td><td align="right" valign="middle" style="width:12%;">118.00</td><td align="right" valign="middle" style="width:12%;">125.00</td><td align="right" valign="middle" style="width:12%;">0.00</td><td align="right" valign="middle" style="width:12%;">0.00</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__11">
+						<td align="left" valign="middle" style="width:20%;">PONTIAN</td><td align="left" valign="middle" style="width:10%;">Pahang</td><td align="right" valign="middle" style="width:10%;">15.50</td><td align="right" valign="middle" style="width:12%;">350.00</td><td align="right" valign="middle" style="width:12%;">7.50</td><td align="right" valign="middle" style="width:12%;">170.00</td><td align="right" valign="middle" style="width:12%;">40.00</td><td align="right" valign="middle" style="width:12%;">5.00</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__12" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">REPAS BARU</td><td align="left" valign="middle" style="width:10%;">Pahang</td><td align="right" valign="middle" style="width:10%;">20.00</td><td align="right" valign="middle" style="width:12%;">40.00</td><td align="right" valign="middle" style="width:12%;">128.96</td><td align="right" valign="middle" style="width:12%;">11.00</td><td align="right" valign="middle" style="width:12%;">0.40</td><td align="right" valign="middle" style="width:12%;">126.22</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__13">
+						<td align="left" valign="middle" style="width:20%;">REPAS LAMA</td><td align="left" valign="middle" style="width:10%;">Pahang</td><td align="right" valign="middle" style="width:10%;">13.40</td><td align="right" valign="middle" style="width:12%;">210.00</td><td align="right" valign="middle" style="width:12%;">143.29</td><td align="right" valign="middle" style="width:12%;">10.00</td><td align="right" valign="middle" style="width:12%;">0.00</td><td align="right" valign="middle" style="width:12%;">0.00</td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__14" style="text-align:left;">
+						<td align="left" valign="middle" style="width:20%;">SEMBRONG</td><td align="left" valign="middle" style="width:10%;">Johor</td><td align="right" valign="middle" style="width:10%;">11.00</td><td align="right" valign="middle" style="width:12%;">1,770.00</td><td align="right" valign="middle" style="width:12%;">15.00</td><td align="right" valign="middle" style="width:12%;">130.00</td><td align="right" valign="middle" style="width:12%;">18.00</td><td align="right" valign="middle" style="width:12%;">8.50</td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_MainContent_gridSearch_ctl00__15">
+						<td align="left" valign="middle" style="width:20%;">TIMAH TASOH</td><td align="left" valign="middle" style="width:10%;">Perlis</td><td align="right" valign="middle" style="width:10%;">17.30</td><td align="right" valign="middle" style="width:12%;">3,455.00</td><td align="right" valign="middle" style="width:12%;">32.00</td><td align="right" valign="middle" style="width:12%;">191.00</td><td align="right" valign="middle" style="width:12%;">40.00</td><td align="right" valign="middle" style="width:12%;">29.10</td>
+					</tr>
+					</tbody>
+
+				</table><input id="ctl00_MainContent_gridSearch_ClientState" name="ctl00_MainContent_gridSearch_ClientState" type="hidden" />	</div>
+				
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-right">
+                                    <span id="MainContent_lblLastUpdate" style="font-size: smaller">Tarikh Kemas Kini Terakhir : 30/05/2025</span>
+                                </div>
+                                
+                            </div>
+                        
+			</div>
+		</div>
+                        
+                            <script type="text/javascript">
+                                function onRequestStart(sender, args) {
+                                    if (args.get_eventTarget().indexOf("btnCetak") >= 0)
+                                        args.set_enableAjax(false);
+                                    if (args.get_eventTarget().indexOf("btnCetakExcel") >= 0)
+                                        args.set_enableAjax(false);
+                                }
+
+                                function DownloadPDF() {
+                                    document.getElementById("MainContent_btnCetak").click();
+                                }
+
+                                function DownloadExcel() {
+                                    document.getElementById("MainContent_btnCetakExcel").click();
+                                }
+                            </script>
+                        
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body text-left">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <p class="card-title">
+                                                        <span id="MainContent_Label2" style="font-size: 20px; font-weight: bold;">Interactive Map</span>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        Explore map for:<br />1. DAM Information<br />2. Related Layer
+                                                    </p>
+                                                    <a id="MainContent_hyLinkGis" title="View on Map" class="btn btn-primary" href="../Internal/GIS.aspx?Q=Z29bmvwUKQyMQHKYiQzkx1Okqj2eOBMs" target="_blank">View Map</a>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <img class="img-fluid" src="/Portal/images/Portal/MyMap.jfif" width="480">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <input type="hidden" name="ctl00$MainContent$hdnVal" id="MainContent_hdnVal" />
+    
+	</div>
+</div>
+    <div style="display: none;">
+        <a id="MainContent_btnCetak" href="javascript:__doPostBack(&#39;ctl00$MainContent$btnCetak&#39;,&#39;&#39;)"></a>
+        <a id="MainContent_btnCetakExcel" href="javascript:__doPostBack(&#39;ctl00$MainContent$btnCetakExcel&#39;,&#39;&#39;)"></a>
+    </div>
+
+                    </div>
+                </div>
+            </main>
+
+            <footer id="footer">
+                <div class="row justify-content-around mb-0 pt-1 mx-4">
+                    <div class="col-md-4">
+                        <ul class="list-unstyled mt-md-3 mt-5 mb-0 ft_agensi_link">
+                            <li class="itemlink"><a data-toggle="collapse" href="#collapse1"><span><b>External Agency Link</b><i class="fa fa-angle-double-right"></i></span></a></li>
+                        </ul>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <ul class="list-unstyled mt-md-0 mt-5 ft_agensi_link">
+                                
+                                        <a id="rptAgencyLink_jps_hyperlink_link_0" title="AGENSI ANGKASA MALAYSIA" class="JPS_HYPERLINK_link" href="http://www.mysa.gov.my" target="_blank">
+                                                 <li class="itemlink"><span>AGENSI ANGKASA MALAYSIA</span></li>
+                                        </a>
+                                    
+                                        <a id="rptAgencyLink_jps_hyperlink_link_1" title="INSTITUT PENYELIDIKAN HIDRAULIK KEBANGSAAN" class="JPS_HYPERLINK_link" href="http://www.moha.gov.my" target="_blank">
+                                                 <li class="itemlink"><span>INSTITUT PENYELIDIKAN HIDRAULIK KEBANGSAAN</span></li>
+                                        </a>
+                                    
+                                        <a id="rptAgencyLink_jps_hyperlink_link_2" title="JABATAN KERJA RAYA" class="JPS_HYPERLINK_link" href="https://www.kkr.gov.my" target="_blank">
+                                                 <li class="itemlink"><span>JABATAN KERJA RAYA</span></li>
+                                        </a>
+                                    
+                                        <a id="rptAgencyLink_jps_hyperlink_link_3" title="KEMENTERIAN SUMBER ASLI, ALAM SEKITAR DAN PERUBAHA" class="JPS_HYPERLINK_link" href="https://www.petra.gov.my/" target="_blank">
+                                                 <li class="itemlink"><span>KEMENTERIAN SUMBER ASLI, ALAM SEKITAR DAN PERUBAHA</span></li>
+                                        </a>
+                                    
+                                        <a id="rptAgencyLink_jps_hyperlink_link_4" title="PUSAT HIDROGRAFI NASIONAL" class="JPS_HYPERLINK_link" href="https://hydro.gov.my/" target="_blank">
+                                                 <li class="itemlink"><span>PUSAT HIDROGRAFI NASIONAL</span></li>
+                                        </a>
+                                    
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-unstyled mt-md-3 mt-5 mb-0 ft_agensi_link">
+                            <li class="itemlink"><a data-toggle="collapse" href="#collapse2"><span><b>Internal Links</b><i class="fa fa-angle-double-right"></i></span></a></li>
+                        </ul>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <ul class="list-unstyled mt-md-0 mt-5 ft_agensi_link">
+                                
+                                        <a id="rptJPSLink_jps_hyperlink_link_0" class="JPS_HYPERLINK_link" href="https://data.water.gov.my/" target="_blank">
+                                                 <li class="itemlink"><span></span></li>
+                                        </a>
+                                    
+                                        <a id="rptJPSLink_jps_hyperlink_link_1" title="NATIONAL COASTAL EROSION STUDY (NCES)" class="JPS_HYPERLINK_link" href="http://nces.water.gov.my/nces" target="_blank">
+                                                 <li class="itemlink"><span>NATIONAL COASTAL EROSION STUDY (NCES)</span></li>
+                                        </a>
+                                    
+                                        <a id="rptJPSLink_jps_hyperlink_link_2" title="PUBLIC INFOBANJIR" class="JPS_HYPERLINK_link" href="https://publicinfobanjir.water.gov.my/" target="_blank">
+                                                 <li class="itemlink"><span>PUBLIC INFOBANJIR</span></li>
+                                        </a>
+                                    
+                            </ul>
+                        </div>
+                        <ul class="list-unstyled mt-md-3 mt-5">
+                            <li><b>Mobile View</b></li>
+                            <li>
+                                <img src="/Portal/images/QR.png" title=Mobile View alt="QR"/></li>
+                        </ul>
+                        <ul class="list-unstyled mt-md-3 mt-5">
+                            <li><b>Social Media&nbsp;PETRA</b></li>
+                            <li class="social"><span><a target="_blank" href="https://www.facebook.com/KPTDGAmalaysia/"><i class="fa fa-facebook text-white" aria-hidden="true"></i></a></span><span><a target="_blank" href="https://twitter.com/petramalaysia/"><i class="fa fa-x-twitter text-white" aria-hidden="true"></i></a></span><span><a target="_blank" href="https://www.instagram.com/petramalaysia/"><i class="fa fa-instagram text-white" aria-hidden="true"></i></a></span></li>
+                        </ul>
+                        <ul class="list-unstyled mt-md-3 mt-5">
+                            <li><b>Social Media&nbsp;DID</b></li>
+                            <li class="social"><span><a target="_blank" href="https://www.facebook.com/did.jps.gov/"><i class="fa fa-facebook text-white" aria-hidden="true"></i></a></span><span><a target="_blank" href="https://twitter.com/jps_malaysia"><i class="fa fa-x-twitter text-white" aria-hidden="true"></i></a></span><span><a target="_blank" href="https://www.instagram.com/jps_malaysia/"><i class="fa fa-instagram text-white" aria-hidden="true"></i></a></span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="list-unstyled">
+                            <li class="mt-md-0 mt-4"><b>Contact Us</b></li>
+                        </ul>
+                        <div class="hideme">
+                            
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2817.593571375968!2d101.64587939714245!3d2.9084310554498307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdb733a5bcd227%3A0x531095dcbfef098a!2sJPS%20MALAYSIA!5e0!3m2!1sen!2smy!4v1699406361491!5m2!1sen!2smy" width="100%" height="238" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            
+                        </div>
+                        <ul class="list-unstyled text-center">
+                            <li><span>Department of Irrigation and Drainage</span></li>
+                            <li><span>Persiaran Rimba Permai, Cyber 8,</span></li>
+                            <li><span>63000 Cyberjaya,</span></li>
+                            <li><span>Selangor Darul Ehsan</span></li>
+                            <li><span>Tel: +603-8682 9200/9300 Fax: -</span></li>
+                            <li><span>E-mail: </span><a href="#" class="cryptedmail" style="color: white;" data-name="pro" data-domain="water" data-tld1="gov" data-tld2="my"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld1 + '.' + this.dataset.tld2; return false;"></a></li>
+                            <li><span>E-mail: </span><a href="#" class="cryptedmail" style="color: white;" data-name="portalsmsa" data-domain="water" data-tld1="gov" data-tld2="my"
+                                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld1 + '.' + this.dataset.tld2; return false;"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-md-5">
+                        <div class="form-group ">
+                            <ul class="list-unstyled mt-md-3 mt-5">
+                                <li><b>
+                                    <label for="email" class="mb-3"><b>Subscribe to our NewsLetter</b></label></b></li>
+                            </ul>
+                            <div class="input-group">
+                                <input name="ctl00$txtEmailSub" type="email" id="txtEmailSub" class="form-control ft_btn" placeholder="E-mail" />
+                                <div class="input-group-append">
+                                    <input type="submit" name="ctl00$btnSubScribe" value="Subscribe" id="btnSubScribe" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center px-2 py-2 pt-1">
+                    <div class="col text-center">
+                        <b>Visitor</b><br />
+                        <span>Total Visitor :</span> &nbsp;<span id="totalCounter" class="badge badge-light">..</span>
+                        &nbsp; | &nbsp; 
+                                <span>Total Visitor Today :</span> &nbsp;<span id="totalCounterToday" class="badge badge-light">..</span>
+                        &nbsp; | &nbsp; 
+                                <span>Total Visitor This Month :</span> &nbsp;<span id="totalCounterMonth" class="badge badge-light">..</span>
+                        &nbsp; | &nbsp; 
+                                <span>Total Visitor This Year :</span> &nbsp;<span id="totalCounterYear" class="badge badge-light">..</span>
+                        <p class="mb-0">
+                            <a style="color: white;" href="/Portal/Modules/Pages/Page.aspx?Q=P+Cb9J1gJkqfvNH22rW3+g==">Privacy Policy</a> |
+                            <a style="color: white;" href="/Portal/Modules/Pages/Page.aspx?Q=TOkTF43AVa/q6fIJPk+PzA==">Security Policy</a> |
+                            <a style="color: white;" href="/Portal/Modules/Pages/Page.aspx?Q=QVaE79OrJ/7+uuxgFjfCSQ==">Disclaimer</a> |
+                            <a style="color: white;" href="/Portal/Modules/Pages/Page.aspx?Q=dSXrZPn0jzkqOWoDA7Z/bA==">Copyright Notice</a>
+                        </p>
+                        <p class="mb-0">
+                            <span>Best View Using Microsoft Edge / Mozilla Firefox 25 / Google Chrome 30 / Safari 8 or Higher With Resolution 1280 x 800</span>
+                        </p>
+                        <p class="mb-0">
+                            <span>Copyright Reserved © 2020 DID</span>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div id="radAjaxLoadingPanel" class="radAjaxLoadingPanel" style="display:none;">
+	
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="preloader-circle2"></div>
+                    <div class="preloader-img pere-text">
+                        <img class="ld ld-heartbeat" src="/Portal/images/JPS-.png" alt="">
+                    </div>
+                </div>
+            </div>
+        
+</div>
+        <script type="text/javascript">
+            (function ($) {
+                function sitemaster_main() {
+                    var $this = this;
+                    var totalCounter = $('#totalCounter');
+                    var totalCounterToday = $('#totalCounterToday');
+                    var totalCounterMonth = $('#totalCounterMonth');
+                    var totalCounterYear = $('#totalCounterYear');
+
+                    function getTotalPelawat() {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Portal/Default.aspx/GetTotal',
+                            data: "{}",
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (r) {
+                                var data = $.parseJSON(r.d);
+                                $.each(data, function (i, jsondata) {
+                                    totalCounter.html(jsondata.GRAND_TOTAL);
+                                    totalCounterToday.html(jsondata.TOTAL_TODAY);
+                                    totalCounterMonth.html(jsondata.TOTAL_MONTH);
+                                    totalCounterYear.html(jsondata.TOTAL_YEAR);
+                                });
+                            }
+                        });
+                    }
+
+                    function initialize() {
+                        var tasks = [];
+                        tasks.push(getTotalPelawat());
+                        //tasks.push(getTotalToday());
+                        $.when(tasks); //run parallel ma..
+                    }
+
+                    $this.init = function () {
+                        initialize();
+                    }
+                }
+                $(function () {
+                    var self = new sitemaster_main();
+                    self.init();
+                })
+                $('.carousel-item').find('img').each(function () {
+                    var vm = $(this);
+                    vm.css({
+                        'height': '550px',
+						'width': '1540px'
+                    });
+                });
+            }(jQuery))
+        </script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {$get("ToolkitScriptManager1_HiddenField").value = '';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();window.setTimeout(function(){},500);
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl00$RadAjaxManager","updatePanelsRenderMode":0}, null, null, $get("ctl00_RadAjaxManager"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadNavigation, {"_skin":"Silk","clientStateFieldID":"ctl00_navMenu_ClientState","nodesData":[{"text":"Laman Utama","navigateUrl":"https://mywater.gov.my/Portal"},{"text":"Mengenai Kami","navigateUrl":"javascript:void(0)","nodes":[{"text":"Mengenai MyWater (SMSA)","navigateUrl":"~/Modules/Pages/Page.aspx?Q=k/moWiNyDCZU7i4yY7kwlg=="},{"text":"Direktori Staf","navigateUrl":"~/Modules/AboutUs/StaffDirectory.aspx?Q=9U4abDLxSW8="},{"text":"Carta Organisasi","navigateUrl":"~/Modules/Pages/Page.aspx?Q=zDcxc0qH8/5czQHMvnb5Tg=="},{"text":"Ucapan Aluan","navigateUrl":"~/Modules/Pages/Page.aspx?Q=5gl0oIYrpkHLmbzpVPWNEQ=="}]},{"text":"Air Geo","navigateUrl":"javascript:void(0)","nodes":[{"text":"Sumber Air","navigateUrl":"javascript:void(0)","nodes":[{"text":"Lembangan Sungai","navigateUrl":"~/Modules/Internal/GISNew.aspx?Q=0tinfFkaf0n0x258tDQaAQ=="},{"text":"Pengurusan Lembangan Sungai Bersepadu","navigateUrl":"~/Modules/Internal/GISNew.aspx?Q=4CtUQe5aUF2l0hprqxxnMw=="},{"text":"Denai Sungai Kebangsaan","navigateUrl":"javascript:void(0)","nodes":[{"text":"Sumber Air","navigateUrl":"~/Modules/Internal/GISNew.aspx?Q=0I340ObKd5pjI/RIjT/F8g=="}]}]},{"text":"Ancaman","navigateUrl":"~/Modules/Internal/GISNew.aspx?Q=2gIlrXmGemYtW2vU1XOLFg=="},{"text":"Mitigasi","navigateUrl":"~/Modules/Internal/GISNew.aspx?Q=E1oh9V2p7cKDCDcFcgPuVA=="}]},{"text":"Info Air","navigateUrl":"javascript:void(0)","nodes":[{"text":"Sumber Air","navigateUrl":"javascript:void(0)","nodes":[{"text":"Lembangan Sungai Utama","navigateUrl":"~/Modules/SumberAir/Sungai.aspx?Q=KYVlnrQtfKw="},{"text":"Empangan JPS","navigateUrl":"~/Modules/SumberAir/Empangan.aspx?Q=4RRbFpCg0pU="},{"text":"Pantai","navigateUrl":"~/Modules/SumberAir/Pantai.aspx?Q=qoXUv0Q2xO0="}]},{"text":"Hidro Met","navigateUrl":"javascript:void(0)","nodes":[{"text":"Banjir","navigateUrl":"~/Modules/HidroMet/Banjir.aspx?Q=HZ8s5GaAFPM="},{"text":"Kemarau","navigateUrl":"~/Modules/HidroMet/Drought.aspx?Q=JELZx4GlWIQ="}]},{"text":"Akta Air","navigateUrl":"~/Modules/Pages/Page.aspx?Q=B0QQAIvaYxwdA6mJjaKI+w=="}]},{"text":"Stesen Hidrologi","navigateUrl":"javascript:void(0)","nodes":[{"text":"Stesen Hidrologi GIS","visible":false,"navigateUrl":"~/Modules/Data/Index.aspx?Q=7tB995ObRrW4zaZbihLcJsI0PyHZP1Yw"},{"text":"Inventori Stesen Hidrologi JPS","navigateUrl":"~/Modules/Telemetri/Index.aspx?Q=DGQF08iEj5A="},{"text":"Stesen Hidromekanikal","navigateUrl":"~/Modules/Station/Hydromechanical.aspx?Q=nFv1ftCTS70="}]},{"text":"Perkongsian Data","navigateUrl":"javascript:void(0)","nodes":[{"text":"Katalog Data Geospatial","navigateUrl":"~/Modules/Data/Katalog.aspx?Q=D38gWpZeXBu0eExfhqHmsw=="},{"text":"Senarai Kajian","navigateUrl":"~/Modules/Penerbitan/Kajian.aspx?Q=J/Bb0S/PJwM="},{"text":"Prosedur Permohonan Data","navigateUrl":"~/Modules/Pages/Page.aspx?Q=5k0vGbTqtUQJ5VZ1XiQnzQ=="}]}]}, null, null, $get("ctl00_navMenu"));
+});
+
+var callBackFrameUrl='/Portal/WebResource.axd?d=beToSAE3vdsL1QUQUxjWdcLQ1-eEEB6xZFTfA6BHIR7lF4qWz0j8zLknoMRqiqgTDJzbWBpiRLNDD4XhYIijpQ2&t=638902059720898773';
+WebForm_InitCallback();Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadComboBox, {"_dropDownWidth":0,"_height":0,"_renderMode":2,"_skin":"Bootstrap","_text":"20","_uniqueId":"ctl00$MainContent$gridSearch$ctl00$ctl03$ctl01$PageSizeComboBox","_value":"20","clientStateFieldID":"ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox_ClientState","collapseAnimation":"{\"duration\":450}","expandAnimation":"{\"duration\":450}","itemData":[{"value":"20","selected":true,"attributes":{"ownerTableViewId":"ctl00_MainContent_gridSearch_ctl00"}},{"value":"30","attributes":{"ownerTableViewId":"ctl00_MainContent_gridSearch_ctl00"}},{"value":"40","attributes":{"ownerTableViewId":"ctl00_MainContent_gridSearch_ctl00"}},{"value":"50","attributes":{"ownerTableViewId":"ctl00_MainContent_gridSearch_ctl00"}}],"localization":"{\"AllItemsCheckedString\":\"All items checked\",\"ItemsCheckedString\":\"items checked\",\"CheckAllString\":\"Check All\"}","selectedIndex":0}, {"selectedIndexChanged":Telerik.Web.UI.Grid.ChangePageSizeComboHandler,"selectedIndexChanging":Telerik.Web.UI.Grid.ChangingPageSizeComboHandler}, null, $get("ctl00_MainContent_gridSearch_ctl00_ctl03_ctl01_PageSizeComboBox"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadGrid, {"ClientID":"ctl00_MainContent_gridSearch","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"EnableRowHoverStyle":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"SaveChangesKey":85,"CancelChangesKey":67},"Animation":{},"Virtualization":{}},"Skin":"Bootstrap","UniqueID":"ctl00$MainContent$gridSearch","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":true,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"ctl00_MainContent_gridSearch_ctl00\",\"UniqueID\":\"ctl00$MainContent$gridSearch$ctl00\",\"PageSize\":20,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":true,\"CurrentPageIndex\":0,\"VirtualItemCount\":16,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":true,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"DAM_NAME\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"DAM_NAME\",\"Display\":true},{\"UniqueName\":\"NEGERI\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"NEGERI\",\"Display\":true},{\"UniqueName\":\"HEIGHT\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Decimal\",\"DataField\":\"HEIGHT\",\"Display\":true},{\"UniqueName\":\"PANJANG_PUNCAK\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"PANJANG_PUNCAK\",\"Display\":true},{\"UniqueName\":\"ARAS_PUNCAK\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.Decimal\",\"DataField\":\"ARAS_PUNCAK\",\"Display\":true},{\"UniqueName\":\"KAWASAN_TADAAN\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"KAWASAN_TADAAN\",\"Display\":true},{\"UniqueName\":\"CAPACITY\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"CAPACITY\",\"Display\":true},{\"UniqueName\":\"NORMAL_LEVEL\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"NORMAL_LEVEL\",\"Display\":true}]}]","_imagesPath":"/Portal/images/grid/","_masterClientID":"ctl00_MainContent_gridSearch_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":false,"clientStateFieldID":"ctl00_MainContent_gridSearch_ClientState","expandItems":{},"renderMode":2}, {"gridCreated":GridCreated = function(){if (parent.resizeAllFrame) parent.resizeAllFrame();}}, null, $get("ctl00_MainContent_gridSearch"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxPanel, {"clientEvents":{OnRequestStart:"onRequestStart",OnResponseEnd:""},"enableAJAX":true,"enableHistory":false,"links":[],"loadingPanelID":"radAjaxLoadingPanel","styles":[],"uniqueID":"ctl00$MainContent$ajaxPanelGrid"}, null, null, $get("ctl00_MainContent_ajaxPanelGrid"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxPanel, {"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"enableAJAX":true,"enableHistory":false,"links":[],"loadingPanelID":"radAjaxLoadingPanel","styles":[],"uniqueID":"ctl00$MainContent$ajaxPanel"}, null, null, $get("ctl00_MainContent_ajaxPanel"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxLoadingPanel, {"initialDelayTime":0,"isSticky":false,"minDisplayTime":0,"skin":"","transparency":10,"uniqueID":"ctl00$radAjaxLoadingPanel","zIndex":90000}, null, null, $get("radAjaxLoadingPanel"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>
