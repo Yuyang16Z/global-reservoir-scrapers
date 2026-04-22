@@ -29,9 +29,18 @@ Each country's scraper lives under `scrapers/<country>/` and writes outputs into
 
 ## Current coverage
 
+### Reservoir data
+
 | Country | Source | Cadence | Script | Status |
 |---|---|---|---|---|
-| Malaysia (Selangor) | LUAS IWRIMS JSON API | daily snapshot, 2× per day | `scrapers/malaysia/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
+| Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
+| Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia_mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
+
+### River / rainfall discharge layer (NOT reservoir data — cross-reference only)
+
+| Country | Source | Cadence | Script | Status |
+|---|---|---|---|---|
+| Malaysia (Sarawak) | DID Sarawak iHydro (~269 river + rainfall + IG stations) | 2× per day | `scrapers/malaysia_sarawak_rivers/sarawak_ihydro_scraper.py` | ✅ v1 (2026-04-22) |
 
 Other countries (Argentina, Australia, China, India, Taiwan, Thailand, South Africa,
 Zambia, Central Asia, etc.) are scraped locally from `~/Desktop/work/resovoir data/`
