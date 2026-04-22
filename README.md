@@ -20,16 +20,21 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 │   │   ├── luas/                   # LUAS IWRIMS (Selangor reservoirs)
 │   │   ├── mywater/                # MyWater JPS dams (nationwide, static metadata)
 │   │   └── sarawak_rivers/         # DID Sarawak iHydro (rivers + rainfall, NOT reservoirs)
+│   ├── taiwan/
+│   │   ├── README.md
+│   │   └── wra/                    # WRA open data + disaster-prevention APIs
 │   └── thailand/
 │       ├── README.md
 │       └── rid/                    # RID (Royal Irrigation Dept) — 35 large + 448 medium
 ├── data/                           # populated by scheduled workflows, committed back
 │   ├── malaysia/{luas,mywater,sarawak_rivers}/
+│   ├── taiwan/wra/
 │   └── thailand/rid/
 └── .github/workflows/
     ├── malaysia_luas.yml           # cron 02:00 + 14:00 UTC
     ├── malaysia_mywater.yml        # manual trigger only
     ├── malaysia_sarawak_rivers.yml # cron 02:05 + 14:05 UTC
+    ├── taiwan_wra.yml              # cron 01:45 + 13:45 UTC
     └── thailand_rid.yml            # cron 01:30 + 13:30 UTC
 ```
 
@@ -41,6 +46,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 |---|---|---|---|---|
 | Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/luas/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
 | Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia/mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
+| Taiwan (nationwide) | WRA open data + disaster-prevention APIs | daily snapshot, 2× per day | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | daily snapshot, 2× per day | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
 
 ### River / rainfall discharge layer (NOT reservoir data — cross-reference only)
@@ -66,6 +72,9 @@ python scrapers/malaysia/mywater/mywater_jps_scraper.py
 
 # Sarawak river gauges
 python scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py
+
+# Taiwan WRA reservoirs
+python scrapers/taiwan/wra/taiwan_wra_scraper.py
 
 # Thailand RID reservoirs
 python scrapers/thailand/rid/thailand_rid_scraper.py
