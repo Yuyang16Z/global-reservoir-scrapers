@@ -17,6 +17,7 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 
 - `metadata/taiwan_wra_reservoirs.csv`
 - `timeseries/daily/taiwan_timeseries_YYYY-MM-DD.csv`
+- `timeseries/intraday/taiwan_intraday_YYYY-MM-DD.csv`
 - `raw/static_reservoirs.json`
 - `raw/daily/YYYY-MM-DD.json`
 - `raw/realtime_YYYY-MM-DD.json`
@@ -26,9 +27,12 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 
 - Default run fetches **yesterday + today** in Taiwan time.
 - Manual backfill is supported via `TAIWAN_START_DATE` and `TAIWAN_END_DATE`.
+- Manual backfill overwrites the requested dates by default, so old daily files can be refreshed.
 - The historical `fhy.wra.gov.tw` daily endpoint supplies the per-date values.
 - The `opendata.wra.gov.tw` current datasets supply names, current water level,
   storage percentage, and metadata enrichment.
+- The current water-level dataset is also written out as an intraday table so the
+  hourly observations are preserved instead of only keeping one latest snapshot per reservoir.
 - Current version keeps `lat` / `lon` blank in metadata because the API set used here
   does not expose coordinates directly. Taiwan has separate location datasets that can
   be joined later.

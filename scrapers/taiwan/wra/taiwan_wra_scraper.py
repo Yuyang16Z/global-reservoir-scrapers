@@ -76,6 +76,26 @@ TS_COLUMNS: list[tuple[str, str]] = [
     ("StatusType", "status_type"),
 ]
 
+INTRADAY_COLUMNS: list[tuple[str, str]] = [
+    ("reservoir_id", "reservoir_id"),
+    ("reservoir_name", "reservoir_name"),
+    ("date", "date"),
+    ("ObservationTime", "observation_time"),
+    ("WaterLevel (m)", "water_level_m"),
+    ("EffectiveWaterStorageCapacity (10^4 m^3)", "effective_storage_capacity_10k_m3"),
+    ("AccumulateRainfallInCatchment (mm)", "rainfall_in_catchment_mm"),
+    ("InflowDischarge (10^4 m^3)", "inflow_discharge_10k_m3"),
+    ("TotalOutflow (10^4 m^3)", "outflow_total_10k_m3"),
+    ("WaterDraw (10^4 m^3)", "water_draw_10k_m3"),
+    ("PredeterminedCrossFlow (10^4 m^3)", "predetermined_crossflow_10k_m3"),
+    ("DesiltingTunnelOutflow (10^4 m^3)", "desilting_tunnel_outflow_10k_m3"),
+    ("DrainageTunnelOutflow (10^4 m^3)", "drainage_tunnel_outflow_10k_m3"),
+    ("PowerOutletOutflow (10^4 m^3)", "power_outlet_outflow_10k_m3"),
+    ("SpillwayOutflow (10^4 m^3)", "spillway_outflow_10k_m3"),
+    ("OthersOutflow (10^4 m^3)", "others_outflow_10k_m3"),
+    ("StatusType", "status_type"),
+]
+
 META_COLUMNS = [
     "reservoir_id",
     "reservoir_name",
@@ -149,6 +169,7 @@ def ensure_dirs(base: Path) -> dict[str, Path]:
     dirs = {
         "metadata": base / "metadata",
         "daily": base / "timeseries" / "daily",
+        "intraday": base / "timeseries" / "intraday",
         "raw": base / "raw",
         "raw_daily": base / "raw" / "daily",
         "logs": base / "run_logs",
@@ -211,7 +232,7 @@ def normalize_current_water_level(rows: list[dict]) -> dict[str, dict]:
         rid = get_id(row)
         if not rid:
             continue
-        out[rid] = {
+        record = {
             "reservoir_id": rid,
             "observation_time": clean_value(row.get("ObservationTime") or row.get("observationtime")),
             "water_level_m": try_float(row.get("WaterLevel") or row.get("waterlevel")),
@@ -240,6 +261,61 @@ def normalize_current_water_level(rows: list[dict]) -> dict[str, dict]:
             "status_type": clean_value(row.get("StatusType") or row.get("statustype")),
             "outflow_total_10k_m3": try_float(row.get("TotalOutflow") or row.get("totaloutflow")),
         }
+        prev = out.get(rid)
+        if prev is None or (record["observation_time"] or "") >= (prev.get("observation_time") or ""):
+            out[rid] = record
+    return out
+
+
+def normalize_current_water_level_intraday(
+    rows: list[dict], basic_info_map: dict[str, dict], current_daily_ops_map: dict[str, dict]
+) -> list[dict]:
+    out: list[dict] = []
+    for row in rows:
+        rid = get_id(row)
+        if not rid:
+            continue
+        obs_time = clean_value(row.get("ObservationTime") or row.get("observationtime"))
+        date = ""
+        if obs_time:
+            date = str(obs_time)[:10]
+        out.append({
+            "reservoir_id": rid,
+            "reservoir_name": (
+                get_name(row)
+                or current_daily_ops_map.get(rid, {}).get("reservoir_name")
+                or basic_info_map.get(rid, {}).get("reservoir_name")
+                or ""
+            ),
+            "date": date,
+            "observation_time": obs_time,
+            "water_level_m": try_float(row.get("WaterLevel") or row.get("waterlevel")),
+            "effective_storage_capacity_10k_m3": try_float(
+                row.get("EffectiveWaterStorageCapacity") or row.get("effectivewaterstoragecapacity")
+            ),
+            "rainfall_in_catchment_mm": try_float(
+                row.get("AccumulateRainfallInCatchment") or row.get("accumulaterainfallincatchment")
+            ),
+            "inflow_discharge_10k_m3": try_float(row.get("InflowDischarge") or row.get("inflowdischarge")),
+            "outflow_total_10k_m3": try_float(row.get("TotalOutflow") or row.get("totaloutflow")),
+            "water_draw_10k_m3": try_float(row.get("WaterDraw") or row.get("waterdraw")),
+            "predetermined_crossflow_10k_m3": try_float(
+                row.get("PredeterminedCrossFlow") or row.get("predeterminedcrossflow")
+            ),
+            "desilting_tunnel_outflow_10k_m3": try_float(
+                row.get("DesiltingTunnelOutflow") or row.get("desiltingtunneloutflow")
+            ),
+            "drainage_tunnel_outflow_10k_m3": try_float(
+                row.get("DrainageTunnelOutflow") or row.get("drainagetunneloutflow")
+            ),
+            "power_outlet_outflow_10k_m3": try_float(
+                row.get("PowerOutletOutflow") or row.get("poweroutletoutflow")
+            ),
+            "spillway_outflow_10k_m3": try_float(row.get("SpillwayOutflow") or row.get("spillwayoutflow")),
+            "others_outflow_10k_m3": try_float(row.get("OthersOutflow") or row.get("othersoutflow")),
+            "status_type": clean_value(row.get("StatusType") or row.get("statustype")),
+        })
+    out.sort(key=lambda r: (r["date"], r["reservoir_id"], r["observation_time"] or ""))
     return out
 
 
@@ -433,6 +509,15 @@ def write_timeseries_csv(path: Path, rows: list[dict]) -> None:
             writer.writerow([row.get(key, "") if row.get(key) is not None else "" for _, key in TS_COLUMNS])
 
 
+def write_intraday_csv(path: Path, rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.writer(f)
+        writer.writerow([c for c, _ in INTRADAY_COLUMNS])
+        for row in rows:
+            writer.writerow([row.get(key, "") if row.get(key) is not None else "" for _, key in INTRADAY_COLUMNS])
+
+
 def upsert_metadata(path: Path, basic_info_map: dict[str, dict], current_daily_ops_map: dict[str, dict]) -> int:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     existing: "OrderedDict[str, dict]" = OrderedDict()
@@ -481,7 +566,9 @@ def main() -> int:
     script_dir = Path(__file__).resolve().parent
     output_dir = Path(os.environ.get("OUTPUT_DIR", str(script_dir / "taiwan_wra_outputs"))).resolve()
     dirs = ensure_dirs(output_dir)
-    skip_existing = os.environ.get("SKIP_EXISTING_DAILY", "1") != "0"
+    manual_backfill = bool(os.environ.get("TAIWAN_START_DATE") or os.environ.get("TAIWAN_END_DATE"))
+    skip_existing_env = os.environ.get("SKIP_EXISTING_DAILY")
+    skip_existing = (skip_existing_env != "0") if skip_existing_env is not None else (not manual_backfill)
     save_raw = os.environ.get("SAVE_RAW_JSON", "1") != "0"
     dates = target_dates()
     today_tw = datetime.now(TAIWAN_TZ).date().isoformat()
@@ -531,10 +618,18 @@ def main() -> int:
             current_water_level_map = normalize_current_water_level(
                 water_level_rows if isinstance(water_level_rows, list) else []
             )
+            intraday_rows = normalize_current_water_level_intraday(
+                water_level_rows if isinstance(water_level_rows, list) else [],
+                basic_info_map,
+                current_daily_ops_map,
+            )
             if save_raw:
                 water_level_path = dirs["raw"] / f"current_water_level_{today_tw}.json"
                 save_json(water_level_path, water_level_rows)
                 summary["files_written"].append(str(water_level_path))
+            intraday_path = dirs["intraday"] / f"taiwan_intraday_{today_tw}.csv"
+            write_intraday_csv(intraday_path, intraday_rows)
+            summary["files_written"].append(str(intraday_path))
         except Exception as e:
             print(f"[WARN] current water level dataset unavailable: {e}", file=sys.stderr)
             summary["errors"].append({"current_water_level_warning": str(e)})
