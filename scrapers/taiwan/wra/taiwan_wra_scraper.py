@@ -165,7 +165,15 @@ def save_json(path: Path, data: Any) -> None:
 
 
 def get_id(row: dict) -> str | None:
-    for key in ("ReservoirIdentifier", "reservoiridentifier", "StationNo", "stationno"):
+    for key in (
+        "ReservoirIdentifier",
+        "reservoiridentifier",
+        "StationNo",
+        "stationno",
+        "水庫代碼",
+        "水库代碼",
+        "水库代码",
+    ):
         v = clean_value(row.get(key))
         if v is not None:
             return str(v)
@@ -173,7 +181,7 @@ def get_id(row: dict) -> str | None:
 
 
 def get_name(row: dict) -> str | None:
-    for key in ("ReservoirName", "reservoirname", "水庫名稱", "Reservoir", "Name"):
+    for key in ("ReservoirName", "reservoirname", "水庫名稱", "水库名稱", "水库名称", "Reservoir", "Name"):
         v = clean_value(row.get(key))
         if v is not None:
             return str(v)
@@ -535,7 +543,10 @@ def main() -> int:
         daily_skipped = 0
         for date_str in dates:
             daily_path = dirs["daily"] / f"taiwan_timeseries_{date_str}.csv"
-            if skip_existing and daily_path.exists():
+            # Keep today's file fresh because names/current water level come from
+            # current datasets and can improve over earlier runs. Historical files
+            # can stay immutable once written.
+            if skip_existing and daily_path.exists() and date_str != today_tw:
                 print(f"[SKIP] {daily_path.name}")
                 daily_skipped += 1
                 continue
