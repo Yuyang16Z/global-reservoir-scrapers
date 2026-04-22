@@ -113,6 +113,42 @@ META_COLUMNS = [
 ]
 
 
+def load_manual_overrides(path: Path) -> dict[str, dict]:
+    if not path.exists():
+        return {}
+    out: dict[str, dict] = {}
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            rid = clean_value(row.get("reservoir_id"))
+            if not rid:
+                continue
+            out[str(rid)] = {
+                "reservoir_id": str(rid),
+                "reservoir_name": clean_value(row.get("reservoir_name")) or "",
+                "admin_unit": clean_value(row.get("admin_unit")) or "",
+                "river": clean_value(row.get("river")) or "",
+                "basin": clean_value(row.get("basin")) or "",
+                "source_system": clean_value(row.get("source_note")) or "Manual override",
+            }
+    return out
+
+
+def best_name(
+    rid: str,
+    direct_name: str | None,
+    current_daily_ops_map: dict[str, dict],
+    basic_info_map: dict[str, dict],
+    manual_overrides: dict[str, dict],
+) -> str:
+    return (
+        clean_value(direct_name)
+        or current_daily_ops_map.get(rid, {}).get("reservoir_name")
+        or basic_info_map.get(rid, {}).get("reservoir_name")
+        or manual_overrides.get(rid, {}).get("reservoir_name")
+        or ""
+    )
+
+
 def clean_value(v: Any) -> Any:
     if isinstance(v, str):
         v = v.strip()
@@ -268,7 +304,10 @@ def normalize_current_water_level(rows: list[dict]) -> dict[str, dict]:
 
 
 def normalize_current_water_level_intraday(
-    rows: list[dict], basic_info_map: dict[str, dict], current_daily_ops_map: dict[str, dict]
+    rows: list[dict],
+    basic_info_map: dict[str, dict],
+    current_daily_ops_map: dict[str, dict],
+    manual_overrides: dict[str, dict],
 ) -> list[dict]:
     out: list[dict] = []
     for row in rows:
@@ -281,12 +320,7 @@ def normalize_current_water_level_intraday(
             date = str(obs_time)[:10]
         out.append({
             "reservoir_id": rid,
-            "reservoir_name": (
-                get_name(row)
-                or current_daily_ops_map.get(rid, {}).get("reservoir_name")
-                or basic_info_map.get(rid, {}).get("reservoir_name")
-                or ""
-            ),
+            "reservoir_name": best_name(rid, get_name(row), current_daily_ops_map, basic_info_map, manual_overrides),
             "date": date,
             "observation_time": obs_time,
             "water_level_m": try_float(row.get("WaterLevel") or row.get("waterlevel")),
@@ -392,9 +426,10 @@ def build_rows(
     current_daily_ops_map: dict[str, dict],
     daily_map: dict[str, dict],
     current_water_level_map: dict[str, dict],
+    manual_overrides: dict[str, dict],
     today_tw: str,
 ) -> list[dict]:
-    ids = set(basic_info_map) | set(current_daily_ops_map) | set(daily_map)
+    ids = set(basic_info_map) | set(current_daily_ops_map) | set(daily_map) | set(manual_overrides)
     if date_str == today_tw:
         ids |= set(current_water_level_map)
 
@@ -407,7 +442,7 @@ def build_rows(
 
         rows.append({
             "reservoir_id": rid,
-            "reservoir_name": c.get("reservoir_name") or b.get("reservoir_name") or d.get("reservoir_name") or "",
+            "reservoir_name": best_name(rid, d.get("reservoir_name"), current_daily_ops_map, basic_info_map, manual_overrides),
             "date": date_str,
             "observation_time": r.get("observation_time") or d.get("observation_time") or c.get("observation_time") or "",
             "water_level_m": r.get("water_level_m"),
@@ -518,7 +553,12 @@ def write_intraday_csv(path: Path, rows: list[dict]) -> None:
             writer.writerow([row.get(key, "") if row.get(key) is not None else "" for _, key in INTRADAY_COLUMNS])
 
 
-def upsert_metadata(path: Path, basic_info_map: dict[str, dict], current_daily_ops_map: dict[str, dict]) -> int:
+def upsert_metadata(
+    path: Path,
+    basic_info_map: dict[str, dict],
+    current_daily_ops_map: dict[str, dict],
+    manual_overrides: dict[str, dict],
+) -> int:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     existing: "OrderedDict[str, dict]" = OrderedDict()
     if path.exists():
@@ -528,21 +568,28 @@ def upsert_metadata(path: Path, basic_info_map: dict[str, dict], current_daily_o
                 if rid:
                     existing[rid] = row
 
-    ids = set(existing) | set(basic_info_map) | set(current_daily_ops_map)
+    ids = set(existing) | set(basic_info_map) | set(current_daily_ops_map) | set(manual_overrides)
     for rid in sorted(ids):
         b = basic_info_map.get(rid, {})
         c = current_daily_ops_map.get(rid, {})
+        m = manual_overrides.get(rid, {})
         existing[rid] = {
             "reservoir_id": rid,
-            "reservoir_name": c.get("reservoir_name") or b.get("reservoir_name") or existing.get(rid, {}).get("reservoir_name") or "",
+            "reservoir_name": (
+                c.get("reservoir_name")
+                or b.get("reservoir_name")
+                or m.get("reservoir_name")
+                or existing.get(rid, {}).get("reservoir_name")
+                or ""
+            ),
             "reservoir_name_en": "",
             "country": "Taiwan",
-            "admin_unit": b.get("admin_unit") or existing.get(rid, {}).get("admin_unit") or "",
-            "river": b.get("river") or existing.get(rid, {}).get("river") or "",
-            "basin": b.get("basin") or existing.get(rid, {}).get("basin") or "",
+            "admin_unit": b.get("admin_unit") or m.get("admin_unit") or existing.get(rid, {}).get("admin_unit") or "",
+            "river": b.get("river") or m.get("river") or existing.get(rid, {}).get("river") or "",
+            "basin": b.get("basin") or m.get("basin") or existing.get(rid, {}).get("basin") or "",
             "lat": "",
             "lon": "",
-            "source_system": b.get("source_system") or "WRA Open Data",
+            "source_system": b.get("source_system") or m.get("source_system") or "WRA Open Data",
             "source_agency": SOURCE_AGENCY,
             "source_url": SOURCE_URL,
             "last_updated": now,
@@ -566,6 +613,7 @@ def main() -> int:
     script_dir = Path(__file__).resolve().parent
     output_dir = Path(os.environ.get("OUTPUT_DIR", str(script_dir / "taiwan_wra_outputs"))).resolve()
     dirs = ensure_dirs(output_dir)
+    manual_overrides = load_manual_overrides(script_dir / "manual_name_overrides.csv")
     manual_backfill = bool(os.environ.get("TAIWAN_START_DATE") or os.environ.get("TAIWAN_END_DATE"))
     skip_existing_env = os.environ.get("SKIP_EXISTING_DAILY")
     skip_existing = (skip_existing_env != "0") if skip_existing_env is not None else (not manual_backfill)
@@ -622,6 +670,7 @@ def main() -> int:
                 water_level_rows if isinstance(water_level_rows, list) else [],
                 basic_info_map,
                 current_daily_ops_map,
+                manual_overrides,
             )
             if save_raw:
                 water_level_path = dirs["raw"] / f"current_water_level_{today_tw}.json"
@@ -660,6 +709,7 @@ def main() -> int:
                 current_daily_ops_map,
                 daily_map,
                 current_water_level_map,
+                manual_overrides,
                 today_tw,
             )
             write_timeseries_csv(daily_path, rows)
@@ -676,10 +726,26 @@ def main() -> int:
             dirs["metadata"] / "taiwan_wra_reservoirs.csv",
             basic_info_map,
             current_daily_ops_map,
+            manual_overrides,
         )
         print(f"[METADATA] {count} reservoirs")
         summary["files_written"].append(str(dirs["metadata"] / "taiwan_wra_reservoirs.csv"))
         summary["metadata_count"] = count
+        unresolved = sorted({
+            r["reservoir_id"]
+            for date_str in summary["records_per_date"]
+            for r in []
+        })
+        unresolved = []
+        for daily_file in sorted(dirs["daily"].glob("taiwan_timeseries_*.csv")):
+            with open(daily_file, encoding="utf-8-sig", newline="") as f:
+                for row in csv.DictReader(f):
+                    if not clean_value(row.get("reservoir_name")):
+                        unresolved.append(row.get("reservoir_id"))
+        unresolved = sorted(set(x for x in unresolved if x))
+        summary["unresolved_name_ids"] = unresolved
+        if unresolved:
+            print(f"[WARN] unresolved reservoir names: {', '.join(unresolved)}", file=sys.stderr)
         summary["status"] = "ok"
         return_code = 0
     except Exception as e:
