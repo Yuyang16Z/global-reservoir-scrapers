@@ -1,0 +1,30 @@
+{
+  "started_at_utc": "2026-04-22T09:37:42.700588+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "dates": [
+    "2026-04-21",
+    "2026-04-22"
+  ],
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/daily/2026-04-21.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/daily/taiwan_timeseries_2026-04-21.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/daily/2026-04-22.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/daily/taiwan_timeseries_2026-04-22.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/metadata/taiwan_wra_reservoirs.csv"
+  ],
+  "errors": [
+    {
+      "static_warning": "HTTPSConnectionPool(host='data.wra.gov.tw', port=443): Max retries exceeded with url: /Service/OpenData.aspx?format=json&id=E2_7_00001 (Caused by NameResolutionError(\"HTTPSConnection(host='data.wra.gov.tw', port=443): Failed to resolve 'data.wra.gov.tw' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "realtime_warning": "404 Client Error: Not Found for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/RealTime"
+    }
+  ],
+  "records_per_date": {
+    "2026-04-21": 68,
+    "2026-04-22": 68
+  },
+  "metadata_count": 68,
+  "status": "ok",
+  "finished_at_utc": "2026-04-22T09:37:45.417388+00:00"
+}
