@@ -33,15 +33,15 @@ jobs:
 
       - name: Run scraper
         env:
-          OUTPUT_DIR: ${{ github.workspace }}/data/malaysia
-        run: python scrapers/malaysia/malaysia_luas_scraper.py
+          OUTPUT_DIR: ${{ github.workspace }}/data/malaysia/luas
+        run: python scrapers/malaysia/luas/malaysia_luas_scraper.py
 
       - name: Commit & push new data
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/malaysia
+          git add data/malaysia/luas
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

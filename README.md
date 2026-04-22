@@ -4,8 +4,9 @@ Scheduled government/agency reservoir scrapers for the Global Reservoir Dataset 
 (PI: Prof. Ximing Cai, UIUC). Raw timeseries feeding a unified global reservoir dataset
 targeted for **June 2026**.
 
-Each country's scraper lives under `scrapers/<country>/` and writes outputs into
-`data/<country>/` following the conventions in [`schema.md`](./schema.md).
+Each country lives under `scrapers/<country>/` and writes outputs into the mirror path
+`data/<country>/`. Countries with multiple data sources (e.g. Malaysia) have per-source
+subfolders. Output formats follow [`schema.md`](./schema.md).
 
 ## Layout
 
@@ -15,16 +16,19 @@ Each country's scraper lives under `scrapers/<country>/` and writes outputs into
 ├── requirements.txt
 ├── scrapers/
 │   └── malaysia/
-│       ├── malaysia_luas_scraper.py
-│       └── README.md
+│       ├── README.md               # overview of all Malaysia sub-sources
+│       ├── luas/                   # LUAS IWRIMS (Selangor reservoirs)
+│       ├── mywater/                # MyWater JPS dams (nationwide, static metadata)
+│       └── sarawak_rivers/         # DID Sarawak iHydro (rivers + rainfall, NOT reservoirs)
 ├── data/                           # populated by scheduled workflows, committed back
 │   └── malaysia/
-│       ├── metadata/
-│       ├── timeseries/daily/
-│       ├── raw/
-│       └── run_logs/
+│       ├── luas/
+│       ├── mywater/
+│       └── sarawak_rivers/
 └── .github/workflows/
-    └── malaysia_luas.yml           # cron 02:00 + 14:00 UTC
+    ├── malaysia_luas.yml           # cron 02:00 + 14:00 UTC
+    ├── malaysia_mywater.yml        # manual trigger only
+    └── malaysia_sarawak_rivers.yml # cron 02:05 + 14:05 UTC
 ```
 
 ## Current coverage
@@ -33,14 +37,14 @@ Each country's scraper lives under `scrapers/<country>/` and writes outputs into
 
 | Country | Source | Cadence | Script | Status |
 |---|---|---|---|---|
-| Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
-| Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia_mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
+| Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/luas/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
+| Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia/mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
 
 ### River / rainfall discharge layer (NOT reservoir data — cross-reference only)
 
 | Country | Source | Cadence | Script | Status |
 |---|---|---|---|---|
-| Malaysia (Sarawak) | DID Sarawak iHydro (~269 river + rainfall + IG stations) | 2× per day | `scrapers/malaysia_sarawak_rivers/sarawak_ihydro_scraper.py` | ✅ v1 (2026-04-22) |
+| Malaysia (Sarawak) | DID Sarawak iHydro (~269 river + rainfall + IG stations) | 2× per day | `scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py` | ✅ v1 (2026-04-22) |
 
 Other countries (Argentina, Australia, China, India, Taiwan, Thailand, South Africa,
 Zambia, Central Asia, etc.) are scraped locally from `~/Desktop/work/resovoir data/`
@@ -50,11 +54,18 @@ and are not yet migrated here.
 
 ```bash
 pip install -r requirements.txt
-python scrapers/malaysia/malaysia_luas_scraper.py
-# → writes to ./scrapers/malaysia/malaysia_luas_outputs/
 
-# or pin a custom output dir:
-OUTPUT_DIR=/tmp/luas python scrapers/malaysia/malaysia_luas_scraper.py
+# LUAS (Selangor reservoirs)
+python scrapers/malaysia/luas/malaysia_luas_scraper.py
+
+# MyWater JPS dams metadata
+python scrapers/malaysia/mywater/mywater_jps_scraper.py
+
+# Sarawak river gauges
+python scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py
+
+# Output dir defaults to the scraper's folder; override with OUTPUT_DIR:
+OUTPUT_DIR=/tmp/luas python scrapers/malaysia/luas/malaysia_luas_scraper.py
 ```
 
 ## Scheduled runs

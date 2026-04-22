@@ -1,0 +1,10 @@
+﻿reservoir_id,reservoir_name,reservoir_name_en,country,admin_unit,river,basin,lat,lon,"capacity_total (mcm, 10^6 m^3)","dead_storage (mcm, 10^6 m^3)","frl (normal pool level, m)",alert_level (m),max_effective (m),dam_height (m),catchment (sq.km),"station_type (0=dam, 5=barrage)",source_agency,source_url,last_updated
+MY_LUAS_1304,BATU,BATU,Malaysia,Selangor,SG. KLANG,SG. KLANG,3.27615,101.684,32.0,2.0,102.0,84.0,103.0,44.0,50.0,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_3978,KLANG GATES,KLANG GATES,Malaysia,Selangor,SG. KLANG,SG. KLANG,3.23544,101.75,95.0,6.0,95.0,84.0,96.0,37.0,77.16,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_7483,KOLAM TAKUNGAN SG. LABU (ORS),KOLAM TAKUNGAN SG. LABU (ORS),Malaysia,Selangor,SG. LANGAT,SG. LANGAT,2.77485,101.741,9.0,5.0,45.0,26.0,,45.0,1234.0,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_1803,LANGAT,LANGAT,Malaysia,Selangor,SG. LANGAT,SG. LANGAT,3.21226,101.892,34.1,1.0,220.0,204.0,221.0,61.0,41.45,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_1311,SEMENYIH,SEMENYIH,Malaysia,Selangor,SG. LANGAT,SG. LANGAT,3.07818,101.896,59.1,1.0,111.0,95.0,112.0,61.0,41.45,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_4382,SG SELANGOR,SG SELANGOR,Malaysia,Selangor,SG. SELANGOR,SG. SELANGOR,3.5853,101.715,235.0,5.0,220.0,184.0,235.0,110.0,197.0,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_8646,SG TINGGI,SG TINGGI,Malaysia,Selangor,SG. SELANGOR,SG. SELANGOR,3.57858,101.49,122.5,8.0,59.0,45.0,122.5,42.5,24.0,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_4568,TASIK SUBANG,TASIK SUBANG,Malaysia,Selangor,SG. KLANG,SG. KLANG,3.16603,101.48,4.3,9.0,38.0,34.0,39.0,9.1,10.28,0,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
+MY_LUAS_STN80,BESTARI JAYA,BESTARI JAYA,Malaysia,Selangor,SG. SELANGOR,SG. SELANGOR,3.38555,101.421,,,0.0,3.38555,,,,5,LUAS,https://iwrims.luas.gov.my/,2026-04-21 22:24:40
