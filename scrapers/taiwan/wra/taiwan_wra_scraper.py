@@ -197,9 +197,9 @@ def normalize_basic_info(rows: list[dict]) -> dict[str, dict]:
         out[rid] = {
             "reservoir_id": rid,
             "reservoir_name": get_name(row),
-            "admin_unit": clean_value(row.get("TownName") or row.get("townname")),
-            "river": clean_value(row.get("RiverName") or row.get("rivername")),
-            "basin": "",
+            "admin_unit": clean_value(row.get("TownName") or row.get("townname") or row.get("鄉鎮市區名稱")),
+            "river": clean_value(row.get("RiverName") or row.get("rivername") or row.get("河川名稱")),
+            "basin": clean_value(row.get("地區別") or row.get("Area") or row.get("area")),
             "source_system": "opendata.wra.gov.tw Basic Information",
         }
     return out
