@@ -1,0 +1,62 @@
+name: Thailand RID scrape
+
+# RID publishes a new daily snapshot in the morning Bangkok time.
+# We fetch at 01:30 + 13:30 UTC (08:30 + 20:30 Bangkok) — the scraper
+# always re-fetches yesterday+today, so a single missed run is caught up.
+on:
+  schedule:
+    - cron: "30 1,13 * * *"
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Backfill start (YYYY-MM-DD). Leave blank for default (yesterday+today)."
+        required: false
+      end_date:
+        description: "Backfill end (YYYY-MM-DD)."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thailand-rid
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/thailand/rid
+          THAILAND_START_DATE: ${{ inputs.start_date }}
+          THAILAND_END_DATE: ${{ inputs.end_date }}
+        run: python scrapers/thailand/rid/thailand_rid_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/thailand/rid
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(thailand/rid): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
