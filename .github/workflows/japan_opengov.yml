@@ -1,0 +1,62 @@
+name: Japan OpenGov scrape
+
+on:
+  schedule:
+    - cron: "20 1 * * *"
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Backfill start (YYYY-MM-DD). Leave blank for default (today in Japan)."
+        required: false
+      end_date:
+        description: "Backfill end (YYYY-MM-DD)."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-opengov
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/opengov
+          JAPAN_START_DATE: ${{ inputs.start_date }}
+          JAPAN_END_DATE: ${{ inputs.end_date }}
+          TZ: Asia/Tokyo
+        run: python scrapers/japan/opengov/japan_opengov_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/opengov
+          git add scrapers/japan/opengov
+          git add requirements.txt .github/workflows/japan_opengov.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/opengov): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
