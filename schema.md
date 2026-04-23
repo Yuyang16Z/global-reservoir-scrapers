@@ -9,6 +9,33 @@
 > `Altura hidrométrica (gage height) | metros (meters)`。
 > 统一成枚举/标准单位是**下游一步**的事（之后写一个 normalize 脚本做），现在脚本别自己换算。
 
+## 0. 顶层组织：**现场观测 vs 遥感数据**（重要）
+
+数据质量差异很大，必须在**目录层级**就能一眼区分：
+
+```
+data/
+├── <country>/<source>/           # 🟢 现场观测 / 仪器 / 人工记录（in-situ）
+│   ├── philippines/pagasa/
+│   ├── japan/opengov/
+│   ├── thailand/rid/
+│   └── ...
+└── remote_sensing/               # 🛰️ 遥感派生数据（卫星测高、影像反算等）
+    ├── stimson_mekong/           # 多国共用的 RS 产品放这里，不按国家拆
+    ├── g_realm/                  # NASA/CNES 雷达测高
+    └── hydroweb/                 # LEGOS 水位库
+```
+
+**规则**：
+- `data/<country>/` = **现场观测**（gauge / telemetry / 人工读数 / 管理局公报），优先采用。
+- `data/remote_sensing/` = **遥感派生**（卫星测高估算水位、SAR/光学反演库容等），多国共用数据源放这里。
+- 一个源如果**同时**提供现场与遥感，按**主导方式**归类；metadata 里再按水库单独标注（见下）。
+- `metadata` CSV 里**必须**有 `data_type` 列，取值：
+  - `in_situ` — 仪器/人工观测，原始测量
+  - `remote_sensing` — 卫星/航拍反演（哪怕精度再高也归这里）
+  - `mixed` — 同一水库现场+遥感融合
+  - `model` — 水文模型输出
+
 ## 1. 每个国家的目录结构
 
 ```
@@ -56,6 +83,7 @@
 | `main_use` |  | `irrigation` / `hydroelectricity` / `water_supply` / `flood_control` / `navigation` / `multipurpose` 等 |
 | `source_agency` | ✅ | 数据来源机构缩写：`RID` / `INA` / `MWR` / `CWC` / `DWS` / `BOM` / `WRA` / `CAWATER` … |
 | `source_url` | ✅ | 这条记录的抓取 URL。**只在 metadata 出现，时序表不再重复** |
+| `data_type` | ✅ | `in_situ` / `remote_sensing` / `mixed` / `model`（见 §0） |
 | `last_updated` | ✅ | 本行最近一次抓取时间，`YYYY-MM-DD HH:MM:SS` |
 
 **允许在后面加国家专属列**（比如 Thailand 的 `rid_office`、South Africa 的 `wma`），但前面的列顺序别动。
