@@ -1,0 +1,15 @@
+{
+  "run_time": "2026-04-23 14:46:49",
+  "source_url": "https://www.pagasa.dost.gov.ph/flood",
+  "status": "success",
+  "metadata_file": "/Users/andy/Desktop/work/resovoir data/Philippines/philippines_dam_outputs/metadata/philippines_reservoirs.csv",
+  "snapshot_files": [
+    "/Users/andy/Desktop/work/resovoir data/Philippines/philippines_dam_outputs/timeseries/daily/philippines_timeseries_2026-04-22.csv",
+    "/Users/andy/Desktop/work/resovoir data/Philippines/philippines_dam_outputs/timeseries/daily/philippines_timeseries_2026-04-23.csv"
+  ],
+  "errors": [],
+  "page_header": "April 23,2026 08:00:00 am",
+  "page_date": "2026-04-23",
+  "dam_count": 9,
+  "observation_count": 18
+}

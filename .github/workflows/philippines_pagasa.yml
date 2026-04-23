@@ -1,0 +1,55 @@
+name: Philippines PAGASA scrape
+
+# PAGASA publishes the 08:00 AM Philippine time reading each day.
+# Run at 01:30 and 13:30 UTC (09:30 + 21:30 PH) so a missed morning run is
+# recovered in the evening; each run re-fetches yesterday + today.
+on:
+  schedule:
+    - cron: "30 1,13 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: philippines-pagasa
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/philippines/pagasa
+          SAVE_RAW_HTML: "0"
+          TZ: Asia/Manila
+        run: python scrapers/philippines/pagasa/philippines_pagasa_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/philippines/pagasa
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(philippines/pagasa): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

@@ -1,0 +1,10 @@
+﻿reservoir_id,reservoir_name,date,observation_time,"Reservoir Water Level (RWL, m)","Water Level Deviation (24hr, m)","Normal High Water Level (NHWL, m)",Deviation from NHWL (m),Rule Curve Elevation (m),Deviation from Rule Curve (m),Gate Opening (gates),Gate Opening (meters),Inflow (cms),Outflow (cms)
+PH_PAGASA_ambuklao,Ambuklao Dam,2025-12-15,08:00 am,751.47,,752.00,-0.53,752.00,-0.53,1,0.30,,58.81
+PH_PAGASA_angat,Angat Dam,2025-12-15,08:00 am,213.31,,212.00,1.31,206.47,6.84,,,,
+PH_PAGASA_binga,Binga Dam,2025-12-15,08:00 am,574.44,,575.00,-0.56,574.52,-0.08,1,0.50,,75.39
+PH_PAGASA_caliraya,Caliraya Dam,2025-12-15,08:00 am,288.32,,0.00,0.00,0.00,0.00,,,,
+PH_PAGASA_ipo,Ipo Dam,2025-12-15,08:00 am,100.99,,101.10,-0.11,0.00,0.00,,,,
+PH_PAGASA_la_mesa,La Mesa Dam,2025-12-15,08:00 am,79.58,,80.15,-0.57,0.00,0.00,,,,
+PH_PAGASA_magat,Magat Dam,2025-12-15,08:00 am,186.43,,193.00,-6.57,192.51,-6.08,,,,
+PH_PAGASA_pantabangan,Pantabangan Dam,2025-12-15,08:00 am,215.25,,221.00,-5.75,219.39,-4.14,,,,
+PH_PAGASA_san_roque,San Roque Dam,2025-12-15,08:00 am,276.98,,280.00,-3.02,275.93,1.05,,,,
