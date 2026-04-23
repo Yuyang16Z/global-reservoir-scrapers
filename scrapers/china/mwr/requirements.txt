@@ -1,0 +1,9 @@
+selenium>=4.18
+webdriver-manager>=4.0
+paddleocr>=2.7
+paddlepaddle>=2.6
+pandas>=2.0
+numpy>=1.24
+Pillow>=10.0
+opencv-python-headless>=4.8
+scikit-learn>=1.3

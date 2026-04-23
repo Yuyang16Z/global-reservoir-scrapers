@@ -12,3 +12,11 @@ env/
 # local dev output dirs (real outputs live under data/<country>/)
 scrapers/*/*_outputs/
 scrapers/*/*/*_outputs/
+
+# China MWR: skip heavy binary artefacts from the OCR pipeline
+# (regenerable — keep them on the Oracle VM, not in the repo)
+data/china/mwr/*/screens/
+data/china/mwr/*/recover_failed/
+data/china/mwr/*/ocr_json/
+data/china/mwr/*.lock
+data/china/mwr/.grab_data.lock
