@@ -12,6 +12,12 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
   `https://opendata.wra.gov.tw/api/v2/708a43b0-24dc-40b7-9ed2-fca6a291e7ae?format=JSON&sort=_importdate+asc`
 - Historical daily endpoint:
   `https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=YYYY-MM-DD`
+- Static lat/lon lookup:
+  `reservoir_coords.csv` (one-time extract, centroid of reservoir storage-area
+  polygons from `gic.wra.gov.tw` SHP: `ressub` with `reservoir` as fallback,
+  reprojected TWD97 TM2 → WGS84). Regenerate by downloading
+  `DownLoad.aspx?fname=ressub&filetype=SHP` + `fname=RESERVOIR&filetype=SHP`
+  and running the centroid + name-alias matcher.
 
 ## What it writes
 
@@ -33,9 +39,15 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
   storage percentage, and metadata enrichment.
 - The current water-level dataset is also written out as an intraday table so the
   hourly observations are preserved instead of only keeping one latest snapshot per reservoir.
-- Current version keeps `lat` / `lon` blank in metadata because the API set used here
-  does not expose coordinates directly. Taiwan has separate location datasets that can
-  be joined later.
+- `lat` / `lon` are populated from `reservoir_coords.csv`, a static lookup derived
+  from the WRA GIS `ressub` (storage-area) and `reservoir` (catchment) shapefiles.
+  72 of 74 reservoirs currently resolve; the remaining 2 (珠螺水壩, 儲水沃上壩 in
+  Matsu) aren't in those SHPs — left blank rather than guessed.
+- `dam_type` / `dam_height` / `dam_length` / `catchment_area` / `surface_area_frl` /
+  `capacity_design_*` / `capacity_current_*` / `main_use` / `operator` /
+  `last_capacity_survey_year_roc` come from the `basic_info` endpoint. Only 40 of
+  the 74 reservoirs (the major ones tracked by WRA headquarters) have these fields;
+  離島 reservoirs in 金門/馬祖/澎湖 are absent from that endpoint.
 
 ## Run locally
 

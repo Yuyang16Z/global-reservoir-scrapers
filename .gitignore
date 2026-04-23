@@ -8,3 +8,7 @@ env/
 .DS_Store
 *.log
 .env
+
+# local dev output dirs (real outputs live under data/<country>/)
+scrapers/*/*_outputs/
+scrapers/*/*/*_outputs/

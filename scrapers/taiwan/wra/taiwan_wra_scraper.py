@@ -106,11 +106,45 @@ META_COLUMNS = [
     "basin",
     "lat",
     "lon",
+    "dam_type",
+    "dam_height (m)",
+    "dam_length (m)",
+    "catchment_area (hectare)",
+    "surface_area_frl (hectare)",
+    "capacity_design_total (10^4 m^3)",
+    "capacity_design_effective (10^4 m^3)",
+    "capacity_current_total (10^4 m^3)",
+    "capacity_current_effective (10^4 m^3)",
+    "main_use",
+    "operator",
+    "last_capacity_survey_year_roc",
+    "coord_source",
     "source_system",
     "source_agency",
     "source_url",
     "last_updated",
 ]
+
+
+def load_reservoir_coords(path: Path) -> dict[str, dict]:
+    """Load static lat/lon lookup derived from WRA GIS shapefiles.
+
+    Keyed by reservoir_id. Values include lat, lon, coord_source.
+    """
+    if not path.exists():
+        return {}
+    out: dict[str, dict] = {}
+    with open(path, encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            rid = clean_value(row.get("reservoir_id"))
+            if not rid:
+                continue
+            out[str(rid)] = {
+                "lat": clean_value(row.get("lat")) or "",
+                "lon": clean_value(row.get("lon")) or "",
+                "coord_source": clean_value(row.get("coord_source")) or "",
+            }
+    return out
 
 
 def load_manual_overrides(path: Path) -> dict[str, dict]:
@@ -245,6 +279,21 @@ def get_name(row: dict) -> str | None:
     return None
 
 
+def _numeric(v: Any) -> Any:
+    """Parse number-like strings (with commas/spaces) while leaving empties as ''."""
+    v = clean_value(v)
+    if v is None:
+        return ""
+    s = str(v).replace(",", "").strip()
+    if not s:
+        return ""
+    try:
+        f = float(s)
+        return int(f) if f.is_integer() else f
+    except Exception:
+        return ""
+
+
 def normalize_basic_info(rows: list[dict]) -> dict[str, dict]:
     out: dict[str, dict] = {}
     for row in rows:
@@ -257,6 +306,18 @@ def normalize_basic_info(rows: list[dict]) -> dict[str, dict]:
             "admin_unit": clean_value(row.get("TownName") or row.get("townname") or row.get("鄉鎮市區名稱")),
             "river": clean_value(row.get("RiverName") or row.get("rivername") or row.get("河川名稱")),
             "basin": clean_value(row.get("地區別") or row.get("Area") or row.get("area")),
+            "dam_type": clean_value(row.get("型式")) or "",
+            "dam_height_m": _numeric(row.get("壩堰高")),
+            "dam_length_m": _numeric(row.get("壩堰長")),
+            "catchment_area_ha": _numeric(row.get("集水面積")),
+            "surface_area_ha": _numeric(row.get("滿水位面積")),
+            "capacity_design_total": _numeric(row.get("設計總容量")),
+            "capacity_design_effective": _numeric(row.get("設計有效容量")),
+            "capacity_current_total": _numeric(row.get("目前總容量")),
+            "capacity_current_effective": _numeric(row.get("目前有效容量")),
+            "main_use": clean_value(row.get("功能")) or "",
+            "operator": clean_value(row.get("機關名稱")) or "",
+            "last_capacity_survey_year_roc": _numeric(row.get("最近完成庫容測量時間")),
             "source_system": "opendata.wra.gov.tw Basic Information",
         }
     return out
@@ -558,6 +619,7 @@ def upsert_metadata(
     basic_info_map: dict[str, dict],
     current_daily_ops_map: dict[str, dict],
     manual_overrides: dict[str, dict],
+    coords_map: dict[str, dict],
 ) -> int:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     existing: "OrderedDict[str, dict]" = OrderedDict()
@@ -569,26 +631,53 @@ def upsert_metadata(
                     existing[rid] = row
 
     ids = set(existing) | set(basic_info_map) | set(current_daily_ops_map) | set(manual_overrides)
+
+    def _pick(key_b, *fallbacks):
+        """Prefer basic_info value; fall back to existing CSV value."""
+        val = b.get(key_b)
+        if val not in (None, ""):
+            return val
+        for src in fallbacks:
+            v = src.get(key_b) if isinstance(src, dict) else None
+            if v not in (None, ""):
+                return v
+        return ""
+
     for rid in sorted(ids):
         b = basic_info_map.get(rid, {})
         c = current_daily_ops_map.get(rid, {})
         m = manual_overrides.get(rid, {})
+        coord = coords_map.get(rid, {})
+        prev = existing.get(rid, {})
         existing[rid] = {
             "reservoir_id": rid,
             "reservoir_name": (
                 c.get("reservoir_name")
                 or b.get("reservoir_name")
                 or m.get("reservoir_name")
-                or existing.get(rid, {}).get("reservoir_name")
+                or prev.get("reservoir_name")
                 or ""
             ),
-            "reservoir_name_en": "",
+            "reservoir_name_en": prev.get("reservoir_name_en") or "",
             "country": "Taiwan",
-            "admin_unit": b.get("admin_unit") or m.get("admin_unit") or existing.get(rid, {}).get("admin_unit") or "",
-            "river": b.get("river") or m.get("river") or existing.get(rid, {}).get("river") or "",
-            "basin": b.get("basin") or m.get("basin") or existing.get(rid, {}).get("basin") or "",
-            "lat": "",
-            "lon": "",
+            "admin_unit": b.get("admin_unit") or m.get("admin_unit") or prev.get("admin_unit") or "",
+            "river": b.get("river") or m.get("river") or prev.get("river") or "",
+            "basin": b.get("basin") or m.get("basin") or prev.get("basin") or "",
+            "lat": coord.get("lat") or prev.get("lat") or "",
+            "lon": coord.get("lon") or prev.get("lon") or "",
+            "dam_type": b.get("dam_type") or prev.get("dam_type") or "",
+            "dam_height (m)": b.get("dam_height_m", "") if b.get("dam_height_m", "") != "" else prev.get("dam_height (m)", ""),
+            "dam_length (m)": b.get("dam_length_m", "") if b.get("dam_length_m", "") != "" else prev.get("dam_length (m)", ""),
+            "catchment_area (hectare)": b.get("catchment_area_ha", "") if b.get("catchment_area_ha", "") != "" else prev.get("catchment_area (hectare)", ""),
+            "surface_area_frl (hectare)": b.get("surface_area_ha", "") if b.get("surface_area_ha", "") != "" else prev.get("surface_area_frl (hectare)", ""),
+            "capacity_design_total (10^4 m^3)": b.get("capacity_design_total", "") if b.get("capacity_design_total", "") != "" else prev.get("capacity_design_total (10^4 m^3)", ""),
+            "capacity_design_effective (10^4 m^3)": b.get("capacity_design_effective", "") if b.get("capacity_design_effective", "") != "" else prev.get("capacity_design_effective (10^4 m^3)", ""),
+            "capacity_current_total (10^4 m^3)": b.get("capacity_current_total", "") if b.get("capacity_current_total", "") != "" else prev.get("capacity_current_total (10^4 m^3)", ""),
+            "capacity_current_effective (10^4 m^3)": b.get("capacity_current_effective", "") if b.get("capacity_current_effective", "") != "" else prev.get("capacity_current_effective (10^4 m^3)", ""),
+            "main_use": b.get("main_use") or prev.get("main_use") or "",
+            "operator": b.get("operator") or prev.get("operator") or "",
+            "last_capacity_survey_year_roc": b.get("last_capacity_survey_year_roc", "") if b.get("last_capacity_survey_year_roc", "") != "" else prev.get("last_capacity_survey_year_roc", ""),
+            "coord_source": coord.get("coord_source") or prev.get("coord_source") or "",
             "source_system": b.get("source_system") or m.get("source_system") or "WRA Open Data",
             "source_agency": SOURCE_AGENCY,
             "source_url": SOURCE_URL,
@@ -614,6 +703,7 @@ def main() -> int:
     output_dir = Path(os.environ.get("OUTPUT_DIR", str(script_dir / "taiwan_wra_outputs"))).resolve()
     dirs = ensure_dirs(output_dir)
     manual_overrides = load_manual_overrides(script_dir / "manual_name_overrides.csv")
+    coords_map = load_reservoir_coords(script_dir / "reservoir_coords.csv")
     manual_backfill = bool(os.environ.get("TAIWAN_START_DATE") or os.environ.get("TAIWAN_END_DATE"))
     skip_existing_env = os.environ.get("SKIP_EXISTING_DAILY")
     skip_existing = (skip_existing_env != "0") if skip_existing_env is not None else (not manual_backfill)
@@ -727,6 +817,7 @@ def main() -> int:
             basic_info_map,
             current_daily_ops_map,
             manual_overrides,
+            coords_map,
         )
         print(f"[METADATA] {count} reservoirs")
         summary["files_written"].append(str(dirs["metadata"] / "taiwan_wra_reservoirs.csv"))
