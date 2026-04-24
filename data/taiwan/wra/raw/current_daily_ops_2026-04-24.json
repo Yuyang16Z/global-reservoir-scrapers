@@ -2,21 +2,6 @@
   {
     "basinrainfall": "0.0",
     "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-04-22T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
-  },
-  {
-    "basinrainfall": "0.0",
-    "capacity": "",
     "crossflow": "20.56",
     "datetime": "2026-04-23T00:00:00",
     "dwl": "",
@@ -523,6 +508,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20501",
     "reservoirname": "霧社水庫"
+  },
+  {
+    "basinrainfall": "2.5",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-04-23T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
   },
   {
     "basinrainfall": "2.5",
