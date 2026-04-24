@@ -35,6 +35,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -58,6 +59,19 @@ RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 HOST = "https://ihydro.sarawak.gov.my"
 MAP_URL = f"{HOST}/iHydro/en/map/maps.jsp"
 TIMEOUT = 45
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+    )
+}
+
+# Source is flaky during Malaysian night window (UTC 14-16). Up to 4 network
+# attempts with exponential backoff, then up to 2 empty-parse retries on top.
+NETWORK_ATTEMPTS = 4
+NETWORK_BACKOFFS = (5, 15, 45, 60)
+EMPTY_PARSE_ATTEMPTS = 2
+EMPTY_PARSE_WAIT = 30
 
 SOURCE_AGENCY = "DID Sarawak (iHydro)"
 SOURCE_BASE_URL = f"{HOST}/"
@@ -259,6 +273,27 @@ def write_csv(path: Path, columns: list[str], rows: list[dict]) -> None:
     print(f"[SAVE] {path}  rows={len(rows)}")
 
 
+def fetch_map_with_retry() -> str:
+    last_exc: Exception | None = None
+    for attempt in range(1, NETWORK_ATTEMPTS + 1):
+        try:
+            resp = requests.get(MAP_URL, headers=HEADERS, timeout=TIMEOUT)
+            resp.raise_for_status()
+            return resp.text
+        except requests.RequestException as exc:
+            last_exc = exc
+            wait = NETWORK_BACKOFFS[min(attempt - 1, len(NETWORK_BACKOFFS) - 1)]
+            if attempt < NETWORK_ATTEMPTS:
+                print(
+                    f"[WARN] fetch attempt {attempt}/{NETWORK_ATTEMPTS} failed: "
+                    f"{exc.__class__.__name__}: {exc}; retrying in {wait}s",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+    assert last_exc is not None
+    raise last_exc
+
+
 def merge_metadata(old_rows: list[dict], new_rows: list[dict]) -> list[dict]:
     by_id = {r["station_id"]: dict(r) for r in old_rows}
     for nr in new_rows:
@@ -286,39 +321,43 @@ def main() -> int:
     fetched_at = now_stamp()
     poll_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    resp = requests.get(
-        MAP_URL,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
-            )
-        },
-        timeout=TIMEOUT,
-    )
-    resp.raise_for_status()
-    page = resp.text
-
-    raw_path = RAW_DIR / f"maps_{poll_stamp}.html"
-    raw_path.write_text(page, encoding="utf-8")
-    print(f"[SAVE] {raw_path}")
-
-    xml_body = parse_xml_value(page)
-
     new_meta: list[dict] = []
     snapshots: list[dict] = []
     skipped = 0
-    for row in iter_rows(xml_body):
-        meta, snap = parse_station(row, fetched_at)
-        if not meta:
-            skipped += 1
-            continue
-        new_meta.append(meta)
-        snapshots.append(snap)
-    print(f"[INFO] parsed {len(new_meta)} stations (skipped={skipped})")
+    for parse_attempt in range(1, EMPTY_PARSE_ATTEMPTS + 1):
+        page = fetch_map_with_retry()
+
+        suffix = "" if parse_attempt == 1 else f"_retry{parse_attempt}"
+        raw_path = RAW_DIR / f"maps_{poll_stamp}{suffix}.html"
+        raw_path.write_text(page, encoding="utf-8")
+        print(f"[SAVE] {raw_path}")
+
+        xml_body = parse_xml_value(page)
+
+        new_meta = []
+        snapshots = []
+        skipped = 0
+        for row in iter_rows(xml_body):
+            meta, snap = parse_station(row, fetched_at)
+            if not meta:
+                skipped += 1
+                continue
+            new_meta.append(meta)
+            snapshots.append(snap)
+        print(f"[INFO] parsed {len(new_meta)} stations (skipped={skipped})")
+
+        if new_meta:
+            break
+        if parse_attempt < EMPTY_PARSE_ATTEMPTS:
+            print(
+                f"[WARN] zero stations parsed on attempt {parse_attempt}; "
+                f"retrying in {EMPTY_PARSE_WAIT}s",
+                file=sys.stderr,
+            )
+            time.sleep(EMPTY_PARSE_WAIT)
 
     if not new_meta:
-        print("[ERROR] zero stations parsed — page format may have changed. Check raw/.")
+        print("[ERROR] zero stations parsed after retries — page format may have changed. Check raw/.")
         return 2
 
     merged = merge_metadata(read_existing_metadata(), new_meta)
