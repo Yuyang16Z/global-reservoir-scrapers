@@ -1,0 +1,16 @@
+{
+  "run_time": "2026-04-24 22:54:46",
+  "source_url": "https://www.pagasa.dost.gov.ph/flood",
+  "status": "success",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/philippines/pagasa",
+  "metadata_file": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/philippines/pagasa/metadata/philippines_reservoirs.csv",
+  "snapshot_files": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/philippines/pagasa/timeseries/daily/philippines_timeseries_2026-04-23.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/philippines/pagasa/timeseries/daily/philippines_timeseries_2026-04-24.csv"
+  ],
+  "errors": [],
+  "page_header": "April 24,2026 08:00:00 am",
+  "page_date": "2026-04-24",
+  "dam_count": 9,
+  "observation_count": 18
+}
