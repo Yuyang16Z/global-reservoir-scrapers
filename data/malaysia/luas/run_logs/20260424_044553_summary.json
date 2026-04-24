@@ -1,0 +1,15 @@
+{
+  "run_time": "2026-04-24 04:45:53",
+  "source": {
+    "dam_url": "https://iwrims.luas.gov.my/getMapData_JSON.cfm?data=damstation",
+    "barrage_url": "https://iwrims.luas.gov.my/getMapData_JSON.cfm?data=barrage"
+  },
+  "counts": {
+    "dams": 8,
+    "barrages": 1
+  },
+  "snapshot_files": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/malaysia/luas/timeseries/daily/malaysia_luas_timeseries_2026-04-24.csv"
+  ],
+  "metadata_file": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/malaysia/luas/metadata/malaysia_luas_reservoirs.csv"
+}
