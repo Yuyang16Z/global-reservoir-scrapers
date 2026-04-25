@@ -240,21 +240,6 @@
     "reservoirname": "西安水庫"
   },
   {
-    "basinrainfall": "2.5",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-04-23T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
-  },
-  {
     "basinrainfall": "3.0",
     "capacity": "0.47",
     "crossflow": "0.0",
@@ -538,6 +523,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "50106",
     "reservoirname": "七美水庫"
+  },
+  {
+    "basinrainfall": "11.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-04-24T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
   },
   {
     "basinrainfall": "12.0",
