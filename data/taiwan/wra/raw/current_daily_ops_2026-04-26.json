@@ -690,6 +690,21 @@
     "reservoirname": "新山水庫"
   },
   {
+    "basinrainfall": "10.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-04-25T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
+  },
+  {
     "basinrainfall": "10.9",
     "capacity": "8522.63",
     "crossflow": "1.1",
@@ -703,21 +718,6 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "30503",
     "reservoirname": "南化水庫"
-  },
-  {
-    "basinrainfall": "11.0",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-04-24T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
   },
   {
     "basinrainfall": "12.0",
