@@ -1,6 +1,21 @@
 [
   {
     "basinrainfall": "0.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-04-26T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
+  },
+  {
+    "basinrainfall": "0.0",
     "capacity": "0.47",
     "crossflow": "0.0",
     "datetime": "2026-04-26T00:00:00",
@@ -1018,20 +1033,5 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20507",
     "reservoirname": "武界壩"
-  },
-  {
-    "basinrainfall": "10.0",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-04-25T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
   }
 ]
