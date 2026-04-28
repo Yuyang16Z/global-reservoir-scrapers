@@ -1,0 +1,2 @@
+﻿reservoir_id,reservoir_name,date,"DATE_UPDATE (source observation timestamp, local time)","WATER_LEVEL (water level, m)","STORAGE (current storage, mcm / 10^6 m^3)","STORAGE_PERCENT (percent full, %)","RELEASE_MLD (release / outflow, mld = 10^6 liters per day)","SPILL (spillway release, mld)","RAIN (rainfall, mm)","CUMM_RAIN (cumulative rainfall, mm)","RESIDUAL (residual flow, mld)","RESERVOIR (reservoir flow, mld)","CONTROL_VOLUME (control volume, mcm)"
+MY_LUAS_STN80,BESTARI JAYA,2026-04-29,29/04/2026 00:00,3.94,,,,,0.0,101.0,,,
