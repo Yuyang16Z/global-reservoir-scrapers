@@ -1,10 +1,11 @@
 """
 South Africa DWS Weekly State of the Reservoirs scraper.
 
-Each run produces ONE snapshot CSV for the most recent published
-bulletin. Older snapshot CSVs in the output folder are removed so the
-repo always carries exactly the latest scrape — historical accumulation
-happens in the user's local pipeline, not in this repo.
+Each run finds the most recent published bulletin and writes one
+dated snapshot CSV. Snapshots accumulate over time — every weekly
+run adds the new week's file alongside prior weeks (no deletion).
+The repo is the durable archive going forward; cumulative history
+grows one file per run.
 
 Bulletin source: https://www.dws.gov.za/drought/docs/Weekly{YYYYMMDD}.pdf
     (filename date = report Monday)
@@ -15,17 +16,19 @@ Tuesday 06:00 UTC, comfortably after the publish window.
 
 Output layout (committed to git):
     data/southafrica/dws_weekly/
-      timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv   (current snapshot only)
-      metadata/southafrica_dws_reservoirs.csv            (one row per reservoir)
+      timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv   (one file per run)
+      metadata/southafrica_dws_reservoirs.csv            (latest snapshot's reservoirs)
       run_logs/{run_date}_summary.json
 
-The PDF cache lives at `pdfs/` but is gitignored (re-downloaded as
-needed per run).
+Idempotent: if the bulletin for the target week is already in
+`timeseries/` (file with matching YYYYMMDD), the scrape exits early
+without re-parsing. Re-running on the same day produces no diff.
+
+The PDF cache lives at `pdfs/` but is gitignored.
 
 Usage:
-    python3 dws_weekly_scraper.py                # current latest week
+    python3 dws_weekly_scraper.py                              # latest published week
     DWS_TARGET_DATE=2026-04-20 python3 dws_weekly_scraper.py   # specific Monday
-    DWS_KEEP_OLD=1 python3 dws_weekly_scraper.py # keep prior dated snapshots
 """
 
 from __future__ import annotations
@@ -242,11 +245,9 @@ def parse_pdf(pdf_path: Path, yyyymmdd: str) -> list[dict]:
     return deduped
 
 
-def write_snapshot(rows: list[dict], yyyymmdd: str, keep_old: bool) -> Path:
+def write_snapshot(rows: list[dict], yyyymmdd: str) -> Path:
+    """Write one dated snapshot CSV. Old snapshots are kept (archive grows)."""
     TS_DIR.mkdir(parents=True, exist_ok=True)
-    if not keep_old:
-        for old in TS_DIR.glob("southafrica_dws_weekly_*.csv"):
-            old.unlink()
     out_path = TS_DIR / f"southafrica_dws_weekly_{yyyymmdd}.csv"
     with out_path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=TS_COLUMNS, extrasaction="ignore")
@@ -275,7 +276,6 @@ def main() -> int:
     sess.headers["User-Agent"] = UA
 
     target_date = env_date("DWS_TARGET_DATE")
-    keep_old = bool(int(os.environ.get("DWS_KEEP_OLD", "0") or "0"))
 
     summary: dict = {
         "ran_at_utc": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
@@ -306,6 +306,17 @@ def main() -> int:
         bulletin_date, pdf_bytes, source_url = found
 
     yyyymmdd = bulletin_date.strftime("%Y%m%d")
+    snapshot_path_check = TS_DIR / f"southafrica_dws_weekly_{yyyymmdd}.csv"
+    if snapshot_path_check.exists():
+        print(f"[dws-weekly] {yyyymmdd} already in timeseries/, nothing to do")
+        summary["status"] = "already-have"
+        summary["bulletin_date"] = yyyymmdd
+        summary["snapshot_path"] = snapshot_path_check.relative_to(
+            OUT_BASE.parent.parent.parent).as_posix()
+        (LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json").write_text(
+            json.dumps(summary, indent=2))
+        return 0
+
     pdf_path = PDF_DIR / f"Weekly{yyyymmdd}.pdf"
     pdf_path.write_bytes(pdf_bytes)
     print(f"[dws-weekly] using bulletin {bulletin_date}  ({len(pdf_bytes):,} bytes)")
@@ -320,7 +331,7 @@ def main() -> int:
             json.dumps(summary, indent=2))
         return 1
 
-    snapshot_path = write_snapshot(rows, yyyymmdd, keep_old=keep_old)
+    snapshot_path = write_snapshot(rows, yyyymmdd)
     n_meta = write_metadata(rows)
 
     summary.update({

@@ -1,10 +1,10 @@
 {
-  "ran_at_utc": "2026-04-28 01:49:46",
-  "target_date_override": null,
+  "ran_at_utc": "2026-04-28 01:52:59",
+  "target_date_override": "2026-04-13",
   "status": "ok",
-  "bulletin_date": "20260420",
-  "source_url": "https://www.dws.gov.za/drought/docs/Weekly20260420.pdf",
+  "bulletin_date": "20260413",
+  "source_url": "https://www.dws.gov.za/drought/docs/Weekly20260413.pdf",
   "rows": 222,
   "stations": 222,
-  "snapshot_path": "data/southafrica/dws_weekly/timeseries/southafrica_dws_weekly_20260420.csv"
+  "snapshot_path": "data/southafrica/dws_weekly/timeseries/southafrica_dws_weekly_20260413.csv"
 }
