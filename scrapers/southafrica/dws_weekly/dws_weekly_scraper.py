@@ -1,54 +1,43 @@
 """
 South Africa DWS Weekly State of the Reservoirs scraper.
 
-Downloads weekly bulletin PDFs from
-    https://www.dws.gov.za/drought/docs/Weekly{YYYYMMDD}.pdf
-extracts the reservoir-state table via pdfplumber, and appends new rows
-to a cumulative long-format timeseries CSV.
+Each run produces ONE snapshot CSV for the most recent published
+bulletin. Older snapshot CSVs in the output folder are removed so the
+repo always carries exactly the latest scrape — historical accumulation
+happens in the user's local pipeline, not in this repo.
+
+Bulletin source: https://www.dws.gov.za/drought/docs/Weekly{YYYYMMDD}.pdf
+    (filename date = report Monday)
 
 Cadence rationale: DWS publishes one bulletin per Monday (sometimes
-shifted by holidays). Source updates weekly → no information gain from
-polling more often. Workflow is scheduled weekly on Tuesday UTC, after
-DWS's Monday publish window.
+shifted by holidays). The GitHub Actions workflow runs weekly on
+Tuesday 06:00 UTC, comfortably after the publish window.
 
-Per the dataset's data-location-routing rule, this scraper lives in
-the git repo (ephemeral weekly snapshots → committed back). The
-companion `dws_verified_scraper.py` (one-shot 1922-onwards historical
-archive) is kept LOCAL only and is NOT deployed to git.
-
-Idempotency:
-    - Only downloads PDFs that aren't already cached in `pdfs/`.
-    - Only re-parses PDFs whose extracted dates aren't already in the
-      timeseries CSV.
-    - Skips placeholder PDFs (DWS returns ~1.4KB stub when a date
-      hasn't been published yet).
-
-Outputs:
+Output layout (committed to git):
     data/southafrica/dws_weekly/
-      pdfs/Weekly{YYYYMMDD}.pdf         (raw PDFs, kept for audit)
-      timeseries/timeseries_long.csv    (cumulative per-week per-dam rows)
-      metadata/southafrica_dws_reservoirs.csv  (rebuilt every run)
-      run_logs/{date}_summary.json
+      timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv   (current snapshot only)
+      metadata/southafrica_dws_reservoirs.csv            (one row per reservoir)
+      run_logs/{run_date}_summary.json
 
-Backfill window:
-    By default scans the last 24 months of Mondays. Override with
-    DWS_START_DATE / DWS_END_DATE env vars (YYYY-MM-DD) for one-shot
-    deeper backfill.
+The PDF cache lives at `pdfs/` but is gitignored (re-downloaded as
+needed per run).
+
+Usage:
+    python3 dws_weekly_scraper.py                # current latest week
+    DWS_TARGET_DATE=2026-04-20 python3 dws_weekly_scraper.py   # specific Monday
+    DWS_KEEP_OLD=1 python3 dws_weekly_scraper.py # keep prior dated snapshots
 """
 
 from __future__ import annotations
 
 import csv
-import io
 import json
 import os
 import re
 import sys
-import time
-from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Optional
 
 import pdfplumber
 import requests
@@ -59,13 +48,13 @@ UA = (
     "Version/17.5 Safari/605.1.15"
 )
 TIMEOUT = 60
-SOURCE_URL = "https://www.dws.gov.za/Hydrology/Weekly/Province.aspx"
 ARCHIVE_TEMPLATES = [
     "https://www.dws.gov.za/drought/docs/Weekly{d}.pdf",
     "https://www.dws.gov.za/drought/docs/Weekly-{d}.pdf",
     "https://www.dws.gov.za/drought/docs/Weekly%20{d}.pdf",
 ]
 PLACEHOLDER_MAX_BYTES = 50_000  # real bulletins are 700-900 KB; placeholder is ~1.4 KB
+LOOKBACK_WEEKS = 8  # how many Mondays back to scan for the most recent real bulletin
 
 OUT_BASE = Path(os.environ.get("OUTPUT_DIR") or
                 Path(__file__).resolve().parents[3] / "data" / "southafrica" / "dws_weekly")
@@ -73,8 +62,6 @@ PDF_DIR = OUT_BASE / "pdfs"
 TS_DIR = OUT_BASE / "timeseries"
 META_DIR = OUT_BASE / "metadata"
 LOG_DIR = OUT_BASE / "run_logs"
-
-TS_PATH = TS_DIR / "timeseries_long.csv"
 META_PATH = META_DIR / "southafrica_dws_reservoirs.csv"
 
 TS_COLUMNS = [
@@ -91,58 +78,39 @@ def env_date(name: str) -> Optional[date]:
     return datetime.strptime(v, "%Y-%m-%d").date()
 
 
-def mondays_between(start: date, end: date) -> list[date]:
-    d = start - timedelta(days=start.weekday())  # back up to its Monday
-    out = []
-    while d <= end:
-        out.append(d)
-        d += timedelta(days=7)
-    return out
+def most_recent_monday(today: date) -> date:
+    return today - timedelta(days=today.weekday())
 
 
-@dataclass
-class DownloadResult:
-    monday: date
-    yyyymmdd: str
-    status: str          # "downloaded" / "cached" / "no-bulletin" / "fail"
-    path: Optional[Path]
-    bytes: int
-    url: str
+def find_latest_bulletin(session: requests.Session, max_back_weeks: int = LOOKBACK_WEEKS) -> Optional[tuple[date, bytes, str]]:
+    """Scan backwards from this week's Monday for the most recent real PDF.
+
+    Returns (monday, pdf_bytes, source_url) or None if no bulletin found
+    within the lookback window.
+    """
+    today = datetime.now(tz=timezone.utc).date()
+    monday = most_recent_monday(today)
+    for offset in range(max_back_weeks):
+        target = monday - timedelta(days=7 * offset)
+        yyyymmdd = target.strftime("%Y%m%d")
+        for tmpl in ARCHIVE_TEMPLATES:
+            url = tmpl.format(d=yyyymmdd)
+            try:
+                r = session.get(url, timeout=TIMEOUT)
+            except requests.RequestException:
+                continue
+            if r.status_code != 200 or not r.content[:5].startswith(b"%PDF-"):
+                continue
+            if len(r.content) < PLACEHOLDER_MAX_BYTES:
+                continue
+            return target, r.content, url
+    return None
 
 
-def download_one(monday: date, session: requests.Session, force: bool = False) -> DownloadResult:
-    yyyymmdd = monday.strftime("%Y%m%d")
-    out_path = PDF_DIR / f"Weekly{yyyymmdd}.pdf"
-    if out_path.exists() and not force:
-        return DownloadResult(monday, yyyymmdd, "cached", out_path, out_path.stat().st_size, "")
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-    last_url = ""
-    for tmpl in ARCHIVE_TEMPLATES:
-        url = tmpl.format(d=yyyymmdd)
-        last_url = url
-        try:
-            r = session.get(url, timeout=TIMEOUT, allow_redirects=True)
-        except requests.RequestException:
-            continue
-        if r.status_code != 200:
-            continue
-        content = r.content
-        if not content[:5].startswith(b"%PDF-"):
-            continue  # placeholder/HTML
-        if len(content) < PLACEHOLDER_MAX_BYTES:
-            continue  # real PDFs are >700KB; this is the DWS "no bulletin" stub
-        out_path.write_bytes(content)
-        return DownloadResult(monday, yyyymmdd, "downloaded", out_path, len(content), url)
-    return DownloadResult(monday, yyyymmdd, "no-bulletin", None, 0, last_url)
-
-
-# ---------- PDF parsing ----------
-# Mirrors the locally-developed extract_weekly_tables_pdfplumber.py logic but
-# streamlined: parse all pages, find the reservoir-state table (header has
-# "Station" + "Reservoir"), extract rows, normalize columns.
+# ---------- PDF parsing (single-bulletin) ----------
 
 DATE_IN_HEADER_RE = re.compile(r"(20\d{2})\s*[-/ ]?\s*(\d{2})\s*[-/ ]?\s*(\d{2})")
+STATION_RE = re.compile(r"^([A-Z]\d[A-Z]\d{3})")
 
 
 def _norm(s: str) -> str:
@@ -171,11 +139,9 @@ def _find_header_row(table: list[list]) -> Optional[int]:
     return None
 
 
-def _canonicalize_columns(header: list[str], weekly_yyyymmdd: str) -> dict[int, str]:
-    """Map column-index -> canonical name."""
+def _canonicalize_columns(header: list[str], yyyymmdd: str) -> dict[int, str]:
     mapping: dict[int, str] = {}
-    pct_full_candidates: list[tuple[int, int]] = []  # (priority, idx)
-
+    pct_full_candidates: list[tuple[int, int]] = []
     for idx, raw in enumerate(header):
         nc = _norm(raw)
         if nc == "station":
@@ -205,7 +171,7 @@ def _canonicalize_columns(header: list[str], weekly_yyyymmdd: str) -> dict[int, 
                 pct_full_candidates.append((100, idx))
             else:
                 m = DATE_IN_HEADER_RE.search(nc)
-                if m and "".join(m.groups()) == weekly_yyyymmdd:
+                if m and "".join(m.groups()) == yyyymmdd:
                     pct_full_candidates.append((90, idx))
                 else:
                     pct_full_candidates.append((10, idx))
@@ -216,16 +182,10 @@ def _canonicalize_columns(header: list[str], weekly_yyyymmdd: str) -> dict[int, 
 
 
 def _row_is_data(cells: list[str], station_idx: int) -> bool:
-    """Distinguish data rows from group/header/footer rows.
-
-    station_idx points to the column where station_id should appear.
-    Real data rows have a value matching pattern A1R001 there.
-    """
     if not cells or station_idx >= len(cells):
         return False
     cells = [(c or "").strip() for c in cells]
-    val = cells[station_idx]
-    if not re.match(r"^[A-Z]\d[A-Z]\d{3}", val):
+    if not re.match(r"^[A-Z]\d[A-Z]\d{3}", cells[station_idx]):
         return False
     joined = " ".join(cells).lower()
     if "subtotal" in joined or "grand total" in joined:
@@ -233,11 +193,7 @@ def _row_is_data(cells: list[str], station_idx: int) -> bool:
     return True
 
 
-STATION_RE = re.compile(r"^([A-Z]\d[A-Z]\d{3})")
-
-
-def parse_pdf(pdf_path: Path, weekly_yyyymmdd: str) -> list[dict]:
-    """Extract reservoir-state rows from one DWS Weekly PDF."""
+def parse_pdf(pdf_path: Path, yyyymmdd: str) -> list[dict]:
     out_rows: list[dict] = []
     with pdfplumber.open(str(pdf_path)) as pdf:
         for page in pdf.pages:
@@ -249,7 +205,7 @@ def parse_pdf(pdf_path: Path, weekly_yyyymmdd: str) -> list[dict]:
                 if hr is None:
                     continue
                 header = [(c or "").strip() for c in tbl[hr]]
-                col_map = _canonicalize_columns(header, weekly_yyyymmdd)
+                col_map = _canonicalize_columns(header, yyyymmdd)
                 station_idx = next((i for i, n in col_map.items() if n == "station_id"), -1)
                 if station_idx < 0:
                     continue
@@ -260,7 +216,7 @@ def parse_pdf(pdf_path: Path, weekly_yyyymmdd: str) -> list[dict]:
                     if not _row_is_data(cells, station_idx):
                         continue
                     rec = {c: "" for c in TS_COLUMNS}
-                    rec["date"] = weekly_yyyymmdd
+                    rec["date"] = yyyymmdd
                     for idx, name in col_map.items():
                         if idx >= len(cells):
                             continue
@@ -276,10 +232,8 @@ def parse_pdf(pdf_path: Path, weekly_yyyymmdd: str) -> list[dict]:
                             rec[name] = val
                     if rec["station_id"]:
                         out_rows.append(rec)
-    # Within one PDF, the same station_id may appear in multiple page-tables.
-    # Keep the first occurrence (typically the canonical reservoir line).
-    seen = set()
-    deduped = []
+    seen: set[str] = set()
+    deduped: list[dict] = []
     for r in out_rows:
         if r["station_id"] in seen:
             continue
@@ -288,154 +242,98 @@ def parse_pdf(pdf_path: Path, weekly_yyyymmdd: str) -> list[dict]:
     return deduped
 
 
-# ---------- top-level orchestration ----------
-
-def load_existing_dates() -> set[str]:
-    if not TS_PATH.exists():
-        return set()
-    with TS_PATH.open("r", encoding="utf-8", newline="") as f:
-        rdr = csv.DictReader(f)
-        return {row["date"] for row in rdr if row.get("date")}
-
-
-def append_rows(rows: list[dict]) -> None:
-    if not rows:
-        return
-    TS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    is_new = not TS_PATH.exists()
-    with TS_PATH.open("a", encoding="utf-8", newline="") as f:
+def write_snapshot(rows: list[dict], yyyymmdd: str, keep_old: bool) -> Path:
+    TS_DIR.mkdir(parents=True, exist_ok=True)
+    if not keep_old:
+        for old in TS_DIR.glob("southafrica_dws_weekly_*.csv"):
+            old.unlink()
+    out_path = TS_DIR / f"southafrica_dws_weekly_{yyyymmdd}.csv"
+    with out_path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=TS_COLUMNS, extrasaction="ignore")
-        if is_new:
-            w.writeheader()
+        w.writeheader()
         w.writerows(rows)
+    return out_path
 
 
-def rebuild_metadata() -> int:
-    """Build per-station metadata from the current cumulative timeseries.
-
-    Picks the most-recent non-empty values for reservoir, river, wma, prov,
-    wss, district_mun, and the median of fsc_mcm (capacity is constant; we
-    use median to absorb rounding drift).
-    """
-    if not TS_PATH.exists():
-        return 0
-    rows: dict[str, dict] = {}
-    with TS_PATH.open("r", encoding="utf-8", newline="") as f:
-        for r in csv.DictReader(f):
-            sid = r.get("station_id", "")
-            if not sid:
-                continue
-            entry = rows.setdefault(sid, {
-                "station_id": sid,
-                "reservoir": "", "river": "", "wma": "", "prov": "", "wss": "",
-                "district_mun": "",
-                "fsc_values": [],
-                "first_date": r["date"], "last_date": r["date"], "n_obs": 0,
-            })
-            entry["n_obs"] += 1
-            entry["last_date"] = max(entry["last_date"] or "", r["date"] or "")
-            entry["first_date"] = min(entry["first_date"] or r["date"], r["date"] or entry["first_date"])
-            for col in ("reservoir", "river", "wma", "prov", "wss", "district_mun"):
-                v = (r.get(col) or "").strip()
-                if v and not entry[col]:
-                    entry[col] = v
-            try:
-                fsc = float(r.get("fsc_mcm") or "")
-                entry["fsc_values"].append(fsc)
-            except ValueError:
-                pass
-
-    META_PATH.parent.mkdir(parents=True, exist_ok=True)
+def write_metadata(rows: list[dict]) -> int:
+    META_DIR.mkdir(parents=True, exist_ok=True)
+    meta_cols = ["station_id", "reservoir", "river", "wma", "prov", "wss",
+                 "district_mun", "fsc_mcm"]
     with META_PATH.open("w", encoding="utf-8", newline="") as f:
-        w = csv.writer(f)
-        w.writerow(["station_id", "reservoir", "river", "wma", "prov", "wss",
-                    "district_mun", "fsc_mcm_median", "n_observations",
-                    "first_date", "last_date"])
-        for sid in sorted(rows):
-            e = rows[sid]
-            fsc = e["fsc_values"]
-            fsc_med = (sorted(fsc)[len(fsc) // 2] if fsc else "")
-            w.writerow([sid, e["reservoir"], e["river"], e["wma"], e["prov"],
-                        e["wss"], e["district_mun"], fsc_med, e["n_obs"],
-                        e["first_date"], e["last_date"]])
+        w = csv.DictWriter(f, fieldnames=meta_cols, extrasaction="ignore")
+        w.writeheader()
+        for r in sorted(rows, key=lambda x: x["station_id"]):
+            w.writerow({c: r.get(c, "") for c in meta_cols})
     return len(rows)
 
 
 def main() -> int:
-    today = datetime.now(tz=timezone.utc).date()
-    end = env_date("DWS_END_DATE") or today
-    start = env_date("DWS_START_DATE") or (end - timedelta(days=730))  # 24 months default
-
-    PDF_DIR.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
+    PDF_DIR.mkdir(parents=True, exist_ok=True)
 
-    print(f"[dws-weekly] window: {start} -> {end}")
-    targets = mondays_between(start, end)
-    print(f"[dws-weekly] {len(targets)} Mondays to check")
-
-    have_dates = load_existing_dates()
     sess = requests.Session()
     sess.headers["User-Agent"] = UA
 
-    results: list[DownloadResult] = []
-    new_rows: list[dict] = []
-    parse_failures: list[str] = []
+    target_date = env_date("DWS_TARGET_DATE")
+    keep_old = bool(int(os.environ.get("DWS_KEEP_OLD", "0") or "0"))
 
-    for i, monday in enumerate(targets, 1):
-        # Skip if already in timeseries AND PDF cached
-        yyyymmdd = monday.strftime("%Y%m%d")
-        pdf_path = PDF_DIR / f"Weekly{yyyymmdd}.pdf"
-        skip = (yyyymmdd in have_dates) and pdf_path.exists()
-        if skip:
-            results.append(DownloadResult(monday, yyyymmdd, "cached", pdf_path,
-                                          pdf_path.stat().st_size, ""))
-            continue
-
-        res = download_one(monday, sess)
-        results.append(res)
-        if res.status not in ("downloaded", "cached"):
-            continue
-        if yyyymmdd in have_dates:
-            continue  # already parsed
-
-        try:
-            rows = parse_pdf(res.path, yyyymmdd)
-        except Exception as exc:
-            parse_failures.append(f"{yyyymmdd}: {exc!r}")
-            continue
-        if not rows:
-            parse_failures.append(f"{yyyymmdd}: no reservoir rows extracted")
-            continue
-        new_rows.extend(rows)
-        print(f"  [{i}/{len(targets)}] {monday}: {res.status:10s} +{len(rows)} rows")
-        # politeness delay between live downloads
-        if res.status == "downloaded":
-            time.sleep(1.0)
-
-    append_rows(new_rows)
-    n_stations = rebuild_metadata()
-
-    summary = {
+    summary: dict = {
         "ran_at_utc": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-        "window": [start.isoformat(), end.isoformat()],
-        "mondays_checked": len(targets),
-        "downloaded": sum(1 for r in results if r.status == "downloaded"),
-        "cached": sum(1 for r in results if r.status == "cached"),
-        "no_bulletin": sum(1 for r in results if r.status == "no-bulletin"),
-        "fail": sum(1 for r in results if r.status == "fail"),
-        "new_rows": len(new_rows),
-        "total_dates_in_ts": len(load_existing_dates()),
-        "stations_in_metadata": n_stations,
-        "parse_failures": parse_failures,
+        "target_date_override": target_date.isoformat() if target_date else None,
     }
-    LOG_DIR.mkdir(parents=True, exist_ok=True)
-    log_path = LOG_DIR / f"{today.isoformat()}_summary.json"
-    log_path.write_text(json.dumps(summary, indent=2))
-    print(f"\n[dws-weekly] done: +{len(new_rows)} new rows, "
-          f"{n_stations} stations in metadata, "
-          f"{summary['downloaded']} new PDFs, "
-          f"{summary['no_bulletin']} dates with no bulletin")
-    print(f"[dws-weekly] log -> {log_path}")
+
+    if target_date:
+        yyyymmdd = target_date.strftime("%Y%m%d")
+        url = ARCHIVE_TEMPLATES[0].format(d=yyyymmdd)
+        r = sess.get(url, timeout=TIMEOUT)
+        if r.status_code != 200 or not r.content[:5].startswith(b"%PDF-") or len(r.content) < PLACEHOLDER_MAX_BYTES:
+            print(f"[dws-weekly] FAIL: no real bulletin at {url}")
+            summary["status"] = "no-bulletin-at-target"
+            (LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json").write_text(
+                json.dumps(summary, indent=2))
+            return 1
+        bulletin_date = target_date
+        pdf_bytes = r.content
+        source_url = url
+    else:
+        found = find_latest_bulletin(sess)
+        if not found:
+            print(f"[dws-weekly] FAIL: no real bulletin in past {LOOKBACK_WEEKS} Mondays")
+            summary["status"] = "no-bulletin-in-lookback"
+            (LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json").write_text(
+                json.dumps(summary, indent=2))
+            return 1
+        bulletin_date, pdf_bytes, source_url = found
+
+    yyyymmdd = bulletin_date.strftime("%Y%m%d")
+    pdf_path = PDF_DIR / f"Weekly{yyyymmdd}.pdf"
+    pdf_path.write_bytes(pdf_bytes)
+    print(f"[dws-weekly] using bulletin {bulletin_date}  ({len(pdf_bytes):,} bytes)")
+    print(f"[dws-weekly] source: {source_url}")
+
+    rows = parse_pdf(pdf_path, yyyymmdd)
+    if not rows:
+        print(f"[dws-weekly] FAIL: parsed 0 reservoir rows from {pdf_path.name}")
+        summary["status"] = "parse-empty"
+        summary["bulletin_date"] = yyyymmdd
+        (LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json").write_text(
+            json.dumps(summary, indent=2))
+        return 1
+
+    snapshot_path = write_snapshot(rows, yyyymmdd, keep_old=keep_old)
+    n_meta = write_metadata(rows)
+
+    summary.update({
+        "status": "ok",
+        "bulletin_date": yyyymmdd,
+        "source_url": source_url,
+        "rows": len(rows),
+        "stations": n_meta,
+        "snapshot_path": snapshot_path.relative_to(OUT_BASE.parent.parent.parent).as_posix(),
+    })
+    (LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json").write_text(
+        json.dumps(summary, indent=2))
+    print(f"[dws-weekly] OK: {len(rows)} reservoirs -> {snapshot_path.name}")
     return 0
 
 
