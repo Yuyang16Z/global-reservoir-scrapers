@@ -20,6 +20,8 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 │   │   ├── luas/                   # LUAS IWRIMS (Selangor reservoirs)
 │   │   ├── mywater/                # MyWater JPS dams (nationwide, static metadata)
 │   │   └── sarawak_rivers/         # DID Sarawak iHydro (rivers + rainfall, NOT reservoirs)
+│   ├── southafrica/
+│   │   └── dws_weekly/             # DWS Weekly State of the Reservoirs bulletin
 │   ├── taiwan/
 │   │   ├── README.md
 │   │   └── wra/                    # WRA open data + disaster-prevention APIs
@@ -28,12 +30,14 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 │       └── rid/                    # RID (Royal Irrigation Dept) — 35 large + 448 medium
 ├── data/                           # populated by scheduled workflows, committed back
 │   ├── malaysia/{luas,mywater,sarawak_rivers}/
+│   ├── southafrica/dws_weekly/
 │   ├── taiwan/wra/
 │   └── thailand/rid/
 └── .github/workflows/
     ├── malaysia_luas.yml           # cron 02:00 + 14:00 UTC
     ├── malaysia_mywater.yml        # manual trigger only
     ├── malaysia_sarawak_rivers.yml # cron 02:05 + 14:05 UTC
+    ├── southafrica_dws_weekly.yml  # cron 06:00 UTC every Tuesday
     ├── taiwan_wra.yml              # cron 01:45 + 13:45 UTC
     └── thailand_rid.yml            # cron 01:30 + 13:30 UTC
 ```
@@ -46,6 +50,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 |---|---|---|---|---|
 | Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/luas/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
 | Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia/mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
+| South Africa (nationwide) | DWS Weekly State of the Reservoirs PDF (~222 reservoirs) | weekly snapshot, every Tuesday | `scrapers/southafrica/dws_weekly/dws_weekly_scraper.py` | ✅ v1 (2026-04-28) |
 | Taiwan (nationwide) | WRA open data + disaster-prevention APIs | daily snapshot, 2× per day | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | daily snapshot, 2× per day | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
 
@@ -55,9 +60,9 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 |---|---|---|---|---|
 | Malaysia (Sarawak) | DID Sarawak iHydro (~269 river + rainfall + IG stations) | 2× per day | `scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py` | ✅ v1 (2026-04-22) |
 
-Other countries (Argentina, Australia, China, India, Taiwan, Thailand, South Africa,
-Zambia, Central Asia, etc.) are scraped locally from `~/Desktop/work/resovoir data/`
-and are not yet migrated here.
+Other countries (Argentina, Australia, China, India, Zambia, Central Asia, etc.)
+are scraped locally from `~/Desktop/work/resovoir data/` and are not yet
+migrated here.
 
 ## Running locally
 
@@ -72,6 +77,9 @@ python scrapers/malaysia/mywater/mywater_jps_scraper.py
 
 # Sarawak river gauges
 python scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py
+
+# South Africa DWS weekly bulletin
+python scrapers/southafrica/dws_weekly/dws_weekly_scraper.py
 
 # Taiwan WRA reservoirs
 python scrapers/taiwan/wra/taiwan_wra_scraper.py
