@@ -1,0 +1,64 @@
+name: South Africa DWS weekly scrape
+
+on:
+  schedule:
+    # Tuesday 06:00 UTC — DWS publishes the new Monday bulletin during the
+    # preceding day in South Africa (UTC+2). Tuesday gives them a comfortable
+    # publish window without polling at the wrong time.
+    - cron: "0 6 * * 2"
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Backfill start (YYYY-MM-DD). Leave blank for default (24 months back)."
+        required: false
+      end_date:
+        description: "Backfill end (YYYY-MM-DD). Leave blank for today."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: southafrica-dws-weekly
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/southafrica/dws_weekly
+          DWS_START_DATE: ${{ inputs.start_date }}
+          DWS_END_DATE: ${{ inputs.end_date }}
+        run: python scrapers/southafrica/dws_weekly/dws_weekly_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/southafrica/dws_weekly
+          git add scrapers/southafrica/dws_weekly
+          git add requirements.txt .github/workflows/southafrica_dws_weekly.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(southafrica/dws-weekly): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

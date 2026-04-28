@@ -1,0 +1,16 @@
+{
+  "ran_at_utc": "2026-04-28 01:22:24",
+  "window": [
+    "2024-04-28",
+    "2026-04-28"
+  ],
+  "mondays_checked": 106,
+  "downloaded": 49,
+  "cached": 3,
+  "no_bulletin": 54,
+  "fail": 0,
+  "new_rows": 11541,
+  "total_dates_in_ts": 52,
+  "stations_in_metadata": 227,
+  "parse_failures": []
+}

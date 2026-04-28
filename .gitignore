@@ -20,3 +20,7 @@ data/china/mwr/*/recover_failed/
 data/china/mwr/*/ocr_json/
 data/china/mwr/*.lock
 data/china/mwr/.grab_data.lock
+
+# South Africa DWS: raw PDFs are an idempotency cache (~800KB each, 100+
+# per year). Keep on local checkout / runner only; redownload-on-demand.
+data/southafrica/dws_weekly/pdfs/
