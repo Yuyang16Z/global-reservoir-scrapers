@@ -735,6 +735,21 @@
     "reservoirname": "石門水庫"
   },
   {
+    "basinrainfall": "19.6",
+    "capacity": "500.83",
+    "crossflow": "0.0",
+    "datetime": "2026-04-29T00:00:00",
+    "dwl": "122.0",
+    "inflow": "7.04",
+    "nwlmax": "141.6",
+    "outflow": "5.23",
+    "outflowdischarge": "",
+    "outflowtotal": "5.23",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10401",
+    "reservoirname": "寶山水庫"
+  },
+  {
     "basinrainfall": "24.8",
     "capacity": "11548.6",
     "crossflow": "10.78",
@@ -763,21 +778,6 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20405",
     "reservoirname": "士林攔河堰"
-  },
-  {
-    "basinrainfall": "36.0",
-    "capacity": "500.83",
-    "crossflow": "0.0",
-    "datetime": "2026-04-29T00:00:00",
-    "dwl": "122.0",
-    "inflow": "7.04",
-    "nwlmax": "141.6",
-    "outflow": "5.23",
-    "outflowdischarge": "",
-    "outflowtotal": "5.23",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10401",
-    "reservoirname": "寶山水庫"
   },
   {
     "basinrainfall": "36.0",
