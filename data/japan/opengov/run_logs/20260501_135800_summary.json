@@ -1,0 +1,14 @@
+{
+  "run_time": "2026-05-01 13:58:00",
+  "source_list_url": "https://opengov.jp/en/geo/dam-reservoir/",
+  "status": "success",
+  "start_date": "2026-05-01",
+  "end_date": "2026-05-01",
+  "metadata_file": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/japan/opengov/metadata/japan_opengov_reservoirs.csv",
+  "snapshot_files": [],
+  "errors": [],
+  "reservoir_count": 127,
+  "date_count": 0,
+  "row_count": 0,
+  "list_last_updated": "2026-04-30"
+}
