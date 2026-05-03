@@ -1,272 +1,272 @@
 ﻿station_id,station_name,station_type,country,admin_unit,division,river_basin,lat,lon,normal_level (m),alert_level (m),warning_level (m),danger_level (m),wl_datum (based on),source_agency,source_url,last_updated
-MY_DIDSRWK_101001,Upper Sungai Staat,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.377444444,110.2061389,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101002,Batu Kitang Telemetry,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.452416667,110.2822778,1.85,3.00,4.50,5.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101003,Pang Tebang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.270916667,110.0866667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101004,Bau,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.417666667,110.1531667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101005,Kampung Sagah,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.532194444,110.2111944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101006,Kuching Airport,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.490398,110.352659,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101008,Kuching Saberkas,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.53673,110.34037,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101011,Bako Causeway,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.5995,110.401944444444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101012,Kuching City South,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.552472222,110.3595833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101013,Sebubut,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.579861111,110.22125,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101014,Telok Assam,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.717092,110.44499,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101015,Buntal DID,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.70127777777777,110.365194444444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101016,Rampangi,Combine,Malaysia,Sarawak,Kuching,Sungai Santubong,1.67808333333333,110.336999999999,,1.50,1.90,2.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101017,Sungai Rayu,Combine,Malaysia,Sarawak,Kuching,Batang Rambungan,1.612805556,110.152,1.98,12.60,12.80,13.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101018,Mid Sungai Kuap,Combine,Malaysia,Sarawak,Samarahan,Sungai Sarawak,1.49816,110.39701,,3.00,3.30,3.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101019,Sibu Laut,Combine,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.676861111,110.2032778,,2.50,2.60,2.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101020,Desa Wira,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.51036111111111,110.304416666666,0.53,2.50,3.00,3.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101021,Kuala Maong,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.542246,110.311386,0.25,2.00,2.40,2.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
+MY_DIDSRWK_101001,Upper Sungai Staat,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.377444444,110.2061389,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101002,Batu Kitang Telemetry,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.452416667,110.2822778,1.85,3.00,4.50,5.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101003,Pang Tebang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.270916667,110.0866667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101004,Bau,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.417666667,110.1531667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101005,Kampung Sagah,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.532194444,110.2111944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101006,Kuching Airport,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.490398,110.352659,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101008,Kuching Saberkas,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.53673,110.34037,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101011,Bako Causeway,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.5995,110.401944444444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101012,Kuching City South,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.552472222,110.3595833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101013,Sebubut,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.579861111,110.22125,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101014,Telok Assam,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.717092,110.44499,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101015,Buntal DID,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.70127777777777,110.365194444444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101016,Rampangi,Combine,Malaysia,Sarawak,Kuching,Sungai Santubong,1.67808333333333,110.336999999999,,1.50,1.90,2.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101017,Sungai Rayu,Combine,Malaysia,Sarawak,Kuching,Batang Rambungan,1.612805556,110.152,1.98,12.60,12.80,13.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101018,Mid Sungai Kuap,Combine,Malaysia,Sarawak,Samarahan,Sungai Sarawak,1.49816,110.39701,,3.00,3.30,3.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101019,Sibu Laut,Combine,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.676861111,110.2032778,,2.50,2.60,2.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101020,Desa Wira,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.51036111111111,110.304416666666,0.53,2.50,3.00,3.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101021,Kuala Maong,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.542246,110.311386,0.25,2.00,2.40,2.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
 MY_DIDSRWK_101022,Central Park,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.52386111111111,110.339555555555,0.51,2.50,3.00,3.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-04-28 05:37:34
-MY_DIDSRWK_101023,Sejingkat,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.58514,110.43757,,2.90,3.20,3.75,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101026,Kampung Salak,Water,Malaysia,Sarawak,Kuching,Batang Salak,1.665944444,110.2904444,,3.40,3.60,3.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101029,Siol JPS,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.603388889,110.3524444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101030,Semariang Fisheries,Rainfall,Malaysia,Sarawak,Kuching,Batang Salak,1.60588888888888,110.323805555555,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101031,Kampung Git,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.35551,110.26669,4.74,12.29,12.79,13.29,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101032,Buan Bidi,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.39741,110.11652,11.51,16.47,17.07,18.07,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101034,Padawan,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.16261111111111,110.259138888888,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101035,Kampung Monggak,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.327138889,110.1081667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101036,Kampung Opar,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.439638889,110.07125,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101037,Siniawan,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.446611111,110.2185833,1.05,5.50,6.20,7.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101038,Gedong,Combine,Malaysia,Sarawak,Samarahan,Batang Sadong,1.226183,110.694873,,4.82,5.90,6.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
+MY_DIDSRWK_101023,Sejingkat,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.58514,110.43757,,2.90,3.20,3.75,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101026,Kampung Salak,Water,Malaysia,Sarawak,Kuching,Batang Salak,1.665944444,110.2904444,,3.40,3.60,3.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101029,Siol JPS,Rainfall,Malaysia,Sarawak,Kuching,Sungai Santubong,1.603388889,110.3524444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101030,Semariang Fisheries,Rainfall,Malaysia,Sarawak,Kuching,Batang Salak,1.60588888888888,110.323805555555,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101031,Kampung Git,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.35551,110.26669,4.74,12.29,12.79,13.29,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101032,Buan Bidi,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.39741,110.11652,11.51,16.47,17.07,18.07,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101034,Padawan,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.16261111111111,110.259138888888,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101035,Kampung Monggak,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.327138889,110.1081667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101036,Kampung Opar,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.439638889,110.07125,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101037,Siniawan,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.446611111,110.2185833,1.05,5.50,6.20,7.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101038,Gedong,Combine,Malaysia,Sarawak,Samarahan,Batang Sadong,1.226183,110.694873,,4.82,5.90,6.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
 MY_DIDSRWK_101039,Krusen,Combine,Malaysia,Sarawak,Serian,Batang Sadong,1.070277778,110.5014167,11.93,15.20,16.80,17.40,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101040,Meringgu,Water,Malaysia,Sarawak,Serian,Batang Sadong,1.050436,110.557054,11.92,15.00,16.00,16.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101041,Serian,Combine,Malaysia,Sarawak,Serian,Batang Sadong,1.159833333,110.5698333,4.49,8.30,8.60,9.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101042,Tebedu,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.024666667,110.3631667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101043,Bunan Gega,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,0.915972222,110.5408889,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101044,Semban,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.230916667,110.1831389,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101045,Kuala Tatau,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,3.080861111,112.8065278,,0.75,1.05,1.35,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101046,Tatau Town,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,2.879111111,112.8459167,,1.93,2.38,2.97,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101047,Rumah Abua,Water,Malaysia,Sarawak,Bintulu,Batang Tatau,2.819305556,113.0156111,,9.31,10.40,11.31,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101048,Bintulu Kastam Wharf,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.16861111111111,113.0375,,1.00,1.60,2.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101049,Sebauh,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.111722222,113.268,,1.27,1.57,1.97,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101050,Rumah Along,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.236694444,113.6163611,1.88,5.00,6.00,7.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101052,Nanga Balang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.756055556,113.1694167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101054,Long Singut,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.57225,114.4204722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101055,Long Busang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.872562,114.316948,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101056,Nanga Tiau,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.11525,113.4468611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101057,Tunoh Scheme,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.050388889,113.6709167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101060,Long Jawe,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.116178,114.190236,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101061,Long Unai,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.957638889,114.7170556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101063,Long Laku,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.466724,114.247513,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101064,Long Lidam,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.337111111,114.6788611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101066,Long Urun,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,3.014634,114.199594,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101067,Long Jek,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.808548,114.318726,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101068,Long Bantan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.451222222,114.1140833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101069,Long Atip,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.828166667,114.7095833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101070,Long Luteng,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.533722222,114.7512222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101071,Long Akah,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.31375,114.7878611,5.00,9.00,10.00,11.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101072,Long Nahaah,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.329527778,114.5970556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101073,Long Aton,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.252103,114.344724,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101074,Long Lellang,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.421416667,115.1523056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101075,Bario,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.735944444,115.4784444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101076,Lio Matu,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.16875,115.22375,0.80,7.00,8.00,9.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101077,Long Moh,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.054111111,115.0762778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101078,Long Anap,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.063916667,114.8195,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101079,Sungai Merah,Water,Malaysia,Sarawak,Sibu,Batang Rajang,2.324638889,111.8433778,,2.80,3.00,3.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101081,Bintangor,Combine,Malaysia,Sarawak,Sarikei,Batang Rajang,2.167645,111.632077,,2.48,2.60,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101082,Pakan,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,1.898403,111.679775,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101083,Banyi,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,1.861753,111.934049,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101084,Uka,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.03196,112.26274,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
+MY_DIDSRWK_101040,Meringgu,Water,Malaysia,Sarawak,Serian,Batang Sadong,1.050436,110.557054,11.92,15.00,16.00,16.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101041,Serian,Combine,Malaysia,Sarawak,Serian,Batang Sadong,1.159833333,110.5698333,4.49,8.30,8.60,9.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101042,Tebedu,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.024666667,110.3631667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101043,Bunan Gega,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,0.915972222,110.5408889,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101044,Semban,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.230916667,110.1831389,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101045,Kuala Tatau,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,3.080861111,112.8065278,,0.75,1.05,1.35,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101046,Tatau Town,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,2.879111111,112.8459167,,1.93,2.38,2.97,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101047,Rumah Abua,Water,Malaysia,Sarawak,Bintulu,Batang Tatau,2.819305556,113.0156111,,9.31,10.40,11.31,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101048,Bintulu Kastam Wharf,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.16861111111111,113.0375,,1.00,1.60,2.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101049,Sebauh,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.111722222,113.268,,1.27,1.57,1.97,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101050,Rumah Along,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.236694444,113.6163611,1.88,5.00,6.00,7.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101052,Nanga Balang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.756055556,113.1694167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101054,Long Singut,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.57225,114.4204722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101055,Long Busang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.872562,114.316948,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101056,Nanga Tiau,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.11525,113.4468611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101057,Tunoh Scheme,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.050388889,113.6709167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101060,Long Jawe,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.116178,114.190236,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101061,Long Unai,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.957638889,114.7170556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101063,Long Laku,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.466724,114.247513,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101064,Long Lidam,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.337111111,114.6788611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101066,Long Urun,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,3.014634,114.199594,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101067,Long Jek,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.808548,114.318726,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101068,Long Bantan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.451222222,114.1140833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101069,Long Atip,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.828166667,114.7095833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101070,Long Luteng,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.533722222,114.7512222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101071,Long Akah,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.31375,114.7878611,5.00,9.00,10.00,11.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101072,Long Nahaah,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.329527778,114.5970556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101073,Long Aton,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.252103,114.344724,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101074,Long Lellang,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.421416667,115.1523056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101075,Bario,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.735944444,115.4784444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101076,Lio Matu,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.16875,115.22375,0.80,7.00,8.00,9.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101077,Long Moh,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.054111111,115.0762778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101078,Long Anap,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.063916667,114.8195,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101079,Sungai Merah,Water,Malaysia,Sarawak,Sibu,Batang Rajang,2.324638889,111.8433778,,2.80,3.00,3.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101081,Bintangor,Combine,Malaysia,Sarawak,Sarikei,Batang Rajang,2.167645,111.632077,,2.48,2.60,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101082,Pakan,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,1.898403,111.679775,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101083,Banyi,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,1.861753,111.934049,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101084,Uka,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.03196,112.26274,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
 MY_DIDSRWK_101085,Nanga Jagau,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,1.88223,112.31082,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-04-30 15:54:01
-MY_DIDSRWK_101086,Julau,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,2.030119,111.909239,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101087,Nanga Machan B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.028472222,112.0305556,3.00,8.00,9.00,10.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101088,Nanga Ngemah,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.023277778,112.4069167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101089,Song B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.01150,112.54303,5.59,10.59,11.59,12.59,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101090,Sungai Nawang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.647,112.2775,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101091,Rumah Andau,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.68252777777778,112.418722222222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101092,Nanga Bangkit,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.771944451037980,112.6366670,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101094,Rumah Gual,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.877555556,112.7468056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101095,Renan Kemiding,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.061927778,112.1523556,,6.21,7.21,7.71,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101096,Nanga Semah,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.356838889,111.5152194,,4.00,4.20,4.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101097,Paloh Bangau,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.42030555555555,111.252805555555,,5.10,5.30,5.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101098,Daro,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.527194444,111.4331389,,5.30,5.60,5.90,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101099,Matu,Combine,Malaysia,Sarawak,Mukah,Batang Matu,2.674194444,111.5341389,0.84,1.74,2.64,3.34,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101100,Sungai Dausan,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.504333333,111.7054722,,6.00,6.30,6.60,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101102,Sibu New Airport,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.25825,111.98491,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101103,Sungai Maleng,Rainfall,Malaysia,Sarawak,Mukah,Batang Rajang,2.35876,111.41156,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101104,Tanjung Kabang,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.60106944444444,111.826411111111,,5.20,5.40,5.60,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101105,Durin Water Works,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.13404,111.97236,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101107,Sungai Salim B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.238444444,111.8875,,2.65,2.80,3.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101108,Sarikei DID,Combine,Malaysia,Sarawak,Sarikei,Batang Rajang,2.126017,111.532242,,2.70,3.00,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101109,Nanga Ayam,Water,Malaysia,Sarawak,Sarikei,Batang Rajang,1.945453,111.900884,8.45,18.45,18.95,19.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101110,Ambas,Water,Malaysia,Sarawak,Sarikei,Batang Rajang,1.975141,111.516229,3.96,6.92,7.42,7.92,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101112,Kapit New Headworks,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.016991,112.953003,6.25,12.10,15.00,15.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101113,Nanga Entawau,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.82145,113.68181,4.60,11.30,12.30,12.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101114,Belaga,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.70677777777777,113.785,41.06,47.30,50.90,52.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101115,Telok Buing,Water,Malaysia,Sarawak,Kapit,Batang Rajang,1.99791,113.22426,1.98,10.00,11.00,12.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101116,Nanga Benin B,Water,Malaysia,Sarawak,Kapit,Batang Rajang,2.169496,113.057034,13.46,20.60,21.60,22.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101117,Oya Water Works,Combine,Malaysia,Sarawak,Mukah,Batang Oya,2.855361111,111.8740556,,4.00,4.50,5.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101118,Mukah JKR,Combine,Malaysia,Sarawak,Mukah,Batang Mukah,2.90425,112.0939444,,1.20,1.50,1.70,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101119,Kuala Balingian,Combine,Malaysia,Sarawak,Mukah,Batang Balingian,3.013833333,112.5861111,,0.80,1.10,1.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101120,Dalat Wharf,Combine,Malaysia,Sarawak,Mukah,Batang Oya,2.74258333,111.9380278,,3.80,4.20,4.68,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101121,Kampung Sunting,Rainfall,Malaysia,Sarawak,Mukah,Batang Mukah,2.768194444,112.1923056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101131,Nanga Melatai,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.586888889,113.8008056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101132,Nanga Merit,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.27077,113.09595,18.00,20.00,23.00,24.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101139,Permy Jaya,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.454611111,114.0425833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101140,Kuala Tutong,Combine,Malaysia,Sarawak,Miri,Batang Suai,3.651025,113.557077,0.70,2.50,2.70,2.90,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101141,Long Jee,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,2.987111111,114.9603333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101142,Long Jegan,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.583138889,114.1151389,4.50,10.50,11.50,12.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101143,Long Panai,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.948416667,114.54275,2.00,6.50,7.50,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101144,Long Seridan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.976611111,115.0685,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101145,Long Subing,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.326638889,114.2759444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101146,Long Teru,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.864280556,114.2447806,3.00,6.00,7.00,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101147,Mulu Airport,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,4.048309833,114.80956,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101148,Pa Tik,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.724172,115.281381,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101149,Beluru,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.973138889,114.1039722,3.60,5.10,5.60,5.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101150,Nanga Insungai,Combine,Malaysia,Sarawak,Limbang,Sungai Limbang,4.399269444,114.8955111,5.80,8.20,9.10,11.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101151,Nanga Medamit,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.487603,114.909229,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101152,Ulu Medalam,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.3195,114.896,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101154,Long Tengoa,Combine,Malaysia,Sarawak,Limbang,Batang Trusan,4.595416667,115.3403806,43.70,46.50,48.00,50.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101155,Sundar,Combine,Malaysia,Sarawak,Limbang,Batang Trusan,4.890611111,115.2043611,2.00,3.20,3.40,3.60,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101156,Trusan Telemetry,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.78069444444444,115.270833333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101158,Batu Niah Bazaar,Combine,Malaysia,Sarawak,Miri,Sungai Niah,3.803138889,113.7574389,0.86,2.62,4.72,5.22,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101159,Miri DID,Combine,Malaysia,Sarawak,Miri,Sungai Miri,4.431566667,114.0020194,,2.50,2.70,3.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101160,Long Lama,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.761686,114.404146,7.65,14.15,15.15,15.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101161,Marudi,Combine,Malaysia,Sarawak,Miri,Batang Baram,4.177386,114.314431,2.00,2.79,3.09,3.25,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101162,Limbang DID,Combine,Malaysia,Sarawak,Limbang,Sungai Limbang,4.74486111111111,115.001444444444,,1.10,1.20,1.30,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101163,Lawas Airfield,Rainfall,Malaysia,Sarawak,Limbang,Batang Lawas,4.84630555555555,115.40675,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101164,Kuala Lawas,Combine,Malaysia,Sarawak,Limbang,Batang Lawas,4.955324,115.430762,,1.00,1.20,1.38,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101166,Sungai Sibuti,Rainfall,Malaysia,Sarawak,Miri,Sungai Sibuti,3.97805555555555,113.946333333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101167,Kuala Similajau,Rainfall,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.524527778,113.3257778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101168,Sungai Similajau,Water,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.44075,113.37708,4.00,8.00,9.00,12.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101169,Kuala Binyo,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.024833333,113.4585556,4.00,5.20,5.80,6.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101170,Panai Binion,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,2.9540861,113.4726472,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101171,Sungai Sibiu,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.190888889,113.0921944,,3.30,4.30,5.30,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101172,Rumah Bansa,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.055083333,113.48175,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101173,Tubau,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.160777778,113.7095556,3.00,6.20,6.80,7.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101174,Bintulu / Belaga Road,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.00911,113.5546898,3.00,9.65,10.15,10.65,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101175,Sangan,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.7656833,112.975925,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101176,Rumah Gerina,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.527694444,112.9123889,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101180,Kabong,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.810956,111.116425,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101181,Roban,Combine,Malaysia,Sarawak,Betong,Sungai Krian,1.8790277777777777,111.29366666666667,,4.60,5.00,5.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101182,Saratok DID,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.758194444,111.3442778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101183,Kaki Wong,Combine,Malaysia,Sarawak,Betong,Sungai Krian,1.736861,111.456639,,5.13,5.73,6.33,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101190,Betong,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.42219444444444,111.543777777777,,4.86,5.16,5.76,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101191,Batu Danau,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.601,111.5595556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101192,Debak,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.562333333,111.4184722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101193,Maludam,Rainfall,Malaysia,Sarawak,Betong,Sungai Maludam,1.660958,111.038028,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101194,Nanga Lubau,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.495861111,111.5916389,1.25,9.32,10.32,10.92,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101195,Nanga Tiga,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.607027778,111.6999167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101196,Pusa,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.615806,111.287889,,2.62,3.22,3.82,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101197,Nanga Samu,Water,Malaysia,Sarawak,Betong,Batang Saribas,1.553472222,111.5290278,1.45,7.49,8.09,9.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101200,Enteban 2,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.327138889,111.6367778,3.52,8.00,9.00,10.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101202,Nanga Delok,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.23251,112.02142,15.00,23.25,23.75,24.05,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101203,Nanga Entalau,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.4565,111.7901944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101205,Nanga Tutong II,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.235833333,111.9309167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101206,Pantu,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.149139,111.118074,1.80,4.90,5.58,6.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101207,Bau Sungai,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.55375,111.8269444,13.00,16.00,17.00,20.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101210,Lundu,Rainfall,Malaysia,Sarawak,Kuching,Batang Kayan,1.670608,109.857909,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101211,Samunsam,Rainfall,Malaysia,Sarawak,Kuching,Sungai Samunsam,1.952,109.6454722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101212,Sematan,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sematan,1.809305556,109.7763611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101213,Ulu Batang Kayan,Combine,Malaysia,Sarawak,Kuching,Batang Kayan,1.502602,109.923775,6.00,13.00,14.00,15.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101220,Asa Jaya ,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.544527778,110.60925,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101221,Balai Ringin,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.048555556,110.7488611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101222,Batu Gong,Water,Malaysia,Sarawak,Serian,Batang Samarahan,1.34501,110.44348,2.41,4.56,5.90,6.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101223,Kampung Similang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.608166667,110.5011111,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101224,Sadong Jaya,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.509083333,110.7410556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101225,Simunjan,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.395527778,110.7506111,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101250,Malihah,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.551388889,110.2426389,3.42,6.80,7.10,7.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101251,Batu Kawa Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.508666667,110.2703056,0.00,2.50,3.00,4.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101252,Sungai Tengah,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.559222222,110.2205833,5.00,7.10,7.40,7.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101253,Maong Tengah Kiri,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.532861111,110.3244722,0.20,3.00,4.00,4.40,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101254,Padungan,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.55448,110.369453,0.50,2.60,2.81,3.30,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101255,Barrage,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.57601,110.40928,0.80,2.80,2.92,3.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101256,Satok B,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.55914,110.32812,0.27,2.40,2.52,2.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101257,Sungai Pedid,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.296376,110.0889,14.25,20.53,20.71,21.13,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101258,Sungai Opar,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.441741,110.075529,11.80,15.83,16.01,16.43,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101259,Bau Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.423944,110.150028,5.30,12.46,12.58,12.86,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101260,Aman 5 Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.181909,110.259851,31.20,37.40,37.58,38.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101261,Sarawak Maritime,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.270944,111.8424,,2.80,2.95,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101262,Express Terminal,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.285573,111.829498,,2.50,2.62,2.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101263,Kapit Town,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.017194,112.937028,6.25,11.90,14.55,15.30,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101264,Jabatan Laut,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.336197,111.818406,,2.30,2.48,2.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101265,Sungai Bidut,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.275444,111.80725,,2.80,2.98,3.40,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101266,Lebaan,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.292417,111.676444,,3.40,4.15,4.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101267,Stabau,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.213427,111.911867,,3.50,3.74,4.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101268,Kanowit Town,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.100611,112.158028,1.80,4.59,4.89,5.59,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101269,Durin Bazaar,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.13931,111.97293,,3.50,3.80,4.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101270,Sungai Seduan,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.286222222,111.880750000,0.00,3.40,3.70,4.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101271,Ulu Sungai Merah,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.32660,111.85323,,2.20,2.29,2.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101272,Sungai Teku,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.348417,111.870139,,2.60,2.78,3.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101273,Rantau Panjang B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.4185,111.828389,,2.00,2.18,2.60,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101274,Permai Jaya,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.312111111,111.878388889,0.00,3.10,3.40,3.70,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101275,Selangau B,Combine,Malaysia,Sarawak,Sibu,Batang Mukah,2.522944,112.323944,14.00,16.90,17.20,17.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101276,Stapang B,Combine,Malaysia,Sarawak,Sibu,Batang Oya,2.398389,112.139389,10.00,12.20,13.20,14.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101277,Nanga Lemai B,Combine,Malaysia,Sarawak,Sibu,Batang Balingian,2.686972,112.504778,,2.80,3.10,3.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101278,Nanga Sebatu,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.00686,112.67832,5.00,11.00,14.00,15.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101279,Nanga Kabah,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.055500,112.339306,,6.29,7.04,7.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101280,Giam Pasang B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.739416667,113.7904167,3.00,5.00,5.50,6.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101282,Punan Bah B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.382833333,113.3515833,5.37,9.00,10.00,11.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101283,Gaat B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.896,113.4249444,32.00,42.50,44.50,46.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101286,8th Mile,Water,Malaysia,Sarawak,Samarahan,Sungai Sarawak,1.445222,110.328139,6.04,7.04,8.64,9.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101287,Asajaya Water Intake,Water,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.515833333,110.6086389,1.95,3.62,4.12,4.72,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101289,Ba Kelalan,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,3.974547471003870,115.6185520,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101296,Batu Lintang,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.018138889,111.5558333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101301,Bekenu,Combine,Malaysia,Sarawak,Miri,Sungai Sibuti,4.05875,113.8479167,0.50,1.00,1.20,1.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101305,Benawa,Combine,Malaysia,Sarawak,Miri,Batang Baram,4.019694000000000,114.3493610,3.50,6.00,7.00,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101308,Bintulu New Airport,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.119833,113.024583,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
+MY_DIDSRWK_101086,Julau,Rainfall,Malaysia,Sarawak,Sarikei,Batang Rajang,2.030119,111.909239,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101087,Nanga Machan B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.028472222,112.0305556,3.00,8.00,9.00,10.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101088,Nanga Ngemah,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.023277778,112.4069167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101089,Song B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.01150,112.54303,5.59,10.59,11.59,12.59,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101090,Sungai Nawang,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.647,112.2775,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101091,Rumah Andau,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.68252777777778,112.418722222222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101092,Nanga Bangkit,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.771944451037980,112.6366670,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101094,Rumah Gual,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.877555556,112.7468056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101095,Renan Kemiding,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.061927778,112.1523556,,6.21,7.21,7.71,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101096,Nanga Semah,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.356838889,111.5152194,,4.00,4.20,4.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101097,Paloh Bangau,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.42030555555555,111.252805555555,,5.10,5.30,5.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101098,Daro,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.527194444,111.4331389,,5.30,5.60,5.90,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101099,Matu,Combine,Malaysia,Sarawak,Mukah,Batang Matu,2.674194444,111.5341389,0.84,1.74,2.64,3.34,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101100,Sungai Dausan,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.504333333,111.7054722,,6.00,6.30,6.60,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101102,Sibu New Airport,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.25825,111.98491,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101103,Sungai Maleng,Rainfall,Malaysia,Sarawak,Mukah,Batang Rajang,2.35876,111.41156,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101104,Tanjung Kabang,Combine,Malaysia,Sarawak,Mukah,Batang Rajang,2.60106944444444,111.826411111111,,5.20,5.40,5.60,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101105,Durin Water Works,Rainfall,Malaysia,Sarawak,Sibu,Batang Rajang,2.13404,111.97236,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101107,Sungai Salim B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.238444444,111.8875,,2.65,2.80,3.10,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101108,Sarikei DID,Combine,Malaysia,Sarawak,Sarikei,Batang Rajang,2.126017,111.532242,,2.70,3.00,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101109,Nanga Ayam,Water,Malaysia,Sarawak,Sarikei,Batang Rajang,1.945453,111.900884,8.45,18.45,18.95,19.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101110,Ambas,Water,Malaysia,Sarawak,Sarikei,Batang Rajang,1.975141,111.516229,3.96,6.92,7.42,7.92,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101112,Kapit New Headworks,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.016991,112.953003,6.25,12.10,15.00,15.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101113,Nanga Entawau,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.82145,113.68181,4.60,11.30,12.30,12.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101114,Belaga,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.70677777777777,113.785,41.06,47.30,50.90,52.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101115,Telok Buing,Water,Malaysia,Sarawak,Kapit,Batang Rajang,1.99791,113.22426,1.98,10.00,11.00,12.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101116,Nanga Benin B,Water,Malaysia,Sarawak,Kapit,Batang Rajang,2.169496,113.057034,13.46,20.60,21.60,22.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101117,Oya Water Works,Combine,Malaysia,Sarawak,Mukah,Batang Oya,2.855361111,111.8740556,,4.00,4.50,5.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101118,Mukah JKR,Combine,Malaysia,Sarawak,Mukah,Batang Mukah,2.90425,112.0939444,,1.20,1.50,1.70,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101119,Kuala Balingian,Combine,Malaysia,Sarawak,Mukah,Batang Balingian,3.013833333,112.5861111,,0.80,1.10,1.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101120,Dalat Wharf,Combine,Malaysia,Sarawak,Mukah,Batang Oya,2.74258333,111.9380278,,3.80,4.20,4.68,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101121,Kampung Sunting,Rainfall,Malaysia,Sarawak,Mukah,Batang Mukah,2.768194444,112.1923056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101131,Nanga Melatai,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,1.586888889,113.8008056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101132,Nanga Merit,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.27077,113.09595,18.00,20.00,23.00,24.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101139,Permy Jaya,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.454611111,114.0425833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101140,Kuala Tutong,Combine,Malaysia,Sarawak,Miri,Batang Suai,3.651025,113.557077,0.70,2.50,2.70,2.90,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101141,Long Jee,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,2.987111111,114.9603333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101142,Long Jegan,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.583138889,114.1151389,4.50,10.50,11.50,12.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101143,Long Panai,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.948416667,114.54275,2.00,6.50,7.50,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101144,Long Seridan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.976611111,115.0685,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101145,Long Subing,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.326638889,114.2759444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101146,Long Teru,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.864280556,114.2447806,3.00,6.00,7.00,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101147,Mulu Airport,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,4.048309833,114.80956,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101148,Pa Tik,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.724172,115.281381,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101149,Beluru,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.973138889,114.1039722,3.60,5.10,5.60,5.80,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101150,Nanga Insungai,Combine,Malaysia,Sarawak,Limbang,Sungai Limbang,4.399269444,114.8955111,5.80,8.20,9.10,11.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101151,Nanga Medamit,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.487603,114.909229,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101152,Ulu Medalam,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.3195,114.896,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101154,Long Tengoa,Combine,Malaysia,Sarawak,Limbang,Batang Trusan,4.595416667,115.3403806,43.70,46.50,48.00,50.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101155,Sundar,Combine,Malaysia,Sarawak,Limbang,Batang Trusan,4.890611111,115.2043611,2.00,3.20,3.40,3.60,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101156,Trusan Telemetry,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.78069444444444,115.270833333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101158,Batu Niah Bazaar,Combine,Malaysia,Sarawak,Miri,Sungai Niah,3.803138889,113.7574389,0.86,2.62,4.72,5.22,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101159,Miri DID,Combine,Malaysia,Sarawak,Miri,Sungai Miri,4.431566667,114.0020194,,2.50,2.70,3.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101160,Long Lama,Combine,Malaysia,Sarawak,Miri,Batang Baram,3.761686,114.404146,7.65,14.15,15.15,15.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101161,Marudi,Combine,Malaysia,Sarawak,Miri,Batang Baram,4.177386,114.314431,2.00,2.79,3.09,3.25,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101162,Limbang DID,Combine,Malaysia,Sarawak,Limbang,Sungai Limbang,4.74486111111111,115.001444444444,,1.10,1.20,1.30,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101163,Lawas Airfield,Rainfall,Malaysia,Sarawak,Limbang,Batang Lawas,4.84630555555555,115.40675,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101164,Kuala Lawas,Combine,Malaysia,Sarawak,Limbang,Batang Lawas,4.955324,115.430762,,1.00,1.20,1.38,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101166,Sungai Sibuti,Rainfall,Malaysia,Sarawak,Miri,Sungai Sibuti,3.97805555555555,113.946333333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101167,Kuala Similajau,Rainfall,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.524527778,113.3257778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101168,Sungai Similajau,Water,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.44075,113.37708,4.00,8.00,9.00,12.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101169,Kuala Binyo,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.024833333,113.4585556,4.00,5.20,5.80,6.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101170,Panai Binion,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,2.9540861,113.4726472,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101171,Sungai Sibiu,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.190888889,113.0921944,,3.30,4.30,5.30,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101172,Rumah Bansa,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.055083333,113.48175,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101173,Tubau,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.160777778,113.7095556,3.00,6.20,6.80,7.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101174,Bintulu / Belaga Road,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.00911,113.5546898,3.00,9.65,10.15,10.65,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101175,Sangan,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.7656833,112.975925,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101176,Rumah Gerina,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.527694444,112.9123889,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101180,Kabong,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.810956,111.116425,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101181,Roban,Combine,Malaysia,Sarawak,Betong,Sungai Krian,1.8790277777777777,111.29366666666667,,4.60,5.00,5.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101182,Saratok DID,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.758194444,111.3442778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101183,Kaki Wong,Combine,Malaysia,Sarawak,Betong,Sungai Krian,1.736861,111.456639,,5.13,5.73,6.33,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101190,Betong,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.42219444444444,111.543777777777,,4.86,5.16,5.76,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101191,Batu Danau,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.601,111.5595556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101192,Debak,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.562333333,111.4184722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101193,Maludam,Rainfall,Malaysia,Sarawak,Betong,Sungai Maludam,1.660958,111.038028,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101194,Nanga Lubau,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.495861111,111.5916389,1.25,9.32,10.32,10.92,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101195,Nanga Tiga,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.607027778,111.6999167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101196,Pusa,Combine,Malaysia,Sarawak,Betong,Batang Saribas,1.615806,111.287889,,2.62,3.22,3.82,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101197,Nanga Samu,Water,Malaysia,Sarawak,Betong,Batang Saribas,1.553472222,111.5290278,1.45,7.49,8.09,9.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101200,Enteban 2,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.327138889,111.6367778,3.52,8.00,9.00,10.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101202,Nanga Delok,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.23251,112.02142,15.00,23.25,23.75,24.05,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101203,Nanga Entalau,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.4565,111.7901944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101205,Nanga Tutong II,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.235833333,111.9309167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101206,Pantu,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.149139,111.118074,1.80,4.90,5.58,6.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101207,Bau Sungai,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.55375,111.8269444,13.00,16.00,17.00,20.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101210,Lundu,Rainfall,Malaysia,Sarawak,Kuching,Batang Kayan,1.670608,109.857909,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101211,Samunsam,Rainfall,Malaysia,Sarawak,Kuching,Sungai Samunsam,1.952,109.6454722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101212,Sematan,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sematan,1.809305556,109.7763611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101213,Ulu Batang Kayan,Combine,Malaysia,Sarawak,Kuching,Batang Kayan,1.502602,109.923775,6.00,13.00,14.00,15.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101220,Asa Jaya ,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.544527778,110.60925,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101221,Balai Ringin,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.048555556,110.7488611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101222,Batu Gong,Water,Malaysia,Sarawak,Serian,Batang Samarahan,1.34501,110.44348,2.41,4.56,5.90,6.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101223,Kampung Similang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.608166667,110.5011111,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101224,Sadong Jaya,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.509083333,110.7410556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101225,Simunjan,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.395527778,110.7506111,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101250,Malihah,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.551388889,110.2426389,3.42,6.80,7.10,7.40,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101251,Batu Kawa Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.508666667,110.2703056,0.00,2.50,3.00,4.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101252,Sungai Tengah,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.559222222,110.2205833,5.00,7.10,7.40,7.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101253,Maong Tengah Kiri,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.532861111,110.3244722,0.20,3.00,4.00,4.40,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101254,Padungan,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.55448,110.369453,0.50,2.60,2.81,3.30,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101255,Barrage,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.57601,110.40928,0.80,2.80,2.92,3.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101256,Satok B,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.55914,110.32812,0.27,2.40,2.52,2.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101257,Sungai Pedid,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.296376,110.0889,14.25,20.53,20.71,21.13,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101258,Sungai Opar,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.441741,110.075529,11.80,15.83,16.01,16.43,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101259,Bau Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.423944,110.150028,5.30,12.46,12.58,12.86,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101260,Aman 5 Bridge,Combine,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.181909,110.259851,31.20,37.40,37.58,38.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101261,Sarawak Maritime,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.270944,111.8424,,2.80,2.95,3.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101262,Express Terminal,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.285573,111.829498,,2.50,2.62,2.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101263,Kapit Town,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.017194,112.937028,6.25,11.90,14.55,15.30,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101264,Jabatan Laut,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.336197,111.818406,,2.30,2.48,2.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101265,Sungai Bidut,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.275444,111.80725,,2.80,2.98,3.40,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101266,Lebaan,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.292417,111.676444,,3.40,4.15,4.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101267,Stabau,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.213427,111.911867,,3.50,3.74,4.30,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101268,Kanowit Town,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.100611,112.158028,1.80,4.59,4.89,5.59,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101269,Durin Bazaar,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.13931,111.97293,,3.50,3.80,4.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101270,Sungai Seduan,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.286222222,111.880750000,0.00,3.40,3.70,4.00,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101271,Ulu Sungai Merah,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.32660,111.85323,,2.20,2.29,2.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101272,Sungai Teku,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.348417,111.870139,,2.60,2.78,3.20,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101273,Rantau Panjang B,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.4185,111.828389,,2.00,2.18,2.60,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101274,Permai Jaya,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.312111111,111.878388889,0.00,3.10,3.40,3.70,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101275,Selangau B,Combine,Malaysia,Sarawak,Sibu,Batang Mukah,2.522944,112.323944,14.00,16.90,17.20,17.90,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101276,Stapang B,Combine,Malaysia,Sarawak,Sibu,Batang Oya,2.398389,112.139389,10.00,12.20,13.20,14.20,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101277,Nanga Lemai B,Combine,Malaysia,Sarawak,Sibu,Batang Balingian,2.686972,112.504778,,2.80,3.10,3.80,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101278,Nanga Sebatu,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.00686,112.67832,5.00,11.00,14.00,15.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101279,Nanga Kabah,Combine,Malaysia,Sarawak,Sibu,Batang Rajang,2.055500,112.339306,,6.29,7.04,7.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101280,Giam Pasang B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.739416667,113.7904167,3.00,5.00,5.50,6.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101282,Punan Bah B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.382833333,113.3515833,5.37,9.00,10.00,11.00,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101283,Gaat B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.896,113.4249444,32.00,42.50,44.50,46.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101286,8th Mile,Water,Malaysia,Sarawak,Samarahan,Sungai Sarawak,1.445222,110.328139,6.04,7.04,8.64,9.45,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101287,Asajaya Water Intake,Water,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.515833333,110.6086389,1.95,3.62,4.12,4.72,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101289,Ba Kelalan,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,3.974547471003870,115.6185520,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101296,Batu Lintang,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.018138889,111.5558333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101301,Bekenu,Combine,Malaysia,Sarawak,Miri,Sungai Sibuti,4.05875,113.8479167,0.50,1.00,1.20,1.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101305,Benawa,Combine,Malaysia,Sarawak,Miri,Batang Baram,4.019694000000000,114.3493610,3.50,6.00,7.00,8.00,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101308,Bintulu New Airport,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.119833,113.024583,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
 MY_DIDSRWK_101317,Dana,Rainfall,Malaysia,Sarawak,Mukah,Batang Balingian,2.820861111,112.3374444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 05:18:00
-MY_DIDSRWK_101318,Dragon School,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.274919,110.419953,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101319,Engkilili JKR Wharf,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.138306,111.668389,7.11,8.80,9.43,9.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101327,JPS Beladin,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.6361688,111.2017927,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101328,JPS Bintulu,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.189091675647950,113.0521190,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101330,JPS Samarahan,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.461944444,110.4883611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101335,Kampung Baru,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.491527778,110.5046944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101337,Kampung Gayu,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.217361111,110.3458611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101341,Kampung Sangkalan Pasir,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.261055556,110.8948333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101344,Karabungan,Rainfall,Malaysia,Sarawak,Miri,Sungai Niah,3.862777778,113.8255556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101345,Kebuloh,Rainfall,Malaysia,Sarawak,Miri,Sungai Sibuti,4.117996030684950,113.9606770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101346,Ketup,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.547972222,110.5302778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101347,Klauh,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.035527778,111.4298611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101349,Kerangan Trusan,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.002722222,110.7305556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101361,Lingga,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.351833333,111.1714444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101369,Long Merarap,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.359341139655420,115.4618770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101371,Long Napir,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.17861111111111,115.140833333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101376,Long Semado,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.218972222,115.5875278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101380,Lubok Antu,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.043333333,111.831638888888,22.69,25.32,25.72,26.32,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101387,Matang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.578489183950390,110.2140190,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101388,Melugu,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.117583333,111.4243056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101389,Merapok,Rainfall,Malaysia,Sarawak,Limbang,Batang Lawas,4.955972222,115.5064167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101392,Miri Airport,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.315350,113.979112,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101393,Miri Municipal Car Park,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.393305556,113.9888056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101397,Mukah-Balingian OPS4,Rainfall,Malaysia,Sarawak,Mukah,Batang Balingian,2.701694444,112.4229444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101400,Muput,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,2.622138889,112.9698611,3.00,6.50,7.50,8.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101411,Pandaruan,Rainfall,Malaysia,Sarawak,Limbang,Sungai Pandaruan,4.687370043638150,115.0217460,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101414,Paya Paloh,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.441555556,110.4951667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101422,Riddan,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.219527778,111.7220278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101424,Rumah Jugah,Rainfall,Malaysia,Sarawak,Sibu,Batang Mukah,2.387,112.3850556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101425,Rumah Keseng,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.730030805350670,113.0844000,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101426,Rumah Luang,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.206917,113.365778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101427,Rumah Maja,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.543722,113.031333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101432,Samarahan Estate,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.303027778,110.5464444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101433,Sampadi Laut,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sampadi,1.690167,110.012583,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101441,Sekuau,Rainfall,Malaysia,Sarawak,Sibu,Batang Oya,2.356027778,112.1265833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101444,Semera,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.555361111,110.6740833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101445,Semongok,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.388944444,110.3297222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101446,Semuja Nonok,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.110722222,110.6035,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101447,Sessang II ,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.925944444,111.157,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101448,Setuan,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.263031,115.067638,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101452,Similajau Estate,Rainfall,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.375470912301650,113.4127770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101454,Sri Aman Telemetry,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.240458,111.461542,,4.90,5.20,5.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101455,Stumbin,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.3005,111.3919167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101456,Subis 1,Rainfall,Malaysia,Sarawak,Miri,Sungai Niah,3.809833333,113.8515,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101459,Sungai Arau,Rainfall,Malaysia,Sarawak,Sibu,Batang Mukah,2.307361111,112.5703056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101461,Sungai Bawan,Combine,Malaysia,Sarawak,Mukah,Batang Balingian,2.818972222,112.5622778,1.90,3.50,4.40,4.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101465,Sungai China,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.612528,110.196611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101473,Sungai Pinang,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.079222222,110.882,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101480,Sungai Talau,Rainfall,Malaysia,Sarawak,Mukah,Batang Oya,2.820027778,111.9140556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101483,Tamin,Combine,Malaysia,Sarawak,Sibu,Batang Oya,2.50919444444444,112.073861111111,5.00,7.00,7.50,8.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101485,Tanjung Jaye,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,4.564699725146140,114.0408810,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101489,Tebakang,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.097056,110.502528,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101493,Temudok,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.159583333,111.4645,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101495,Tusut,Rainfall,Malaysia,Sarawak,Sibu,Batang Oya,2.342611111,112.1690278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101497,Ulu Maong,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.5185,110.341722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101500,Ulu Sungai Pelugau,Rainfall,Malaysia,Sarawak,Sibu,Batang Balingian,2.576333333,112.6487778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101504,Long Terawan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.985722222,114.6310556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101515,RTB Bau,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.420892276817370,110.1534220,10.00,12.46,12.58,12.86,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101516,Buso,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.452002788865960,110.1835360,1.80,8.00,10.20,10.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101526,Sungai Sebatang,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.251858341736080,113.0823230,2.00,3.26,4.00,4.26,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101531,Telok Ngelengkung,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.821017,113.711767,4.60,11.30,12.30,13.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101065,Long Sambop,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.917861111,113.9175278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
-MY_DIDSRWK_101281,Long Sambop B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.941916667,113.9327222,6.00,15.86,16.85,19.12,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-02 15:01:03
+MY_DIDSRWK_101318,Dragon School,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.274919,110.419953,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101319,Engkilili JKR Wharf,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.138306,111.668389,7.11,8.80,9.43,9.79,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101327,JPS Beladin,Rainfall,Malaysia,Sarawak,Betong,Batang Saribas,1.6361688,111.2017927,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101328,JPS Bintulu,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.189091675647950,113.0521190,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101330,JPS Samarahan,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.461944444,110.4883611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101335,Kampung Baru,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.491527778,110.5046944,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101337,Kampung Gayu,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.217361111,110.3458611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101341,Kampung Sangkalan Pasir,Rainfall,Malaysia,Sarawak,Samarahan,Batang Sadong,1.261055556,110.8948333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101344,Karabungan,Rainfall,Malaysia,Sarawak,Miri,Sungai Niah,3.862777778,113.8255556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101345,Kebuloh,Rainfall,Malaysia,Sarawak,Miri,Sungai Sibuti,4.117996030684950,113.9606770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101346,Ketup,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.547972222,110.5302778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101347,Klauh,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.035527778,111.4298611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101349,Kerangan Trusan,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.002722222,110.7305556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101361,Lingga,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.351833333,111.1714444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101369,Long Merarap,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.359341139655420,115.4618770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101371,Long Napir,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.17861111111111,115.140833333333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101376,Long Semado,Rainfall,Malaysia,Sarawak,Limbang,Batang Trusan,4.218972222,115.5875278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101380,Lubok Antu,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.043333333,111.831638888888,22.69,25.32,25.72,26.32,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101387,Matang,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.578489183950390,110.2140190,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101388,Melugu,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.117583333,111.4243056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101389,Merapok,Rainfall,Malaysia,Sarawak,Limbang,Batang Lawas,4.955972222,115.5064167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101392,Miri Airport,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.315350,113.979112,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101393,Miri Municipal Car Park,Rainfall,Malaysia,Sarawak,Miri,Sungai Miri,4.393305556,113.9888056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101397,Mukah-Balingian OPS4,Rainfall,Malaysia,Sarawak,Mukah,Batang Balingian,2.701694444,112.4229444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101400,Muput,Combine,Malaysia,Sarawak,Bintulu,Batang Tatau,2.622138889,112.9698611,3.00,6.50,7.50,8.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101411,Pandaruan,Rainfall,Malaysia,Sarawak,Limbang,Sungai Pandaruan,4.687370043638150,115.0217460,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101414,Paya Paloh,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.441555556,110.4951667,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101422,Riddan,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.219527778,111.7220278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101424,Rumah Jugah,Rainfall,Malaysia,Sarawak,Sibu,Batang Mukah,2.387,112.3850556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101425,Rumah Keseng,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.730030805350670,113.0844000,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101426,Rumah Luang,Rainfall,Malaysia,Sarawak,Bintulu,Batang Kemena,3.206917,113.365778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101427,Rumah Maja,Rainfall,Malaysia,Sarawak,Bintulu,Batang Tatau,2.543722,113.031333,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101432,Samarahan Estate,Rainfall,Malaysia,Sarawak,Serian,Batang Samarahan,1.303027778,110.5464444,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101433,Sampadi Laut,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sampadi,1.690167,110.012583,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101441,Sekuau,Rainfall,Malaysia,Sarawak,Sibu,Batang Oya,2.356027778,112.1265833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101444,Semera,Rainfall,Malaysia,Sarawak,Samarahan,Batang Samarahan,1.555361111,110.6740833,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101445,Semongok,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.388944444,110.3297222,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101446,Semuja Nonok,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.110722222,110.6035,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101447,Sessang II ,Rainfall,Malaysia,Sarawak,Betong,Sungai Krian,1.925944444,111.157,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101448,Setuan,Rainfall,Malaysia,Sarawak,Limbang,Sungai Limbang,4.263031,115.067638,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101452,Similajau Estate,Rainfall,Malaysia,Sarawak,Bintulu,Sungai Similajau,3.375470912301650,113.4127770,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101454,Sri Aman Telemetry,Combine,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.240458,111.461542,,4.90,5.20,5.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101455,Stumbin,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.3005,111.3919167,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101456,Subis 1,Rainfall,Malaysia,Sarawak,Miri,Sungai Niah,3.809833333,113.8515,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101459,Sungai Arau,Rainfall,Malaysia,Sarawak,Sibu,Batang Mukah,2.307361111,112.5703056,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101461,Sungai Bawan,Combine,Malaysia,Sarawak,Mukah,Batang Balingian,2.818972222,112.5622778,1.90,3.50,4.40,4.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101465,Sungai China,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sibu Laut,1.612528,110.196611,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101473,Sungai Pinang,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.079222222,110.882,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101480,Sungai Talau,Rainfall,Malaysia,Sarawak,Mukah,Batang Oya,2.820027778,111.9140556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101483,Tamin,Combine,Malaysia,Sarawak,Sibu,Batang Oya,2.50919444444444,112.073861111111,5.00,7.00,7.50,8.50,Mean Sea Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101485,Tanjung Jaye,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,4.564699725146140,114.0408810,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101489,Tebakang,Rainfall,Malaysia,Sarawak,Serian,Batang Sadong,1.097056,110.502528,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101493,Temudok,Rainfall,Malaysia,Sarawak,Sri Aman,Batang Lupar,1.159583333,111.4645,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101495,Tusut,Rainfall,Malaysia,Sarawak,Sibu,Batang Oya,2.342611111,112.1690278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101497,Ulu Maong,Rainfall,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.5185,110.341722,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101500,Ulu Sungai Pelugau,Rainfall,Malaysia,Sarawak,Sibu,Batang Balingian,2.576333333,112.6487778,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101504,Long Terawan,Rainfall,Malaysia,Sarawak,Miri,Batang Baram,3.985722222,114.6310556,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101515,RTB Bau,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.420892276817370,110.1534220,10.00,12.46,12.58,12.86,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101516,Buso,Water,Malaysia,Sarawak,Kuching,Sungai Sarawak,1.452002788865960,110.1835360,1.80,8.00,10.20,10.70,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101526,Sungai Sebatang,Combine,Malaysia,Sarawak,Bintulu,Batang Kemena,3.251858341736080,113.0823230,2.00,3.26,4.00,4.26,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101531,Telok Ngelengkung,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,1.821017,113.711767,4.60,11.30,12.30,13.50,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101065,Long Sambop,Rainfall,Malaysia,Sarawak,Kapit,Batang Rajang,2.917861111,113.9175278,,,,,,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
+MY_DIDSRWK_101281,Long Sambop B,Combine,Malaysia,Sarawak,Kapit,Batang Rajang,2.941916667,113.9327222,6.00,15.86,16.85,19.12,Assumed Level,DID Sarawak (iHydro),https://ihydro.sarawak.gov.my/,2026-05-03 05:37:17
