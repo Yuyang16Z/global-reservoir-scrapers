@@ -1,10 +1,10 @@
 ﻿reservoir_id,reservoir_name,reservoir_name_en,country,admin_unit,river,basin,lat,lon,source_agency,source_url,data_type,last_updated
-MA_ABHSM_YOUSSEF_BEN_TACHFINE,Youssef Ben Tachfine,Youssef Ben Tachfine,Morocco,Souss-Massa,,Souss-Massa,29.802642,-9.446361,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_ABDELMOUMEN,Abdelmoumen,Abdelmoumen,Morocco,Souss-Massa,,Souss-Massa,30.765455,-9.141891,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_AOULOUZ,Aoulouz,Aoulouz,Morocco,Souss-Massa,,Souss-Massa,30.712758,-8.091408,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_IMI_EL_KHENG,Imi El Kheng,Imi El Kheng,Morocco,Souss-Massa,,Souss-Massa,30.720051,-8.553662,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_MOKHTAR_SOUSSI,Mokhtar Soussi,Mokhtar Soussi,Morocco,Souss-Massa,,Souss-Massa,30.726543,-7.974982,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_PRINCE_MOULAY_ABDELLAH,Prince Moulay Abdellah,Prince Moulay Abdellah,Morocco,Souss-Massa,,Souss-Massa,30.759593,-9.688630,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_AHL_SOUSS,Ahl Souss,Ahl Souss,Morocco,Souss-Massa,,Souss-Massa,30.052702,-9.118332,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_SIDI_ABDELLAH,Sidi Abdellah,Sidi Abdellah,Morocco,Souss-Massa,,Souss-Massa,30.633681,-8.824358,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
-MA_ABHSM_DKHILA,Dkhila,Dkhila,Morocco,Souss-Massa,,Souss-Massa,30.549120,-9.288998,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-02 16:11:02
+MA_ABHSM_YOUSSEF_BEN_TACHFINE,Youssef Ben Tachfine,Youssef Ben Tachfine,Morocco,Souss-Massa,,Souss-Massa,29.802642,-9.446361,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_ABDELMOUMEN,Abdelmoumen,Abdelmoumen,Morocco,Souss-Massa,,Souss-Massa,30.765455,-9.141891,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_AOULOUZ,Aoulouz,Aoulouz,Morocco,Souss-Massa,,Souss-Massa,30.712758,-8.091408,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_IMI_EL_KHENG,Imi El Kheng,Imi El Kheng,Morocco,Souss-Massa,,Souss-Massa,30.720051,-8.553662,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_MOKHTAR_SOUSSI,Mokhtar Soussi,Mokhtar Soussi,Morocco,Souss-Massa,,Souss-Massa,30.726543,-7.974982,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_PRINCE_MOULAY_ABDELLAH,Prince Moulay Abdellah,Prince Moulay Abdellah,Morocco,Souss-Massa,,Souss-Massa,30.759593,-9.688630,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_AHL_SOUSS,Ahl Souss,Ahl Souss,Morocco,Souss-Massa,,Souss-Massa,30.052702,-9.118332,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_SIDI_ABDELLAH,Sidi Abdellah,Sidi Abdellah,Morocco,Souss-Massa,,Souss-Massa,30.633681,-8.824358,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
+MA_ABHSM_DKHILA,Dkhila,Dkhila,Morocco,Souss-Massa,,Souss-Massa,30.549120,-9.288998,ABHSM,https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages,in_situ,2026-05-03 09:04:54
