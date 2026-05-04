@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-05-04 09:37:21",
+  "source_agency": "ABHSM",
+  "source_url": "https://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abhsm",
+  "status": "ok",
+  "files": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abhsm/metadata/morocco_abhsm_reservoirs.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abhsm/timeseries/daily/morocco_abhsm_timeseries_2026-04-30.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abhsm/raw/2026-04-30_situation_des_barrages_souss_massa.pdf"
+  ],
+  "errors": [],
+  "report_date": "2026-04-30",
+  "rows": 9
+}
