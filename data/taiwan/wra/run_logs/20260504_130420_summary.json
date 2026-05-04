@@ -1,0 +1,27 @@
+{
+  "started_at_utc": "2026-05-04T05:04:17.894872+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "dates": [
+    "2026-05-03",
+    "2026-05-04"
+  ],
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/basic_info.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-05-04.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_water_level_2026-05-04.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/intraday/taiwan_intraday_2026-05-04.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/daily/2026-05-04.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/daily/taiwan_timeseries_2026-05-04.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/metadata/taiwan_wra_reservoirs.csv"
+  ],
+  "errors": [],
+  "records_per_date": {
+    "2026-05-04": 75
+  },
+  "metadata_count": 74,
+  "unresolved_name_ids": [
+    "40701"
+  ],
+  "status": "ok",
+  "finished_at_utc": "2026-05-04T05:04:20.786614+00:00"
+}
