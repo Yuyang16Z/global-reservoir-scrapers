@@ -451,6 +451,86 @@
     "OutflowTotal": 9.331
   },
   {
+    "StationNo": "31301",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 121.0,
+    "DeadWaterHeight": 2.0,
+    "FullWaterHeight": 9.0,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.119
+  },
+  {
+    "StationNo": "50102",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 74.0,
+    "DeadWaterHeight": 3.0,
+    "FullWaterHeight": 11.0,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.28
+  },
+  {
+    "StationNo": "50103",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 32.3,
+    "DeadWaterHeight": 0.5,
+    "FullWaterHeight": 6.5,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
+    "StationNo": "50104",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 51.0,
+    "DeadWaterHeight": 0.0,
+    "FullWaterHeight": 3.0,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
+    "StationNo": "50105",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 23.6,
+    "DeadWaterHeight": 4.0,
+    "FullWaterHeight": 12.5,
+    "AccumulatedRainfall": 4.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
+    "StationNo": "50106",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 22.5,
+    "DeadWaterHeight": 16.0,
+    "FullWaterHeight": 24.0,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
+    "StationNo": "50108",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 20.5,
+    "DeadWaterHeight": 3.0,
+    "FullWaterHeight": 13.4,
+    "AccumulatedRainfall": 0.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
+    "StationNo": "50109",
+    "Time": "2026-05-05T00:00:00",
+    "EffectiveCapacity": 2.7,
+    "DeadWaterHeight": 2.0,
+    "FullWaterHeight": 8.0,
+    "AccumulatedRainfall": 4.0,
+    "InflowTotal": 0.0,
+    "OutflowTotal": 0.0
+  },
+  {
     "StationNo": "50301",
     "Time": "2026-05-05T00:00:00",
     "EffectiveCapacity": 18.1842,
