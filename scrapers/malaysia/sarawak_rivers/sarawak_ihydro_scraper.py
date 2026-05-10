@@ -66,12 +66,14 @@ HEADERS = {
     )
 }
 
-# Source is flaky during Malaysian night window (UTC 14-16). Up to 4 network
-# attempts with exponential backoff, then up to 2 empty-parse retries on top.
+# Source is flaky during Malaysian night window. Up to 4 network attempts with
+# exponential backoff, then up to 3 empty-parse retries with progressive waits
+# on top. Worst-case wait across all empty-parse retries: 0 + 60 + 180 = 240s,
+# under the workflow's 15-minute timeout.
 NETWORK_ATTEMPTS = 4
 NETWORK_BACKOFFS = (5, 15, 45, 60)
-EMPTY_PARSE_ATTEMPTS = 2
-EMPTY_PARSE_WAIT = 30
+EMPTY_PARSE_ATTEMPTS = 3
+EMPTY_PARSE_WAITS = (60, 180)            # waits between attempts 1->2 and 2->3
 
 SOURCE_AGENCY = "DID Sarawak (iHydro)"
 SOURCE_BASE_URL = f"{HOST}/"
@@ -349,12 +351,13 @@ def main() -> int:
         if new_meta:
             break
         if parse_attempt < EMPTY_PARSE_ATTEMPTS:
+            wait = EMPTY_PARSE_WAITS[min(parse_attempt - 1, len(EMPTY_PARSE_WAITS) - 1)]
             print(
                 f"[WARN] zero stations parsed on attempt {parse_attempt}; "
-                f"retrying in {EMPTY_PARSE_WAIT}s",
+                f"retrying in {wait}s",
                 file=sys.stderr,
             )
-            time.sleep(EMPTY_PARSE_WAIT)
+            time.sleep(wait)
 
     if not new_meta:
         print("[ERROR] zero stations parsed after retries — page format may have changed. Check raw/.")
