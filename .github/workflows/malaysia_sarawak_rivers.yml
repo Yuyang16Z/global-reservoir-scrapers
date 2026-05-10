@@ -3,9 +3,12 @@ name: Malaysia Sarawak iHydro (rivers) scrape
 # RIVER / RAINFALL gauges — NOT reservoir data. See scrapers/malaysia_sarawak_rivers/README.md
 on:
   schedule:
-    # 02:00 UTC  = 10:00 Malaysia (UTC+8)
-    # 14:00 UTC  = 22:00 Malaysia
-    - cron: "5 2,14 * * *"
+    # 02:05 UTC = 10:05 Malaysia (UTC+8) — morning, always reliable.
+    # 10:05 UTC = 18:05 Malaysia         — was 14:05 UTC (= 22:05 Malaysia),
+    #   which hit a near-midnight source quiet window and failed ~13% of
+    #   runs. 18:05 still catches an evening snapshot while the source is
+    #   fully active.
+    - cron: "5 2,10 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -18,7 +21,9 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Bumped from 10 to 15 to accommodate the 3rd empty-parse retry (worst-case
+    # ~4 min added wait time on top of normal scraping).
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v5
