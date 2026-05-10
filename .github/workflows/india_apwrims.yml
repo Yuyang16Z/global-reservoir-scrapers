@@ -1,0 +1,55 @@
+name: India APWRIMS daily scrape
+
+on:
+  schedule:
+    # 03:00 UTC = 08:30 IST. APWRIMS posts the prior day's settled values
+    # through the morning; running at 08:30 IST captures them.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: india-apwrims
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/india/apwrims
+          TZ: Asia/Kolkata
+        run: python scrapers/india/apwrims/india_apwrims_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/india/apwrims
+          git add scrapers/india/apwrims
+          git add requirements.txt .github/workflows/india_apwrims.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(india/apwrims): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
