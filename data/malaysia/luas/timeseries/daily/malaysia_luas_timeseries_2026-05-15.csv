@@ -1,5 +1,5 @@
 ﻿reservoir_id,reservoir_name,date,"DATE_UPDATE (source observation timestamp, local time)","WATER_LEVEL (water level, m)","STORAGE (current storage, mcm / 10^6 m^3)","STORAGE_PERCENT (percent full, %)","RELEASE_MLD (release / outflow, mld = 10^6 liters per day)","SPILL (spillway release, mld)","RAIN (rainfall, mm)","CUMM_RAIN (cumulative rainfall, mm)","RESIDUAL (residual flow, mld)","RESERVOIR (reservoir flow, mld)","CONTROL_VOLUME (control volume, mcm)"
-MY_LUAS_STN80,BESTARI JAYA,2026-05-15,15/05/2026 13:00,3.97,,,,,0.0,85.0,,,
+MY_LUAS_STN80,BESTARI JAYA,2026-05-15,15/05/2026 23:00,4.7,,,,,39.0,124.0,,,
 MY_LUAS_1304,BATU,2026-05-15,15/05/2026 08:00,101.22,28.82,90.16,0.0,0.0,0.0,,0.0,0.0,0.0
 MY_LUAS_3978,KLANG GATES,2026-05-15,15/05/2026 07:00,94.58,23.9,94.37,153.42,0.0,0.0,,0.0,0.0,0.0
 MY_LUAS_7483,KOLAM TAKUNGAN SG. LABU (ORS),2026-05-15,15/05/2026 06:28,44.9,9.26,99.62,30.6,0.0,0.0,,0.0,0.0,0.0
