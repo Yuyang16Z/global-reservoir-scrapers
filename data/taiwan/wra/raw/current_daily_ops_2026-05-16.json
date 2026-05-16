@@ -720,21 +720,6 @@
     "reservoirname": "石岡壩"
   },
   {
-    "basinrainfall": "9.5",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-05-14T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
-  },
-  {
     "basinrainfall": "13.4",
     "capacity": "",
     "crossflow": "24.54",
@@ -913,6 +898,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20503",
     "reservoirname": "集集攔河堰"
+  },
+  {
+    "basinrainfall": "15.5",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-05-15T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
   },
   {
     "basinrainfall": "16.8",
