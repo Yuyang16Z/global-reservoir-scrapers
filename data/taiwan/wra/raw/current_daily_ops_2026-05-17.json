@@ -735,10 +735,10 @@
     "reservoirname": "集集攔河堰"
   },
   {
-    "basinrainfall": "15.5",
+    "basinrainfall": "9.0",
     "capacity": "",
     "crossflow": "0.0",
-    "datetime": "2026-05-15T00:00:00",
+    "datetime": "2026-05-16T00:00:00",
     "dwl": "",
     "inflow": "",
     "nwlmax": "",
