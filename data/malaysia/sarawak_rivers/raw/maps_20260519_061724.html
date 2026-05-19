@@ -1,0 +1,1477 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+  <head>
+    <title>iHYDRO</title>
+    
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    
+    <link href="/iHydro/css/font.css" rel="stylesheet"></link>    
+    <link href="/iHydro/css/bootstrap.css" rel="stylesheet"></link>
+    <link href="/iHydro/css/bootstrap.min.css" rel="stylesheet" media="print"></link>
+    
+    <link href="/iHydro/css/theme.css" rel="stylesheet"></link>
+    <link href="/iHydro/css/print.css" rel="stylesheet" media="print"></link>    
+    <link href="/iHydro/css/ihydro-system.css" rel="stylesheet"></link>
+    <link href="/iHydro/images/ihydro-logo.png" rel="shortcut icon"></link>            
+    
+    
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/fusioncharts.charts.js"></script>
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/themes/fusioncharts.theme.carbon.js"></script>   
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/themes/fusioncharts.theme.fint.js"></script>   
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>   
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/themes/fusioncharts.theme.zune.js"></script>   
+    
+    
+    <script type="text/javascript" src="/iHydro/fusioncharts/js/fusioncharts.widgets.js"></script>   
+    
+    
+    <script type="text/javascript" src="/iHydro/js/jquery-2.2.4.min.js"></script>
+    <script src="/iHydro/js/bootstrap.min.js"></script>    
+    
+    
+    
+    
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1vxPAGJqTSZinCsn2rv0VuUEyIQy_jz0&v=3.exp" type="text/javascript"></script>-->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1vxPAGJqTSZinCsn2rv0VuUEyIQy_jz0&amp;v=3.exp&amp;sensor=false" type="text/javascript"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-VBqg3OTy6ERlqp_MWxD1vK5cOCCVku0&amp;v=3.exp&amp;sensor=false" type="text/javascript"></script>
+    <script src="/iHydro/js/markerwithlabel.js"></script>
+    
+    <style type="text/css">
+      .marginBottom-0 {margin-bottom:0;}
+
+      .dropdown-submenu{position:relative;}
+      .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+      .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+      .dropdown-submenu:hover>a:after{border-left-color:#555;}
+      .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+      
+      .scrollable-menu{height: auto;max-height: 250px;overflow-x: hidden;}    
+    </style>          
+    <script>
+      function loadMap() {
+        var stationType = document.getElementById("station_type").value;
+        if (stationType == "All") {
+          displayMapAll();
+        } else if (stationType == "Rainfall") {
+          displayMapRF();
+        } else if (stationType == "Water") {
+          displayMapWL();
+        } else if (stationType == "IG") {
+          displayMapIG();
+        } else if (stationType == "RF_WL_IG") {
+          displayMapRFWLIG();  
+        }
+      }
+      
+      function displayMapAll(){        
+        var location = eval(document.getElementById("xml").value);
+        var userAgent = document.getElementById("user-agent").value;
+        var zoomLevel = 7;
+        var focusCenter = new google.maps.LatLng(3.039975,113.634524);
+        
+        if (userAgent.indexOf("Mobile") > -1) {
+          zoomLevel = 6;
+          focusCenter = new google.maps.LatLng(3.454667,113.429258);
+        }
+        
+        google.maps.visualRefresh = true;
+        var map = new google.maps.Map(document.getElementById("unimap"), {
+          zoom: zoomLevel,
+          center: new google.maps.LatLng(2.99789874,113.60412598),
+          mapTypeId: "roadmap",
+          gestureHandling: "greedy",
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          },          
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullScreenControl: true 
+        });
+        
+        var currentMapCenter = map.getCenter();        
+        google.maps.event.addDomListener(window, "resize", function(){
+          map.setCenter(currentMapCenter);
+        });     
+        
+        if (userAgent != null && userAgent.indexOf("Mobile") != -1) {
+        } else {        
+          var legend = document.createElement("div");
+          legend.id = "legend";
+          var content = [];
+          content.push("<p class='legend-title' ><img src='/iHydro/images/info.png' border='0' width='20' height='20' style='vertical-align: middle;'></img>&nbsp;&nbsp;&nbsp;Legend</p>");
+          content.push("<p class='legend-title' >Hourly Rainfall</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Very Heavy Rain (> 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Heavy Rain (31mm - 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Moderate Rain (11mm - 30mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Light Rain (0.5mm - 10mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;No Rain</p>");          
+          content.push("<p class='legend-title' >Water Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Danger Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Warning Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Alert Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Normal Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-purple.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Below Normal Level</p>");
+//          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Status Not Available</p>");
+          
+          legend.innerHTML = content.join("");
+          legend.index = 1;
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        }
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, pinImage, i;
+        
+        for (i = 0; i < location.length; i++) { 
+          if (location[i][2] == "Rainfall") {
+            if (location[i][5] == "No Rain"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-grey.png", null, null, null, new google.maps.Size(16, 16));
+            } 
+
+            if (location[i][5] == "Light"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-blue.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][5] == "Moderate"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-yellow.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][5] == "Heavy"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-orange.png", null, null, null, new google.maps.Size(16, 16));
+            }          
+
+            if (location[i][5] == "Very Heavy"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-red.png", null, null, null, new google.maps.Size(16, 16));
+            }
+            
+          } else if (location[i][2] == "Water") {
+            
+            if (location[i][6] == "N/A"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-grey.png", null, null, null, new google.maps.Size(16, 16));
+            } 
+
+            if (location[i][6] == "Below Normal"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-purple.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Normal"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-blue.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Alert"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-yellow.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Warning"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-orange.png", null, null, null, new google.maps.Size(16, 16));
+            }          
+
+            if (location[i][6] == "Danger"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-red.png", null, null, null, new google.maps.Size(16, 16));
+            }
+      
+          } if (location[i][2] == "Combine") {
+          
+            if (location[i][5] == "N/A" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-grey.png", null, null, null, new google.maps.Size(24, 24));           
+            }            
+            if (location[i][5] == "No Rain" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-grey.png", null, null, null, new google.maps.Size(24, 24));           
+            }            
+            if (location[i][5] == "Light" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-grey.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-grey.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "N/A") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-grey.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+
+
+            if (location[i][5] == "N/A" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+
+            if (location[i][5] == "N/A" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+
+            if (location[i][5] == "N/A" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            
+            if (location[i][5] == "N/A" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            } 
+            
+            if (location[i][5] == "N/A" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }             
+          }   
+          
+          if ($('#toggle_name').is(":checked")){ 
+            var marker = new MarkerWithLabel({
+              map: map,              
+              position: new google.maps.LatLng(location[i][3], location[i][4]),
+              icon: pinImage,
+              labelContent: location[i][1],
+              labelAnchor: new google.maps.Point(25, 0),
+              labelClass: "map-label",
+              labelInBackground: true
+            });            
+          } else {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(location[i][3], location[i][4]),
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: pinImage,           
+              title: location[i][1]
+            });            
+          }
+                
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.close();
+              infowindow.setContent('<div style="font-size: 12px; text-align: left;">' + location[i][7] + '</div>');
+              infowindow.open(map, marker);
+            }
+          })(marker, i)); 
+        }        
+      }
+      
+      function displayMapRFWLIG() {
+        var location = eval(document.getElementById("xml").value);
+        var userAgent = document.getElementById("user-agent").value;
+        google.maps.visualRefresh = true;
+        
+        var map = new google.maps.Map(document.getElementById("unimap"), {
+          zoom: 7,
+          center: new google.maps.LatLng(2.99789874,113.60412598),
+          mapTypeId: "roadmap",
+          gestureHandling: "greedy",
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          },          
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullScreenControl: true          
+        });
+        
+        var currentMapCenter = map.getCenter();        
+        google.maps.event.addDomListener(window, "resize", function(){
+          map.setCenter(currentMapCenter);
+        });
+
+        if (userAgent != null && userAgent.indexOf("Mobile") != -1) {
+        } else {        
+          var legend = document.createElement("div");
+          legend.id = "legend";
+          var content = [];
+          content.push("<p class='legend-title' ><img src='/iHydro/images/info.png' border='0' width='20' height='20' style='vertical-align: middle;'></img>&nbsp;&nbsp;&nbsp;Legend</p>");
+          content.push("<p class='legend-title' >Hourly Rainfall</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Very Heavy Rain (> 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Heavy Rain (31mm - 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Moderate Rain (11mm - 30mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Light Rain (0.5mm - 10mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;No Rain</p>");          
+          content.push("<p class='legend-title' >Water Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Danger Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Warning Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Alert Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Normal Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-purple.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Below Normal Level</p>");
+//          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Status Not Available</p>");
+          content.push("<p class='legend-title' >Intelligent Gauge</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-red.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Danger Level >=0.30m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-orange.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Warning Level = 0.20m - 0.29m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-yellow.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Alert Level = 0.15m - 0.19m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-blue.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Normal Level  </p>");
+          
+          legend.innerHTML = content.join("");
+          legend.index = 1;
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        }
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, pinImage, i;
+
+        for (i = 0; i < location.length; i++) { 
+//          alert("location[i][2] "+location[i][2]);
+          if (location[i][2] == "Rainfall") { 
+//              alert("6 "+location[i][6]);
+//              alert("7 "+location[i][7]);
+            if (location[i][5] == "No Rain"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-grey.png", null, null, null, new google.maps.Size(16, 16));
+            } 
+
+            if (location[i][5] == "Light"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-blue.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][5] == "Moderate"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-yellow.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][5] == "Heavy"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-orange.png", null, null, null, new google.maps.Size(16, 16));
+            }          
+
+            if (location[i][5] == "Very Heavy"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-red.png", null, null, null, new google.maps.Size(16, 16));
+            }
+            
+          } 
+          else if (location[i][2] == "Water") {
+            
+//            if (location[i][5] == "N/A"){
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-grey.png", null, null, null, new google.maps.Size(16, 16));
+//            } 
+
+            if (location[i][6] == "Below Normal"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-purple.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Normal"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-blue.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Alert"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-yellow.png", null, null, null, new google.maps.Size(16, 16));
+            }
+
+            if (location[i][6] == "Warning"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-orange.png", null, null, null, new google.maps.Size(16, 16));
+            }          
+
+            if (location[i][6] == "Danger"){
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-red.png", null, null, null, new google.maps.Size(16, 16));
+            }
+      
+          } if (location[i][2] == "Combine") {
+          
+                if (location[i][5] == "No Rain" && location[i][6] == "N/A") {
+                  pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-grey.png", null, null, null, new google.maps.Size(16, 16));           
+                }            
+                if (location[i][5] == "Light" && location[i][6] == "N/A") {
+                  pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-blue.png", null, null, null, new google.maps.Size(16, 16));           
+                }
+                if (location[i][5] == "Moderate" && location[i][6] == "N/A") {
+                  pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-yellow.png", null, null, null, new google.maps.Size(16, 16));           
+                }
+                if (location[i][5] == "Heavy" && location[i][6] == "N/A") {
+                  pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-orange.png", null, null, null, new google.maps.Size(16, 16));           
+                }
+                if (location[i][5] == "Very Heavy" && location[i][6] == "N/A") {
+                  pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-red.png", null, null, null, new google.maps.Size(16, 16));           
+                }
+//            if (location[i][5] == "No Rain" && location[i][6] == "N/A") {
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-grey.png", null, null, null, new google.maps.Size(24, 24));           
+//            }            
+//            if (location[i][5] == "Light" && location[i][6] == "N/A") {
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-grey.png", null, null, null, new google.maps.Size(24, 24));           
+//            }
+//            if (location[i][5] == "Moderate" && location[i][6] == "N/A") {
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-grey.png", null, null, null, new google.maps.Size(24, 24));           
+//            }
+//            if (location[i][5] == "Heavy" && location[i][6] == "N/A") {
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-red.png", null, null, null, new google.maps.Size(24, 24));           
+//            }
+//            if (location[i][5] == "Very Heavy" && location[i][6] == "N/A") {
+//              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-grey.png", null, null, null, new google.maps.Size(24, 24));           
+//            }
+
+
+            if (location[i][5] == "N/A" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Below Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-purple.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+
+            if (location[i][5] == "N/A" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Normal") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-blue.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+
+            if (location[i][5] == "N/A" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Alert") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-yellow.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            
+            if (location[i][5] == "N/A" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Warning") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-orange.png", null, null, null, new google.maps.Size(24, 24));           
+            } 
+            
+            if (location[i][5] == "N/A" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "No Rain" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-grey-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Light" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-blue-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Moderate" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-yellow-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Heavy" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-orange-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }
+            if (location[i][5] == "Very Heavy" && location[i][6] == "Danger") {
+              pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/com-red-red.png", null, null, null, new google.maps.Size(24, 24));           
+            }             
+          } else if(location[i][2] == "IG"){ //alert(location[i][2]+" - "+location[i][5]);
+              if (location[i][5] == "Normal" || location[i][5] == "No flash flood"){
+                pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-blue.png", null, null, null, new google.maps.Size(24, 24));
+              }
+
+              if (location[i][5] == "Alert"){
+                pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-yellow.png", null, null, null, new google.maps.Size(24, 24));
+              }
+
+              if (location[i][5] == "Warning"){
+                pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-orange.png", null, null, null, new google.maps.Size(24, 24));
+              }          
+
+              if (location[i][5] == "Danger"){
+                pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-red.png", null, null, null, new google.maps.Size(24, 24));
+              }    
+          }
+          
+                                        
+          if ($('#toggle_name').is(":checked")){ 
+            var marker = new MarkerWithLabel({
+              map: map,              
+              position: new google.maps.LatLng(location[i][3], location[i][4]),
+              icon: pinImage,
+              labelContent: location[i][1],
+              labelAnchor: new google.maps.Point(25, 0),
+              labelClass: "map-label",
+              labelInBackground: true
+            });            
+          } else {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(location[i][3], location[i][4]),
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: pinImage,           
+              title: location[i][1]
+            });            
+          }
+                
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.close();
+              infowindow.setContent('<div style="font-size: 12px; text-align: left;">' + location[i][7] + '</div>');
+              infowindow.open(map, marker);
+            }
+          })(marker, i)); 
+        }        
+      }
+      
+      function displayMapRF() {
+        var location = eval(document.getElementById("xml").value);
+        var userAgent = document.getElementById("user-agent").value;
+        var zoomLevel = 7;
+        var focusCenter = new google.maps.LatLng(3.039975,113.634524);
+        
+        if (userAgent.indexOf("Mobile") > -1) {
+          zoomLevel = 6;
+          focusCenter = new google.maps.LatLng(3.454667,113.429258);
+        }        
+        
+        google.maps.visualRefresh = true;
+        
+        var map = new google.maps.Map(document.getElementById("unimap"), {
+          zoom: zoomLevel,
+          center: new google.maps.LatLng(2.99789874,113.60412598),
+          mapTypeId: "roadmap",
+          gestureHandling: "greedy",
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          },          
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullScreenControl: true   
+        });
+        
+        var currentMapCenter = map.getCenter();        
+        google.maps.event.addDomListener(window, "resize", function(){
+          map.setCenter(currentMapCenter);
+        });         
+        
+        if (userAgent != null && userAgent.indexOf("Mobile") != -1) {
+        } else {        
+          var legend = document.createElement("div");
+          legend.id = "legend";
+          var content = [];
+          content.push("<p class='legend-title'><img src='/iHydro/images/info.png' border='0' width='20' height='20' style='vertical-align: middle;'></img>&nbsp;&nbsp;&nbsp;Legend</p>");
+          content.push("<p class='legend-title'><i>Categorization of Rainfall Intensity</i></p>");
+          content.push("<p class='legend-title'><i>[mm in one(1) hour]</i></p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Very Heavy Rain(> 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Heavy Rain (31mm - 60mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Moderate Rain (11mm - 30mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Light Rain (0.5mm - 10mm)</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/round-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;No Rain</p>");
+          legend.innerHTML = content.join("");
+          legend.index = 1;
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        }
+        
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, pinImage, i;
+        
+        for (i = 0; i < location.length; i++) {  
+          if (location[i][5] == "No Rain"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-grey.png", null, null, null, new google.maps.Size(16, 16));
+          } 
+          
+          if (location[i][5] == "Light"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-blue.png", null, null, null, new google.maps.Size(16, 16));
+          }
+          
+          if (location[i][5] == "Moderate"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-yellow.png", null, null, null, new google.maps.Size(16, 16));
+          }
+          
+          if (location[i][5] == "Heavy"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-orange.png", null, null, null, new google.maps.Size(16, 16));
+          }          
+         
+          if (location[i][5] == "Very Heavy"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/round-red.png", null, null, null, new google.maps.Size(16, 16));
+          }                                              
+              
+          if ($('#toggle_name').is(":checked")){ 
+            var marker = new MarkerWithLabel({
+              map: map,              
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              icon: pinImage,
+              labelContent: location[i][0],
+              labelAnchor: new google.maps.Point(25, 0),
+              labelClass: "map-label",
+              labelInBackground: true
+            });            
+          } else {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: pinImage,           
+              title: location[i][0]
+            });            
+          }
+                
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.close();
+              infowindow.setContent('<div style="font-size: 12px; text-align: left;">' + location[i][4] + '</div>');
+              infowindow.open(map, marker);
+            }
+          })(marker, i)); 
+        }        
+      }
+      
+      function displayMapWL(){
+        var location = eval(document.getElementById("xml").value);
+        var userAgent = document.getElementById("user-agent").value;
+        var zoomLevel = 7;
+        var focusCenter = new google.maps.LatLng(3.039975,113.634524);
+        
+        if (userAgent.indexOf("Mobile") > -1) {
+          zoomLevel = 6;
+          focusCenter = new google.maps.LatLng(3.454667,113.429258);
+        }
+        
+        google.maps.visualRefresh = true;
+
+        var map = new google.maps.Map(document.getElementById("unimap"), {          
+          zoom: zoomLevel,
+          center: new google.maps.LatLng(2.99789874,113.60412598),
+          mapTypeId: "roadmap",
+          gestureHandling: "greedy",
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          },          
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullScreenControl: true  
+        });
+        
+        var currentMapCenter = map.getCenter();
+        google.maps.event.addDomListener(window, "resize", function(){
+          map.setCenter(currentMapCenter);
+        });
+        
+        if (userAgent != null && userAgent.indexOf("Mobile") != -1) {
+        } else {
+          var legend = document.createElement("div");
+          legend.id = "legend";
+          var content = [];
+          content.push("<p class='legend-title' ><img src='/iHydro/images/info.png' border='0' width='20' height='20' style='vertical-align: middle;'></img>&nbsp;&nbsp;Legend</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-red.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Danger Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-orange.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Warning Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-yellow.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Alert Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-blue.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Normal Level</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-purple.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Below Normal Level</p>");
+//          content.push("<p class='legend-content'><img src='/iHydro/images/unimap-pins/lg/triangle-grey.png' border='0' width='18' height='18' style='vertical-align: middle;'></img>&nbsp;&nbsp;Status Not Available</p>");
+          legend.innerHTML = content.join("");
+          legend.index = 1;
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        }        
+        
+        var infowindow = new google.maps.InfoWindow();        
+        var marker, pinImage, i;
+        
+        for (i = 0; i < location.length; i++) {  
+          if (location[i][5] == "N/A"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-grey.png", null, null, null, new google.maps.Size(16, 16));
+          } 
+          
+          if (location[i][5] == "Below Normal"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-purple.png", null, null, null, new google.maps.Size(16, 16));
+          }
+          
+          if (location[i][5] == "Normal"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-blue.png", null, null, null, new google.maps.Size(16, 16));
+          }
+          
+          if (location[i][5] == "Alert"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-yellow.png", null, null, null, new google.maps.Size(16, 16));
+          }
+          
+          if (location[i][5] == "Warning"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-orange.png", null, null, null, new google.maps.Size(16, 16));
+          }          
+         
+          if (location[i][5] == "Danger"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/unimap-pins/lg/triangle-red.png", null, null, null, new google.maps.Size(16, 16));
+          }          
+          
+          if ($('#toggle_name').is(":checked")){     
+            var marker = new MarkerWithLabel({
+              map: map,              
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              icon: pinImage,
+              labelContent: location[i][0],
+              labelAnchor: new google.maps.Point(25, 0),
+              labelClass: "map-label",
+              labelInBackground: true
+            });
+          } else {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              map: map,              
+              icon: pinImage,           
+              title: location[i][0]
+            });
+          }
+          
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.close();
+              infowindow.setContent('<div style="font-size: 12px; text-align: left; line-height: 1.35; overflow: hidden; white-space:nowrap;">' + location[i][4] + '</div>');
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+      }      
+      
+      function displayMapIG(){
+        var location = eval(document.getElementById("xml").value);
+        var userAgent = document.getElementById("user-agent").value;
+        var zoomLevel = 11;
+        var focusCenter = new google.maps.LatLng(1.52054,110.338323);
+        
+        if (userAgent.indexOf("Mobile") > -1) {
+          zoomLevel = 10;
+          focusCenter = new google.maps.LatLng(1.52054,110.338323);
+        }
+        
+        google.maps.visualRefresh = true;
+
+        var map = new google.maps.Map(document.getElementById("unimap"), {
+          zoom: zoomLevel,
+          center: new google.maps.LatLng(1.54888358, 470.34007072),
+          mapTypeId: "roadmap",
+          gestureHandling: "greedy",
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          },          
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullScreenControl: true 
+        });
+        
+        var currentMapCenter = map.getCenter();
+        google.maps.event.addDomListener(window, "resize", function(){
+          map.setCenter(currentMapCenter);
+        });
+        
+        if (userAgent != null && userAgent.indexOf("Mobile") != -1) {
+        } else {
+          var legend = document.createElement("div");
+          legend.id = "legend";
+          var content = [];
+          content.push("<h1 class='legend-title' ><img src='/iHydro/images/info.png' border='0' width='20' height='20' style='vertical-align: middle;'></img>&nbsp;&nbsp;&nbsp;Legend<h1>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-red.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Danger Level >=0.30m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-orange.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Warning Level = 0.20m - 0.29m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-yellow.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Alert Level = 0.15m - 0.19m</p>");
+          content.push("<p class='legend-content'><img src='/iHydro/images/map-pins/ig-blue.png' border='0' width='24' height='24' style='vertical-align: middle;'></img>Normal Level  </p>");
+          legend.innerHTML = content.join("");
+          legend.index = 1;
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        }        
+        
+        var infowindow = new google.maps.InfoWindow();        
+        var marker, pinImage, i;
+        
+        for (i = 0; i < location.length; i++) {  
+          if (location[i][5] == "Normal" || location[i][5] == "No flash flood"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-blue.png", null, null, null, new google.maps.Size(24, 24));
+          }
+          
+          if (location[i][5] == "Alert"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-yellow.png", null, null, null, new google.maps.Size(24, 24));
+          }
+          
+          if (location[i][5] == "Warning"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-orange.png", null, null, null, new google.maps.Size(24, 24));
+          }          
+         
+          if (location[i][5] == "Danger"){
+            pinImage = new google.maps.MarkerImage("/iHydro/images/map-pins/ig-red.png", null, null, null, new google.maps.Size(24, 24));
+          }          
+          
+          if ($('#toggle_name').is(":checked")){     
+            var marker = new MarkerWithLabel({
+              map: map,              
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              icon: pinImage,
+              labelContent: location[i][0],
+              labelAnchor: new google.maps.Point(25, 0),
+              labelClass: "map-label",
+              labelInBackground: true
+            });
+          } else {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(location[i][1], location[i][2]),
+              map: map,              
+              icon: pinImage,           
+              title: location[i][0]
+            });
+          }
+          
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.close();
+              infowindow.setContent('<div style="font-size: 12px; text-align: left; line-height: 1.35; overflow: hidden; white-space:nowrap;">' + location[i][4] + '</div>');
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+      }      
+      
+    </script>
+    
+    <style>
+      .map-label {
+        font-size: 10px;
+        font-weight: 500;
+        color: #111;
+        text-align: center;
+        line-height: 15px;        
+        padding-left: 5px;
+        padding-right: 5px;        
+        border: 1px solid #333;
+        border-radius: 4px;
+        background: #fff;        
+      }       
+    </style>     
+  </head>
+   
+  <body onload="loadMap();">
+    
+
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>        
+        
+        <div class="navbar-header">
+            
+          <a class="navbar-brand" href="/iHydro/index.jsp" >
+              <img style="margin-top: -13px;" src="/iHydro/images/ihydro-logo.png" alt="ihydro" width="45" height="45" title="Home"></img>
+          </a>
+        </div>
+          
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          
+            
+            <li><a href="/iHydro/en/about/about-me.jsp">About</a></li>
+          
+          
+            
+            <li><a href="/iHydro/en/map/maps.jsp">Map</a></li>                     
+            
+          
+          
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Detailed Information <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rainfall</a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a href="/iHydro/en/datatable/rainfall/latest-rainfall.jsp">Latest Rainfall</a></li>
+                    <li><a href="/iHydro/en/datatable/rainfall/hourly-rainfall.jsp">Hourly Rainfall</a></li>
+                  </ul>
+                </li> 
+
+                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Water Level</a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a href="/iHydro/en/datatable/waterlevel/latest-waterlevel.jsp">Latest Water Level</a></li>
+                    <li><a href="/iHydro/en/datatable/waterlevel/hourly-waterlevel.jsp">Hourly Water Level</a></li>
+                    <li><a href="/iHydro/en/graph/waterlevel-graph-all.jsp">Water Level Charts (All Stations)</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Intelligent Gauge</a>
+                  <ul class="dropdown-menu">
+                      
+                    <li><a href="/iHydro/en/datatable/ig/latest-iglevel.jsp" >Latest IG Level</a></li>
+                    
+                    <li><a href="/iHydro/en/graph/iglevel-graph-all.jsp">IG Level Charts (All IGs)</a></li>                    
+                  </ul>
+                </li>                
+              </ul>
+            </li>
+            
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Resource Centre <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Malaysian Meteorology Department</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://bencana.met.gov.my/bencana/satellite.html" target="_blank">Satellite Image Observation</a></li>
+                    <li><a href="http://bencana.met.gov.my/bencana/malaysia.html" target="_blank">Radar Image Observation</a></li>
+                  </ul>
+                </li>
+
+              
+                <li><a href="https://did.sarawak.gov.my/web/subpage/webpage_view/1855" target="_blank">Sarawak King Tide</a></li>
+                                 
+                
+              </ul>                            
+            </li>
+            
+            <li><a href="/iHydro/en/contact/contact.jsp">Contact Us</a></li>               
+          </ul>
+            
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://ihydro.sarawak.gov.my/iHydro/bm/map/maps.jsp">BM</a></li> 
+          </ul>
+            
+        </div>
+        
+      </div>      
+    </nav>
+    
+      
+    
+
+        <script type='text/javascript'>        
+      (function($){
+        $(document).ready(function(){
+        $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+            $(this).parent().siblings().removeClass('open');
+            $(this).parent().toggleClass('open');
+          });
+          });
+        })(jQuery);        
+    </script>
+    
+    <input type="hidden" name="station_type" id="station_type" value="RF_WL_IG">
+    <input type="hidden" name="xml" id="xml" value="">
+    <input type="hidden" name="user-agent" id="user-agent" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36">
+    
+    <div class="page-header">
+      <p class="header-text" style="padding-left: 5px;">
+        <img src="/iHydro/images/location-map.png" border="0" height="24" width="24"></img>
+        Location Map                
+      </p>      
+    </div>
+      
+    <div>
+      <p class="load-time" style="padding-left: 5px;">
+        Map loaded at 02:18 PM, 19-May-2026
+      </p>      
+    </div>
+    
+    
+    <!-- Desktop view -->
+    <div id="unimap" style="height: 680px;"></div>
+    
+    
+    <br/>
+    
+    <!-- Map selection -->
+    <div class="container-fluid">
+      <form name="locationMap" class="form-horizontal" role="form" method="post" action="maps.jsp">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <select id="station_type" name="station_type" class="col-md-4 form-control" onchange="this.form.submit()">              
+              <option value="RF_WL_IG" selected>Show All Stations</option>
+              <option value="Rainfall" >Show Rainfall Stations Only</option>
+              <option value="Water" >Show Water Level Stations Only</option>
+              <option value="All" >Show Combine, Rainfall and Water Level Stations</option>
+              <option value="IG" >Show Intelligent Gauge Only</option>
+            </select>            
+          </div>
+            
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="checkbox">
+              <label class="table-label" style="color: #111; font-weight: 400;">
+                <input type="checkbox" id="toggle_name" name="toggle_name" value="show" onclick="loadMap();">Show station names
+              </label>
+            </div>            
+          </div>
+        </div>
+      </form>
+    </div>     
+    
+    
+    
+
+    <br/>
+    <div class="container-fluid">
+    
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e74c3c; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="8">Very Heavy Rain (> 60mm)</td>
+          </tr>
+          <tr style="background-color: #e74c3c;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Daily Cumulative RF(mm)</td>
+            <td class="table-label" width="10%">Latest RF(mm)</td>
+            <td class="table-label" width="30%">Remarks</td>
+          </tr>          
+        </thead>
+        
+        <tbody>
+                     
+        </tbody>
+      </table>
+      
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e67e22; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="8">Heavy Rain (31mm - 60mm)</td>
+          </tr>
+          <tr style="background-color: #e67e22;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Daily Cumulative RF(mm)</td>
+            <td class="table-label" width="10%">Latest RF(mm)</td>
+            <td class="table-label" width="30%">Remarks</td>
+          </tr>          
+        </thead>
+        
+        <tbody>
+                     
+        </tbody>
+      </table>
+        
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #f1c40f; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="8">Moderate Rain (11mm - 30mm)</td>
+          </tr>
+          <tr style="background-color: #f1c40f;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Daily Cumulative RF(mm)</td>
+            <td class="table-label" width="10%">Latest RF(mm)</td>
+            <td class="table-label" width="30%">Remarks</td>
+          </tr>          
+        </thead>
+        
+        <tbody>
+                     
+        </tbody>
+      </table>        
+    
+    
+    
+    
+          <br/>
+    
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e74c3c; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Danger Level</td>
+          </tr>
+          <tr style="background-color: #e74c3c;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">1.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Long Teru</td>
+            <td class="table-content-black" style="padding-left: 5px;">Miri</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Baram</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">8.82</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>DANGER!</b> The water level has breached Danger level.<br/> Communities around the vicinity are advised to be extremely cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101146" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">2.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Stapang B</td>
+            <td class="table-content-black" style="padding-left: 5px;">Sibu</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Oya</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">14.52</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>DANGER!</b> The water level has breached Danger level.<br/> Communities around the vicinity are advised to be extremely cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101276" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+               
+        </tbody>
+      </table>
+        
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e67e22; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Warning Level</td>
+          </tr>
+          <tr style="background-color: #e67e22;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">1.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Sungai Salim B</td>
+            <td class="table-content-black" style="padding-left: 5px;">Sibu</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Rajang</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">3.06</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>WARNING!</b> The water level has breached Warning level.<br/> Communities around the vicinity are advised to be cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101107" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">2.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Nanga Insungai</td>
+            <td class="table-content-black" style="padding-left: 5px;">Limbang</td>
+            <td class="table-content-black" style="padding-left: 5px;">Sungai Limbang</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">9.46</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>WARNING!</b> The water level has breached Warning level.<br/> Communities around the vicinity are advised to be cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101150" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">3.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Nanga Lemai B</td>
+            <td class="table-content-black" style="padding-left: 5px;">Sibu</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Balingian</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">3.44</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>WARNING!</b> The water level has breached Warning level.<br/> Communities around the vicinity are advised to be cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101277" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">4.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Bekenu</td>
+            <td class="table-content-black" style="padding-left: 5px;">Miri</td>
+            <td class="table-content-black" style="padding-left: 5px;">Sungai Sibuti</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">1.43</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>WARNING!</b> The water level has breached Warning level.<br/> Communities around the vicinity are advised to be cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101301" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">5.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Benawa</td>
+            <td class="table-content-black" style="padding-left: 5px;">Miri</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Baram</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">7.62</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              <b>WARNING!</b> The water level has breached Warning level.<br/> Communities around the vicinity are advised to be cautious.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101305" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+               
+        </tbody>
+      </table>    
+
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #f1c40f; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Alert Level</td>
+          </tr>
+          <tr style="background-color: #f1c40f;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="10%">Station Name</td>
+            <td class="table-label" width="10%">Division</td>
+            <td class="table-label" width="10%">River Basin</td>
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">1.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Kapit New Headworks</td>
+            <td class="table-content-black" style="padding-left: 5px;">Kapit</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Rajang</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">13.94</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              The water level has breached Alert level.<br/>Communities around the vicinity are advised to be alert at all times.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101112" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">2.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Long Jegan</td>
+            <td class="table-content-black" style="padding-left: 5px;">Miri</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Baram</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">11.23</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              The water level has breached Alert level.<br/>Communities around the vicinity are advised to be alert at all times.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101142" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+        
+          <tr height="35">
+            <td class="table-content-black" style="padding-left: 5px;">3.</td>            
+            <td class="table-content-black" style="padding-left: 5px;">Kapit Town</td>
+            <td class="table-content-black" style="padding-left: 5px;">Kapit</td>
+            <td class="table-content-black" style="padding-left: 5px;">Batang Rajang</td>
+            <td class="table-content-black" style="padding-left: 5px;">19-05-2026 14:00</td>
+            <td class="table-content-black" style="padding-left: 5px;">13.27</td>          
+            <td class="table-content-black" style="padding-left: 5px;">
+              The water level has breached Alert level.<br/>Communities around the vicinity are advised to be alert at all times.<br>
+              <a href="/iHydro/en/map/waterlevel-station.jsp?station=101263" target="_blank"><img src="/iHydro/images/map.png" width="50" height="50" title="Location Map"></a>
+            </td>           
+          </tr>        
+               
+        </tbody>
+      </table>            
+    
+    
+     
+        
+            <br/>
+        
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e74c3c; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Danger Level (>=0.30m)</td>
+          </tr>
+          <tr style="background-color: #e74c3c;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="20%">IG Name</td>
+            <td class="table-label" width="10%">Division</td>            
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+                  
+        </tbody>
+      </table>    
+      
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #e67e22; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Warning Level (0.20m - 0.29m)</td>
+          </tr>
+          <tr style="background-color: #e67e22;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="20%">IG Name</td>
+            <td class="table-label" width="10%">Division</td>            
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+               
+        </tbody>
+      </table>
+      
+      <br/>
+      <table class="table-bordered" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+          <tr style="background-color: #f1c40f; font-size: 13px; font-weight: 600;" height="20">
+            <td class="table-label" colspan="7">Alert Level (0.15m - 0.19m)</td>
+          </tr>
+          <tr style="background-color: #f1c40f;" height="20">
+            <td class="table-label" width="5%">No.</td>            
+            <td class="table-label" width="20%">IG Name</td>
+            <td class="table-label" width="10%">Division</td>            
+            <td class="table-label" width="10%">Time Taken</td>
+            <td class="table-label" width="15%">Latest Reading(m)</td>
+            <td class="table-label" width="40%">Remarks</td>            
+          </tr>          
+        </thead>
+        
+        <tbody>
+                   
+        </tbody>
+      </table>      
+      
+    
+    </div>
+    
+    
+    <hr class="featurette-divider">
+    
+               
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <font class="disclaimer">DISCLAIMER</font>
+          <font class="footer">The Department of Irrigation &amp; Drainage Sarawak shall not be liable for any loss or damage caused by the usage of any information obtained from this web site. Companies referred to in this website shall not be construed as agents nor as companies recommended by the Department of Irrigation &amp; Drainage Sarawak.</font>
+        </div>
+      </div>
+    </div>             
+  </body>
+</html>
+
