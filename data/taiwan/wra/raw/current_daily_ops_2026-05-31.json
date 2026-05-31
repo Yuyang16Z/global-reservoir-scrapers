@@ -1,6 +1,21 @@
 [
   {
     "basinrainfall": "0.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-05-30T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
+  },
+  {
+    "basinrainfall": "0.0",
     "capacity": "2.7",
     "crossflow": "0.0",
     "datetime": "2026-05-30T00:00:00",
@@ -643,21 +658,6 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20502",
     "reservoirname": "日月潭水庫"
-  },
-  {
-    "basinrainfall": "6.5",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-05-29T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
   },
   {
     "basinrainfall": "6.7",
