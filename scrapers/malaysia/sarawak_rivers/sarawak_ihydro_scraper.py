@@ -315,6 +315,29 @@ def read_existing_metadata() -> list[dict]:
         return list(csv.DictReader(f))
 
 
+def write_source_unavailable_summary(
+    poll_stamp: str,
+    fetched_at: str,
+    exc: requests.RequestException,
+) -> Path:
+    summary: dict[str, Any] = {
+        "run_time": fetched_at,
+        "source_url": MAP_URL,
+        "status": "source_unavailable",
+        "station_count": 0,
+        "skipped": 0,
+        "snapshot_files": [],
+        "metadata_file": str(METADATA_DIR / "malaysia_sarawak_rivers_stations.csv"),
+        "error_type": exc.__class__.__name__,
+        "error": str(exc),
+        "network_attempts": NETWORK_ATTEMPTS,
+    }
+    summary_path = RUN_LOG_DIR / f"{poll_stamp}_summary.json"
+    summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[SAVE] {summary_path}")
+    return summary_path
+
+
 def main() -> int:
     print(f"[INFO] OUTPUT_DIR = {OUTPUT_DIR}")
     for d in (METADATA_DIR, DAILY_DIR, RAW_DIR, RUN_LOG_DIR):
@@ -327,7 +350,17 @@ def main() -> int:
     snapshots: list[dict] = []
     skipped = 0
     for parse_attempt in range(1, EMPTY_PARSE_ATTEMPTS + 1):
-        page = fetch_map_with_retry()
+        try:
+            page = fetch_map_with_retry()
+        except requests.RequestException as exc:
+            print(
+                f"[WARN] source unavailable after {NETWORK_ATTEMPTS} network attempts: "
+                f"{exc.__class__.__name__}: {exc}",
+                file=sys.stderr,
+            )
+            write_source_unavailable_summary(poll_stamp, fetched_at, exc)
+            print("[DONE] source unavailable; keeping last successful dataset")
+            return 0
 
         suffix = "" if parse_attempt == 1 else f"_retry{parse_attempt}"
         raw_path = RAW_DIR / f"maps_{poll_stamp}{suffix}.html"
