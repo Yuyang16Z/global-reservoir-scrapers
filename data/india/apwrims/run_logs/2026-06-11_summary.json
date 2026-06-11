@@ -1,0 +1,22 @@
+{
+  "ran_at_utc": "2026-06-11 07:30:51",
+  "source_url": "https://apwrims.ap.gov.in/",
+  "status": "success",
+  "reservoir_count": 118,
+  "metadata_rows": 118,
+  "no_data_count": 7,
+  "error_count": 0,
+  "snapshot_dates": [
+    "2026-06-08",
+    "2026-06-09",
+    "2026-06-10",
+    "2026-06-11"
+  ],
+  "metadata_path": "india/apwrims/metadata/india_apwrims_reservoirs.csv",
+  "snapshot_paths": [
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-08.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-09.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-10.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-11.csv"
+  ]
+}
