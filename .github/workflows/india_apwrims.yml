@@ -4,7 +4,9 @@ on:
   schedule:
     # 03:00 UTC = 08:30 IST. APWRIMS posts the prior day's settled values
     # through the morning; running at 08:30 IST captures them.
-    - cron: "0 3 * * *"
+    # 12:00 UTC = 17:30 IST fallback. The scraper merges the last few source
+    # observations, so this catches transient DNS/source outages without manual reruns.
+    - cron: "0 3,12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -20,10 +22,10 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip

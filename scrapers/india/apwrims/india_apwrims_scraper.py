@@ -54,6 +54,11 @@ USER_AGENT = (
     "Chrome/124.0.0.0 Safari/537.36"
 )
 
+
+class SourceUnavailableError(RuntimeError):
+    """Raised when APWRIMS cannot be reached after retryable failures."""
+
+
 OUT_BASE = Path(os.environ.get("OUTPUT_DIR") or "data/india/apwrims").resolve()
 METADATA_DIR = OUT_BASE / "metadata"
 DAILY_DIR = OUT_BASE / "timeseries" / "daily"
@@ -150,11 +155,17 @@ def fetch_json(session: requests.Session, path: str) -> Any:
             r = session.get(url, timeout=TIMEOUT)
             r.raise_for_status()
             return r.json()
-        except Exception as e:
+        except requests.RequestException as e:
             last_err = e
             if attempt < RETRIES:
                 time.sleep(RETRY_BACKOFF * attempt)
-    raise RuntimeError(f"GET {url} failed after {RETRIES} attempts: {last_err}")
+        except Exception as e:
+            last_err = e
+            break
+    message = f"GET {url} failed after {RETRIES} attempts: {last_err}"
+    if isinstance(last_err, requests.RequestException):
+        raise SourceUnavailableError(message) from last_err
+    raise RuntimeError(message)
 
 
 def list_reservoirs(session: requests.Session) -> list[dict]:
@@ -383,6 +394,16 @@ def main() -> int:
     summary: dict
     try:
         summary = run()
+    except SourceUnavailableError as e:
+        print(f"[WARN] APWRIMS source unavailable: {e}", file=sys.stderr, flush=True)
+        summary = {
+            "ran_at_utc": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
+            "source_url": SOURCE_URL,
+            "status": "source_unavailable",
+            "error_type": e.__class__.__name__,
+            "error": str(e),
+            "network_attempts": RETRIES,
+        }
     except Exception as e:
         traceback.print_exc()
         summary = {
@@ -396,7 +417,7 @@ def main() -> int:
     log_path = RUN_LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json"
     log_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"[{now_stamp()}] Run log: {log_path}", flush=True)
-    return 0 if summary.get("status") in ("success", "partial") else 1
+    return 0 if summary.get("status") in ("success", "partial", "source_unavailable") else 1
 
 
 if __name__ == "__main__":

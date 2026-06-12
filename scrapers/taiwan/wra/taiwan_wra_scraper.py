@@ -45,6 +45,8 @@ BASIC_INFO_URL = (
 SOURCE_URL = "https://data.gov.tw/en/datasets/45501"
 SOURCE_AGENCY = "WRA"
 TAIWAN_TZ = timezone(timedelta(hours=8))
+REQUEST_ATTEMPTS = 3
+REQUEST_BACKOFFS = (2, 8, 20)
 
 HEADERS = {
     "User-Agent": (
@@ -203,9 +205,28 @@ def try_float(v: Any) -> Any:
 
 
 def get_json(session: requests.Session, url: str, timeout: int = 60) -> Any:
-    resp = session.get(url, headers=HEADERS, timeout=timeout)
-    resp.raise_for_status()
-    return resp.json()
+    last_exc: Exception | None = None
+    for attempt in range(1, REQUEST_ATTEMPTS + 1):
+        try:
+            resp = session.get(url, headers=HEADERS, timeout=timeout)
+            resp.raise_for_status()
+            return resp.json()
+        except requests.RequestException as exc:
+            last_exc = exc
+            if attempt < REQUEST_ATTEMPTS:
+                time.sleep(REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)])
+        except Exception:
+            raise
+    assert last_exc is not None
+    raise last_exc
+
+
+def is_source_unavailable(exc: Exception) -> bool:
+    if isinstance(exc, (requests.ConnectionError, requests.Timeout)):
+        return True
+    if isinstance(exc, requests.HTTPError) and exc.response is not None:
+        return exc.response.status_code >= 500
+    return False
 
 
 def parse_date(s: str) -> datetime.date:
@@ -775,6 +796,7 @@ def main() -> int:
 
         daily_success = 0
         daily_skipped = 0
+        daily_unavailable: list[dict[str, str]] = []
         for date_str in dates:
             daily_path = dirs["daily"] / f"taiwan_timeseries_{date_str}.csv"
             # Keep today's file fresh because names/current water level come from
@@ -786,7 +808,18 @@ def main() -> int:
                 continue
 
             print(f"[FETCH] {date_str}")
-            daily_rows = get_json(session, HIST_DAILY_URL.format(date=date_str))
+            try:
+                daily_rows = get_json(session, HIST_DAILY_URL.format(date=date_str))
+            except requests.RequestException as e:
+                if is_source_unavailable(e):
+                    print(f"[WARN] daily dataset unavailable for {date_str}: {e}", file=sys.stderr)
+                    daily_unavailable.append({
+                        "date": date_str,
+                        "error_type": e.__class__.__name__,
+                        "error": str(e),
+                    })
+                    continue
+                raise
             if save_raw:
                 raw_path = dirs["raw_daily"] / f"{date_str}.json"
                 save_json(raw_path, daily_rows)
@@ -809,7 +842,13 @@ def main() -> int:
             daily_success += 1
             time.sleep(0.4)
 
+        if daily_unavailable:
+            summary["source_unavailable_dates"] = daily_unavailable
         if daily_success == 0 and daily_skipped != len(dates):
+            if daily_unavailable:
+                summary["status"] = "source_unavailable"
+                return_code = 0
+                return return_code
             raise RuntimeError("No Taiwan daily datasets were fetched successfully.")
 
         count = upsert_metadata(
@@ -837,7 +876,7 @@ def main() -> int:
         summary["unresolved_name_ids"] = unresolved
         if unresolved:
             print(f"[WARN] unresolved reservoir names: {', '.join(unresolved)}", file=sys.stderr)
-        summary["status"] = "ok"
+        summary["status"] = "partial" if daily_unavailable else "ok"
         return_code = 0
     except Exception as e:
         summary["status"] = "error"
