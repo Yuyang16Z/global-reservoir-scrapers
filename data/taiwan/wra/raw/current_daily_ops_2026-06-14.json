@@ -825,6 +825,21 @@
     "reservoirname": "德基水庫"
   },
   {
+    "basinrainfall": "4.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-06-13T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
+  },
+  {
     "basinrainfall": "5.0",
     "capacity": "68.23",
     "crossflow": "266.11",
@@ -973,20 +988,5 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "10501",
     "reservoirname": "永和山水庫"
-  },
-  {
-    "basinrainfall": "44.0",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-06-12T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
   }
 ]
