@@ -1,0 +1,12 @@
+{
+  "run_time": "2026-06-14 06:51:11",
+  "source_url": "https://ihydro.sarawak.gov.my/iHydro/en/map/maps.jsp",
+  "status": "source_unavailable",
+  "station_count": 0,
+  "skipped": 0,
+  "snapshot_files": [],
+  "metadata_file": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/malaysia/sarawak_rivers/metadata/malaysia_sarawak_rivers_stations.csv",
+  "error_type": "ConnectTimeout",
+  "error": "HTTPSConnectionPool(host='ihydro.sarawak.gov.my', port=443): Max retries exceeded with url: /iHydro/en/map/maps.jsp (Caused by ConnectTimeoutError(<HTTPSConnection(host='ihydro.sarawak.gov.my', port=443) at 0x7f3da738b7d0>, 'Connection to ihydro.sarawak.gov.my timed out. (connect timeout=45)'))",
+  "network_attempts": 4
+}
