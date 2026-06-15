@@ -1,0 +1,8 @@
+{
+  "ran_at_utc": "2026-06-15 09:21:04",
+  "source_url": "https://apwrims.ap.gov.in/",
+  "status": "source_unavailable",
+  "error_type": "SourceUnavailableError",
+  "error": "GET https://apwrims.ap.gov.in/api/reservoir/map/all failed after 3 attempts: HTTPSConnectionPool(host='apwrims.ap.gov.in', port=443): Max retries exceeded with url: /api/reservoir/map/all (Caused by NameResolutionError(\"HTTPSConnection(host='apwrims.ap.gov.in', port=443): Failed to resolve 'apwrims.ap.gov.in' ([Errno -3] Temporary failure in name resolution)\"))",
+  "network_attempts": 3
+}
