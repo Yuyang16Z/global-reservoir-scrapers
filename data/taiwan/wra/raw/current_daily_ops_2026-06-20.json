@@ -376,6 +376,21 @@
   },
   {
     "basinrainfall": "0.0",
+    "capacity": "96.57",
+    "crossflow": "15.46",
+    "datetime": "2026-06-19T00:00:00",
+    "dwl": "130.0",
+    "inflow": "0.82",
+    "nwlmax": "143.0",
+    "outflow": "0.05",
+    "outflowdischarge": "15.46",
+    "outflowtotal": "15.51",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "30504",
+    "reservoirname": "鏡面水庫"
+  },
+  {
+    "basinrainfall": "0.0",
     "capacity": "120.21",
     "crossflow": "1809.5",
     "datetime": "2026-06-19T00:00:00",
@@ -422,15 +437,15 @@
   {
     "basinrainfall": "0.0",
     "capacity": "500.83",
-    "crossflow": "0.0",
+    "crossflow": "3.17",
     "datetime": "2026-06-19T00:00:00",
     "dwl": "122.0",
     "inflow": "10.52",
     "nwlmax": "141.6",
     "outflow": "10.52",
     "outflowdischarge": "",
-    "outflowtotal": "10.52",
-    "regulatorydischarge": "",
+    "outflowtotal": "13.69",
+    "regulatorydischarge": "3.17",
     "reservoiridentifier": "10401",
     "reservoirname": "寶山水庫"
   },
@@ -568,6 +583,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "20509",
     "reservoirname": "湖山水庫"
+  },
+  {
+    "basinrainfall": "0.0",
+    "capacity": "7885.19",
+    "crossflow": "0.0",
+    "datetime": "2026-06-19T00:00:00",
+    "dwl": "40.0",
+    "inflow": "36.0",
+    "nwlmax": "58.18",
+    "outflow": "67.0",
+    "outflowdischarge": "",
+    "outflowtotal": "67.0",
+    "regulatorydischarge": "0.0",
+    "reservoiridentifier": "30501",
+    "reservoirname": "烏山頭水庫"
   },
   {
     "basinrainfall": "0.0",
@@ -733,21 +763,6 @@
     "regulatorydischarge": "0.0",
     "reservoiridentifier": "10205",
     "reservoirname": "翡翠水庫"
-  },
-  {
-    "basinrainfall": "1.0",
-    "capacity": "96.57",
-    "crossflow": "14.64",
-    "datetime": "2026-06-19T00:00:00",
-    "dwl": "130.0",
-    "inflow": "0.0",
-    "nwlmax": "143.0",
-    "outflow": "0.05",
-    "outflowdischarge": "14.1",
-    "outflowtotal": "14.69",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "30504",
-    "reservoirname": "鏡面水庫"
   },
   {
     "basinrainfall": "17.0",
