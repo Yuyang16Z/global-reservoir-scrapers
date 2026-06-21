@@ -1,0 +1,30 @@
+{
+  "started_at_utc": "2026-06-21T15:30:06.659081+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "dates": [
+    "2026-06-20",
+    "2026-06-21"
+  ],
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/basic_info.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-06-21.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_water_level_2026-06-21.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/intraday/taiwan_intraday_2026-06-21.csv"
+  ],
+  "errors": [],
+  "records_per_date": {},
+  "source_unavailable_dates": [
+    {
+      "date": "2026-06-20",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-06-20"
+    },
+    {
+      "date": "2026-06-21",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-06-21"
+    }
+  ],
+  "status": "source_unavailable",
+  "finished_at_utc": "2026-06-21T15:30:35.097250+00:00"
+}
