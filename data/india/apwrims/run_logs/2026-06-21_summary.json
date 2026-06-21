@@ -1,22 +1,8 @@
 {
-  "ran_at_utc": "2026-06-21 08:00:47",
+  "ran_at_utc": "2026-06-21 14:06:12",
   "source_url": "https://apwrims.ap.gov.in/",
-  "status": "success",
-  "reservoir_count": 118,
-  "metadata_rows": 118,
-  "no_data_count": 7,
-  "error_count": 0,
-  "snapshot_dates": [
-    "2026-06-18",
-    "2026-06-19",
-    "2026-06-20",
-    "2026-06-21"
-  ],
-  "metadata_path": "india/apwrims/metadata/india_apwrims_reservoirs.csv",
-  "snapshot_paths": [
-    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-18.csv",
-    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-19.csv",
-    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-20.csv",
-    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-06-21.csv"
-  ]
+  "status": "source_unavailable",
+  "error_type": "SourceUnavailableError",
+  "error": "GET https://apwrims.ap.gov.in/api/reservoir/map/all failed after 3 attempts: HTTPSConnectionPool(host='apwrims.ap.gov.in', port=443): Max retries exceeded with url: /api/reservoir/map/all (Caused by NameResolutionError(\"HTTPSConnection(host='apwrims.ap.gov.in', port=443): Failed to resolve 'apwrims.ap.gov.in' ([Errno -3] Temporary failure in name resolution)\"))",
+  "network_attempts": 3
 }
