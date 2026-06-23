@@ -1,5 +1,5 @@
 ﻿reservoir_id,reservoir_name,date,"level (water level, m)","storage (live storage, TMC)",storage_pct (% of design capacity),inflow (cusec),outflow (cusec)
-IN_APWRIMS_adavipalli_reservoir_78ae5c1e,ADAVIPALLI RESERVOIR,2026-06-22,477.439,0.396,27.89,0,0
+IN_APWRIMS_adavipalli_reservoir_78ae5c1e,ADAVIPALLI RESERVOIR,2026-06-22,477.439,0.396,21.83,0,0
 IN_APWRIMS_adinimmayapalli_anicut_78ae5db8,ADINIMMAYAPALLI ANICUT,2026-06-22,125.742,0,,0,0
 IN_APWRIMS_alaganuru_balancing_reservoir_0e6be4a2,ALAGANURU BALANCING RESERVOIR,2026-06-22,248.497,0,0,0,0
 IN_APWRIMS_andra_reservoir_0ee778a9,ANDRA RESERVOIR,2026-06-22,142.369,0.507,51.73,20,20
@@ -78,7 +78,7 @@ IN_APWRIMS_rama_thirtham_72bbeb08,RAMA THIRTHAM,2026-06-22,81.397,0.962,61.31,13
 IN_APWRIMS_sangam_anicut_barrge_16ae6e6a,SANGAM ANICUT / BARRGE,2026-06-22,34.205,0.386,85.78,2745,2745
 IN_APWRIMS_sarvaraja_sagar_78ae2974,SARVARAJA SAGAR,2026-06-22,191.52,0.485,45.75,100,145
 IN_APWRIMS_sarvepalli_reservoir_5bba311b,SARVEPALLI RESERVOIR,2026-06-22,8.022,1.451,83.39,200,50
-IN_APWRIMS_sileru_guntawada_reservoir_efdbd08c,Sileru (Guntawada) Reservoir,2026-06-22,409.743,1.661,38.63,1329,4650
+IN_APWRIMS_sileru_guntawada_reservoir_efdbd08c,Sileru (Guntawada) Reservoir,2026-06-22,409.743,1.661,38.32,1329,4650
 IN_APWRIMS_sir_aurthur_cotton_barrage_06d4797e,SIR AURTHUR COTTON BARRAGE,2026-06-22,13.472,2.8177,96.17,11468,11700
 IN_APWRIMS_somasila_reservoir_0f512470,Somasila Reservoir,2026-06-22,94.116,39.807,51.03,0,3746
 IN_APWRIMS_srinivasapuram_reservoir_hnss_78ae6b6e,SRINIVASAPURAM RESERVOIR (HNSS),2026-06-22,415,0.032,3.14,0,0
