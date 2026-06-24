@@ -1,4 +1,5 @@
 ﻿reservoir_id,reservoir_name,date,"level (water level, m)","storage (live storage, TMC)",storage_pct (% of design capacity),inflow (cusec),outflow (cusec)
+IN_APWRIMS_adavipalli_reservoir_78ae5c1e,ADAVIPALLI RESERVOIR,2026-06-24,477.439,0.396,21.83,0,0
 IN_APWRIMS_adinimmayapalli_anicut_78ae5db8,ADINIMMAYAPALLI ANICUT,2026-06-24,125.742,0,,0,0
 IN_APWRIMS_alaganuru_balancing_reservoir_0e6be4a2,ALAGANURU BALANCING RESERVOIR,2026-06-24,248.497,0,0,0,0
 IN_APWRIMS_andra_reservoir_0ee778a9,ANDRA RESERVOIR,2026-06-24,142.378,0.509,51.94,20,20
