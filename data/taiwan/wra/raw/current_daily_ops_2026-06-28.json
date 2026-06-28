@@ -345,21 +345,6 @@
     "reservoirname": "牡丹水庫"
   },
   {
-    "basinrainfall": "14.0",
-    "capacity": "500.83",
-    "crossflow": "0.0",
-    "datetime": "2026-06-27T00:00:00",
-    "dwl": "122.0",
-    "inflow": "5.61",
-    "nwlmax": "141.6",
-    "outflow": "12.78",
-    "outflowdischarge": "",
-    "outflowtotal": "12.78",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10401",
-    "reservoirname": "寶山水庫"
-  },
-  {
     "basinrainfall": "15.2",
     "capacity": "7885.19",
     "crossflow": "0.0",
@@ -403,6 +388,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "10201",
     "reservoirname": "石門水庫"
+  },
+  {
+    "basinrainfall": "19.0",
+    "capacity": "500.83",
+    "crossflow": "0.0",
+    "datetime": "2026-06-27T00:00:00",
+    "dwl": "122.0",
+    "inflow": "5.61",
+    "nwlmax": "141.6",
+    "outflow": "12.78",
+    "outflowdischarge": "",
+    "outflowtotal": "12.78",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10401",
+    "reservoirname": "寶山水庫"
   },
   {
     "basinrainfall": "20.0",
@@ -900,21 +900,6 @@
     "reservoirname": "士林攔河堰"
   },
   {
-    "basinrainfall": "62.5",
-    "capacity": "",
-    "crossflow": "0.0",
-    "datetime": "2026-06-26T00:00:00",
-    "dwl": "",
-    "inflow": "",
-    "nwlmax": "",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "0.0",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "10802",
-    "reservoirname": "羅東攔河堰"
-  },
-  {
     "basinrainfall": "64.5",
     "capacity": "2459.19",
     "crossflow": "42.03",
@@ -988,5 +973,20 @@
     "regulatorydischarge": "2974.0",
     "reservoiridentifier": "20202",
     "reservoirname": "石岡壩"
+  },
+  {
+    "basinrainfall": "111.0",
+    "capacity": "",
+    "crossflow": "0.0",
+    "datetime": "2026-06-27T00:00:00",
+    "dwl": "",
+    "inflow": "",
+    "nwlmax": "",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "0.0",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "10802",
+    "reservoirname": "羅東攔河堰"
   }
 ]
