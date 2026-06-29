@@ -1,0 +1,54 @@
+name: China MWR API scrape
+
+# The MWR page is a current realtime table, but its report time is normally
+# 08:00 Beijing. Run once in the evening Beijing time after the table has
+# settled. The scraper is API-first and uses historical OCR CSVs only to decode
+# the site's custom-font obfuscation.
+on:
+  schedule:
+    - cron: "30 12 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: china-mwr-api
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          TZ: Asia/Shanghai
+        run: python scrapers/china/mwr_api/china_mwr_api_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/china/mwr_api
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(china/mwr_api): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
