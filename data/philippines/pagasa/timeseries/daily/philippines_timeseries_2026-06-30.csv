@@ -1,0 +1,10 @@
+﻿reservoir_id,reservoir_name,date,observation_time,"Reservoir Water Level (RWL, m)","Water Level Deviation (24hr, m)","Normal High Water Level (NHWL, m)",Deviation from NHWL (m),Rule Curve Elevation (m),Deviation from Rule Curve (m),Gate Opening (gates),Gate Opening (meters),Inflow (cms),Outflow (cms)
+PH_PAGASA_ambuklao,Ambuklao Dam,2026-06-30,08:00 AM,740.33,0.01,752.00,-11.67,745.00,-4.67,,,,
+PH_PAGASA_angat,Angat Dam,2026-06-30,08:00 AM,159.95,-0.76,210.00,-50.05,181.90,-21.95,,,,
+PH_PAGASA_binga,Binga Dam,2026-06-30,08:00 AM,567.16,-0.56,575.00,-7.84,565.00,2.16,,,,
+PH_PAGASA_caliraya,Caliraya Dam,2026-06-30,08:00 AM,286.46,0.00,0.00,0.00,0.00,0.00,,,,
+PH_PAGASA_ipo,Ipo Dam,2026-06-30,08:00 AM,100.25,0.07,101.10,-0.85,0.00,0.00,,,,
+PH_PAGASA_la_mesa,La Mesa Dam,2026-06-30,08:00 AM,79.86,0.00,80.15,-0.29,0.00,0.00,,,,
+PH_PAGASA_magat,Magat Dam,2026-06-30,08:00 AM,164.89,-0.66,190.00,-25.11,175.48,-10.59,,,,
+PH_PAGASA_pantabangan,Pantabangan Dam,2026-06-30,08:00 AM,179.92,-0.27,216.00,-36.08,204.17,-24.25,,,,
+PH_PAGASA_san_roque,San Roque Dam,2026-06-30,08:00 AM,230.18,-0.22,280.00,-49.82,235.22,-5.04,,,,
