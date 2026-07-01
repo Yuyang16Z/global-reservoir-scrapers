@@ -1,11 +1,12 @@
 name: Thailand RID scrape
 
 # RID publishes a new daily snapshot in the morning Bangkok time.
-# We fetch at 01:30 + 13:30 UTC (08:30 + 20:30 Bangkok) — the scraper
-# always re-fetches yesterday+today, so a single missed run is caught up.
+# The endpoint supports date-based fetches. Run weekly and fetch a rolling
+# 15-day window so the repo gets fewer bot commits while still tolerating one
+# missed weekly run.
 on:
   schedule:
-    - cron: "30 1,13 * * *"
+    - cron: "30 1 * * 1"
   workflow_dispatch:
     inputs:
       start_date:
@@ -39,11 +40,29 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Compute scrape window
+        id: scrape_window
+        env:
+          INPUT_START_DATE: ${{ github.event.inputs.start_date || '' }}
+          INPUT_END_DATE: ${{ github.event.inputs.end_date || '' }}
+          TZ: Asia/Bangkok
+        run: |
+          if [ -n "$INPUT_START_DATE" ] || [ -n "$INPUT_END_DATE" ]; then
+            start="${INPUT_START_DATE:-$INPUT_END_DATE}"
+            end="${INPUT_END_DATE:-$INPUT_START_DATE}"
+          else
+            start=$(date -d "14 days ago" +"%Y-%m-%d")
+            end=$(date +"%Y-%m-%d")
+          fi
+          echo "start_date=${start}" >> "$GITHUB_OUTPUT"
+          echo "end_date=${end}" >> "$GITHUB_OUTPUT"
+
       - name: Run scraper
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/thailand/rid
-          THAILAND_START_DATE: ${{ inputs.start_date }}
-          THAILAND_END_DATE: ${{ inputs.end_date }}
+          THAILAND_START_DATE: ${{ steps.scrape_window.outputs.start_date }}
+          THAILAND_END_DATE: ${{ steps.scrape_window.outputs.end_date }}
+          SKIP_EXISTING_DAILY: "1"
         run: python scrapers/thailand/rid/thailand_rid_scraper.py
 
       - name: Commit & push new data

@@ -1,11 +1,11 @@
 name: Taiwan WRA scrape
 
-# WRA daily operations are generally entered by 09:30 Taiwan time.
-# Run at 01:45 + 13:45 UTC (09:45 + 21:45 Taiwan) and always re-fetch
-# yesterday + today to catch a missed run.
+# WRA has a historical daily endpoint. Run weekly and fetch a rolling 15-day
+# window so the repo gets fewer bot commits while still tolerating one missed
+# weekly run.
 on:
   schedule:
-    - cron: "45 1,13 * * *"
+    - cron: "45 1 * * 1"
   workflow_dispatch:
     inputs:
       start_date:
@@ -39,11 +39,29 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Compute scrape window
+        id: scrape_window
+        env:
+          INPUT_START_DATE: ${{ github.event.inputs.start_date || '' }}
+          INPUT_END_DATE: ${{ github.event.inputs.end_date || '' }}
+          TZ: Asia/Taipei
+        run: |
+          if [ -n "$INPUT_START_DATE" ] || [ -n "$INPUT_END_DATE" ]; then
+            start="${INPUT_START_DATE:-$INPUT_END_DATE}"
+            end="${INPUT_END_DATE:-$INPUT_START_DATE}"
+          else
+            start=$(date -d "14 days ago" +"%Y-%m-%d")
+            end=$(date +"%Y-%m-%d")
+          fi
+          echo "start_date=${start}" >> "$GITHUB_OUTPUT"
+          echo "end_date=${end}" >> "$GITHUB_OUTPUT"
+
       - name: Run scraper
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/taiwan/wra
-          TAIWAN_START_DATE: ${{ inputs.start_date }}
-          TAIWAN_END_DATE: ${{ inputs.end_date }}
+          TAIWAN_START_DATE: ${{ steps.scrape_window.outputs.start_date }}
+          TAIWAN_END_DATE: ${{ steps.scrape_window.outputs.end_date }}
+          SKIP_EXISTING_DAILY: "1"
         run: python scrapers/taiwan/wra/taiwan_wra_scraper.py
 
       - name: Commit & push new data

@@ -2,7 +2,10 @@
 
 Scrapes <http://xxfb.mwr.cn/sq_dxsk.html?v=1.0> —— 水利部发布的全国大型水库实时水情页面。
 
-数据是 JavaScript 渲染的动态表格，没有公开 API，只能用 **Selenium + 截图 + OCR** 的方式抓。
+这是旧版 **Selenium + 截图 + OCR** 抓取路径，保留作审计、回退和
+`mwr_api` 字体解码训练数据。稳态 GitHub Actions 现在优先使用更轻量的
+[`../mwr_api`](../mwr_api/) 方案：直接请求页面背后的公开 JSON 端点，再解码
+源站 custom font 混淆。
 
 ## 字段
 
