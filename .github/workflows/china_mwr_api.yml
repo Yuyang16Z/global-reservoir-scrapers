@@ -36,7 +36,20 @@ jobs:
       - name: Run scraper
         env:
           TZ: Asia/Shanghai
-        run: python scrapers/china/mwr_api/china_mwr_api_scraper.py
+        run: |
+          set -e
+          for attempt in 1 2 3; do
+            echo "China MWR scrape attempt ${attempt}/3"
+            if python scrapers/china/mwr_api/china_mwr_api_scraper.py; then
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              echo "China MWR scrape failed after 3 attempts."
+              exit 1
+            fi
+            echo "Scrape failed; waiting 5 minutes before retry."
+            sleep 300
+          done
 
       - name: Commit & push new data
         run: |
@@ -50,5 +63,14 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(china/mwr_api): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2; do
+            if git pull --rebase origin main && git push; then
+              exit 0
+            fi
+            if [ "$attempt" = "2" ]; then
+              echo "Commit push failed after 2 attempts."
+              exit 1
+            fi
+            echo "Push failed; retrying after 30 seconds."
+            sleep 30
+          done
