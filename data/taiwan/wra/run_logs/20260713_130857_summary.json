@@ -1,0 +1,108 @@
+{
+  "started_at_utc": "2026-07-13T05:05:47.400107+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "dates": [
+    "2026-06-29",
+    "2026-06-30",
+    "2026-07-01",
+    "2026-07-02",
+    "2026-07-03",
+    "2026-07-04",
+    "2026-07-05",
+    "2026-07-06",
+    "2026-07-07",
+    "2026-07-08",
+    "2026-07-09",
+    "2026-07-10",
+    "2026-07-11",
+    "2026-07-12",
+    "2026-07-13"
+  ],
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/basic_info.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-07-13.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_water_level_2026-07-13.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/intraday/taiwan_intraday_2026-07-13.csv"
+  ],
+  "errors": [],
+  "records_per_date": {},
+  "source_unavailable_dates": [
+    {
+      "date": "2026-06-29",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-06-29"
+    },
+    {
+      "date": "2026-06-30",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-06-30"
+    },
+    {
+      "date": "2026-07-01",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-01"
+    },
+    {
+      "date": "2026-07-02",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-02"
+    },
+    {
+      "date": "2026-07-03",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-03"
+    },
+    {
+      "date": "2026-07-04",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-04"
+    },
+    {
+      "date": "2026-07-05",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-05"
+    },
+    {
+      "date": "2026-07-06",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-06"
+    },
+    {
+      "date": "2026-07-07",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-07"
+    },
+    {
+      "date": "2026-07-08",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-08"
+    },
+    {
+      "date": "2026-07-09",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-09"
+    },
+    {
+      "date": "2026-07-10",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-10"
+    },
+    {
+      "date": "2026-07-11",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-11"
+    },
+    {
+      "date": "2026-07-12",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-12"
+    },
+    {
+      "date": "2026-07-13",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-07-13"
+    }
+  ],
+  "status": "source_unavailable",
+  "finished_at_utc": "2026-07-13T05:08:57.108944+00:00"
+}
