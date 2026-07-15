@@ -36,7 +36,7 @@ data/southafrica/dws_weekly/
   raw/reservoirs_earth_south_africa_{YYYYMMDD}.json  # fallback input, when used
   timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv   # one file per scraped week
   metadata/southafrica_dws_reservoirs.csv            # latest snapshot's reservoirs
-  run_logs/{run_date}_summary.json                   # short JSON log
+  run_logs/{run_date}[_target_date]_summary.json     # short JSON log
 ```
 
 Each run adds a new dated snapshot CSV alongside any prior weeks —
@@ -52,7 +52,7 @@ does not expose those fields; `pct_full` and `water_mcm` remain populated.
 
 | Column | Meaning |
 |---|---|
-| `date` | YYYYMMDD report-date (Monday-of-week) |
+| `date` | YYYYMMDD source report date |
 | `station_id` | DWS station code, e.g. `A2R001` |
 | `reservoir` | Reservoir name |
 | `river`, `wma`, `prov`, `wss`, `district_mun` | Geographic / admin codes |
@@ -62,10 +62,12 @@ does not expose those fields; `pct_full` and `water_mcm` remain populated.
 
 ## Manual override
 
-Scrape a specific Monday (must be a Monday with a real bulletin):
+Scrape or backfill a specific source report date. If the official PDF is
+blocked, the fallback reads the per-reservoir historical pages and requires
+at least 150 matched reservoirs before writing a snapshot:
 
 ```bash
-DWS_TARGET_DATE=2026-04-13 python3 \
+DWS_TARGET_DATE=2026-06-16 python3 \
   scrapers/southafrica/dws_weekly/dws_weekly_scraper.py
 ```
 

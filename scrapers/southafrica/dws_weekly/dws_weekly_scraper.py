@@ -40,6 +40,7 @@ import re
 import sys
 import unicodedata
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
@@ -67,6 +68,7 @@ MIRROR_PAGE_ROOT = "https://reservoirs.earth/south-africa/reservoirs"
 MIRROR_LICENSE = "https://creativecommons.org/licenses/by/4.0/"
 MIRROR_MIN_ROWS = 150
 MIRROR_MAX_AGE_DAYS = 21
+MIRROR_HISTORY_WORKERS = 8
 
 OUT_BASE = Path(os.environ.get("OUTPUT_DIR") or
                 Path(__file__).resolve().parents[3] / "data" / "southafrica" / "dws_weekly")
@@ -324,6 +326,24 @@ def _history_reading(
     url = f"{MIRROR_PAGE_ROOT}/{slug}"
     response = session.get(url, timeout=TIMEOUT)
     response.raise_for_status()
+
+    # Next.js embeds the underlying readings with decimal precision. Prefer
+    # that payload over the visible table, which rounds stored volume.
+    target_iso = re.escape(target_date.isoformat())
+    embedded = re.search(
+        rf'\{{\\"reading_date\\":\\"{target_iso}\\",'
+        rf'\\"volume_mcm\\":(null|-?\d+(?:\.\d+)?),'
+        rf'\\"fill_percentage\\":(null|-?\d+(?:\.\d+)?)',
+        response.text,
+    )
+    if embedded:
+        volume_text, pct_text = embedded.groups()
+        return {
+            "date": target_date.isoformat(),
+            "fill_percentage": None if pct_text == "null" else float(pct_text),
+            "volume_mcm": None if volume_text == "null" else float(volume_text),
+        }
+
     soup = BeautifulSoup(response.text, "html.parser")
     target_text = target_date.strftime("%-d %b %Y")
     for row in soup.select("tbody tr"):
@@ -361,11 +381,6 @@ def fetch_mirror_snapshot(
     date_counts = Counter(latest_dates)
     if requested_date:
         snapshot_date = requested_date
-        if date_counts[snapshot_date.isoformat()] < MIRROR_MIN_ROWS:
-            raise RuntimeError(
-                "mirror cannot provide a complete targeted snapshot for "
-                f"{snapshot_date.isoformat()}"
-            )
     elif date_counts:
         date_text, _ = max(date_counts.items(), key=lambda pair: (pair[1], pair[0]))
         snapshot_date = datetime.strptime(date_text, "%Y-%m-%d").date()
@@ -385,6 +400,31 @@ def fetch_mirror_snapshot(
     missing_at_date: list[str] = []
     duplicates: list[str] = []
     history_lookups = 0
+    history_lookup_errors: list[dict] = []
+
+    targeted_history_backfill = bool(
+        requested_date
+        and date_counts[snapshot_date.isoformat()] < MIRROR_MIN_ROWS
+    )
+    targeted_readings: dict[str, Optional[dict]] = {}
+    if targeted_history_backfill:
+        candidates = [
+            item for item in reservoirs
+            if item.get("slug") and metadata.get(_reservoir_key(str(item.get("name") or "")))
+        ]
+        history_lookups = len(candidates)
+
+        def fetch_history(item: dict) -> tuple[str, Optional[dict], Optional[str]]:
+            try:
+                return item["slug"], _history_reading(session, item["slug"], snapshot_date), None
+            except requests.RequestException as exc:
+                return item["slug"], None, str(exc)
+
+        with ThreadPoolExecutor(max_workers=MIRROR_HISTORY_WORKERS) as executor:
+            for slug, reading, error in executor.map(fetch_history, candidates):
+                targeted_readings[slug] = reading
+                if error:
+                    history_lookup_errors.append({"slug": slug, "error": error})
 
     for item in reservoirs:
         name = str(item.get("name") or "").strip()
@@ -393,14 +433,19 @@ def fetch_mirror_snapshot(
             unmatched.append(name)
             continue
 
-        reading = item.get("latest") if isinstance(item.get("latest"), dict) else None
-        reading_date = reading.get("date") if reading else None
-        if reading_date != snapshot_date.isoformat():
-            if reading_date and reading_date > snapshot_date.isoformat() and item.get("slug"):
+        if targeted_history_backfill:
+            reading = targeted_readings.get(item.get("slug", ""))
+        else:
+            reading = item.get("latest") if isinstance(item.get("latest"), dict) else None
+            reading_date = reading.get("date") if reading else None
+            if reading_date == snapshot_date.isoformat():
+                pass
+            elif reading_date and reading_date > snapshot_date.isoformat() and item.get("slug"):
                 history_lookups += 1
                 try:
                     reading = _history_reading(session, item["slug"], snapshot_date)
-                except requests.RequestException:
+                except requests.RequestException as exc:
+                    history_lookup_errors.append({"slug": item["slug"], "error": str(exc)})
                     reading = None
             else:
                 reading = None
@@ -437,7 +482,9 @@ def fetch_mirror_snapshot(
         "snapshot_age_days": snapshot_age_days,
         "latest_date_counts": dict(sorted(date_counts.items())),
         "matched_rows": len(rows),
+        "targeted_history_backfill": targeted_history_backfill,
         "history_lookups": history_lookups,
+        "history_lookup_errors": history_lookup_errors,
         "unmatched_reservoirs": sorted(set(unmatched)),
         "missing_at_snapshot_date": sorted(set(missing_at_date)),
         "duplicate_matches": sorted(set(duplicates)),
@@ -470,7 +517,10 @@ def write_metadata(rows: list[dict]) -> int:
 
 def write_summary(summary: dict) -> Path:
     LOG_DIR.mkdir(parents=True, exist_ok=True)
-    path = LOG_DIR / f"{datetime.now(tz=timezone.utc).date().isoformat()}_summary.json"
+    run_date = datetime.now(tz=timezone.utc).date().isoformat()
+    target = str(summary.get("target_date_override") or "").replace("-", "")
+    target_suffix = f"_{target}" if target else ""
+    path = LOG_DIR / f"{run_date}{target_suffix}_summary.json"
     path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
 

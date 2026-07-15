@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       target_date:
-        description: "Optional report Monday (YYYY-MM-DD). Leave blank for latest."
+        description: "Optional report date (YYYY-MM-DD). Leave blank for latest."
         required: false
 
 permissions:
