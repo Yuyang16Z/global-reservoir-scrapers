@@ -1,0 +1,226 @@
+{
+  "ran_at_utc": "2026-07-15 03:36:43",
+  "target_date_override": null,
+  "official_pdf_probes": [
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260713.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260713.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260713.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260706.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260706.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260706.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260629.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260629.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260629.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260622.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260622.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260622.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260615.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260615.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260615.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260608.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260608.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260608.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260601.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260601.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260601.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly20260525.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly-20260525.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    },
+    {
+      "url": "https://www.dws.gov.za/drought/docs/Weekly%2020260525.pdf",
+      "result": "rejected",
+      "status_code": 403,
+      "content_type": "text/html; charset=iso-8859-1",
+      "bytes": 239,
+      "pdf_signature": false
+    }
+  ],
+  "status": "ok",
+  "bulletin_date": "20260629",
+  "source_type": "dws_derived_mirror",
+  "source_url": "https://reservoirs.earth/data/south-africa.json",
+  "rows": 216,
+  "stations": 216,
+  "mirror_license": "https://creativecommons.org/licenses/by/4.0/",
+  "mirror_diagnostics": {
+    "mirror_generated": "2026-07-13",
+    "mirror_temporal_coverage": "2026-05-31/2026-07-06",
+    "mirror_reservoir_count": 218,
+    "snapshot_age_days": 16,
+    "latest_date_counts": {
+      "2026-06-16": 1,
+      "2026-06-29": 210,
+      "2026-07-06": 6
+    },
+    "matched_rows": 216,
+    "history_lookups": 6,
+    "unmatched_reservoirs": [
+      "Leeubos Dam"
+    ],
+    "missing_at_snapshot_date": [
+      "Elands Drift Dam"
+    ],
+    "duplicate_matches": []
+  },
+  "snapshot_path": "data/southafrica/dws_weekly/timeseries/southafrica_dws_weekly_20260629.csv"
+}
