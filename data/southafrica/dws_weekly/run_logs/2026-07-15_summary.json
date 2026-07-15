@@ -1,5 +1,5 @@
 {
-  "ran_at_utc": "2026-07-15 03:36:43",
+  "ran_at_utc": "2026-07-15 03:38:30",
   "target_date_override": null,
   "official_pdf_probes": [
     {
@@ -195,13 +195,10 @@
       "pdf_signature": false
     }
   ],
-  "status": "ok",
+  "status": "already-have",
   "bulletin_date": "20260629",
   "source_type": "dws_derived_mirror",
   "source_url": "https://reservoirs.earth/data/south-africa.json",
-  "rows": 216,
-  "stations": 216,
-  "mirror_license": "https://creativecommons.org/licenses/by/4.0/",
   "mirror_diagnostics": {
     "mirror_generated": "2026-07-13",
     "mirror_temporal_coverage": "2026-05-31/2026-07-06",
