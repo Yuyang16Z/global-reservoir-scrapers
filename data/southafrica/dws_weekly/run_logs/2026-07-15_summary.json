@@ -1,5 +1,5 @@
 {
-  "ran_at_utc": "2026-07-15 03:38:30",
+  "ran_at_utc": "2026-07-15 10:06:56",
   "target_date_override": null,
   "official_pdf_probes": [
     {
@@ -200,7 +200,7 @@
   "source_type": "dws_derived_mirror",
   "source_url": "https://reservoirs.earth/data/south-africa.json",
   "mirror_diagnostics": {
-    "mirror_generated": "2026-07-13",
+    "mirror_generated": "2026-07-15",
     "mirror_temporal_coverage": "2026-05-31/2026-07-06",
     "mirror_reservoir_count": 218,
     "snapshot_age_days": 16,
@@ -210,7 +210,9 @@
       "2026-07-06": 6
     },
     "matched_rows": 216,
+    "targeted_history_backfill": false,
     "history_lookups": 6,
+    "history_lookup_errors": [],
     "unmatched_reservoirs": [
       "Leeubos Dam"
     ],
