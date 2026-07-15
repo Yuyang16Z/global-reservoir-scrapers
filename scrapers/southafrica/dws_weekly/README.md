@@ -7,6 +7,15 @@ parses the per-reservoir state table.
 - Bulletin landing page: <https://www.dws.gov.za/Hydrology/Weekly/Province.aspx>
 - Dated archive pattern: `https://www.dws.gov.za/drought/docs/Weekly{YYYYMMDD}.pdf`
   (filename date = report Monday)
+- DWS-derived fallback: <https://reservoirs.earth/data/south-africa.json>
+  (used only when the official host rejects or fails direct downloads)
+
+The official PDF remains the preferred source. Since June 2026 the DWS host
+has intermittently returned HTTP 403 to automated clients. When that happens,
+the scraper falls back to the public `reservoirs.earth` JSON mirror, which
+attributes its measurements to DWS and publishes them under CC BY 4.0. The
+fallback is matched to the existing DWS station metadata by normalized
+reservoir name; unmatched and missing records are listed in the run log.
 
 ## Cadence
 
@@ -17,12 +26,14 @@ would not yield new data; weekly is the source's natural cadence.
 
 If the most recent Monday has no bulletin yet (~1.4 KB placeholder PDF
 returned), the scraper walks back up to 8 Mondays to find the latest
-real bulletin and uses that.
+real bulletin and uses that. HTTP status, content type and response size for
+all official URL probes are retained in the run diagnostics.
 
 ## Output (snapshots accumulate over time)
 
 ```
 data/southafrica/dws_weekly/
+  raw/reservoirs_earth_south_africa_{YYYYMMDD}.json  # fallback input, when used
   timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv   # one file per scraped week
   metadata/southafrica_dws_reservoirs.csv            # latest snapshot's reservoirs
   run_logs/{run_date}_summary.json                   # short JSON log
@@ -32,6 +43,10 @@ Each run adds a new dated snapshot CSV alongside any prior weeks —
 the repo is the durable archive going forward. Re-running on a date
 already present is a no-op (the snapshot file's existence is the
 idempotency check). The PDF cache lives in `pdfs/` but is gitignored.
+
+Fallback snapshots preserve the existing DWS station IDs and metadata.
+`pct_last_year` and `pct_last_week` are left blank because the fallback JSON
+does not expose those fields; `pct_full` and `water_mcm` remain populated.
 
 `timeseries/southafrica_dws_weekly_{YYYYMMDD}.csv` columns:
 
@@ -68,4 +83,5 @@ DWS_TARGET_DATE=2026-04-13 python3 \
 
 DWS publishes these bulletins as open public information without an
 explicit license; downstream users should attribute the **South
-African Department of Water and Sanitation (DWS)**.
+African Department of Water and Sanitation (DWS)**. Fallback JSON is provided
+by `reservoirs.earth` under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

@@ -8,11 +8,8 @@ on:
     - cron: "0 6 * * 2"
   workflow_dispatch:
     inputs:
-      start_date:
-        description: "Backfill start (YYYY-MM-DD). Leave blank for default (24 months back)."
-        required: false
-      end_date:
-        description: "Backfill end (YYYY-MM-DD). Leave blank for today."
+      target_date:
+        description: "Optional report Monday (YYYY-MM-DD). Leave blank for latest."
         required: false
 
 permissions:
@@ -29,6 +26,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -42,9 +41,20 @@ jobs:
       - name: Run scraper
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/southafrica/dws_weekly
-          DWS_START_DATE: ${{ inputs.start_date }}
-          DWS_END_DATE: ${{ inputs.end_date }}
-        run: python scrapers/southafrica/dws_weekly/dws_weekly_scraper.py
+          DWS_TARGET_DATE: ${{ inputs.target_date }}
+        run: |
+          for attempt in 1 2 3; do
+            echo "South Africa DWS scrape attempt ${attempt}/3"
+            if python scrapers/southafrica/dws_weekly/dws_weekly_scraper.py; then
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              echo "South Africa DWS scrape failed after 3 attempts."
+              exit 1
+            fi
+            echo "Scrape failed; retrying after 60 seconds."
+            sleep 60
+          done
 
       - name: Commit & push new data
         run: |
@@ -60,5 +70,15 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(southafrica/dws-weekly): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && \
+               git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            if [ "$attempt" = "2" ]; then
+              echo "Commit push failed after 2 attempts."
+              exit 1
+            fi
+            echo "Push failed; retrying after 30 seconds."
+            sleep 30
+          done
