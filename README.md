@@ -22,6 +22,8 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 │   │   └── apwrims/                # APWRIMS recent reservoir observations
 │   ├── japan/
 │   │   └── opengov/                # OpenGov / MLIT dam reservoir pages
+│   ├── luxembourg/
+│   │   └── age/                     # AGE Haute-Sure reservoir level
 │   ├── malaysia/
 │   │   ├── README.md               # overview of all Malaysia sub-sources
 │   │   ├── luas/                   # LUAS IWRIMS (Selangor reservoirs)
@@ -42,6 +44,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 │   ├── china/{mwr,mwr_api}/
 │   ├── india/apwrims/
 │   ├── japan/opengov/
+│   ├── luxembourg/age/
 │   ├── malaysia/{luas,mywater,sarawak_rivers}/
 │   ├── morocco/abhsm/
 │   ├── southafrica/dws_weekly/
@@ -51,6 +54,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
     ├── china_mwr_api.yml           # cron 12:30 UTC
     ├── india_apwrims.yml           # cron 03:00 + 12:00 UTC
     ├── japan_opengov.yml           # cron 01:20 UTC
+    ├── luxembourg_age.yml          # cron 04:17 + 16:17 UTC
     ├── malaysia_luas.yml           # cron 02:00 + 14:00 UTC
     ├── malaysia_mywater.yml        # manual trigger only
     ├── malaysia_sarawak_rivers.yml # cron 02:05 + 14:05 UTC
@@ -69,6 +73,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | China (nationwide) | MWR 全国大型水库实时水情 API + font decoder (~570 reservoirs) | daily snapshot, 1× per day | `scrapers/china/mwr_api/china_mwr_api_scraper.py` | ✅ v1 (2026-06-29) |
 | India (AP / Telangana / Krishna basin) | APWRIMS public API (118 reservoirs) | recent-observation window, 2× per day | `scrapers/india/apwrims/india_apwrims_scraper.py` | ✅ v1 (2026-06-19) |
 | Japan (nationwide) | OpenGov / MLIT dam reservoir pages | daily scrape, 1× per day | `scrapers/japan/opengov/japan_opengov_scraper.py` | ✅ v1 (2026-04-22) |
+| Luxembourg (Haute-Sure) | AGE station 40 graph API | rolling five-day window, 2× per day | `scrapers/luxembourg/age/luxembourg_age_scraper.py` | ✅ v1 (2026-07-21) |
 | Malaysia (Selangor) | LUAS IWRIMS JSON API (8 dams + 1 barrage) | daily snapshot, 2× per day | `scrapers/malaysia/luas/malaysia_luas_scraper.py` | ✅ v1 (2026-04-21) |
 | Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia/mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
 | Morocco (Souss-Massa) | ABHSM daily barrage situation PDF (9 dams) | daily snapshot + raw PDF, 2× per day | `scrapers/morocco/abhsm/morocco_abhsm_scraper.py` | ✅ v1 (2026-04-29) |
@@ -102,6 +107,9 @@ python scrapers/india/apwrims/india_apwrims_scraper.py
 
 # Japan OpenGov reservoirs
 python scrapers/japan/opengov/japan_opengov_scraper.py
+
+# Luxembourg AGE Haute-Sure reservoir level
+python scrapers/luxembourg/age/luxembourg_age_scraper.py
 
 # MyWater JPS dams metadata
 python scrapers/malaysia/mywater/mywater_jps_scraper.py

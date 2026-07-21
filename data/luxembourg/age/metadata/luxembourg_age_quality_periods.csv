@@ -1,0 +1,2 @@
+﻿reservoir_id,variable,start_date,end_date,quality_state,quality_description
+LUX_AGE_40,water_level_masl (m NN),2026-07-14,,official_complete_daily_mean,"AGE in-situ dam-level points with simulated=false; project arithmetic daily mean only when every regular 15-minute observation in the Luxembourg local day is present; no interpolation or gap filling. Expected sample count is 92, 96, or 100 on DST days."
