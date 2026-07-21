@@ -1,0 +1,21 @@
+{
+  "retrieved_at_utc": "2026-07-21T17:47:50.080588+00:00",
+  "source_api": "https://inondations.lu/api/station/graph-data/40",
+  "reservoir_id": "LUX_AGE_40",
+  "source_points": 479,
+  "complete_days_in_source_window": 4,
+  "new_dates": [],
+  "revised_dates": [],
+  "accumulated_rows": 7,
+  "coverage_start": "2026-07-14",
+  "coverage_end": "2026-07-20",
+  "latest_complete_day_lag": 1,
+  "max_lag_days": 3,
+  "counters": {
+    "source_points": 479,
+    "excluded_incomplete_local_day": 2,
+    "accepted_complete_daily_mean": 4
+  },
+  "raw_file": "raw/daily/station_40_window_2026-07-21.json.gz",
+  "timeseries_file": "timeseries/daily/LUX_AGE_40.csv"
+}
