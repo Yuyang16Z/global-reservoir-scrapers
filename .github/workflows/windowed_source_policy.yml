@@ -1,0 +1,40 @@
+name: Windowed source policy audit
+
+on:
+  pull_request:
+    paths:
+      - "WINDOWED_SOURCE_POLICY.md"
+      - "config/windowed_sources.json"
+      - "scripts/audit_windowed_sources.py"
+      - "scrapers/**"
+      - ".github/workflows/**"
+  push:
+    branches: [main]
+    paths:
+      - "WINDOWED_SOURCE_POLICY.md"
+      - "config/windowed_sources.json"
+      - "scripts/audit_windowed_sources.py"
+      - "scrapers/**"
+      - ".github/workflows/**"
+  schedule:
+    - cron: "17 7 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Audit windowed source deployments
+        run: python scripts/audit_windowed_sources.py
