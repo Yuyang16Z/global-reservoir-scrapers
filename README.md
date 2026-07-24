@@ -81,6 +81,10 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | Taiwan (nationwide) | WRA open data + disaster-prevention APIs | weekly run, rolling 15-day backfill | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | weekly run, rolling 15-day backfill | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
 
+The retired China MWR screenshot/OCR collection is preserved read-only under
+[`data/china/mwr_ocr_archive/`](data/china/mwr_ocr_archive/). All new China MWR
+collection writes only to `data/china/mwr_api/`.
+
 ### River / rainfall discharge layer (NOT reservoir data — cross-reference only)
 
 | Country | Source | Cadence | Script | Status |
