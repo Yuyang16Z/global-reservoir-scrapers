@@ -8,7 +8,8 @@ The public page calls a JSON endpoint whose text values are wrapped like:
 The browser strips the wrapper and renders the fake characters with a custom
 font.  This scraper uses the same public endpoint, infers the numeric glyphs
 from encoded numeric fields, and trains the remaining Chinese text glyphs from
-the repository's historical OCR archive under data/china/mwr.
+the repository's read-only historical OCR archive under
+data/china/mwr_ocr_archive.
 """
 
 from __future__ import annotations
@@ -399,7 +400,7 @@ def main() -> None:
     parser.add_argument(
         "--history-dir",
         type=Path,
-        default=root / "data" / "china" / "mwr",
+        default=root / "data" / "china" / "mwr_ocr_archive",
         help="Existing OCR archive used as plaintext training data.",
     )
     parser.add_argument(
