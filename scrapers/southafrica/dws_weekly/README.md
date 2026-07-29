@@ -20,9 +20,9 @@ reservoir name; unmatched and missing records are listed in the run log.
 ## Cadence
 
 DWS publishes one bulletin per Monday (sometimes shifted by holidays).
-The GitHub Actions workflow runs **weekly on Tuesday 06:00 UTC** —
-comfortably after DWS's Monday publish window. Polling more often
-would not yield new data; weekly is the source's natural cadence.
+The GitHub Actions workflow runs **Tuesday and Thursday at 06:00 UTC**.
+Tuesday follows DWS's normal Monday publish window; Thursday is a bounded
+fallback for a delayed publication or a blocked first capture.
 
 If the most recent Monday has no bulletin yet (~1.4 KB placeholder PDF
 returned), the scraper walks back up to 8 Mondays to find the latest
@@ -43,6 +43,12 @@ Each run adds a new dated snapshot CSV alongside any prior weeks —
 the repo is the durable archive going forward. Re-running on a date
 already present is a no-op (the snapshot file's existence is the
 idempotency check). The PDF cache lives in `pdfs/` but is gitignored.
+
+If the official host remains blocked and the mirror's latest nationwide
+snapshot is both stale and already archived, the run records
+`source-stale-no-new-data`, emits a GitHub Actions warning, and exits without
+pretending that a new snapshot was captured. A stale snapshot that is not
+already archived remains a hard failure.
 
 Fallback snapshots preserve the existing DWS station IDs and metadata.
 `pct_last_year` and `pct_last_week` are left blank because the fallback JSON

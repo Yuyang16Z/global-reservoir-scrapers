@@ -36,3 +36,10 @@ OUTPUT_DIR=/tmp/morocco_abhsm python scrapers/morocco/abhsm/morocco_abhsm_scrape
 
 - This is intentionally in the scheduled repo because the public PDF is an ephemeral current snapshot and may be overwritten later.
 - It is not a full-country Morocco source. It only covers the Souss-Massa basin authority's 9 dams.
+- The scraper always tries normal TLS verification first. While ABHSM's
+  certificate that expired on 2026-07-26 remains deployed, it can download
+  only through that exact certificate's pinned SHA-256 fingerprint. A renewed
+  certificate automatically returns the scraper to normal verification.
+- If the report date and PDF bytes are already archived, the run exits without
+  rewriting metadata or creating another run-log commit. Reports older than
+  seven days are surfaced as a GitHub Actions warning.

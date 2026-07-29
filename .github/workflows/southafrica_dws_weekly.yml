@@ -2,10 +2,9 @@ name: South Africa DWS weekly scrape
 
 on:
   schedule:
-    # Tuesday 06:00 UTC — DWS publishes the new Monday bulletin during the
-    # preceding day in South Africa (UTC+2). Tuesday gives them a comfortable
-    # publish window without polling at the wrong time.
-    - cron: "0 6 * * 2"
+    # Tuesday runs after the normal Monday publication. Thursday is a fallback
+    # for delayed DWS publication or a missed/blocked first capture.
+    - cron: "0 6 * * 2,4"
   workflow_dispatch:
     inputs:
       target_date:
