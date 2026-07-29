@@ -35,6 +35,10 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 - Manual backfill is supported via `TAIWAN_START_DATE` and `TAIWAN_END_DATE`.
 - Manual backfill overwrites the requested dates by default, so old daily files can be refreshed.
 - The historical `fhy.wra.gov.tw` daily endpoint supplies the per-date values.
+- When that historical endpoint returns service-level 503 errors, the scraper
+  falls back only for the actual source date exposed by WRA's official current
+  daily-operation dataset. It never copies one current snapshot onto other
+  requested dates, and it emits a GitHub Actions warning for the remaining gap.
 - The `opendata.wra.gov.tw` current datasets supply names, current water level,
   storage percentage, and metadata enrichment.
 - The current water-level dataset is also written out as an intraday table so the
@@ -67,3 +71,7 @@ python scrapers/taiwan/wra/taiwan_wra_scraper.py
 | `TAIWAN_START_DATE` / `TAIWAN_END_DATE` | unset | Inclusive date range (`YYYY-MM-DD`) |
 | `SKIP_EXISTING_DAILY` | `1` | Skip existing daily CSVs. Set `0` to overwrite |
 | `SAVE_RAW_JSON` | `1` | Save raw JSON payloads for audit/debug |
+
+The scheduled workflow runs twice daily at 11:00 and 21:00 Taiwan time and
+rechecks a seven-day window. This protects the overwrite-prone current daily
+snapshot while retaining backfill behavior if the historical endpoint recovers.
