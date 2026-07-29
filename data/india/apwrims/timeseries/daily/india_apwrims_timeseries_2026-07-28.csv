@@ -1,6 +1,6 @@
 ﻿reservoir_id,reservoir_name,date,"level (water level, m)","storage (live storage, TMC)",storage_pct (% of design capacity),inflow (cusec),outflow (cusec)
 IN_APWRIMS_adavipalli_reservoir_78ae5c1e,ADAVIPALLI RESERVOIR,2026-07-28,477.439,0.396,21.83,494,566
-IN_APWRIMS_adinimmayapalli_anicut_78ae5db8,ADINIMMAYAPALLI ANICUT,2026-07-28,0,0,,0,0
+IN_APWRIMS_adinimmayapalli_anicut_78ae5db8,ADINIMMAYAPALLI ANICUT,2026-07-28,125.742,0,,0,0
 IN_APWRIMS_alaganuru_balancing_reservoir_0e6be4a2,ALAGANURU BALANCING RESERVOIR,2026-07-28,248.497,0,0,0,0
 IN_APWRIMS_andra_reservoir_0ee778a9,ANDRA RESERVOIR,2026-07-28,142.5,0.522,53.27,50,50
 IN_APWRIMS_araniar_reservoir_aa64b669,ARANIAR RESERVOIR,2026-07-28,82.936,0.809,43.66,0,90
@@ -42,7 +42,7 @@ IN_APWRIMS_kovvadakalva_reservoir_b7629dc4,KOVVADAKALVA RESERVOIR,2026-07-28,82.
 IN_APWRIMS_krishnagiri_reservoir_78ae63d0,KRISHNAGIRI RESERVOIR,2026-07-28,365.117,0.013,7.93,0,0
 IN_APWRIMS_krishnapuram_project_fd8d84e2,KRISHNAPURAM PROJECT,2026-07-28,205.2,0.0043,2.15,0,0
 IN_APWRIMS_lower_sagileru_ani_cut_022ebbcc,LOWER SAGILERU ANI CUT,2026-07-28,155.143,0.1,59.17,0,0
-IN_APWRIMS_maddigedda_project_da004729,MADDIGEDDA PROJECT,2026-07-28,0,0,0,0,0
+IN_APWRIMS_maddigedda_project_da004729,MADDIGEDDA PROJECT,2026-07-28,176.001,0,0,0,0
 IN_APWRIMS_madduvalasa_project_20f6ac7e,MADDUVALASA PROJECT,2026-07-28,62.149,1.205,35.72,38,510
 IN_APWRIMS_mallimadugu_bc720982,MALLIMADUGU,2026-07-28,105.156,0.005,2.76,0,0
 IN_APWRIMS_marala_reservoir_85ddf356,Marala Reservoir,2026-07-28,438.095,0.176,36.44,0,20
