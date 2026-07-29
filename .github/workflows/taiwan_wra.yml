@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -77,5 +79,15 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(taiwan/wra): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && \
+               git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            if [ "$attempt" = "2" ]; then
+              echo "Commit push failed after 2 attempts."
+              exit 1
+            fi
+            echo "Push failed; retrying after 30 seconds."
+            sleep 30
+          done
