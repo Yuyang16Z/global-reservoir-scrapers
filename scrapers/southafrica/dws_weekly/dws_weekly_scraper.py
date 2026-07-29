@@ -614,6 +614,11 @@ def main() -> int:
                 f"southafrica_dws_weekly_{exc.snapshot_date:%Y%m%d}.csv"
             )
             if archived_path.exists():
+                probe_counts = Counter(
+                    str(probe.get("status_code") or probe.get("result"))
+                    for probe in probes
+                )
+                summary.pop("official_pdf_probes", None)
                 message = (
                     f"Official DWS downloads are unavailable and the DWS-derived mirror "
                     f"still reports {exc.snapshot_date.isoformat()} "
@@ -628,6 +633,12 @@ def main() -> int:
                     "mirror_generated": exc.generated,
                     "mirror_temporal_coverage": exc.temporal_coverage,
                     "latest_archived_snapshot": exc.snapshot_date.isoformat(),
+                    "official_pdf_probe_summary": {
+                        "attempted": len(probes),
+                        "result_counts": dict(sorted(probe_counts.items())),
+                        "first_url": probes[0]["url"] if probes else None,
+                        "last_url": probes[-1]["url"] if probes else None,
+                    },
                     "snapshot_path": archived_path.relative_to(
                         OUT_BASE.parent.parent.parent
                     ).as_posix(),
