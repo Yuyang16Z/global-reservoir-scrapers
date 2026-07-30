@@ -8,11 +8,20 @@ Each country lives under `scrapers/<country>/` and writes outputs into the mirro
 `data/<country>/`. Countries with multiple data sources (e.g. Malaysia) have per-source
 subfolders. Output formats follow [`schema.md`](./schema.md).
 
+Any rolling-window, current-snapshot, or overwrite-prone source must follow
+[`WINDOWED_SOURCE_POLICY.md`](./WINDOWED_SOURCE_POLICY.md). Register it in
+[`config/windowed_sources.json`](./config/windowed_sources.json), deploy a
+schedule with overlap and recovery margin, and pass the windowed-source audit
+before marking the source operationally complete. Public data commits remain
+subject to the source licence and redistribution assessment.
+
 ## Layout
 
 ```
 .
 ├── schema.md                       # output format convention (follow this for new countries)
+├── WINDOWED_SOURCE_POLICY.md       # mandatory retention-window deployment policy
+├── config/windowed_sources.json    # retention, schedule, and deployment registry
 ├── requirements.txt
 ├── scrapers/
 │   ├── china/
@@ -61,7 +70,8 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
     ├── morocco_abhsm.yml           # cron 07:30 + 15:30 UTC
     ├── southafrica_dws_weekly.yml  # cron 06:00 UTC every Tuesday
     ├── taiwan_wra.yml              # cron 01:45 UTC Mondays
-    └── thailand_rid.yml            # cron 01:30 UTC Mondays
+    ├── thailand_rid.yml            # cron 01:30 UTC Mondays
+    └── windowed_source_policy.yml  # policy audit on changes and weekly
 ```
 
 ## Current coverage
@@ -138,3 +148,5 @@ OUTPUT_DIR=/tmp/luas python scrapers/malaysia/luas/malaysia_luas_scraper.py
 GitHub Actions runs each country's workflow on a cron and commits new data
 back to the repo. See `.github/workflows/` for the exact schedules.
 GitHub cron is best-effort — actual fire time can lag 5–30 min during load.
+Windowed-source schedules, overlap logic, timezone rationale, and deployment
+status are audited with `python scripts/audit_windowed_sources.py`.

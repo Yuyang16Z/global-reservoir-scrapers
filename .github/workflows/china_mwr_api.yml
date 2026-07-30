@@ -1,12 +1,12 @@
 name: China MWR API scrape
 
 # The MWR page is a current realtime table, but its report time is normally
-# 08:00 Beijing. Run once in the evening Beijing time after the table has
-# settled. The scraper is API-first and uses historical OCR CSVs only to decode
-# the site's custom-font obfuscation.
+# 08:00 Beijing. Run at 12:30 and again at 20:30 Beijing time so the
+# current-only table has a same-day fallback capture. The scraper is API-first
+# and uses historical OCR CSVs only to decode the site's custom-font obfuscation.
 on:
   schedule:
-    - cron: "30 12 * * *"
+    - cron: "30 4,12 * * *"
   workflow_dispatch: {}
 
 permissions:

@@ -169,6 +169,23 @@ data/
 - metadata 不必每次重写，独立有个 `refresh_metadata.py` 或在主脚本里加 `--refresh-metadata` flag
 - source_url 变了（比如 API 迁新地址）时在 metadata 里更新 `source_url` + `last_updated`
 
+### 7.1 窗口期与易覆盖数据源自动归档（强制）
+
+探查任何新来源时，必须判断它属于永久历史档案、滚动窗口、仅当前快照、固定 URL
+覆盖式公报，还是窗口未知待核查。滚动窗口、当前快照和覆盖式来源不能只抓一次，也不能
+标记为“完成”后留在本地；必须遵守 `WINDOWED_SOURCE_POLICY.md`，登记到
+`config/windowed_sources.json`，并在 `Yuyang16Z/global-reservoir-scrapers` 部署自动归档。
+
+调度必须根据来源本地时区、正常发布时间、更新频率和数据消失时间设置，至少保留一次
+备用抓取机会；抓取器必须回看来源仍可见的窗口，按水库/站点、来源序列和观测日期幂等
+合并，保存不可覆盖或可校验的原始快照，并写运行日志、失败原因和最新源日期。不得只抓
+“今天”并假设所有定时任务都会准点成功。
+
+公开 GitHub 自动归档仍受 license 门禁约束。`undeclared_review`、`restricted_use`、
+`mixed_review` 或 `prohibited` 数据在未取得相应许可前不得提交到公开仓库；应改用批准的
+私有仓库/私有存储，或只部署 metadata 与健康检查。上线前必须运行
+`python scripts/audit_windowed_sources.py`，并通过手动实抓、重复运行幂等和恢复测试。
+
 ## 8. 新国家上手步骤
 
 1. 建目录 `<Country>/`
@@ -178,4 +195,4 @@ data/
 5. 写一个本国专属的 `README.md` 记录源站 URL、抓取节奏、已知坑（比如哪些字段缺、单位换算规则）
 
 ---
-*最后更新：2026-04-21*
+*最后更新：2026-07-21*

@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-21T02:18:59+00:00",
+  "repository": "Yuyang16Z/global-reservoir-scrapers",
+  "policy_version": 1,
+  "sources_registered": 10,
+  "active_deployments": 8,
+  "pending_or_blocked": [
+    {
+      "source_id": "pakistan/irsa",
+      "status": "migration_required"
+    },
+    {
+      "source_id": "turkey/iski_current",
+      "status": "source_access_review"
+    }
+  ],
+  "issues": [],
+  "status": "PASS"
+}
