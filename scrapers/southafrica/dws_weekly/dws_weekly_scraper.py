@@ -86,6 +86,32 @@ TS_COLUMNS = [
 ]
 
 
+class StaleMirrorSnapshot(RuntimeError):
+    def __init__(
+        self,
+        snapshot_date: date,
+        age_days: int,
+        generated: Optional[str],
+        temporal_coverage: Optional[str],
+    ) -> None:
+        self.snapshot_date = snapshot_date
+        self.age_days = age_days
+        self.generated = generated
+        self.temporal_coverage = temporal_coverage
+        super().__init__(
+            f"mirror snapshot is stale ({age_days} days old; "
+            f"maximum is {MIRROR_MAX_AGE_DAYS})"
+        )
+
+
+def emit_workflow_warning(message: str) -> None:
+    print(f"::warning title=South Africa DWS source freshness::{message}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write(f"### South Africa DWS source warning\n\n{message}\n")
+
+
 def env_date(name: str) -> Optional[date]:
     v = os.environ.get(name, "").strip()
     if not v:
@@ -389,9 +415,11 @@ def fetch_mirror_snapshot(
 
     snapshot_age_days = (datetime.now(tz=timezone.utc).date() - snapshot_date).days
     if not requested_date and snapshot_age_days > MIRROR_MAX_AGE_DAYS:
-        raise RuntimeError(
-            f"mirror snapshot is stale ({snapshot_age_days} days old; "
-            f"maximum is {MIRROR_MAX_AGE_DAYS})"
+        raise StaleMirrorSnapshot(
+            snapshot_date=snapshot_date,
+            age_days=snapshot_age_days,
+            generated=payload.get("generated"),
+            temporal_coverage=payload.get("temporal_coverage"),
         )
 
     metadata = _load_metadata_by_name()
@@ -581,6 +609,50 @@ def main() -> int:
             bulletin_date, rows, mirror_raw, mirror_diagnostics = fetch_mirror_snapshot(
                 sess, requested_date=target_date
             )
+        except StaleMirrorSnapshot as exc:
+            archived_path = TS_DIR / (
+                f"southafrica_dws_weekly_{exc.snapshot_date:%Y%m%d}.csv"
+            )
+            if archived_path.exists():
+                probe_counts = Counter(
+                    str(probe.get("status_code") or probe.get("result"))
+                    for probe in probes
+                )
+                summary.pop("official_pdf_probes", None)
+                message = (
+                    f"Official DWS downloads are unavailable and the DWS-derived mirror "
+                    f"still reports {exc.snapshot_date.isoformat()} "
+                    f"({exc.age_days} days old). That snapshot is already archived, so "
+                    "this run made no data changes."
+                )
+                emit_workflow_warning(message)
+                summary.update({
+                    "status": "source-stale-no-new-data",
+                    "mirror_url": MIRROR_URL,
+                    "mirror_error": str(exc),
+                    "mirror_generated": exc.generated,
+                    "mirror_temporal_coverage": exc.temporal_coverage,
+                    "latest_archived_snapshot": exc.snapshot_date.isoformat(),
+                    "official_pdf_probe_summary": {
+                        "attempted": len(probes),
+                        "result_counts": dict(sorted(probe_counts.items())),
+                        "first_url": probes[0]["url"] if probes else None,
+                        "last_url": probes[-1]["url"] if probes else None,
+                    },
+                    "snapshot_path": archived_path.relative_to(
+                        OUT_BASE.parent.parent.parent
+                    ).as_posix(),
+                })
+                write_summary(summary)
+                return 0
+            print(f"[dws-weekly] FAIL: official PDF and mirror both unavailable: {exc}")
+            summary.update({
+                "status": "all-sources-failed",
+                "mirror_url": MIRROR_URL,
+                "mirror_error": str(exc),
+            })
+            write_summary(summary)
+            return 1
         except (requests.RequestException, ValueError, RuntimeError) as exc:
             print(f"[dws-weekly] FAIL: official PDF and mirror both unavailable: {exc}")
             summary.update({

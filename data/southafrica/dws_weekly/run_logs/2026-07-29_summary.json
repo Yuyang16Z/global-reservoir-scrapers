@@ -1,0 +1,19 @@
+{
+  "ran_at_utc": "2026-07-29 03:01:44",
+  "target_date_override": null,
+  "status": "source-stale-no-new-data",
+  "mirror_url": "https://reservoirs.earth/data/south-africa.json",
+  "mirror_error": "mirror snapshot is stale (30 days old; maximum is 21)",
+  "mirror_generated": "2026-07-28",
+  "mirror_temporal_coverage": "2026-05-31/2026-07-06",
+  "latest_archived_snapshot": "2026-06-29",
+  "official_pdf_probe_summary": {
+    "attempted": 24,
+    "result_counts": {
+      "403": 24
+    },
+    "first_url": "https://www.dws.gov.za/drought/docs/Weekly20260727.pdf",
+    "last_url": "https://www.dws.gov.za/drought/docs/Weekly%2020260608.pdf"
+  },
+  "snapshot_path": "data/southafrica/dws_weekly/timeseries/southafrica_dws_weekly_20260629.csv"
+}

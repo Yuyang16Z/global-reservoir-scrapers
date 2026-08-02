@@ -21,7 +21,7 @@ import os
 import sys
 import time
 import traceback
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -227,6 +227,14 @@ def is_source_unavailable(exc: Exception) -> bool:
     if isinstance(exc, requests.HTTPError) and exc.response is not None:
         return exc.response.status_code >= 500
     return False
+
+
+def emit_workflow_warning(message: str) -> None:
+    print(f"::warning title=Taiwan WRA source availability::{message}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write(f"### Taiwan WRA source warning\n\n{message}\n")
 
 
 def parse_date(s: str) -> datetime.date:
@@ -757,15 +765,43 @@ def main() -> int:
             print(f"[WARN] basic info dataset unavailable: {e}", file=sys.stderr)
             summary["errors"].append({"basic_info_warning": str(e)})
 
+        current_daily_rows: list[dict] = []
         current_daily_ops_map: dict[str, dict] = {}
+        current_daily_snapshot_date: str | None = None
+        current_daily_snapshot_map: dict[str, dict] = {}
         try:
-            current_daily_rows = get_json(session, CURRENT_DAILY_OPS_URL)
-            current_daily_ops_map = normalize_current_daily_ops(
-                current_daily_rows if isinstance(current_daily_rows, list) else []
+            current_daily_payload = get_json(session, CURRENT_DAILY_OPS_URL)
+            current_daily_rows = (
+                current_daily_payload if isinstance(current_daily_payload, list) else []
             )
+            current_daily_ops_map = normalize_current_daily_ops(
+                current_daily_rows
+            )
+            current_daily_date_counts = Counter(
+                str(row.get("observation_time") or "")[:10]
+                for row in current_daily_ops_map.values()
+                if row.get("observation_time")
+            )
+            if current_daily_date_counts:
+                current_daily_snapshot_date = max(
+                    current_daily_date_counts.items(),
+                    key=lambda pair: (pair[1], pair[0]),
+                )[0]
+                current_daily_snapshot_map = {
+                    rid: row
+                    for rid, row in current_daily_ops_map.items()
+                    if str(row.get("observation_time") or "").startswith(
+                        current_daily_snapshot_date
+                    )
+                }
+                summary["current_daily_snapshot"] = {
+                    "date": current_daily_snapshot_date,
+                    "rows": len(current_daily_snapshot_map),
+                    "date_counts": dict(sorted(current_daily_date_counts.items())),
+                }
             if save_raw:
                 current_daily_path = dirs["raw"] / f"current_daily_ops_{today_tw}.json"
-                save_json(current_daily_path, current_daily_rows)
+                save_json(current_daily_path, current_daily_payload)
                 summary["files_written"].append(str(current_daily_path))
         except Exception as e:
             print(f"[WARN] current daily ops dataset unavailable: {e}", file=sys.stderr)
@@ -797,6 +833,8 @@ def main() -> int:
         daily_success = 0
         daily_skipped = 0
         daily_unavailable: list[dict[str, str]] = []
+        historical_service_unavailable: str | None = None
+        current_daily_fallback_used = False
         for date_str in dates:
             daily_path = dirs["daily"] / f"taiwan_timeseries_{date_str}.csv"
             # Keep today's file fresh because names/current water level come from
@@ -808,33 +846,87 @@ def main() -> int:
                 continue
 
             print(f"[FETCH] {date_str}")
-            try:
-                daily_rows = get_json(session, HIST_DAILY_URL.format(date=date_str))
-            except requests.RequestException as e:
-                if is_source_unavailable(e):
-                    print(f"[WARN] daily dataset unavailable for {date_str}: {e}", file=sys.stderr)
-                    daily_unavailable.append({
-                        "date": date_str,
-                        "error_type": e.__class__.__name__,
-                        "error": str(e),
-                    })
-                    continue
-                raise
-            if save_raw:
-                raw_path = dirs["raw_daily"] / f"{date_str}.json"
-                save_json(raw_path, daily_rows)
-                summary["files_written"].append(str(raw_path))
+            daily_rows: Any = None
+            daily_error: requests.RequestException | None = None
+            if historical_service_unavailable is None:
+                try:
+                    daily_rows = get_json(session, HIST_DAILY_URL.format(date=date_str))
+                except requests.RequestException as e:
+                    if not is_source_unavailable(e):
+                        raise
+                    daily_error = e
+                    if (
+                        isinstance(e, requests.HTTPError)
+                        and e.response is not None
+                        and e.response.status_code == 503
+                    ):
+                        historical_service_unavailable = str(e)
+            else:
+                daily_error = requests.ConnectionError(
+                    f"historical endpoint circuit open after HTTP 503: "
+                    f"{historical_service_unavailable}"
+                )
 
-            daily_map = normalize_daily(daily_rows if isinstance(daily_rows, list) else [], date_str)
-            rows = build_rows(
-                date_str,
-                basic_info_map,
-                current_daily_ops_map,
-                daily_map,
-                current_water_level_map,
-                manual_overrides,
-                today_tw,
-            )
+            if daily_error is not None:
+                print(
+                    f"[WARN] daily dataset unavailable for {date_str}: {daily_error}",
+                    file=sys.stderr,
+                )
+                daily_unavailable.append({
+                    "date": date_str,
+                    "error_type": daily_error.__class__.__name__,
+                    "error": str(daily_error),
+                })
+
+            if daily_rows is not None:
+                if save_raw:
+                    raw_path = dirs["raw_daily"] / f"{date_str}.json"
+                    save_json(raw_path, daily_rows)
+                    summary["files_written"].append(str(raw_path))
+                daily_map = normalize_daily(
+                    daily_rows if isinstance(daily_rows, list) else [],
+                    date_str,
+                )
+                rows = build_rows(
+                    date_str,
+                    basic_info_map,
+                    current_daily_ops_map,
+                    daily_map,
+                    current_water_level_map,
+                    manual_overrides,
+                    today_tw,
+                )
+            elif (
+                date_str == current_daily_snapshot_date
+                and current_daily_snapshot_map
+            ):
+                print(
+                    f"[FALLBACK] using official current daily snapshot for {date_str}"
+                )
+                if save_raw:
+                    raw_path = (
+                        dirs["raw_daily"] / f"{date_str}_current_snapshot.json"
+                    )
+                    save_json(raw_path, current_daily_rows)
+                    summary["files_written"].append(str(raw_path))
+                rows = build_rows(
+                    date_str,
+                    basic_info_map,
+                    current_daily_snapshot_map,
+                    current_daily_snapshot_map,
+                    {},
+                    manual_overrides,
+                    today_tw,
+                )
+                rows = [
+                    row
+                    for row in rows
+                    if row["reservoir_id"] in current_daily_snapshot_map
+                ]
+                current_daily_fallback_used = True
+            else:
+                continue
+
             write_timeseries_csv(daily_path, rows)
             print(f"[OK] {daily_path.name} ({len(rows)} rows)")
             summary["records_per_date"][date_str] = len(rows)
@@ -844,6 +936,16 @@ def main() -> int:
 
         if daily_unavailable:
             summary["source_unavailable_dates"] = daily_unavailable
+            summary["historical_endpoint_status"] = "unavailable"
+            emit_workflow_warning(
+                "The historical daily endpoint is unavailable. "
+                + (
+                    f"Captured the official current daily snapshot for "
+                    f"{current_daily_snapshot_date} instead."
+                    if current_daily_fallback_used
+                    else "No current daily fallback fell inside the requested window."
+                )
+            )
         if daily_success == 0 and daily_skipped != len(dates):
             if daily_unavailable:
                 summary["status"] = "source_unavailable"

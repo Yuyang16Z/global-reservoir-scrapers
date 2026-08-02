@@ -1,15 +1,16 @@
 name: Taiwan WRA scrape
 
-# WRA has a historical daily endpoint. Run weekly and fetch a rolling 15-day
-# window so the repo gets fewer bot commits while still tolerating one missed
-# weekly run.
+# WRA's historical daily endpoint is currently unstable, while its official
+# current daily snapshot is overwrite-prone. Run twice daily and fetch a
+# rolling 7-day window so one missed run does not create an avoidable gap.
 on:
   schedule:
-    - cron: "45 1 * * 1"
+    # 11:00 and 21:00 Taiwan time, after the normal 09:30 daily update.
+    - cron: "0 3,13 * * *"
   workflow_dispatch:
     inputs:
       start_date:
-        description: "Backfill start (YYYY-MM-DD). Leave blank for default (yesterday+today)."
+        description: "Backfill start (YYYY-MM-DD). Leave blank for the rolling 7-day window."
         required: false
       end_date:
         description: "Backfill end (YYYY-MM-DD)."
@@ -29,6 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -50,7 +53,7 @@ jobs:
             start="${INPUT_START_DATE:-$INPUT_END_DATE}"
             end="${INPUT_END_DATE:-$INPUT_START_DATE}"
           else
-            start=$(date -d "14 days ago" +"%Y-%m-%d")
+            start=$(date -d "6 days ago" +"%Y-%m-%d")
             end=$(date +"%Y-%m-%d")
           fi
           echo "start_date=${start}" >> "$GITHUB_OUTPUT"
@@ -76,5 +79,15 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(taiwan/wra): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && \
+               git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            if [ "$attempt" = "2" ]; then
+              echo "Commit push failed after 2 attempts."
+              exit 1
+            fi
+            echo "Push failed; retrying after 30 seconds."
+            sleep 30
+          done
