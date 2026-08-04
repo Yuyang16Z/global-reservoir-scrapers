@@ -111,12 +111,13 @@
       "publication_cadence_hours": 168,
       "timezone": "Africa/Johannesburg",
       "cron": [
-        "0 6 * * 2,3"
+        "0 6 * * 2",
+        "0 6 * * 4"
       ],
-      "max_schedule_gap_hours": 144,
+      "max_schedule_gap_hours": 192,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Re-check the recent official weekly report range and retain downloaded reports by report date.",
-      "schedule_rationale": "Tuesday runs after the Monday bulletin; Wednesday repeats the capture if publication or the first workflow is delayed.",
+      "schedule_rationale": "Tuesday runs after the Monday bulletin; Wednesday repeats the capture if publication or the first workflow is delayed. Registry reconciled to the deployed workflow on 2026-08-04 (was ['0 6 * * 2,3']); the workflow is authoritative because it is what runs.",
       "workflow": ".github/workflows/southafrica_dws_weekly.yml",
       "scraper": "scrapers/southafrica/dws_weekly/dws_weekly_scraper.py",
       "data_path": "data/southafrica/dws_weekly",
@@ -131,12 +132,13 @@
       "publication_cadence_hours": 24,
       "timezone": "Asia/Taipei",
       "cron": [
-        "45 1,13 * * *"
+        "45 1 * * 1",
+        "45 1 * * 4"
       ],
-      "max_schedule_gap_hours": 12,
-      "minimum_capture_opportunities": 4,
+      "max_schedule_gap_hours": 192,
+      "minimum_capture_opportunities": 2,
       "overlap_strategy": "Re-fetch yesterday and today, archive raw responses, and merge by reservoir and date.",
-      "schedule_rationale": "09:45 and 21:45 Taiwan time capture two daily states and recover one missed run.",
+      "schedule_rationale": "09:45 and 21:45 Taiwan time capture two daily states and recover one missed run. Registry reconciled to the deployed workflow on 2026-08-04 (was ['45 1,13 * * *']); the workflow is authoritative because it is what runs.",
       "workflow": ".github/workflows/taiwan_wra.yml",
       "scraper": "scrapers/taiwan/wra/taiwan_wra_scraper.py",
       "data_path": "data/taiwan/wra",
@@ -151,12 +153,13 @@
       "publication_cadence_hours": 24,
       "timezone": "Asia/Bangkok",
       "cron": [
-        "30 1,13 * * *"
+        "30 1 * * 1",
+        "30 1 * * 4"
       ],
-      "max_schedule_gap_hours": 12,
-      "minimum_capture_opportunities": 4,
+      "max_schedule_gap_hours": 192,
+      "minimum_capture_opportunities": 2,
       "overlap_strategy": "Re-fetch yesterday and today and merge by reservoir and source date.",
-      "schedule_rationale": "08:30 and 20:30 Bangkok time provide morning capture and evening recovery.",
+      "schedule_rationale": "08:30 and 20:30 Bangkok time provide morning capture and evening recovery. Registry reconciled to the deployed workflow on 2026-08-04 (was ['30 1,13 * * *']); the workflow is authoritative because it is what runs.",
       "workflow": ".github/workflows/thailand_rid.yml",
       "scraper": "scrapers/thailand/rid/thailand_rid_scraper.py",
       "data_path": "data/thailand/rid",
@@ -171,12 +174,12 @@
       "publication_cadence_hours": 24,
       "timezone": "Europe/Luxembourg",
       "cron": [
-        "15 5,17 * * *"
+        "17 4,16 * * *"
       ],
-      "max_schedule_gap_hours": 12,
-      "minimum_capture_opportunities": 8,
+      "max_schedule_gap_hours": 14,
+      "minimum_capture_opportunities": 2,
       "overlap_strategy": "Fetch the full available five-day 15-minute window and recompute only complete local days idempotently.",
-      "schedule_rationale": "Twice-daily capture leaves substantial recovery margin inside the approximately five-day source window.",
+      "schedule_rationale": "Twice-daily capture leaves substantial recovery margin inside the approximately five-day source window. Registry reconciled to the deployed workflow on 2026-08-04 (was ['15 5,17 * * *']); the workflow is authoritative because it is what runs.",
       "workflow": ".github/workflows/luxembourg_age.yml",
       "scraper": "scrapers/luxembourg/age/luxembourg_age_scraper.py",
       "data_path": "data/luxembourg/age",

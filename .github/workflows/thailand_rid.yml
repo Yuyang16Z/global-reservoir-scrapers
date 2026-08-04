@@ -6,7 +6,10 @@ name: Thailand RID scrape
 # missed weekly run.
 on:
   schedule:
+    # Monday 01:30 UTC (08:30 Asia/Bangkok), with Thursday as the recovery run
+    # so a failed Monday is retried before the next weekly window.
     - cron: "30 1 * * 1"
+    - cron: "30 1 * * 4"
   workflow_dispatch:
     inputs:
       start_date:

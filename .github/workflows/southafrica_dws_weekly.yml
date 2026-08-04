@@ -6,6 +6,9 @@ on:
     # preceding day in South Africa (UTC+2). Tuesday gives them a comfortable
     # publish window without polling at the wrong time.
     - cron: "0 6 * * 2"
+    # Thursday is the recovery run: the weekly bulletin is still the current
+    # one, so a failed Tuesday can still be collected inside the same week.
+    - cron: "0 6 * * 4"
   workflow_dispatch:
     inputs:
       target_date:

@@ -5,7 +5,10 @@ name: Taiwan WRA scrape
 # weekly run.
 on:
   schedule:
+    # Monday 01:45 UTC (09:45 Asia/Taipei), with Thursday as the recovery run
+    # so a failed Monday is retried before the next weekly window.
     - cron: "45 1 * * 1"
+    - cron: "45 1 * * 4"
   workflow_dispatch:
     inputs:
       start_date:
