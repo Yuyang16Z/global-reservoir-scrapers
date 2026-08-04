@@ -1,0 +1,393 @@
+{
+  "policy_version": 1,
+  "repository": "Yuyang16Z/global-reservoir-scrapers",
+  "policy": "WINDOWED_SOURCE_POLICY.md",
+  "sources": [
+    {
+      "source_id": "india/apwrims",
+      "country": "India",
+      "retention_class": "rolling_window",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Kolkata",
+      "cron": [
+        "0 3,12 * * *"
+      ],
+      "max_schedule_gap_hours": 15,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge all recent source observations by reservoir and source date on every run.",
+      "schedule_rationale": "08:30 IST captures settled prior-day values; 17:30 IST is the same-day fallback.",
+      "workflow": ".github/workflows/india_apwrims.yml",
+      "scraper": "scrapers/india/apwrims/india_apwrims_scraper.py",
+      "data_path": "data/india/apwrims",
+      "deployment_status": "active",
+      "licence_gate": "Public commit requires the source-level licence fields and release assessment recorded by the scraper."
+    },
+    {
+      "source_id": "japan/opengov",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "20 1 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Read the visible recent table and merge source dates; manual date inputs support recovery.",
+      "schedule_rationale": "10:20 JST runs after the expected daily update while the approximately 30-day recent table supplies recovery margin.",
+      "workflow": ".github/workflows/japan_opengov.yml",
+      "scraper": "scrapers/japan/opengov/japan_opengov_scraper.py",
+      "data_path": "data/japan/opengov",
+      "deployment_status": "active",
+      "licence_gate": "Public commit requires the recorded Japanese open-data source and attribution terms."
+    },
+    {
+      "source_id": "malaysia/luas",
+      "country": "Malaysia",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Kuala_Lumpur",
+      "cron": [
+        "0 2,14 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Archive timestamped raw API responses and idempotently merge each local observation date.",
+      "schedule_rationale": "10:00 and 22:00 Malaysia time capture morning and evening states with one-run failure tolerance.",
+      "workflow": ".github/workflows/malaysia_luas.yml",
+      "scraper": "scrapers/malaysia/luas/malaysia_luas_scraper.py",
+      "data_path": "data/malaysia/luas",
+      "deployment_status": "active",
+      "licence_gate": "Public commit remains subject to the LUAS terms and recorded reuse status."
+    },
+    {
+      "source_id": "morocco/abhsm",
+      "country": "Morocco",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Casablanca",
+      "cron": [
+        "30 7,15 * * *"
+      ],
+      "max_schedule_gap_hours": 16,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Archive every dated PDF with checksum and parse by the report's printed date.",
+      "schedule_rationale": "Two daytime UTC runs capture a stable-URL daily PDF before it can be replaced.",
+      "workflow": ".github/workflows/morocco_abhsm.yml",
+      "scraper": "scrapers/morocco/abhsm/morocco_abhsm_scraper.py",
+      "data_path": "data/morocco/abhsm",
+      "deployment_status": "active",
+      "licence_gate": "Public commit is limited by the source-specific ABHSM reuse assessment."
+    },
+    {
+      "source_id": "philippines/pagasa",
+      "country": "Philippines",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 48,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Manila",
+      "cron": [
+        "30 1,13 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Re-fetch today and yesterday and merge by reservoir and observation date.",
+      "schedule_rationale": "09:30 and 21:30 Philippine time provide four expected attempts before a two-day row disappears.",
+      "workflow": ".github/workflows/philippines_pagasa.yml",
+      "scraper": "scrapers/philippines/pagasa/philippines_pagasa_scraper.py",
+      "data_path": "data/philippines/pagasa",
+      "deployment_status": "active",
+      "licence_gate": "Public commit requires PAGASA source terms and attribution to remain recorded."
+    },
+    {
+      "source_id": "southafrica/dws_weekly",
+      "country": "South Africa",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Johannesburg",
+      "cron": [
+        "0 6 * * 2,3"
+      ],
+      "max_schedule_gap_hours": 144,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Re-check the recent official weekly report range and retain downloaded reports by report date.",
+      "schedule_rationale": "Tuesday runs after the Monday bulletin; Wednesday repeats the capture if publication or the first workflow is delayed.",
+      "workflow": ".github/workflows/southafrica_dws_weekly.yml",
+      "scraper": "scrapers/southafrica/dws_weekly/dws_weekly_scraper.py",
+      "data_path": "data/southafrica/dws_weekly",
+      "deployment_status": "active",
+      "licence_gate": "Public commit remains subject to the recorded DWS reuse assessment."
+    },
+    {
+      "source_id": "taiwan/wra",
+      "country": "Taiwan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 48,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Taipei",
+      "cron": [
+        "45 1,13 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Re-fetch yesterday and today, archive raw responses, and merge by reservoir and date.",
+      "schedule_rationale": "09:45 and 21:45 Taiwan time capture two daily states and recover one missed run.",
+      "workflow": ".github/workflows/taiwan_wra.yml",
+      "scraper": "scrapers/taiwan/wra/taiwan_wra_scraper.py",
+      "data_path": "data/taiwan/wra",
+      "deployment_status": "active",
+      "licence_gate": "Public commit requires the recorded WRA licence and attribution evidence."
+    },
+    {
+      "source_id": "thailand/rid",
+      "country": "Thailand",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 48,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Bangkok",
+      "cron": [
+        "30 1,13 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Re-fetch yesterday and today and merge by reservoir and source date.",
+      "schedule_rationale": "08:30 and 20:30 Bangkok time provide morning capture and evening recovery.",
+      "workflow": ".github/workflows/thailand_rid.yml",
+      "scraper": "scrapers/thailand/rid/thailand_rid_scraper.py",
+      "data_path": "data/thailand/rid",
+      "deployment_status": "active",
+      "licence_gate": "Public commit remains subject to the RID licence and attribution assessment."
+    },
+    {
+      "source_id": "luxembourg/age",
+      "country": "Luxembourg",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 120,
+      "publication_cadence_hours": 24,
+      "timezone": "Europe/Luxembourg",
+      "cron": [
+        "15 5,17 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 8,
+      "overlap_strategy": "Fetch the full available five-day 15-minute window and recompute only complete local days idempotently.",
+      "schedule_rationale": "Twice-daily capture leaves substantial recovery margin inside the approximately five-day source window.",
+      "workflow": ".github/workflows/luxembourg_age.yml",
+      "scraper": "scrapers/luxembourg/age/luxembourg_age_scraper.py",
+      "data_path": "data/luxembourg/age",
+      "deployment_status": "active",
+      "licence_gate": "AGE CC0 evidence applies to the operational open-data resource; preserve the source evidence and do not extend it to requested long archives."
+    },
+    {
+      "source_id": "pakistan/irsa",
+      "country": "Pakistan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 192,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Karachi",
+      "cron": [
+        "20 4,16 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 12,
+      "overlap_strategy": "Fetch every currently listed bulletin, deduplicate by report date and checksum, and retry Wayback recovery separately.",
+      "schedule_rationale": "Twice-daily capture protects the observed approximately eight-issue rolling bulletin window.",
+      "workflow": null,
+      "scraper": null,
+      "data_path": "data/pakistan/irsa",
+      "deployment_status": "migration_required",
+      "licence_gate": "Reuse terms are undeclared_review; do not publish bulletin contents in the public repository until redistribution permission is resolved."
+    },
+    {
+      "source_id": "turkey/iski_current",
+      "country": "Turkey",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Europe/Istanbul",
+      "cron": [
+        "40 4,16 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Archive each accessible current per-dam snapshot by source date and merge without replacing the historical XLSX archive.",
+      "schedule_rationale": "Proposed morning and evening Istanbul runs; deployment waits for a stable non-protected endpoint or approved runner.",
+      "workflow": null,
+      "scraper": null,
+      "data_path": "data/turkey/iski_current",
+      "deployment_status": "source_access_review",
+      "licence_gate": "Open-attribution evidence must be confirmed for the current endpoint before public snapshot commits."
+    },
+    {
+      "source_id": "usa/nwps-tva",
+      "country": "United States",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 1,
+      "timezone": "America/New_York",
+      "cron": [
+        "20 6,14,22 * * *"
+      ],
+      "max_schedule_gap_hours": 10,
+      "minimum_capture_opportunities": 3,
+      "overlap_strategy": "Re-fetch the full ~30-day observed window on every run and merge by gauge and validTime; identical timestamps are overwritten with the latest value.",
+      "schedule_rationale": "NWPS retains about 30 days of observed pool elevations for TVA dams, so three captures a day give a very large recovery margin against GitHub cron delay and transient NWPS outages. TVA publishes no public API and tva.com blocks automated clients, making this relay the only machine-readable observed route.",
+      "workflow": ".github/workflows/usa_nwps_tva.yml",
+      "scraper": "scrapers/usa/nwps_tva/usa_nwps_tva_scraper.py",
+      "data_path": "data/usa/nwps_tva",
+      "deployment_status": "registered_pending_first_scheduled_run",
+      "licence_gate": "BLOCKED for public redistribution. The NWS relay is U.S. public domain but the underlying TVA reuse terms could not be verified because tva.com refuses automated access; records carry licence_status=undeclared_review until a written TVA confirmation or a successful terms review is recorded."
+    },
+    {
+      "source_id": "zimbabwe/zinwa",
+      "country": "Zimbabwe",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Harare",
+      "cron": [
+        "10 6 * * 2,5"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge by the page's own printed as-at date, never the fetch date; a repeated page simply rewrites equal values.",
+      "schedule_rationale": "The national table is refreshed roughly weekly on Mondays (UTC+2) and overwritten in place. Tuesday 08:10 local captures the fresh table; Friday recovers a missed Tuesday before the next overwrite.",
+      "workflow": ".github/workflows/zimbabwe_zinwa.yml",
+      "scraper": "scrapers/zimbabwe/zinwa/zimbabwe_zinwa_scraper.py",
+      "data_path": "data/zimbabwe/zinwa",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "namibia/namwater",
+      "country": "Namibia",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Windhoek",
+      "cron": [
+        "40 5 * * 2",
+        "40 5 * * 4"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Probe the last 8 Monday-dated bulletin URLs each run and merge by the bulletin's printed date, so a resumed publication is picked up without duplication.",
+      "schedule_rationale": "Tuesday and Thursday 07:40 Africa/Windhoek. The site keeps only the latest bulletin PDF, so the Thursday run is the recovery attempt for a failed Tuesday within the same publication week. Publication has been frozen since 2024-07-08, so both runs double as a resumption watch.",
+      "workflow": ".github/workflows/namibia_namwater.yml",
+      "scraper": "scrapers/namibia/namwater/namibia_namwater_scraper.py",
+      "data_path": "data/namibia/namwater",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "mozambique/hcb",
+      "country": "Mozambique",
+      "retention_class": "rolling_window",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Maputo",
+      "cron": [
+        "20 4 * * *",
+        "20 15 * * *"
+      ],
+      "max_schedule_gap_hours": 13,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "The endpoint returns the whole retained table on every call; records are merged by reference_date so one good run recovers every prior miss.",
+      "schedule_rationale": "06:20 and 17:20 Africa/Maputo. The endpoint returns the whole retained table, so either run recovers the day; the second is insurance against a morning outage and against GitHub cron delay.",
+      "workflow": ".github/workflows/mozambique_hcb.yml",
+      "scraper": "scrapers/mozambique/hcb/mozambique_hcb_scraper.py",
+      "data_path": "data/mozambique/hcb",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "ghana/bui",
+      "country": "Ghana",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 8760,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Accra",
+      "cron": [
+        "30 6 * * *",
+        "30 17 * * *"
+      ],
+      "max_schedule_gap_hours": 13,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge the three overlapping trend arrays plus the spot value by date; the roughly one-year window gives ample recovery margin for missed runs.",
+      "schedule_rationale": "06:30 and 17:30 Africa/Accra. The level trends roll off after about a year and the spot inflow/outflow reading has no history at all, so the evening run captures intra-day changes the morning run would miss.",
+      "workflow": ".github/workflows/ghana_bui.yml",
+      "scraper": "scrapers/ghana/bui/ghana_bui_scraper.py",
+      "data_path": "data/ghana/bui",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "ghana/vra",
+      "country": "Ghana",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Accra",
+      "cron": [
+        "35 6 * * *",
+        "35 16 * * *"
+      ],
+      "max_schedule_gap_hours": 14,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Store each reading under its own printed observation date; the facts page also prints the same-date reading one year earlier, which is captured as its own record.",
+      "schedule_rationale": "06:35 and 16:35 Africa/Accra, bracketing VRA's working-day update. The widget keeps no archive, so an unobserved change is lost permanently.",
+      "workflow": ".github/workflows/ghana_vra.yml",
+      "scraper": "scrapers/ghana/vra/ghana_vra_scraper.py",
+      "data_path": "data/ghana/vra",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "morocco/abht",
+      "country": "Morocco",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Casablanca",
+      "cron": [
+        "30 7 * * *",
+        "30 16 * * *"
+      ],
+      "max_schedule_gap_hours": 15,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Store each reading under the widget's own printed date and merge by (date, reservoir); a repeated snapshot rewrites equal values.",
+      "schedule_rationale": "08:30 and 17:30 Africa/Casablanca. The homepage fill-rate widget shows one date and is overwritten in place, so an unobserved change is lost permanently; the evening run recovers a failed morning run within the same publication day. Added 2026-08-04 because the project's original Moroccan source, ABHSM (Souss-Massa), went offline and last published 2026-06-18.",
+      "workflow": ".github/workflows/morocco_abht.yml",
+      "scraper": "scrapers/morocco/abht/morocco_abht_scraper.py",
+      "data_path": "data/morocco/abht",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms; both replacement sources are undeclared pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    },
+    {
+      "source_id": "southafrica/capetown_wcwss",
+      "country": "South Africa",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Johannesburg",
+      "cron": [
+        "0 9 * * 2",
+        "0 9 * * 4"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge by (printed dashboard date, reservoir). Each dashboard also prints the previous week's percentage, which is stored for its own date and is superseded by that week's own 'current' reading.",
+      "schedule_rationale": "11:00 SAST Tuesday and Thursday. The City of Cape Town publishes one weekly dashboard at a stable URL that is overwritten, so a missed week cannot be recovered from the source; Thursday is the recovery attempt. Added 2026-08-04 because the national DWS bulletin stopped publishing after 2026-06-29 and every downstream mirror froze on that date.",
+      "workflow": ".github/workflows/southafrica_capetown_wcwss.yml",
+      "scraper": "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
+      "data_path": "data/southafrica/capetown_wcwss",
+      "deployment_status": "prepared",
+      "licence_gate": "Public commit requires the recorded source terms; both replacement sources are undeclared pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+    }
+  ]
+}

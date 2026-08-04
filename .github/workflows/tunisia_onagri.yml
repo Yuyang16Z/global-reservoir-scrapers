@@ -1,0 +1,64 @@
+name: Tunisia ONAGRI barrage bulletin scrape
+
+on:
+# DISABLED SCHEDULE - licence gate.
+# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
+# this repository is currently public, so a scheduled run would commit
+# restricted data publicly. The registry keeps it at
+# deployment_status=prepared. Restore the `schedule:` block below once the
+# repository is private or the source grants written permission; the cron
+# values are recorded in config/windowed_sources.json.
+  # schedule:
+  # # Retention class: permanent_archive (the ONAGRI listing keeps bulletins
+  # # back to 2014), so the windowed-source registry gate does not apply;
+  # # this run is a resumption watch for a dormant publication.
+  # # Daily 07:10 UTC (08:10 Africa/Tunis). Publication has been dormant
+  # # since 2025-10-10; the run probes both URL patterns over the recent
+  # # window as a resumption watch and exits clean when nothing is found.
+  # - cron: "10 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tunisia-onagri
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/tunisia/onagri
+        run: python scrapers/tunisia/onagri/tunisia_onagri_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tunisia/onagri
+          git add scrapers/tunisia/onagri
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(tunisia/onagri): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

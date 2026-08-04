@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+import time
 import traceback
 from datetime import datetime
 from pathlib import Path
@@ -202,12 +203,37 @@ def clean_num(raw: str) -> str:
     return m.group(0) if m else ""
 
 
+REQUEST_ATTEMPTS = 3
+REQUEST_BACKOFFS = (2, 8, 20)
+
+
+def is_source_unavailable(exc: Exception) -> bool:
+    """True when the failure is the source being down, not a scraper bug."""
+    if isinstance(exc, (requests.ConnectionError, requests.Timeout)):
+        return True
+    if isinstance(exc, requests.HTTPError) and exc.response is not None:
+        return exc.response.status_code >= 500
+    return False
+
+
 def fetch_pdf(pdf_path: Path) -> None:
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
-    r = requests.get(PDF_URL, headers=HEADERS, timeout=TIMEOUT)
-    r.raise_for_status()
-    pdf_path.write_bytes(r.content)
-    print(f"[SAVE] {pdf_path}")
+    last_exc: Exception | None = None
+    for attempt in range(1, REQUEST_ATTEMPTS + 1):
+        try:
+            r = requests.get(PDF_URL, headers=HEADERS, timeout=TIMEOUT)
+            r.raise_for_status()
+            pdf_path.write_bytes(r.content)
+            print(f"[SAVE] {pdf_path}")
+            return
+        except requests.RequestException as exc:
+            last_exc = exc
+            print(f"[WARN] ABHSM fetch attempt {attempt}/{REQUEST_ATTEMPTS}: {exc}",
+                  file=sys.stderr)
+            if attempt < REQUEST_ATTEMPTS:
+                time.sleep(REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)])
+    assert last_exc is not None
+    raise last_exc
 
 
 def extract_text(pdf_path: Path) -> str:
@@ -313,6 +339,16 @@ def main() -> int:
         save_summary(log_path, summary)
         return 0
     except Exception as e:
+        # A source outage is not a scraper failure: record it and exit clean so
+        # the run history keeps signalling real breakage. Prolonged outages are
+        # caught by the staleness monitor, not by a red run here.
+        if is_source_unavailable(e):
+            summary["status"] = "source_unavailable"
+            summary["errors"].append({"message": str(e),
+                                      "error_type": e.__class__.__name__})
+            save_summary(log_path, summary)
+            print(f"[WARN] ABHSM source unavailable this run: {e}", file=sys.stderr)
+            return 0
         summary["status"] = "error"
         summary["errors"].append({"message": str(e), "traceback": traceback.format_exc()})
         save_summary(log_path, summary)

@@ -1,0 +1,65 @@
+name: Mozambique ARA-Centro bulletin scrape
+
+on:
+# DISABLED SCHEDULE - licence gate.
+# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
+# this repository is currently public, so a scheduled run would commit
+# restricted data publicly. The registry keeps it at
+# deployment_status=prepared. Restore the `schedule:` block below once the
+# repository is private or the source grants written permission; the cron
+# values are recorded in config/windowed_sources.json.
+  # schedule:
+  # # Retention class: permanent_archive (published bulletins persist), so the
+  # # windowed-source registry gate does not apply; this run only picks up
+  # # bulletins that are new since the last manifest.
+  # # Daily 05:00 UTC (07:00 Africa/Maputo). The bulletin archive is
+  # # append-only, so only new PDFs are fetched; the host runs at about
+  # # 11 KB/s, hence the 60-minute timeout and the per-run cap.
+  # - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mozambique-aracentro
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/mozambique/aracentro
+          ARACENTRO_MAX_NEW: "40"
+        run: python scrapers/mozambique/aracentro/mozambique_aracentro_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mozambique/aracentro
+          git add scrapers/mozambique/aracentro
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(mozambique/aracentro): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

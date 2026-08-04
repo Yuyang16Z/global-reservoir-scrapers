@@ -1,0 +1,63 @@
+name: Namibia NamWater dam bulletin scrape
+
+on:
+# DISABLED SCHEDULE - licence gate.
+# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
+# this repository is currently public, so a scheduled run would commit
+# restricted data publicly. The registry keeps it at
+# deployment_status=prepared. Restore the `schedule:` block below once the
+# repository is private or the source grants written permission; the cron
+# values are recorded in config/windowed_sources.json.
+  # schedule:
+  # # Tuesday and Thursday 05:40 UTC (07:40 Africa/Windhoek). The site keeps
+  # # only the latest bulletin PDF, so Thursday is the recovery run for a
+  # # failed Tuesday inside the same publication week. Publication has been
+  # # frozen since 2024-07-08; both runs double as a resumption watch.
+  # - cron: "40 5 * * 2"
+  # - cron: "40 5 * * 4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: namibia-namwater
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/namibia/namwater
+        run: python scrapers/namibia/namwater/namibia_namwater_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/namibia/namwater
+          git add scrapers/namibia/namwater
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(namibia/namwater): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

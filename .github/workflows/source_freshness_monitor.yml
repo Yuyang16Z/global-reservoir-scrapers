@@ -1,0 +1,45 @@
+name: Source freshness monitor
+
+# WINDOWED_SOURCE_POLICY.md ("Monitoring and recovery") requires each deployment
+# to expose its latest archived observation date and to be treated as stale once
+# that date falls behind the publication cadence plus the grace period. Scrapers
+# deliberately exit clean on a transient source outage, so a dead upstream would
+# otherwise leave every run green while no new data arrives. This job is the
+# check that turns red instead.
+
+on:
+  schedule:
+    # Daily 08:00 UTC, after every source's own scheduled window has closed.
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-freshness-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Check source freshness
+        run: python scripts/monitor_source_freshness.py --json freshness_report.json
+
+      - name: Upload freshness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-freshness-report
+          path: freshness_report.json
+          retention-days: 30
