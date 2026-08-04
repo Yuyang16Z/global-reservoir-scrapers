@@ -1,20 +1,17 @@
 name: Ghana Bui Power reservoir scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # 06:30 and 17:30 UTC (= Africa/Accra). The JSON trends roll off after
-  # # about a year and the spot inflow/outflow reading has no history at all,
-  # # so the evening run captures changes the morning run would miss.
-  # - cron: "30 6 * * *"
-  # - cron: "30 17 * * *"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 06:30 and 17:30 UTC (= Africa/Accra). The JSON trends roll off after about
+    # a year and the spot inflow/outflow reading has no history at all, so the
+    # evening run captures changes the morning run would miss.
+    - cron: "30 6 * * *"
+    - cron: "30 17 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

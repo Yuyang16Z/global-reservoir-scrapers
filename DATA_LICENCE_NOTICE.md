@@ -1,7 +1,21 @@
 # Data licence notice and public-release boundary
 
-**Status: unresolved — read before making this repository public or reusing
-anything under `data/`.**
+**Status: owner decision recorded 2026-08-04 — collection continues here;
+publication is a separate, human-confirmed step. Read before reusing anything
+under `data/`.**
+
+The repository owner has decided that this repository is a *collection* point
+for ongoing research, and that any release will be confirmed by a person
+first. Scheduled scrapers therefore keep running and committing here.
+
+Two things follow from that decision and are stated plainly so nobody is
+misled later:
+
+- This repository is **public**, so everything under `data/` is already
+  world-readable and indexable. That is a stronger exposure than local storage,
+  independent of anyone's intent to publish.
+- Nothing in this repository constitutes permission to redistribute. The table
+  below records, per source, what the originating agency actually allows.
 
 This repository holds two different things under two different sets of terms:
 
@@ -39,9 +53,10 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 Seven of the eleven data paths currently in this repository are in the "no"
 column, and the repository carries no licence file of its own.
 
-## Required decision
+## Options if the exposure is to be reduced later
 
-One of the following has to be chosen before the current state is acceptable:
+Recorded for reference, not as pending actions. Any of these would narrow the
+gap between what is reachable and what is licensed:
 
 1. **Make the repository private** (fastest, fully reversible). Scheduled
    scrapers keep working; note that Actions minutes on private repositories are
@@ -54,17 +69,20 @@ One of the following has to be chosen before the current state is acceptable:
    the only route that makes public redistribution durable, and it is worth
    starting for the sources the project depends on most.
 
-Until one is chosen, treat every `data/` path except `japan/opengov`,
-`luxembourg/age`, and `taiwan/wra` as internal research material that happens
-to be reachable, not as published data.
+None of these is required by the owner's current decision. Treat every `data/`
+path except `japan/opengov`, `luxembourg/age`, and `taiwan/wra` as internal
+research material that happens to be reachable, not as published data.
 
 ## Africa deployments prepared 2026-08
 
-The seven African sources prepared in August 2026 (Zimbabwe ZINWA, Namibia
-NamWater, Mozambique HCB and ARA-Centro, Ghana Bui and VRA, Tunisia ONAGRI) are
-**all `undeclared_review`**. Their scrapers and workflows are present, but
-their `licence_gate` in `config/windowed_sources.json` states that their data
-must stay in private storage. Do not enable them on a public repository.
+The nine African deployments added in August 2026 (Zimbabwe ZINWA, Namibia
+NamWater, Mozambique HCB and ARA-Centro, Ghana Bui and VRA, Tunisia ONAGRI,
+Morocco ABHT, South Africa Cape Town WCWSS) are **all `undeclared_review`**.
+Under the owner's 2026-08-04 decision they collect on schedule here. Several of
+them are overwrite-prone or current-snapshot sources, so pausing them loses
+observations permanently - that is why they run rather than wait. Their
+`licence_gate` in `config/windowed_sources.json` records that collection is
+internal and that redistribution needs a separate human decision.
 
 ## Attribution required where publication is permitted
 
@@ -74,4 +92,4 @@ must stay in private storage. Do not enable them on a public repository.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-08-04.
+Last reviewed: 2026-08-04 (owner decision recorded the same day).

@@ -1,21 +1,18 @@
 name: Namibia NamWater dam bulletin scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # Tuesday and Thursday 05:40 UTC (07:40 Africa/Windhoek). The site keeps
-  # # only the latest bulletin PDF, so Thursday is the recovery run for a
-  # # failed Tuesday inside the same publication week. Publication has been
-  # # frozen since 2024-07-08; both runs double as a resumption watch.
-  # - cron: "40 5 * * 2"
-  # - cron: "40 5 * * 4"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Tuesday and Thursday 05:40 UTC (07:40 Africa/Windhoek). Only the latest
+    # bulletin PDF is served, so Thursday is the recovery run for a failed
+    # Tuesday. Publication has been frozen since 2024-07-08; both runs double
+    # as a resumption watch.
+    - cron: "40 5 * * 2"
+    - cron: "40 5 * * 4"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

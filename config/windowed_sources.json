@@ -261,7 +261,7 @@
       "scraper": "scrapers/zimbabwe/zinwa/zimbabwe_zinwa_scraper.py",
       "data_path": "data/zimbabwe/zinwa",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "namibia/namwater",
@@ -282,7 +282,7 @@
       "scraper": "scrapers/namibia/namwater/namibia_namwater_scraper.py",
       "data_path": "data/namibia/namwater",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "mozambique/hcb",
@@ -303,7 +303,7 @@
       "scraper": "scrapers/mozambique/hcb/mozambique_hcb_scraper.py",
       "data_path": "data/mozambique/hcb",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "ghana/bui",
@@ -324,7 +324,7 @@
       "scraper": "scrapers/ghana/bui/ghana_bui_scraper.py",
       "data_path": "data/ghana/bui",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "ghana/vra",
@@ -345,7 +345,7 @@
       "scraper": "scrapers/ghana/vra/ghana_vra_scraper.py",
       "data_path": "data/ghana/vra",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms. All seven African sources added 2026-08 are undeclared or all-rights-reserved pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "morocco/abht",
@@ -366,7 +366,7 @@
       "scraper": "scrapers/morocco/abht/morocco_abht_scraper.py",
       "data_path": "data/morocco/abht",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms; both replacement sources are undeclared pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     },
     {
       "source_id": "southafrica/capetown_wcwss",
@@ -387,7 +387,7 @@
       "scraper": "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
       "data_path": "data/southafrica/capetown_wcwss",
       "deployment_status": "prepared",
-      "licence_gate": "Public commit requires the recorded source terms; both replacement sources are undeclared pending written permission, so their data must stay in private storage and must not enter an unconditional public redistribution package."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before any release."
     }
   ]
 }

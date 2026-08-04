@@ -1,19 +1,16 @@
 name: Zimbabwe ZINWA dam levels scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # Tuesday and Friday 06:10 UTC. ZINWA refreshes the page roughly
-  # # weekly on Mondays (Africa/Harare = UTC+2); the Friday run recovers
-  # # a missed Tuesday before the next overwrite.
-  # - cron: "10 6 * * 2,5"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Tuesday and Friday 06:10 UTC. ZINWA refreshes the national table roughly
+    # weekly on Mondays (Africa/Harare = UTC+2) and overwrites it in place, so
+    # Friday recovers a missed Tuesday before the next overwrite.
+    - cron: "10 6 * * 2,5"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

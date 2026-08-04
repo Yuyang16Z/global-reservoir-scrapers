@@ -1,20 +1,17 @@
 name: Ghana VRA Akosombo level scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # 06:35 and 16:35 UTC (= Africa/Accra), bracketing the working-day
-  # # update. The widget is a current-value snapshot with no archive, so an
-  # # unobserved change is lost permanently.
-  # - cron: "35 6 * * *"
-  # - cron: "35 16 * * *"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 06:35 and 16:35 UTC (= Africa/Accra), bracketing the working-day update.
+    # The widget is a current-value snapshot with no archive, so an unobserved
+    # change is lost permanently.
+    - cron: "35 6 * * *"
+    - cron: "35 16 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

@@ -1,22 +1,17 @@
 name: Tunisia ONAGRI barrage bulletin scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # Retention class: permanent_archive (the ONAGRI listing keeps bulletins
-  # # back to 2014), so the windowed-source registry gate does not apply;
-  # # this run is a resumption watch for a dormant publication.
-  # # Daily 07:10 UTC (08:10 Africa/Tunis). Publication has been dormant
-  # # since 2025-10-10; the run probes both URL patterns over the recent
-  # # window as a resumption watch and exits clean when nothing is found.
-  # - cron: "10 7 * * *"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Daily 07:10 UTC (08:10 Africa/Tunis). Retention class permanent_archive:
+    # the listing keeps bulletins back to 2014. Publication has been dormant
+    # since 2025-10-10, so this run probes both URL patterns as a resumption
+    # watch and exits clean when nothing is found.
+    - cron: "10 7 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

@@ -1,20 +1,17 @@
 name: Mozambique HCB Cahora Bassa scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # 04:20 and 15:20 UTC (06:20 / 17:20 Africa/Maputo). The endpoint returns
-  # # the whole retained table, so either run recovers the day; the second is
-  # # insurance against a morning outage and against GitHub cron delay.
-  # - cron: "20 4 * * *"
-  # - cron: "20 15 * * *"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 04:20 and 15:20 UTC (06:20 / 17:20 Africa/Maputo). The endpoint returns
+    # the whole retained table, so either run recovers the day; the second is
+    # insurance against a morning outage and against GitHub cron delay.
+    - cron: "20 4 * * *"
+    - cron: "20 15 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

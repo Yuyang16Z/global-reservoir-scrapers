@@ -1,22 +1,17 @@
 name: Mozambique ARA-Centro bulletin scrape
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # Retention class: permanent_archive (published bulletins persist), so the
-  # # windowed-source registry gate does not apply; this run only picks up
-  # # bulletins that are new since the last manifest.
-  # # Daily 05:00 UTC (07:00 Africa/Maputo). The bulletin archive is
-  # # append-only, so only new PDFs are fetched; the host runs at about
-  # # 11 KB/s, hence the 60-minute timeout and the per-run cap.
-  # - cron: "0 5 * * *"
-  workflow_dispatch:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Daily 05:00 UTC (07:00 Africa/Maputo). Retention class permanent_archive:
+    # published bulletins persist, so only new PDFs are fetched and a missed run
+    # loses nothing. The host serves at about 11 KB/s, hence the 60-minute
+    # timeout and the per-run cap.
+    - cron: "0 5 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write

@@ -1,19 +1,16 @@
 name: South Africa Cape Town WCWSS weekly dashboard
 
 on:
-# DISABLED SCHEDULE - licence gate.
-# This source's data is `undeclared_review` (see DATA_LICENCE_NOTICE.md) and
-# this repository is currently public, so a scheduled run would commit
-# restricted data publicly. The registry keeps it at
-# deployment_status=prepared. Restore the `schedule:` block below once the
-# repository is private or the source grants written permission; the cron
-# values are recorded in config/windowed_sources.json.
-  # schedule:
-  # # Tuesday and Thursday 09:00 UTC (11:00 SAST). The City publishes the
-  # # dashboard weekly at one stable URL that is overwritten, so Thursday is
-  # # the recovery run for a failed Tuesday inside the same week.
-  # - cron: "0 9 * * 2"
-  # - cron: "0 9 * * 4"
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Tuesday and Thursday 09:00 UTC (11:00 SAST). One weekly dashboard sits at a
+    # stable URL that is overwritten, so a missed week cannot be recovered from
+    # the source; Thursday is the recovery attempt.
+    - cron: "0 9 * * 2"
+    - cron: "0 9 * * 4"
   workflow_dispatch: {}
 
 permissions:
