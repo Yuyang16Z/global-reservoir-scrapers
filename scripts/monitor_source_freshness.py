@@ -40,6 +40,21 @@ STALE_CADENCE_FACTOR = 3.0
 EXCUSED: dict[str, str] = {}
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
+# Several sources write the observation date compactly (South Africa's weekly
+# table stores "20260629"), so both spellings have to be recognised.
+COMPACT_DATE_RE = re.compile(r"\b(20\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\b")
+
+
+def cell_date(value: str) -> str | None:
+    """ISO date from a cell written as 2026-06-29 or 20260629."""
+    s = str(value or "")
+    m = DATE_RE.search(s)
+    if m:
+        return m.group(1)
+    m = COMPACT_DATE_RE.search(s)
+    if m:
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    return None
 
 
 def parse_iso(value: str) -> datetime | None:
@@ -99,18 +114,19 @@ def newest_observation(data_dir: Path) -> str | None:
                     continue
                 for row in reader:
                     for c in date_cols:
-                        m = DATE_RE.search(str(row.get(c) or ""))
-                        if m and (best is None or m.group(1) > best):
-                            best = m.group(1)
+                        d = cell_date(row.get(c) or "")
+                        if d and (best is None or d > best):
+                            best = d
         except (OSError, csv.Error, UnicodeDecodeError):
             continue
     if best is None:
+        # Filename fallback. run_logs are named after the RUN, not the
+        # observation, so including them would report a dead source as fresh.
         for p in data_dir.rglob("*"):
-            m = DATE_RE.search(p.name) or re.search(r"(20\d{2})(\d{2})(\d{2})", p.name)
-            if not m:
+            if "run_logs" in p.parts:
                 continue
-            d = m.group(1) if "-" in m.group(0) else f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
-            if best is None or d > best:
+            d = cell_date(p.name)
+            if d and (best is None or d > best):
                 best = d
     return best
 
