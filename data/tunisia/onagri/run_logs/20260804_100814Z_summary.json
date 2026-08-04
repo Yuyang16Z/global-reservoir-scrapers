@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-08-04 10:07:54Z",
+  "source": "tunisia/onagri",
+  "listing": "https://www.onagri.nat.tn/Situation-des-barrages/fr/19",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/tunisia/onagri",
+  "status": "no_new_bulletin",
+  "errors": [],
+  "urls_probed": 40,
+  "bulletins_present": 0,
+  "note": "Publication dormant since 2025-10-10; probe found nothing in the recent window (expected).",
+  "finished_at": "2026-08-04 10:08:14Z"
+}
