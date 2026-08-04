@@ -582,14 +582,24 @@ def main() -> int:
                 sess, requested_date=target_date
             )
         except (requests.RequestException, ValueError, RuntimeError) as exc:
-            print(f"[dws-weekly] FAIL: official PDF and mirror both unavailable: {exc}")
+            # Both routes are out: the official pages answer 403 and the mirror
+            # cannot advance past its own upstream. Refusing to write stale data
+            # is correct, but that is a SOURCE outage, not a scraper fault, so
+            # the run records it and exits clean. scripts/monitor_source_freshness.py
+            # is what raises the alarm once the archived observation falls behind
+            # the publication cadence, and it already reports this source.
+            print(
+                "[dws-weekly] source unavailable: official PDF and mirror both "
+                f"unusable ({exc}). No data written; freshness monitor will flag "
+                "the gap."
+            )
             summary.update({
-                "status": "all-sources-failed",
+                "status": "source_unavailable",
                 "mirror_url": MIRROR_URL,
                 "mirror_error": str(exc),
             })
             write_summary(summary)
-            return 1
+            return 0
         source_type = "dws_derived_mirror"
         source_url = MIRROR_URL
         yyyymmdd = bulletin_date.strftime("%Y%m%d")
