@@ -36,8 +36,16 @@ REGISTRY = ROOT / "config" / "windowed_sources.json"
 # How many publication cycles a source may miss before it counts as stale.
 STALE_CADENCE_FACTOR = 3.0
 # Sources whose upstream is known-dormant: still reported, never fail the run.
-# Keep the reason and the review date so these cannot rot unnoticed.
-EXCUSED: dict[str, str] = {}
+# Keep the reason and the review date so these cannot rot unnoticed. Remove an
+# entry the moment its source resumes - the scraper keeps probing regardless,
+# so a resumed source shows up as a fresh observation date here.
+EXCUSED: dict[str, str] = {
+    "namibia/namwater": (
+        "NamWater stopped publishing after the 2024-07-08 bulletin and serves only "
+        "that file; the scraper probes the last eight Mondays every run as a "
+        "resumption watch. Reported but not failed. Reviewed 2026-08-04."
+    ),
+}
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
 # Several sources write the observation date compactly (South Africa's weekly
