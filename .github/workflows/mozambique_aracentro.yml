@@ -6,11 +6,12 @@ on:
   # for research. Redistribution is a separate, human-confirmed step - presence
   # in this repository is not permission to republish.
   schedule:
-    # Daily 05:00 UTC (07:00 Africa/Maputo). Retention class permanent_archive:
-    # published bulletins persist, so only new PDFs are fetched and a missed run
-    # loses nothing. The host serves at about 11 KB/s, hence the 60-minute
-    # timeout and the per-run cap.
-    - cron: "0 5 * * *"
+    # Twice a month (1st and 16th), 05:00 UTC. Retention class permanent_archive:
+    # published bulletins persist indefinitely, so a fortnight's backlog is simply
+    # downloaded on the next run. The per-run cap of 40 PDFs covers a fortnight of
+    # daily rainy-season bulletins; the host serves at about 11 KB/s, hence the
+    # 60-minute timeout.
+    - cron: "0 5 1,16 * *"
   workflow_dispatch: {}
 
 permissions:
@@ -56,5 +57,12 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(mozambique/aracentro): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

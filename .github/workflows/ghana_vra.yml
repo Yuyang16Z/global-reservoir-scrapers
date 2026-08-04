@@ -55,5 +55,12 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(ghana/vra): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

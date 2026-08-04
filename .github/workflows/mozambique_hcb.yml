@@ -6,11 +6,13 @@ on:
   # for research. Redistribution is a separate, human-confirmed step - presence
   # in this repository is not permission to republish.
   schedule:
-    # 04:20 and 15:20 UTC (06:20 / 17:20 Africa/Maputo). The endpoint returns
-    # the whole retained table, so either run recovers the day; the second is
-    # insurance against a morning outage and against GitHub cron delay.
-    - cron: "20 4 * * *"
-    - cron: "20 15 * * *"
+    # Twice a month (1st and 16th), 04:20 and 15:20 UTC. The endpoint returns the
+    # WHOLE retained table on every call - records back to 2025-03-06 are still
+    # served - so nothing is lost between polls and a single successful call
+    # recovers every intervening day. Two runs per collection day give the
+    # required recovery opportunity.
+    - cron: "20 4 1,16 * *"
+    - cron: "20 15 1,16 * *"
   workflow_dispatch: {}
 
 permissions:
@@ -55,5 +57,12 @@ jobs:
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git commit -m "data(mozambique/hcb): scheduled scrape ${ts}"
-          git pull --rebase origin main
-          git push
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

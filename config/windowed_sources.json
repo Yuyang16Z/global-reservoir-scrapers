@@ -288,17 +288,17 @@
       "source_id": "mozambique/hcb",
       "country": "Mozambique",
       "retention_class": "rolling_window",
-      "retention_window_hours": null,
+      "retention_window_hours": 12000,
       "publication_cadence_hours": 24,
       "timezone": "Africa/Maputo",
       "cron": [
-        "20 4 * * *",
-        "20 15 * * *"
+        "20 4 1,16 * *",
+        "20 15 1,16 * *"
       ],
-      "max_schedule_gap_hours": 13,
+      "max_schedule_gap_hours": 384,
       "minimum_capture_opportunities": 2,
-      "overlap_strategy": "The endpoint returns the whole retained table on every call; records are merged by reference_date so one good run recovers every prior miss.",
-      "schedule_rationale": "06:20 and 17:20 Africa/Maputo. The endpoint returns the whole retained table, so either run recovers the day; the second is insurance against a morning outage and against GitHub cron delay.",
+      "overlap_strategy": "The endpoint returns the whole retained table on every call, so one successful run recovers every day since the last one; records merge by reference_date.",
+      "schedule_rationale": "Twice a month (1st and 16th), 06:20 and 17:20 Africa/Maputo. Because the full retained table is served on every call - records back to 2025-03-06 are still present - nothing is lost between polls, so a fortnightly cadence collects the same data as a daily one at a fraction of the cost. The second run on each collection day is the recovery opportunity.",
       "workflow": ".github/workflows/mozambique_hcb.yml",
       "scraper": "scrapers/mozambique/hcb/mozambique_hcb_scraper.py",
       "data_path": "data/mozambique/hcb",

@@ -39,7 +39,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
-from dateutil import parser as dtp
 
 BASE_DIR = Path(__file__).resolve().parent
 _env_out = os.environ.get("OUTPUT_DIR", "").strip()
@@ -114,11 +113,25 @@ def page_text(raw: bytes) -> str:
     return re.sub(r"\s+", " ", t)
 
 
+MONTHS = {m.lower(): i for i, m in enumerate(
+    ["January", "February", "March", "April", "May", "June", "July", "August",
+     "September", "October", "November", "December"], 1)}
+# VRA always prints "[Weekday, ]Month D, YYYY"; parsed with the standard library
+# so the scraper adds no dependency beyond the repo's existing requirements.
+ISO_RE = re.compile(r"([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})\s*$")
+
+
 def iso(raw: str) -> str | None:
-    try:
-        return dtp.parse(raw.strip(" ,")).strftime("%Y-%m-%d")
-    except (ValueError, OverflowError):
+    m = ISO_RE.search(raw.strip(" ,"))
+    if not m:
         return None
+    month = MONTHS.get(m.group(1).lower())
+    if not month:
+        return None
+    day, year = int(m.group(2)), int(m.group(3))
+    if not (1 <= day <= 31 and 2000 <= year <= 2100):
+        return None
+    return f"{year:04d}-{month:02d}-{day:02d}"
 
 
 def parse_readings(text: str, page: str, fetched_at: str) -> list[dict]:
