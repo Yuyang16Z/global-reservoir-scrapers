@@ -1,0 +1,70 @@
+name: Burkina Faso DGRE decadal hydro notes
+
+on:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 07:40 UTC on the 1st and 16th. DGRE keeps published notes online
+    # (permanent archive), so this is a resilience copy on the owner's
+    # half-monthly cadence for retrievable-history sources - not a race
+    # against overwriting. The agency's PREVIOUS site died taking two
+    # bulletins with it, which is why the copy exists at all.
+    - cron: "40 7 1 * *"
+    - cron: "40 7 16 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: burkinafaso-dgre
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    # the host serves at roughly 6 KB/s, so a run that actually finds a new
+    # 2 MB note legitimately needs several minutes per file
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/burkinafaso/dgre
+        run: python scrapers/burkinafaso/dgre/burkinafaso_dgre_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/burkinafaso/dgre
+          git add scrapers/burkinafaso/dgre
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(burkinafaso/dgre): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

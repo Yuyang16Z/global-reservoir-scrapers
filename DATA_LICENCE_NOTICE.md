@@ -49,9 +49,11 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `southafrica/dws_weekly` | DWS South Africa | `undeclared_review` | **No** |
 | `morocco/abhsm` | ABHSM (PDF bulletin) | `mixed_review` | **No** for the PDF-derived fields |
 | `malaysia/sarawak_rivers` | Sarawak iHydro | `undeclared_review` | **No** |
+| `burkinafaso/dgre` | DGRE Burkina Faso (decadal PDF notes) | `undeclared_review` | **No** |
 
-Seven of the eleven data paths currently in this repository are in the "no"
-column, and the repository carries no licence file of its own.
+Counting the nine African deployments listed further down, most data paths
+in this repository are in the "no" column, and the repository carries no
+licence file of its own.
 
 ## Options if the exposure is to be reduced later
 
@@ -84,6 +86,12 @@ observations permanently - that is why they run rather than wait. Their
 `licence_gate` in `config/windowed_sources.json` records that collection is
 internal and that redistribution needs a separate human decision.
 
+`burkinafaso/dgre` (added 2026-08-10) is the exception in mechanics but not
+in licence: DGRE keeps its decadal notes online (permanent archive), so the
+half-monthly workflow is a resilience copy rather than a race against
+overwriting, and the source is deliberately not in the windowed-source
+registry. Its terms are undeclared like the rest - see the table above.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -92,4 +100,5 @@ internal and that redistribution needs a separate human decision.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-08-04 (owner decision recorded the same day).
+Last reviewed: 2026-08-10 (burkinafaso/dgre row added; owner decision of
+2026-08-04 unchanged).
