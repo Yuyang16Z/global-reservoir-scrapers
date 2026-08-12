@@ -1,0 +1,2 @@
+﻿reservoir_id,reservoir_name,date,"level (water level, m)","storage (live storage, TMC)",storage_pct (% of design capacity),inflow (cusec),outflow (cusec)
+IN_APWRIMS_rajoli_anicut_00ae58ac,Rajoli Anicut,2025-10-07,14.38,0,,4322,2527
