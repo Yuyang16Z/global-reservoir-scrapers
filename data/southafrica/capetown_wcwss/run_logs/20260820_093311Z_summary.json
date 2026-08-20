@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-08-20 09:32:57Z",
+  "source": "southafrica/capetown_wcwss",
+  "url": "https://resource.capetown.gov.za/documentcentre/Documents/City%20research%20reports%20and%20review/damlevels.pdf",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/southafrica/capetown_wcwss",
+  "status": "source_unavailable",
+  "errors": [
+    {
+      "message": "503 Server Error: Service Unavailable for url: https://resource.capetown.gov.za/documentcentre/Documents/City%20research%20reports%20and%20review/damlevels.pdf",
+      "error_type": "HTTPError"
+    }
+  ],
+  "finished_at": "2026-08-20 09:33:11Z"
+}
