@@ -1,0 +1,19 @@
+{
+  "started_at": "2026-08-20 17:02:15Z",
+  "source": "ghana/vra",
+  "urls": [
+    "https://vra.com/resources/facts.php",
+    "https://vra.com/"
+  ],
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/ghana/vra",
+  "status": "ok",
+  "errors": [],
+  "readings": 2,
+  "date_range": [
+    "2026-08-19",
+    "2026-08-19"
+  ],
+  "rows_added": 1,
+  "rows_updated": 0,
+  "finished_at": "2026-08-20 17:02:19Z"
+}
