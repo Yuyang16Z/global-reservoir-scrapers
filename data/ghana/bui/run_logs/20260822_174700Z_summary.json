@@ -1,0 +1,25 @@
+{
+  "started_at": "2026-08-22 17:46:59Z",
+  "source": "ghana/bui",
+  "urls": [
+    "https://buipower.com/data/water-level-public.json",
+    "https://buipower.com/data/generation-public.json",
+    "https://buipower.com/api/power_status.php"
+  ],
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/ghana/bui",
+  "status": "ok",
+  "errors": [],
+  "level_records": 309,
+  "date_range": [
+    "2025-01-01",
+    "2026-04-27"
+  ],
+  "rows_added": 0,
+  "rows_updated": 0,
+  "raw_level_file": "water_level_20260822_174659Z.json",
+  "raw_generation_file": "generation_20260822_174659Z.json",
+  "spot_added": 0,
+  "spot_updated": 0,
+  "raw_status_file": "power_status_20260822_174659Z.json",
+  "finished_at": "2026-08-22 17:47:00Z"
+}
