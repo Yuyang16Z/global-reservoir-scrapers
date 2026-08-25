@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-08-25 09:35:15Z",
+  "source": "southafrica/capetown_wcwss",
+  "url": "https://resource.capetown.gov.za/documentcentre/Documents/City%20research%20reports%20and%20review/damlevels.pdf",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/southafrica/capetown_wcwss",
+  "status": "source_unavailable",
+  "errors": [
+    {
+      "message": "HTTPSConnectionPool(host='resource.capetown.gov.za', port=443): Max retries exceeded with url: /documentcentre/Documents/City%20research%20reports%20and%20review/damlevels.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='resource.capetown.gov.za', port=443) at 0x7fbe95923c50>, 'Connection to resource.capetown.gov.za timed out. (connect timeout=120)'))",
+      "error_type": "ConnectTimeout"
+    }
+  ],
+  "finished_at": "2026-08-25 09:41:27Z"
+}
