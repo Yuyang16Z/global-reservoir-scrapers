@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-08-25 17:03:27Z",
+  "source": "morocco/abht",
+  "url": "https://abht.ma/",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abht",
+  "status": "source_unavailable",
+  "errors": [
+    {
+      "message": "HTTPSConnectionPool(host='abht.ma', port=443): Read timed out. (read timeout=90)",
+      "error_type": "ReadTimeout"
+    }
+  ],
+  "finished_at": "2026-08-25 17:08:08Z"
+}
