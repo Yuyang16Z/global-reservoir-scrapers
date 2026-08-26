@@ -1,5 +1,5 @@
 {
-  "ran_at_utc": "2026-08-26 03:53:06",
+  "ran_at_utc": "2026-08-26 12:47:29",
   "source_url": "https://apwrims.ap.gov.in/",
   "status": "success",
   "reservoir_count": 118,
@@ -10,7 +10,6 @@
     "2025-10-07",
     "2025-10-08",
     "2026-07-29",
-    "2026-08-22",
     "2026-08-23",
     "2026-08-24",
     "2026-08-25",
@@ -21,7 +20,6 @@
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2025-10-07.csv",
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2025-10-08.csv",
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-07-29.csv",
-    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-08-22.csv",
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-08-23.csv",
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-08-24.csv",
     "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-08-25.csv",
