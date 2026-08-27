@@ -9,7 +9,8 @@ but Chinese and numeric values are wrapped in a custom-font obfuscation tag. The
 scraper decodes that payload by:
 
 1. inferring digit glyphs from encoded numeric fields;
-2. training Chinese text glyphs from existing OCR CSVs in `data/china/mwr`;
+2. training Chinese text glyphs from the read-only OCR CSV archive in
+   `data/china/mwr_ocr_archive`;
 3. applying a small `idNo` correction table for rare station-name characters.
 
 No login, captcha, or private endpoint is used.
