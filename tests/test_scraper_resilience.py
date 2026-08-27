@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,6 +19,7 @@ def load_module(name: str, relative_path: str):
     spec = importlib.util.spec_from_file_location(name, ROOT / relative_path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -37,6 +39,10 @@ freshness = load_module(
 capetown = load_module(
     "southafrica_capetown_wcwss_scraper",
     "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
+)
+pagasa = load_module(
+    "philippines_pagasa_scraper",
+    "scrapers/philippines/pagasa/philippines_pagasa_scraper.py",
 )
 
 
@@ -144,6 +150,48 @@ class CapeTownFallbackTests(unittest.TestCase):
         self.assertEqual(body, payload)
         self.assertEqual(url, capetown.FALLBACK_PDF_URL)
         self.assertEqual(get.call_count, 2)
+
+
+class PagasaFallbackTests(unittest.TestCase):
+    def test_official_fallback_follows_primary_timeout(self):
+        observation = pagasa.DailyObservation(
+            dam_name="Angat",
+            date="2026-08-27",
+            observation_time="08:00 AM",
+            rwl="192.83",
+            wl_deviation="0.21",
+            nhwl="210.00",
+            dev_nhwl="-17.17",
+            rule_curve="183.05",
+            dev_rule_curve="9.78",
+            gates="",
+            meters="",
+            inflow="",
+            outflow="",
+        )
+        session = mock.Mock()
+        with mock.patch.object(
+            pagasa,
+            "fetch_html",
+            side_effect=[requests.ConnectTimeout("primary timeout"), "<html></html>"],
+        ) as fetch, mock.patch.object(
+            pagasa,
+            "extract_page_timestamp",
+            return_value=("August 27,2026 08:00:00 am", pagasa.date(2026, 8, 27)),
+        ), mock.patch.object(
+            pagasa,
+            "find_dam_table",
+            return_value=object(),
+        ), mock.patch.object(
+            pagasa,
+            "parse_dam_table",
+            return_value=[observation],
+        ):
+            _, url, _, page_date, observations = pagasa.fetch_pagasa_page(session)
+        self.assertEqual(url, pagasa.FALLBACK_SOURCE_URL)
+        self.assertEqual(page_date.isoformat(), "2026-08-27")
+        self.assertEqual(observations, [observation])
+        self.assertEqual(fetch.call_count, 2)
 
 
 class FreshnessComponentTests(unittest.TestCase):

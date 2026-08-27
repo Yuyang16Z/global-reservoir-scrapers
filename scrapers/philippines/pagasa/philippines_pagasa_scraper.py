@@ -33,8 +33,11 @@ from bs4 import BeautifulSoup
 
 
 SOURCE_URL = "https://www.pagasa.dost.gov.ph/flood"
+FALLBACK_SOURCE_URL = "https://staging.pagasa.dost.gov.ph/flood"
+SOURCE_URLS = (SOURCE_URL, FALLBACK_SOURCE_URL)
 SOURCE_AGENCY = "PAGASA-DOST"
-TIMEOUT = 30
+CONNECT_TIMEOUT = 10
+READ_TIMEOUT = 45
 PH_TZ = timezone(timedelta(hours=8))
 
 USER_AGENT = (
@@ -249,9 +252,32 @@ def parse_number_text(value: str) -> str:
 
 
 def fetch_html(url: str, session: requests.Session) -> str:
-    response = session.get(url, timeout=TIMEOUT)
+    response = session.get(url, timeout=(CONNECT_TIMEOUT, READ_TIMEOUT))
     response.raise_for_status()
     return response.text
+
+
+def fetch_pagasa_page(
+    session: requests.Session,
+    source_urls: tuple[str, ...] = SOURCE_URLS,
+) -> tuple[str, str, str, date, list[DailyObservation]]:
+    """Fetch and validate the first usable official PAGASA flood page."""
+    errors: list[str] = []
+    for index, url in enumerate(source_urls):
+        try:
+            html = fetch_html(url, session)
+            soup = BeautifulSoup(html, "html.parser")
+            page_header, page_date = extract_page_timestamp(soup)
+            observations = parse_dam_table(find_dam_table(soup), page_date)
+            if not observations:
+                raise RuntimeError("dam status table contained no observations")
+            if index:
+                print(f"[WARN] using official PAGASA fallback: {url}", file=sys.stderr)
+            return html, url, page_header, page_date, observations
+        except Exception as exc:
+            errors.append(f"{url}: {exc}")
+            print(f"[WARN] PAGASA fetch failed for {url}: {exc}", file=sys.stderr)
+    raise RuntimeError("All official PAGASA endpoints failed: " + " | ".join(errors))
 
 
 def save_text(path: Path, text: str) -> None:
@@ -501,15 +527,11 @@ def main() -> int:
         print(f"[INFO] OUTPUT_DIR = {output_dir}")
         session = requests.Session()
         session.headers.update({"User-Agent": USER_AGENT})
-        html = fetch_html(SOURCE_URL, session)
+        html, fetch_url, page_header, page_date, observations = fetch_pagasa_page(
+            session
+        )
         if save_raw:
             save_text(raw_dir / f"flood_{run_stamp}.html", html)
-
-        soup = BeautifulSoup(html, "html.parser")
-        page_header, page_date = extract_page_timestamp(soup)
-
-        table = find_dam_table(soup)
-        observations = parse_dam_table(table, page_date)
 
         by_dam_today: dict[str, DailyObservation] = {}
         snapshots_by_date: dict[str, list[dict[str, str]]] = {}
@@ -538,6 +560,7 @@ def main() -> int:
         summary.update(
             {
                 "status": "success",
+                "fetch_url": fetch_url,
                 "page_header": page_header,
                 "page_date": page_date.isoformat(),
                 "dam_count": len(metadata_rows),
