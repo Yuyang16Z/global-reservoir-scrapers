@@ -42,6 +42,42 @@ def audit_source(source: dict) -> list[str]:
         if not isinstance(source[field], str) or not source[field].strip():
             issues.append(f"{source_id}: {field} must be documented")
 
+    components = source.get("freshness_components")
+    if components is not None:
+        if not isinstance(components, list) or not components:
+            issues.append(f"{source_id}: freshness_components must be a non-empty list")
+        else:
+            seen_components = set()
+            source_data_path = Path(source["data_path"])
+            for component in components:
+                if not isinstance(component, dict):
+                    issues.append(f"{source_id}: freshness component must be an object")
+                    continue
+                name = component.get("name")
+                data_path = component.get("data_path")
+                if not isinstance(name, str) or not name.strip():
+                    issues.append(f"{source_id}: freshness component requires name")
+                elif name in seen_components:
+                    issues.append(f"{source_id}: duplicate freshness component {name}")
+                else:
+                    seen_components.add(name)
+                if not isinstance(data_path, str) or not data_path:
+                    issues.append(
+                        f"{source_id}: freshness component {name!r} requires data_path"
+                    )
+                    continue
+                component_path = Path(data_path)
+                if not component_path.is_relative_to(source_data_path):
+                    issues.append(
+                        f"{source_id}: freshness component {name!r} must stay under "
+                        f"{source['data_path']}"
+                    )
+                if source["deployment_status"] == ACTIVE and not (ROOT / component_path).is_dir():
+                    issues.append(
+                        f"{source_id}: freshness component {name!r} data path does not exist: "
+                        f"{data_path}"
+                    )
+
     if source["deployment_status"] != ACTIVE:
         return issues
 
@@ -146,4 +182,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

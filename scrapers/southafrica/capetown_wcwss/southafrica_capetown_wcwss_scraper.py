@@ -3,6 +3,7 @@
 Source:
 - https://resource.capetown.gov.za/documentcentre/Documents/
   City%20research%20reports%20and%20review/damlevels.pdf
+- https://web1.capetown.gov.za/web1/newsandnotices/site-media/documents/damlevels.pdf
   ("Weekly Water Dashboard", City of Cape Town)
 
 Why this source exists in the repo:
@@ -58,11 +59,20 @@ TS_DIR = OUTPUT_DIR / "timeseries"
 META_DIR = OUTPUT_DIR / "metadata"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
-PDF_URL = ("https://resource.capetown.gov.za/documentcentre/Documents/"
-           "City%20research%20reports%20and%20review/damlevels.pdf")
-SOURCE_PAGE = "https://www.capetown.gov.za/Family%20and%20home/residential-utility-services/residential-water-and-sanitation-services/this-weeks-dam-levels"
+PRIMARY_PDF_URL = (
+    "https://resource.capetown.gov.za/documentcentre/Documents/"
+    "City%20research%20reports%20and%20review/damlevels.pdf"
+)
+FALLBACK_PDF_URL = (
+    "https://web1.capetown.gov.za/web1/newsandnotices/"
+    "site-media/documents/damlevels.pdf"
+)
+PDF_URLS = (PRIMARY_PDF_URL, FALLBACK_PDF_URL)
+SOURCE_PAGE = "https://web1.capetown.gov.za/web1/newsandnotices/Home/Release/dam-levels"
 SOURCE_AGENCY = "City of Cape Town"
 TIMEOUT = 120
+CONNECT_TIMEOUT = 15
+PDF_MIN_BYTES = 50_000
 REQUEST_ATTEMPTS = 3
 REQUEST_BACKOFFS = (2, 8, 20)
 
@@ -124,21 +134,48 @@ def strip_accents(s: str) -> str:
                    if unicodedata.category(c) != "Mn")
 
 
-def fetch_pdf() -> bytes:
+def fetch_pdf() -> tuple[bytes, str]:
     last_exc: Exception | None = None
-    for attempt in range(1, REQUEST_ATTEMPTS + 1):
-        try:
-            r = requests.get(PDF_URL, headers=HEADERS, timeout=TIMEOUT)
-            r.raise_for_status()
-            if not r.content.startswith(b"%PDF"):
-                raise RuntimeError("dashboard URL did not return a PDF")
-            return r.content
-        except requests.RequestException as exc:
-            last_exc = exc
-            print(f"[WARN] dashboard fetch attempt {attempt}/{REQUEST_ATTEMPTS}: "
-                  f"{exc}", file=sys.stderr, flush=True)
-            if attempt < REQUEST_ATTEMPTS:
-                time.sleep(REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)])
+    for url_index, url in enumerate(PDF_URLS):
+        # The legacy document-centre host is retained as the preferred canonical
+        # URL, but a connect timeout should move promptly to the City's official
+        # news-and-notices media endpoint.
+        attempts = 1 if url_index == 0 else REQUEST_ATTEMPTS
+        for attempt in range(1, attempts + 1):
+            try:
+                r = requests.get(
+                    url,
+                    headers=HEADERS,
+                    timeout=(CONNECT_TIMEOUT, TIMEOUT),
+                )
+                r.raise_for_status()
+                if len(r.content) < PDF_MIN_BYTES or not r.content.startswith(b"%PDF"):
+                    raise RuntimeError(
+                        f"dashboard URL did not return a plausible PDF ({len(r.content)} bytes)"
+                    )
+                return r.content, url
+            except requests.RequestException as exc:
+                last_exc = exc
+                print(
+                    f"[WARN] dashboard fetch {url} attempt {attempt}/{attempts}: {exc}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                if attempt < attempts:
+                    time.sleep(
+                        REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)]
+                    )
+            except RuntimeError as exc:
+                last_exc = exc
+                print(
+                    f"[WARN] dashboard validation {url} attempt {attempt}/{attempts}: {exc}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                if attempt < attempts:
+                    time.sleep(
+                        REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)]
+                    )
     assert last_exc is not None
     raise last_exc
 
@@ -247,7 +284,12 @@ def merge_csv(path: Path, columns: list[str], new_rows: list[dict],
         existing[key] = norm
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=columns, extrasaction="ignore")
+        w = csv.DictWriter(
+            f,
+            fieldnames=columns,
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         w.writeheader()
         for key in sorted(existing):
             w.writerow(existing[key])
@@ -268,10 +310,11 @@ def main() -> int:
     ensure_dirs()
     fetched_at = utc_now_iso()
     log = {"started_at": fetched_at, "source": "southafrica/capetown_wcwss",
-           "url": PDF_URL, "output_dir": str(OUTPUT_DIR), "status": "started",
+           "urls": list(PDF_URLS), "output_dir": str(OUTPUT_DIR), "status": "started",
            "errors": []}
     try:
-        body = fetch_pdf()
+        body, fetched_url = fetch_pdf()
+        log["fetched_url"] = fetched_url
         tmp = RAW_DIR / f"damlevels_{utc_stamp()}.pdf"
         tmp.write_bytes(body)
         obs_date, rows = parse_dashboard(tmp, fetched_at)
