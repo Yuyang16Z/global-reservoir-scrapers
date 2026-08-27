@@ -119,6 +119,16 @@ class TaiwanFallbackTests(unittest.TestCase):
             self.assertEqual({row["reservoir_id"] for row in rows}, {"A", "B"})
             self.assertEqual(taiwan.backfill_archived_current_daily(dirs, {}, {}), [])
 
+    def test_existing_current_fallback_is_reported_as_archived(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            daily_dir = Path(tmp)
+            (daily_dir / "taiwan_timeseries_2026-08-26.csv").touch()
+            status, note = taiwan.describe_current_daily_fallback(
+                "2026-08-26", False, [], daily_dir
+            )
+        self.assertEqual(status, "already_archived")
+        self.assertIn("2026-08-26 was already archived", note)
+
 
 class CapeTownFallbackTests(unittest.TestCase):
     def test_official_media_endpoint_follows_primary_timeout(self):

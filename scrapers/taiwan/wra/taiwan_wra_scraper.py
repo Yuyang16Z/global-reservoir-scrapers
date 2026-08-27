@@ -728,6 +728,31 @@ def backfill_archived_current_daily(
     return recovered
 
 
+def describe_current_daily_fallback(
+    snapshot_date: str | None,
+    fallback_used: bool,
+    recovered: list[dict[str, Any]],
+    daily_dir: Path,
+) -> tuple[str, str]:
+    recovered_dates = {str(item.get("date") or "") for item in recovered}
+    if snapshot_date and (fallback_used or snapshot_date in recovered_dates):
+        return (
+            "captured",
+            f"Captured the official current daily snapshot for {snapshot_date} instead.",
+        )
+    if snapshot_date and (
+        daily_dir / f"taiwan_timeseries_{snapshot_date}.csv"
+    ).is_file():
+        return (
+            "already_archived",
+            f"The official current daily snapshot for {snapshot_date} was already archived.",
+        )
+    return (
+        "unavailable",
+        "No current daily fallback fell inside the requested window.",
+    )
+
+
 def upsert_metadata(
     path: Path,
     basic_info_map: dict[str, dict],
@@ -1011,14 +1036,15 @@ def main() -> int:
         if daily_unavailable:
             summary["source_unavailable_dates"] = daily_unavailable
             summary["historical_endpoint_status"] = "unavailable"
+            fallback_status, fallback_note = describe_current_daily_fallback(
+                current_daily_snapshot_date,
+                current_daily_fallback_used,
+                recovered,
+                dirs["daily"],
+            )
+            summary["current_daily_fallback_status"] = fallback_status
             emit_workflow_warning(
-                "The historical daily endpoint is unavailable. "
-                + (
-                    f"Captured the official current daily snapshot for "
-                    f"{current_daily_snapshot_date} instead."
-                    if current_daily_fallback_used or recovered
-                    else "No current daily fallback fell inside the requested window."
-                )
+                "The historical daily endpoint is unavailable. " + fallback_note
             )
         if daily_success == 0 and daily_skipped != len(dates):
             if daily_unavailable:
