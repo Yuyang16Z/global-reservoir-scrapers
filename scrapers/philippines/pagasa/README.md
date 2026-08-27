@@ -34,5 +34,6 @@ Per snapshot:
 ## Known limits
 
 - PAGASA only publishes the **latest 2 days**; there is no historical API. We rely on daily scheduled runs to accrue a continuous record from install date forward.
+- If the canonical PAGASA host times out or returns an invalid table, the scraper validates and uses PAGASA's official `staging.pagasa.dost.gov.ph/flood` endpoint. The successful endpoint is recorded as `fetch_url` in each run summary.
 - `lat`/`lon`/`capacity_total`/`dam_height`/`year_built`/`main_use` are hardcoded in `DAM_REFERENCE` from public sources (Wikipedia, NPC, NIA, MWSS fact sheets). Verify if precision matters.
 - `dead_storage` and `frl` are not published by PAGASA here and are left blank.
