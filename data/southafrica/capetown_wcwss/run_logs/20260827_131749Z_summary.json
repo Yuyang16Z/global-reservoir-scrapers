@@ -1,0 +1,19 @@
+{
+  "started_at": "2026-08-27 13:17:29Z",
+  "source": "southafrica/capetown_wcwss",
+  "urls": [
+    "https://resource.capetown.gov.za/documentcentre/Documents/City%20research%20reports%20and%20review/damlevels.pdf",
+    "https://web1.capetown.gov.za/web1/newsandnotices/site-media/documents/damlevels.pdf"
+  ],
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/southafrica/capetown_wcwss",
+  "status": "ok",
+  "errors": [],
+  "fetched_url": "https://web1.capetown.gov.za/web1/newsandnotices/site-media/documents/damlevels.pdf",
+  "observation_date": "2026-08-24",
+  "rows_parsed": 12,
+  "dams": 6,
+  "rows_added": 0,
+  "rows_updated": 0,
+  "raw_file": "damlevels_2026-08-24.pdf",
+  "finished_at": "2026-08-27 13:17:49Z"
+}
