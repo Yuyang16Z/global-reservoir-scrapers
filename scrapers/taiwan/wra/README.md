@@ -37,6 +37,13 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 - The historical `fhy.wra.gov.tw` daily endpoint supplies the per-date values.
 - The `opendata.wra.gov.tw` current datasets supply names, current water level,
   storage percentage, and metadata enrichment.
+- If the historical endpoint returns HTTP 503, the run stops probing the rest
+  of that date window and records a `partial` result. The official current daily
+  dataset is archived under its own reported date as a fallback; it is never
+  relabelled as one of the unavailable historical dates.
+- Existing `raw/current_daily_ops_*.json` snapshots are used to recover missing
+  daily CSVs under their dominant source-reported date. This recovers only
+  observations actually archived by the project and does not invent gaps.
 - The current water-level dataset is also written out as an intraday table so the
   hourly observations are preserved instead of only keeping one latest snapshot per reservoir.
 - `lat` / `lon` are populated from `reservoir_coords.csv`, a static lookup derived

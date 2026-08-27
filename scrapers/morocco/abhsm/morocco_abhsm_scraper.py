@@ -19,14 +19,17 @@ import csv
 import json
 import os
 import re
+import ssl
 import sys
 import time
 import traceback
+import warnings
 from datetime import datetime
 from pathlib import Path
 
 import pdfplumber
 import requests
+import urllib3
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -42,6 +45,16 @@ PDF_URL = "https://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage
 SOURCE_PAGE_URL = "https://www.abhsm.ma/index.php/partenariat-5/situation-des-barrages"
 SOURCE_AGENCY = "ABHSM"
 TIMEOUT = 60
+PDF_MIN_BYTES = 50_000
+MAX_REPORT_AGE_DAYS = 7
+
+# ABHSM's wildcard certificate expired on 2026-07-26. Always attempt normal
+# CA verification first. This pin is a narrow fallback for that exact expired
+# certificate and exact official URL, so a different certificate fails closed.
+EXPIRED_CERT_SHA256 = (
+    "E7:3C:3D:4D:EF:82:A0:45:5D:6D:23:7A:4A:76:1E:6C:"
+    "4B:68:57:5B:E7:A7:F1:45:1C:4D:A6:4A:FA:EA:C2:F1"
+)
 
 DAMS = [
     {
@@ -216,24 +229,80 @@ def is_source_unavailable(exc: Exception) -> bool:
     return False
 
 
-def fetch_pdf(pdf_path: Path) -> None:
+def validate_pdf_payload(content: bytes) -> None:
+    if len(content) < PDF_MIN_BYTES:
+        raise RuntimeError(
+            f"ABHSM response is too small to be the reservoir PDF: {len(content)} bytes"
+        )
+    if not content.startswith(b"%PDF-"):
+        raise RuntimeError("ABHSM response does not have a PDF signature")
+
+
+def fetch_with_pinned_expired_certificate() -> bytes:
+    """Download on one TLS connection while authenticating the expired cert by pin."""
+    manager = urllib3.PoolManager(
+        cert_reqs=ssl.CERT_NONE,
+        assert_fingerprint=EXPIRED_CERT_SHA256,
+    )
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
+            response = manager.request(
+                "GET",
+                PDF_URL,
+                headers=HEADERS,
+                timeout=urllib3.Timeout(connect=15, read=TIMEOUT),
+                redirect=False,
+            )
+        if response.status != 200:
+            raise RuntimeError(
+                f"ABHSM pinned-certificate download returned HTTP {response.status}"
+            )
+        return response.data
+    finally:
+        manager.clear()
+
+
+def fetch_pdf(pdf_path: Path) -> str:
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
     last_exc: Exception | None = None
     for attempt in range(1, REQUEST_ATTEMPTS + 1):
         try:
             r = requests.get(PDF_URL, headers=HEADERS, timeout=TIMEOUT)
             r.raise_for_status()
-            pdf_path.write_bytes(r.content)
-            print(f"[SAVE] {pdf_path}")
-            return
+            content = r.content
+            transport = "verified_tls"
+        except requests.exceptions.SSLError as exc:
+            if "certificate has expired" not in str(exc).lower():
+                raise
+            print(
+                "[WARN] ABHSM certificate is expired; using the pinned fingerprint "
+                "for this known certificate only",
+                file=sys.stderr,
+            )
+            content = fetch_with_pinned_expired_certificate()
+            transport = "pinned_expired_certificate"
         except requests.RequestException as exc:
             last_exc = exc
             print(f"[WARN] ABHSM fetch attempt {attempt}/{REQUEST_ATTEMPTS}: {exc}",
                   file=sys.stderr)
             if attempt < REQUEST_ATTEMPTS:
                 time.sleep(REQUEST_BACKOFFS[min(attempt - 1, len(REQUEST_BACKOFFS) - 1)])
+            continue
+        validate_pdf_payload(content)
+        pdf_path.write_bytes(content)
+        print(f"[SAVE] {pdf_path} transport={transport}")
+        return transport
     assert last_exc is not None
     raise last_exc
+
+
+def emit_workflow_warning(message: str) -> None:
+    print(f"::warning title=ABHSM source freshness::{message}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write(f"### ABHSM source warning\n\n{message}\n")
 
 
 def extract_text(pdf_path: Path) -> str:
@@ -320,22 +389,49 @@ def main() -> int:
 
     try:
         temp_pdf = RAW_DIR / f"{stamp}_latest.pdf"
-        fetch_pdf(temp_pdf)
+        transport = fetch_pdf(temp_pdf)
         report_date, snapshot_rows = parse_pdf(temp_pdf)
         final_pdf = RAW_DIR / f"{report_date}_situation_des_barrages_souss_massa.pdf"
-        if final_pdf.exists():
+        daily_path = DAILY_DIR / f"morocco_abhsm_timeseries_{report_date}.csv"
+        report_age_days = (
+            datetime.now().date() - datetime.strptime(report_date, "%Y-%m-%d").date()
+        ).days
+
+        if final_pdf.exists() and daily_path.exists() and (
+            final_pdf.read_bytes() == temp_pdf.read_bytes()
+        ):
             temp_pdf.unlink()
+            if report_age_days > MAX_REPORT_AGE_DAYS:
+                emit_workflow_warning(
+                    f"The official current PDF still reports {report_date} "
+                    f"({report_age_days} days old). The existing archive was preserved."
+                )
+            else:
+                print(f"[NO CHANGE] report {report_date} is already archived")
+            return 0
+
+        if final_pdf.exists():
+            revision_pdf = RAW_DIR / (
+                f"{report_date}_situation_des_barrages_souss_massa_{stamp}.pdf"
+            )
+            temp_pdf.rename(revision_pdf)
+            final_pdf = revision_pdf
         else:
             temp_pdf.rename(final_pdf)
         metadata_rows = build_metadata(fetched_at)
-        daily_path = DAILY_DIR / f"morocco_abhsm_timeseries_{report_date}.csv"
         write_csv(metadata_path, METADATA_COLUMNS, metadata_rows)
         write_csv(daily_path, SNAPSHOT_COLUMNS, snapshot_rows)
 
         summary["status"] = "ok"
         summary["report_date"] = report_date
+        summary["report_age_days"] = report_age_days
+        summary["transport_security"] = transport
         summary["rows"] = len(snapshot_rows)
         summary["files"] = [str(metadata_path), str(daily_path), str(final_pdf)]
+        if report_age_days > MAX_REPORT_AGE_DAYS:
+            emit_workflow_warning(
+                f"Archived report {report_date}, but it is {report_age_days} days old."
+            )
         save_summary(log_path, summary)
         return 0
     except Exception as e:

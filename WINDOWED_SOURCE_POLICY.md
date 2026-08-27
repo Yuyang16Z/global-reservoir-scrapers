@@ -91,6 +91,10 @@ Each deployment must expose enough evidence to detect silent failure:
 - consecutive no-data or failed runs; and
 - any source schema or URL change.
 
+When one workflow produces independently useful products (for example daily
+and intraday tables), register `freshness_components` and evaluate every product
+separately. A fresh high-frequency snapshot must not hide a stale daily series.
+
 When the latest archived observation is older than the expected publication
 cadence plus the documented grace period, treat the source as stale and repair
 or manually rerun it before the retention window closes.
@@ -106,4 +110,3 @@ A new windowed source may be marked complete only when:
 - a repeated run proves idempotency;
 - recovery/backfill inputs have been tested; and
 - licence and public-archive eligibility have been reviewed.
-

@@ -142,6 +142,16 @@
       "workflow": ".github/workflows/taiwan_wra.yml",
       "scraper": "scrapers/taiwan/wra/taiwan_wra_scraper.py",
       "data_path": "data/taiwan/wra",
+      "freshness_components": [
+        {
+          "name": "daily",
+          "data_path": "data/taiwan/wra/timeseries/daily"
+        },
+        {
+          "name": "intraday",
+          "data_path": "data/taiwan/wra/timeseries/intraday"
+        }
+      ],
       "deployment_status": "active",
       "licence_gate": "Public commit requires the recorded WRA licence and attribution evidence."
     },

@@ -139,6 +139,38 @@ def newest_observation(data_dir: Path) -> str | None:
     return best
 
 
+def freshness_targets(source: dict) -> list[dict]:
+    """Return independently monitored data products for one source."""
+    components = source.get("freshness_components")
+    if not components:
+        return [
+            {
+                "source_id": source["source_id"],
+                "data_path": source["data_path"],
+                "publication_cadence_hours": source.get("publication_cadence_hours"),
+                "max_schedule_gap_hours": source.get("max_schedule_gap_hours"),
+            }
+        ]
+    targets = []
+    for component in components:
+        targets.append(
+            {
+                "source_id": f"{source['source_id']}:{component['name']}",
+                "base_source_id": source["source_id"],
+                "data_path": component["data_path"],
+                "publication_cadence_hours": component.get(
+                    "publication_cadence_hours",
+                    source.get("publication_cadence_hours"),
+                ),
+                "max_schedule_gap_hours": component.get(
+                    "max_schedule_gap_hours",
+                    source.get("max_schedule_gap_hours"),
+                ),
+            }
+        )
+    return targets
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", type=Path, help="write the full report here")
@@ -158,39 +190,43 @@ def main() -> int:
             rows.append({"source_id": sid, "state": "not_active",
                          "deployment_status": source.get("deployment_status")})
             continue
-        data_dir = ROOT / source["data_path"]
-        if not data_dir.is_dir():
-            rows.append({"source_id": sid, "state": "no_data_dir",
-                         "data_path": source["data_path"]})
-            continue
+        run = newest_run(ROOT / source["data_path"])
+        for target in freshness_targets(source):
+            target_sid = target["source_id"]
+            data_dir = ROOT / target["data_path"]
+            if not data_dir.is_dir():
+                rows.append({"source_id": target_sid, "state": "no_data_dir",
+                             "data_path": target["data_path"]})
+                continue
 
-        cadence = float(source.get("publication_cadence_hours") or 24)
-        grace = float(source.get("max_schedule_gap_hours") or cadence)
-        budget_h = cadence * STALE_CADENCE_FACTOR + grace
+            cadence = float(target.get("publication_cadence_hours") or 24)
+            grace = float(target.get("max_schedule_gap_hours") or cadence)
+            budget_h = cadence * STALE_CADENCE_FACTOR + grace
 
-        run = newest_run(data_dir)
-        obs = newest_observation(data_dir)
-        obs_dt = parse_iso(obs) if obs else None
-        obs_age_h = (now - obs_dt).total_seconds() / 3600 if obs_dt else None
-        run_dt = parse_iso(str(run.get("finished_at") or run.get("started_at") or ""))
-        run_age_h = (now - run_dt).total_seconds() / 3600 if run_dt else None
+            obs = newest_observation(data_dir)
+            obs_dt = parse_iso(obs) if obs else None
+            obs_age_h = (now - obs_dt).total_seconds() / 3600 if obs_dt else None
+            run_dt = parse_iso(str(run.get("finished_at") or run.get("started_at") or ""))
+            run_age_h = (now - run_dt).total_seconds() / 3600 if run_dt else None
 
-        stale = obs_age_h is not None and obs_age_h > budget_h
-        row = {
-            "source_id": sid,
-            "state": "stale" if stale else "fresh",
-            "latest_observation": obs,
-            "observation_age_hours": round(obs_age_h, 1) if obs_age_h is not None else None,
-            "stale_after_hours": round(budget_h, 1),
-            "latest_run_status": run.get("status"),
-            "latest_run_age_hours": round(run_age_h, 1) if run_age_h is not None else None,
-            "recent_run_statuses": run.get("recent_statuses"),
-        }
-        if obs_age_h is None:
-            row["state"] = "no_observation_date"
-        if sid in EXCUSED:
-            row["excused"] = EXCUSED[sid]
-        rows.append(row)
+            stale = obs_age_h is not None and obs_age_h > budget_h
+            row = {
+                "source_id": target_sid,
+                "base_source_id": target.get("base_source_id", sid),
+                "data_path": target["data_path"],
+                "state": "stale" if stale else "fresh",
+                "latest_observation": obs,
+                "observation_age_hours": round(obs_age_h, 1) if obs_age_h is not None else None,
+                "stale_after_hours": round(budget_h, 1),
+                "latest_run_status": run.get("status"),
+                "latest_run_age_hours": round(run_age_h, 1) if run_age_h is not None else None,
+                "recent_run_statuses": run.get("recent_statuses"),
+            }
+            if obs_age_h is None:
+                row["state"] = "no_observation_date"
+            if sid in EXCUSED:
+                row["excused"] = EXCUSED[sid]
+            rows.append(row)
 
     problems = [r for r in rows
                 if r["state"] in {"stale", "no_observation_date", "no_data_dir"}
@@ -210,7 +246,7 @@ def main() -> int:
                   f"age={age_s:>7} / budget={budget_s:>7} "
                   f"run={r.get('latest_run_status') or '-'}{note}")
         print()
-        print(f"{len(rows)} registered source(s); {len(problems)} need attention")
+        print(f"{len(rows)} freshness target(s); {len(problems)} need attention")
 
     report = {
         "generated_at": now.isoformat(timespec="seconds"),
