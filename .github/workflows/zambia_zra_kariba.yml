@@ -1,0 +1,69 @@
+name: Zambia ZRA Lake Kariba levels
+
+on:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # Twice weekly plus the 1st of the month. The daily lake-levels table is a
+    # ROLLING WINDOW of about a fortnight: a day that is not captured within
+    # two weeks is gone, so twice a week leaves ample margin while staying
+    # light on the source. The 1st also catches the monthly reservoir table
+    # just after the month turns and it is replaced.
+    - cron: "40 6 * * 1"
+    - cron: "40 6 * * 4"
+    - cron: "40 6 1 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zambia-zra-kariba
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/zambia/zra_kariba
+        run: python scrapers/zambia/zra_kariba/zambia_zra_kariba_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/zambia/zra_kariba
+          git add scrapers/zambia/zra_kariba
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(zambia/zra_kariba): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

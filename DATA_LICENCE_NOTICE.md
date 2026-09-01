@@ -51,6 +51,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `malaysia/sarawak_rivers` | Sarawak iHydro | `undeclared_review` | **No** |
 | `burkinafaso/dgre` | DGRE Burkina Faso (decadal PDF notes) | `undeclared_review` | **No** |
 | `lesotho/lhda` | LHDA Lesotho (homepage dam widget) | `undeclared_review` | **No** |
+| `zambia/zra_kariba` | ZRA (Zambezi River Authority) | `undeclared_review` | **No** |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
