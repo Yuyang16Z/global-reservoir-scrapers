@@ -1,0 +1,66 @@
+name: Lesotho LHDA dam fill rates
+
+on:
+  # Collection is deliberate and internal: this source's data carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 07:20 and 16:20 SAST. The homepage widget shows one figure per dam and is
+    # overwritten in place, so an unobserved change is lost; the second run
+    # recovers a failed morning run within the same day.
+    - cron: "20 5 * * *"
+    - cron: "20 14 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lesotho-lhda
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/lesotho/lhda
+        run: python scrapers/lesotho/lhda/lesotho_lhda_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lesotho/lhda
+          git add scrapers/lesotho/lhda
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(lesotho/lhda): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
