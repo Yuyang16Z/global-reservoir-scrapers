@@ -1,0 +1,21 @@
+{
+  "source": "lesotho/lhda",
+  "started_at": "2026-09-02T093827Z",
+  "url": "https://www.lhda.org.ls/",
+  "status": "ok",
+  "rows_seen": 2,
+  "rows_added": 0,
+  "observations": [
+    {
+      "measurement_date": "2026-08-30",
+      "reservoir_name": "Katse",
+      "storage_pct": "80.94"
+    },
+    {
+      "measurement_date": "2026-08-30",
+      "reservoir_name": "Mohale",
+      "storage_pct": "100.16"
+    }
+  ],
+  "finished_at": "2026-09-02T093830Z"
+}
