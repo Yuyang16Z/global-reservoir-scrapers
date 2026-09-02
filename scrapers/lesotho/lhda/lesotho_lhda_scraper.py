@@ -122,12 +122,31 @@ def parse(page: str) -> list[dict]:
             log(f"  [skip] {canonical}: block found but "
                 f"{'percentage' if not pct else 'date'} missing")
             continue
+        # The widget is hand-maintained and has printed a malformed figure at
+        # least once: the 2024-08-04 reading went out as "79.18.66% of the
+        # capacity", apparently a leftover from the previous value. There is no
+        # way to tell whether that meant 79.1, 79.18 or 8.66, so the reading is
+        # refused rather than guessed at - a percentage that is not a plain
+        # number in a plausible range is not data.
+        raw = pct.group(1)
+        try:
+            value = float(raw)
+        except ValueError:
+            log(f"  [skip] {canonical}: percentage {raw!r} is not a number; "
+                f"the widget printed something malformed")
+            continue
+        if not 0.0 <= value <= 150.0:
+            # Mohale legitimately reads a little over 100 when it is spilling,
+            # so the ceiling is generous; this catches a misread, not a full dam.
+            log(f"  [skip] {canonical}: percentage {value} out of range")
+            continue
+
         d, m, y = date.groups()
         out.append({
             "measurement_date": f"{y}-{m}-{d}",
             "reservoir_id": f"LS_LHDA_{canonical.upper()}",
             "reservoir_name": canonical,
-            "storage_pct": pct.group(1),
+            "storage_pct": raw,
         })
     return out
 
