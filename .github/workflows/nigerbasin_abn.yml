@@ -1,0 +1,69 @@
+name: Niger Basin Authority hydrological bulletins
+
+on:
+  # Collection is deliberate and internal: this source carries
+  # `undeclared_review` terms (see DATA_LICENCE_NOTICE.md) and is gathered here
+  # for research. Redistribution is a separate, human-confirmed step - presence
+  # in this repository is not permission to republish.
+  schedule:
+    # 06:20 UTC on the 3rd and 18th. ABN publishes monthly and keeps published
+    # bulletins online (permanent archive), so this is a resilience copy on the
+    # owner's half-monthly cadence, not a race against overwriting. The agency
+    # has changed its document layout once already, which is why the copy is
+    # worth keeping.
+    - cron: "20 6 3 * *"
+    - cron: "20 6 18 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nigerbasin-abn
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    # a new bulletin is roughly 1 MB and the host is not fast
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/nigerbasin/abn
+        run: python scrapers/nigerbasin/abn/nigerbasin_abn_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/nigerbasin/abn
+          git add scrapers/nigerbasin/abn
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(nigerbasin/abn): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
