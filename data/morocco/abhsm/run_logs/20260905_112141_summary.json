@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-09-05 11:21:41",
+  "source_agency": "ABHSM",
+  "source_url": "https://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abhsm",
+  "status": "source_unavailable",
+  "files": [],
+  "errors": [
+    {
+      "message": "HTTPSConnectionPool(host='www.abhsm.ma', port=443): Max retries exceeded with url: /document/Remplissage_barrage/remplissage_barrage.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.abhsm.ma', port=443) at 0x7f340292e090>, 'Connection to www.abhsm.ma timed out. (connect timeout=60)'))",
+      "error_type": "ConnectTimeout"
+    }
+  ]
+}
