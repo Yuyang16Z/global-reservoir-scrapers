@@ -60,6 +60,18 @@ SITES = {
         "time": ("mdh", r"(\d{1,2})月(\d{1,2})日\s*(\d{1,2})時現在"),
         "min_cols": 5,
     },
+    "Yamaguchi": {
+        "jp": "山口県",
+        "url": "https://y-bousai.pref.yamaguchi.lg.jp/citizen/dam/kdm_station_list.aspx",
+        "name_col": 2,
+        # 0=事務所 1=市町 2=ダム局 3=流入量(m3/s) 4=全放流量(m3/s) 5..=状態/放流開始時刻
+        "vars": {3: ("total_inflow_m3s", 1.0), 4: ("total_outflow_m3s", 1.0)},
+        # This page carries no level or storage; the per-dam pages that do are an
+        # ASP.NET WebForms postback behind __VIEWSTATE and are not read here.
+        "capacity": None,
+        "time": ("ymdhm", r"(20\d\d)[年/\-](\d{1,2})[月/\-](\d{1,2})日?\s*(\d{1,2})[:時](\d{2})"),
+        "min_cols": 5,
+    },
     "Hyogo": {
         "jp": "兵庫県",
         "url": "http://web.pref.hyogo.lg.jp/kc02/ea02_000000005.html",
@@ -189,7 +201,8 @@ def main() -> int:
 
     OUT.mkdir(parents=True, exist_ok=True)
     cols = ["site", "site_jp", "dam_jp", "observed_at",
-            "water_level_m", "storage_mcm", "storage_pct_usable"]
+            "water_level_m", "storage_mcm", "storage_pct_usable",
+            "total_inflow_m3s", "total_outflow_m3s"]
     acc = OUT / "accumulated.csv"
     seen = set()
     if acc.exists():

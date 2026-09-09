@@ -454,8 +454,8 @@
       ],
       "max_schedule_gap_hours": 2,
       "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Append-only accumulator keyed on (site, dam_jp, observed_at). Fukushima republishes hourly; JWA and Hyogo publish daily and dedup to one row per observation date.",
-      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima advances hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated.",
+      "overlap_strategy": "Append-only accumulator keyed on (site, dam_jp, observed_at). Fukushima and Yamaguchi republish hourly; JWA and Hyogo publish daily and dedup to one row per observation date.",
+      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima and Yamaguchi advance hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated.",
       "workflow": ".github/workflows/japan_prefectural_static.yml",
       "scraper": "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
       "data_path": "data/japan/prefectural_static",
@@ -503,6 +503,26 @@
       "data_path": "data/japan/kanagawa",
       "deployment_status": "active",
       "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Kanagawa Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/miyagi",
+      "country": "Japan",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 720,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "10 22 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (dam_jp, bulletin date parsed from the PDF); polling daily on a monthly bulletin simply re-reads the same issue until a new one appears.",
+      "schedule_rationale": "Only the current issue is kept: older dated filenames 404 (verified r80801/r80701/r80601/r80815 on 2026-09-09) and the Internet Archive holds three snapshots under three naming schemes, which is not a usable backfill. The bulletin is monthly but neither the publication day nor the filename convention is stable, so the landing page is polled daily and the link is read from it rather than constructed. Daily polling of a monthly issue gives far more than two capture opportunities.",
+      "workflow": ".github/workflows/japan_miyagi.yml",
+      "scraper": "scrapers/japan/miyagi/japan_miyagi_scraper.py",
+      "data_path": "data/japan/miyagi",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Miyagi Prefecture recorded in the scraper README."
     }
   ]
 }
