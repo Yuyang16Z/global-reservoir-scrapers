@@ -482,6 +482,27 @@
       "data_path": "data/srilanka/mahaweli",
       "deployment_status": "active",
       "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09; attribution to the Water Management Secretariat, Mahaweli Authority of Sri Lanka is recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/kanagawa",
+      "country": "Japan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "50 3 * * *",
+        "50 13 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (reservoir_code, lastUpdate); re-reading the same published day adds nothing.",
+      "schedule_rationale": "The API publishes one value per day via its own lastUpdate field. Its 30-point series cannot be dated -- the per-series dt is a generator cursor that decrements one hour per series in listing order -- so no history is retrievable and a missed day is unrecoverable. Captured twice daily with a wide separation so one failed run does not cost a day.",
+      "workflow": ".github/workflows/japan_kanagawa.yml",
+      "scraper": "scrapers/japan/kanagawa/japan_kanagawa_scraper.py",
+      "data_path": "data/japan/kanagawa",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Kanagawa Prefecture recorded in the scraper README."
     }
   ]
 }
