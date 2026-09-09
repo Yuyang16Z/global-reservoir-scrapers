@@ -1,0 +1,48 @@
+name: Japan prefectural static tables scrape
+
+# current_snapshot sources with no backfill path. Fukushima republishes hourly;
+# JWA Tone-Arakawa and Hyogo publish daily, where the accumulator dedups to one
+# row per observation date.
+on:
+  schedule:
+    - cron: "15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-prefectural-static
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/prefectural_static
+          TZ: Asia/Tokyo
+        run: python scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/prefectural_static scrapers/japan/prefectural_static
+          git add .github/workflows/japan_prefectural_static.yml
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/prefectural_static): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

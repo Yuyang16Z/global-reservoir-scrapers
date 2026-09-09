@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ja">
+
+<head>
+		<script type="text/javascript" src="../../config/analytics.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../config/contentsKind.js?_ad=2026-09-09-12-07"></script>
+	<!-- 2026-09-09-12-07 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0">
+	<title>ダム諸量一覧表 - 福島県河川流域総合情報システム</title>
+
+	<script type="text/javascript">
+	var group = 1;
+	var USER_GROUP = null;
+	var USER_ID = "";
+	var contextPath = "/pub";
+	var RELOAD_FLG = false;
+	var LINK_FLG = true;
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="../../res/js/lib/magnific-popup.css?_ad=2026-09-09-12-07">
+	<link rel="stylesheet" type="text/css" href="../../res/js/lib/flatpickr-4.6.3/dist/flatpickr.min.css?_ad=2026-09-09-12-07">
+	<link rel="stylesheet" type="text/css" href="../../res/css/common.css?_ad=2026-09-09-12-07">
+	<link rel="stylesheet" type="text/css" href="../../res/css/asideMenu.css?_ad=2026-09-09-12-07">
+	<link rel="stylesheet" type="text/css" href="../../res/css/list.css?_ad=2026-09-09-12-07">
+	<link rel="stylesheet" type="text/css" href="../../res/css/overwrite_pub.css?_ad=2026-09-09-12-07">
+	<script type="text/javascript" src="../../res/js/lib/jquery.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/lib/jquery.magnific-popup.min.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/lib/flatpickr-4.6.3/dist/flatpickr.min.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/lib/flatpickr-4.6.3/dist/l10n/ja.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/lib/flatpickr-4.6.3/dist/plugins/minMaxTimePlugin.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/lib/endless-river-master-2.0.0/js/endless-river.js?_ad=2026-09-09-12-07"></script>
+	<link rel="stylesheet" type="text/css" href="../../res/js/lib/endless-river-master-2.0.0/css/endless-river.css?_ad=2026-09-09-12-07">
+	<script type="text/javascript" src="../../res/js/contentsConfig.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/common_utils.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/AjaxManager.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/msgConfig.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/calendar_flatpickr.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/common_pub.js?_ad=2026-09-09-12-07"></script>
+	<script type="text/javascript" src="../../res/js/common.js?_ad=2026-09-09-12-07"></script>
+
+	<link rel="stylesheet" type="text/css" href="../../res/css/telem.css?_ad=2026-09-09-12-07" />
+	<script type="text/javascript" src="../../res/js/telem/telem.js?_ad=2026-09-09-12-07"></script>
+<script type="text/javascript">
+var TIME_LINE_CNT = 1;
+</script>
+</head>
+
+<body>
+	<div id="bodyBack">
+				<div id="header" class="header flexbox jc-c">
+			<div class="header_box">
+				<ul class="header_items">
+					<li class="header_item title">
+						<span id="system_name"><img src="../../res/img/common/icon_logo.png" alt="" />福島県河川流域総合情報システム</span>
+					</li>
+					<li class="header_item">
+						<div class="globalNav">
+							<ul class="globalNav_items">
+								<li class="globalNav_item  is_current"><a class="item_label"  href="javascript:void(0)" onclick="changeParams('disp,page','010101,1',this);"><span>河川情報</span></a></li>
+								<li id="gnavi_weather" class="globalNav_item "><a class="item_label" href="https://www.jma.go.jp/bosai/warning/#area_type=offices&area_code=070000&lang=ja" target="_blank"><span>気象情報</span></a></li>
+								<li class="globalNav_item "><a class="item_label"  href="javascript:void(0)" onclick="changeParams('disp,grid','030101,1',this);"><span>水防情報</span></a></li>
+								<li class="globalNav_item "><a class="item_label"  href="javascript:void(0)" onclick="changeParams('disp','040101',this);"><span>メール配信登録</span></a></li>
+								<li class="globalNav_item "><a class="item_label"  href="javascript:void(0)" onclick="changeParams('disp','040201',this);"><span>ご利用にあたって</span></a></li>
+								<li id="gnavi_otherLink" class="globalNav_item "><a class="item_label"  href="javascript:void(0)" onclick="changeParams('disp','040203',this);"><span>関連リンク</span></a></li>
+								<li id="mainteLogin" class="globalNav_item contentsKindHideItem"><a class="item_label" href="/mainte/" target="_blank"><span>職員向けログイン</span></a></li>
+							</ul><!-- .globalNav_items -->
+						</div><!-- .globalNav -->
+					</li>
+				</ul><!-- .header_items -->
+				<ul class="header_items">
+					<li class="header_item">
+						<button type="button" class="helpBtn" onclick="openResDoc('help.pdf');"></button>
+					</li>
+				</ul><!-- .header_items -->
+			</div><!-- .header_box -->
+		</div><!-- .header -->
+		<div class="pageInfoContainer">
+			<div class="pageInfo">
+				<ul class="alartNews">
+					<li class="newsLabel">緊急新着情報</li>
+					<li data-alart="kozui" class="alartItem suibou" onclick="changeParams('disp,grid','030201,1',this);">洪水予報</li>
+					<li data-alart="suibouRiver" class="alartItem suibou" onclick="changeParams('disp,grid','030301,1',this);">水防警報(河川)</li>
+					<li data-alart="suibouCoast" class="alartItem suibou" onclick="changeParams('disp,grid','030302,1',this);">水防警報(海岸)</li>
+					<li data-alart="hinanHandan" class="alartItem suibou" onclick="changeParams('disp,grid','030401,1',this);">避難判断水位</li>
+					<li data-alart="rainOver" class="alartItem" onclick="changeParams('disp,grid','010204,1',this);">雨量</li>
+					<li data-alart="stageOver" class="alartItem" onclick="changeParams('disp,grid','010304,1',this);">水位</li>
+					<li class="alartMsg on">緊急新着情報があります。ご注意ください。</li>
+					<li class="alartMsg off">緊急新着情報はありません。</li>
+				</ul><!-- /.alartNews -->
+				<div class="dataTime"><span>観測日時：</span><span class="obsTime" data-format="y/M/D H:I"></span><button type="button" class="funcBtn reload" onclick="updateLatest();">更新</button></div>
+			</div><!--/.pageInfo-->
+		</div><!--/.pageInfoContainer-->
+
+
+		<div id="mainContainer">
+			<div class="contents flexbox">
+				<form id="param" name="param" method="get" target="_self" action="/pub/disp?">
+								<input type="hidden" name="disp" value="010401" />
+			<input type="hidden" name="mode" value="60" />
+			<input type="hidden" name="last" value="0" />
+			<input type="hidden" name="etim" value="2026-09-09-12-00" />
+			<input type="hidden" name="ntim" value="0" />
+			<input type="hidden" name="grid" value="1" />
+
+				</form>
+
+					<div class="asideMenu">
+		<ul class="areaSelect-btn">
+			<li class="is-selected">
+				<span>全県</span>
+			</li>
+		</ul>
+	</div><!-- /asideMenu -->
+
+				<div class="mainContents">
+					<div class="dataHeaderBox">
+								<div class="dispMenuBox">
+			<ul class="tabSelect">
+				<li><a class="select_item" href="javascript:void(0)" onclick="changeParams('disp,page','010101,1',this);" data-inherit-param="mode,grid">概況図</a></li>
+				<li><a class="select_item" href="javascript:void(0)" onclick="changeParams('disp,grid','010201,1',this);" data-inherit-param="grid">雨量</a></li>
+				<li><a class="select_item" href="javascript:void(0)" onclick="changeParams('disp,grid','010301,1',this);" data-inherit-param="grid">水位</a></li>
+				<li class="is-selected"><span class="select_item">ダム</span></li>
+			</ul>
+			<ul class="dispSelect">
+				<li class="is-selected"><span>ダム諸量一覧表</span></li>
+				<li><a href="javascript:void(0)" onclick="changeParams('disp,grid','010402,1',this);" data-inherit-param="mode,last,etim,grid">ダム諸量経過表</a></li>
+			</ul>
+		</div><!-- /dispMenuBox -->
+
+
+						<div class="flexbox ai-c jc-sb">
+							<h2 class="pageTitle">ダム諸量一覧表</h2>
+							
+						</div>
+
+						
+			<div class="timeBox">
+				<div class="timeSet">
+					<span class="caption">日時指定</span><span class="date-lbl" id="disp_cal" data-format="y/M/D H:I">2026/09/09 12:00</span>
+<input type="hidden" class="date-input" id="cal" name="cal" value="2026-09-09-12-00" />
+				</div>
+			</div><!-- /timeBox -->
+
+					</div><!-- /dataHeaderBox -->
+
+					<div class="dataBox">
+
+						<table class="dataTbl">
+							<colgroup>
+								<col style="width:50px" />
+								<col style="width:auto" />
+								<col style="width:180px" span="4" />
+								<col style="width:200px" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th rowspan="2">No.</th>
+									<th rowspan="2">観測局名</th>
+									<th colspan="2">雨量</th>
+									<th rowspan="2">貯水位[m]</th>
+									<th rowspan="2">下流水位[m]</th>
+									<th rowspan="2">下流水位　観測局名</th>
+								</tr>
+								<tr>
+									<th>時間雨量[mm]</th>
+									<th>累加雨量[mm]</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td class="td_c">1</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,grid','010402,1',this);" data-inherit-param="mode,last,etim">こまちダム</a></td>
+
+									<td class="td_r rainfallLv2">5.0</td>
+
+									<td class="td_r rainfallLv5">38.0</td>
+
+									<td class="td_r">479.15</td>
+
+									<td class="td_r stageLv0">0.43</td>
+									<td class="td_c">赤沼</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">2</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,grid','010402,1',this);" data-inherit-param="mode,last,etim">千五沢ダム</a></td>
+
+									<td class="td_r rainfallLv1">4.0</td>
+
+									<td class="td_r rainfallLv5">34.0</td>
+
+									<td class="td_r">358.17</td>
+
+									<td class="td_r stageLv0">2.38</td>
+									<td class="td_c">白石橋</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">3</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,2',this);" data-inherit-param="mode,last,etim">堀川ダム</a></td>
+
+									<td class="td_r rainfallLv2">5.0</td>
+
+									<td class="td_r rainfallLv5">39.0</td>
+
+									<td class="td_r">607.42</td>
+
+									<td class="td_r stageLv0">0.04</td>
+									<td class="td_c">堀川橋</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">4</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,2',this);" data-inherit-param="mode,last,etim">真野ダム</a></td>
+
+									<td class="td_r rainfallLv1">1.0</td>
+
+									<td class="td_r rainfallLv4">27.0</td>
+
+									<td class="td_r">173.76</td>
+
+									<td class="td_r stageLv0">0.93</td>
+									<td class="td_c">一の堰</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">5</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,3',this);" data-inherit-param="mode,last,etim">木戸ダム</a></td>
+
+									<td class="td_r rainfallLv3">10.0</td>
+
+									<td class="td_r rainfallLv5">44.0</td>
+
+									<td class="td_r">182.23</td>
+
+									<td class="td_r stageLv0">0.18</td>
+									<td class="td_c">木戸</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">6</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,3',this);" data-inherit-param="mode,last,etim">小玉ダム</a></td>
+
+									<td class="td_r rainfallLv2">9.0</td>
+
+									<td class="td_r rainfallLv5">42.0</td>
+
+									<td class="td_r">188.60</td>
+
+									<td class="td_r stageLv0">1.14</td>
+									<td class="td_c">鎌田</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">7</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,4',this);" data-inherit-param="mode,last,etim">高柴ダム</a></td>
+
+									<td class="td_r rainfallLv1">1.0</td>
+
+									<td class="td_r rainfallLv5">37.0</td>
+
+									<td class="td_r">53.44</td>
+
+									<td class="td_r missing">CC</td>
+									<td class="td_c">御宝殿</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">8</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,4',this);" data-inherit-param="mode,last,etim">四時ダム</a></td>
+
+									<td class="td_r rainfallLv1">1.0</td>
+
+									<td class="td_r rainfallLv5">36.0</td>
+
+									<td class="td_r">102.49</td>
+
+									<td class="td_r stageLv0">6.59</td>
+									<td class="td_c">石畑</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">9</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,5',this);" data-inherit-param="mode,last,etim">日中ダム</a></td>
+
+									<td class="td_r">0.0</td>
+
+									<td class="td_r rainfallLv3">15.0</td>
+
+									<td class="td_r">455.16</td>
+
+									<td class="td_r stageLv0">0.08</td>
+									<td class="td_c">山郷道下</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">10</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,5',this);" data-inherit-param="mode,last,etim">桧原湖</a></td>
+
+									<td class="td_r">0.0</td>
+
+									<td class="td_r rainfallLv3">15.0</td>
+
+									<td class="td_r">10.27</td>
+
+									<td class="td_r stageLv0">0.22</td>
+									<td class="td_c">渋谷</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">11</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,6',this);" data-inherit-param="mode,last,etim">小野川湖</a></td>
+
+									<td class="td_r">0.0</td>
+
+									<td class="td_r rainfallLv3">18.0</td>
+
+									<td class="td_r">6.96</td>
+
+									<td class="td_r stageLv0">0.22</td>
+									<td class="td_c">渋谷</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">12</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,6',this);" data-inherit-param="mode,last,etim">秋元湖</a></td>
+
+									<td class="td_r">0.0</td>
+
+									<td class="td_r rainfallLv3">16.0</td>
+
+									<td class="td_r">8.53</td>
+
+									<td class="td_r stageLv0">0.22</td>
+									<td class="td_c">渋谷</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">13</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,7',this);" data-inherit-param="mode,last,etim">十六橋水門</a></td>
+
+									<td class="td_r rainfallLv1">1.0</td>
+
+									<td class="td_r rainfallLv4">26.0</td>
+
+									<td class="td_r">513.02</td>
+
+									<td class="td_r missing">CC</td>
+									<td class="td_c">金川</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">14</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,7',this);" data-inherit-param="mode,last,etim">東山ダム</a></td>
+
+									<td class="td_r missing">CC</td>
+
+									<td class="td_r missing">CC</td>
+
+									<td class="td_r">394.55</td>
+
+									<td class="td_r missing">CC</td>
+									<td class="td_c">湯川橋</td>
+
+								</tr>
+
+								<tr>
+									<td class="td_c">15</td>
+									<td class="td_c"><a href="javascript:void(0)" onclick="changeParams('disp,page','010402,8',this);" data-inherit-param="mode,last,etim">田島ダム</a></td>
+
+									<td class="td_r">0.0</td>
+
+									<td class="td_r rainfallLv3">19.0</td>
+
+									<td class="td_r">662.49</td>
+
+									<td class="td_r stageLv0">0.25</td>
+									<td class="td_c">高野川</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="explainBox bottomB">
+							<h6 class="title">凡例</h6>
+							<div class="ctg">
+								<div>
+									<div class="pattern colorLegend">
+										<span class="caption">貯水位：</span>
+										<ul class="legendList">
+											<li><span class="ex-missing"></span>閉局・欠測・未収集</li>
+										</ul>
+									</div><!-- /pattern -->
+
+									<div class="pattern colorLegend">
+										<span class="caption">雨量：</span>
+										<ul class="legendList">
+											<li><span class="ex-rainfallLv7"></span>80mm以上</li>
+											<li><span class="ex-rainfallLv6"></span>50mm以上</li>
+											<li><span class="ex-rainfallLv5"></span>30mm以上</li>
+											<li><span class="ex-rainfallLv4"></span>20mm以上</li>
+											<li><span class="ex-rainfallLv3"></span>10mm以上</li>
+											<li><span class="ex-rainfallLv2"></span>5mm以上</li>
+											<li><span class="ex-rainfallLv1"></span>1mm以上</li>
+											<li><span class="ex-rainfallLv0"></span>1mm未満</li>
+											<li><span class="ex-missing"></span>閉局・欠測・未収集</li>
+										</ul>
+									</div><!-- /pattern -->
+
+									<div class="pattern colorLegend">
+										<span class="caption">水位：</span>
+										<ul class="legendList">
+											<li><span class="ex-stageLv4"></span>氾濫危険水位超過</li>
+											<li><span class="ex-stageLv3"></span>避難判断水位超過</li>
+											<li><span class="ex-stageLv2"></span>氾濫注意水位超過</li>
+											<li><span class="ex-stageLv1"></span>水防団待機水位超過</li>
+											<li><span class="ex-missing"></span>閉局・欠測・未収集</li>
+										</ul>
+									</div><!-- /pattern -->
+
+								</div>
+								<div>
+									<div class="pattern dispLegend">
+										<ul class="legendList">
+											<li>閉局：<span class="mark">CC</span></li>
+											<li>欠測：<span class="mark">**</span></li>
+											<li>未収集：<span class="mark">--</span></li>
+										</ul>
+									</div><!-- /.pattern -->
+
+								</div>
+							</div><!-- /.ctg -->
+						</div><!-- explainBox -->
+					</div><!-- /dataBox -->
+				</div><!-- /.mainContents -->
+			</div><!-- contents.flexbox -->
+		</div><!--#mainContainer-->
+
+		
+		
+	</div>
+
+<div id="calendarPopup" class="white-popup mfp-hide mfp-close-btn-in calendarPopup">
+	<div class="popupHeader">
+		<h4>日時選択</h4>
+		<hr/>
+	</div>
+	<div class="popupContents">
+	<input type="text" id="calendar_date" disabled="disabled" />
+	<input type="hidden" id="cal_setCal" value="" />
+	<input type="hidden" id="cal_form" value="" />
+	</div><!-- /.popupContents -->
+	<div class="popupFooter jc-sa">
+		<input type="button" class="funcBtn is-latest" value="最新" onclick="setCal(true);" />
+		<input type="button" class="funcBtn" value="設定" onclick="setCal(false);" />
+		<input type="button" class="funcBtn mfp-close" value="キャンセル" />
+	</div><!-- /.popupFooter -->
+</div><!-- /#calendarPopup -->
+
+
+</body>
+</html>
