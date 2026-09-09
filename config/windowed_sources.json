@@ -441,6 +441,27 @@
       "data_path": "data/japan/prefectural_static",
       "deployment_status": "active",
       "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution recorded in the scraper README."
+    },
+    {
+      "source_id": "srilanka/mahaweli",
+      "country": "Sri Lanka",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Colombo",
+      "cron": [
+        "40 2 * * *",
+        "40 11 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "The bulletin carries its own issue date; rows merge on (reservoir, bulletin date) so a re-read of the same issue adds nothing. Both daily runs read the same fixed URL, and the second is pure redundancy.",
+      "schedule_rationale": "The two-page status PDF sits at a fixed URL that each issue overwrites, and the Internet Archive does NOT hold it — verified 2026-09-08, its 482 archived mahaweli.gov.lk PDFs are tenders, annual reports and gazettes. A missed day is unrecoverable, so the day is covered twice with a wide separation to survive one failed or delayed run.",
+      "workflow": ".github/workflows/srilanka_mahaweli.yml",
+      "scraper": "scrapers/srilanka/mahaweli/srilanka_mahaweli_scraper.py",
+      "data_path": "data/srilanka/mahaweli",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09; attribution to the Water Management Secretariat, Mahaweli Authority of Sri Lanka is recorded in the scraper README."
     }
   ]
 }

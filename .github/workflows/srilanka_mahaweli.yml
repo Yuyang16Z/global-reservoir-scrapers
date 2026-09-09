@@ -1,0 +1,48 @@
+name: Sri Lanka Mahaweli bulletin scrape
+
+# overwrite_prone at daily cadence with NO archive fallback: the bulletin sits at a
+# fixed URL that each issue overwrites, and the Internet Archive does not hold it.
+# A missed day is lost permanently, so the day is covered twice with a wide gap.
+on:
+  schedule:
+    - cron: "40 2 * * *"
+    - cron: "40 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: srilanka-mahaweli
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/srilanka/mahaweli
+          TZ: Asia/Colombo
+        run: python scrapers/srilanka/mahaweli/srilanka_mahaweli_scraper.py pull
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/srilanka scrapers/srilanka .github/workflows/srilanka_mahaweli.yml
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(srilanka/mahaweli): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
