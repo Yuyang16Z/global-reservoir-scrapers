@@ -1,10 +1,10 @@
 {
-  "run_at": "2026-09-09T17:49:37Z",
+  "run_at": "2026-09-09T20:54:37Z",
   "per_site": [
     {
       "site": "Fukushima",
       "rows": 11,
-      "observed_at": "2026-09-10T02:00"
+      "observed_at": "2026-09-10T05:00"
     },
     {
       "site": "JWA_ToneArakawa",
@@ -14,7 +14,7 @@
     {
       "site": "Yamaguchi",
       "rows": 23,
-      "observed_at": "2026-09-10T02:49"
+      "observed_at": "2026-09-10T05:54"
     },
     {
       "site": "Hyogo",
