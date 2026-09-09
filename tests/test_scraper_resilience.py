@@ -44,6 +44,41 @@ pagasa = load_module(
     "philippines_pagasa_scraper",
     "scrapers/philippines/pagasa/philippines_pagasa_scraper.py",
 )
+mwr = load_module(
+    "china_mwr_api_scraper",
+    "scrapers/china/mwr_api/china_mwr_api_scraper.py",
+)
+
+
+class ChinaMwrTransportTests(unittest.TestCase):
+    def test_direct_official_api_is_preferred(self):
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        response = mock.Mock()
+        response.raise_for_status.return_value = None
+        response.json.return_value = payload
+        with mock.patch.object(mwr.requests, "post", return_value=response), mock.patch.object(
+            mwr.requests, "get"
+        ) as relay:
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "direct_official_api")
+        self.assertFalse(diagnostics["fallback_used"])
+        relay.assert_not_called()
+
+    def test_relay_recovers_direct_network_failure(self):
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        response = mock.Mock(text="Title:\n\nMarkdown Content:\n" + json.dumps(payload))
+        response.raise_for_status.return_value = None
+        with mock.patch.object(
+            mwr.requests,
+            "post",
+            side_effect=requests.ConnectionError("network is unreachable"),
+        ), mock.patch.object(mwr.requests, "get", return_value=response):
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "jina_reader_relay")
+        self.assertTrue(diagnostics["fallback_used"])
+        self.assertIn("network is unreachable", diagnostics["prior_errors"][0])
 
 
 class AbhsmTransportTests(unittest.TestCase):

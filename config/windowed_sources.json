@@ -24,6 +24,26 @@
       "licence_gate": "Public commit requires the source-level licence fields and release assessment recorded by the scraper."
     },
     {
+      "source_id": "china/mwr_api",
+      "country": "China",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Shanghai",
+      "cron": [
+        "30 4,12 * * *"
+      ],
+      "max_schedule_gap_hours": 16,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Fetch the current official table twice after its normal 08:00 report time, archive the source JSON, and overwrite only the same source-date CSV on an idempotent rerun.",
+      "schedule_rationale": "12:30 and 20:30 Beijing time give two capture opportunities after the daily table normally settles. The source has no historical query, so a missed replacement day cannot be reconstructed from the official endpoint.",
+      "workflow": ".github/workflows/china_mwr_api.yml",
+      "scraper": "scrapers/china/mwr_api/china_mwr_api_scraper.py",
+      "data_path": "data/china/mwr_api",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Existing public scheduled collection continues under the repository owner's recorded decision; MWR redistribution still requires separate human approval and the source copyright evidence remains recorded in DATA_LICENCE_NOTICE.md."
+    },
+    {
       "source_id": "japan/opengov",
       "country": "Japan",
       "retention_class": "rolling_window",

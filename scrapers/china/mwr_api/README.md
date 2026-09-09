@@ -15,6 +15,14 @@ scraper decodes that payload by:
 
 No login, captcha, or private endpoint is used.
 
+The scraper first calls the official endpoint directly. If the GitHub-hosted
+runner has no network route to the MWR host, it retries the same public URL via
+Jina Reader as a transport relay. The saved raw object is still the official
+MWR JSON payload, and each run summary records the actual transport and fetch
+URL. This fallback was added after seven consecutive GitHub runner routing
+failures on 2026-09-02 through 2026-09-08 while direct access from China-facing
+networks remained healthy.
+
 ## Output
 
 ```
@@ -42,6 +50,7 @@ python scrapers/china/mwr_api/china_mwr_api_scraper.py --output-dir /tmp/china_m
 
 ## Cadence
 
-The GitHub Actions workflow runs once daily at 12:30 UTC, which is 20:30
-Beijing time. The source is a current snapshot rather than a historical API, so
-daily polling is still needed to build a durable archive.
+The GitHub Actions workflow runs at 04:30 and 12:30 UTC, which is 12:30 and
+20:30 Beijing time. The source is a current snapshot rather than a historical
+API, so both runs read the same daily table and provide two chances to archive
+it before replacement.

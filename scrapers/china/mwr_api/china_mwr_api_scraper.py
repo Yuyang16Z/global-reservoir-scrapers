@@ -30,6 +30,7 @@ import requests
 
 PAGE_URL = "http://xxfb.mwr.cn/sq_dxsk.html?v=1.0"
 API_URL = "http://xxfb.mwr.cn/OTMxbwsvgKjspwi/OTMbmdvbjQhky"
+RELAY_API_URL = f"https://r.jina.ai/{API_URL}"
 TZ = ZoneInfo("Asia/Shanghai")
 
 TAG_RE = re.compile(r"#([A-Za-z0-9_]+)otltag([\s\S]*?)#FontTag")
@@ -119,13 +120,33 @@ def split_tag(value: Any) -> tuple[str, str | None]:
     return text, None
 
 
-def fetch_api_json(timeout_seconds: int, retries: int) -> dict[str, Any]:
+def validate_api_payload(payload: Any) -> dict[str, Any]:
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"Unexpected API payload type: {type(payload).__name__}")
+    if payload.get("returncode") != 0 or not isinstance(payload.get("result"), list):
+        raise RuntimeError("Unexpected API payload shape.")
+    return payload
+
+
+def parse_relay_payload(text: str) -> dict[str, Any]:
+    """Extract the official JSON object from the relay's text wrapper."""
+    start = text.find("{")
+    if start < 0:
+        raise RuntimeError("Relay response did not contain a JSON object.")
+    payload, _ = json.JSONDecoder().raw_decode(text[start:])
+    return validate_api_payload(payload)
+
+
+def fetch_api_json(
+    timeout_seconds: int,
+    retries: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
     headers = {
         "Content-Type": "application/json",
         "Referer": PAGE_URL,
         "User-Agent": "Mozilla/5.0",
     }
-    last_exc: Exception | None = None
+    errors: list[str] = []
     for attempt in range(retries + 1):
         try:
             response = requests.post(
@@ -135,15 +156,42 @@ def fetch_api_json(timeout_seconds: int, retries: int) -> dict[str, Any]:
                 timeout=timeout_seconds,
             )
             response.raise_for_status()
-            payload = response.json()
-            if payload.get("returncode") != 0 or not isinstance(payload.get("result"), list):
-                raise RuntimeError(f"Unexpected API payload shape: {payload!r}")
-            return payload
+            payload = validate_api_payload(response.json())
+            return payload, {
+                "transport": "direct_official_api",
+                "fetch_url": API_URL,
+                "fallback_used": False,
+                "prior_errors": errors,
+            }
         except Exception as exc:
-            last_exc = exc
-            if attempt == retries:
-                break
-    raise RuntimeError(f"API request failed after {retries + 1} attempts: {last_exc}")
+            errors.append(f"direct attempt {attempt + 1}: {exc}")
+
+    # GitHub-hosted runners intermittently have no route to the MWR IPv4/IPv6
+    # addresses. Jina Reader retrieves the same public official URL and wraps
+    # its unchanged JSON body in a short text preamble. The original MWR URL
+    # remains the source URL; this is only a transport fallback.
+    for attempt in range(retries + 1):
+        try:
+            response = requests.get(
+                RELAY_API_URL,
+                headers={"User-Agent": headers["User-Agent"]},
+                timeout=timeout_seconds,
+            )
+            response.raise_for_status()
+            payload = parse_relay_payload(response.text)
+            return payload, {
+                "transport": "jina_reader_relay",
+                "fetch_url": RELAY_API_URL,
+                "fallback_used": True,
+                "prior_errors": errors,
+            }
+        except Exception as exc:
+            errors.append(f"relay attempt {attempt + 1}: {exc}")
+
+    raise RuntimeError(
+        f"API request failed through both transports after {retries + 1} attempts each: "
+        + " | ".join(errors)
+    )
 
 
 def infer_digit_map(api_rows: list[dict[str, Any]]) -> dict[str, str]:
@@ -419,7 +467,7 @@ def main() -> None:
     run_stamp = run_started.strftime("%Y%m%d_%H%M%S")
     run_time = run_started.strftime("%Y-%m-%d %H:%M:%S")
 
-    payload = fetch_api_json(args.timeout_seconds, args.retries)
+    payload, transport_diag = fetch_api_json(args.timeout_seconds, args.retries)
     api_rows = payload["result"]
     if not api_rows:
         raise RuntimeError("API returned zero rows.")
@@ -456,6 +504,7 @@ def main() -> None:
         "run_started": run_time,
         "page_url": PAGE_URL,
         "api_url": API_URL,
+        "transport": transport_diag,
         "row_count": len(api_rows),
         "report_date": report_date,
         "report_time": report_datetime,
@@ -472,6 +521,7 @@ def main() -> None:
     log_path.write_text(json.dumps(diagnostics, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"[china-mwr-api] rows={len(decoded_rows)} report_date={report_date}")
+    print(f"[china-mwr-api] transport={transport_diag['transport']}")
     print(f"[china-mwr-api] timeseries={timeseries_path}")
     print(f"[china-mwr-api] metadata={metadata_path}")
     print(f"[china-mwr-api] diagnostics={log_path}")
