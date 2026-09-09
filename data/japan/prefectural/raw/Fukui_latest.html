@@ -1,0 +1,88 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="ja">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<meta content="text/css" http-equiv="Content-Style-Style">
+<meta content="text/javascript" http-equiv="Content-Script-Style">
+<meta content="no-cache" http-equiv="pragma">
+<title>ダム諸量現況表</title>
+<link href="../css/tableStatus.css" type="text/css" rel="stylesheet">
+<script src="../js/utildlg.js" type="text/javascript"></script><script src="../js/graphOpen.js" type="text/javascript"></script><script src="../js/param.js" type="text/javascript"></script><script type="text/javascript">
+<!--
+
+function myIn(no,time,nw) {        // クリック
+  if(document.form1.link[0].checked){
+    damGraph(no,time,nw);
+  }
+  if(document.form1.link[1].checked){
+    damModel(no,time,nw);
+  }
+}
+
+          --></script>
+</head>
+<body>
+<form name="form1">
+<table border="0">
+<tr>
+<td nowrap class="kind">ダム諸量現況表(全県)</td><td nowrap class="date">&nbsp;&nbsp;2026年09月09日11時50分&nbsp;現在</td>
+</tr>
+</table>
+<div nowrap class="radio">局名リンク先設定&nbsp;&nbsp;<input checked name="link" id="i1" type="radio"><label for="i1">グラフ</label><input name="link" id="i2" type="radio"><label for="i2">模式図</label>
+</div>
+<table width="961" class="tableStatus">
+<tr>
+<th nowrap rowspan="2" class="siteName">局名</th><th nowrap rowspan="2" class="location">所在地</th><th nowrap rowspan="2" class="latestTime">最新観測時刻</th><th width="80" nowrap>貯水率<br>(利水容量)</th><th width="80" nowrap>貯水位</th><th width="80" nowrap>有効<br>貯水量</th><th width="80" nowrap>流入量</th><th width="80" nowrap>放流量</th><th nowrap rowspan="2" class="manager">管理者名</th>
+</tr>
+<tr>
+<th nowrap>[%]</th><th nowrap>[m]</th><th nowrap>[10<sup>3</sup>m<sup>3</sup>]</th><th nowrap>[m<sup>3</sup>/s]</th><th nowrap>[m<sup>3</sup>/s]</th>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('1','202609091150','1')">龍ヶ鼻ダム</a></td><td nowrap class="normal1">坂井市丸岡町上竹田</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;73.76</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;170.99</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;&nbsp;3483</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.460</td><td nowrap class="normal1">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.020</td><td nowrap class="normal1">龍ヶ鼻・永平寺ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('2','202609091150','1')">永平寺ダム</a></td><td nowrap class="normal0">永平寺町志比</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;102.05</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;320.05</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;449</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.290</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.860</td><td nowrap class="normal0">龍ヶ鼻・永平寺ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('3','202609091150','1')">笹生川ダム</a></td><td nowrap class="normal1">大野市本戸</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;53.45</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;513.86</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;21897</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;18.560</td><td nowrap class="normal1">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.410</td><td nowrap class="normal1">笹生川・浄土寺川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('4','202609091150','1')">浄土寺川ダム</a></td><td nowrap class="normal0">勝山市170字奥山</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;100.00</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;344.70</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;780</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.662</td><td nowrap class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.483</td><td nowrap class="normal0">笹生川・浄土寺川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('11','202609091150','1')">真名川ダム</a></td><td nowrap class="normal1">大野市下若生子</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;55.80</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;334.72</td><td nowrap class="normal1">&nbsp;</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;22.020</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.940</td><td nowrap class="normal1">九頭竜川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('12','202609091150','1')">九頭竜ダム</a></td><td nowrap class="normal0">大野市長野</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;28.20</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;540.04</td><td nowrap class="normal0">&nbsp;</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;39.930</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.010</td><td nowrap class="normal0">九頭竜川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('6','202609091150','1')">桝谷ダム</a></td><td nowrap class="normal1">南越前町宇津尾</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;17.20</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;298.90</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;3428</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.260</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.120</td><td nowrap class="normal1">広野・桝谷・吉野瀬川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('7','202609091150','1')">広野ダム</a></td><td nowrap class="normal0">南越前町広野</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;27.90</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;293.16</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;1115</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.960</td><td nowrap class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.560</td><td nowrap class="normal0">広野・桝谷・吉野瀬川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('13','202609091150','1')">二ツ屋ダム</a></td><td nowrap class="normal1">南越前町二ツ屋</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&rarr;&nbsp;101.30</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;349.78</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;215</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.560</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.560</td><td nowrap class="normal1">広野・桝谷・吉野瀬川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('5','202609091150','1')">吉野瀬川ダム</a></td><td nowrap class="normal0">越前市広瀬町</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;100.00</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;100.30</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;1277</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.060</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.830</td><td nowrap class="normal0">広野・桝谷・吉野瀬川ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('8','202609091150','1')">河内川ダム</a></td><td nowrap class="normal1">三方上中郡若狭町熊川</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;59.30</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;183.09</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;&nbsp;2760</td><td nowrap class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.960</td><td nowrap class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.310</td><td nowrap class="normal1">河内川・大津呂ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('9','202609091150','1')">大津呂ダム</a></td><td nowrap class="normal0">大飯郡おおい町本郷</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;29.40</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;81.57</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80</td><td nowrap class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.960</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.020</td><td nowrap class="normal0">河内川・大津呂ダム統管</td>
+</tr>
+<tr>
+<td nowrap class="normal1"><a href="javascript:void(0)" onClick="myIn('16','202609091150','1')">滝波ダム</a></td><td nowrap class="normal1">福井市清水町滝波</td><td nowrap class="normal1">2026&nbsp;09/09&nbsp;11:00</td><td nowrap class="normal1">---</td><td nowrap class="normal1">&nbsp;</td><td nowrap class="normal1">&nbsp;</td><td nowrap class="normal1">&nbsp;</td><td nowrap class="normal1">&nbsp;</td><td nowrap class="normal1">福井市</td>
+</tr>
+<tr>
+<td nowrap class="normal0"><a href="javascript:void(0)" onClick="myIn('18','202609091150','1')">開谷ダム</a></td><td nowrap class="normal0">越前町八田</td><td nowrap class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;68.30</td><td nowrap class="normal0">&uarr;&nbsp;&nbsp;121.17</td><td nowrap class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69</td><td nowrap class="normal0">---</td><td nowrap class="normal0">---</td><td nowrap class="normal0">越前町</td>
+</tr>
+<tr>
+<td nowrap class="pageBack" colspan="9">1/1&nbsp;</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

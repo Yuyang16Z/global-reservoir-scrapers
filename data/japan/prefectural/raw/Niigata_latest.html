@@ -1,0 +1,220 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<meta content="no-cache" http-equiv="pragma">
+<title>ダム諸量現況表</title>
+<link href="../css/jquery/jquery-ui.css" rel="stylesheet">
+<link href="../css/tableStatusDam.css" rel="stylesheet">
+<link href="../css/tableStatus.css" rel="stylesheet">
+<link href="../css/top_tool.css" rel="stylesheet">
+<script src="../js/jquery/jquery-3.3.1.min.js"></script><script src="../js/jquery/jquery-ui.min.js"></script><script src="../js/jquery/datepicker-ja.js"></script><script src="../js/utildlg.js"></script><script src="../js/graphOpen.js"></script><script src="../js/param.js"></script><script src="../js/commons.js"></script><script src="../js/top_tool.js"></script><script src="../js/op_time.js"></script><script src="../js/refresh.js"></script><script>
+        var year = '2026';
+        var mon = '09';
+        var day = '09';
+        var hour = '11';
+        var min = '50';
+        var date = '2026/09/09';
+        <!--
+          
+          function myIn(no,time,nw) {        // クリック
+            //    damGraph(no,time,nw);
+            damModel(no,time,nw);
+          }
+
+          $(function() {
+
+            var myurl = "" + document.location.href;
+            var params = "";
+            var str = myurl.split(/\?/);
+            if(str.length > 1){
+              params = str[1];
+            }
+            var url = "../servlet/bousaiweb.servletBousaiTopMenu?"+params;
+            timeFrame.location.href = url;
+          });
+
+          function setPreTimeSpan() {
+            //console.log("前時刻のリンク有効");
+            $("#preArea").html('<a href="javascript:setPreTime();">前時刻</a>');
+          }
+
+          function setNextTimeSpan() {
+            //console.log("次時刻のリンク有効");
+            $("#nextArea").html('<a href="javascript:setNextTime();">次時刻</a>');
+          }
+
+          
+        --></script>
+</head>
+<body>
+<header>
+<div class="top_tool1">
+<span class="disp_time">
+<iframe frameborder="0" height="26" width="200" style="display:none;" src="" name="timeFrame"></iframe>
+            表示時刻設定：
+            <button id="autobtn">自動更新</button>
+            &nbsp;
+            <span class="now"><a href="#" id="latestbtn">&nbsp;最新&nbsp;</a></span>
+            ｜<span id="preArea">前時刻</span>
+              ｜次時刻
+            
+            ｜
+            <input readonly placeholder="日付を選択して下さい" id="datepicker" type="text"><select id="hour" name="hour"><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>&nbsp;時
+            <select id="min" name="min"><option value="00">00</option><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option></select>&nbsp;分
+            <button onclick="selectTime();">表示</button>
+            &nbsp;
+          </span>
+</div>
+<div class="top_tool2">
+<span class="disp_kind"><span class="title2">表示形式&nbsp;</span>
+            &nbsp;|
+            現況表&nbsp;|
+            <a href="#" id="kdDam2">一括表選択</a>&nbsp;|
+          </span><span class="disp_area">
+            
+            &nbsp;地域選択：
+            <span class="formtext"><select name="area" id="areasel"><option value="0" selected>
+                全県</option><option value="1">
+                上越</option><option value="2">
+                中越</option><option value="3">
+                下越</option><option value="4">
+                佐渡</option></select></span>
+
+            &nbsp;表示局選択：
+            <span class="formtext"><select name="manage" id="managesel"><option value="0" selected>
+                全て</option><option value="2">
+                県管轄全て</option><option value="3">
+                国交省</option></select></span>
+
+            &nbsp;並べ替え：
+            <span class="formtext"><select name="sort" id="sortsel"><option value="0" selected>
+                登録順</option><option value="1">
+                警報順</option></select></span>
+            &nbsp;&nbsp;
+          
+          </span>
+</div>
+</header>
+<form name="form1">
+<div class="title_area">
+<span class="top_title">ダム諸量現況表
+        (全県)</span><span class="top_tm">&nbsp;2026年09月09日11時50分&nbsp;現在</span>
+</div>
+<div style="margin-top: 9px;" class="info">局名をクリックするとダム横断図を表示します。</div>
+<div class="tab">
+<table class="dataTable">
+<tr>
+<td height="34" width="145" nowrap class="data1">観測所名</td><td height="34" width="80" nowrap class="data1">最新観測時刻</td><td height="34" width="80" nowrap class="data1">平常時<br>最高貯水位<br>(常時満水位)<br>[m]</td><td height="34" width="65" nowrap class="data1">貯水位<br>[m]</td><td height="34" width="90" nowrap class="data1">洪水時最高水位<br>(サーチャージ<br>水位)<br>[m]</td><td height="34" width="65" nowrap class="data1">貯水率<br>[%]</td><td height="34" width="65" nowrap class="data1">洪水流入量<br>[m<sup>3</sup>/s]</td><td height="34" width="65" nowrap class="data1">流入量<br>[m<sup>3</sup>/s]</td><td height="34" width="65" nowrap class="data1">計画高<br>水流量<br>[m<sup>3</sup>/s]</td><td height="34" width="65" nowrap class="data1">全放流量<br>[m<sup>3</sup>/s]</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('2','202609091150','1')">奥三面ダム
+          (三面川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;213.20</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;211.46</td><td nowrap align="center" class="normal1">&nbsp;229.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;79.2</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;200.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;29.33</td><td nowrap align="center" class="normal1">&nbsp;2400.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.72</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('1','202609091150','1')">三面ダム
+          (三面川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;117.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;115.85</td><td nowrap align="center" class="normal0">&nbsp;123.50</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;92.2</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;300.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.95</td><td nowrap align="center" class="normal0">&nbsp;1800.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;26.44</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('20','202609091150','1')">奥胎内ダム
+          (胎内川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;384.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;384.87</td><td nowrap align="center" class="normal1">&nbsp;411.00</td><td nowrap align="center" class="normal1">---</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;70.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.49</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;600.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.10</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('4','202609091150','1')">胎内川ダム
+          (胎内川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;290.80</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;287.90</td><td nowrap align="center" class="normal0">&nbsp;303.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;98.8</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;450.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;13.22</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;990.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;11.90</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('3','202609091150','1')">内の倉ダム
+          (加治川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;162.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;147.90</td><td nowrap align="center" class="normal1">&nbsp;166.50</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;41.3</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;80.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.14</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;710.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.53</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('5','202609091150','1')">加治川治水ダム
+          (加治川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;274.40</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;273.16</td><td nowrap align="center" class="normal0">&nbsp;317.00</td><td nowrap align="center" class="normal0">---</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;150.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.71</td><td nowrap align="center" class="normal0">&nbsp;1600.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.00</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('6','202609091150','1')">早出川ダム
+          (早出川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;165.50</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;164.28</td><td nowrap align="center" class="normal1">&nbsp;190.50</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;83.5</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;130.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;16.20</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;910.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;10.03</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('9','202609091150','1')">下条川ダム
+          (下条川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;31.50</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;31.26</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;39.00</td><td nowrap align="center" class="normal0">&nbsp;</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;&nbsp;8.70</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.16</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;110.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.81</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('7','202609091150','1')">笠堀ダム
+          (笠堀川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;194.50</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;192.47</td><td nowrap align="center" class="normal1">&nbsp;211.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;84.3</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;140.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;11.10</td><td nowrap align="center" class="normal1">&nbsp;1120.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;12.25</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('8','202609091150','1')">大谷ダム
+          (五十嵐川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;191.40</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;191.68</td><td nowrap align="center" class="normal0">&nbsp;209.60</td><td nowrap align="center" class="normal0">&uarr;&nbsp;100.0</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;95.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;10.65</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;790.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.73</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('10','202609091150','1')">刈谷田川ダム
+          (刈谷田川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;239.41</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;239.66</td><td nowrap align="center" class="normal1">&nbsp;271.50</td><td nowrap align="center" class="normal1">&uarr;&nbsp;100.0</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;45.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.06</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;270.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.18</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('11','202609091150','1')">破間川ダム
+          (破間川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;431.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;430.27</td><td nowrap align="center" class="normal0">&nbsp;459.50</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;76.1</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;84.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;10.03</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;980.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.45</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('19','202609091150','1')">広神ダム
+          (和田川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;213.50</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;214.37</td><td nowrap align="center" class="normal1">&nbsp;237.50</td><td nowrap align="center" class="normal1">&rarr;&nbsp;100.0</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;59.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.90</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;410.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.72</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('12','202609091150','1')">鯖石川ダム
+          (鯖石川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;135.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;134.88</td><td nowrap align="center" class="normal0">&nbsp;145.50</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;96.5</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;80.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;13.01</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;410.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;12.18</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('13','202609091150','1')">城川ダム
+          (城川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;271.40</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;271.86</td><td nowrap align="center" class="normal1">&nbsp;277.40</td><td nowrap align="center" class="normal1">&rarr;&nbsp;100.0</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;&nbsp;8.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.46</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;51.00</td><td nowrap align="center" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.31</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('15','202609091150','1')">柿崎川ダム
+          (柿崎川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;120.50</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;120.85</td><td nowrap align="center" class="normal0">&nbsp;128.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;100.0</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;20.00</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.41</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;150.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.72</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('14','202609091150','1')">正善寺ダム
+          (正善寺川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;88.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;85.41</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;92.50</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;76.3</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;24.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.09</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;100.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.25</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('16','202609091150','1')">大野川ダム
+          (大野川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;142.50</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;142.68</td><td nowrap align="center" class="normal0">&nbsp;149.60</td><td nowrap align="center" class="normal0">&uarr;&nbsp;100.0</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;&nbsp;9.60</td><td nowrap align="center" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.18</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;86.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.30</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal1"><A href="javascript:void(0)" onClick="myIn('17','202609091150','1')">久知川ダム
+          (久知川)
+        </A></td><td nowrap align="center" class="normal1">09/09&nbsp;11:50</td><td nowrap align="center" class="normal1">&nbsp;123.70</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;124.38</td><td nowrap align="center" class="normal1">&nbsp;135.50</td><td nowrap align="center" class="normal1">&rarr;&nbsp;100.0</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;&nbsp;14.00</td><td nowrap align="center" class="normal1">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.54</td><td nowrap align="center" class="normal1">&nbsp;&nbsp;100.00</td><td nowrap align="center" class="normal1">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.12</td>
+</tr>
+<tr>
+<td nowrap align="center" class="normal0"><A href="javascript:void(0)" onClick="myIn('18','202609091150','1')">新保川ダム
+          (新保川)
+        </A></td><td nowrap align="center" class="normal0">09/09&nbsp;11:50</td><td nowrap align="center" class="normal0">&nbsp;160.20</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;160.64</td><td nowrap align="center" class="normal0">&nbsp;167.80</td><td nowrap align="center" class="normal0">&rarr;&nbsp;100.0</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;14.00</td><td nowrap align="center" class="normal0">&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.44</td><td nowrap align="center" class="normal0">&nbsp;&nbsp;&nbsp;85.00</td><td nowrap align="center" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.22</td>
+</tr>
+<tr>
+<td class="pageBack" colspan="12">1/1&nbsp;</td>
+</tr>
+</table>
+<div class="info">
+          貯水率は&ldquo;貯水量&divide;利水容量&rdquo;で算出しています。ただし、１００％を上限とします。<br>
+          なお、下条川ダムと加治川治水ダムは洪水調節を目的としているため、利水容量がありません。
+        </div>
+</div>
+</form>
+</body>
+</html>

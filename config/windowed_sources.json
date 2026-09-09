@@ -401,6 +401,26 @@
       "data_path": "data/southafrica/capetown_wcwss",
       "deployment_status": "active",
       "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "japan/prefectural",
+      "country": "Japan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 1,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "*/30 * * * *"
+      ],
+      "max_schedule_gap_hours": 1,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (prefecture, dam_jp, observed_at); a repeated observation time is written once. The accumulated file IS the series because the source publishes no history.",
+      "schedule_rationale": "No backfill path exists: historical queries return zero dam rows and the Wayback Machine holds no snapshot of this servlet, so anything a run misses is lost permanently. The source advances every 10-30 minutes, which is a continuous signal rather than a discrete expiring publication; the intended product is therefore an HOURLY sampled series. Running every 30 minutes gives each hourly slot two capture opportunities, so a single failed or delayed run does not create a hole. A twice-daily cadence would capture 2 of roughly 48 daily observations and is not appropriate here.",
+      "workflow": ".github/workflows/japan_prefectural.yml",
+      "scraper": "scrapers/japan/prefectural/japan_prefectural_scraper.py",
+      "data_path": "data/japan/prefectural",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. The dam subsites publish no terms and the parent prefectural portals yielded no machine-readable licence on 2026-09-09. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution to the eight prefectural river/flood information systems is recorded in the scraper README."
     }
   ]
 }

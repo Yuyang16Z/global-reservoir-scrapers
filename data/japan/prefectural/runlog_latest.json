@@ -1,0 +1,103 @@
+{
+  "run_at": "20260909T025937Z",
+  "per_site": [
+    {
+      "prefecture": "Niigata",
+      "rows": 20,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水位[m]": "water_level_m",
+        "貯水率[%]": "storage_pct",
+        "流入量[m3/s]": "total_inflow_m3s",
+        "全放流量[m3/s]": "total_outflow_m3s"
+      }
+    },
+    {
+      "prefecture": "Yamagata",
+      "rows": 17,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "流入量": "total_inflow_m3s",
+        "全放流量": "total_outflow_m3s",
+        "貯水位": "water_level_m",
+        "貯水量": "storage_mcm",
+        "貯水率": "storage_pct"
+      }
+    },
+    {
+      "prefecture": "Fukui",
+      "rows": 13,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水率(利水容量)": "storage_pct",
+        "貯水位": "water_level_m",
+        "有効貯水量": "storage_mcm",
+        "流入量": "total_inflow_m3s",
+        "放流量": "total_outflow_m3s"
+      }
+    },
+    {
+      "prefecture": "Miyazaki",
+      "rows": 13,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水位": "water_level_m",
+        "流入量": "total_inflow_m3s",
+        "全放流量": "total_outflow_m3s"
+      }
+    },
+    {
+      "prefecture": "Aomori",
+      "rows": 10,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "流入量": "total_inflow_m3s",
+        "全放流量": "total_outflow_m3s",
+        "貯水位": "water_level_m"
+      }
+    },
+    {
+      "prefecture": "Oita",
+      "rows": 10,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水位": "water_level_m",
+        "流入量": "total_inflow_m3s",
+        "貯水量": "storage_mcm",
+        "貯水率": "storage_pct",
+        "放流量": "total_outflow_m3s"
+      }
+    },
+    {
+      "prefecture": "Tokushima",
+      "rows": 7,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水位": "water_level_m",
+        "総貯水量": "storage_mcm",
+        "全流入量": "total_inflow_m3s",
+        "全放流量": "total_outflow_m3s",
+        "貯水率": "storage_pct"
+      }
+    },
+    {
+      "prefecture": "Nara",
+      "rows": 5,
+      "header_found": true,
+      "skipped_no_time": 0,
+      "mapped_columns": {
+        "貯水位": "water_level_m",
+        "全流入量": "total_inflow_m3s",
+        "放流量": "total_outflow_m3s"
+      }
+    }
+  ],
+  "rows": 95
+}

@@ -1,0 +1,63 @@
+name: Japan prefectural dams scrape
+
+# current_snapshot source with NO backfill path: historical queries return nothing and
+# the Wayback Machine holds no snapshot of this servlet. Anything a run misses is gone.
+# The source advances every 10-30 min, so the intended product is an hourly sampled
+# series; running every 30 min gives each hourly slot two capture opportunities.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated prefecture keys (blank = all eight)."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-prefectural
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/prefectural
+          TZ: Asia/Tokyo
+        run: |
+          python scrapers/japan/prefectural/japan_prefectural_scraper.py \
+            ${{ inputs.only && format('--only {0}', inputs.only) || '' }}
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/prefectural
+          git add scrapers/japan/prefectural
+          git add requirements.txt .github/workflows/japan_prefectural.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/prefectural): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

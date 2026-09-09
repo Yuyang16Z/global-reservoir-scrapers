@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="text/html; charset=Shift_JIS" http-equiv="Content-Type">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<title>ダム現況表</title>
+<link href="../css/redmond/jquery-ui-1.8.22.custom.css" type="text/css" rel="stylesheet">
+<link href="../css/tableStatus.css" type="text/css" rel="stylesheet">
+<link href="../css/tableStatusDam.css" type="text/css" rel="stylesheet">
+<link href="../css/common101.css" type="text/css" rel="stylesheet">
+<link href="../css/dialog/hanrei.css" type="text/css" rel="stylesheet">
+<script src="../js/jquery/jquery-1.7.2.min.js" type="text/javascript"></script><script src="../js/jquery/jquery.cookie.js" type="text/javascript"></script><script charset="UTF-8" src="../js/jquery/jquery-ui-1.8.22.custom.min.js" type="text/javascript"></script><script charset="UTF-8" src="../js/jquery/jquery.ui.datepicker-ja.js" type="text/javascript"></script><script src="../js/utildlg.js" type="text/javascript"></script><script src="../js/param.js" type="text/javascript"></script><script src="../js/commons.js" type="text/javascript"></script><script src="../js/tm_common.js" type="text/javascript"></script><script src="../js/myarea_telemeter.js" type="text/javascript"></script><script src="../js/init_telemeter.js" type="text/javascript"></script><script src="../js/graphOpen.js" type="text/javascript"></script><script src="../js/refresh.js" type="text/javascript"></script><script type="text/javascript" language="JavaScript">
+<!--
+var totalPage = 1;
+var pg_back = 1;
+var pg_next = 1;
+var noPage = 1;
+var tm = "20260909115000";
+var officeNo = "0";
+
+  // マイエリア設定情報KEY
+  var MYAREA_COOKIE_NAME = "myareadam";
+
+  function myIn(no,time,nw) {        // クリック
+    damGraph(no, time, nw, 0);
+  }
+  
+  $(function() {
+    // 時刻選択コンボ設定
+    //setDateselForStatus(); // カレンダーから設定
+
+    //観測時刻＞押下
+    $("#nextbtn2").click(function(){
+      moveNextTimeForStatus();
+    });
+
+    //カレンダーダイアログ初期化
+    $("#datepicker").dialog({
+      autoOpen: false,
+      resizable: false,
+      width: 274
+    });
+    
+    // ダム表用マイエリア表示ボタンクリックイベント
+    $("#myarea_view").click(function() {
+      if ($.cookie(MYAREA_COOKIE_NAME)) {
+        if (window.confirm("マイエリアに移動しますか？")) {
+          var myArea = $.cookie(MYAREA_COOKIE_NAME);
+          myArea = myArea.split(",");
+          var fn = (myArea[0].split(":"))[1];
+          var no;
+          if(myArea[1]) no = (myArea[1].split(":"))[1];
+          var kind;
+          if(myArea[2]) kind = (myArea[2].split(":"))[1];
+          var cn;
+          if(myArea[3]) cn = (myArea[3].split(":"))[1];
+
+          // 表示エリアの状態に合わせてパラメータを設定
+          var param = "";
+          if(fn > 0 && cn > 0) param += "fn="+fn+"&no="+no+"&cn="+cn+"&mp=4";
+          else if(fn > 0) param += "fn="+fn+"&no="+no+"&cn=0&mp=1";
+          var url = margeParams(location.href,param);
+          if(kind == "o") url = url.replace("/river_pub/", "/river_pub/"); // 土木界にエイリアス変更
+          else if(kind == "w") url = url.replace("/river_pub/", "/river_pub/"); // 気象界にエイリアス変更
+          if(param) location.replace(url);
+        }
+      } else {
+        alert("マイエリアは登録されていません。");
+      }
+    });
+  });
+  
+  /* カレンダーダイアログを開く */
+  function openCal(){
+    $("#datepicker").dialog('open');
+  }
+  
+  /* カレンダーから呼び出し用 */
+  function setDaresel(newesttime, it){
+    // 時刻選択コンボ設定
+    setDateselForStatus(newesttime, it);
+  }
+
+//  --></script>
+</head>
+<body>
+<div id="page">
+<div style="display:none;" id="datepicker">
+<iframe style="margin-left: 4px;" height="250" width="246" frameborder="no" name="calfr" src="../servlet/bousaiweb.servletBousaiTopMenu?sv=4&dk=1&nw=1&tm=20260909115000"></iframe>
+</div>
+<div id="header_content">
+<div id="a">
+<table cellspacing="0">
+<tr>
+<td class="titlepart"><span>ダム現況表</span></td>
+</tr>
+</table>
+</div>
+<div id="b">
+<table cellspacing="0">
+<tr>
+<th>データ種別</th><td id="datakind"><span class="span_sct span_sct_off" id="data1">雨量</span><span id="data1sl">&nbsp;/</span><span class="span_sct span_sct_off" id="data2">水位</span><span id="data2sl">&nbsp;/</span><span class="span_sct span_sct_on" id="data3">ダム</span><span id="data3sl">&nbsp;/</span></td><td class="padding"></td><th>表示形式</th><td id="displayformat"><span class="span_sct span_sct_on" id="kdDam1">現況表</span><span id="kdDam1sl">&nbsp;/</span><span class="span_sct span_sct_off" id="kdDam2">一括表</span><span id="kdDam2sl">&nbsp;/</span><span class="span_sct span_sct_off" id="kdDam3">一覧表</span><span id="kdDam3sl">&nbsp;/</span></td>
+</tr>
+</table>
+</div>
+<div id="c">
+<table>
+<tr>
+<th><span>観測時刻選択</span></th><td>
+<div id="prevbtn2">&nbsp;</div>
+</td><td><select style="width:132px;" class="padleft" id="datesel"></select></td><td>
+<div class="padleft disable" id="nextbtn2">&nbsp;</div>
+</td><td><input class="padleft" value="最新" type="button" id="latestbtn"></td><td><img onclick="openCal();" height="20" width="20" alt="カレンダー" src="../img/icon/cal.gif" class="cal" id="specifybtn"></td>
+</tr>
+</table>
+</div>
+<div id="d">
+<table>
+<tr>
+<th><span>表示エリア</span></th><td><select id="psel-1"><option value="0,0">全県</option><optgroup label="管轄事務所" name="管轄事務所"><option value="1,1,o">奈良土木事務所</option><option value="2,2,o">郡山土木事務所</option><option value="3,3,o">高田土木事務所</option><option value="4,4,o">中和土木事務所</option><option value="5,5,o">宇陀土木事務所</option><option value="6,6,o">吉野土木事務所</option><option value="7,7,o">五條土木事務所</option></optgroup></select></td><th><span style="">マイエリア</span></th><td style="text-align: left;"><input value="登録" id="myarea_signup" type="button"><input value="表示" id="myarea_view" type="button"></td>
+</tr>
+</table>
+</div>
+<div id="e">
+<table>
+<tr>
+<td><span id="datatime">2026年09月09日11時50分&nbsp;現在</span></td>
+</tr>
+</table>
+</div>
+<div style="top:65px;left:700px;position:absolute;display:none;" id="h">
+<span>自動更新：</span><select style="width:100px;" id="lodsel"><option value="0">自動更新停止</option><option value="1">自動更新</option></select>
+</div>
+</div>
+<div id="center_content">
+<div class="guide">
+<table width="900" cellspacing="0">
+<tr>
+<td></td><td style="width: 190px;text-align:right;"></td><td style="width: 65px;text-align:right;"><input value="凡例" class="hanreibtn" type="button"></td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<table width="900" class="main">
+<tr>
+<td nowrap="nowrap" rowspan="2" width="145" class="data">管理者名</td><td nowrap="nowrap" rowspan="2" width="55" class="data">河川名</td><td nowrap="nowrap" rowspan="2" width="65" class="data">局名</td><td nowrap="nowrap" rowspan="2" width="110" class="data">所在地</td><td nowrap="nowrap" rowspan="2" width="95" class="data">最新観測時刻</td><td nowrap="nowrap" width="70" class="data">貯水位</td><td nowrap="nowrap" width="70" class="data">貯水容量</td><td nowrap="nowrap" width="70" class="data">空容量</td><td nowrap="nowrap" width="70" class="data">全流入量</td><td nowrap="nowrap" width="70" class="data">放流量</td>
+</tr>
+<tr>
+<td nowrap="nowrap" width="70" class="data">[EL.m]</td><td nowrap="nowrap" width="70" class="data">[10<sup>3</sup>m<sup>3</sup>]</td><td nowrap="nowrap" width="70" class="data">[10<sup>3</sup>m<sup>3</sup>]</td><td nowrap="nowrap" width="70" class="data">[m<sup>3</sup>/s]</td><td nowrap="nowrap" width="70" class="data">[m<sup>3</sup>/s]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="normal1">奈良土木</td><td nowrap="nowrap" class="normal1">岩井川</td><td nowrap="nowrap" class="normal1"><a href="javascript:void(0)" onClick="myIn('4','202609091150','1')">岩井川ダム</a></td><td nowrap="nowrap" class="normal1">奈良市肘塚町</td><td nowrap="nowrap" class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;239.94</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;201</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;609</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.150</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.070</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="normal0">奈良土木</td><td nowrap="nowrap" class="normal0">布留川</td><td nowrap="nowrap" class="normal0"><a href="javascript:void(0)" onClick="myIn('1','202609091150','1')">天理ダム</a></td><td nowrap="nowrap" class="normal0">天理市長滝町</td><td nowrap="nowrap" class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;252.75</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;1061</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;1439</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.300</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.130</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="normal1">奈良土木</td><td nowrap="nowrap" class="normal1">高瀬川</td><td nowrap="nowrap" class="normal1"><a href="javascript:void(0)" onClick="myIn('3','202609091150','1')">白川ダム</a></td><td nowrap="nowrap" class="normal1">天理市和爾町</td><td nowrap="nowrap" class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;111.20</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;325</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;1235</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.000</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.000</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="normal0">中和土木</td><td nowrap="nowrap" class="normal0">大和川</td><td nowrap="nowrap" class="normal0"><a href="javascript:void(0)" onClick="myIn('2','202609091150','1')">初瀬ダム</a></td><td nowrap="nowrap" class="normal0">桜井市初瀬</td><td nowrap="nowrap" class="normal0">2026&nbsp;09/09&nbsp;11:50</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;219.88</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;1780</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;2610</td><td nowrap="nowrap" class="normal0">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.760</td><td nowrap="nowrap" class="normal0">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.220</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="normal1">郡山土木</td><td nowrap="nowrap" class="normal1">大門川</td><td nowrap="nowrap" class="normal1"><a href="javascript:void(0)" onClick="myIn('5','202609091150','1')">大門ダム</a></td><td nowrap="nowrap" class="normal1">生駒郡三郷町立野</td><td nowrap="nowrap" class="normal1">2026&nbsp;09/09&nbsp;11:50</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;262.68</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;149</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.000</td><td nowrap="nowrap" class="normal1">&rarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.000</td>
+</tr>
+</table>
+</div>
+</div>
+<div style="display:none;" title="凡例" id="hanreidialog">
+<table class="hanrei">
+<tr>
+<td class="string">***</td><td>欠測</td>
+</tr>
+<tr>
+<td class="string">---</td><td>無効</td>
+</tr>
+<tr>
+<td class="string">###</td><td>データ異常</td>
+</tr>
+<tr>
+<td class="string">ブランク</td><td>未入力</td>
+</tr>
+</table>
+</div>
+<div style="display:none;" title="マイエリア登録" id="myareadialog">
+<div id="myarea_ctrl">
+<p>現在の地域をマイエリアに登録する場合は登録ボタンを、解除する場合は解除ボタンをクリックして下さい。</p>
+<div style="width:100%;text-align:center;margin-top:1em;">
+<input value="登録" id="signup_ctrl" type="button"><input value="解除" id="signoff_ctrl" type="button">
+</div>
+</div>
+<div id="signaon_msg">
+<p>マイエリアの登録が完了しました。</p>
+</div>
+<div id="signoff_msg">
+<p>マイエリアを解除しました。</p>
+</div>
+</div>
+</div>
+</body>
+</html>
