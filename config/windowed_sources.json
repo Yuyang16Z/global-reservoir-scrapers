@@ -31,12 +31,12 @@
       "publication_cadence_hours": 24,
       "timezone": "Asia/Shanghai",
       "cron": [
-        "30 4,12 * * *"
+        "20 4,12 * * *"
       ],
       "max_schedule_gap_hours": 16,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Fetch the current official table twice after its normal 08:00 report time, archive the source JSON, and overwrite only the same source-date CSV on an idempotent rerun.",
-      "schedule_rationale": "12:30 and 20:30 Beijing time give two capture opportunities after the daily table normally settles. The source has no historical query, so a missed replacement day cannot be reconstructed from the official endpoint.",
+      "schedule_rationale": "Jobs start at 12:20 and 20:20 Beijing time and wait a random 0-20 minutes, so requests normally fall in 12:20-12:40 and 20:20-20:40. This gives two post-publication capture opportunities without a fixed request minute. GitHub scheduler delays can move a run later. The source has no historical query, so a missed replacement day cannot be reconstructed from the official endpoint.",
       "workflow": ".github/workflows/china_mwr_api.yml",
       "scraper": "scrapers/china/mwr_api/china_mwr_api_scraper.py",
       "data_path": "data/china/mwr_api",

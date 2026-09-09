@@ -1,13 +1,14 @@
 name: China MWR API scrape
 
 # The MWR page is a current realtime table, but its report time is normally
-# 08:00 Beijing. Run at 12:30 and 20:30 Beijing time after the table has
-# settled, giving the overwrite-prone daily snapshot two capture opportunities.
+# 08:00 Beijing. Start at 12:20 and 20:20 Beijing time, then add a random
+# 0-20 minute delay. This gives two capture opportunities centered near 12:30
+# and 20:30 without sending the request at the same minute every day.
 # The scraper is API-first and uses historical OCR CSVs only to decode the
 # site's custom-font obfuscation.
 on:
   schedule:
-    - cron: "30 4,12 * * *"
+    - cron: "20 4,12 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -20,7 +21,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 50
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -33,6 +34,14 @@ jobs:
 
       - name: Install deps
         run: pip install -r requirements.txt
+
+      - name: Add bounded schedule jitter
+        if: github.event_name == 'schedule'
+        shell: bash
+        run: |
+          delay_seconds=$(python -c 'import secrets; print(secrets.randbelow(1201))')
+          echo "Waiting ${delay_seconds}s before the scheduled MWR request."
+          sleep "${delay_seconds}"
 
       - name: Run scraper
         env:
