@@ -1,0 +1,50 @@
+name: Japan Shimane dams scrape
+
+# The day file holds every hourly observation since 00:00 JST and resets at midnight;
+# past dates 404. One successful late-day run therefore captures the full 24 points,
+# and the earlier runs are insurance against that run failing.
+on:
+  schedule:
+    - cron: "50 14 * * *"   # 23:50 JST - primary, captures the whole day
+    - cron: "50 8 * * *"    # 17:50 JST
+    - cron: "50 2 * * *"    # 11:50 JST
+    - cron: "50 20 * * *"   # 05:50 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-shimane
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/shimane
+          TZ: Asia/Tokyo
+        run: python scrapers/japan/shimane/japan_shimane_scraper.py
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/shimane scrapers/japan/shimane .github/workflows/japan_shimane.yml
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/shimane): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push

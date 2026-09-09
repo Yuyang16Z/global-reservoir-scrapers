@@ -523,6 +523,29 @@
       "data_path": "data/japan/miyagi",
       "deployment_status": "active",
       "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Miyagi Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/shimane",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "50 14 * * *",
+        "50 8 * * *",
+        "50 2 * * *",
+        "50 20 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Each fetch returns every hourly observation since 00:00 JST, so any run supersedes the earlier ones for that day. The accumulator merges on (station_id, observed_at) and re-reading costs nothing.",
+      "schedule_rationale": "The day file accumulates hourly points from 00:00 JST and resets at midnight; past dates 404. The 23:50 JST run is primary and captures all 24 points on its own; the 17:50, 11:50 and 05:50 runs are insurance, each securing everything up to that hour should the primary fail.",
+      "workflow": ".github/workflows/japan_shimane.yml",
+      "scraper": "scrapers/japan/shimane/japan_shimane_scraper.py",
+      "data_path": "data/japan/shimane",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Shimane Prefecture recorded in the scraper README."
     }
   ]
 }
