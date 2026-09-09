@@ -1,5 +1,5 @@
 {
-  "run_at": "20260909T025937Z",
+  "run_at": "20260909T032047Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -32,9 +32,9 @@
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
-        "貯水率(利水容量)": "storage_pct",
+        "貯水率(利水容量)": "storage_pct_usable",
         "貯水位": "water_level_m",
-        "有効貯水量": "storage_mcm",
+        "有効貯水量": "effective_storage_mcm",
         "流入量": "total_inflow_m3s",
         "放流量": "total_outflow_m3s"
       }
@@ -81,7 +81,7 @@
       "skipped_no_time": 0,
       "mapped_columns": {
         "貯水位": "water_level_m",
-        "総貯水量": "storage_mcm",
+        "総貯水量": "gross_storage_mcm",
         "全流入量": "total_inflow_m3s",
         "全放流量": "total_outflow_m3s",
         "貯水率": "storage_pct"

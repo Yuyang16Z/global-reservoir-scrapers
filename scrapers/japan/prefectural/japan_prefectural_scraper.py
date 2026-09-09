@@ -68,13 +68,25 @@ SITES = {
 # Niigata:  観測所名 | 最新観測時刻 | 平常時最高貯水位 | 貯水位 | ... | 流入量 | ...
 # Positional mapping would silently write 流入量 into water_level_m for Yamagata.
 VARMAP = [
-    ("貯水量", "storage_mcm", 0.001),        # 10^3 m3 -> 10^6 m3
-    ("貯水率", "storage_pct", 1.0),
-    ("貯水位", "water_level_m", 1.0),
-    ("全放流量", "total_outflow_m3s", 1.0),
-    ("放流量", "total_outflow_m3s", 1.0),
-    ("流入量", "total_inflow_m3s", 1.0),
+    # Longest label first: 有効貯水量/総貯水量 must win over the bare 貯水量 substring,
+    # and 貯水率(利水容量) over the bare 貯水率.
+    ("有効貯水量", "effective_storage_mcm", 0.001),   # explicitly EXCLUDES dead storage
+    ("総貯水量",   "gross_storage_mcm",     0.001),   # explicitly INCLUDES dead storage
+    ("貯水量",     "storage_mcm",           0.001),   # unqualified by the source
+    ("貯水率(利水容量)", "storage_pct_usable", 1.0),   # percent of USABLE capacity
+    ("貯水率",     "storage_pct",           1.0),
+    ("貯水位",     "water_level_m",         1.0),
+    ("全放流量",   "total_outflow_m3s",     1.0),
+    ("放流量",     "total_outflow_m3s",     1.0),
+    ("全流入量",   "total_inflow_m3s",      1.0),
+    ("流入量",     "total_inflow_m3s",      1.0),
 ]
+# The three storage terms are DELIBERATELY NOT merged. The sources keep them apart, and
+# the delivery schema forbids combining variables a source keeps separate: 有効貯水量 is
+# live storage, 総貯水量 includes dead storage, and a bare 貯水量 is unqualified. Merging
+# them would produce a single series silently switching definition between prefectures,
+# which cannot be undone downstream. Consumers may combine; they could not un-combine.
+
 # Static design/reference values that share the same table. They are NOT observations
 # and must never enter a time series; longest-first so they win over the substrings above.
 STATIC_COLS = ("平常時最高貯水位", "平常時最高水位", "洪水時最高水位", "洪水貯留準備水位",
@@ -216,8 +228,9 @@ def main() -> int:
     if all_rows:
         OUT.mkdir(parents=True, exist_ok=True)
         cols = ["prefecture", "prefecture_jp", "dam_jp", "observed_at",
-                "water_level_m", "total_inflow_m3s", "storage_mcm", "storage_pct",
-                "total_outflow_m3s", "source_header"]
+                "water_level_m", "total_inflow_m3s", "total_outflow_m3s",
+                "storage_mcm", "effective_storage_mcm", "gross_storage_mcm",
+                "storage_pct", "storage_pct_usable", "source_header"]
         # append-only accumulator: this source has no history, so the archive IS the series
         acc = OUT / "accumulated.csv"
         seen = set()

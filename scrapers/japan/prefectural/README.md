@@ -36,9 +36,14 @@ lost permanently, which is why the cadence is hourly rather than daily.
 - **Static design values share the table** and are excluded: 平常時最高貯水位,
   平常時最高水位, 洪水時最高水位, サーチャージ水位, 洪水貯留準備水位, 計画高水流量,
   洪水流入量, 洪水量, 常時満水位. They are reference values, never observations.
-- **`storage_mcm` mixes three different quantities** across sites — 貯水量,
-  有効貯水量 (usable), 総貯水量 (gross). The exact source label is kept per row in
-  `source_header` and must be used to split the column before delivery.
+- **Storage is split into three columns, deliberately.** The sites use three different
+  terms and the delivery schema forbids combining variables a source keeps separate:
+  `貯水量` (unqualified) -> `storage_mcm`; `有効貯水量` (excludes dead storage) ->
+  `effective_storage_mcm`; `総貯水量` (includes dead storage) -> `gross_storage_mcm`.
+  Likewise `貯水率(利水容量)`, a percentage of USABLE capacity, is kept apart from a
+  bare `貯水率` as `storage_pct_usable`. Merging them would yield one series that
+  silently changes definition between prefectures — a consumer can combine these
+  columns, but could never un-combine them. `source_header` retains the raw labels.
 - Encoding is Shift_JIS.
 
 ## Licence
