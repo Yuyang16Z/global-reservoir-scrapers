@@ -4,6 +4,19 @@ name: China MWR API scrape
 # 08:00 Beijing. Start at 12:20 and 20:20 Beijing time, then add a random
 # 0-20 minute delay. This gives two capture opportunities centered near 12:30
 # and 20:30 without sending the request at the same minute every day.
+#
+# The jitter reduces the chance of colliding with other synchronised jobs. It is
+# NOT a countermeasure to bot detection, and this source has never shown any.
+# The 2026-09-02..08 outage was `Network is unreachable` -- an L3 routing failure,
+# with no 403, 429, CAPTCHA or ban notice anywhere in the logs -- and was fixed by
+# the transport fallback, not by jitter.
+#
+# IF THIS WORKFLOW FAILS AGAIN: read the failure mode before changing the schedule.
+#   `Network is unreachable` / `Connection timed out` -> routing problem. Check the
+#     runner's egress, the fallback path, and retry behaviour. Do NOT tune timing.
+#   403 / 429 / CAPTCHA page / explicit ban / rejection tied to a UA or IP range
+#     -> only then treat it as bot detection.
+# Tuning the schedule against an L3 failure will mask the real cause.
 # The scraper is API-first and uses historical OCR CSVs only to decode the
 # site's custom-font obfuscation.
 on:
