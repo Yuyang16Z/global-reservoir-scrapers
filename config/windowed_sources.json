@@ -4,26 +4,6 @@
   "policy": "WINDOWED_SOURCE_POLICY.md",
   "sources": [
     {
-      "source_id": "india/apwrims",
-      "country": "India",
-      "retention_class": "rolling_window",
-      "retention_window_hours": null,
-      "publication_cadence_hours": 24,
-      "timezone": "Asia/Kolkata",
-      "cron": [
-        "0 3,12 * * *"
-      ],
-      "max_schedule_gap_hours": 15,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Merge all recent source observations by reservoir and source date on every run.",
-      "schedule_rationale": "08:30 IST captures settled prior-day values; 17:30 IST is the same-day fallback.",
-      "workflow": ".github/workflows/india_apwrims.yml",
-      "scraper": "scrapers/india/apwrims/india_apwrims_scraper.py",
-      "data_path": "data/india/apwrims",
-      "deployment_status": "active",
-      "licence_gate": "Public commit requires the source-level licence fields and release assessment recorded by the scraper."
-    },
-    {
       "source_id": "china/mwr_api",
       "country": "China",
       "retention_class": "current_snapshot",
@@ -44,6 +24,154 @@
       "licence_gate": "undeclared_review. Existing public scheduled collection continues under the repository owner's recorded decision; MWR redistribution still requires separate human approval and the source copyright evidence remains recorded in DATA_LICENCE_NOTICE.md."
     },
     {
+      "source_id": "ghana/bui",
+      "country": "Ghana",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 8760,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Accra",
+      "cron": [
+        "30 6 * * *",
+        "30 17 * * *"
+      ],
+      "max_schedule_gap_hours": 13,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge the three overlapping trend arrays plus the spot value by date; the roughly one-year window gives ample recovery margin for missed runs.",
+      "schedule_rationale": "06:30 and 17:30 Africa/Accra. The level trends roll off after about a year and the spot inflow/outflow reading has no history at all, so the evening run captures intra-day changes the morning run would miss.",
+      "workflow": ".github/workflows/ghana_bui.yml",
+      "scraper": "scrapers/ghana/bui/ghana_bui_scraper.py",
+      "data_path": "data/ghana/bui",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "ghana/vra",
+      "country": "Ghana",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 72,
+      "timezone": "Africa/Accra",
+      "cron": [
+        "35 6 * * *",
+        "35 16 * * *"
+      ],
+      "max_schedule_gap_hours": 14,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Store each reading under its own printed observation date; the facts page also prints the same-date reading one year earlier, which is captured as its own record.",
+      "schedule_rationale": "06:35 and 16:35 Africa/Accra, bracketing VRA's working-day update. The widget keeps no archive, so an unobserved change is lost permanently. The printed reading trails the page by up to five days (VRA updates on working days), so the declared cadence is 72h; polling stays twice daily because the widget keeps no archive.",
+      "workflow": ".github/workflows/ghana_vra.yml",
+      "scraper": "scrapers/ghana/vra/ghana_vra_scraper.py",
+      "data_path": "data/ghana/vra",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "india/apwrims",
+      "country": "India",
+      "retention_class": "rolling_window",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Kolkata",
+      "cron": [
+        "0 3,12 * * *"
+      ],
+      "max_schedule_gap_hours": 15,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge all recent source observations by reservoir and source date on every run.",
+      "schedule_rationale": "08:30 IST captures settled prior-day values; 17:30 IST is the same-day fallback.",
+      "workflow": ".github/workflows/india_apwrims.yml",
+      "scraper": "scrapers/india/apwrims/india_apwrims_scraper.py",
+      "data_path": "data/india/apwrims",
+      "deployment_status": "active",
+      "licence_gate": "Public commit requires the source-level licence fields and release assessment recorded by the scraper."
+    },
+    {
+      "source_id": "japan/gunma",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 25,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "50 14 * * *",
+        "50 6 * * *",
+        "50 22 * * *"
+      ],
+      "max_schedule_gap_hours": 8,
+      "minimum_capture_opportunities": 3,
+      "overlap_strategy": "Each hourly page carries the last 25 points, so consecutive runs overlap by ~16h; merged on (dam_jp, observed_at). All 7 dams are new — none appears in the MLIT/OpenGov delivery, checked by exact Japanese name.",
+      "schedule_rationale": "A genuine rolling window with no day-file reset, so any single run recovers a full 24h. Three runs 8h apart mean two consecutive failures still lose no data.",
+      "workflow": ".github/workflows/japan_gunma.yml",
+      "scraper": "scrapers/japan/gunma/japan_gunma_scraper.py",
+      "data_path": "data/japan/gunma",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Gunma Prefecture (群馬県水位雨量情報システム) recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/ishikawa",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "55 14 * * *",
+        "55 8 * * *",
+        "55 2 * * *",
+        "55 20 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Each fetch returns every hourly point since 00:00 JST, so a later run supersedes earlier ones for that day; merged on (station_id, observed_at). NOTE: 手取川ダム is also delivered from MLIT/OpenGov and must be de-duplicated at the delivery layer; the other 11 dams are new.",
+      "schedule_rationale": "The day file accumulates hourly points from 00:00 JST and resets at midnight, and past dates 404. The 23:50 JST run captures all 24 points on its own; the 17:50, 11:50 and 05:50 runs each secure everything up to that hour should the primary fail.",
+      "workflow": ".github/workflows/japan_ishikawa.yml",
+      "scraper": "scrapers/japan/ishikawa/japan_ishikawa_scraper.py",
+      "data_path": "data/japan/ishikawa",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Ishikawa Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/kanagawa",
+      "country": "Japan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "50 3 * * *",
+        "50 13 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (reservoir_code, lastUpdate); re-reading the same published day adds nothing.",
+      "schedule_rationale": "The API publishes one value per day via its own lastUpdate field. Its 30-point series cannot be dated -- the per-series dt is a generator cursor that decrements one hour per series in listing order -- so no history is retrievable and a missed day is unrecoverable. Captured twice daily with a wide separation so one failed run does not cost a day.",
+      "workflow": ".github/workflows/japan_kanagawa.yml",
+      "scraper": "scrapers/japan/kanagawa/japan_kanagawa_scraper.py",
+      "data_path": "data/japan/kanagawa",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Kanagawa Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/miyagi",
+      "country": "Japan",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 720,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "10 22 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (dam_jp, bulletin date parsed from the PDF); polling daily on a monthly bulletin simply re-reads the same issue until a new one appears.",
+      "schedule_rationale": "Only the current issue is kept: older dated filenames 404 (verified r80801/r80701/r80601/r80815 on 2026-09-09) and the Internet Archive holds three snapshots under three naming schemes, which is not a usable backfill. The bulletin is monthly but neither the publication day nor the filename convention is stable, so the landing page is polled daily and the link is read from it rather than constructed. Daily polling of a monthly issue gives far more than two capture opportunities.",
+      "workflow": ".github/workflows/japan_miyagi.yml",
+      "scraper": "scrapers/japan/miyagi/japan_miyagi_scraper.py",
+      "data_path": "data/japan/miyagi",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Miyagi Prefecture recorded in the scraper README."
+    },
+    {
       "source_id": "japan/opengov",
       "country": "Japan",
       "retention_class": "rolling_window",
@@ -62,6 +190,89 @@
       "data_path": "data/japan/opengov",
       "deployment_status": "active",
       "licence_gate": "Public commit requires the recorded Japanese open-data source and attribution terms."
+    },
+    {
+      "source_id": "japan/prefectural",
+      "country": "Japan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 1,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "*/30 * * * *"
+      ],
+      "max_schedule_gap_hours": 1,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (prefecture, dam_jp, observed_at); a repeated observation time is written once. The accumulated file IS the series because the source publishes no history.",
+      "schedule_rationale": "No backfill path exists: historical queries return zero dam rows and the Wayback Machine holds no snapshot of this servlet, so anything a run misses is lost permanently. The source advances every 10-30 minutes, which is a continuous signal rather than a discrete expiring publication; the intended product is therefore an HOURLY sampled series. Running every 30 minutes gives each hourly slot two capture opportunities, so a single failed or delayed run does not create a hole. A twice-daily cadence would capture 2 of roughly 48 daily observations and is not appropriate here.",
+      "workflow": ".github/workflows/japan_prefectural.yml",
+      "scraper": "scrapers/japan/prefectural/japan_prefectural_scraper.py",
+      "data_path": "data/japan/prefectural",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. The dam subsites publish no terms and the parent prefectural portals yielded no machine-readable licence on 2026-09-09. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution to the eight prefectural river/flood information systems is recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/prefectural_static",
+      "country": "Japan",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": 1,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "15 * * * *"
+      ],
+      "max_schedule_gap_hours": 2,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Append-only accumulator keyed on (site, dam_jp, observed_at). Fukushima and Yamaguchi republish hourly; JWA and Hyogo publish daily and dedup to one row per observation date.",
+      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima and Yamaguchi advance hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated.",
+      "workflow": ".github/workflows/japan_prefectural_static.yml",
+      "scraper": "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
+      "data_path": "data/japan/prefectural_static",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution recorded in the scraper README."
+    },
+    {
+      "source_id": "japan/shimane",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "50 14 * * *",
+        "50 8 * * *",
+        "50 2 * * *",
+        "50 20 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Each fetch returns every hourly observation since 00:00 JST, so any run supersedes the earlier ones for that day. The accumulator merges on (station_id, observed_at) and re-reading costs nothing.",
+      "schedule_rationale": "The day file accumulates hourly points from 00:00 JST and resets at midnight; past dates 404. The 23:50 JST run is primary and captures all 24 points on its own; the 17:50, 11:50 and 05:50 runs are insurance, each securing everything up to that hour should the primary fail.",
+      "workflow": ".github/workflows/japan_shimane.yml",
+      "scraper": "scrapers/japan/shimane/japan_shimane_scraper.py",
+      "data_path": "data/japan/shimane",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Shimane Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "luxembourg/age",
+      "country": "Luxembourg",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 120,
+      "publication_cadence_hours": 24,
+      "timezone": "Europe/Luxembourg",
+      "cron": [
+        "17 4,16 * * *"
+      ],
+      "max_schedule_gap_hours": 14,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Fetch the full available five-day 15-minute window and recompute only complete local days idempotently.",
+      "schedule_rationale": "Twice-daily capture leaves substantial recovery margin inside the approximately five-day source window. Registry reconciled to the deployed workflow on 2026-08-04 (was ['15 5,17 * * *']); the workflow is authoritative because it is what runs.",
+      "workflow": ".github/workflows/luxembourg_age.yml",
+      "scraper": "scrapers/luxembourg/age/luxembourg_age_scraper.py",
+      "data_path": "data/luxembourg/age",
+      "deployment_status": "active",
+      "licence_gate": "AGE CC0 evidence applies to the operational open-data resource; preserve the source evidence and do not extend it to requested long archives."
     },
     {
       "source_id": "malaysia/luas",
@@ -104,6 +315,89 @@
       "licence_gate": "Public commit is limited by the source-specific ABHSM reuse assessment."
     },
     {
+      "source_id": "morocco/abht",
+      "country": "Morocco",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Casablanca",
+      "cron": [
+        "30 7 * * *",
+        "30 16 * * *"
+      ],
+      "max_schedule_gap_hours": 15,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Store each reading under the widget's own printed date and merge by (date, reservoir); a repeated snapshot rewrites equal values.",
+      "schedule_rationale": "08:30 and 17:30 Africa/Casablanca. The homepage fill-rate widget shows one date and is overwritten in place, so an unobserved change is lost permanently; the evening run recovers a failed morning run within the same publication day. Added 2026-08-04 because the project's original Moroccan source, ABHSM (Souss-Massa), went offline and last published 2026-06-18.",
+      "workflow": ".github/workflows/morocco_abht.yml",
+      "scraper": "scrapers/morocco/abht/morocco_abht_scraper.py",
+      "data_path": "data/morocco/abht",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "mozambique/hcb",
+      "country": "Mozambique",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 12000,
+      "publication_cadence_hours": 24,
+      "timezone": "Africa/Maputo",
+      "cron": [
+        "20 4 1,16 * *",
+        "20 15 1,16 * *"
+      ],
+      "max_schedule_gap_hours": 384,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "The endpoint returns the whole retained table on every call, so one successful run recovers every day since the last one; records merge by reference_date.",
+      "schedule_rationale": "Twice a month (1st and 16th), 06:20 and 17:20 Africa/Maputo. Because the full retained table is served on every call - records back to 2025-03-06 are still present - nothing is lost between polls, so a fortnightly cadence collects the same data as a daily one at a fraction of the cost. The second run on each collection day is the recovery opportunity.",
+      "workflow": ".github/workflows/mozambique_hcb.yml",
+      "scraper": "scrapers/mozambique/hcb/mozambique_hcb_scraper.py",
+      "data_path": "data/mozambique/hcb",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "namibia/namwater",
+      "country": "Namibia",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Windhoek",
+      "cron": [
+        "40 5 * * 2",
+        "40 5 * * 4"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Probe the last 8 Monday-dated bulletin URLs each run and merge by the bulletin's printed date, so a resumed publication is picked up without duplication.",
+      "schedule_rationale": "Tuesday and Thursday 07:40 Africa/Windhoek. The site keeps only the latest bulletin PDF, so the Thursday run is the recovery attempt for a failed Tuesday within the same publication week. Publication has been frozen since 2024-07-08, so both runs double as a resumption watch.",
+      "workflow": ".github/workflows/namibia_namwater.yml",
+      "scraper": "scrapers/namibia/namwater/namibia_namwater_scraper.py",
+      "data_path": "data/namibia/namwater",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "pakistan/irsa",
+      "country": "Pakistan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 192,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Karachi",
+      "cron": [
+        "20 4,16 * * *"
+      ],
+      "max_schedule_gap_hours": 12,
+      "minimum_capture_opportunities": 12,
+      "overlap_strategy": "Fetch every currently listed bulletin, deduplicate by report date and checksum, and retry Wayback recovery separately.",
+      "schedule_rationale": "Twice-daily capture protects the observed approximately eight-issue rolling bulletin window.",
+      "workflow": null,
+      "scraper": null,
+      "data_path": "data/pakistan/irsa",
+      "deployment_status": "migration_required",
+      "licence_gate": "Reuse terms are undeclared_review; do not publish bulletin contents in the public repository until redistribution permission is resolved."
+    },
+    {
       "source_id": "philippines/pagasa",
       "country": "Philippines",
       "retention_class": "rolling_window",
@@ -122,6 +416,27 @@
       "data_path": "data/philippines/pagasa",
       "deployment_status": "active",
       "licence_gate": "Public commit requires PAGASA source terms and attribution to remain recorded."
+    },
+    {
+      "source_id": "southafrica/capetown_wcwss",
+      "country": "South Africa",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Johannesburg",
+      "cron": [
+        "0 9 * * 2",
+        "0 9 * * 4"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Merge by (printed dashboard date, reservoir). Each dashboard also prints the previous week's percentage, which is stored for its own date and is superseded by that week's own 'current' reading.",
+      "schedule_rationale": "11:00 SAST Tuesday and Thursday. The City of Cape Town publishes one weekly dashboard at a stable URL that is overwritten, so a missed week cannot be recovered from the source; Thursday is the recovery attempt. Added 2026-08-04 because the national DWS bulletin stopped publishing after 2026-06-29 and every downstream mirror froze on that date.",
+      "workflow": ".github/workflows/southafrica_capetown_wcwss.yml",
+      "scraper": "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
+      "data_path": "data/southafrica/capetown_wcwss",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
     },
     {
       "source_id": "southafrica/dws_weekly",
@@ -143,6 +458,27 @@
       "data_path": "data/southafrica/dws_weekly",
       "deployment_status": "active",
       "licence_gate": "Public commit remains subject to the recorded DWS reuse assessment."
+    },
+    {
+      "source_id": "srilanka/mahaweli",
+      "country": "Sri Lanka",
+      "retention_class": "overwrite_prone",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Colombo",
+      "cron": [
+        "40 2 * * *",
+        "40 11 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "The bulletin carries its own issue date; rows merge on (reservoir, bulletin date) so a re-read of the same issue adds nothing. Both daily runs read the same fixed URL, and the second is pure redundancy.",
+      "schedule_rationale": "The two-page status PDF sits at a fixed URL that each issue overwrites, and the Internet Archive does NOT hold it — verified 2026-09-08, its 482 archived mahaweli.gov.lk PDFs are tenders, annual reports and gazettes. A missed day is unrecoverable, so the day is covered twice with a wide separation to survive one failed or delayed run.",
+      "workflow": ".github/workflows/srilanka_mahaweli.yml",
+      "scraper": "scrapers/srilanka/mahaweli/srilanka_mahaweli_scraper.py",
+      "data_path": "data/srilanka/mahaweli",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09; attribution to the Water Management Secretariat, Mahaweli Authority of Sri Lanka is recorded in the scraper README."
     },
     {
       "source_id": "taiwan/wra",
@@ -195,46 +531,6 @@
       "data_path": "data/thailand/rid",
       "deployment_status": "active",
       "licence_gate": "Public commit remains subject to the RID licence and attribution assessment."
-    },
-    {
-      "source_id": "luxembourg/age",
-      "country": "Luxembourg",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 120,
-      "publication_cadence_hours": 24,
-      "timezone": "Europe/Luxembourg",
-      "cron": [
-        "17 4,16 * * *"
-      ],
-      "max_schedule_gap_hours": 14,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Fetch the full available five-day 15-minute window and recompute only complete local days idempotently.",
-      "schedule_rationale": "Twice-daily capture leaves substantial recovery margin inside the approximately five-day source window. Registry reconciled to the deployed workflow on 2026-08-04 (was ['15 5,17 * * *']); the workflow is authoritative because it is what runs.",
-      "workflow": ".github/workflows/luxembourg_age.yml",
-      "scraper": "scrapers/luxembourg/age/luxembourg_age_scraper.py",
-      "data_path": "data/luxembourg/age",
-      "deployment_status": "active",
-      "licence_gate": "AGE CC0 evidence applies to the operational open-data resource; preserve the source evidence and do not extend it to requested long archives."
-    },
-    {
-      "source_id": "pakistan/irsa",
-      "country": "Pakistan",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 192,
-      "publication_cadence_hours": 24,
-      "timezone": "Asia/Karachi",
-      "cron": [
-        "20 4,16 * * *"
-      ],
-      "max_schedule_gap_hours": 12,
-      "minimum_capture_opportunities": 12,
-      "overlap_strategy": "Fetch every currently listed bulletin, deduplicate by report date and checksum, and retry Wayback recovery separately.",
-      "schedule_rationale": "Twice-daily capture protects the observed approximately eight-issue rolling bulletin window.",
-      "workflow": null,
-      "scraper": null,
-      "data_path": "data/pakistan/irsa",
-      "deployment_status": "migration_required",
-      "licence_gate": "Reuse terms are undeclared_review; do not publish bulletin contents in the public repository until redistribution permission is resolved."
     },
     {
       "source_id": "turkey/iski_current",
@@ -295,280 +591,6 @@
       "data_path": "data/zimbabwe/zinwa",
       "deployment_status": "active",
       "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "namibia/namwater",
-      "country": "Namibia",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 168,
-      "publication_cadence_hours": 168,
-      "timezone": "Africa/Windhoek",
-      "cron": [
-        "40 5 * * 2",
-        "40 5 * * 4"
-      ],
-      "max_schedule_gap_hours": 96,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Probe the last 8 Monday-dated bulletin URLs each run and merge by the bulletin's printed date, so a resumed publication is picked up without duplication.",
-      "schedule_rationale": "Tuesday and Thursday 07:40 Africa/Windhoek. The site keeps only the latest bulletin PDF, so the Thursday run is the recovery attempt for a failed Tuesday within the same publication week. Publication has been frozen since 2024-07-08, so both runs double as a resumption watch.",
-      "workflow": ".github/workflows/namibia_namwater.yml",
-      "scraper": "scrapers/namibia/namwater/namibia_namwater_scraper.py",
-      "data_path": "data/namibia/namwater",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "mozambique/hcb",
-      "country": "Mozambique",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 12000,
-      "publication_cadence_hours": 24,
-      "timezone": "Africa/Maputo",
-      "cron": [
-        "20 4 1,16 * *",
-        "20 15 1,16 * *"
-      ],
-      "max_schedule_gap_hours": 384,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "The endpoint returns the whole retained table on every call, so one successful run recovers every day since the last one; records merge by reference_date.",
-      "schedule_rationale": "Twice a month (1st and 16th), 06:20 and 17:20 Africa/Maputo. Because the full retained table is served on every call - records back to 2025-03-06 are still present - nothing is lost between polls, so a fortnightly cadence collects the same data as a daily one at a fraction of the cost. The second run on each collection day is the recovery opportunity.",
-      "workflow": ".github/workflows/mozambique_hcb.yml",
-      "scraper": "scrapers/mozambique/hcb/mozambique_hcb_scraper.py",
-      "data_path": "data/mozambique/hcb",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "ghana/bui",
-      "country": "Ghana",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 8760,
-      "publication_cadence_hours": 24,
-      "timezone": "Africa/Accra",
-      "cron": [
-        "30 6 * * *",
-        "30 17 * * *"
-      ],
-      "max_schedule_gap_hours": 13,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Merge the three overlapping trend arrays plus the spot value by date; the roughly one-year window gives ample recovery margin for missed runs.",
-      "schedule_rationale": "06:30 and 17:30 Africa/Accra. The level trends roll off after about a year and the spot inflow/outflow reading has no history at all, so the evening run captures intra-day changes the morning run would miss.",
-      "workflow": ".github/workflows/ghana_bui.yml",
-      "scraper": "scrapers/ghana/bui/ghana_bui_scraper.py",
-      "data_path": "data/ghana/bui",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "ghana/vra",
-      "country": "Ghana",
-      "retention_class": "current_snapshot",
-      "retention_window_hours": null,
-      "publication_cadence_hours": 72,
-      "timezone": "Africa/Accra",
-      "cron": [
-        "35 6 * * *",
-        "35 16 * * *"
-      ],
-      "max_schedule_gap_hours": 14,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Store each reading under its own printed observation date; the facts page also prints the same-date reading one year earlier, which is captured as its own record.",
-      "schedule_rationale": "06:35 and 16:35 Africa/Accra, bracketing VRA's working-day update. The widget keeps no archive, so an unobserved change is lost permanently. The printed reading trails the page by up to five days (VRA updates on working days), so the declared cadence is 72h; polling stays twice daily because the widget keeps no archive.",
-      "workflow": ".github/workflows/ghana_vra.yml",
-      "scraper": "scrapers/ghana/vra/ghana_vra_scraper.py",
-      "data_path": "data/ghana/vra",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "morocco/abht",
-      "country": "Morocco",
-      "retention_class": "current_snapshot",
-      "retention_window_hours": null,
-      "publication_cadence_hours": 24,
-      "timezone": "Africa/Casablanca",
-      "cron": [
-        "30 7 * * *",
-        "30 16 * * *"
-      ],
-      "max_schedule_gap_hours": 15,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Store each reading under the widget's own printed date and merge by (date, reservoir); a repeated snapshot rewrites equal values.",
-      "schedule_rationale": "08:30 and 17:30 Africa/Casablanca. The homepage fill-rate widget shows one date and is overwritten in place, so an unobserved change is lost permanently; the evening run recovers a failed morning run within the same publication day. Added 2026-08-04 because the project's original Moroccan source, ABHSM (Souss-Massa), went offline and last published 2026-06-18.",
-      "workflow": ".github/workflows/morocco_abht.yml",
-      "scraper": "scrapers/morocco/abht/morocco_abht_scraper.py",
-      "data_path": "data/morocco/abht",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "southafrica/capetown_wcwss",
-      "country": "South Africa",
-      "retention_class": "overwrite_prone",
-      "retention_window_hours": 168,
-      "publication_cadence_hours": 168,
-      "timezone": "Africa/Johannesburg",
-      "cron": [
-        "0 9 * * 2",
-        "0 9 * * 4"
-      ],
-      "max_schedule_gap_hours": 96,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Merge by (printed dashboard date, reservoir). Each dashboard also prints the previous week's percentage, which is stored for its own date and is superseded by that week's own 'current' reading.",
-      "schedule_rationale": "11:00 SAST Tuesday and Thursday. The City of Cape Town publishes one weekly dashboard at a stable URL that is overwritten, so a missed week cannot be recovered from the source; Thursday is the recovery attempt. Added 2026-08-04 because the national DWS bulletin stopped publishing after 2026-06-29 and every downstream mirror froze on that date.",
-      "workflow": ".github/workflows/southafrica_capetown_wcwss.yml",
-      "scraper": "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
-      "data_path": "data/southafrica/capetown_wcwss",
-      "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
-    },
-    {
-      "source_id": "japan/prefectural",
-      "country": "Japan",
-      "retention_class": "current_snapshot",
-      "retention_window_hours": 1,
-      "publication_cadence_hours": 1,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "*/30 * * * *"
-      ],
-      "max_schedule_gap_hours": 1,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Append-only accumulator keyed on (prefecture, dam_jp, observed_at); a repeated observation time is written once. The accumulated file IS the series because the source publishes no history.",
-      "schedule_rationale": "No backfill path exists: historical queries return zero dam rows and the Wayback Machine holds no snapshot of this servlet, so anything a run misses is lost permanently. The source advances every 10-30 minutes, which is a continuous signal rather than a discrete expiring publication; the intended product is therefore an HOURLY sampled series. Running every 30 minutes gives each hourly slot two capture opportunities, so a single failed or delayed run does not create a hole. A twice-daily cadence would capture 2 of roughly 48 daily observations and is not appropriate here.",
-      "workflow": ".github/workflows/japan_prefectural.yml",
-      "scraper": "scrapers/japan/prefectural/japan_prefectural_scraper.py",
-      "data_path": "data/japan/prefectural",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. The dam subsites publish no terms and the parent prefectural portals yielded no machine-readable licence on 2026-09-09. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution to the eight prefectural river/flood information systems is recorded in the scraper README."
-    },
-    {
-      "source_id": "japan/prefectural_static",
-      "country": "Japan",
-      "retention_class": "current_snapshot",
-      "retention_window_hours": 1,
-      "publication_cadence_hours": 1,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "15 * * * *"
-      ],
-      "max_schedule_gap_hours": 2,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Append-only accumulator keyed on (site, dam_jp, observed_at). Fukushima and Yamaguchi republish hourly; JWA and Hyogo publish daily and dedup to one row per observation date.",
-      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima and Yamaguchi advance hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated.",
-      "workflow": ".github/workflows/japan_prefectural_static.yml",
-      "scraper": "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
-      "data_path": "data/japan/prefectural_static",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09 after the exposure was stated explicitly; attribution recorded in the scraper README."
-    },
-    {
-      "source_id": "srilanka/mahaweli",
-      "country": "Sri Lanka",
-      "retention_class": "overwrite_prone",
-      "retention_window_hours": 24,
-      "publication_cadence_hours": 24,
-      "timezone": "Asia/Colombo",
-      "cron": [
-        "40 2 * * *",
-        "40 11 * * *"
-      ],
-      "max_schedule_gap_hours": 24,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "The bulletin carries its own issue date; rows merge on (reservoir, bulletin date) so a re-read of the same issue adds nothing. Both daily runs read the same fixed URL, and the second is pure redundancy.",
-      "schedule_rationale": "The two-page status PDF sits at a fixed URL that each issue overwrites, and the Internet Archive does NOT hold it — verified 2026-09-08, its 482 archived mahaweli.gov.lk PDFs are tenders, annual reports and gazettes. A missed day is unrecoverable, so the day is covered twice with a wide separation to survive one failed or delayed run.",
-      "workflow": ".github/workflows/srilanka_mahaweli.yml",
-      "scraper": "scrapers/srilanka/mahaweli/srilanka_mahaweli_scraper.py",
-      "data_path": "data/srilanka/mahaweli",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit to this world-readable repository was authorised by the project owner on 2026-09-09; attribution to the Water Management Secretariat, Mahaweli Authority of Sri Lanka is recorded in the scraper README."
-    },
-    {
-      "source_id": "japan/kanagawa",
-      "country": "Japan",
-      "retention_class": "current_snapshot",
-      "retention_window_hours": 24,
-      "publication_cadence_hours": 24,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "50 3 * * *",
-        "50 13 * * *"
-      ],
-      "max_schedule_gap_hours": 24,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Append-only accumulator keyed on (reservoir_code, lastUpdate); re-reading the same published day adds nothing.",
-      "schedule_rationale": "The API publishes one value per day via its own lastUpdate field. Its 30-point series cannot be dated -- the per-series dt is a generator cursor that decrements one hour per series in listing order -- so no history is retrievable and a missed day is unrecoverable. Captured twice daily with a wide separation so one failed run does not cost a day.",
-      "workflow": ".github/workflows/japan_kanagawa.yml",
-      "scraper": "scrapers/japan/kanagawa/japan_kanagawa_scraper.py",
-      "data_path": "data/japan/kanagawa",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Kanagawa Prefecture recorded in the scraper README."
-    },
-    {
-      "source_id": "japan/miyagi",
-      "country": "Japan",
-      "retention_class": "overwrite_prone",
-      "retention_window_hours": 720,
-      "publication_cadence_hours": 720,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "10 22 * * *"
-      ],
-      "max_schedule_gap_hours": 24,
-      "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Append-only accumulator keyed on (dam_jp, bulletin date parsed from the PDF); polling daily on a monthly bulletin simply re-reads the same issue until a new one appears.",
-      "schedule_rationale": "Only the current issue is kept: older dated filenames 404 (verified r80801/r80701/r80601/r80815 on 2026-09-09) and the Internet Archive holds three snapshots under three naming schemes, which is not a usable backfill. The bulletin is monthly but neither the publication day nor the filename convention is stable, so the landing page is polled daily and the link is read from it rather than constructed. Daily polling of a monthly issue gives far more than two capture opportunities.",
-      "workflow": ".github/workflows/japan_miyagi.yml",
-      "scraper": "scrapers/japan/miyagi/japan_miyagi_scraper.py",
-      "data_path": "data/japan/miyagi",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Miyagi Prefecture recorded in the scraper README."
-    },
-    {
-      "source_id": "japan/shimane",
-      "country": "Japan",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 24,
-      "publication_cadence_hours": 1,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "50 14 * * *",
-        "50 8 * * *",
-        "50 2 * * *",
-        "50 20 * * *"
-      ],
-      "max_schedule_gap_hours": 24,
-      "minimum_capture_opportunities": 4,
-      "overlap_strategy": "Each fetch returns every hourly observation since 00:00 JST, so any run supersedes the earlier ones for that day. The accumulator merges on (station_id, observed_at) and re-reading costs nothing.",
-      "schedule_rationale": "The day file accumulates hourly points from 00:00 JST and resets at midnight; past dates 404. The 23:50 JST run is primary and captures all 24 points on its own; the 17:50, 11:50 and 05:50 runs are insurance, each securing everything up to that hour should the primary fail.",
-      "workflow": ".github/workflows/japan_shimane.yml",
-      "scraper": "scrapers/japan/shimane/japan_shimane_scraper.py",
-      "data_path": "data/japan/shimane",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Shimane Prefecture recorded in the scraper README."
-    },
-    {
-      "source_id": "japan/ishikawa",
-      "country": "Japan",
-      "retention_class": "rolling_window",
-      "retention_window_hours": 24,
-      "publication_cadence_hours": 1,
-      "timezone": "Asia/Tokyo",
-      "cron": [
-        "55 14 * * *",
-        "55 8 * * *",
-        "55 2 * * *",
-        "55 20 * * *"
-      ],
-      "max_schedule_gap_hours": 24,
-      "minimum_capture_opportunities": 4,
-      "overlap_strategy": "Each fetch returns every hourly point since 00:00 JST, so a later run supersedes earlier ones for that day; merged on (station_id, observed_at). NOTE: 手取川ダム is also delivered from MLIT/OpenGov and must be de-duplicated at the delivery layer; the other 11 dams are new.",
-      "schedule_rationale": "The day file accumulates hourly points from 00:00 JST and resets at midnight, and past dates 404. The 23:50 JST run captures all 24 points on its own; the 17:50, 11:50 and 05:50 runs each secure everything up to that hour should the primary fail.",
-      "workflow": ".github/workflows/japan_ishikawa.yml",
-      "scraper": "scrapers/japan/ishikawa/japan_ishikawa_scraper.py",
-      "data_path": "data/japan/ishikawa",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Ishikawa Prefecture recorded in the scraper README."
     }
   ]
 }

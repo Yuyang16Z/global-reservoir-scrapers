@@ -1,0 +1,50 @@
+name: Japan Gunma dams scrape
+
+# A true rolling window: every hourly page always shows the last 25 hours, and there
+# is no day file to reset. One run therefore captures a full 24h on its own; the
+# three runs are 8h apart so two consecutive failures still lose nothing.
+# 23:50 / 15:50 / 07:50 JST = 14:50 / 06:50 / 22:50 UTC.
+on:
+  schedule:
+    - cron: "50 14 * * *"
+    - cron: "50 6 * * *"
+    - cron: "50 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-gunma
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/gunma
+          TZ: Asia/Tokyo
+        run: python scrapers/japan/gunma/japan_gunma_scraper.py
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/gunma scrapers/japan/gunma .github/workflows/japan_gunma.yml
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/gunma): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
