@@ -1,8 +1,8 @@
 # Japan — 川の防災情報 (river.go.jp/kawabou), national dam portal
 
 **912 dam stations across all 47 prefectures**, in one API: MLIT, JWA, prefectural,
-municipal-utility and power-company dams alike. Roughly **583 are new** against
-everything this project already holds for Japan.
+municipal-utility and power-company dams alike. About **596 of them are new** (583 distinct names) against
+everything this project already holds for Japan, matched by normalised name.
 
 ## How it was found, and why late
 
@@ -12,9 +12,11 @@ The MLIT link directory that seeded this sweep lists the 47 *prefectural* system
 never points at this portal, so a link-directory-first approach could not surface it.
 Seven per-prefecture scrapers had already been built by then.
 
-**Those seven are not made redundant.** They publish 貯水量 and 貯水率 for prefectural
-dams that this portal almost always withholds for the same dams, and they carry ~30
-dams it does not list at all. This portal is the wider net; they are the deeper one.
+**Those seven are not made redundant — but their value is depth, not coverage.** They
+publish 貯水量 and 貯水率 for prefectural dams that this portal almost always withholds
+for the same dams. Their dam lists, though, are nearly a subset of the portal's: 199 of
+their 209 dams match a station here by normalised name. This portal is the wider net;
+they are the deeper one.
 
 ## Endpoints
 
@@ -146,11 +148,17 @@ layer's reservoir-scope audit decides; the archive keeps them.
 
 ## De-duplication — key on obs_fcd, never on name
 
-Japanese dam names repeat across the country: there is a 坂本ダム in Gunma and another
-elsewhere. Overlap with existing holdings is 120/127 of the MLIT/OpenGov delivery and
-181/211 of the seven per-prefecture feeds, but that matching was by name and is only
-approximate. Any delivery-layer de-duplication must key on `obs_fcd` together with
-prefecture and coordinates, which `stations_master.csv` carries.
+Japanese dam names repeat across the country — 19 names occur more than once inside this
+portal alone; there is a 坂本ダム in Gunma and another in Kōchi. Matched by normalised
+name (parenthetical qualifiers and a trailing ダム/貯水池/調整池/堰/池 removed), 126 of the
+127 dams in the MLIT/OpenGov delivery and 199 of the 209 dams in the seven per-prefecture
+feeds appear here. Of the ten feed dams without a match, eight have no near-name candidate
+at all, and two have candidates that look like different facilities (福井 二ツ屋ダム vs
+二ツ屋分水堰, a weir; 山口 黒杭川上流ダム vs 黒杭川ダム). That leaves about 596 stations
+(583 distinct names) that are new.
+
+Those are counts, not a join. Any delivery-layer de-duplication must key on `obs_fcd`
+together with prefecture and coordinates, which `metadata/japan_kawabou_dams.csv` carries.
 
 ## Storage layout
 

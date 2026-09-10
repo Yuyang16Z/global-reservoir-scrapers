@@ -7,9 +7,10 @@ power-company dams alike. 912 dam stations across all 47 prefectures.
 WHY THIS EXISTS ALONGSIDE THE PER-PREFECTURE SCRAPERS. It was found late — on the
 eighth prefectural site — by following a link from the Tokyo Waterworks page. It does
 not make the per-prefecture feeds redundant: they publish 貯水量 and 貯水率 for
-prefectural dams, which this portal almost always withholds for the same dams, and
-they carry ~30 dams this portal does not list. Where they overlap, this portal is the
-wider net and they are the deeper one.
+prefectural dams, which this portal almost always withholds for the same dams. Their
+dam lists are nearly a subset of this one, though — 199 of their 209 dams match a
+station here by normalised name — so their value is depth, not coverage. Where they
+overlap, this portal is the wider net and they are the deeper one.
 
 ENDPOINTS, all read from the site's own Vue bundle (js/app.*.js) rather than guessed:
 
