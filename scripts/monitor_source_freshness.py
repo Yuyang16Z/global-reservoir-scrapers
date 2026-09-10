@@ -10,7 +10,9 @@ stayed green - which is exactly what a scraper that tolerates outages will do.
 For each registered source this script reads the newest run summary under
 `data/<path>/run_logs/`, plus the newest observation date it can find in that
 source's committed data, and compares both against
-`publication_cadence_hours * STALE_CADENCE_FACTOR + max_schedule_gap_hours`.
+`publication_cadence_hours * STALE_CADENCE_FACTOR + max_schedule_gap_hours` -
+never less than DATE_RESOLUTION_FLOOR_HOURS, because observation dates are read
+at day resolution and a shorter budget cannot be judged at that resolution.
 
 Exit codes:
   0  every source fresh (or explicitly excused)
@@ -35,6 +37,13 @@ REGISTRY = ROOT / "config" / "windowed_sources.json"
 
 # How many publication cycles a source may miss before it counts as stale.
 STALE_CADENCE_FACTOR = 3.0
+# Observation dates are read at DAY resolution: cell_date() keeps only YYYY-MM-DD
+# and parse_iso() takes that as 00:00 UTC. A live source's newest date can
+# therefore already be most of a day "old" by this measure - longer for sources
+# west of UTC, plus capture gaps and publication lag. A budget below this floor
+# cannot be judged at that resolution and would flag healthy hourly feeds for
+# most of every day.
+DATE_RESOLUTION_FLOOR_HOURS = 48.0
 # Sources whose upstream is known-dormant: still reported, never fail the run.
 # Keep the reason and the review date so these cannot rot unnoticed. Remove an
 # entry the moment its source resumes - the scraper keeps probing regardless,
@@ -114,8 +123,13 @@ def newest_observation(data_dir: Path) -> str | None:
             with csv_path.open(encoding="utf-8-sig", newline="") as fh:
                 reader = csv.DictReader(fh)
                 fields = reader.fieldnames or []
+                # `observed_at` contains no date/day/time substring. Five Japanese feeds
+                # name their timestamp that way and read as no_observation_date - i.e.
+                # unmonitored - until it was listed here. Not `_at` in general:
+                # scraped_at / created_at hold run times and would report a dead source
+                # as fresh.
                 date_cols = [c for c in fields
-                             if re.search(r"date|day|time", c or "", re.I)
+                             if re.search(r"date|day|time|observed_at", c or "", re.I)
                              and not re.search(r"fetched|post_date|retrieved|updated",
                                                c or "", re.I)]
                 if not date_cols:
@@ -201,7 +215,7 @@ def main() -> int:
 
             cadence = float(target.get("publication_cadence_hours") or 24)
             grace = float(target.get("max_schedule_gap_hours") or cadence)
-            budget_h = cadence * STALE_CADENCE_FACTOR + grace
+            budget_h = max(cadence * STALE_CADENCE_FACTOR + grace, DATE_RESOLUTION_FLOOR_HOURS)
 
             obs = newest_observation(data_dir)
             obs_dt = parse_iso(obs) if obs else None
