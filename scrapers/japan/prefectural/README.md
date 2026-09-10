@@ -57,3 +57,27 @@ Miyazaki, Aomori, Oita, Tokushima and Nara Prefectures, Japan.
 
 Source discovery: MLIT's official national dam-information link directory,
 <https://www.mlit.go.jp/mizukokudo/mizsei/mizukokudo_mizsei_fr2_000008.html>.
+
+
+## Known issue: values shifted by empty table cells (fixed 2026-09-10)
+
+Until the commit that added this section, `cells()` discarded empty table cells and
+the parser then read values by header position. Any blank cell therefore moved every
+later value in that row one column to the left, with no error.
+
+Confirmed effects in the pre-fix archive:
+
+* **Every Miyazaki row.** Miyazaki's status column is always empty, so inflow was stored
+  as `water_level_m`, outflow as `total_inflow_m3s`, and `total_outflow_m3s` stayed blank.
+* **Sporadic rows at other sites whenever a value was missing** - for example a storage
+  percentage stored as storage at an Oita dam, and inflow stored as effective storage
+  at a Fukui dam (the 0.001 storage factor was applied to a flow).
+
+Water level usually sits before the blank columns, so a level cross-check does not
+reveal the shift. **Do not use `accumulated.csv` rows observed before this fix reached a
+scheduled run.** The raw HTML is overwritten on every run, so those rows cannot be
+re-parsed.
+
+Regression check: re-parsing the eight latest raw pages with the fixed parser,
+Yamagata, Aomori and Nara matched the archive cell for cell. At the other five sites
+the cells that changed were inspected and are the shifted values described above.

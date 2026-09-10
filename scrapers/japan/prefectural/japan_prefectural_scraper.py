@@ -115,7 +115,10 @@ def cells(tr: str) -> list[str]:
                   re.sub(r"<[^>]+>", "", c).replace("&nbsp;", " ")
                   .replace("&rarr;", "").replace("&uarr;", "").replace("&darr;", "")).strip()
            for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", tr, flags=re.S | re.I)]
-    return [c for c in out if c]
+    # Keep empty cells. Values are read by header position, so discarding a blank cell
+    # moves every later value one column to the left - silently, and only in rows that
+    # happen to contain a blank.
+    return out
 
 
 def _classify_header(hdr: list[str]) -> dict[int, tuple[str, float]]:
