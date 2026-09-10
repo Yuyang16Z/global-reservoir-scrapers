@@ -152,6 +152,26 @@
       "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Kanagawa Prefecture recorded in the scraper README."
     },
     {
+      "source_id": "japan/kawabou",
+      "country": "Japan",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 168,
+      "publication_cadence_hours": 1,
+      "timezone": "Asia/Tokyo",
+      "cron": [
+        "20 19 * * *"
+      ],
+      "max_schedule_gap_hours": 24,
+      "minimum_capture_opportunities": 7,
+      "overlap_strategy": "Two endpoints per station: past (7d hourly, 貯水位/流入量/全放流量 only) and current (~50h hourly, adds 貯水量 and percentages). Merged on (obs_fcd, observed_at), current filling storage over the past window's tail. Consecutive runs overlap by 6 days for the core variables and ~26h for storage. Overlaps the MLIT/OpenGov delivery (120/127) and the seven per-prefecture feeds (181/211) — de-duplicate at the delivery layer; ~583 dams are new. Note 坂本ダム and other repeated Japanese dam names occur at several sites, so de-duplication must key on obs_fcd plus prefecture, never on name alone.",
+      "schedule_rationale": "The 7-day past window makes the three core variables robust to six consecutive failures; the ~50h current window makes storage tolerate one. Daily is the cadence the shorter window dictates.",
+      "workflow": ".github/workflows/japan_kawabou.yml",
+      "scraper": "scrapers/japan/kawabou/japan_kawabou_scraper.py",
+      "data_path": "data/japan/kawabou",
+      "deployment_status": "active",
+      "licence_gate": "undeclared_review. 国土交通省 川の防災情報 publishes no reuse terms. Public commit authorised by the project owner on 2026-09-09; attribution to MLIT recorded in the scraper README."
+    },
+    {
       "source_id": "japan/miyagi",
       "country": "Japan",
       "retention_class": "overwrite_prone",

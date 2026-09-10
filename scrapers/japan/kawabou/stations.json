@@ -1,0 +1,9152 @@
+[
+ {
+  "obsFcd": "2053100700001",
+  "obsNm": "ペーパンダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102204,
+  "twnNm": "旭川市"
+ },
+ {
+  "obsFcd": "2053100700011",
+  "obsNm": "神居ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102204,
+  "twnNm": "旭川市"
+ },
+ {
+  "obsFcd": "2331700700001",
+  "obsNm": "留萌ダム",
+  "ofcCd": 23317,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102212,
+  "twnNm": "留萌市"
+ },
+ {
+  "obsFcd": "2053100700083",
+  "obsNm": "温根別ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102220,
+  "twnNm": "士別市"
+ },
+ {
+  "obsFcd": "2329700700001",
+  "obsNm": "岩尾内ダム",
+  "ofcCd": 23297,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102220,
+  "twnNm": "士別市"
+ },
+ {
+  "obsFcd": "2053100700024",
+  "obsNm": "御料ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102221,
+  "twnNm": "名寄市"
+ },
+ {
+  "obsFcd": "2053100700025",
+  "obsNm": "風連ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102221,
+  "twnNm": "名寄市"
+ },
+ {
+  "obsFcd": "2053100700008",
+  "obsNm": "当麻ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102454,
+  "twnNm": "上川郡当麻町"
+ },
+ {
+  "obsFcd": "0025700700441",
+  "obsNm": "愛別ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102456,
+  "twnNm": "上川郡愛別町"
+ },
+ {
+  "obsFcd": "2329700700004",
+  "obsNm": "大雪ダム",
+  "ofcCd": 23297,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102457,
+  "twnNm": "上川郡上川町"
+ },
+ {
+  "obsFcd": "2329700700006",
+  "obsNm": "忠別ダム",
+  "ofcCd": 23297,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102458,
+  "twnNm": "上川郡東川町"
+ },
+ {
+  "obsFcd": "2053100700012",
+  "obsNm": "新区画ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102459,
+  "twnNm": "上川郡美瑛町"
+ },
+ {
+  "obsFcd": "2053100700014",
+  "obsNm": "しろがねダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102459,
+  "twnNm": "上川郡美瑛町"
+ },
+ {
+  "obsFcd": "2053100700007",
+  "obsNm": "日新ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102460,
+  "twnNm": "空知郡上富良野町"
+ },
+ {
+  "obsFcd": "2075700700001",
+  "obsNm": "金山ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102462,
+  "twnNm": "空知郡南富良野町"
+ },
+ {
+  "obsFcd": "2053100700082",
+  "obsNm": "中和ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102464,
+  "twnNm": "上川郡和寒町"
+ },
+ {
+  "obsFcd": "0025700700442",
+  "obsNm": "西岡ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102465,
+  "twnNm": "上川郡剣淵町"
+ },
+ {
+  "obsFcd": "2329700700007",
+  "obsNm": "サンルダム",
+  "ofcCd": 23297,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102468,
+  "twnNm": "上川郡下川町"
+ },
+ {
+  "obsFcd": "0025700700502",
+  "obsNm": "小平ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102482,
+  "twnNm": "留萌郡小平町"
+ },
+ {
+  "obsFcd": "0025700700501",
+  "obsNm": "有明ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 102,
+  "prefNm": "北海道道北",
+  "twnCd": 102485,
+  "twnNm": "苫前郡初山別村"
+ },
+ {
+  "obsFcd": "2053100700023",
+  "obsNm": "富里ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103208,
+  "twnNm": "北見市"
+ },
+ {
+  "obsFcd": "2053100700022",
+  "obsNm": "古梅ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103543,
+  "twnNm": "網走郡美幌町"
+ },
+ {
+  "obsFcd": "2333700700003",
+  "obsNm": "鹿ノ子ダム",
+  "ofcCd": 23337,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103550,
+  "twnNm": "常呂郡置戸町"
+ },
+ {
+  "obsFcd": "2335700700006",
+  "obsNm": "糠平ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103633,
+  "twnNm": "河東郡上士幌町"
+ },
+ {
+  "obsFcd": "2335700700007",
+  "obsNm": "元小屋ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103633,
+  "twnNm": "河東郡上士幌町"
+ },
+ {
+  "obsFcd": "2335700700011",
+  "obsNm": "幌加ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103633,
+  "twnNm": "河東郡上士幌町"
+ },
+ {
+  "obsFcd": "0025700700281",
+  "obsNm": "佐幌ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103635,
+  "twnNm": "上川郡新得町"
+ },
+ {
+  "obsFcd": "2335700700003",
+  "obsNm": "十勝ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103635,
+  "twnNm": "上川郡新得町"
+ },
+ {
+  "obsFcd": "2335700700005",
+  "obsNm": "屈足ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103635,
+  "twnNm": "上川郡新得町"
+ },
+ {
+  "obsFcd": "2053100700020",
+  "obsNm": "美生ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103637,
+  "twnNm": "河西郡芽室町"
+ },
+ {
+  "obsFcd": "2335700700008",
+  "obsNm": "札内川ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103638,
+  "twnNm": "河西郡中札内村"
+ },
+ {
+  "obsFcd": "2053100700021",
+  "obsNm": "幕別ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103643,
+  "twnNm": "中川郡幕別町"
+ },
+ {
+  "obsFcd": "2335700700009",
+  "obsNm": "活込ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103646,
+  "twnNm": "中川郡本別町"
+ },
+ {
+  "obsFcd": "2335700700010",
+  "obsNm": "仙美里ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103647,
+  "twnNm": "足寄郡足寄町"
+ },
+ {
+  "obsFcd": "2335700700012",
+  "obsNm": "糠南ダム",
+  "ofcCd": 23357,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103647,
+  "twnNm": "足寄郡足寄町"
+ },
+ {
+  "obsFcd": "0025700700341",
+  "obsNm": "庶路ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 103,
+  "prefNm": "北海道道東",
+  "twnCd": 103668,
+  "twnNm": "白糠郡白糠町"
+ },
+ {
+  "obsFcd": "2075700700005",
+  "obsNm": "豊平峡ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104100,
+  "twnNm": "札幌市"
+ },
+ {
+  "obsFcd": "2075700700006",
+  "obsNm": "定山渓ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104100,
+  "twnNm": "札幌市"
+ },
+ {
+  "obsFcd": "0025700700381",
+  "obsNm": "朝里ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104203,
+  "twnNm": "小樽市"
+ },
+ {
+  "obsFcd": "2075700700013",
+  "obsNm": "夕張シューパロダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104209,
+  "twnNm": "夕張市"
+ },
+ {
+  "obsFcd": "2053100700013",
+  "obsNm": "幌向ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104210,
+  "twnNm": "岩見沢市"
+ },
+ {
+  "obsFcd": "0025700700001",
+  "obsNm": "美唄ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104215,
+  "twnNm": "美唄市"
+ },
+ {
+  "obsFcd": "2053100700003",
+  "obsNm": "野花南ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104216,
+  "twnNm": "芦別市"
+ },
+ {
+  "obsFcd": "2075700700003",
+  "obsNm": "芦別ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104216,
+  "twnNm": "芦別市"
+ },
+ {
+  "obsFcd": "2075700700012",
+  "obsNm": "滝里ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104216,
+  "twnNm": "芦別市"
+ },
+ {
+  "obsFcd": "2053100700016",
+  "obsNm": "エルムダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104218,
+  "twnNm": "赤平市"
+ },
+ {
+  "obsFcd": "2075700700002",
+  "obsNm": "新桂沢ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104222,
+  "twnNm": "三笠市"
+ },
+ {
+  "obsFcd": "2053100700015",
+  "obsNm": "上湯内ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104228,
+  "twnNm": "深川市"
+ },
+ {
+  "obsFcd": "2075700700009",
+  "obsNm": "鷹泊ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104228,
+  "twnNm": "深川市"
+ },
+ {
+  "obsFcd": "2075700700004",
+  "obsNm": "漁川ダム",
+  "ofcCd": 20757,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104231,
+  "twnNm": "恵庭市"
+ },
+ {
+  "obsFcd": "0025700700004",
+  "obsNm": "当別ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104303,
+  "twnNm": "石狩郡当別町"
+ },
+ {
+  "obsFcd": "2053100700009",
+  "obsNm": "青山ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104303,
+  "twnNm": "石狩郡当別町"
+ },
+ {
+  "obsFcd": "2053100700017",
+  "obsNm": "双葉ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104399,
+  "twnNm": "虻田郡京極町"
+ },
+ {
+  "obsFcd": "0025700700002",
+  "obsNm": "栗山ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104429,
+  "twnNm": "夕張郡栗山町"
+ },
+ {
+  "obsFcd": "2053100700005",
+  "obsNm": "月形ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104430,
+  "twnNm": "樺戸郡月形町"
+ },
+ {
+  "obsFcd": "0025700700003",
+  "obsNm": "徳富ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104432,
+  "twnNm": "樺戸郡新十津川町"
+ },
+ {
+  "obsFcd": "2053100700006",
+  "obsNm": "新十津川ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104432,
+  "twnNm": "樺戸郡新十津川町"
+ },
+ {
+  "obsFcd": "2053100700002",
+  "obsNm": "尾白利加ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104436,
+  "twnNm": "雨竜郡雨竜町"
+ },
+ {
+  "obsFcd": "2053100700080",
+  "obsNm": "恵岱別ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104437,
+  "twnNm": "雨竜郡北竜町"
+ },
+ {
+  "obsFcd": "2053100700004",
+  "obsNm": "幌新ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104438,
+  "twnNm": "雨竜郡沼田町"
+ },
+ {
+  "obsFcd": "2053100700010",
+  "obsNm": "沼田ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104438,
+  "twnNm": "雨竜郡沼田町"
+ },
+ {
+  "obsFcd": "2053100700081",
+  "obsNm": "雨煙内ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 104,
+  "prefNm": "北海道道央",
+  "twnCd": 104439,
+  "twnNm": "雨竜郡幌加内町"
+ },
+ {
+  "obsFcd": "0025700700101",
+  "obsNm": "新中野ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105202,
+  "twnNm": "函館市"
+ },
+ {
+  "obsFcd": "0025700700102",
+  "obsNm": "矢別ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105202,
+  "twnNm": "函館市"
+ },
+ {
+  "obsFcd": "0025700700103",
+  "obsNm": "上ノ国ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105362,
+  "twnNm": "檜山郡上ノ国町"
+ },
+ {
+  "obsFcd": "2079700700001",
+  "obsNm": "美利河ダム",
+  "ofcCd": 20797,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105370,
+  "twnNm": "瀬棚郡今金町"
+ },
+ {
+  "obsFcd": "2053100700018",
+  "obsNm": "真駒内ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105371,
+  "twnNm": "久遠郡せたな町"
+ },
+ {
+  "obsFcd": "0025700700164",
+  "obsNm": "厚幌ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105581,
+  "twnNm": "勇払郡厚真町"
+ },
+ {
+  "obsFcd": "2053100700019",
+  "obsNm": "穂別ダム",
+  "ofcCd": 20531,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105586,
+  "twnNm": "勇払郡むかわ町"
+ },
+ {
+  "obsFcd": "0025700700161",
+  "obsNm": "高見ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105601,
+  "twnNm": "沙流郡日高町"
+ },
+ {
+  "obsFcd": "2081700700005",
+  "obsNm": "二風谷ダム",
+  "ofcCd": 20817,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105602,
+  "twnNm": "沙流郡平取町"
+ },
+ {
+  "obsFcd": "2081700700006",
+  "obsNm": "平取ダム",
+  "ofcCd": 20817,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105602,
+  "twnNm": "沙流郡平取町"
+ },
+ {
+  "obsFcd": "0025700700163",
+  "obsNm": "浦河ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105607,
+  "twnNm": "浦河郡浦河町"
+ },
+ {
+  "obsFcd": "0025700700162",
+  "obsNm": "様似ダム",
+  "ofcCd": 257,
+  "dspFlg": 1,
+  "prefCd": 105,
+  "prefNm": "北海道道南",
+  "twnCd": 105608,
+  "twnNm": "様似郡様似町"
+ },
+ {
+  "obsFcd": "0051300700001",
+  "obsNm": "下湯ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201201,
+  "twnNm": "青森市"
+ },
+ {
+  "obsFcd": "0051300700002",
+  "obsNm": "浅虫ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201201,
+  "twnNm": "青森市"
+ },
+ {
+  "obsFcd": "2053200700038",
+  "obsNm": "浪岡ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201201,
+  "twnNm": "青森市"
+ },
+ {
+  "obsFcd": "0051300700014",
+  "obsNm": "相馬ダム（利水）",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201202,
+  "twnNm": "弘前市"
+ },
+ {
+  "obsFcd": "0051300700006",
+  "obsNm": "世増ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201203,
+  "twnNm": "八戸市"
+ },
+ {
+  "obsFcd": "2053200700039",
+  "obsNm": "二庄内ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201204,
+  "twnNm": "黒石市"
+ },
+ {
+  "obsFcd": "2101400700001",
+  "obsNm": "浅瀬石川ダム",
+  "ofcCd": 21014,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201204,
+  "twnNm": "黒石市"
+ },
+ {
+  "obsFcd": "0051300700016",
+  "obsNm": "飯詰ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201205,
+  "twnNm": "五所川原市"
+ },
+ {
+  "obsFcd": "2053200700037",
+  "obsNm": "小田川ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201205,
+  "twnNm": "五所川原市"
+ },
+ {
+  "obsFcd": "0051300700026",
+  "obsNm": "川内ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201208,
+  "twnNm": "むつ市"
+ },
+ {
+  "obsFcd": "2053200700040",
+  "obsNm": "新小戸六ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201209,
+  "twnNm": "つがる市"
+ },
+ {
+  "obsFcd": "0051300700012",
+  "obsNm": "久吉ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201210,
+  "twnNm": "平川市"
+ },
+ {
+  "obsFcd": "0051300700013",
+  "obsNm": "遠部ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201210,
+  "twnNm": "平川市"
+ },
+ {
+  "obsFcd": "2101600700001",
+  "obsNm": "津軽ダム",
+  "ofcCd": 21016,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201343,
+  "twnNm": "中津軽郡西目屋村"
+ },
+ {
+  "obsFcd": "2053200700036",
+  "obsNm": "早瀬野ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201362,
+  "twnNm": "南津軽郡大鰐町"
+ },
+ {
+  "obsFcd": "0051300700017",
+  "obsNm": "小泊ダム",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201387,
+  "twnNm": "北津軽郡中泊町"
+ },
+ {
+  "obsFcd": "0051300700021",
+  "obsNm": "清水目ダム（利水）",
+  "ofcCd": 513,
+  "dspFlg": 1,
+  "prefCd": 201,
+  "prefNm": "青森県",
+  "twnCd": 201408,
+  "twnNm": "上北郡東北町"
+ },
+ {
+  "obsFcd": "0076900700002",
+  "obsNm": "簗川ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301201,
+  "twnNm": "盛岡市"
+ },
+ {
+  "obsFcd": "0076900700003",
+  "obsNm": "綱取ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301201,
+  "twnNm": "盛岡市"
+ },
+ {
+  "obsFcd": "2053200700085",
+  "obsNm": "岩洞ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301201,
+  "twnNm": "盛岡市"
+ },
+ {
+  "obsFcd": "2102400700001",
+  "obsNm": "四十四田ダム",
+  "ofcCd": 21024,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301201,
+  "twnNm": "盛岡市"
+ },
+ {
+  "obsFcd": "2102400700002",
+  "obsNm": "御所ダム",
+  "ofcCd": 21024,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301201,
+  "twnNm": "盛岡市"
+ },
+ {
+  "obsFcd": "0076900700005",
+  "obsNm": "鷹生ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301203,
+  "twnNm": "大船渡市"
+ },
+ {
+  "obsFcd": "0076900700006",
+  "obsNm": "綾里川ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301203,
+  "twnNm": "大船渡市"
+ },
+ {
+  "obsFcd": "0076900700008",
+  "obsNm": "早池峰ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301205,
+  "twnNm": "花巻市"
+ },
+ {
+  "obsFcd": "2053200700029",
+  "obsNm": "豊沢ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301205,
+  "twnNm": "花巻市"
+ },
+ {
+  "obsFcd": "2053200700030",
+  "obsNm": "葛丸ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301205,
+  "twnNm": "花巻市"
+ },
+ {
+  "obsFcd": "2102400700003",
+  "obsNm": "田瀬ダム",
+  "ofcCd": 21024,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301205,
+  "twnNm": "花巻市"
+ },
+ {
+  "obsFcd": "0076900700011",
+  "obsNm": "入畑ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301206,
+  "twnNm": "北上市"
+ },
+ {
+  "obsFcd": "2099200700001",
+  "obsNm": "石羽根ダム",
+  "ofcCd": 20992,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301206,
+  "twnNm": "北上市"
+ },
+ {
+  "obsFcd": "0076900700001",
+  "obsNm": "滝ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301207,
+  "twnNm": "久慈市"
+ },
+ {
+  "obsFcd": "0076900700012",
+  "obsNm": "遠野ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301208,
+  "twnNm": "遠野市"
+ },
+ {
+  "obsFcd": "0076900700016",
+  "obsNm": "遠野第二ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301208,
+  "twnNm": "遠野市"
+ },
+ {
+  "obsFcd": "2053200700031",
+  "obsNm": "相川ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301209,
+  "twnNm": "一関市"
+ },
+ {
+  "obsFcd": "2053200700034",
+  "obsNm": "千松ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301209,
+  "twnNm": "一関市"
+ },
+ {
+  "obsFcd": "0076900700004",
+  "obsNm": "日向ダム",
+  "ofcCd": 769,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301211,
+  "twnNm": "釜石市"
+ },
+ {
+  "obsFcd": "2102400700006",
+  "obsNm": "胆沢ダム",
+  "ofcCd": 21024,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301215,
+  "twnNm": "奥州市"
+ },
+ {
+  "obsFcd": "2053200700028",
+  "obsNm": "山王海ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301321,
+  "twnNm": "紫波郡紫波町"
+ },
+ {
+  "obsFcd": "2053200700033",
+  "obsNm": "煙山ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301322,
+  "twnNm": "紫波郡矢巾町"
+ },
+ {
+  "obsFcd": "2102400700004",
+  "obsNm": "湯田ダム",
+  "ofcCd": 21024,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301366,
+  "twnNm": "和賀郡西和賀町"
+ },
+ {
+  "obsFcd": "2053200700035",
+  "obsNm": "大志田ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 301,
+  "prefNm": "岩手県",
+  "twnCd": 301524,
+  "twnNm": "二戸郡一戸町"
+ },
+ {
+  "obsFcd": "0102500700011",
+  "obsNm": "大倉ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401100,
+  "twnNm": "仙台市"
+ },
+ {
+  "obsFcd": "0102500700013",
+  "obsNm": "七北田ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401100,
+  "twnNm": "仙台市"
+ },
+ {
+  "obsFcd": "0102500700012",
+  "obsNm": "樽水ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401207,
+  "twnNm": "名取市"
+ },
+ {
+  "obsFcd": "0102500700006",
+  "obsNm": "長沼ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401212,
+  "twnNm": "登米市"
+ },
+ {
+  "obsFcd": "0102500700001",
+  "obsNm": "花山ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401213,
+  "twnNm": "栗原市"
+ },
+ {
+  "obsFcd": "0102500700002",
+  "obsNm": "栗駒ダム（利水）",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401213,
+  "twnNm": "栗原市"
+ },
+ {
+  "obsFcd": "0102500700004",
+  "obsNm": "小田ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401213,
+  "twnNm": "栗原市"
+ },
+ {
+  "obsFcd": "0102500700005",
+  "obsNm": "荒砥沢ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401213,
+  "twnNm": "栗原市"
+ },
+ {
+  "obsFcd": "0102500700003",
+  "obsNm": "化女沼ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401215,
+  "twnNm": "大崎市"
+ },
+ {
+  "obsFcd": "0102500700007",
+  "obsNm": "上大沢ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401215,
+  "twnNm": "大崎市"
+ },
+ {
+  "obsFcd": "2103700700001",
+  "obsNm": "鳴子ダム",
+  "ofcCd": 21037,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401215,
+  "twnNm": "大崎市"
+ },
+ {
+  "obsFcd": "2103900700001",
+  "obsNm": "七ヶ宿ダム",
+  "ofcCd": 21039,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401302,
+  "twnNm": "刈田郡七ヶ宿町"
+ },
+ {
+  "obsFcd": "2103800700001",
+  "obsNm": "釜房ダム",
+  "ofcCd": 21038,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401324,
+  "twnNm": "柴田郡川崎町"
+ },
+ {
+  "obsFcd": "0102500700014",
+  "obsNm": "惣の関ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401406,
+  "twnNm": "宮城郡利府町"
+ },
+ {
+  "obsFcd": "0102500700008",
+  "obsNm": "南川ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401421,
+  "twnNm": "黒川郡大和町"
+ },
+ {
+  "obsFcd": "0102500700010",
+  "obsNm": "宮床ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401421,
+  "twnNm": "黒川郡大和町"
+ },
+ {
+  "obsFcd": "0102500700009",
+  "obsNm": "漆沢ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401445,
+  "twnNm": "加美郡加美町"
+ },
+ {
+  "obsFcd": "0102500700015",
+  "obsNm": "払川ダム",
+  "ofcCd": 1025,
+  "dspFlg": 1,
+  "prefCd": 401,
+  "prefNm": "宮城県",
+  "twnCd": 401606,
+  "twnNm": "本吉郡南三陸町"
+ },
+ {
+  "obsFcd": "0128100700001",
+  "obsNm": "旭川ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501201,
+  "twnNm": "秋田市"
+ },
+ {
+  "obsFcd": "0128100700002",
+  "obsNm": "岩見ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501201,
+  "twnNm": "秋田市"
+ },
+ {
+  "obsFcd": "0128100700014",
+  "obsNm": "大松川ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501203,
+  "twnNm": "横手市"
+ },
+ {
+  "obsFcd": "0128100700004",
+  "obsNm": "山瀬ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501204,
+  "twnNm": "大館市"
+ },
+ {
+  "obsFcd": "0128100700006",
+  "obsNm": "早口ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501204,
+  "twnNm": "大館市"
+ },
+ {
+  "obsFcd": "0128100700012",
+  "obsNm": "皆瀬ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501207,
+  "twnNm": "湯沢市"
+ },
+ {
+  "obsFcd": "0128100700013",
+  "obsNm": "板戸ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501207,
+  "twnNm": "湯沢市"
+ },
+ {
+  "obsFcd": "0128100700010",
+  "obsNm": "大内ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501210,
+  "twnNm": "由利本荘市"
+ },
+ {
+  "obsFcd": "0128100700008",
+  "obsNm": "協和ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501212,
+  "twnNm": "大仙市"
+ },
+ {
+  "obsFcd": "0128100700007",
+  "obsNm": "森吉ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501213,
+  "twnNm": "北秋田市"
+ },
+ {
+  "obsFcd": "2104700700001",
+  "obsNm": "森吉山ダム",
+  "ofcCd": 21047,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501213,
+  "twnNm": "北秋田市"
+ },
+ {
+  "obsFcd": "0128100700009",
+  "obsNm": "鎧畑ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501215,
+  "twnNm": "仙北市"
+ },
+ {
+  "obsFcd": "2104600700001",
+  "obsNm": "玉川ダム",
+  "ofcCd": 21046,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501215,
+  "twnNm": "仙北市"
+ },
+ {
+  "obsFcd": "0128100700011",
+  "obsNm": "砂子沢ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501303,
+  "twnNm": "鹿角郡小坂町"
+ },
+ {
+  "obsFcd": "0128100700005",
+  "obsNm": "萩形ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501327,
+  "twnNm": "北秋田郡上小阿仁村"
+ },
+ {
+  "obsFcd": "0128100700003",
+  "obsNm": "素波里ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501346,
+  "twnNm": "山本郡藤里町"
+ },
+ {
+  "obsFcd": "0128100700015",
+  "obsNm": "水沢ダム",
+  "ofcCd": 1281,
+  "dspFlg": 1,
+  "prefCd": 501,
+  "prefNm": "秋田県",
+  "twnCd": 501349,
+  "twnNm": "山本郡八峰町"
+ },
+ {
+  "obsFcd": "0153700700001",
+  "obsNm": "蔵王ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601201,
+  "twnNm": "山形市"
+ },
+ {
+  "obsFcd": "0153700700011",
+  "obsNm": "綱木川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601202,
+  "twnNm": "米沢市"
+ },
+ {
+  "obsFcd": "0153700700014",
+  "obsNm": "荒沢ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601203,
+  "twnNm": "鶴岡市"
+ },
+ {
+  "obsFcd": "0153700700015",
+  "obsNm": "温海川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601203,
+  "twnNm": "鶴岡市"
+ },
+ {
+  "obsFcd": "2053200700043",
+  "obsNm": "三又ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601203,
+  "twnNm": "鶴岡市"
+ },
+ {
+  "obsFcd": "2105800700001",
+  "obsNm": "月山ダム",
+  "ofcCd": 21058,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601203,
+  "twnNm": "鶴岡市"
+ },
+ {
+  "obsFcd": "0153700700016",
+  "obsNm": "田沢川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601204,
+  "twnNm": "酒田市"
+ },
+ {
+  "obsFcd": "0153700700002",
+  "obsNm": "前川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601207,
+  "twnNm": "上山市"
+ },
+ {
+  "obsFcd": "0153700700010",
+  "obsNm": "木地山ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601209,
+  "twnNm": "長井市"
+ },
+ {
+  "obsFcd": "2105700700004",
+  "obsNm": "長井ダム",
+  "ofcCd": 21057,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601209,
+  "twnNm": "長井市"
+ },
+ {
+  "obsFcd": "0153700700013",
+  "obsNm": "留山川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601210,
+  "twnNm": "天童市"
+ },
+ {
+  "obsFcd": "0153700700003",
+  "obsNm": "白水川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601211,
+  "twnNm": "東根市"
+ },
+ {
+  "obsFcd": "2105700700001",
+  "obsNm": "寒河江ダム",
+  "ofcCd": 21057,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601322,
+  "twnNm": "西村山郡西川町"
+ },
+ {
+  "obsFcd": "0153700700007",
+  "obsNm": "神室ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601361,
+  "twnNm": "最上郡金山町"
+ },
+ {
+  "obsFcd": "2053200700042",
+  "obsNm": "桝沢ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601361,
+  "twnNm": "最上郡金山町"
+ },
+ {
+  "obsFcd": "0153700700017",
+  "obsNm": "最上小国川流水型ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601362,
+  "twnNm": "最上郡最上町"
+ },
+ {
+  "obsFcd": "0153700700006",
+  "obsNm": "高坂ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601364,
+  "twnNm": "最上郡真室川町"
+ },
+ {
+  "obsFcd": "2152800700002",
+  "obsNm": "横川ダム",
+  "ofcCd": 21528,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601401,
+  "twnNm": "西置賜郡小国町"
+ },
+ {
+  "obsFcd": "2105700700002",
+  "obsNm": "白川ダム",
+  "ofcCd": 21057,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601403,
+  "twnNm": "西置賜郡飯豊町"
+ },
+ {
+  "obsFcd": "0153700700004",
+  "obsNm": "月光川ダム",
+  "ofcCd": 1537,
+  "dspFlg": 1,
+  "prefCd": 601,
+  "prefNm": "山形県",
+  "twnCd": 601461,
+  "twnNm": "飽海郡遊佐町"
+ },
+ {
+  "obsFcd": "2106500700001",
+  "obsNm": "摺上川ダム",
+  "ofcCd": 21065,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701201,
+  "twnNm": "福島市"
+ },
+ {
+  "obsFcd": "0179300700004",
+  "obsNm": "東山ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701202,
+  "twnNm": "会津若松市"
+ },
+ {
+  "obsFcd": "2152700700001",
+  "obsNm": "大川ダム",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701202,
+  "twnNm": "会津若松市"
+ },
+ {
+  "obsFcd": "0179300700008",
+  "obsNm": "高柴ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701204,
+  "twnNm": "いわき市"
+ },
+ {
+  "obsFcd": "0179300700009",
+  "obsNm": "四時ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701204,
+  "twnNm": "いわき市"
+ },
+ {
+  "obsFcd": "0179300700010",
+  "obsNm": "小玉ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701204,
+  "twnNm": "いわき市"
+ },
+ {
+  "obsFcd": "0179300700003",
+  "obsNm": "日中ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701208,
+  "twnNm": "喜多方市"
+ },
+ {
+  "obsFcd": "2053400700048",
+  "obsNm": "大深沢調整池",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701208,
+  "twnNm": "喜多方市"
+ },
+ {
+  "obsFcd": "2152700700002",
+  "obsNm": "新郷ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701208,
+  "twnNm": "喜多方市"
+ },
+ {
+  "obsFcd": "2152700700015",
+  "obsNm": "山郷ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701208,
+  "twnNm": "喜多方市"
+ },
+ {
+  "obsFcd": "2053400700047",
+  "obsNm": "羽鳥ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701344,
+  "twnNm": "岩瀬郡天栄村"
+ },
+ {
+  "obsFcd": "2152700700004",
+  "obsNm": "奥只見ダム（利水・電源開発）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701364,
+  "twnNm": "南会津郡檜枝岐村"
+ },
+ {
+  "obsFcd": "2152700700026",
+  "obsNm": "大津岐ダム(利水）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701364,
+  "twnNm": "南会津郡檜枝岐村"
+ },
+ {
+  "obsFcd": "2152700700005",
+  "obsNm": "田子倉ダム（利水・電源開発）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701367,
+  "twnNm": "南会津郡只見町"
+ },
+ {
+  "obsFcd": "2152700700011",
+  "obsNm": "大鳥ダム（利水・電源開発）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701367,
+  "twnNm": "南会津郡只見町"
+ },
+ {
+  "obsFcd": "2152700700025",
+  "obsNm": "只見ダム（電源開発）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701367,
+  "twnNm": "南会津郡只見町"
+ },
+ {
+  "obsFcd": "0179300700005",
+  "obsNm": "田島ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701368,
+  "twnNm": "南会津郡南会津町"
+ },
+ {
+  "obsFcd": "2152700700016",
+  "obsNm": "上野尻ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701405,
+  "twnNm": "耶麻郡西会津町"
+ },
+ {
+  "obsFcd": "2152700700003",
+  "obsNm": "片門ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701421,
+  "twnNm": "河沼郡会津坂下町"
+ },
+ {
+  "obsFcd": "2152700700014",
+  "obsNm": "柳津ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701423,
+  "twnNm": "河沼郡柳津町"
+ },
+ {
+  "obsFcd": "2152700700013",
+  "obsNm": "宮下ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701444,
+  "twnNm": "大沼郡三島町"
+ },
+ {
+  "obsFcd": "2152700700006",
+  "obsNm": "本名ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701445,
+  "twnNm": "大沼郡金山町"
+ },
+ {
+  "obsFcd": "2152700700007",
+  "obsNm": "滝ダム（利水・電源開発）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701445,
+  "twnNm": "大沼郡金山町"
+ },
+ {
+  "obsFcd": "2152700700012",
+  "obsNm": "上田ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701445,
+  "twnNm": "大沼郡金山町"
+ },
+ {
+  "obsFcd": "2053400700049",
+  "obsNm": "新宮川ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701447,
+  "twnNm": "大沼郡会津美里町"
+ },
+ {
+  "obsFcd": "0179300700002",
+  "obsNm": "堀川ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701461,
+  "twnNm": "西白河郡西郷村"
+ },
+ {
+  "obsFcd": "2053200700026",
+  "obsNm": "西郷ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701461,
+  "twnNm": "西白河郡西郷村"
+ },
+ {
+  "obsFcd": "0179300700011",
+  "obsNm": "千五沢ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701501,
+  "twnNm": "石川郡石川町"
+ },
+ {
+  "obsFcd": "2106400700001",
+  "obsNm": "三春ダム",
+  "ofcCd": 21064,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701521,
+  "twnNm": "田村郡三春町"
+ },
+ {
+  "obsFcd": "0179300700001",
+  "obsNm": "こまちダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701522,
+  "twnNm": "田村郡小野町"
+ },
+ {
+  "obsFcd": "0179300700007",
+  "obsNm": "木戸ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701542,
+  "twnNm": "双葉郡楢葉町"
+ },
+ {
+  "obsFcd": "2053200700111",
+  "obsNm": "大柿ダム",
+  "ofcCd": 20532,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701547,
+  "twnNm": "双葉郡浪江町"
+ },
+ {
+  "obsFcd": "0179300700006",
+  "obsNm": "真野ダム",
+  "ofcCd": 1793,
+  "dspFlg": 1,
+  "prefCd": 701,
+  "prefNm": "福島県",
+  "twnCd": 701564,
+  "twnNm": "相馬郡飯舘村"
+ },
+ {
+  "obsFcd": "0204900700003",
+  "obsNm": "十王ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801202,
+  "twnNm": "日立市"
+ },
+ {
+  "obsFcd": "0204900700006",
+  "obsNm": "竜神ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801212,
+  "twnNm": "常陸太田市"
+ },
+ {
+  "obsFcd": "0204900700002",
+  "obsNm": "花貫ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801214,
+  "twnNm": "高萩市"
+ },
+ {
+  "obsFcd": "0204900700004",
+  "obsNm": "小山ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801214,
+  "twnNm": "高萩市"
+ },
+ {
+  "obsFcd": "0204900700001",
+  "obsNm": "水沼ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801215,
+  "twnNm": "北茨城市"
+ },
+ {
+  "obsFcd": "0204900700007",
+  "obsNm": "飯田ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801216,
+  "twnNm": "笠間市"
+ },
+ {
+  "obsFcd": "2053300700044",
+  "obsNm": "御前山ダム",
+  "ofcCd": 20533,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801225,
+  "twnNm": "常陸大宮市"
+ },
+ {
+  "obsFcd": "0204900700005",
+  "obsNm": "藤井川ダム",
+  "ofcCd": 2049,
+  "dspFlg": 1,
+  "prefCd": 801,
+  "prefNm": "茨城県",
+  "twnCd": 801310,
+  "twnNm": "東茨城郡城里町"
+ },
+ {
+  "obsFcd": "0230500700003",
+  "obsNm": "松田川ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901202,
+  "twnNm": "足利市"
+ },
+ {
+  "obsFcd": "0230500700001",
+  "obsNm": "中禅寺ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "0230500700002",
+  "obsNm": "三河沢ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "2130900700001",
+  "obsNm": "川俣ダム",
+  "ofcCd": 21309,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "2130900700002",
+  "obsNm": "川治ダム",
+  "ofcCd": 21309,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "2130900700003",
+  "obsNm": "五十里ダム",
+  "ofcCd": 21309,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "2130900700004",
+  "obsNm": "湯西川ダム",
+  "ofcCd": 21309,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901206,
+  "twnNm": "日光市"
+ },
+ {
+  "obsFcd": "0230500700006",
+  "obsNm": "寺山ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901211,
+  "twnNm": "矢板市"
+ },
+ {
+  "obsFcd": "0230500700005",
+  "obsNm": "塩原ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901213,
+  "twnNm": "那須塩原市"
+ },
+ {
+  "obsFcd": "2053300700045",
+  "obsNm": "深山ダム",
+  "ofcCd": 20533,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901213,
+  "twnNm": "那須塩原市"
+ },
+ {
+  "obsFcd": "2053300700046",
+  "obsNm": "板室ダム",
+  "ofcCd": 20533,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901213,
+  "twnNm": "那須塩原市"
+ },
+ {
+  "obsFcd": "0230500700004",
+  "obsNm": "西荒川ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901384,
+  "twnNm": "塩谷郡塩谷町"
+ },
+ {
+  "obsFcd": "0230500700007",
+  "obsNm": "東荒川ダム",
+  "ofcCd": 2305,
+  "dspFlg": 1,
+  "prefCd": 901,
+  "prefNm": "栃木県",
+  "twnCd": 901384,
+  "twnNm": "塩谷郡塩谷町"
+ },
+ {
+  "obsFcd": "0256100700006",
+  "obsNm": "桐生川ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001203,
+  "twnNm": "桐生市"
+ },
+ {
+  "obsFcd": "2128900700005",
+  "obsNm": "薗原ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001206,
+  "twnNm": "沼田市"
+ },
+ {
+  "obsFcd": "0256100700002",
+  "obsNm": "坂本ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001211,
+  "twnNm": "安中市"
+ },
+ {
+  "obsFcd": "0256100700003",
+  "obsNm": "霧積ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001211,
+  "twnNm": "安中市"
+ },
+ {
+  "obsFcd": "2128900700007",
+  "obsNm": "草木ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001212,
+  "twnNm": "みどり市"
+ },
+ {
+  "obsFcd": "2128900700031",
+  "obsNm": "黒坂石ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001212,
+  "twnNm": "みどり市"
+ },
+ {
+  "obsFcd": "0256100700001",
+  "obsNm": "塩沢ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001367,
+  "twnNm": "多野郡神流町"
+ },
+ {
+  "obsFcd": "0256100700004",
+  "obsNm": "道平川ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001382,
+  "twnNm": "甘楽郡下仁田町"
+ },
+ {
+  "obsFcd": "0256100700005",
+  "obsNm": "大仁田ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001383,
+  "twnNm": "甘楽郡南牧村"
+ },
+ {
+  "obsFcd": "0256100700007",
+  "obsNm": "四万川ダム",
+  "ofcCd": 2561,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001421,
+  "twnNm": "吾妻郡中之条町"
+ },
+ {
+  "obsFcd": "2128900700030",
+  "obsNm": "中之条ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001421,
+  "twnNm": "吾妻郡中之条町"
+ },
+ {
+  "obsFcd": "2129200700001",
+  "obsNm": "品木ダム",
+  "ofcCd": 21292,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001421,
+  "twnNm": "吾妻郡中之条町"
+ },
+ {
+  "obsFcd": "2128900700027",
+  "obsNm": "八ッ場ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001424,
+  "twnNm": "吾妻郡長野原町"
+ },
+ {
+  "obsFcd": "2128900700001",
+  "obsNm": "矢木沢ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001449,
+  "twnNm": "利根郡みなかみ町"
+ },
+ {
+  "obsFcd": "2128900700002",
+  "obsNm": "奈良俣ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001449,
+  "twnNm": "利根郡みなかみ町"
+ },
+ {
+  "obsFcd": "2128900700003",
+  "obsNm": "藤原ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001449,
+  "twnNm": "利根郡みなかみ町"
+ },
+ {
+  "obsFcd": "2128900700004",
+  "obsNm": "相俣ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1001,
+  "prefNm": "群馬県",
+  "twnCd": 1001449,
+  "twnNm": "利根郡みなかみ町"
+ },
+ {
+  "obsFcd": "0281700700001",
+  "obsNm": "合角ダム",
+  "ofcCd": 2817,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101207,
+  "twnNm": "秩父市"
+ },
+ {
+  "obsFcd": "2126200700001",
+  "obsNm": "二瀬ダム",
+  "ofcCd": 21262,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101207,
+  "twnNm": "秩父市"
+ },
+ {
+  "obsFcd": "2128000700005",
+  "obsNm": "浦山ダム",
+  "ofcCd": 21280,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101207,
+  "twnNm": "秩父市"
+ },
+ {
+  "obsFcd": "2128000700006",
+  "obsNm": "滝沢ダム",
+  "ofcCd": 21280,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101207,
+  "twnNm": "秩父市"
+ },
+ {
+  "obsFcd": "0281700700002",
+  "obsNm": "有間ダム",
+  "ofcCd": 2817,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101209,
+  "twnNm": "飯能市"
+ },
+ {
+  "obsFcd": "2125900700001",
+  "obsNm": "渡良瀬遊水地",
+  "ofcCd": 21259,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101210,
+  "twnNm": "加須市"
+ },
+ {
+  "obsFcd": "2128000700004",
+  "obsNm": "荒川第一調節池",
+  "ofcCd": 21280,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101224,
+  "twnNm": "戸田市"
+ },
+ {
+  "obsFcd": "0281700700003",
+  "obsNm": "権現堂調節池",
+  "ofcCd": 2817,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101240,
+  "twnNm": "幸手市"
+ },
+ {
+  "obsFcd": "2128900700006",
+  "obsNm": "下久保ダム",
+  "ofcCd": 21289,
+  "dspFlg": 1,
+  "prefCd": 1101,
+  "prefNm": "埼玉県",
+  "twnCd": 1101383,
+  "twnNm": "児玉郡神川町"
+ },
+ {
+  "obsFcd": "0307300700004",
+  "obsNm": "矢那川ダム",
+  "ofcCd": 3073,
+  "dspFlg": 1,
+  "prefCd": 1201,
+  "prefNm": "千葉県",
+  "twnCd": 1201206,
+  "twnNm": "木更津市"
+ },
+ {
+  "obsFcd": "0307300700003",
+  "obsNm": "高滝ダム",
+  "ofcCd": 3073,
+  "dspFlg": 1,
+  "prefCd": 1201,
+  "prefNm": "千葉県",
+  "twnCd": 1201219,
+  "twnNm": "市原市"
+ },
+ {
+  "obsFcd": "0307300700001",
+  "obsNm": "亀山ダム",
+  "ofcCd": 3073,
+  "dspFlg": 1,
+  "prefCd": 1201,
+  "prefNm": "千葉県",
+  "twnCd": 1201225,
+  "twnNm": "君津市"
+ },
+ {
+  "obsFcd": "0307300700002",
+  "obsNm": "片倉ダム",
+  "ofcCd": 3073,
+  "dspFlg": 1,
+  "prefCd": 1201,
+  "prefNm": "千葉県",
+  "twnCd": 1201225,
+  "twnNm": "君津市"
+ },
+ {
+  "obsFcd": "0332900700101",
+  "obsNm": "白丸調整池",
+  "ofcCd": 3329,
+  "dspFlg": 1,
+  "prefCd": 1301,
+  "prefNm": "東京都",
+  "twnCd": 1301308,
+  "twnNm": "西多摩郡奥多摩町"
+ },
+ {
+  "obsFcd": "2137700700001",
+  "obsNm": "小河内ダム",
+  "ofcCd": 21377,
+  "dspFlg": 1,
+  "prefCd": 1301,
+  "prefNm": "東京都",
+  "twnCd": 1301308,
+  "twnNm": "西多摩郡奥多摩町"
+ },
+ {
+  "obsFcd": "0358500700001",
+  "obsNm": "城山ダム",
+  "ofcCd": 3585,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401209,
+  "twnNm": "相模原市"
+ },
+ {
+  "obsFcd": "0358500700004",
+  "obsNm": "相模ダム",
+  "ofcCd": 3585,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401209,
+  "twnNm": "相模原市"
+ },
+ {
+  "obsFcd": "0358500700005",
+  "obsNm": "道志ダム",
+  "ofcCd": 3585,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401209,
+  "twnNm": "相模原市"
+ },
+ {
+  "obsFcd": "2132100700001",
+  "obsNm": "宮ヶ瀬ダム",
+  "ofcCd": 21321,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401209,
+  "twnNm": "相模原市"
+ },
+ {
+  "obsFcd": "0358500700002",
+  "obsNm": "三保ダム",
+  "ofcCd": 3585,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401364,
+  "twnNm": "足柄上郡山北町"
+ },
+ {
+  "obsFcd": "2132100700002",
+  "obsNm": "宮ヶ瀬副ダム",
+  "ofcCd": 21321,
+  "dspFlg": 1,
+  "prefCd": 1401,
+  "prefNm": "神奈川県",
+  "twnCd": 1401401,
+  "twnNm": "愛甲郡愛川町"
+ },
+ {
+  "obsFcd": "0384100700010",
+  "obsNm": "刈谷田川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501202,
+  "twnNm": "長岡市"
+ },
+ {
+  "obsFcd": "0384100700007",
+  "obsNm": "笠堀ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501204,
+  "twnNm": "三条市"
+ },
+ {
+  "obsFcd": "0384100700008",
+  "obsNm": "大谷ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501204,
+  "twnNm": "三条市"
+ },
+ {
+  "obsFcd": "0384100700012",
+  "obsNm": "鯖石川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501205,
+  "twnNm": "柏崎市"
+ },
+ {
+  "obsFcd": "2053400700124",
+  "obsNm": "後谷ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501205,
+  "twnNm": "柏崎市"
+ },
+ {
+  "obsFcd": "2053400700126",
+  "obsNm": "栃ヶ原ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501205,
+  "twnNm": "柏崎市"
+ },
+ {
+  "obsFcd": "2053400700127",
+  "obsNm": "市野新田ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501205,
+  "twnNm": "柏崎市"
+ },
+ {
+  "obsFcd": "0384100700003",
+  "obsNm": "内の倉ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501206,
+  "twnNm": "新発田市"
+ },
+ {
+  "obsFcd": "0384100700005",
+  "obsNm": "加治川治水ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501206,
+  "twnNm": "新発田市"
+ },
+ {
+  "obsFcd": "0384100700009",
+  "obsNm": "下条川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501209,
+  "twnNm": "加茂市"
+ },
+ {
+  "obsFcd": "0384100700013",
+  "obsNm": "城川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501210,
+  "twnNm": "十日町市"
+ },
+ {
+  "obsFcd": "0384100700001",
+  "obsNm": "三面ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501212,
+  "twnNm": "村上市"
+ },
+ {
+  "obsFcd": "0384100700002",
+  "obsNm": "奥三面ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501212,
+  "twnNm": "村上市"
+ },
+ {
+  "obsFcd": "2053400700050",
+  "obsNm": "笹ヶ峰ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501217,
+  "twnNm": "妙高市"
+ },
+ {
+  "obsFcd": "0384100700006",
+  "obsNm": "早出川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501218,
+  "twnNm": "五泉市"
+ },
+ {
+  "obsFcd": "0384100700014",
+  "obsNm": "正善寺ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501222,
+  "twnNm": "上越市"
+ },
+ {
+  "obsFcd": "0384100700015",
+  "obsNm": "柿崎川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501222,
+  "twnNm": "上越市"
+ },
+ {
+  "obsFcd": "0384100700016",
+  "obsNm": "大野川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501224,
+  "twnNm": "佐渡市"
+ },
+ {
+  "obsFcd": "0384100700017",
+  "obsNm": "久知川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501224,
+  "twnNm": "佐渡市"
+ },
+ {
+  "obsFcd": "0384100700018",
+  "obsNm": "新保川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501224,
+  "twnNm": "佐渡市"
+ },
+ {
+  "obsFcd": "2053400700122",
+  "obsNm": "外山ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501224,
+  "twnNm": "佐渡市"
+ },
+ {
+  "obsFcd": "2053400700125",
+  "obsNm": "小倉ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501224,
+  "twnNm": "佐渡市"
+ },
+ {
+  "obsFcd": "0384100700011",
+  "obsNm": "破間川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501225,
+  "twnNm": "魚沼市"
+ },
+ {
+  "obsFcd": "0384100700019",
+  "obsNm": "広神ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501225,
+  "twnNm": "魚沼市"
+ },
+ {
+  "obsFcd": "2153800700001",
+  "obsNm": "三国川ダム",
+  "ofcCd": 21538,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501226,
+  "twnNm": "南魚沼市"
+ },
+ {
+  "obsFcd": "0384100700004",
+  "obsNm": "胎内川ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501227,
+  "twnNm": "胎内市"
+ },
+ {
+  "obsFcd": "0384100700020",
+  "obsNm": "奥胎内ダム",
+  "ofcCd": 3841,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501227,
+  "twnNm": "胎内市"
+ },
+ {
+  "obsFcd": "2152700700010",
+  "obsNm": "揚川ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501385,
+  "twnNm": "東蒲原郡阿賀町"
+ },
+ {
+  "obsFcd": "2152700700017",
+  "obsNm": "豊実ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501385,
+  "twnNm": "東蒲原郡阿賀町"
+ },
+ {
+  "obsFcd": "2152700700018",
+  "obsNm": "鹿瀬ダム（利水・東北電力）",
+  "ofcCd": 21527,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501385,
+  "twnNm": "東蒲原郡阿賀町"
+ },
+ {
+  "obsFcd": "2152800700001",
+  "obsNm": "大石ダム",
+  "ofcCd": 21528,
+  "dspFlg": 1,
+  "prefCd": 1501,
+  "prefNm": "新潟県",
+  "twnCd": 1501581,
+  "twnNm": "岩船郡関川村"
+ },
+ {
+  "obsFcd": "0409800700061",
+  "obsNm": "熊野川ダム",
+  "ofcCd": 4098,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601201,
+  "twnNm": "富山市"
+ },
+ {
+  "obsFcd": "0409800700062",
+  "obsNm": "久婦須川ダム",
+  "ofcCd": 4098,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601201,
+  "twnNm": "富山市"
+ },
+ {
+  "obsFcd": "0409800700063",
+  "obsNm": "室牧ダム",
+  "ofcCd": 4098,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601201,
+  "twnNm": "富山市"
+ },
+ {
+  "obsFcd": "2053400700051",
+  "obsNm": "五位ダム",
+  "ofcCd": 20534,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601202,
+  "twnNm": "高岡市"
+ },
+ {
+  "obsFcd": "0410100700021",
+  "obsNm": "角川ダム",
+  "ofcCd": 4101,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601204,
+  "twnNm": "魚津市"
+ },
+ {
+  "obsFcd": "0410100700022",
+  "obsNm": "布施川ダム",
+  "ofcCd": 4101,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601204,
+  "twnNm": "魚津市"
+ },
+ {
+  "obsFcd": "0410200700002",
+  "obsNm": "大谷ダム",
+  "ofcCd": 4102,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601207,
+  "twnNm": "黒部市"
+ },
+ {
+  "obsFcd": "2155600700006",
+  "obsNm": "宇奈月ダム",
+  "ofcCd": 21556,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601207,
+  "twnNm": "黒部市"
+ },
+ {
+  "obsFcd": "0410400700104",
+  "obsNm": "和田川ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601208,
+  "twnNm": "砺波市"
+ },
+ {
+  "obsFcd": "0410500700121",
+  "obsNm": "子撫川ダム",
+  "ofcCd": 4105,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601209,
+  "twnNm": "小矢部市"
+ },
+ {
+  "obsFcd": "0410400700101",
+  "obsNm": "境川ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601210,
+  "twnNm": "南砺市"
+ },
+ {
+  "obsFcd": "0410400700102",
+  "obsNm": "城端ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601210,
+  "twnNm": "南砺市"
+ },
+ {
+  "obsFcd": "0410400700103",
+  "obsNm": "利賀川ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601210,
+  "twnNm": "南砺市"
+ },
+ {
+  "obsFcd": "0410400700122",
+  "obsNm": "刀利ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601210,
+  "twnNm": "南砺市"
+ },
+ {
+  "obsFcd": "0410400700123",
+  "obsNm": "臼中ダム",
+  "ofcCd": 4104,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601210,
+  "twnNm": "南砺市"
+ },
+ {
+  "obsFcd": "0410000700041",
+  "obsNm": "上市川ダム",
+  "ofcCd": 4100,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601322,
+  "twnNm": "中新川郡上市町"
+ },
+ {
+  "obsFcd": "0410000700042",
+  "obsNm": "上市川第２ダム",
+  "ofcCd": 4100,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601322,
+  "twnNm": "中新川郡上市町"
+ },
+ {
+  "obsFcd": "0410000700043",
+  "obsNm": "白岩川ダム",
+  "ofcCd": 4100,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601323,
+  "twnNm": "中新川郡立山町"
+ },
+ {
+  "obsFcd": "0410200700003",
+  "obsNm": "舟川ダム",
+  "ofcCd": 4102,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601342,
+  "twnNm": "下新川郡入善町"
+ },
+ {
+  "obsFcd": "0410200700001",
+  "obsNm": "朝日小川ダム",
+  "ofcCd": 4102,
+  "dspFlg": 1,
+  "prefCd": 1601,
+  "prefNm": "富山県",
+  "twnCd": 1601343,
+  "twnNm": "下新川郡朝日町"
+ },
+ {
+  "obsFcd": "0435300700061",
+  "obsNm": "犀川ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701201,
+  "twnNm": "金沢市"
+ },
+ {
+  "obsFcd": "0435300700062",
+  "obsNm": "内川ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701201,
+  "twnNm": "金沢市"
+ },
+ {
+  "obsFcd": "0435300700063",
+  "obsNm": "新内川ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701201,
+  "twnNm": "金沢市"
+ },
+ {
+  "obsFcd": "0435300700065",
+  "obsNm": "辰巳ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701201,
+  "twnNm": "金沢市"
+ },
+ {
+  "obsFcd": "0435300700064",
+  "obsNm": "赤瀬ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701203,
+  "twnNm": "小松市"
+ },
+ {
+  "obsFcd": "0435300700041",
+  "obsNm": "八ヶ川ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701204,
+  "twnNm": "輪島市"
+ },
+ {
+  "obsFcd": "0435300700051",
+  "obsNm": "小屋ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701205,
+  "twnNm": "珠洲市"
+ },
+ {
+  "obsFcd": "0435300700001",
+  "obsNm": "我谷ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701206,
+  "twnNm": "加賀市"
+ },
+ {
+  "obsFcd": "0435300700002",
+  "obsNm": "九谷ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701206,
+  "twnNm": "加賀市"
+ },
+ {
+  "obsFcd": "0435300700021",
+  "obsNm": "大日川ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701210,
+  "twnNm": "白山市"
+ },
+ {
+  "obsFcd": "2156500700001",
+  "obsNm": "手取川ダム",
+  "ofcCd": 21565,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701210,
+  "twnNm": "白山市"
+ },
+ {
+  "obsFcd": "0435300700031",
+  "obsNm": "北河内ダム",
+  "ofcCd": 4353,
+  "dspFlg": 1,
+  "prefCd": 1701,
+  "prefNm": "石川県",
+  "twnCd": 1701463,
+  "twnNm": "鳳珠郡能登町"
+ },
+ {
+  "obsFcd": "0460900700011",
+  "obsNm": "滝波ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801201,
+  "twnNm": "福井市"
+ },
+ {
+  "obsFcd": "0460900700001",
+  "obsNm": "笹生川ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801205,
+  "twnNm": "大野市"
+ },
+ {
+  "obsFcd": "2209900700001",
+  "obsNm": "九頭竜ダム",
+  "ofcCd": 22099,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801205,
+  "twnNm": "大野市"
+ },
+ {
+  "obsFcd": "2209900700002",
+  "obsNm": "真名川ダム",
+  "ofcCd": 22099,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801205,
+  "twnNm": "大野市"
+ },
+ {
+  "obsFcd": "0460900700005",
+  "obsNm": "浄土寺川ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801206,
+  "twnNm": "勝山市"
+ },
+ {
+  "obsFcd": "0460900700008",
+  "obsNm": "浄土寺川ダム（貯砂ダム）",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801206,
+  "twnNm": "勝山市"
+ },
+ {
+  "obsFcd": "0460900700003",
+  "obsNm": "龍ヶ鼻ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801210,
+  "twnNm": "坂井市"
+ },
+ {
+  "obsFcd": "0460900700004",
+  "obsNm": "永平寺ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801322,
+  "twnNm": "吉田郡永平寺町"
+ },
+ {
+  "obsFcd": "0460900700002",
+  "obsNm": "広野ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801404,
+  "twnNm": "南条郡南越前町"
+ },
+ {
+  "obsFcd": "0460900700006",
+  "obsNm": "桝谷ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801404,
+  "twnNm": "南条郡南越前町"
+ },
+ {
+  "obsFcd": "0460900700009",
+  "obsNm": "二ツ屋分水堰",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801404,
+  "twnNm": "南条郡南越前町"
+ },
+ {
+  "obsFcd": "0460900700007",
+  "obsNm": "大津呂ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801483,
+  "twnNm": "大飯郡おおい町"
+ },
+ {
+  "obsFcd": "0460900700010",
+  "obsNm": "河内川ダム",
+  "ofcCd": 4609,
+  "dspFlg": 1,
+  "prefCd": 1801,
+  "prefNm": "福井県",
+  "twnCd": 1801501,
+  "twnNm": "三方上中郡若狭町"
+ },
+ {
+  "obsFcd": "0486500700005",
+  "obsNm": "荒川ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901201,
+  "twnNm": "甲府市"
+ },
+ {
+  "obsFcd": "0486500700003",
+  "obsNm": "広瀬ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901205,
+  "twnNm": "山梨市"
+ },
+ {
+  "obsFcd": "0486500700004",
+  "obsNm": "琴川ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901205,
+  "twnNm": "山梨市"
+ },
+ {
+  "obsFcd": "0486500700006",
+  "obsNm": "深城ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901206,
+  "twnNm": "大月市"
+ },
+ {
+  "obsFcd": "0486500700001",
+  "obsNm": "大門ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901209,
+  "twnNm": "北杜市"
+ },
+ {
+  "obsFcd": "0486500700002",
+  "obsNm": "塩川ダム",
+  "ofcCd": 4865,
+  "dspFlg": 1,
+  "prefCd": 1901,
+  "prefNm": "山梨県",
+  "twnCd": 1901209,
+  "twnNm": "北杜市"
+ },
+ {
+  "obsFcd": "0512100700001",
+  "obsNm": "浅川ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001201,
+  "twnNm": "長野市"
+ },
+ {
+  "obsFcd": "0512100700014",
+  "obsNm": "裾花ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001201,
+  "twnNm": "長野市"
+ },
+ {
+  "obsFcd": "0512100700015",
+  "obsNm": "奥裾花ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001201,
+  "twnNm": "長野市"
+ },
+ {
+  "obsFcd": "0512100700023",
+  "obsNm": "水上ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001202,
+  "twnNm": "松本市"
+ },
+ {
+  "obsFcd": "0512100700017",
+  "obsNm": "内村ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001203,
+  "twnNm": "上田市"
+ },
+ {
+  "obsFcd": "2183100700006",
+  "obsNm": "釜口水門（利水）",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001204,
+  "twnNm": "岡谷市"
+ },
+ {
+  "obsFcd": "2183100700010",
+  "obsNm": "松川ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001205,
+  "twnNm": "飯田市"
+ },
+ {
+  "obsFcd": "0512100700018",
+  "obsNm": "豊丘ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001207,
+  "twnNm": "須坂市"
+ },
+ {
+  "obsFcd": "2183100700002",
+  "obsNm": "美和ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001209,
+  "twnNm": "伊那市"
+ },
+ {
+  "obsFcd": "2183100700009",
+  "obsNm": "高遠ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001209,
+  "twnNm": "伊那市"
+ },
+ {
+  "obsFcd": "2154500700001",
+  "obsNm": "大町ダム",
+  "ofcCd": 21545,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001212,
+  "twnNm": "大町市"
+ },
+ {
+  "obsFcd": "0512100700013",
+  "obsNm": "奈良井ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001215,
+  "twnNm": "塩尻市"
+ },
+ {
+  "obsFcd": "2154500700025",
+  "obsNm": "香坂ダム",
+  "ofcCd": 21545,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001217,
+  "twnNm": "佐久市"
+ },
+ {
+  "obsFcd": "0512100700022",
+  "obsNm": "金原ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001219,
+  "twnNm": "東御市"
+ },
+ {
+  "obsFcd": "0512100700016",
+  "obsNm": "古谷ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001309,
+  "twnNm": "南佐久郡佐久穂町"
+ },
+ {
+  "obsFcd": "0512100700019",
+  "obsNm": "余地ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001309,
+  "twnNm": "南佐久郡佐久穂町"
+ },
+ {
+  "obsFcd": "0512100700021",
+  "obsNm": "湯川ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001323,
+  "twnNm": "北佐久郡御代田町"
+ },
+ {
+  "obsFcd": "2183100700007",
+  "obsNm": "横川ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001382,
+  "twnNm": "上伊那郡辰野町"
+ },
+ {
+  "obsFcd": "0512100700012",
+  "obsNm": "箕輪ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001383,
+  "twnNm": "上伊那郡箕輪町"
+ },
+ {
+  "obsFcd": "2183100700001",
+  "obsNm": "小渋ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001386,
+  "twnNm": "上伊那郡中川村"
+ },
+ {
+  "obsFcd": "2183100700011",
+  "obsNm": "片桐ダム",
+  "ofcCd": 21831,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001402,
+  "twnNm": "下伊那郡松川町"
+ },
+ {
+  "obsFcd": "2181100700005",
+  "obsNm": "味噌川ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001425,
+  "twnNm": "木曽郡木祖村"
+ },
+ {
+  "obsFcd": "2181100700007",
+  "obsNm": "牧尾ダム（利水）",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001432,
+  "twnNm": "木曽郡木曽町"
+ },
+ {
+  "obsFcd": "0512100700020",
+  "obsNm": "北山ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001446,
+  "twnNm": "東筑摩郡麻績村"
+ },
+ {
+  "obsFcd": "0512100700024",
+  "obsNm": "小仁熊ダム",
+  "ofcCd": 5121,
+  "dspFlg": 1,
+  "prefCd": 2001,
+  "prefNm": "長野県",
+  "twnCd": 2001452,
+  "twnNm": "東筑摩郡筑北村"
+ },
+ {
+  "obsFcd": "2181100700063",
+  "obsNm": "打上調整池",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101202,
+  "twnNm": "大垣市"
+ },
+ {
+  "obsFcd": "0537700700006",
+  "obsNm": "丹生川ダム",
+  "ofcCd": 5377,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "2181100700025",
+  "obsNm": "高根第１ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "2181100700026",
+  "obsNm": "高根第２ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "2181100700027",
+  "obsNm": "朝日ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "2181100700028",
+  "obsNm": "秋神ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "2181100700029",
+  "obsNm": "久々野ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101203,
+  "twnNm": "高山市"
+ },
+ {
+  "obsFcd": "0537700700003",
+  "obsNm": "岩村ダム",
+  "ofcCd": 5377,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101210,
+  "twnNm": "恵那市"
+ },
+ {
+  "obsFcd": "0537700700004",
+  "obsNm": "中野方ダム",
+  "ofcCd": 5377,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101210,
+  "twnNm": "恵那市"
+ },
+ {
+  "obsFcd": "2178200700001",
+  "obsNm": "小里川ダム",
+  "ofcCd": 21782,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101210,
+  "twnNm": "恵那市"
+ },
+ {
+  "obsFcd": "2181100700008",
+  "obsNm": "阿木川ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101210,
+  "twnNm": "恵那市"
+ },
+ {
+  "obsFcd": "0537700700001",
+  "obsNm": "阿多岐ダム",
+  "ofcCd": 5377,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101219,
+  "twnNm": "郡上市"
+ },
+ {
+  "obsFcd": "0537700700005",
+  "obsNm": "大ヶ洞ダム",
+  "ofcCd": 5377,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101220,
+  "twnNm": "下呂市"
+ },
+ {
+  "obsFcd": "2181100700009",
+  "obsNm": "岩屋ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101220,
+  "twnNm": "下呂市"
+ },
+ {
+  "obsFcd": "2181100700031",
+  "obsNm": "東上田ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101220,
+  "twnNm": "下呂市"
+ },
+ {
+  "obsFcd": "2181100700033",
+  "obsNm": "下原ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101220,
+  "twnNm": "下呂市"
+ },
+ {
+  "obsFcd": "2181100700036",
+  "obsNm": "馬瀬川第２",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101220,
+  "twnNm": "下呂市"
+ },
+ {
+  "obsFcd": "2181100700052",
+  "obsNm": "横山ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101401,
+  "twnNm": "揖斐郡揖斐川町"
+ },
+ {
+  "obsFcd": "2181100700056",
+  "obsNm": "徳山ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101401,
+  "twnNm": "揖斐郡揖斐川町"
+ },
+ {
+  "obsFcd": "2181100700059",
+  "obsNm": "久瀬ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101401,
+  "twnNm": "揖斐郡揖斐川町"
+ },
+ {
+  "obsFcd": "2181100700060",
+  "obsNm": "西平ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101401,
+  "twnNm": "揖斐郡揖斐川町"
+ },
+ {
+  "obsFcd": "2181100700040",
+  "obsNm": "川辺ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101503,
+  "twnNm": "加茂郡川辺町"
+ },
+ {
+  "obsFcd": "2181100700001",
+  "obsNm": "丸山ダム",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101505,
+  "twnNm": "加茂郡八百津町"
+ },
+ {
+  "obsFcd": "2155500700028",
+  "obsNm": "御母衣ダム（利水）",
+  "ofcCd": 21555,
+  "dspFlg": 1,
+  "prefCd": 2101,
+  "prefNm": "岐阜県",
+  "twnCd": 2101604,
+  "twnNm": "大野郡白川村"
+ },
+ {
+  "obsFcd": "0563300700201",
+  "obsNm": "都田川ダム",
+  "ofcCd": 5633,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201202,
+  "twnNm": "浜松市"
+ },
+ {
+  "obsFcd": "2182400700002",
+  "obsNm": "佐久間ダム",
+  "ofcCd": 21824,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201202,
+  "twnNm": "浜松市"
+ },
+ {
+  "obsFcd": "2182400700003",
+  "obsNm": "水窪ダム",
+  "ofcCd": 21824,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201202,
+  "twnNm": "浜松市"
+ },
+ {
+  "obsFcd": "2182400700004",
+  "obsNm": "秋葉ダム",
+  "ofcCd": 21824,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201202,
+  "twnNm": "浜松市"
+ },
+ {
+  "obsFcd": "2182400700005",
+  "obsNm": "船明ダム",
+  "ofcCd": 21824,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201202,
+  "twnNm": "浜松市"
+ },
+ {
+  "obsFcd": "0563300700203",
+  "obsNm": "大倉川農地防災ダム",
+  "ofcCd": 5633,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201207,
+  "twnNm": "富士宮市"
+ },
+ {
+  "obsFcd": "0563300700200",
+  "obsNm": "奥野ダム",
+  "ofcCd": 5633,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201208,
+  "twnNm": "伊東市"
+ },
+ {
+  "obsFcd": "0563300700204",
+  "obsNm": "青野大師ダム",
+  "ofcCd": 5633,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201304,
+  "twnNm": "賀茂郡南伊豆町"
+ },
+ {
+  "obsFcd": "2182700700001",
+  "obsNm": "長島ダム",
+  "ofcCd": 21827,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201429,
+  "twnNm": "榛原郡川根本町"
+ },
+ {
+  "obsFcd": "0563300700202",
+  "obsNm": "太田川ダム",
+  "ofcCd": 5633,
+  "dspFlg": 1,
+  "prefCd": 2201,
+  "prefNm": "静岡県",
+  "twnCd": 2201461,
+  "twnNm": "周智郡森町"
+ },
+ {
+  "obsFcd": "2053500700052",
+  "obsNm": "羽布ダム",
+  "ofcCd": 20535,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301211,
+  "twnNm": "豊田市"
+ },
+ {
+  "obsFcd": "2178100700009",
+  "obsNm": "越戸ダム",
+  "ofcCd": 21781,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301211,
+  "twnNm": "豊田市"
+ },
+ {
+  "obsFcd": "2179300700006",
+  "obsNm": "矢作ダム",
+  "ofcCd": 21793,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301211,
+  "twnNm": "豊田市"
+ },
+ {
+  "obsFcd": "2179300700007",
+  "obsNm": "矢作第２ダム",
+  "ofcCd": 21793,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301211,
+  "twnNm": "豊田市"
+ },
+ {
+  "obsFcd": "2181100700010",
+  "obsNm": "木曽川大堰（利水）",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301220,
+  "twnNm": "稲沢市"
+ },
+ {
+  "obsFcd": "1920300700002",
+  "obsNm": "宇連ダム",
+  "ofcCd": 19203,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301221,
+  "twnNm": "新城市"
+ },
+ {
+  "obsFcd": "1920300700012",
+  "obsNm": "大島ダム",
+  "ofcCd": 19203,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301221,
+  "twnNm": "新城市"
+ },
+ {
+  "obsFcd": "2182400700001",
+  "obsNm": "新豊根ダム",
+  "ofcCd": 21824,
+  "dspFlg": 1,
+  "prefCd": 2301,
+  "prefNm": "愛知県",
+  "twnCd": 2301563,
+  "twnNm": "北設楽郡豊根村"
+ },
+ {
+  "obsFcd": "0614500700003",
+  "obsNm": "君ヶ野ダム",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401201,
+  "twnNm": "津市"
+ },
+ {
+  "obsFcd": "0614500700006",
+  "obsNm": "安濃ダム（利水）",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401201,
+  "twnNm": "津市"
+ },
+ {
+  "obsFcd": "2180100700007",
+  "obsNm": "蓮ダム",
+  "ofcCd": 21801,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401204,
+  "twnNm": "松阪市"
+ },
+ {
+  "obsFcd": "2181100700067",
+  "obsNm": "加佐登調整池",
+  "ofcCd": 21811,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401207,
+  "twnNm": "鈴鹿市"
+ },
+ {
+  "obsFcd": "2206700700005",
+  "obsNm": "青蓮寺ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401208,
+  "twnNm": "名張市"
+ },
+ {
+  "obsFcd": "2206700700009",
+  "obsNm": "比奈知ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401208,
+  "twnNm": "名張市"
+ },
+ {
+  "obsFcd": "0614500700007",
+  "obsNm": "クチスボダム（発電）",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401209,
+  "twnNm": "尾鷲市"
+ },
+ {
+  "obsFcd": "2208800700005",
+  "obsNm": "小森ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401212,
+  "twnNm": "熊野市"
+ },
+ {
+  "obsFcd": "0614500700001",
+  "obsNm": "滝川ダム",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401216,
+  "twnNm": "伊賀市"
+ },
+ {
+  "obsFcd": "2206700700010",
+  "obsNm": "川上ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401216,
+  "twnNm": "伊賀市"
+ },
+ {
+  "obsFcd": "0614500700004",
+  "obsNm": "宮川ダム",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401443,
+  "twnNm": "多気郡大台町"
+ },
+ {
+  "obsFcd": "0614500700005",
+  "obsNm": "三瀬谷ダム（発電）",
+  "ofcCd": 6145,
+  "dspFlg": 1,
+  "prefCd": 2401,
+  "prefNm": "三重県",
+  "twnCd": 2401443,
+  "twnNm": "多気郡大台町"
+ },
+ {
+  "obsFcd": "0640100700010",
+  "obsNm": "余呉湖",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501203,
+  "twnNm": "長浜市"
+ },
+ {
+  "obsFcd": "0640100700005",
+  "obsNm": "青土ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501209,
+  "twnNm": "甲賀市"
+ },
+ {
+  "obsFcd": "2053600700054",
+  "obsNm": "野洲川ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501209,
+  "twnNm": "甲賀市"
+ },
+ {
+  "obsFcd": "0640100700011",
+  "obsNm": "石田川ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501212,
+  "twnNm": "高島市"
+ },
+ {
+  "obsFcd": "0640100700012",
+  "obsNm": "天川ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501212,
+  "twnNm": "高島市"
+ },
+ {
+  "obsFcd": "0640100700007",
+  "obsNm": "永源寺ダム（利水）",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501213,
+  "twnNm": "東近江市"
+ },
+ {
+  "obsFcd": "0640100700008",
+  "obsNm": "宇曽川ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501213,
+  "twnNm": "東近江市"
+ },
+ {
+  "obsFcd": "0640100700009",
+  "obsNm": "姉川ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501214,
+  "twnNm": "米原市"
+ },
+ {
+  "obsFcd": "0640100700006",
+  "obsNm": "日野川ダム",
+  "ofcCd": 6401,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501383,
+  "twnNm": "蒲生郡日野町"
+ },
+ {
+  "obsFcd": "2053600700055",
+  "obsNm": "蔵王ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2501,
+  "prefNm": "滋賀県",
+  "twnCd": 2501383,
+  "twnNm": "蒲生郡日野町"
+ },
+ {
+  "obsFcd": "2206700700001",
+  "obsNm": "天ヶ瀬ダム",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601204,
+  "twnNm": "宇治市"
+ },
+ {
+  "obsFcd": "0665700700001",
+  "obsNm": "大野ダム",
+  "ofcCd": 6657,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601213,
+  "twnNm": "南丹市"
+ },
+ {
+  "obsFcd": "2206700700008",
+  "obsNm": "日吉ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601213,
+  "twnNm": "南丹市"
+ },
+ {
+  "obsFcd": "2206700700006",
+  "obsNm": "高山ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601367,
+  "twnNm": "相楽郡南山城村"
+ },
+ {
+  "obsFcd": "0665700700002",
+  "obsNm": "和知ダム（利水）",
+  "ofcCd": 6657,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601407,
+  "twnNm": "船井郡京丹波町"
+ },
+ {
+  "obsFcd": "0665700700003",
+  "obsNm": "畑川ダム",
+  "ofcCd": 6657,
+  "dspFlg": 1,
+  "prefCd": 2601,
+  "prefNm": "京都府",
+  "twnCd": 2601407,
+  "twnNm": "船井郡京丹波町"
+ },
+ {
+  "obsFcd": "0691300700005",
+  "obsNm": "安威川ダム",
+  "ofcCd": 6913,
+  "dspFlg": 1,
+  "prefCd": 2701,
+  "prefNm": "大阪府",
+  "twnCd": 2701211,
+  "twnNm": "茨木市"
+ },
+ {
+  "obsFcd": "0691300700002",
+  "obsNm": "滝畑ダム（利水）",
+  "ofcCd": 6913,
+  "dspFlg": 1,
+  "prefCd": 2701,
+  "prefNm": "大阪府",
+  "twnCd": 2701216,
+  "twnNm": "河内長野市"
+ },
+ {
+  "obsFcd": "0691300700001",
+  "obsNm": "箕面川ダム",
+  "ofcCd": 6913,
+  "dspFlg": 1,
+  "prefCd": 2701,
+  "prefNm": "大阪府",
+  "twnCd": 2701220,
+  "twnNm": "箕面市"
+ },
+ {
+  "obsFcd": "0691300700004",
+  "obsNm": "狭山池ダム",
+  "ofcCd": 6913,
+  "dspFlg": 1,
+  "prefCd": 2701,
+  "prefNm": "大阪府",
+  "twnCd": 2701231,
+  "twnNm": "大阪狭山市"
+ },
+ {
+  "obsFcd": "0716900700008",
+  "obsNm": "天王ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801100,
+  "twnNm": "神戸市"
+ },
+ {
+  "obsFcd": "0716900700017",
+  "obsNm": "石井ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801100,
+  "twnNm": "神戸市"
+ },
+ {
+  "obsFcd": "2206100700007",
+  "obsNm": "明石川注水口",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801100,
+  "twnNm": "神戸市"
+ },
+ {
+  "obsFcd": "0716900700003",
+  "obsNm": "安富ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801201,
+  "twnNm": "姫路市"
+ },
+ {
+  "obsFcd": "0716900700009",
+  "obsNm": "菅生ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801201,
+  "twnNm": "姫路市"
+ },
+ {
+  "obsFcd": "0716900700018",
+  "obsNm": "但東ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801209,
+  "twnNm": "豊岡市"
+ },
+ {
+  "obsFcd": "2206100700001",
+  "obsNm": "権現ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801210,
+  "twnNm": "加古川市"
+ },
+ {
+  "obsFcd": "2206100700002",
+  "obsNm": "平荘ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801210,
+  "twnNm": "加古川市"
+ },
+ {
+  "obsFcd": "2206100700005",
+  "obsNm": "呑吐ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801215,
+  "twnNm": "三木市"
+ },
+ {
+  "obsFcd": "2207000700001",
+  "obsNm": "一庫ダム(機構)",
+  "ofcCd": 22070,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801217,
+  "twnNm": "川西市"
+ },
+ {
+  "obsFcd": "0716900700007",
+  "obsNm": "青野ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801219,
+  "twnNm": "三田市"
+ },
+ {
+  "obsFcd": "2206100700004",
+  "obsNm": "大川瀬ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801219,
+  "twnNm": "三田市"
+ },
+ {
+  "obsFcd": "0716900700019",
+  "obsNm": "みくまりダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801221,
+  "twnNm": "丹波篠山市"
+ },
+ {
+  "obsFcd": "0716900700021",
+  "obsNm": "栗柄ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801221,
+  "twnNm": "丹波篠山市"
+ },
+ {
+  "obsFcd": "2206100700003",
+  "obsNm": "川代ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801221,
+  "twnNm": "丹波篠山市"
+ },
+ {
+  "obsFcd": "0716900700011",
+  "obsNm": "三宝ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801223,
+  "twnNm": "丹波市"
+ },
+ {
+  "obsFcd": "0716900700006",
+  "obsNm": "諭鶴羽ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700012",
+  "obsNm": "牛内ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700013",
+  "obsNm": "大日ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700014",
+  "obsNm": "分水堰",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700015",
+  "obsNm": "成相ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700016",
+  "obsNm": "北富士ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801224,
+  "twnNm": "南あわじ市"
+ },
+ {
+  "obsFcd": "0716900700001",
+  "obsNm": "生野ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801225,
+  "twnNm": "朝来市"
+ },
+ {
+  "obsFcd": "0716900700010",
+  "obsNm": "大路ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801225,
+  "twnNm": "朝来市"
+ },
+ {
+  "obsFcd": "0716900700022",
+  "obsNm": "与布土ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801225,
+  "twnNm": "朝来市"
+ },
+ {
+  "obsFcd": "2053600700141",
+  "obsNm": "常盤ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801226,
+  "twnNm": "淡路市"
+ },
+ {
+  "obsFcd": "2053600700142",
+  "obsNm": "谷山ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801226,
+  "twnNm": "淡路市"
+ },
+ {
+  "obsFcd": "0716900700004",
+  "obsNm": "引原ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801227,
+  "twnNm": "宍粟市"
+ },
+ {
+  "obsFcd": "2053600700057",
+  "obsNm": "鴨川ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801228,
+  "twnNm": "加東市"
+ },
+ {
+  "obsFcd": "0716900700002",
+  "obsNm": "長谷ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801229,
+  "twnNm": "たつの市"
+ },
+ {
+  "obsFcd": "2206100700006",
+  "obsNm": "糀屋ダム",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801365,
+  "twnNm": "多可郡多可町"
+ },
+ {
+  "obsFcd": "2206100700008",
+  "obsNm": "高田頭首工",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801365,
+  "twnNm": "多可郡多可町"
+ },
+ {
+  "obsFcd": "2206100700009",
+  "obsNm": "大屋頭首工",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801365,
+  "twnNm": "多可郡多可町"
+ },
+ {
+  "obsFcd": "2206100700010",
+  "obsNm": "赤坂頭首工",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801365,
+  "twnNm": "多可郡多可町"
+ },
+ {
+  "obsFcd": "2206100700011",
+  "obsNm": "柳頭首工",
+  "ofcCd": 22061,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801365,
+  "twnNm": "多可郡多可町"
+ },
+ {
+  "obsFcd": "0716900700005",
+  "obsNm": "安室ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801481,
+  "twnNm": "赤穂郡上郡町"
+ },
+ {
+  "obsFcd": "0716900700020",
+  "obsNm": "金出地ダム",
+  "ofcCd": 7169,
+  "dspFlg": 1,
+  "prefCd": 2801,
+  "prefNm": "兵庫県",
+  "twnCd": 2801481,
+  "twnNm": "赤穂郡上郡町"
+ },
+ {
+  "obsFcd": "0742500700006",
+  "obsNm": "岩井川ダム",
+  "ofcCd": 7425,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901201,
+  "twnNm": "奈良市"
+ },
+ {
+  "obsFcd": "2206700700007",
+  "obsNm": "布目ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901201,
+  "twnNm": "奈良市"
+ },
+ {
+  "obsFcd": "0742500700001",
+  "obsNm": "天理ダム",
+  "ofcCd": 7425,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901204,
+  "twnNm": "天理市"
+ },
+ {
+  "obsFcd": "0742500700003",
+  "obsNm": "白川ダム",
+  "ofcCd": 7425,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901204,
+  "twnNm": "天理市"
+ },
+ {
+  "obsFcd": "0742500700002",
+  "obsNm": "初瀬ダム",
+  "ofcCd": 7425,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901206,
+  "twnNm": "桜井市"
+ },
+ {
+  "obsFcd": "2053600700078",
+  "obsNm": "一の木ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901207,
+  "twnNm": "五條市"
+ },
+ {
+  "obsFcd": "2207700700001",
+  "obsNm": "猿谷ダム（利水）",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901207,
+  "twnNm": "五條市"
+ },
+ {
+  "obsFcd": "2206700700004",
+  "obsNm": "室生ダム(機構)",
+  "ofcCd": 22067,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901212,
+  "twnNm": "宇陀市"
+ },
+ {
+  "obsFcd": "2053600700056",
+  "obsNm": "上津ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901322,
+  "twnNm": "山辺郡山添村"
+ },
+ {
+  "obsFcd": "0742500700207",
+  "obsNm": "大門ダム",
+  "ofcCd": 7425,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901343,
+  "twnNm": "生駒郡三郷町"
+ },
+ {
+  "obsFcd": "2207700700005",
+  "obsNm": "津風呂ダム（利水）",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901441,
+  "twnNm": "吉野郡吉野町"
+ },
+ {
+  "obsFcd": "2207700700002",
+  "obsNm": "九尾ダム（利水）",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901446,
+  "twnNm": "吉野郡天川村"
+ },
+ {
+  "obsFcd": "2207700700003",
+  "obsNm": "川迫ダム（利水）",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901446,
+  "twnNm": "吉野郡天川村"
+ },
+ {
+  "obsFcd": "2208800700004",
+  "obsNm": "二津野ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901449,
+  "twnNm": "吉野郡十津川村"
+ },
+ {
+  "obsFcd": "2208800700006",
+  "obsNm": "風屋ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901449,
+  "twnNm": "吉野郡十津川村"
+ },
+ {
+  "obsFcd": "2208800700002",
+  "obsNm": "池原ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901450,
+  "twnNm": "吉野郡下北山村"
+ },
+ {
+  "obsFcd": "2208800700001",
+  "obsNm": "坂本ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901451,
+  "twnNm": "吉野郡上北山村"
+ },
+ {
+  "obsFcd": "2207700700004",
+  "obsNm": "大迫ダム（利水）",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901452,
+  "twnNm": "吉野郡川上村"
+ },
+ {
+  "obsFcd": "2207700700006",
+  "obsNm": "大滝ダム",
+  "ofcCd": 22077,
+  "dspFlg": 1,
+  "prefCd": 2901,
+  "prefNm": "奈良県",
+  "twnCd": 2901452,
+  "twnNm": "吉野郡川上村"
+ },
+ {
+  "obsFcd": "0768100700006",
+  "obsNm": "殿山ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001206,
+  "twnNm": "田辺市"
+ },
+ {
+  "obsFcd": "2053600700053",
+  "obsNm": "山田ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001208,
+  "twnNm": "紀の川市"
+ },
+ {
+  "obsFcd": "0768100700001",
+  "obsNm": "広川ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001362,
+  "twnNm": "有田郡広川町"
+ },
+ {
+  "obsFcd": "0768100700002",
+  "obsNm": "二川ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001366,
+  "twnNm": "有田郡有田川町"
+ },
+ {
+  "obsFcd": "0768100700005",
+  "obsNm": "切目川ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001390,
+  "twnNm": "日高郡印南町"
+ },
+ {
+  "obsFcd": "2053600700143",
+  "obsNm": "島ノ瀬ダム",
+  "ofcCd": 20536,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001391,
+  "twnNm": "日高郡みなべ町"
+ },
+ {
+  "obsFcd": "0768100700003",
+  "obsNm": "椿山ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001392,
+  "twnNm": "日高郡日高川町"
+ },
+ {
+  "obsFcd": "0768100700007",
+  "obsNm": "小匠ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001421,
+  "twnNm": "東牟婁郡那智勝浦町"
+ },
+ {
+  "obsFcd": "0768100700004",
+  "obsNm": "七川ダム",
+  "ofcCd": 7681,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001424,
+  "twnNm": "東牟婁郡古座川町"
+ },
+ {
+  "obsFcd": "2208800700003",
+  "obsNm": "七色ダム（電発）",
+  "ofcCd": 22088,
+  "dspFlg": 1,
+  "prefCd": 3001,
+  "prefNm": "和歌山県",
+  "twnCd": 3001427,
+  "twnNm": "東牟婁郡北山村"
+ },
+ {
+  "obsFcd": "0793700700001",
+  "obsNm": "百谷ダム",
+  "ofcCd": 7937,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101201,
+  "twnNm": "鳥取市"
+ },
+ {
+  "obsFcd": "0793700700002",
+  "obsNm": "佐治川ダム",
+  "ofcCd": 7937,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101201,
+  "twnNm": "鳥取市"
+ },
+ {
+  "obsFcd": "2229700700001",
+  "obsNm": "殿ダム",
+  "ofcCd": 22297,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101201,
+  "twnNm": "鳥取市"
+ },
+ {
+  "obsFcd": "2739300700003",
+  "obsNm": "三滝ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101328,
+  "twnNm": "八頭郡智頭町"
+ },
+ {
+  "obsFcd": "0793700700003",
+  "obsNm": "東郷ダム",
+  "ofcCd": 7937,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101370,
+  "twnNm": "東伯郡湯梨浜町"
+ },
+ {
+  "obsFcd": "2053700700146",
+  "obsNm": "小田股ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101371,
+  "twnNm": "東伯郡琴浦町"
+ },
+ {
+  "obsFcd": "2053700700147",
+  "obsNm": "船上山ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101371,
+  "twnNm": "東伯郡琴浦町"
+ },
+ {
+  "obsFcd": "2053700700145",
+  "obsNm": "西高尾ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101372,
+  "twnNm": "東伯郡北栄町"
+ },
+ {
+  "obsFcd": "0793700700004",
+  "obsNm": "賀祥ダム",
+  "ofcCd": 7937,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101389,
+  "twnNm": "西伯郡南部町"
+ },
+ {
+  "obsFcd": "0793700700005",
+  "obsNm": "朝鍋ダム",
+  "ofcCd": 7937,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101389,
+  "twnNm": "西伯郡南部町"
+ },
+ {
+  "obsFcd": "2229300700001",
+  "obsNm": "菅沢ダム",
+  "ofcCd": 22293,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101401,
+  "twnNm": "日野郡日南町"
+ },
+ {
+  "obsFcd": "2739300700001",
+  "obsNm": "大宮ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101401,
+  "twnNm": "日野郡日南町"
+ },
+ {
+  "obsFcd": "2053700700061",
+  "obsNm": "下蚊屋ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101403,
+  "twnNm": "日野郡江府町"
+ },
+ {
+  "obsFcd": "2739300700002",
+  "obsNm": "俣野川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3101,
+  "prefNm": "鳥取県",
+  "twnCd": 3101403,
+  "twnNm": "日野郡江府町"
+ },
+ {
+  "obsFcd": "0819300700005",
+  "obsNm": "浜田ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "0819300700007",
+  "obsNm": "御部ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "0819300700011",
+  "obsNm": "大長見ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "0819300700017",
+  "obsNm": "第二浜田ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "0819300700604",
+  "obsNm": "木都賀ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "2739300700007",
+  "obsNm": "周布川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "2739300700008",
+  "obsNm": "長見ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201202,
+  "twnNm": "浜田市"
+ },
+ {
+  "obsFcd": "0819300700013",
+  "obsNm": "笹倉ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201204,
+  "twnNm": "益田市"
+ },
+ {
+  "obsFcd": "0819300700014",
+  "obsNm": "大峠ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201204,
+  "twnNm": "益田市"
+ },
+ {
+  "obsFcd": "0819300700016",
+  "obsNm": "益田川ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201204,
+  "twnNm": "益田市"
+ },
+ {
+  "obsFcd": "0819300700600",
+  "obsNm": "嵯峨谷ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201204,
+  "twnNm": "益田市"
+ },
+ {
+  "obsFcd": "0819300700601",
+  "obsNm": "津田川ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201204,
+  "twnNm": "益田市"
+ },
+ {
+  "obsFcd": "0819300700003",
+  "obsNm": "三瓶ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201205,
+  "twnNm": "大田市"
+ },
+ {
+  "obsFcd": "0819300700602",
+  "obsNm": "清瀧ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201205,
+  "twnNm": "大田市"
+ },
+ {
+  "obsFcd": "0819300700001",
+  "obsNm": "布部ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201206,
+  "twnNm": "安来市"
+ },
+ {
+  "obsFcd": "0819300700002",
+  "obsNm": "山佐ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201206,
+  "twnNm": "安来市"
+ },
+ {
+  "obsFcd": "0819300700004",
+  "obsNm": "八戸ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201207,
+  "twnNm": "江津市"
+ },
+ {
+  "obsFcd": "2230300700001",
+  "obsNm": "尾原ダム",
+  "ofcCd": 22303,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201209,
+  "twnNm": "雲南市"
+ },
+ {
+  "obsFcd": "0819300700603",
+  "obsNm": "三成ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201343,
+  "twnNm": "仁多郡奥出雲町"
+ },
+ {
+  "obsFcd": "2053700700079",
+  "obsNm": "坂根ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201343,
+  "twnNm": "仁多郡奥出雲町"
+ },
+ {
+  "obsFcd": "2739300700005",
+  "obsNm": "阿井川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201343,
+  "twnNm": "仁多郡奥出雲町"
+ },
+ {
+  "obsFcd": "2230300700002",
+  "obsNm": "志津見ダム",
+  "ofcCd": 22303,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201386,
+  "twnNm": "飯石郡飯南町"
+ },
+ {
+  "obsFcd": "2739300700004",
+  "obsNm": "来島ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201386,
+  "twnNm": "飯石郡飯南町"
+ },
+ {
+  "obsFcd": "2739300700006",
+  "obsNm": "浜原ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201448,
+  "twnNm": "邑智郡美郷町"
+ },
+ {
+  "obsFcd": "0819300700010",
+  "obsNm": "美田ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201526,
+  "twnNm": "隠岐郡西ノ島町"
+ },
+ {
+  "obsFcd": "0819300700009",
+  "obsNm": "銚子ダム",
+  "ofcCd": 8193,
+  "dspFlg": 1,
+  "prefCd": 3201,
+  "prefNm": "島根県",
+  "twnCd": 3201528,
+  "twnNm": "隠岐郡隠岐の島町"
+ },
+ {
+  "obsFcd": "0844900700003",
+  "obsNm": "旭川ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301201,
+  "twnNm": "岡山市"
+ },
+ {
+  "obsFcd": "0844900700015",
+  "obsNm": "黒谷ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301201,
+  "twnNm": "岡山市"
+ },
+ {
+  "obsFcd": "0844900700001",
+  "obsNm": "津川ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301203,
+  "twnNm": "津山市"
+ },
+ {
+  "obsFcd": "0844900700022",
+  "obsNm": "黒木ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301203,
+  "twnNm": "津山市"
+ },
+ {
+  "obsFcd": "0844900700007",
+  "obsNm": "楢井ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301209,
+  "twnNm": "高梁市"
+ },
+ {
+  "obsFcd": "2739300700009",
+  "obsNm": "新成羽川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301209,
+  "twnNm": "高梁市"
+ },
+ {
+  "obsFcd": "2739300700010",
+  "obsNm": "黒鳥ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301209,
+  "twnNm": "高梁市"
+ },
+ {
+  "obsFcd": "2739300700014",
+  "obsNm": "田原ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301209,
+  "twnNm": "高梁市"
+ },
+ {
+  "obsFcd": "0844900700009",
+  "obsNm": "高瀬川ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301210,
+  "twnNm": "新見市"
+ },
+ {
+  "obsFcd": "0844900700010",
+  "obsNm": "河本ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301210,
+  "twnNm": "新見市"
+ },
+ {
+  "obsFcd": "0844900700011",
+  "obsNm": "千屋ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301210,
+  "twnNm": "新見市"
+ },
+ {
+  "obsFcd": "0844900700014",
+  "obsNm": "三室川ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301210,
+  "twnNm": "新見市"
+ },
+ {
+  "obsFcd": "0844900700018",
+  "obsNm": "大佐ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301210,
+  "twnNm": "新見市"
+ },
+ {
+  "obsFcd": "0844900700002",
+  "obsNm": "八塔寺川ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301211,
+  "twnNm": "備前市"
+ },
+ {
+  "obsFcd": "0844900700005",
+  "obsNm": "湯原ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301214,
+  "twnNm": "真庭市"
+ },
+ {
+  "obsFcd": "2739300700013",
+  "obsNm": "社口ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301214,
+  "twnNm": "真庭市"
+ },
+ {
+  "obsFcd": "0844900700021",
+  "obsNm": "久賀ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301215,
+  "twnNm": "美作市"
+ },
+ {
+  "obsFcd": "0844900700016",
+  "obsNm": "日笠ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301346,
+  "twnNm": "和気郡和気町"
+ },
+ {
+  "obsFcd": "0844900700019",
+  "obsNm": "鬼ヶ岳ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301461,
+  "twnNm": "小田郡矢掛町"
+ },
+ {
+  "obsFcd": "2739300700011",
+  "obsNm": "土用ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301586,
+  "twnNm": "真庭郡新庄村"
+ },
+ {
+  "obsFcd": "0844900700020",
+  "obsNm": "香々美ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301606,
+  "twnNm": "苫田郡鏡野町"
+ },
+ {
+  "obsFcd": "2231300700002",
+  "obsNm": "苫田ダム",
+  "ofcCd": 22313,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301606,
+  "twnNm": "苫田郡鏡野町"
+ },
+ {
+  "obsFcd": "2739300700012",
+  "obsNm": "恩原ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301606,
+  "twnNm": "苫田郡鏡野町"
+ },
+ {
+  "obsFcd": "2053700700058",
+  "obsNm": "西原ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301623,
+  "twnNm": "勝田郡奈義町"
+ },
+ {
+  "obsFcd": "0844900700004",
+  "obsNm": "鳴滝ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301681,
+  "twnNm": "加賀郡吉備中央町"
+ },
+ {
+  "obsFcd": "0844900700012",
+  "obsNm": "竹谷ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301681,
+  "twnNm": "加賀郡吉備中央町"
+ },
+ {
+  "obsFcd": "0844900700013",
+  "obsNm": "河平ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301681,
+  "twnNm": "加賀郡吉備中央町"
+ },
+ {
+  "obsFcd": "0844900700017",
+  "obsNm": "槙谷ダム",
+  "ofcCd": 8449,
+  "dspFlg": 1,
+  "prefCd": 3301,
+  "prefNm": "岡山県",
+  "twnCd": 3301681,
+  "twnNm": "加賀郡吉備中央町"
+ },
+ {
+  "obsFcd": "0870500700003",
+  "obsNm": "魚切ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401100,
+  "twnNm": "広島市"
+ },
+ {
+  "obsFcd": "0870500700008",
+  "obsNm": "梶毛ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401100,
+  "twnNm": "広島市"
+ },
+ {
+  "obsFcd": "2739300700024",
+  "obsNm": "南原ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401100,
+  "twnNm": "広島市"
+ },
+ {
+  "obsFcd": "2739300700025",
+  "obsNm": "明神ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401100,
+  "twnNm": "広島市"
+ },
+ {
+  "obsFcd": "2739300700026",
+  "obsNm": "宇賀ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401100,
+  "twnNm": "広島市"
+ },
+ {
+  "obsFcd": "0870500700004",
+  "obsNm": "野呂川ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401202,
+  "twnNm": "呉市"
+ },
+ {
+  "obsFcd": "2739300700023",
+  "obsNm": "二級ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401202,
+  "twnNm": "呉市"
+ },
+ {
+  "obsFcd": "0870500700006",
+  "obsNm": "仁賀ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401203,
+  "twnNm": "竹原市"
+ },
+ {
+  "obsFcd": "0870500700023",
+  "obsNm": "野間川ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401204,
+  "twnNm": "三原市"
+ },
+ {
+  "obsFcd": "0870500700005",
+  "obsNm": "御調ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401205,
+  "twnNm": "尾道市"
+ },
+ {
+  "obsFcd": "0870500700010",
+  "obsNm": "四川ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401207,
+  "twnNm": "福山市"
+ },
+ {
+  "obsFcd": "2232800700003",
+  "obsNm": "灰塚ダム",
+  "ofcCd": 22328,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401209,
+  "twnNm": "三次市"
+ },
+ {
+  "obsFcd": "2739300700017",
+  "obsNm": "沓ヶ原ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401209,
+  "twnNm": "三次市"
+ },
+ {
+  "obsFcd": "0870500700024",
+  "obsNm": "庄原ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401210,
+  "twnNm": "庄原市"
+ },
+ {
+  "obsFcd": "2739300700015",
+  "obsNm": "帝釈川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401210,
+  "twnNm": "庄原市"
+ },
+ {
+  "obsFcd": "2739300700016",
+  "obsNm": "高暮ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401210,
+  "twnNm": "庄原市"
+ },
+ {
+  "obsFcd": "2233300700008",
+  "obsNm": "弥栄ダム",
+  "ofcCd": 22333,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401211,
+  "twnNm": "大竹市"
+ },
+ {
+  "obsFcd": "0870500700002",
+  "obsNm": "椋梨ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401212,
+  "twnNm": "東広島市"
+ },
+ {
+  "obsFcd": "0870500700009",
+  "obsNm": "福富ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401212,
+  "twnNm": "東広島市"
+ },
+ {
+  "obsFcd": "0870500700001",
+  "obsNm": "小瀬川ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401213,
+  "twnNm": "廿日市市"
+ },
+ {
+  "obsFcd": "2739300700022",
+  "obsNm": "渡ノ瀬ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401213,
+  "twnNm": "廿日市市"
+ },
+ {
+  "obsFcd": "2232800700002",
+  "obsNm": "土師ダム",
+  "ofcCd": 22328,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401214,
+  "twnNm": "安芸高田市"
+ },
+ {
+  "obsFcd": "2233300700005",
+  "obsNm": "温井ダム",
+  "ofcCd": 22333,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401368,
+  "twnNm": "山県郡安芸太田町"
+ },
+ {
+  "obsFcd": "2739300700018",
+  "obsNm": "立岩ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401368,
+  "twnNm": "山県郡安芸太田町"
+ },
+ {
+  "obsFcd": "2739300700020",
+  "obsNm": "柴木川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401368,
+  "twnNm": "山県郡安芸太田町"
+ },
+ {
+  "obsFcd": "2739300700027",
+  "obsNm": "鱒溜ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401368,
+  "twnNm": "山県郡安芸太田町"
+ },
+ {
+  "obsFcd": "2739300700028",
+  "obsNm": "滝本ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401368,
+  "twnNm": "山県郡安芸太田町"
+ },
+ {
+  "obsFcd": "2739300700019",
+  "obsNm": "樽床ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401369,
+  "twnNm": "山県郡北広島町"
+ },
+ {
+  "obsFcd": "2739300700021",
+  "obsNm": "王泊ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401369,
+  "twnNm": "山県郡北広島町"
+ },
+ {
+  "obsFcd": "0870500700007",
+  "obsNm": "山田川ダム",
+  "ofcCd": 8705,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401462,
+  "twnNm": "世羅郡世羅町"
+ },
+ {
+  "obsFcd": "2053700700059",
+  "obsNm": "京丸ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401462,
+  "twnNm": "世羅郡世羅町"
+ },
+ {
+  "obsFcd": "2053700700060",
+  "obsNm": "目谷ダム",
+  "ofcCd": 20537,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401462,
+  "twnNm": "世羅郡世羅町"
+ },
+ {
+  "obsFcd": "2232700700001",
+  "obsNm": "三川ダム",
+  "ofcCd": 22327,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401462,
+  "twnNm": "世羅郡世羅町"
+ },
+ {
+  "obsFcd": "2232700700002",
+  "obsNm": "八田原ダム",
+  "ofcCd": 22327,
+  "dspFlg": 1,
+  "prefCd": 3401,
+  "prefNm": "広島県",
+  "twnCd": 3401462,
+  "twnNm": "世羅郡世羅町"
+ },
+ {
+  "obsFcd": "0896100700015",
+  "obsNm": "木屋川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501201,
+  "twnNm": "下関市"
+ },
+ {
+  "obsFcd": "0896100700013",
+  "obsNm": "厚東川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501202,
+  "twnNm": "宇部市"
+ },
+ {
+  "obsFcd": "0896100700014",
+  "obsNm": "今富ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501202,
+  "twnNm": "宇部市"
+ },
+ {
+  "obsFcd": "0896100700020",
+  "obsNm": "真締川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501202,
+  "twnNm": "宇部市"
+ },
+ {
+  "obsFcd": "0896100700010",
+  "obsNm": "佐波川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501203,
+  "twnNm": "山口市"
+ },
+ {
+  "obsFcd": "0896100700011",
+  "obsNm": "荒谷ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501203,
+  "twnNm": "山口市"
+ },
+ {
+  "obsFcd": "0896100700012",
+  "obsNm": "一の坂ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501203,
+  "twnNm": "山口市"
+ },
+ {
+  "obsFcd": "2739300700030",
+  "obsNm": "生雲ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501203,
+  "twnNm": "山口市"
+ },
+ {
+  "obsFcd": "0896100700017",
+  "obsNm": "阿武川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501204,
+  "twnNm": "萩市"
+ },
+ {
+  "obsFcd": "0896100700018",
+  "obsNm": "見島ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501204,
+  "twnNm": "萩市"
+ },
+ {
+  "obsFcd": "2739300700031",
+  "obsNm": "佐々並川ダム",
+  "ofcCd": 27393,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501204,
+  "twnNm": "萩市"
+ },
+ {
+  "obsFcd": "0896100700009",
+  "obsNm": "末武川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501207,
+  "twnNm": "下松市"
+ },
+ {
+  "obsFcd": "0896100700001",
+  "obsNm": "生見川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501208,
+  "twnNm": "岩国市"
+ },
+ {
+  "obsFcd": "0896100700002",
+  "obsNm": "小瀬川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501208,
+  "twnNm": "岩国市"
+ },
+ {
+  "obsFcd": "0896100700003",
+  "obsNm": "中山川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501208,
+  "twnNm": "岩国市"
+ },
+ {
+  "obsFcd": "0896100700019",
+  "obsNm": "御庄川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501208,
+  "twnNm": "岩国市"
+ },
+ {
+  "obsFcd": "0896100700022",
+  "obsNm": "平瀬ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501208,
+  "twnNm": "岩国市"
+ },
+ {
+  "obsFcd": "0896100700016",
+  "obsNm": "大坊ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501211,
+  "twnNm": "長門市"
+ },
+ {
+  "obsFcd": "0896100700021",
+  "obsNm": "湯免ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501211,
+  "twnNm": "長門市"
+ },
+ {
+  "obsFcd": "0896100700004",
+  "obsNm": "黒杭川ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501212,
+  "twnNm": "柳井市"
+ },
+ {
+  "obsFcd": "0896100700006",
+  "obsNm": "菅野ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501215,
+  "twnNm": "周南市"
+ },
+ {
+  "obsFcd": "0896100700007",
+  "obsNm": "向道ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501215,
+  "twnNm": "周南市"
+ },
+ {
+  "obsFcd": "0896100700008",
+  "obsNm": "川上ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501215,
+  "twnNm": "周南市"
+ },
+ {
+  "obsFcd": "2234700700001",
+  "obsNm": "島地川ダム",
+  "ofcCd": 22347,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501215,
+  "twnNm": "周南市"
+ },
+ {
+  "obsFcd": "0896100700005",
+  "obsNm": "屋代ダム",
+  "ofcCd": 8961,
+  "dspFlg": 1,
+  "prefCd": 3501,
+  "prefNm": "山口県",
+  "twnCd": 3501305,
+  "twnNm": "大島郡周防大島町"
+ },
+ {
+  "obsFcd": "0921700700004",
+  "obsNm": "福井ダム",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601204,
+  "twnNm": "阿南市"
+ },
+ {
+  "obsFcd": "0921700700003",
+  "obsNm": "宮川内ダム",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601206,
+  "twnNm": "阿波市"
+ },
+ {
+  "obsFcd": "0921700700006",
+  "obsNm": "夏子ダム（利水）",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601207,
+  "twnNm": "美馬市"
+ },
+ {
+  "obsFcd": "2255200700007",
+  "obsNm": "池田ダム（機構）",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601208,
+  "twnNm": "三好市"
+ },
+ {
+  "obsFcd": "2255200700013",
+  "obsNm": "三縄ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601208,
+  "twnNm": "三好市"
+ },
+ {
+  "obsFcd": "0921700700002",
+  "obsNm": "正木ダム",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601302,
+  "twnNm": "勝浦郡上勝町"
+ },
+ {
+  "obsFcd": "0921700700001",
+  "obsNm": "川口ダム（利水）",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601368,
+  "twnNm": "那賀郡那賀町"
+ },
+ {
+  "obsFcd": "0921700700005",
+  "obsNm": "追立ダム（利水）",
+  "ofcCd": 9217,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601368,
+  "twnNm": "那賀郡那賀町"
+ },
+ {
+  "obsFcd": "2255100700001",
+  "obsNm": "長安口ダム",
+  "ofcCd": 22551,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601368,
+  "twnNm": "那賀郡那賀町"
+ },
+ {
+  "obsFcd": "2255100700011",
+  "obsNm": "小見野々ダム",
+  "ofcCd": 22551,
+  "dspFlg": 1,
+  "prefCd": 3601,
+  "prefNm": "徳島県",
+  "twnCd": 3601368,
+  "twnNm": "那賀郡那賀町"
+ },
+ {
+  "obsFcd": "0947300700001",
+  "obsNm": "内場ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701201,
+  "twnNm": "高松市"
+ },
+ {
+  "obsFcd": "0947300700017",
+  "obsNm": "椛川ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701201,
+  "twnNm": "高松市"
+ },
+ {
+  "obsFcd": "0947300700014",
+  "obsNm": "府中ダム（利水）",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701203,
+  "twnNm": "坂出市"
+ },
+ {
+  "obsFcd": "0947300700015",
+  "obsNm": "五郷ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701205,
+  "twnNm": "観音寺市"
+ },
+ {
+  "obsFcd": "0947300700016",
+  "obsNm": "粟井ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701205,
+  "twnNm": "観音寺市"
+ },
+ {
+  "obsFcd": "0947300700005",
+  "obsNm": "大川ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701206,
+  "twnNm": "さぬき市"
+ },
+ {
+  "obsFcd": "0947300700006",
+  "obsNm": "門入ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701206,
+  "twnNm": "さぬき市"
+ },
+ {
+  "obsFcd": "0947300700007",
+  "obsNm": "前山ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701206,
+  "twnNm": "さぬき市"
+ },
+ {
+  "obsFcd": "0947300700002",
+  "obsNm": "千足ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701207,
+  "twnNm": "東かがわ市"
+ },
+ {
+  "obsFcd": "0947300700003",
+  "obsNm": "五名ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701207,
+  "twnNm": "東かがわ市"
+ },
+ {
+  "obsFcd": "0947300700004",
+  "obsNm": "大内ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701207,
+  "twnNm": "東かがわ市"
+ },
+ {
+  "obsFcd": "0947300700008",
+  "obsNm": "吉田ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701324,
+  "twnNm": "小豆郡小豆島町"
+ },
+ {
+  "obsFcd": "0947300700009",
+  "obsNm": "粟地ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701324,
+  "twnNm": "小豆郡小豆島町"
+ },
+ {
+  "obsFcd": "0947300700010",
+  "obsNm": "内海ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701324,
+  "twnNm": "小豆郡小豆島町"
+ },
+ {
+  "obsFcd": "0947300700011",
+  "obsNm": "殿川ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701324,
+  "twnNm": "小豆郡小豆島町"
+ },
+ {
+  "obsFcd": "0947300700012",
+  "obsNm": "田万ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701387,
+  "twnNm": "綾歌郡綾川町"
+ },
+ {
+  "obsFcd": "0947300700013",
+  "obsNm": "長柄ダム",
+  "ofcCd": 9473,
+  "dspFlg": 1,
+  "prefCd": 3701,
+  "prefNm": "香川県",
+  "twnCd": 3701387,
+  "twnNm": "綾歌郡綾川町"
+ },
+ {
+  "obsFcd": "2053800700063",
+  "obsNm": "横谷調整池ダム",
+  "ofcCd": 20538,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801201,
+  "twnNm": "松山市"
+ },
+ {
+  "obsFcd": "2256900700001",
+  "obsNm": "石手川ダム",
+  "ofcCd": 22569,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801201,
+  "twnNm": "松山市"
+ },
+ {
+  "obsFcd": "0972900700006",
+  "obsNm": "玉川ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801202,
+  "twnNm": "今治市"
+ },
+ {
+  "obsFcd": "0972900700007",
+  "obsNm": "台ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801202,
+  "twnNm": "今治市"
+ },
+ {
+  "obsFcd": "0972900700021",
+  "obsNm": "須賀川ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801203,
+  "twnNm": "宇和島市"
+ },
+ {
+  "obsFcd": "0972900700022",
+  "obsNm": "山財ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801203,
+  "twnNm": "宇和島市"
+ },
+ {
+  "obsFcd": "0972900700002",
+  "obsNm": "鹿森ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801205,
+  "twnNm": "新居浜市"
+ },
+ {
+  "obsFcd": "2255200700010",
+  "obsNm": "別子ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801205,
+  "twnNm": "新居浜市"
+ },
+ {
+  "obsFcd": "0972900700001",
+  "obsNm": "黒瀬ダム",
+  "ofcCd": 9729,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801206,
+  "twnNm": "西条市"
+ },
+ {
+  "obsFcd": "2053800700148",
+  "obsNm": "志河川ダム",
+  "ofcCd": 20538,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801206,
+  "twnNm": "西条市"
+ },
+ {
+  "obsFcd": "2257000700002",
+  "obsNm": "鹿野川ダム",
+  "ofcCd": 22570,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801207,
+  "twnNm": "大洲市"
+ },
+ {
+  "obsFcd": "2255200700005",
+  "obsNm": "柳瀬ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801213,
+  "twnNm": "四国中央市"
+ },
+ {
+  "obsFcd": "2255200700006",
+  "obsNm": "新宮ダム（機構）",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801213,
+  "twnNm": "四国中央市"
+ },
+ {
+  "obsFcd": "2255200700009",
+  "obsNm": "富郷ダム（機構）",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801213,
+  "twnNm": "四国中央市"
+ },
+ {
+  "obsFcd": "2255200700011",
+  "obsNm": "銅山川ダム群",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801213,
+  "twnNm": "四国中央市"
+ },
+ {
+  "obsFcd": "2257000700001",
+  "obsNm": "野村ダム",
+  "ofcCd": 22570,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801214,
+  "twnNm": "西予市"
+ },
+ {
+  "obsFcd": "2053800700062",
+  "obsNm": "佐古ダム",
+  "ofcCd": 20538,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801215,
+  "twnNm": "東温市"
+ },
+ {
+  "obsFcd": "2053800700086",
+  "obsNm": "面河ダム",
+  "ofcCd": 20538,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801386,
+  "twnNm": "上浮穴郡久万高原町"
+ },
+ {
+  "obsFcd": "2255900700011",
+  "obsNm": "面河第三ダム",
+  "ofcCd": 22559,
+  "dspFlg": 1,
+  "prefCd": 3801,
+  "prefNm": "愛媛県",
+  "twnCd": 3801386,
+  "twnNm": "上浮穴郡久万高原町"
+ },
+ {
+  "obsFcd": "0998500700001",
+  "obsNm": "鏡ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901201,
+  "twnNm": "高知市"
+ },
+ {
+  "obsFcd": "0998500700005",
+  "obsNm": "坂本ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901208,
+  "twnNm": "宿毛市"
+ },
+ {
+  "obsFcd": "2256000700001",
+  "obsNm": "中筋川ダム",
+  "ofcCd": 22560,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901208,
+  "twnNm": "宿毛市"
+ },
+ {
+  "obsFcd": "2256000700002",
+  "obsNm": "横瀬川ダム",
+  "ofcCd": 22560,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901208,
+  "twnNm": "宿毛市"
+ },
+ {
+  "obsFcd": "0998500700006",
+  "obsNm": "以布利川ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901209,
+  "twnNm": "土佐清水市"
+ },
+ {
+  "obsFcd": "0998500700004",
+  "obsNm": "鎌井谷ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901211,
+  "twnNm": "香南市"
+ },
+ {
+  "obsFcd": "0998500700002",
+  "obsNm": "永瀬ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901212,
+  "twnNm": "香美市"
+ },
+ {
+  "obsFcd": "2255200700014",
+  "obsNm": "穴内川ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901212,
+  "twnNm": "香美市"
+ },
+ {
+  "obsFcd": "0998500700009",
+  "obsNm": "和食ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901307,
+  "twnNm": "安芸郡芸西村"
+ },
+ {
+  "obsFcd": "2255200700004",
+  "obsNm": "早明浦ダム（機構）",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901363,
+  "twnNm": "土佐郡土佐町"
+ },
+ {
+  "obsFcd": "2255200700008",
+  "obsNm": "稲村ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901363,
+  "twnNm": "土佐郡土佐町"
+ },
+ {
+  "obsFcd": "2255200700001",
+  "obsNm": "大橋ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901386,
+  "twnNm": "吾川郡いの町"
+ },
+ {
+  "obsFcd": "2255200700002",
+  "obsNm": "長沢ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901386,
+  "twnNm": "吾川郡いの町"
+ },
+ {
+  "obsFcd": "2255200700003",
+  "obsNm": "大森川ダム",
+  "ofcCd": 22552,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901386,
+  "twnNm": "吾川郡いの町"
+ },
+ {
+  "obsFcd": "2255900700002",
+  "obsNm": "大渡ダム",
+  "ofcCd": 22559,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901387,
+  "twnNm": "吾川郡仁淀川町"
+ },
+ {
+  "obsFcd": "0998500700003",
+  "obsNm": "桐見ダム",
+  "ofcCd": 9985,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901403,
+  "twnNm": "高岡郡越知町"
+ },
+ {
+  "obsFcd": "2255900700012",
+  "obsNm": "筏津ダム",
+  "ofcCd": 22559,
+  "dspFlg": 1,
+  "prefCd": 3901,
+  "prefNm": "高知県",
+  "twnCd": 3901403,
+  "twnNm": "高岡郡越知町"
+ },
+ {
+  "obsFcd": "1024100700005",
+  "obsNm": "ます渕ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001100,
+  "twnNm": "北九州市"
+ },
+ {
+  "obsFcd": "1024100700108",
+  "obsNm": "畑ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001100,
+  "twnNm": "北九州市"
+ },
+ {
+  "obsFcd": "1024100700014",
+  "obsNm": "福智山ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001204,
+  "twnNm": "直方市"
+ },
+ {
+  "obsFcd": "1024100700001",
+  "obsNm": "日向神ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001210,
+  "twnNm": "八女市"
+ },
+ {
+  "obsFcd": "1024100700101",
+  "obsNm": "松瀬ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001210,
+  "twnNm": "八女市"
+ },
+ {
+  "obsFcd": "1024100700008",
+  "obsNm": "山神ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001217,
+  "twnNm": "筑紫野市"
+ },
+ {
+  "obsFcd": "1024100700009",
+  "obsNm": "牛頸ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001219,
+  "twnNm": "大野城市"
+ },
+ {
+  "obsFcd": "1024100700011",
+  "obsNm": "北谷ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001221,
+  "twnNm": "太宰府市"
+ },
+ {
+  "obsFcd": "1024100700007",
+  "obsNm": "瑞梅寺ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001222,
+  "twnNm": "糸島市"
+ },
+ {
+  "obsFcd": "1024100700015",
+  "obsNm": "藤波ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001225,
+  "twnNm": "うきは市"
+ },
+ {
+  "obsFcd": "2053900700073",
+  "obsNm": "合所ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001225,
+  "twnNm": "うきは市"
+ },
+ {
+  "obsFcd": "1024100700003",
+  "obsNm": "力丸ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001226,
+  "twnNm": "宮若市"
+ },
+ {
+  "obsFcd": "1024100700010",
+  "obsNm": "犬鳴ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001226,
+  "twnNm": "宮若市"
+ },
+ {
+  "obsFcd": "2281500700008",
+  "obsNm": "寺内ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001228,
+  "twnNm": "朝倉市"
+ },
+ {
+  "obsFcd": "2281500700009",
+  "obsNm": "江川ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001228,
+  "twnNm": "朝倉市"
+ },
+ {
+  "obsFcd": "2281500700019",
+  "obsNm": "小石原川ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001228,
+  "twnNm": "朝倉市"
+ },
+ {
+  "obsFcd": "1024100700002",
+  "obsNm": "南畑ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001305,
+  "twnNm": "那珂川市"
+ },
+ {
+  "obsFcd": "1024100700016",
+  "obsNm": "五ケ山ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001305,
+  "twnNm": "那珂川市"
+ },
+ {
+  "obsFcd": "1024100700013",
+  "obsNm": "鳴淵ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001342,
+  "twnNm": "糟屋郡篠栗町"
+ },
+ {
+  "obsFcd": "1024100700012",
+  "obsNm": "猪野ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001348,
+  "twnNm": "糟屋郡久山町"
+ },
+ {
+  "obsFcd": "1024100700102",
+  "obsNm": "広川ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001544,
+  "twnNm": "八女郡広川町"
+ },
+ {
+  "obsFcd": "1024100700004",
+  "obsNm": "油木ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001602,
+  "twnNm": "田川郡添田町"
+ },
+ {
+  "obsFcd": "1024100700006",
+  "obsNm": "陣屋ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001602,
+  "twnNm": "田川郡添田町"
+ },
+ {
+  "obsFcd": "1024100700017",
+  "obsNm": "伊良原ダム",
+  "ofcCd": 10241,
+  "dspFlg": 1,
+  "prefCd": 4001,
+  "prefNm": "福岡県",
+  "twnCd": 4001625,
+  "twnNm": "京都郡みやこ町"
+ },
+ {
+  "obsFcd": "2053900700074",
+  "obsNm": "北山ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101201,
+  "twnNm": "佐賀市"
+ },
+ {
+  "obsFcd": "2281900700001",
+  "obsNm": "嘉瀬川ダム",
+  "ofcCd": 22819,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101201,
+  "twnNm": "佐賀市"
+ },
+ {
+  "obsFcd": "2790500700001",
+  "obsNm": "鮎の瀬取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101201,
+  "twnNm": "佐賀市"
+ },
+ {
+  "obsFcd": "2790500700002",
+  "obsNm": "川上川第五取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101201,
+  "twnNm": "佐賀市"
+ },
+ {
+  "obsFcd": "1049700700001",
+  "obsNm": "伊岐佐ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "1049700700002",
+  "obsNm": "平木場ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2053900700152",
+  "obsNm": "後川内ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2053900700155",
+  "obsNm": "打上ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2053900700157",
+  "obsNm": "赤坂ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2053900700160",
+  "obsNm": "上倉ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2286500700011",
+  "obsNm": "厳木ダム",
+  "ofcCd": 22865,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2790500700003",
+  "obsNm": "玉島取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2790500700004",
+  "obsNm": "天山ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "2790500700005",
+  "obsNm": "厳木川調整池",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101202,
+  "twnNm": "唐津市"
+ },
+ {
+  "obsFcd": "1049700700014",
+  "obsNm": "河内ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101203,
+  "twnNm": "鳥栖市"
+ },
+ {
+  "obsFcd": "1049700700016",
+  "obsNm": "岸川ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101204,
+  "twnNm": "多久市"
+ },
+ {
+  "obsFcd": "1049700700017",
+  "obsNm": "天ヶ瀬ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101204,
+  "twnNm": "多久市"
+ },
+ {
+  "obsFcd": "1049700700010",
+  "obsNm": "都川内ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101205,
+  "twnNm": "伊万里市"
+ },
+ {
+  "obsFcd": "1049700700013",
+  "obsNm": "井手口川ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101205,
+  "twnNm": "伊万里市"
+ },
+ {
+  "obsFcd": "1049700700007",
+  "obsNm": "本部ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101206,
+  "twnNm": "武雄市"
+ },
+ {
+  "obsFcd": "1049700700008",
+  "obsNm": "矢筈ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101206,
+  "twnNm": "武雄市"
+ },
+ {
+  "obsFcd": "1049700700009",
+  "obsNm": "狩立・日ノ峯ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101206,
+  "twnNm": "武雄市"
+ },
+ {
+  "obsFcd": "1049700700015",
+  "obsNm": "繁昌ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101206,
+  "twnNm": "武雄市"
+ },
+ {
+  "obsFcd": "1049700700018",
+  "obsNm": "庭木ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101206,
+  "twnNm": "武雄市"
+ },
+ {
+  "obsFcd": "1049700700012",
+  "obsNm": "中木庭ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101207,
+  "twnNm": "鹿島市"
+ },
+ {
+  "obsFcd": "2053900700165",
+  "obsNm": "日指ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101207,
+  "twnNm": "鹿島市"
+ },
+ {
+  "obsFcd": "1049700700006",
+  "obsNm": "岩屋川内ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101209,
+  "twnNm": "嬉野市"
+ },
+ {
+  "obsFcd": "1049700700011",
+  "obsNm": "横竹ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101209,
+  "twnNm": "嬉野市"
+ },
+ {
+  "obsFcd": "2053900700156",
+  "obsNm": "藤ノ平ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101387,
+  "twnNm": "東松浦郡玄海町"
+ },
+ {
+  "obsFcd": "1049700700003",
+  "obsNm": "有田ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101401,
+  "twnNm": "西松浦郡有田町"
+ },
+ {
+  "obsFcd": "1049700700004",
+  "obsNm": "竜門ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101401,
+  "twnNm": "西松浦郡有田町"
+ },
+ {
+  "obsFcd": "1049700700019",
+  "obsNm": "古木場ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101401,
+  "twnNm": "西松浦郡有田町"
+ },
+ {
+  "obsFcd": "1049700700005",
+  "obsNm": "深浦ダム",
+  "ofcCd": 10497,
+  "dspFlg": 1,
+  "prefCd": 4101,
+  "prefNm": "佐賀県",
+  "twnCd": 4101425,
+  "twnNm": "杵島郡白石町"
+ },
+ {
+  "obsFcd": "1075300700006",
+  "obsNm": "神浦ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700010",
+  "obsNm": "式見ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700012",
+  "obsNm": "黒浜ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700018",
+  "obsNm": "鹿尾ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700019",
+  "obsNm": "小ヶ倉(補助)ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700020",
+  "obsNm": "鳴見ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700024",
+  "obsNm": "西山ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700025",
+  "obsNm": "中尾ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700028",
+  "obsNm": "宮崎ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700032",
+  "obsNm": "高浜ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700034",
+  "obsNm": "本河内（高部）",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700035",
+  "obsNm": "本河内（低部）",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201201,
+  "twnNm": "長崎市"
+ },
+ {
+  "obsFcd": "1075300700001",
+  "obsNm": "猫山ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201202,
+  "twnNm": "佐世保市"
+ },
+ {
+  "obsFcd": "1075300700002",
+  "obsNm": "江永ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201202,
+  "twnNm": "佐世保市"
+ },
+ {
+  "obsFcd": "1075300700021",
+  "obsNm": "樋口ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201202,
+  "twnNm": "佐世保市"
+ },
+ {
+  "obsFcd": "1075300700029",
+  "obsNm": "つづらダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201202,
+  "twnNm": "佐世保市"
+ },
+ {
+  "obsFcd": "1075300700017",
+  "obsNm": "土師野尾ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201204,
+  "twnNm": "諫早市"
+ },
+ {
+  "obsFcd": "1075300700027",
+  "obsNm": "船津ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201204,
+  "twnNm": "諫早市"
+ },
+ {
+  "obsFcd": "1075300700031",
+  "obsNm": "伊木力ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201204,
+  "twnNm": "諫早市"
+ },
+ {
+  "obsFcd": "2286800700101",
+  "obsNm": "小ヶ倉ダム",
+  "ofcCd": 22868,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201204,
+  "twnNm": "諫早市"
+ },
+ {
+  "obsFcd": "1075300700004",
+  "obsNm": "萱瀬ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201205,
+  "twnNm": "大村市"
+ },
+ {
+  "obsFcd": "1075300700030",
+  "obsNm": "笛吹ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201208,
+  "twnNm": "松浦市"
+ },
+ {
+  "obsFcd": "1075300700008",
+  "obsNm": "仁田ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201209,
+  "twnNm": "対馬市"
+ },
+ {
+  "obsFcd": "1075300700009",
+  "obsNm": "ケ知ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201209,
+  "twnNm": "対馬市"
+ },
+ {
+  "obsFcd": "1075300700023",
+  "obsNm": "目保呂ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201209,
+  "twnNm": "対馬市"
+ },
+ {
+  "obsFcd": "1075300700033",
+  "obsNm": "小浦ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201209,
+  "twnNm": "対馬市"
+ },
+ {
+  "obsFcd": "1075300700011",
+  "obsNm": "勝本ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201210,
+  "twnNm": "壱岐市"
+ },
+ {
+  "obsFcd": "1075300700015",
+  "obsNm": "永田ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201210,
+  "twnNm": "壱岐市"
+ },
+ {
+  "obsFcd": "1075300700022",
+  "obsNm": "男女岳ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201210,
+  "twnNm": "壱岐市"
+ },
+ {
+  "obsFcd": "1075300700007",
+  "obsNm": "福江ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201211,
+  "twnNm": "五島市"
+ },
+ {
+  "obsFcd": "1075300700005",
+  "obsNm": "雪浦ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201212,
+  "twnNm": "西海市"
+ },
+ {
+  "obsFcd": "1075300700016",
+  "obsNm": "長与ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201307,
+  "twnNm": "西彼杵郡長与町"
+ },
+ {
+  "obsFcd": "1075300700013",
+  "obsNm": "中山ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201308,
+  "twnNm": "西彼杵郡時津町"
+ },
+ {
+  "obsFcd": "1075300700003",
+  "obsNm": "野々川ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201323,
+  "twnNm": "東彼杵郡波佐見町"
+ },
+ {
+  "obsFcd": "1075300700014",
+  "obsNm": "青方ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201411,
+  "twnNm": "南松浦郡新上五島町"
+ },
+ {
+  "obsFcd": "1075300700026",
+  "obsNm": "宮ノ川ダム",
+  "ofcCd": 10753,
+  "dspFlg": 1,
+  "prefCd": 4201,
+  "prefNm": "長崎県",
+  "twnCd": 4201411,
+  "twnNm": "南松浦郡新上五島町"
+ },
+ {
+  "obsFcd": "1100900700002",
+  "obsNm": "氷川ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301202,
+  "twnNm": "八代市"
+ },
+ {
+  "obsFcd": "2790500700015",
+  "obsNm": "油谷ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301202,
+  "twnNm": "八代市"
+ },
+ {
+  "obsFcd": "2282600700001",
+  "obsNm": "竜門ダム",
+  "ofcCd": 22826,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301210,
+  "twnNm": "菊池市"
+ },
+ {
+  "obsFcd": "1100900700005",
+  "obsNm": "石打ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301213,
+  "twnNm": "宇城市"
+ },
+ {
+  "obsFcd": "1100900700003",
+  "obsNm": "上津浦ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301215,
+  "twnNm": "天草市"
+ },
+ {
+  "obsFcd": "1100900700004",
+  "obsNm": "亀川ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301215,
+  "twnNm": "天草市"
+ },
+ {
+  "obsFcd": "1100900700006",
+  "obsNm": "路木ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301215,
+  "twnNm": "天草市"
+ },
+ {
+  "obsFcd": "2282500700001",
+  "obsNm": "緑川ダム",
+  "ofcCd": 22825,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301348,
+  "twnNm": "下益城郡美里町"
+ },
+ {
+  "obsFcd": "2282500700002",
+  "obsNm": "船津ダム",
+  "ofcCd": 22825,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301348,
+  "twnNm": "下益城郡美里町"
+ },
+ {
+  "obsFcd": "2790500700014",
+  "obsNm": "甲佐取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301348,
+  "twnNm": "下益城郡美里町"
+ },
+ {
+  "obsFcd": "2281500700007",
+  "obsNm": "下筌ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301424,
+  "twnNm": "阿蘇郡小国町"
+ },
+ {
+  "obsFcd": "2053900700151",
+  "obsNm": "大蘇ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301425,
+  "twnNm": "阿蘇郡産山村"
+ },
+ {
+  "obsFcd": "2283500700102",
+  "obsNm": "大谷ダム",
+  "ofcCd": 22835,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301428,
+  "twnNm": "阿蘇郡高森町"
+ },
+ {
+  "obsFcd": "2282500700006",
+  "obsNm": "阿蘇立野ダム",
+  "ofcCd": 22825,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301433,
+  "twnNm": "阿蘇郡南阿蘇村"
+ },
+ {
+  "obsFcd": "2790500700013",
+  "obsNm": "黒川調整池堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301433,
+  "twnNm": "阿蘇郡南阿蘇村"
+ },
+ {
+  "obsFcd": "1100900700102",
+  "obsNm": "天君ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301441,
+  "twnNm": "上益城郡御船町"
+ },
+ {
+  "obsFcd": "2282500700005",
+  "obsNm": "幸野ダム",
+  "ofcCd": 22825,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301506,
+  "twnNm": "球磨郡湯前町"
+ },
+ {
+  "obsFcd": "1100900700001",
+  "obsNm": "市房ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301507,
+  "twnNm": "球磨郡水上村"
+ },
+ {
+  "obsFcd": "2790500700016",
+  "obsNm": "内谷ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301511,
+  "twnNm": "球磨郡五木村"
+ },
+ {
+  "obsFcd": "2790500700017",
+  "obsNm": "川辺川第一取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301511,
+  "twnNm": "球磨郡五木村"
+ },
+ {
+  "obsFcd": "2278400700101",
+  "obsNm": "瀬戸石ダム",
+  "ofcCd": 22784,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301513,
+  "twnNm": "球磨郡球磨村"
+ },
+ {
+  "obsFcd": "1100900700101",
+  "obsNm": "清願寺ダム",
+  "ofcCd": 11009,
+  "dspFlg": 1,
+  "prefCd": 4301,
+  "prefNm": "熊本県",
+  "twnCd": 4301514,
+  "twnNm": "球磨郡あさぎり町"
+ },
+ {
+  "obsFcd": "2283500700001",
+  "obsNm": "ななせダム",
+  "ofcCd": 22835,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401201,
+  "twnNm": "大分市"
+ },
+ {
+  "obsFcd": "2283600700001",
+  "obsNm": "耶馬溪ダム",
+  "ofcCd": 22836,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401203,
+  "twnNm": "中津市"
+ },
+ {
+  "obsFcd": "2281500700006",
+  "obsNm": "松原ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401204,
+  "twnNm": "日田市"
+ },
+ {
+  "obsFcd": "2281500700018",
+  "obsNm": "大山ダム",
+  "ofcCd": 22815,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401204,
+  "twnNm": "日田市"
+ },
+ {
+  "obsFcd": "2790500700009",
+  "obsNm": "大山川取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401204,
+  "twnNm": "日田市"
+ },
+ {
+  "obsFcd": "2790500700010",
+  "obsNm": "高瀬川ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401204,
+  "twnNm": "日田市"
+ },
+ {
+  "obsFcd": "2790500700011",
+  "obsNm": "夜明ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401204,
+  "twnNm": "日田市"
+ },
+ {
+  "obsFcd": "1126500700002",
+  "obsNm": "黒沢ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401205,
+  "twnNm": "佐伯市"
+ },
+ {
+  "obsFcd": "1126500700003",
+  "obsNm": "床木ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401205,
+  "twnNm": "佐伯市"
+ },
+ {
+  "obsFcd": "1126500700004",
+  "obsNm": "北川ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401205,
+  "twnNm": "佐伯市"
+ },
+ {
+  "obsFcd": "1126500700005",
+  "obsNm": "野津ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401206,
+  "twnNm": "臼杵市"
+ },
+ {
+  "obsFcd": "1126500700008",
+  "obsNm": "青江ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401207,
+  "twnNm": "津久見市"
+ },
+ {
+  "obsFcd": "1126500700001",
+  "obsNm": "芹川ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401208,
+  "twnNm": "竹田市"
+ },
+ {
+  "obsFcd": "1126500700006",
+  "obsNm": "稲葉ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401208,
+  "twnNm": "竹田市"
+ },
+ {
+  "obsFcd": "1126500700010",
+  "obsNm": "玉来ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401208,
+  "twnNm": "竹田市"
+ },
+ {
+  "obsFcd": "2790500700007",
+  "obsNm": "竹田取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401208,
+  "twnNm": "竹田市"
+ },
+ {
+  "obsFcd": "2790500700008",
+  "obsNm": "津房川取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401211,
+  "twnNm": "宇佐市"
+ },
+ {
+  "obsFcd": "2283500700104",
+  "obsNm": "師田原ダム",
+  "ofcCd": 22835,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401212,
+  "twnNm": "豊後大野市"
+ },
+ {
+  "obsFcd": "2283500700101",
+  "obsNm": "若杉ダム",
+  "ofcCd": 22835,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401213,
+  "twnNm": "由布市"
+ },
+ {
+  "obsFcd": "2790500700006",
+  "obsNm": "篠原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401213,
+  "twnNm": "由布市"
+ },
+ {
+  "obsFcd": "1126500700007",
+  "obsNm": "安岐ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401214,
+  "twnNm": "国東市"
+ },
+ {
+  "obsFcd": "1126500700009",
+  "obsNm": "行入ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401214,
+  "twnNm": "国東市"
+ },
+ {
+  "obsFcd": "1126500700101",
+  "obsNm": "松木ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401461,
+  "twnNm": "玖珠郡九重町"
+ },
+ {
+  "obsFcd": "2790500700012",
+  "obsNm": "地蔵原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401461,
+  "twnNm": "玖珠郡九重町"
+ },
+ {
+  "obsFcd": "2053900700153",
+  "obsNm": "日出生ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4401,
+  "prefNm": "大分県",
+  "twnCd": 4401462,
+  "twnNm": "玖珠郡玖珠町"
+ },
+ {
+  "obsFcd": "1152100700007",
+  "obsNm": "瓜田ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501201,
+  "twnNm": "宮崎市"
+ },
+ {
+  "obsFcd": "2053900700066",
+  "obsNm": "天神ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501202,
+  "twnNm": "都城市"
+ },
+ {
+  "obsFcd": "2053900700067",
+  "obsNm": "木之川内ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501202,
+  "twnNm": "都城市"
+ },
+ {
+  "obsFcd": "2790500700022",
+  "obsNm": "大淀川第一ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501202,
+  "twnNm": "都城市"
+ },
+ {
+  "obsFcd": "2790500700023",
+  "obsNm": "高岡ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501202,
+  "twnNm": "都城市"
+ },
+ {
+  "obsFcd": "1126500700102",
+  "obsNm": "下赤逆調整池ダム",
+  "ofcCd": 11265,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501203,
+  "twnNm": "延岡市"
+ },
+ {
+  "obsFcd": "1152100700001",
+  "obsNm": "祝子ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501203,
+  "twnNm": "延岡市"
+ },
+ {
+  "obsFcd": "1152100700013",
+  "obsNm": "沖田ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501203,
+  "twnNm": "延岡市"
+ },
+ {
+  "obsFcd": "2790500700029",
+  "obsNm": "西畑ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501203,
+  "twnNm": "延岡市"
+ },
+ {
+  "obsFcd": "1152100700011",
+  "obsNm": "日南ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501204,
+  "twnNm": "日南市"
+ },
+ {
+  "obsFcd": "1152100700012",
+  "obsNm": "広渡ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501204,
+  "twnNm": "日南市"
+ },
+ {
+  "obsFcd": "1152100700004",
+  "obsNm": "綾北ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501205,
+  "twnNm": "小林市"
+ },
+ {
+  "obsFcd": "1152100700005",
+  "obsNm": "綾南ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501205,
+  "twnNm": "小林市"
+ },
+ {
+  "obsFcd": "1152100700006",
+  "obsNm": "岩瀬ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501205,
+  "twnNm": "小林市"
+ },
+ {
+  "obsFcd": "1152100700008",
+  "obsNm": "田代八重ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501205,
+  "twnNm": "小林市"
+ },
+ {
+  "obsFcd": "2053900700068",
+  "obsNm": "浜ノ瀬ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501205,
+  "twnNm": "小林市"
+ },
+ {
+  "obsFcd": "1152100700009",
+  "obsNm": "立花ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501208,
+  "twnNm": "西都市"
+ },
+ {
+  "obsFcd": "1152100700010",
+  "obsNm": "長谷(補助)ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501208,
+  "twnNm": "西都市"
+ },
+ {
+  "obsFcd": "2790500700020",
+  "obsNm": "一ツ瀬ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501208,
+  "twnNm": "西都市"
+ },
+ {
+  "obsFcd": "2790500700021",
+  "obsNm": "杉安ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501208,
+  "twnNm": "西都市"
+ },
+ {
+  "obsFcd": "2053900700065",
+  "obsNm": "広沢ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501383,
+  "twnNm": "東諸県郡綾町"
+ },
+ {
+  "obsFcd": "2790500700019",
+  "obsNm": "上米良取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501403,
+  "twnNm": "児湯郡西米良村"
+ },
+ {
+  "obsFcd": "1152100700003",
+  "obsNm": "松尾ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501404,
+  "twnNm": "児湯郡木城町"
+ },
+ {
+  "obsFcd": "2790500700024",
+  "obsNm": "大瀬内ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501404,
+  "twnNm": "児湯郡木城町"
+ },
+ {
+  "obsFcd": "2790500700025",
+  "obsNm": "戸崎ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501404,
+  "twnNm": "児湯郡木城町"
+ },
+ {
+  "obsFcd": "2790500700026",
+  "obsNm": "石河内ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501404,
+  "twnNm": "児湯郡木城町"
+ },
+ {
+  "obsFcd": "2790500700027",
+  "obsNm": "川原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501404,
+  "twnNm": "児湯郡木城町"
+ },
+ {
+  "obsFcd": "2053900700064",
+  "obsNm": "切原ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501405,
+  "twnNm": "児湯郡川南町"
+ },
+ {
+  "obsFcd": "2053900700159",
+  "obsNm": "青鹿ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501405,
+  "twnNm": "児湯郡川南町"
+ },
+ {
+  "obsFcd": "2790500700032",
+  "obsNm": "塚原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501429,
+  "twnNm": "東臼杵郡諸塚村"
+ },
+ {
+  "obsFcd": "2790500700033",
+  "obsNm": "諸塚ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501429,
+  "twnNm": "東臼杵郡諸塚村"
+ },
+ {
+  "obsFcd": "2790500700034",
+  "obsNm": "宮の元ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501429,
+  "twnNm": "東臼杵郡諸塚村"
+ },
+ {
+  "obsFcd": "2790500700018",
+  "obsNm": "槙之口取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501430,
+  "twnNm": "東臼杵郡椎葉村"
+ },
+ {
+  "obsFcd": "2790500700030",
+  "obsNm": "上椎葉ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501430,
+  "twnNm": "東臼杵郡椎葉村"
+ },
+ {
+  "obsFcd": "2790500700031",
+  "obsNm": "岩屋戸ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501430,
+  "twnNm": "東臼杵郡椎葉村"
+ },
+ {
+  "obsFcd": "1152100700002",
+  "obsNm": "渡川ダム",
+  "ofcCd": 11521,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501431,
+  "twnNm": "東臼杵郡美郷町"
+ },
+ {
+  "obsFcd": "2790500700035",
+  "obsNm": "山須原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501431,
+  "twnNm": "東臼杵郡美郷町"
+ },
+ {
+  "obsFcd": "2790500700036",
+  "obsNm": "西郷ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501431,
+  "twnNm": "東臼杵郡美郷町"
+ },
+ {
+  "obsFcd": "2790500700037",
+  "obsNm": "大内原ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501431,
+  "twnNm": "東臼杵郡美郷町"
+ },
+ {
+  "obsFcd": "2278400700102",
+  "obsNm": "芋洗谷調整池ダム",
+  "ofcCd": 22784,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501441,
+  "twnNm": "西臼杵郡高千穂町"
+ },
+ {
+  "obsFcd": "2278400700103",
+  "obsNm": "星山ダム",
+  "ofcCd": 22784,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501442,
+  "twnNm": "西臼杵郡日之影町"
+ },
+ {
+  "obsFcd": "2790500700028",
+  "obsNm": "桑野内ダム",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4501,
+  "prefNm": "宮崎県",
+  "twnCd": 4501443,
+  "twnNm": "西臼杵郡五ヶ瀬町"
+ },
+ {
+  "obsFcd": "1177700700003",
+  "obsNm": "西之谷ダム",
+  "ofcCd": 11777,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601201,
+  "twnNm": "鹿児島市"
+ },
+ {
+  "obsFcd": "2790500700040",
+  "obsNm": "河頭取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601201,
+  "twnNm": "鹿児島市"
+ },
+ {
+  "obsFcd": "2053900700071",
+  "obsNm": "高隈ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601203,
+  "twnNm": "鹿屋市"
+ },
+ {
+  "obsFcd": "2053900700154",
+  "obsNm": "輝北ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601203,
+  "twnNm": "鹿屋市"
+ },
+ {
+  "obsFcd": "2053900700158",
+  "obsNm": "高川ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601208,
+  "twnNm": "出水市"
+ },
+ {
+  "obsFcd": "2053900700069",
+  "obsNm": "中岳ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601217,
+  "twnNm": "曽於市"
+ },
+ {
+  "obsFcd": "2053900700070",
+  "obsNm": "谷川内ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601217,
+  "twnNm": "曽於市"
+ },
+ {
+  "obsFcd": "2790500700041",
+  "obsNm": "松山取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601217,
+  "twnNm": "曽於市"
+ },
+ {
+  "obsFcd": "2790500700042",
+  "obsNm": "月野取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601217,
+  "twnNm": "曽於市"
+ },
+ {
+  "obsFcd": "1177700700001",
+  "obsNm": "川辺ダム",
+  "ofcCd": 11777,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601323,
+  "twnNm": "南九州市"
+ },
+ {
+  "obsFcd": "2790500700038",
+  "obsNm": "万之瀬取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601323,
+  "twnNm": "南九州市"
+ },
+ {
+  "obsFcd": "2285600700001",
+  "obsNm": "鶴田ダム",
+  "ofcCd": 22856,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601392,
+  "twnNm": "薩摩郡さつま町"
+ },
+ {
+  "obsFcd": "2285600700002",
+  "obsNm": "川内川第二ダム　参考値",
+  "ofcCd": 22856,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601392,
+  "twnNm": "薩摩郡さつま町"
+ },
+ {
+  "obsFcd": "2790500700043",
+  "obsNm": "雄川取水堰",
+  "ofcCd": 27905,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601490,
+  "twnNm": "肝属郡錦江町"
+ },
+ {
+  "obsFcd": "2053900700072",
+  "obsNm": "荒瀬ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601492,
+  "twnNm": "肝属郡肝付町"
+ },
+ {
+  "obsFcd": "1177700700002",
+  "obsNm": "大和ダム",
+  "ofcCd": 11777,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601523,
+  "twnNm": "大島郡大和村"
+ },
+ {
+  "obsFcd": "2053900700167",
+  "obsNm": "徳之島ダム",
+  "ofcCd": 20539,
+  "dspFlg": 1,
+  "prefCd": 4601,
+  "prefNm": "鹿児島県",
+  "twnCd": 4601531,
+  "twnNm": "大島郡天城町"
+ },
+ {
+  "obsFcd": "1203300700001",
+  "obsNm": "金城ダム",
+  "ofcCd": 12033,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701201,
+  "twnNm": "那覇市"
+ },
+ {
+  "obsFcd": "2304100700015",
+  "obsNm": "羽地ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701209,
+  "twnNm": "名護市"
+ },
+ {
+  "obsFcd": "2304100700030",
+  "obsNm": "5ダム合計",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701209,
+  "twnNm": "名護市"
+ },
+ {
+  "obsFcd": "2304100700032",
+  "obsNm": "9ダム合計",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701209,
+  "twnNm": "名護市"
+ },
+ {
+  "obsFcd": "2304100700033",
+  "obsNm": "10ダム合計",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701209,
+  "twnNm": "名護市"
+ },
+ {
+  "obsFcd": "2304100700841",
+  "obsNm": "倉敷ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701213,
+  "twnNm": "うるま市"
+ },
+ {
+  "obsFcd": "2304100700007",
+  "obsNm": "安波ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701301,
+  "twnNm": "国頭郡国頭村"
+ },
+ {
+  "obsFcd": "2304100700008",
+  "obsNm": "普久川ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701301,
+  "twnNm": "国頭郡国頭村"
+ },
+ {
+  "obsFcd": "2304100700011",
+  "obsNm": "辺野喜ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701301,
+  "twnNm": "国頭郡国頭村"
+ },
+ {
+  "obsFcd": "2304100700024",
+  "obsNm": "大保ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701302,
+  "twnNm": "国頭郡大宜味村"
+ },
+ {
+  "obsFcd": "2304100700001",
+  "obsNm": "福地ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701303,
+  "twnNm": "国頭郡東村"
+ },
+ {
+  "obsFcd": "2304100700004",
+  "obsNm": "新川ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701303,
+  "twnNm": "国頭郡東村"
+ },
+ {
+  "obsFcd": "2304100700014",
+  "obsNm": "漢那ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701313,
+  "twnNm": "国頭郡宜野座村"
+ },
+ {
+  "obsFcd": "2304100700025",
+  "obsNm": "金武ダム",
+  "ofcCd": 23041,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701314,
+  "twnNm": "国頭郡金武町"
+ },
+ {
+  "obsFcd": "1203300700004",
+  "obsNm": "座間味ダム",
+  "ofcCd": 12033,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701354,
+  "twnNm": "島尻郡座間味村"
+ },
+ {
+  "obsFcd": "1203300700003",
+  "obsNm": "我喜屋ダム",
+  "ofcCd": 12033,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701359,
+  "twnNm": "島尻郡伊平屋村"
+ },
+ {
+  "obsFcd": "1203300700006",
+  "obsNm": "儀間ダム",
+  "ofcCd": 12033,
+  "dspFlg": 1,
+  "prefCd": 4701,
+  "prefNm": "沖縄県",
+  "twnCd": 4701361,
+  "twnNm": "島尻郡久米島町"
+ }
+]

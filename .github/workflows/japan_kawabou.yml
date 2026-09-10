@@ -1,0 +1,49 @@
+name: Japan kawabou national dams scrape
+
+# Two windows of different depth:
+#   past    7 days hourly, but only 貯水位 / 流入量 / 全放流量
+#   current ~50h hourly, with 貯水量 and the percentages as well
+# Daily, so a missed run costs nothing for the three core variables and costs storage
+# only if two consecutive days fail. 04:20 JST = 19:20 UTC.
+on:
+  schedule:
+    - cron: "20 19 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-kawabou
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/japan/kawabou
+          TZ: Asia/Tokyo
+        run: python scrapers/japan/kawabou/japan_kawabou_scraper.py
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/japan/kawabou scrapers/japan/kawabou .github/workflows/japan_kawabou.yml
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(japan/kawabou): scheduled scrape ${ts}"
+          git pull --rebase origin main
+          git push
