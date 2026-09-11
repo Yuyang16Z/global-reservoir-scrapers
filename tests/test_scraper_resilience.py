@@ -6,6 +6,7 @@ import json
 import sys
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 from unittest import mock
 
@@ -27,6 +28,10 @@ def load_module(name: str, relative_path: str):
 abhsm = load_module(
     "morocco_abhsm_scraper",
     "scrapers/morocco/abhsm/morocco_abhsm_scraper.py",
+)
+abht = load_module(
+    "morocco_abht_scraper",
+    "scrapers/morocco/abht/morocco_abht_scraper.py",
 )
 taiwan = load_module(
     "taiwan_wra_scraper",
@@ -139,6 +144,37 @@ class AbhsmTransportTests(unittest.TestCase):
             with self.assertRaises(requests.exceptions.SSLError):
                 abhsm.fetch_pdf(Path(tmp) / "report.pdf")
             pinned.assert_not_called()
+
+    def test_source_outage_is_visible_without_discarding_diagnostics(self):
+        with mock.patch.object(abhsm, "ensure_dirs"), mock.patch.object(
+            abhsm,
+            "fetch_pdf",
+            side_effect=requests.ConnectTimeout("official host timed out"),
+        ), mock.patch.object(abhsm, "save_summary") as save, mock.patch.object(
+            abhsm, "emit_workflow_warning"
+        ) as warn:
+            self.assertEqual(abhsm.main(), 0)
+        self.assertEqual(save.call_args.args[1]["status"], "source_unavailable")
+        warn.assert_called_once()
+        self.assertIn("source unavailable", warn.call_args.args[0])
+
+
+class AbhtFreshnessTests(unittest.TestCase):
+    def test_old_widget_date_emits_workflow_warning(self):
+        with mock.patch.object(abht, "emit_workflow_warning") as warn:
+            age = abht.warn_if_stale_observation(
+                "2026-09-07", today=date(2026, 9, 11)
+            )
+        self.assertEqual(age, 4)
+        warn.assert_called_once()
+
+    def test_recent_widget_date_does_not_warn(self):
+        with mock.patch.object(abht, "emit_workflow_warning") as warn:
+            age = abht.warn_if_stale_observation(
+                "2026-09-10", today=date(2026, 9, 11)
+            )
+        self.assertEqual(age, 1)
+        warn.assert_not_called()
 
 
 class TaiwanFallbackTests(unittest.TestCase):
