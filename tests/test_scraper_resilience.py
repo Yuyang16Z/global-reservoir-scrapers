@@ -178,6 +178,29 @@ class AbhtFreshnessTests(unittest.TestCase):
 
 
 class TaiwanFallbackTests(unittest.TestCase):
+    def test_future_intraday_rows_are_rejected_but_identified(self):
+        rows = [
+            {
+                "reservoiridentifier": "A",
+                "reservoirname": "Alpha",
+                "ObservationTime": "2026-09-11T13:00:00",
+            },
+            {
+                "reservoiridentifier": "B",
+                "reservoirname": "Beta",
+                "ObservationTime": "2026-09-13T13:00:00",
+            },
+        ]
+        rejected: list[dict[str, str]] = []
+        normalized = taiwan.normalize_current_water_level_intraday(
+            rows, {}, {}, {}, today_tw="2026-09-11", rejected_future=rejected
+        )
+        self.assertEqual([row["reservoir_id"] for row in normalized], ["A"])
+        self.assertEqual(
+            rejected,
+            [{"reservoir_id": "B", "observation_time": "2026-09-13T13:00:00"}],
+        )
+
     def test_snapshot_keeps_dominant_source_date(self):
         rows = {
             "A": {"observation_time": "2026-08-26T07:00:00"},
@@ -290,12 +313,25 @@ class PagasaFallbackTests(unittest.TestCase):
 
 
 class FreshnessComponentTests(unittest.TestCase):
+    def test_future_dates_do_not_make_a_source_look_fresh(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "observations.csv"
+            path.write_text(
+                "date,value\n2026-09-10,1\n2026-09-13,2\n", encoding="utf-8"
+            )
+            latest, future_dates = freshness.scan_observation_dates(
+                Path(tmp), max_date=date(2026, 9, 11)
+            )
+        self.assertEqual(latest, "2026-09-10")
+        self.assertEqual(future_dates, {"2026-09-13": 1})
+
     def test_components_are_monitored_independently(self):
         source = {
             "source_id": "taiwan/wra",
             "data_path": "data/taiwan/wra",
             "publication_cadence_hours": 24,
             "max_schedule_gap_hours": 192,
+            "timezone": "Asia/Taipei",
             "freshness_components": [
                 {"name": "daily", "data_path": "data/taiwan/wra/timeseries/daily"},
                 {"name": "intraday", "data_path": "data/taiwan/wra/timeseries/intraday"},
@@ -306,6 +342,7 @@ class FreshnessComponentTests(unittest.TestCase):
             [target["source_id"] for target in targets],
             ["taiwan/wra:daily", "taiwan/wra:intraday"],
         )
+        self.assertEqual({target["timezone"] for target in targets}, {"Asia/Taipei"})
 
 
 if __name__ == "__main__":
