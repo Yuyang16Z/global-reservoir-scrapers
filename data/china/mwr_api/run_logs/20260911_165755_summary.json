@@ -1,0 +1,131 @@
+{
+  "run_started": "2026-09-11 16:57:55",
+  "page_url": "http://xxfb.mwr.cn/sq_dxsk.html?v=1.0",
+  "api_url": "http://xxfb.mwr.cn/OTMxbwsvgKjspwi/OTMbmdvbjQhky",
+  "transport": {
+    "transport": "jina_reader_relay",
+    "fetch_url": "https://r.jina.ai/http://xxfb.mwr.cn/OTMxbwsvgKjspwi/OTMbmdvbjQhky",
+    "fallback_used": true,
+    "prior_errors": [
+      "direct attempt 1: HTTPConnectionPool(host='xxfb.mwr.cn', port=80): Max retries exceeded with url: /OTMxbwsvgKjspwi/OTMbmdvbjQhky (Caused by NewConnectionError(\"HTTPConnection(host='xxfb.mwr.cn', port=80): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+      "direct attempt 2: HTTPConnectionPool(host='xxfb.mwr.cn', port=80): Max retries exceeded with url: /OTMxbwsvgKjspwi/OTMbmdvbjQhky (Caused by NewConnectionError(\"HTTPConnection(host='xxfb.mwr.cn', port=80): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+      "direct attempt 3: HTTPConnectionPool(host='xxfb.mwr.cn', port=80): Max retries exceeded with url: /OTMxbwsvgKjspwi/OTMbmdvbjQhky (Caused by NewConnectionError(\"HTTPConnection(host='xxfb.mwr.cn', port=80): Failed to establish a new connection: [Errno 101] Network is unreachable\"))"
+    ]
+  },
+  "row_count": 571,
+  "report_date": "2026-09-11",
+  "report_time": "2026-09-11 08:00:00",
+  "digit_codepoints": {
+    "U+355D": "0",
+    "U+355F": "1",
+    "U+3561": "2",
+    "U+3563": "3",
+    "U+3565": "4",
+    "U+3567": "5",
+    "U+3569": "6",
+    "U+356B": "7",
+    "U+356D": "8",
+    "U+356F": "9"
+  },
+  "manual_overrides_by_id": {
+    "12": {
+      "stnm": "参窝水库"
+    },
+    "61": {
+      "stnm": "鸳鸯池水库（坝上）"
+    },
+    "85": {
+      "addvnm": "天津",
+      "rvnm": "引滦明渠"
+    },
+    "137": {
+      "stnm": "尤家卵"
+    },
+    "139": {
+      "rvnm": "宏农涧河"
+    },
+    "154": {
+      "rvnm": "玉符河",
+      "stnm": "卧虎山水库"
+    },
+    "173": {
+      "rvnm": "潍河",
+      "stnm": "墙齐水库（东库）"
+    },
+    "174": {
+      "rvnm": "潍河",
+      "stnm": "墙齐水库（西库）"
+    },
+    "210": {
+      "stnm": "常庄"
+    },
+    "233": {
+      "stnm": "西苇水库"
+    },
+    "326": {
+      "rvnm": "旬河",
+      "stnm": "钟家坪"
+    },
+    "399": {
+      "stnm": "短港"
+    },
+    "389": {
+      "rvnm": "澴水支流，晏家河",
+      "stnm": "芳畈"
+    },
+    "392": {
+      "stnm": "滑石冲"
+    },
+    "419": {
+      "bsnm": "长江"
+    },
+    "405": {
+      "rvnm": "尧市",
+      "stnm": "飞剑潭一坝水库"
+    },
+    "479": {
+      "stnm": "锦江（仁化）"
+    },
+    "496": {
+      "stnm": "七礤水库"
+    },
+    "568": {
+      "stnm": "松涛水库（南丰）"
+    }
+  },
+  "training": {
+    "history_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive",
+    "history_files_used": 18,
+    "history_files": [
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-08/mwr_ocr_full_table_2026-06-08.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-09/mwr_ocr_full_table_2026-06-09.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-10/mwr_ocr_full_table_2026-06-10.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-11/mwr_ocr_full_table_2026-06-11.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-12/mwr_ocr_full_table_2026-06-12.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-13/mwr_ocr_full_table_2026-06-13.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-14/mwr_ocr_full_table_2026-06-14.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-15/mwr_ocr_full_table_2026-06-15.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-16/mwr_ocr_full_table_2026-06-16.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-17/mwr_ocr_full_table_2026-06-17.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-18/mwr_ocr_full_table_2026-06-18.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-20/mwr_ocr_full_table_2026-06-20.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-21/mwr_ocr_full_table_2026-06-21.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-23/mwr_ocr_full_table_2026-06-23.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-25/mwr_ocr_full_table_2026-06-25.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-26/mwr_ocr_full_table_2026-06-26.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-27/mwr_ocr_full_table_2026-06-27.csv",
+      "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_ocr_archive/2026-06-28/mwr_ocr_full_table_2026-06-28.csv"
+    ],
+    "aligned_field_pairs": 36678,
+    "trained_chars": 701,
+    "conflicted_chars": 572
+  },
+  "decoding": {
+    "unresolved_unique_chars": 0,
+    "unresolved_total_chars": 0,
+    "unresolved_chars": {}
+  },
+  "raw_path": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_api/raw/china_mwr_api_raw_2026-09-11_20260911_165755.json",
+  "metadata_path": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_api/metadata/china_mwr_api_reservoirs.csv",
+  "timeseries_path": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/china/mwr_api/timeseries/daily/china_mwr_api_timeseries_2026-09-11.csv"
+}
