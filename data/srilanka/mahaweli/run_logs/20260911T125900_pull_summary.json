@@ -1,0 +1,13 @@
+{
+  "command": "pull",
+  "status": "already_have_this_issue",
+  "bulletin_date": "2026-09-09",
+  "pdfs_parsed": 2,
+  "pdfs_failed": 0,
+  "station_days": 83,
+  "reservoirs": 47,
+  "same_day_value_conflicts": 0,
+  "date_min": "2026-08-24",
+  "date_max": "2026-09-09",
+  "finished_at": "2026-09-11T12:59:00"
+}
