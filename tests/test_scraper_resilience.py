@@ -80,6 +80,30 @@ class ChinaMwrTransportTests(unittest.TestCase):
         self.assertTrue(diagnostics["fallback_used"])
         self.assertIn("network is unreachable", diagnostics["prior_errors"][0])
 
+    def test_all_transport_failures_have_a_distinct_error_type(self):
+        with mock.patch.object(
+            mwr.requests,
+            "post",
+            side_effect=requests.ConnectionError("direct unavailable"),
+        ), mock.patch.object(
+            mwr.requests,
+            "get",
+            side_effect=requests.ConnectTimeout("relay unavailable"),
+        ):
+            with self.assertRaises(mwr.ApiTransportError):
+                mwr.fetch_api_json(10, 0)
+
+    def test_failure_summary_preserves_source_unavailable_status(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = mwr.save_run_summary(
+                Path(tmp),
+                "20260911_200000",
+                {"status": "source_unavailable", "errors": [{"message": "timeout"}]},
+            )
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(payload["status"], "source_unavailable")
+        self.assertEqual(payload["errors"][0]["message"], "timeout")
+
 
 class AbhsmTransportTests(unittest.TestCase):
     def test_pdf_payload_validation(self):
