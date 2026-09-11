@@ -42,3 +42,19 @@ the config so a future edit cannot silently re-admit them.
 was authorised by the project owner after the world-readable exposure was stated
 explicitly. Attribution: Fukushima Prefecture river information system; Japan Water
 Agency; Hyogo Prefecture.
+
+
+## Known issue: empty table cells were discarded (fixed 2026-09-10)
+
+Until the commit that added this section, `cells()` discarded empty table cells before
+values were read by the configured column positions. A blank cell before a mapped column
+would therefore have moved that row's later values one column to the left without any
+error. The same defect was confirmed in the servlet-family scraper, where it did corrupt
+rows.
+
+No shifted row was found here: re-parsing the four latest raw pages, the old parser, the
+fixed parser and the archive agree cell for cell (Fukushima, JWA Tone-Arakawa, Yamaguchi,
+Hyogo), and keeping empty cells leaves every configured column index correct on those
+pages. A transient blank in an earlier run cannot be ruled out, because the raw pages are
+overwritten on every run, so the formatted delivery does not use rows observed before
+this fix reached a scheduled run.

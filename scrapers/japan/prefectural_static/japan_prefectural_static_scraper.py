@@ -112,7 +112,9 @@ def cells(tr: str) -> list[str]:
                   re.sub(r"<[^>]+>", "", c).replace("&nbsp;", " ")
                   .replace("&rarr;", "").replace("&uarr;", "").replace("&darr;", "")).strip()
            for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", tr, flags=re.S | re.I)]
-    return [c for c in out if c]
+    # Keep empty cells. Values are read by configured column position, so discarding a
+    # blank cell would move every later value in that row one column to the left.
+    return out
 
 
 def read_time(html: str, spec) -> str | None:
