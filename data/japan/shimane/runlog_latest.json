@@ -1,10 +1,10 @@
 {
-  "run_at": "2026-09-11T22:48:27Z",
+  "run_at": "2026-09-12T07:21:30Z",
   "url": "https://www.suibou-shimane.jp/dyn/dps/json/20260912/dam60.json",
   "stations": 19,
-  "timestamps": 8,
+  "timestamps": 17,
   "first": "2026-09-12T00:00",
-  "last": "2026-09-12T07:00",
-  "parsed": 152,
-  "appended": 95
+  "last": "2026-09-12T16:00",
+  "parsed": 317,
+  "appended": 165
 }
