@@ -16,7 +16,7 @@ at day resolution and a shorter budget cannot be judged at that resolution.
 
 Exit codes:
   0  every source fresh (or explicitly excused)
-  1  at least one source stale        -> the scheduled workflow turns red
+  1  at least one source stale or future-dated -> the scheduled workflow turns red
   2  registry or data layout problem
 
 Usage:
@@ -29,8 +29,10 @@ import csv
 import json
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from collections import Counter
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "config" / "windowed_sources.json"
@@ -109,13 +111,32 @@ def newest_run(data_dir: Path) -> dict:
     return latest
 
 
-def newest_observation(data_dir: Path) -> str | None:
-    """Newest ISO date visible in this source's committed data.
+def scan_observation_dates(
+    data_dir: Path,
+    max_date: date | None = None,
+) -> tuple[str | None, dict[str, int]]:
+    """Newest valid ISO date plus any future-dated observations.
 
     Reads CSV date-ish columns where possible and falls back to dated
     filenames, so it works across the repo's differing table layouts.
+    Dates after ``max_date`` are evidence of a source or parsing anomaly; they
+    are reported separately and must never make a feed look artificially fresh.
     """
     best: str | None = None
+    future_dates: Counter[str] = Counter()
+
+    def consider(value: str) -> None:
+        nonlocal best
+        try:
+            parsed = datetime.strptime(value, "%Y-%m-%d").date()
+        except ValueError:
+            return
+        if max_date is not None and parsed > max_date:
+            future_dates[value] += 1
+            return
+        if best is None or value > best:
+            best = value
+
     for csv_path in sorted(data_dir.rglob("*.csv")):
         if "run_logs" in csv_path.parts:
             continue
@@ -137,8 +158,8 @@ def newest_observation(data_dir: Path) -> str | None:
                 for row in reader:
                     for c in date_cols:
                         d = cell_date(row.get(c) or "")
-                        if d and (best is None or d > best):
-                            best = d
+                        if d:
+                            consider(d)
         except (OSError, csv.Error, UnicodeDecodeError):
             continue
     if best is None:
@@ -148,9 +169,14 @@ def newest_observation(data_dir: Path) -> str | None:
             if "run_logs" in p.parts:
                 continue
             d = cell_date(p.name)
-            if d and (best is None or d > best):
-                best = d
-    return best
+            if d:
+                consider(d)
+    return best, dict(sorted(future_dates.items()))
+
+
+def newest_observation(data_dir: Path) -> str | None:
+    """Backward-compatible helper returning the newest observation date."""
+    return scan_observation_dates(data_dir)[0]
 
 
 def freshness_targets(source: dict) -> list[dict]:
@@ -163,6 +189,7 @@ def freshness_targets(source: dict) -> list[dict]:
                 "data_path": source["data_path"],
                 "publication_cadence_hours": source.get("publication_cadence_hours"),
                 "max_schedule_gap_hours": source.get("max_schedule_gap_hours"),
+                "timezone": source.get("timezone", "UTC"),
             }
         ]
     targets = []
@@ -180,6 +207,7 @@ def freshness_targets(source: dict) -> list[dict]:
                     "max_schedule_gap_hours",
                     source.get("max_schedule_gap_hours"),
                 ),
+                "timezone": component.get("timezone", source.get("timezone", "UTC")),
             }
         )
     return targets
@@ -217,7 +245,10 @@ def main() -> int:
             grace = float(target.get("max_schedule_gap_hours") or cadence)
             budget_h = max(cadence * STALE_CADENCE_FACTOR + grace, DATE_RESOLUTION_FLOOR_HOURS)
 
-            obs = newest_observation(data_dir)
+            source_today = now.astimezone(ZoneInfo(target["timezone"])).date()
+            obs, future_observations = scan_observation_dates(
+                data_dir, max_date=source_today
+            )
             obs_dt = parse_iso(obs) if obs else None
             obs_age_h = (now - obs_dt).total_seconds() / 3600 if obs_dt else None
             run_dt = parse_iso(str(run.get("finished_at") or run.get("started_at") or ""))
@@ -228,22 +259,27 @@ def main() -> int:
                 "source_id": target_sid,
                 "base_source_id": target.get("base_source_id", sid),
                 "data_path": target["data_path"],
-                "state": "stale" if stale else "fresh",
+                "state": "future_observation" if future_observations else (
+                    "stale" if stale else "fresh"
+                ),
                 "latest_observation": obs,
+                "future_observations": future_observations,
                 "observation_age_hours": round(obs_age_h, 1) if obs_age_h is not None else None,
                 "stale_after_hours": round(budget_h, 1),
                 "latest_run_status": run.get("status"),
                 "latest_run_age_hours": round(run_age_h, 1) if run_age_h is not None else None,
                 "recent_run_statuses": run.get("recent_statuses"),
             }
-            if obs_age_h is None:
+            if obs_age_h is None and not future_observations:
                 row["state"] = "no_observation_date"
             if sid in EXCUSED:
                 row["excused"] = EXCUSED[sid]
             rows.append(row)
 
     problems = [r for r in rows
-                if r["state"] in {"stale", "no_observation_date", "no_data_dir"}
+                if r["state"] in {
+                    "stale", "future_observation", "no_observation_date", "no_data_dir"
+                }
                 and "excused" not in r]
 
     if not args.quiet:
@@ -253,12 +289,17 @@ def main() -> int:
             age_s = f"{age/24:.1f}d" if age is not None else "-"
             budget = r.get("stale_after_hours")
             budget_s = f"{budget/24:.1f}d" if budget is not None else "-"
-            flag = "STALE" if r["state"] == "stale" else r["state"]
+            flag = {
+                "stale": "STALE",
+                "future_observation": "FUTURE_DATE",
+            }.get(r["state"], r["state"])
             note = "  (excused)" if "excused" in r else ""
             print(f"{r['source_id']:<{width}}  {flag:<20} "
                   f"latest={r.get('latest_observation') or '-':<12} "
                   f"age={age_s:>7} / budget={budget_s:>7} "
                   f"run={r.get('latest_run_status') or '-'}{note}")
+            if r.get("future_observations"):
+                print(f"{'':<{width}}  future dates: {r['future_observations']}")
         print()
         print(f"{len(rows)} freshness target(s); {len(problems)} need attention")
 

@@ -398,7 +398,10 @@ def normalize_current_water_level_intraday(
     basic_info_map: dict[str, dict],
     current_daily_ops_map: dict[str, dict],
     manual_overrides: dict[str, dict],
+    today_tw: str | None = None,
+    rejected_future: list[dict[str, str]] | None = None,
 ) -> list[dict]:
+    source_today = today_tw or datetime.now(TAIWAN_TZ).date().isoformat()
     out: list[dict] = []
     for row in rows:
         rid = get_id(row)
@@ -408,6 +411,12 @@ def normalize_current_water_level_intraday(
         date = ""
         if obs_time:
             date = str(obs_time)[:10]
+        if date and date > source_today:
+            if rejected_future is not None:
+                rejected_future.append(
+                    {"reservoir_id": rid, "observation_time": obs_time}
+                )
+            continue
         out.append({
             "reservoir_id": rid,
             "reservoir_name": best_name(rid, get_name(row), current_daily_ops_map, basic_info_map, manual_overrides),
@@ -914,12 +923,22 @@ def main() -> int:
             current_water_level_map = normalize_current_water_level(
                 water_level_rows if isinstance(water_level_rows, list) else []
             )
+            rejected_future_intraday: list[dict[str, str]] = []
             intraday_rows = normalize_current_water_level_intraday(
                 water_level_rows if isinstance(water_level_rows, list) else [],
                 basic_info_map,
                 current_daily_ops_map,
                 manual_overrides,
+                today_tw=today_tw,
+                rejected_future=rejected_future_intraday,
             )
+            if rejected_future_intraday:
+                summary["rejected_future_intraday"] = rejected_future_intraday
+                emit_workflow_warning(
+                    "Rejected "
+                    f"{len(rejected_future_intraday)} future-dated intraday observation(s) "
+                    "from normalized output; the unchanged source payload remains in raw/."
+                )
             if save_raw:
                 water_level_path = dirs["raw"] / f"current_water_level_{today_tw}.json"
                 save_json(water_level_path, water_level_rows)

@@ -443,7 +443,9 @@ def main() -> int:
             summary["errors"].append({"message": str(e),
                                       "error_type": e.__class__.__name__})
             save_summary(log_path, summary)
-            print(f"[WARN] ABHSM source unavailable this run: {e}", file=sys.stderr)
+            message = f"ABHSM source unavailable this run: {e}"
+            emit_workflow_warning(message)
+            print(f"[WARN] {message}", file=sys.stderr)
             return 0
         summary["status"] = "error"
         summary["errors"].append({"message": str(e), "traceback": traceback.format_exc()})

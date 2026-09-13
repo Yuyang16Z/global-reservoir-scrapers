@@ -1,0 +1,4 @@
+interface:
+  display_name: "Windowed Source Archival"
+  short_description: "Archive disappearing reservoir source observations"
+  default_prompt: "Use $windowed-source-archival to assess and operate an ephemeral reservoir source archive safely."

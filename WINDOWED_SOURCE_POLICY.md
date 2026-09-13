@@ -19,6 +19,13 @@ Record the evidence, observation date, source timezone, publication cadence,
 estimated retention window, and whether older dates can be queried directly.
 Do not assume a dashboard is archival merely because it accepts a date field.
 
+Routing follows the classification: `permanent_archive` stays in the local
+country workspace by default and is not admitted merely to make collection look
+automated; `unknown_review` remains investigation-only. Existing static,
+cross-reference, or resilience-copy exceptions in this repository do not set a
+precedent for new sources. An exception for a permanent archive requires a
+separate operational rationale and human decision.
+
 ## Mandatory deployment gate
 
 A `rolling_window`, `current_snapshot`, or `overwrite_prone` source is not
@@ -70,6 +77,13 @@ minimum capture opportunities, overlap strategy, and schedule rationale.
 Automation does not override source terms. Before a public GitHub workflow
 commits source data, record the licence, `reuse_status`, attribution, evidence
 URL, and checked date.
+
+[`DATA_LICENCE_NOTICE.md`](./DATA_LICENCE_NOTICE.md) records a 2026-08-04 owner
+decision under which existing scheduled collection continues even though this
+public repository makes its contents world-readable and several sources remain
+under review. That recorded exception does not weaken the gate for a new source,
+new data path, or expanded public exposure: stop for human review rather than
+assuming the existing decision covers it.
 
 - Open redistribution with required attribution may use the public repository
   when the attribution and source evidence are preserved.
