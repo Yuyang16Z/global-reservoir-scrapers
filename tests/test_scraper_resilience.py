@@ -6,6 +6,7 @@ import json
 import sys
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 from unittest import mock
 
@@ -27,6 +28,10 @@ def load_module(name: str, relative_path: str):
 abhsm = load_module(
     "morocco_abhsm_scraper",
     "scrapers/morocco/abhsm/morocco_abhsm_scraper.py",
+)
+abht = load_module(
+    "morocco_abht_scraper",
+    "scrapers/morocco/abht/morocco_abht_scraper.py",
 )
 taiwan = load_module(
     "taiwan_wra_scraper",
@@ -80,6 +85,30 @@ class ChinaMwrTransportTests(unittest.TestCase):
         self.assertTrue(diagnostics["fallback_used"])
         self.assertIn("network is unreachable", diagnostics["prior_errors"][0])
 
+    def test_all_transport_failures_have_a_distinct_error_type(self):
+        with mock.patch.object(
+            mwr.requests,
+            "post",
+            side_effect=requests.ConnectionError("direct unavailable"),
+        ), mock.patch.object(
+            mwr.requests,
+            "get",
+            side_effect=requests.ConnectTimeout("relay unavailable"),
+        ):
+            with self.assertRaises(mwr.ApiTransportError):
+                mwr.fetch_api_json(10, 0)
+
+    def test_failure_summary_preserves_source_unavailable_status(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = mwr.save_run_summary(
+                Path(tmp),
+                "20260911_200000",
+                {"status": "source_unavailable", "errors": [{"message": "timeout"}]},
+            )
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(payload["status"], "source_unavailable")
+        self.assertEqual(payload["errors"][0]["message"], "timeout")
+
 
 class AbhsmTransportTests(unittest.TestCase):
     def test_pdf_payload_validation(self):
@@ -116,8 +145,62 @@ class AbhsmTransportTests(unittest.TestCase):
                 abhsm.fetch_pdf(Path(tmp) / "report.pdf")
             pinned.assert_not_called()
 
+    def test_source_outage_is_visible_without_discarding_diagnostics(self):
+        with mock.patch.object(abhsm, "ensure_dirs"), mock.patch.object(
+            abhsm,
+            "fetch_pdf",
+            side_effect=requests.ConnectTimeout("official host timed out"),
+        ), mock.patch.object(abhsm, "save_summary") as save, mock.patch.object(
+            abhsm, "emit_workflow_warning"
+        ) as warn:
+            self.assertEqual(abhsm.main(), 0)
+        self.assertEqual(save.call_args.args[1]["status"], "source_unavailable")
+        warn.assert_called_once()
+        self.assertIn("source unavailable", warn.call_args.args[0])
+
+
+class AbhtFreshnessTests(unittest.TestCase):
+    def test_old_widget_date_emits_workflow_warning(self):
+        with mock.patch.object(abht, "emit_workflow_warning") as warn:
+            age = abht.warn_if_stale_observation(
+                "2026-09-07", today=date(2026, 9, 11)
+            )
+        self.assertEqual(age, 4)
+        warn.assert_called_once()
+
+    def test_recent_widget_date_does_not_warn(self):
+        with mock.patch.object(abht, "emit_workflow_warning") as warn:
+            age = abht.warn_if_stale_observation(
+                "2026-09-10", today=date(2026, 9, 11)
+            )
+        self.assertEqual(age, 1)
+        warn.assert_not_called()
+
 
 class TaiwanFallbackTests(unittest.TestCase):
+    def test_future_intraday_rows_are_rejected_but_identified(self):
+        rows = [
+            {
+                "reservoiridentifier": "A",
+                "reservoirname": "Alpha",
+                "ObservationTime": "2026-09-11T13:00:00",
+            },
+            {
+                "reservoiridentifier": "B",
+                "reservoirname": "Beta",
+                "ObservationTime": "2026-09-13T13:00:00",
+            },
+        ]
+        rejected: list[dict[str, str]] = []
+        normalized = taiwan.normalize_current_water_level_intraday(
+            rows, {}, {}, {}, today_tw="2026-09-11", rejected_future=rejected
+        )
+        self.assertEqual([row["reservoir_id"] for row in normalized], ["A"])
+        self.assertEqual(
+            rejected,
+            [{"reservoir_id": "B", "observation_time": "2026-09-13T13:00:00"}],
+        )
+
     def test_snapshot_keeps_dominant_source_date(self):
         rows = {
             "A": {"observation_time": "2026-08-26T07:00:00"},
@@ -230,12 +313,25 @@ class PagasaFallbackTests(unittest.TestCase):
 
 
 class FreshnessComponentTests(unittest.TestCase):
+    def test_future_dates_do_not_make_a_source_look_fresh(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "observations.csv"
+            path.write_text(
+                "date,value\n2026-09-10,1\n2026-09-13,2\n", encoding="utf-8"
+            )
+            latest, future_dates = freshness.scan_observation_dates(
+                Path(tmp), max_date=date(2026, 9, 11)
+            )
+        self.assertEqual(latest, "2026-09-10")
+        self.assertEqual(future_dates, {"2026-09-13": 1})
+
     def test_components_are_monitored_independently(self):
         source = {
             "source_id": "taiwan/wra",
             "data_path": "data/taiwan/wra",
             "publication_cadence_hours": 24,
             "max_schedule_gap_hours": 192,
+            "timezone": "Asia/Taipei",
             "freshness_components": [
                 {"name": "daily", "data_path": "data/taiwan/wra/timeseries/daily"},
                 {"name": "intraday", "data_path": "data/taiwan/wra/timeseries/intraday"},
@@ -246,6 +342,7 @@ class FreshnessComponentTests(unittest.TestCase):
             [target["source_id"] for target in targets],
             ["taiwan/wra:daily", "taiwan/wra:intraday"],
         )
+        self.assertEqual({target["timezone"] for target in targets}, {"Asia/Taipei"})
 
 
 if __name__ == "__main__":
