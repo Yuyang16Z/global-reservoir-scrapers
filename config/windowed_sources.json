@@ -164,12 +164,12 @@
       "max_schedule_gap_hours": 24,
       "minimum_capture_opportunities": 7,
       "overlap_strategy": "Two endpoints per station: past (7d hourly, 貯水位/流入量/全放流量 only) and current (~50h hourly, adds 貯水量 and percentages). Merged on (obs_fcd, observed_at), current filling storage over the past window's tail. Consecutive runs overlap by 6 days for the core variables and ~26h for storage. By normalised name it overlaps the MLIT/OpenGov delivery (126/127) and the seven per-prefecture feeds (199/209) — de-duplicate at the delivery layer; ~596 stations (583 distinct names) are new. Note 坂本ダム and other repeated Japanese dam names occur at several sites, so de-duplication must key on obs_fcd plus prefecture, never on name alone.",
-      "schedule_rationale": "The 7-day past window makes the three core variables robust to six consecutive failures; the ~50h current window makes storage tolerate one. Daily is the cadence the shorter window dictates.",
+      "schedule_rationale": "The 7-day past window makes the three core variables robust to six consecutive failures; the ~50h current window makes storage tolerate one. Daily is the cadence the shorter window dictates. Schedule paused 2026-09-16; see licence_gate.",
       "workflow": ".github/workflows/japan_kawabou.yml",
       "scraper": "scrapers/japan/kawabou/japan_kawabou_scraper.py",
       "data_path": "data/japan/kawabou",
-      "deployment_status": "active",
-      "licence_gate": "undeclared_review. 国土交通省 川の防災情報 publishes no reuse terms. Public commit authorised by the project owner on 2026-09-09; attribution to MLIT recorded in the scraper README."
+      "deployment_status": "source_terms_review",
+      "licence_gate": "open_attribution. 川の防災情報 publishes content use rules based on 政府標準利用規約（第2.0版）, states they are compatible with CC BY 4.0, and states that numerical data and simple tables are not subject to copyright; attribution to 国土交通省 川の防災情報 is recorded in the scraper README. Evidence: https://www.river.go.jp/kawabou/kwb_apend/html/caution.html (checked 2026-09-10). Separately, the same page asks that data not be collected periodically with tools and directs regular collection to the River Information Numerical Data Distribution service - a request about the collection method, not a reuse term. Scheduled collection paused 2026-09-16 pending that decision. Public commit authorised by the project owner on 2026-09-09."
     },
     {
       "source_id": "japan/miyagi",

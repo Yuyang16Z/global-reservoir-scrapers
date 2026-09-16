@@ -188,5 +188,23 @@ data/japan/kawabou/
 
 ## Licence
 
-Undeclared — the portal publishes no reuse terms. Attribution: 国土交通省 川の防災情報.
+The portal publishes content use rules based on the Government of Japan Standard Terms of
+Use (version 2.0), states that they are compatible with CC BY 4.0, and states that numerical
+data and simple tables are not subject to copyright. Copying, public transmission and
+adaptation — including commercial use — are permitted with the source cited and any
+processing stated. Attribution: 国土交通省 川の防災情報 (https://www.river.go.jp/kawabou/).
+Evidence: https://www.river.go.jp/kawabou/kwb_apend/html/caution.html (checked 2026-09-10).
+
+## Collection paused (2026-09-16)
+
+The same page asks that data not be collected periodically with tools because of server
+load, and directs regular collection — commercial or not — to the River Information
+Numerical Data Distribution service (https://www.river.or.jp/koeki/opendata/index.html).
+That is a request about the collection method rather than a reuse term, so everything
+already archived stays usable under the terms above.
+
+The scheduled workflow is therefore paused; `workflow_dispatch` still runs it manually.
+The `past` endpoint serves 7 days, so collection can resume within a week with no loss of
+水位 / 流入量 / 全放流量; 貯水量 comes from the `current` endpoint, which keeps only about
+50 hours.
 Recorded, not gating: collection proceeds under the project owner's 2026-09-09 decision.

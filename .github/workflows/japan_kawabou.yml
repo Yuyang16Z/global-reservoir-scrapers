@@ -5,9 +5,16 @@ name: Japan kawabou national dams scrape
 #   current ~50h hourly, with 貯水量 and the percentages as well
 # Daily, so a missed run costs nothing for the three core variables and costs storage
 # only if two consecutive days fail. 04:20 JST = 19:20 UTC.
+# SCHEDULE PAUSED 2026-09-16. The site's usage notes ask that data not be collected
+# periodically with tools because of the load it puts on the servers, and direct regular
+# collection - commercial or not - to the River Information Numerical Data Distribution
+# service: https://www.river.go.jp/kawabou/kwb_apend/html/caution.html
+# That is a request about the collection method, not a reuse term: the content terms stay
+# open (Government of Japan Standard Terms of Use 2.0, stated compatible with CC BY 4.0),
+# so what is already archived remains usable. Manual runs stay available while the project
+# decides between subscribing to the distribution service and asking MLIT for permission.
+# The paused schedule was: cron "20 19 * * *" (04:20 JST).
 on:
-  schedule:
-    - cron: "20 19 * * *"
   workflow_dispatch:
 
 permissions:

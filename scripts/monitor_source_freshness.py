@@ -49,6 +49,12 @@ DATE_RESOLUTION_FLOOR_HOURS = 48.0
 # entry the moment its source resumes - the scraper keeps probing regardless,
 # so a resumed source shows up as a fresh observation date here.
 EXCUSED: dict[str, str] = {
+    "japan/kawabou": (
+        "Scheduled collection paused 2026-09-16: the portal asks that data not be "
+        "collected periodically with tools and directs regular collection to the River "
+        "Information Numerical Data Distribution service. The archive is intentionally "
+        "frozen, not broken. Reported but not failed. Review when that decision is made."
+    ),
     "namibia/namwater": (
         "NamWater stopped publishing after the 2024-07-08 bulletin and serves only "
         "that file; the scraper probes the last eight Mondays every run as a "
