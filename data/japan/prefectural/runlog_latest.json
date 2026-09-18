@@ -1,5 +1,5 @@
 {
-  "run_at": "20260918T003804Z",
+  "run_at": "20260918T053506Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -76,7 +76,7 @@
     },
     {
       "prefecture": "Tokushima",
-      "rows": 7,
+      "rows": 6,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -99,5 +99,5 @@
       }
     }
   ],
-  "rows": 96
+  "rows": 95
 }
