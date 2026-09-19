@@ -2,7 +2,25 @@
 
 Scheduled government/agency reservoir scrapers for the Global Reservoir Dataset project
 (PI: Prof. Ximing Cai, UIUC). Raw timeseries feeding a unified global reservoir dataset
-targeted for **June 2026**.
+whose original project target was **June 2026**.
+
+This repository is the project's **windowed and ephemeral source archival
+subsystem**. Its primary job is to preserve official observations that would
+otherwise disappear from rolling windows, current-only pages, or overwritten
+bulletins. It is not the complete local research workspace and it is not the
+formatted delivery package. Data being captured here means archival evidence
+exists; it does not by itself mean that reservoir scope, normalization, quality,
+licensing, or delivery checks have passed.
+
+Every proposed source must be assigned a retention class before deployment.
+`rolling_window`, `current_snapshot`, and `overwrite_prone` sources may be
+admitted after the policy and licence gates pass. A `permanent_archive` source
+stays in the local country workspace by default, and `unknown_review` is not
+deployed. Historical permanent/resilience-copy, static-metadata, and river
+cross-reference jobs already in this repository are compatibility exceptions,
+not admission precedents. See
+[`WINDOWED_SOURCE_POLICY.md`](./WINDOWED_SOURCE_POLICY.md) and
+[`AGENTS.md`](./AGENTS.md).
 
 Each country lives under `scrapers/<country>/` and writes outputs into the mirror path
 `data/<country>/`. Countries with multiple data sources (e.g. Malaysia) have per-source
@@ -64,7 +82,11 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
     └── thailand_rid.yml            # cron 01:30 UTC Mondays
 ```
 
-## Current coverage
+## Documented source overview
+
+This table is a human-readable overview and is not a complete live inventory.
+Use `config/windowed_sources.json` plus the current workflow/data tree for
+operational coverage, and verify freshness separately.
 
 ### Reservoir data
 
@@ -91,9 +113,10 @@ collection writes only to `data/china/mwr_api/`.
 |---|---|---|---|---|
 | Malaysia (Sarawak) | DID Sarawak iHydro (~269 river + rainfall + IG stations) | 2× per day | `scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py` | ✅ v1 (2026-04-22) |
 
-Other countries (Argentina, Australia, Zambia, Central Asia, etc.)
-are scraped locally from `~/Desktop/work/resovoir data/` and are not yet
-migrated here.
+Other countries (Argentina, Australia, Zambia, Central Asia, etc.) are handled
+in the local country workspaces. They are not expected to migrate here unless
+their retention behavior and the admission review show that scheduled archival
+is required.
 
 ## Running locally
 

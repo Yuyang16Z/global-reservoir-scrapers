@@ -38,8 +38,9 @@ import re
 import sys
 import time
 import traceback
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -54,9 +55,11 @@ RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 HOME_URL = "https://abht.ma/"
 DAM_PAGE_ROOT = "https://abht.ma/Barrage"
 SOURCE_AGENCY = "ABHT (Agence du Bassin Hydraulique du Tensift)"
+SOURCE_TZ = ZoneInfo("Africa/Casablanca")
 TIMEOUT = 90
 REQUEST_ATTEMPTS = 3
 REQUEST_BACKOFFS = (2, 8, 20)
+MAX_OBSERVATION_AGE_DAYS = 3
 
 HEADERS = {
     "User-Agent": (
@@ -250,6 +253,27 @@ def save_summary(log: dict) -> None:
     print(f"[SAVE] {p}", flush=True)
 
 
+def emit_workflow_warning(message: str) -> None:
+    print(f"::warning title=ABHT source freshness::{message}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write(f"### ABHT source warning\n\n{message}\n")
+
+
+def warn_if_stale_observation(obs_date: str, today: date | None = None) -> int:
+    """Expose an old source date in the scraper run without relabelling it."""
+    source_date = datetime.strptime(obs_date, "%Y-%m-%d").date()
+    source_today = today or datetime.now(SOURCE_TZ).date()
+    age_days = (source_today - source_date).days
+    if age_days > MAX_OBSERVATION_AGE_DAYS:
+        emit_workflow_warning(
+            f"The official ABHT widget still reports {obs_date} "
+            f"({age_days} days old). The existing archive was preserved."
+        )
+    return age_days
+
+
 def main() -> int:
     ensure_dirs()
     fetched_at = utc_now_iso()
@@ -269,12 +293,15 @@ def main() -> int:
         if not obs_date:
             raise RuntimeError("no observation date found next to the widget caption")
 
+        observation_age_days = warn_if_stale_observation(obs_date)
+
         added, updated = merge_csv(TS_DIR / "morocco_abht_timeseries.csv",
                                    TS_COLUMNS, rows,
                                    ["measurement_date", "reservoir_id"])
         merge_csv(META_DIR / "morocco_abht_reservoirs.csv", META_COLUMNS,
                   build_metadata(rows, fetched_at), ["reservoir_id"])
-        log.update({"status": "ok", "rows_added": added, "rows_updated": updated,
+        log.update({"status": "ok", "observation_age_days": observation_age_days,
+                    "rows_added": added, "rows_updated": updated,
                     "raw_file": raw_path.name, "finished_at": utc_now_iso()})
         save_summary(log)
         print(f"[OK] {obs_date}: {len(rows)} dams, {added} added / {updated} updated",

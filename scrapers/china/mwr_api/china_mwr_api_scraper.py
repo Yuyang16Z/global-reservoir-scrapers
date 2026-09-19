@@ -19,6 +19,7 @@ import csv
 import json
 import re
 import sys
+import traceback
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -102,6 +103,10 @@ FIELD_OVERRIDES_BY_ID = {
     "496": {"stnm": "七礤水库"},
     "568": {"stnm": "松涛水库（南丰）"},
 }
+
+
+class ApiTransportError(RuntimeError):
+    """The official API could not be reached through any configured transport."""
 
 
 def repo_root() -> Path:
@@ -188,7 +193,7 @@ def fetch_api_json(
         except Exception as exc:
             errors.append(f"relay attempt {attempt + 1}: {exc}")
 
-    raise RuntimeError(
+    raise ApiTransportError(
         f"API request failed through both transports after {retries + 1} attempts each: "
         + " | ".join(errors)
     )
@@ -442,6 +447,13 @@ def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) -> 
         writer.writerows(rows)
 
 
+def save_run_summary(output_dir: Path, run_stamp: str, payload: dict[str, Any]) -> Path:
+    log_path = output_dir / "run_logs" / f"{run_stamp}_summary.json"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return log_path
+
+
 def main() -> None:
     root = repo_root()
     parser = argparse.ArgumentParser()
@@ -466,59 +478,72 @@ def main() -> None:
     run_started = datetime.now(TZ)
     run_stamp = run_started.strftime("%Y%m%d_%H%M%S")
     run_time = run_started.strftime("%Y-%m-%d %H:%M:%S")
-
-    payload, transport_diag = fetch_api_json(args.timeout_seconds, args.retries)
-    api_rows = payload["result"]
-    if not api_rows:
-        raise RuntimeError("API returned zero rows.")
-
-    digit_map = infer_digit_map(api_rows)
-    char_map, train_diag = train_text_map(
-        api_rows=api_rows,
-        history_dir=args.history_dir,
-        history_days=args.history_days,
-        training_limit=args.training_limit,
-        digit_map=digit_map,
-    )
-    decoded_rows, decode_diag = decode_source_rows(api_rows, digit_map, char_map)
-
-    report_date, report_datetime = parse_report_datetime(
-        decoded_rows[0].get("tm", ""),
-        run_started,
-    )
     output_dir = args.output_dir
 
-    raw_path = output_dir / "raw" / f"china_mwr_api_raw_{report_date}_{run_stamp}.json"
-    raw_path.parent.mkdir(parents=True, exist_ok=True)
-    raw_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    try:
+        payload, transport_diag = fetch_api_json(args.timeout_seconds, args.retries)
+        api_rows = payload["result"]
+        if not api_rows:
+            raise RuntimeError("API returned zero rows.")
 
-    metadata_rows = build_metadata_rows(decoded_rows, run_time)
-    timeseries_rows = build_timeseries_rows(decoded_rows, report_date, report_datetime)
+        digit_map = infer_digit_map(api_rows)
+        char_map, train_diag = train_text_map(
+            api_rows=api_rows,
+            history_dir=args.history_dir,
+            history_days=args.history_days,
+            training_limit=args.training_limit,
+            digit_map=digit_map,
+        )
+        decoded_rows, decode_diag = decode_source_rows(api_rows, digit_map, char_map)
 
-    metadata_path = output_dir / "metadata" / "china_mwr_api_reservoirs.csv"
-    timeseries_path = output_dir / "timeseries" / "daily" / f"china_mwr_api_timeseries_{report_date}.csv"
-    write_csv(metadata_path, metadata_rows, METADATA_COLUMNS)
-    write_csv(timeseries_path, timeseries_rows, TIMESERIES_COLUMNS)
+        report_date, report_datetime = parse_report_datetime(
+            decoded_rows[0].get("tm", ""),
+            run_started,
+        )
 
-    diagnostics = {
-        "run_started": run_time,
-        "page_url": PAGE_URL,
-        "api_url": API_URL,
-        "transport": transport_diag,
-        "row_count": len(api_rows),
-        "report_date": report_date,
-        "report_time": report_datetime,
-        "digit_codepoints": {f"U+{ord(k):04X}": v for k, v in digit_map.items()},
-        "manual_overrides_by_id": FIELD_OVERRIDES_BY_ID,
-        "training": train_diag,
-        "decoding": decode_diag,
-        "raw_path": str(raw_path),
-        "metadata_path": str(metadata_path),
-        "timeseries_path": str(timeseries_path),
-    }
-    log_path = output_dir / "run_logs" / f"{run_stamp}_summary.json"
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-    log_path.write_text(json.dumps(diagnostics, ensure_ascii=False, indent=2), encoding="utf-8")
+        raw_path = output_dir / "raw" / f"china_mwr_api_raw_{report_date}_{run_stamp}.json"
+        raw_path.parent.mkdir(parents=True, exist_ok=True)
+        raw_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        metadata_rows = build_metadata_rows(decoded_rows, run_time)
+        timeseries_rows = build_timeseries_rows(decoded_rows, report_date, report_datetime)
+
+        metadata_path = output_dir / "metadata" / "china_mwr_api_reservoirs.csv"
+        timeseries_path = output_dir / "timeseries" / "daily" / f"china_mwr_api_timeseries_{report_date}.csv"
+        write_csv(metadata_path, metadata_rows, METADATA_COLUMNS)
+        write_csv(timeseries_path, timeseries_rows, TIMESERIES_COLUMNS)
+
+        diagnostics = {
+            "run_started": run_time,
+            "page_url": PAGE_URL,
+            "api_url": API_URL,
+            "status": "ok",
+            "transport": transport_diag,
+            "row_count": len(api_rows),
+            "report_date": report_date,
+            "report_time": report_datetime,
+            "digit_codepoints": {f"U+{ord(k):04X}": v for k, v in digit_map.items()},
+            "manual_overrides_by_id": FIELD_OVERRIDES_BY_ID,
+            "training": train_diag,
+            "decoding": decode_diag,
+            "raw_path": str(raw_path),
+            "metadata_path": str(metadata_path),
+            "timeseries_path": str(timeseries_path),
+            "finished_at": datetime.now(TZ).isoformat(timespec="seconds"),
+        }
+        log_path = save_run_summary(output_dir, run_stamp, diagnostics)
+    except Exception as exc:
+        failure = {
+            "run_started": run_time,
+            "page_url": PAGE_URL,
+            "api_url": API_URL,
+            "status": "source_unavailable" if isinstance(exc, ApiTransportError) else "error",
+            "errors": [{"message": str(exc), "traceback": traceback.format_exc()}],
+            "finished_at": datetime.now(TZ).isoformat(timespec="seconds"),
+        }
+        failure_path = save_run_summary(output_dir, run_stamp, failure)
+        print(f"[china-mwr-api] diagnostics={failure_path}", file=sys.stderr)
+        raise
 
     print(f"[china-mwr-api] rows={len(decoded_rows)} report_date={report_date}")
     print(f"[china-mwr-api] transport={transport_diag['transport']}")
