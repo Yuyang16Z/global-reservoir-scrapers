@@ -1,0 +1,112 @@
+{
+  "started_at_utc": "2026-09-21T07:10:16.606717+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "dates": [
+    "2026-09-07",
+    "2026-09-08",
+    "2026-09-09",
+    "2026-09-10",
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-21"
+  ],
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/basic_info.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-09-21.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_water_level_2026-09-21.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/intraday/taiwan_intraday_2026-09-21.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/daily/taiwan_timeseries_2026-09-20.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/metadata/taiwan_wra_reservoirs.csv"
+  ],
+  "errors": [],
+  "records_per_date": {},
+  "current_daily_snapshot": {
+    "date": "2026-09-20",
+    "rows": 66,
+    "date_counts": {
+      "2026-09-19": 1,
+      "2026-09-20": 66
+    }
+  },
+  "archived_current_daily_backfill": [
+    {
+      "date": "2026-09-20",
+      "rows": 66,
+      "source_raw": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-09-21.json",
+      "output": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/daily/taiwan_timeseries_2026-09-20.csv"
+    }
+  ],
+  "source_unavailable_dates": [
+    {
+      "date": "2026-09-07",
+      "error_type": "HTTPError",
+      "error": "503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-08",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-10",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-11",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-12",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-14",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-15",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-17",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-18",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-19",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    },
+    {
+      "date": "2026-09-21",
+      "error_type": "ConnectionError",
+      "error": "historical endpoint circuit open after HTTP 503: 503 Server Error: Service Unavailable for url: https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-07"
+    }
+  ],
+  "historical_endpoint_status": "unavailable",
+  "current_daily_fallback_status": "captured",
+  "status": "partial",
+  "metadata_count": 74,
+  "unresolved_name_ids": [
+    "40701"
+  ],
+  "finished_at_utc": "2026-09-21T07:10:29.947804+00:00"
+}
