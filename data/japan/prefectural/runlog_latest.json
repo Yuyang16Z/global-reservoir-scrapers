@@ -1,5 +1,5 @@
 {
-  "run_at": "20260922T064110Z",
+  "run_at": "20260922T122333Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -28,7 +28,7 @@
     },
     {
       "prefecture": "Fukui",
-      "rows": 13,
+      "rows": 12,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -99,5 +99,5 @@
       }
     }
   ],
-  "rows": 96
+  "rows": 95
 }
