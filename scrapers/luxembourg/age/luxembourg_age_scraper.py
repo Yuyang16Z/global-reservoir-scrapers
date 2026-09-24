@@ -7,6 +7,7 @@ import csv
 import gzip
 import json
 import os
+import re
 import sys
 import time
 import urllib.request
@@ -36,6 +37,8 @@ RESERVOIR_ID = "LUX_AGE_40"
 RESERVOIR_NAME = "Lac de la Haute-Sure"
 LOCAL_TZ = ZoneInfo("Europe/Luxembourg")
 TIMEOUT_SECONDS = 60
+# Enough of an unexpected body to show the page type and any asset/API paths in it.
+NON_JSON_EXCERPT_CHARS = 800
 
 TIMESERIES_COLUMNS = [
     "reservoir_id",
@@ -146,6 +149,28 @@ def ensure_dirs() -> None:
         directory.mkdir(parents=True, exist_ok=True)
 
 
+def describe_non_json(payload: bytes, response: Any) -> str:
+    """Say what a successful response that is not JSON actually contained.
+
+    From 2026-09-15 the graph API answered 200 with something that was not JSON,
+    and the log showed only the decoder offset ("Expecting value: line 2 column 1
+    (char 1)"). That cannot tell a moved API (an HTML page served for an unknown
+    route), a maintenance or challenge page, and a server warning printed ahead of
+    valid JSON apart, so name the status, final URL, type, title and opening bytes.
+    """
+    text = payload.decode("utf-8", errors="replace")
+    parts = [
+        f"HTTP {response.status} from {response.geturl()}",
+        f"Content-Type={response.headers.get('Content-Type')!r}",
+        f"{len(payload)} bytes",
+    ]
+    title = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
+    if title:
+        parts.append(f"title={' '.join(title.group(1).split())!r}")
+    parts.append(f"body starts {' '.join(text.split())[:NON_JSON_EXCERPT_CHARS]!r}")
+    return ", ".join(parts)
+
+
 def fetch_json(url: str, attempts: int = 4) -> tuple[bytes, dict[str, Any]]:
     error: Exception | None = None
     for attempt in range(attempts):
@@ -162,7 +187,12 @@ def fetch_json(url: str, attempts: int = 4) -> tuple[bytes, dict[str, Any]]:
             )
             with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
                 payload = response.read()
-            return payload, json.loads(payload)
+                try:
+                    return payload, json.loads(payload)
+                except ValueError as exc:
+                    raise RuntimeError(
+                        f"not JSON ({exc}): {describe_non_json(payload, response)}"
+                    ) from exc
         except Exception as exc:
             error = exc
             if attempt + 1 < attempts:

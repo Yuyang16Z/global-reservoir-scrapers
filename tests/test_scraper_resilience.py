@@ -48,6 +48,10 @@ mwr = load_module(
     "china_mwr_api_scraper",
     "scrapers/china/mwr_api/china_mwr_api_scraper.py",
 )
+luxembourg = load_module(
+    "luxembourg_age_scraper",
+    "scrapers/luxembourg/age/luxembourg_age_scraper.py",
+)
 
 
 class ChinaMwrTransportTests(unittest.TestCase):
@@ -227,6 +231,69 @@ class PagasaFallbackTests(unittest.TestCase):
         self.assertEqual(page_date.isoformat(), "2026-08-27")
         self.assertEqual(observations, [observation])
         self.assertEqual(fetch.call_count, 2)
+
+
+class FakeUrlopenResponse:
+    def __init__(self, body: bytes, content_type: str):
+        self.body = body
+        self.status = 200
+        self.headers = {"Content-Type": content_type}
+
+    def read(self) -> bytes:
+        return self.body
+
+    def geturl(self) -> str:
+        return luxembourg.GRAPH_API_URL
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info) -> bool:
+        return False
+
+
+class LuxembourgNonJsonTests(unittest.TestCase):
+    def fetch_failure(self, body: bytes, content_type: str) -> str:
+        with mock.patch.object(
+            luxembourg.urllib.request,
+            "urlopen",
+            return_value=FakeUrlopenResponse(body, content_type),
+        ) as urlopen, mock.patch.object(luxembourg.time, "sleep"):
+            with self.assertRaises(RuntimeError) as raised:
+                luxembourg.fetch_json(luxembourg.GRAPH_API_URL, attempts=2)
+        self.assertEqual(urlopen.call_count, 2)
+        return str(raised.exception)
+
+    def test_non_json_success_says_what_came_back(self):
+        # The shape behind the 2026-09-15.. outage signature: one leading newline,
+        # then a non-JSON token, e.g. a PHP warning printed ahead of the payload.
+        message = self.fetch_failure(
+            b'\n<br />\n<b>Warning</b>:  Undefined index in <b>api.php</b><br />\n{"levels": []}',
+            "text/html; charset=UTF-8",
+        )
+        self.assertIn("Expecting value: line 2 column 1 (char 1)", message)
+        self.assertIn(f"HTTP 200 from {luxembourg.GRAPH_API_URL}", message)
+        self.assertIn("Content-Type='text/html; charset=UTF-8'", message)
+        # Whitespace is collapsed so the excerpt stays on one log line.
+        self.assertIn("body starts '<br /> <b>Warning</b>: Undefined index", message)
+
+    def test_html_page_title_is_reported(self):
+        message = self.fetch_failure(
+            b"<!DOCTYPE html><html><head><title>\n  Maintenance\n</title></head></html>",
+            "text/html",
+        )
+        self.assertIn("title='Maintenance'", message)
+
+    def test_json_payload_still_parses(self):
+        body = b'{"options": {"stationNumberTrimmed": "40"}, "levels": []}'
+        with mock.patch.object(
+            luxembourg.urllib.request,
+            "urlopen",
+            return_value=FakeUrlopenResponse(body, "application/json"),
+        ):
+            payload, graph = luxembourg.fetch_json(luxembourg.GRAPH_API_URL)
+        self.assertEqual(payload, body)
+        self.assertEqual(graph["options"]["stationNumberTrimmed"], "40")
 
 
 class FreshnessComponentTests(unittest.TestCase):
