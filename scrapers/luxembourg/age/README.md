@@ -5,13 +5,14 @@ This scraper accumulates the official recent observations for AGE station 40,
 
 ## Why it is scheduled twice daily
 
-The public AGE graph endpoint exposes only a rolling window of about five days. The
-workflow runs at `04:17` and `16:17 UTC` every day. These times are approximately
-`05:17/17:17` in Luxembourg winter time and `06:17/18:17` in summer time.
+The public AGE graph data exposes only a rolling window of about seven days (five on
+the old inondations.lu API). The workflow runs at `04:17` and `16:17 UTC` every day.
+These times are approximately `05:17/17:17` in Luxembourg winter time and
+`06:17/18:17` in summer time.
 
 - The first run normally captures the previous complete Luxembourg calendar day.
 - The second run recovers delayed source updates, transient failures, and revisions.
-- The five-day overlap allows missed runs to be repaired without hourly polling.
+- The multi-day overlap allows missed runs to be repaired without hourly polling.
 - A non-round minute reduces GitHub Actions congestion at the top of the hour.
 
 The workflow fails when the accumulated series is more than three local calendar days
@@ -19,8 +20,12 @@ behind, making source or scheduler problems visible in GitHub Actions.
 
 ## Measurement and quality rules
 
-- Source: AGE/Inondations.lu station 40 graph API.
-- Accepted source points must explicitly have `simulated=false`.
+- Source: the station 40 graph JSON of the AGE flood portal (inondations.public.lu since
+  about 2026-09-15; the old inondations.lu graph API before). The series is selected by
+  `ts_path` `0/40/...`, parameter `W` and unit `m`, and must hold absolute elevations.
+- The old API flagged each point `simulated`; only `simulated=false` was accepted. The
+  new JSON has no such flag: it is the portal's measured-level series and no forecast
+  series is configured for this station, so its points are taken as measured.
 - The daily value is the arithmetic mean of all regular 15-minute observations in the
   `Europe/Luxembourg` calendar day.
 - Complete days contain 96 samples normally, 92 at the spring DST transition, and 100
@@ -61,10 +66,10 @@ OUTPUT_DIR=/tmp/luxembourg-age \
 ## Official sources and licence
 
 - Dataset and CC0 licence: https://data.public.lu/en/datasets/niveau-deau/
-- Graph API: https://inondations.public.lu/api/station/graph-data/40 (the portal moved
-  from inondations.lu on 2026-09-15; the old host redirects every path to the new
-  homepage, so the scraper tries the candidates in `GRAPH_API_CANDIDATES` in order)
-- Station page: https://inondations.public.lu/en.html?lang=en&show-details=&station=40
+- Graph data: https://inondations.public.lu/content/dam/inondations/ctie/datas/Esch-Sure.json
+  (read by the new portal's own graph component; until about 2026-09-15 the source was
+  https://inondations.lu/api/station/graph-data/40, which now redirects to the new homepage)
+- Station page: https://inondations.public.lu/fr/sure/sure/barrage-esch-sauer.html
 - Station sheet: http://geoportail.eau.etat.lu/pdf/hydrometrie/FichesStations/40-Esch-Sure.pdf
 - Full historical data request: https://eau.gouvernement.lu/fr/demarches/demande-de-donnees.html
 
