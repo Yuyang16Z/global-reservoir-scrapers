@@ -1,9 +1,8 @@
 name: tmp Luxembourg endpoint discovery
 
-# Temporary, removed before merge: the flood portal moved to inondations.public.lu
-# (AEM) and /api/station/graph-data/40 is a 404 there. Round 2: base.js holds no
-# literal endpoint, only the .graph-water-levels / .dashboard-station components,
-# so print how those components get their data.
+# Temporary, removed before merge. Round 3: the new portal's graph component for
+# Barrage Esch-Sauer reads /content/dam/inondations/ctie/datas/Esch-Sure.json.
+# Print that file's structure so the scraper can be adapted to it.
 on:
   push:
     branches: [claude/friendly-rubin-w6s3d6]
@@ -17,42 +16,37 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: How the graph and station components load data
+      - name: Structure of the Esch-Sure graph JSON
         shell: python
         run: |
-          import re
+          import json
           import urllib.request
 
-          BASE = "https://inondations.public.lu"
+          url = "https://inondations.public.lu/content/dam/inondations/ctie/datas/Esch-Sure.json"
+          req = urllib.request.Request(url, headers={"User-Agent": "global-reservoir-scrapers/1.0"})
+          with urllib.request.urlopen(req, timeout=60) as r:
+              body = r.read()
+              print(f"HTTP {r.status} {r.geturl()} {r.headers.get('Content-Type')!r} "
+                    f"{len(body)} bytes, Last-Modified={r.headers.get('Last-Modified')!r}")
+          data = json.loads(body)
 
-          def get(path):
-              req = urllib.request.Request(BASE + path, headers={"User-Agent": "global-reservoir-scrapers/1.0"})
-              with urllib.request.urlopen(req, timeout=60) as r:
-                  return r.geturl(), r.read().decode("utf-8", "replace")
+          def describe(node, path="$", depth=0):
+              pad = "  " * depth
+              if isinstance(node, dict):
+                  print(f"{pad}{path}: object with {len(node)} keys")
+                  for key, value in list(node.items())[:40]:
+                      if isinstance(value, (dict, list)):
+                          describe(value, f"{path}.{key}", depth + 1)
+                      else:
+                          print(f"{pad}  {path}.{key} = {value!r}"[:300])
+              elif isinstance(node, list):
+                  print(f"{pad}{path}: list of {len(node)}")
+                  for i, item in enumerate(node[:3]):
+                      print(f"{pad}  [{i}] {json.dumps(item, ensure_ascii=False)[:400]}")
+                  if len(node) > 3:
+                      print(f"{pad}  [-1] {json.dumps(node[-1], ensure_ascii=False)[:400]}")
+                  if node and isinstance(node[0], dict):
+                      keys = sorted({k for item in node if isinstance(item, dict) for k in item})
+                      print(f"{pad}  item keys: {keys}")
 
-          def show(label, text, keys, before=300, after=700, per_key=3):
-              for key in keys:
-                  for m in list(re.finditer(re.escape(key), text))[:per_key]:
-                      chunk = text[max(0, m.start() - before):m.end() + after]
-                      print(f"--- {label} [{key}] @{m.start()}:\n{' '.join(chunk.split())}\n")
-
-          _, js = get("/etc.clientlibs/inondations/clientlibs/base.js")
-          show("base.js", js, ["graph-water-levels", "dashboard-station", "fetch(", "ajax",
-                               "XMLHttpRequest", "getJSON", "dataset", "getAttribute", ".json", "station"])
-
-          _, page = get("/fr.html?lang=fr&show-details=&station=40")
-          show("station page", page, ["graph-water-levels", "dashboard-station"], before=500, after=1500)
-
-          for basin in ("sure", "alzette"):
-              try:
-                  _, listing = get(f"/fr/{basin}/toutes-stations.html")
-              except Exception as exc:
-                  print(f"--- toutes-stations {basin}: {exc!r}")
-                  continue
-              links = sorted(set(re.findall(r'href="([^"#]+)"', listing)))
-              print(f"--- toutes-stations {basin}: {len(links)} links")
-              for link in links:
-                  if re.search(r"station|esch|barrage|sure|json|api", link, re.I):
-                      print("   ", link)
-              show(f"toutes-stations {basin}", listing, ["graph-water-levels", "dashboard-station", "Esch"],
-                   before=300, after=900, per_key=2)
+          describe(data)
