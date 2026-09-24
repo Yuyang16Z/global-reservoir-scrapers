@@ -38,23 +38,41 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
+        id: scrape
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/southafrica/capetown_wcwss
         run: python scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py
 
+      # The dashboard PDF is overwritten weekly. Both runs for the 2026-09-14
+      # dashboard fetched it and then failed to parse its date, and the PDF was
+      # never committed, so it can neither be re-parsed nor inspected. When the
+      # scrape fails, commit just the raw PDF and the run log - never half-merged
+      # outputs. The failed scrape step still turns the run red.
       - name: Commit & push new data
+        if: ${{ !cancelled() && steps.scrape.outcome != 'skipped' }}
+        env:
+          SCRAPE_OUTCOME: ${{ steps.scrape.outcome }}
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/southafrica/capetown_wcwss
-          git add scrapers/southafrica/capetown_wcwss
+          if [ "$SCRAPE_OUTCOME" = "success" ]; then
+            git add data/southafrica/capetown_wcwss
+            git add scrapers/southafrica/capetown_wcwss
+            msg="scheduled scrape"
+          else
+            git add data/southafrica/capetown_wcwss/raw data/southafrica/capetown_wcwss/run_logs
+            # Revert whatever else the failed run touched: it must not be committed,
+            # and `git pull --rebase` below refuses to run over unstaged changes.
+            git checkout -- data/southafrica/capetown_wcwss
+            msg="failed scrape, raw PDF and run log kept"
+          fi
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
-          git commit -m "data(southafrica/capetown_wcwss): scheduled scrape ${ts}"
+          git commit -m "data(southafrica/capetown_wcwss): ${msg} ${ts}"
           # Several scrapers can finish at once and race for the ref, so retry
           # the rebase-and-push instead of failing a run whose data is fine.
           for attempt in 1 2 3 4 5; do

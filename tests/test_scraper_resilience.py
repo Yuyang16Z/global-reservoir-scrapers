@@ -250,6 +250,21 @@ class CapeTownFallbackTests(unittest.TestCase):
         self.assertEqual(url, capetown.FALLBACK_PDF_URL)
         self.assertEqual(get.call_count, 2)
 
+    def test_dashboard_date_variants(self):
+        for text, expected in (
+            ("Storage 03 August 2026 Previous week", "2026-08-03"),  # the usual form
+            ("14 Sept 2026", "2026-09-14"),
+            ("14th September 2026", "2026-09-14"),
+            ("14 Sep. 2026", "2026-09-14"),
+            ("14September 2026", "2026-09-14"),  # space lost in PDF extraction
+            # an unrecognised first match no longer hides a valid later one
+            ("Week 14 Spring 2026 - dam levels 14 September 2026", "2026-09-14"),
+            ("31 September 2026", None),  # not a real date
+            ("Rainfall since May 2026", None),  # no day
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(capetown.find_date(text), expected)
+
 
 class PagasaFallbackTests(unittest.TestCase):
     def test_official_fallback_follows_primary_timeout(self):
