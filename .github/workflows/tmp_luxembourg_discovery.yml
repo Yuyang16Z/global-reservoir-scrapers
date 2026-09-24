@@ -1,8 +1,9 @@
 name: tmp Luxembourg endpoint discovery
 
 # Temporary, removed before merge: the flood portal moved to inondations.public.lu
-# (AEM) and /api/station/graph-data/40 is a 404 there. List the endpoint-like
-# strings in the site's own scripts and station page to find where graphs load from.
+# (AEM) and /api/station/graph-data/40 is a 404 there. Round 2: base.js holds no
+# literal endpoint, only the .graph-water-levels / .dashboard-station components,
+# so print how those components get their data.
 on:
   push:
     branches: [claude/friendly-rubin-w6s3d6]
@@ -16,19 +17,42 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Endpoint-like strings in the portal's own assets
+      - name: How the graph and station components load data
+        shell: python
         run: |
-          base=https://inondations.public.lu
-          for p in \
-            "/fr.html?lang=fr&show-details=&station=40" \
-            /etc.clientlibs/inondations/clientlibs/base.js \
-            /etc.clientlibs/inondations/clientlibs/clientlib-dependencies.js; do
-            echo "=== ${p}"
-            if ! curl -sSL --max-time 60 -A "global-reservoir-scrapers/1.0" -o body -w "HTTP %{http_code}, %{size_download} bytes, final %{url_effective}\n" "${base}${p}"; then
-              echo "fetch failed"
-              continue
-            fi
-            grep -oE "[\"'\`][^\"'\` <>]*(/api|api/|graph|station|\.json|/bin/|servlet|hydro)[^\"'\` <>]*[\"'\`]" body | sort -u | head -120
-            grep -oE "data-[a-z-]*(url|api|endpoint|src|station)[a-z-]*=\"[^\"]*\"" body | sort -u | head -40
-            grep -oE "<script[^>]+src=\"[^\"]+\"" body | sort -u | head -40
-          done
+          import re
+          import urllib.request
+
+          BASE = "https://inondations.public.lu"
+
+          def get(path):
+              req = urllib.request.Request(BASE + path, headers={"User-Agent": "global-reservoir-scrapers/1.0"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return r.geturl(), r.read().decode("utf-8", "replace")
+
+          def show(label, text, keys, before=300, after=700, per_key=3):
+              for key in keys:
+                  for m in list(re.finditer(re.escape(key), text))[:per_key]:
+                      chunk = text[max(0, m.start() - before):m.end() + after]
+                      print(f"--- {label} [{key}] @{m.start()}:\n{' '.join(chunk.split())}\n")
+
+          _, js = get("/etc.clientlibs/inondations/clientlibs/base.js")
+          show("base.js", js, ["graph-water-levels", "dashboard-station", "fetch(", "ajax",
+                               "XMLHttpRequest", "getJSON", "dataset", "getAttribute", ".json", "station"])
+
+          _, page = get("/fr.html?lang=fr&show-details=&station=40")
+          show("station page", page, ["graph-water-levels", "dashboard-station"], before=500, after=1500)
+
+          for basin in ("sure", "alzette"):
+              try:
+                  _, listing = get(f"/fr/{basin}/toutes-stations.html")
+              except Exception as exc:
+                  print(f"--- toutes-stations {basin}: {exc!r}")
+                  continue
+              links = sorted(set(re.findall(r'href="([^"#]+)"', listing)))
+              print(f"--- toutes-stations {basin}: {len(links)} links")
+              for link in links:
+                  if re.search(r"station|esch|barrage|sure|json|api", link, re.I):
+                      print("   ", link)
+              show(f"toutes-stations {basin}", listing, ["graph-water-levels", "dashboard-station", "Esch"],
+                   before=300, after=900, per_key=2)
