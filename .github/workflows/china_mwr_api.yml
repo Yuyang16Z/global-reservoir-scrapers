@@ -1,9 +1,10 @@
 name: China MWR API scrape
 
 # The MWR page is a current realtime table, but its report time is normally
-# 08:00 Beijing. Start at 12:20 and 20:20 Beijing time, then add a random
-# 0-20 minute delay. This gives two capture opportunities centered near 12:30
-# and 20:30 without sending the request at the same minute every day.
+# 08:00 Beijing. Start at 12:20, 20:20, and 04:20 Beijing time, then add a random
+# 0-20 minute delay. This gives three capture opportunities centered near 12:30,
+# 20:30, and 04:30, with the overnight opportunity before the next 08:00
+# replacement, without sending the request at the same minute every day.
 #
 # The jitter reduces the chance of colliding with other synchronised jobs. It is
 # NOT a countermeasure to bot detection, and this source has never shown any.
@@ -21,7 +22,7 @@ name: China MWR API scrape
 # site's custom-font obfuscation.
 on:
   schedule:
-    - cron: "20 4,12 * * *"
+    - cron: "20 4,12,20 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -57,6 +58,8 @@ jobs:
           sleep "${delay_seconds}"
 
       - name: Run scraper
+        id: scrape
+        continue-on-error: true
         env:
           TZ: Asia/Shanghai
         run: |
@@ -75,6 +78,7 @@ jobs:
           done
 
       - name: Commit & push new data
+        if: always() && steps.scrape.outcome != 'skipped'
         run: |
           set -e
           git config user.name  "github-actions[bot]"
@@ -97,3 +101,9 @@ jobs:
             echo "Push failed; retrying after 30 seconds."
             sleep 30
           done
+
+      - name: Surface scraper failure after preserving diagnostics
+        if: always() && steps.scrape.outcome == 'failure'
+        run: |
+          echo "China MWR scrape failed; diagnostics were preserved before failing the job."
+          exit 1

@@ -50,9 +50,10 @@ python scrapers/china/mwr_api/china_mwr_api_scraper.py --output-dir /tmp/china_m
 
 ## Cadence
 
-The GitHub Actions workflow starts at 04:20 and 12:20 UTC, then waits a random
+The GitHub Actions workflow starts at 04:20, 12:20, and 20:20 UTC, then waits a random
 0-20 minutes before requesting MWR. Requests therefore normally fall in
-12:20-12:40 and 20:20-20:40 Beijing time, with possible additional GitHub
-scheduler delay. Manual recovery runs skip this delay. The source is a current
-snapshot rather than a historical API, so both daily runs provide two chances
-to archive the table before replacement.
+12:20-12:40, 20:20-20:40, and 04:20-04:40 Beijing time, with possible additional
+GitHub scheduler delay. Manual recovery runs skip this delay. The source is a
+current snapshot rather than a historical API, so the overnight run provides a
+third recovery chance before the next normal 08:00 replacement. Failed attempts
+write a `source_unavailable` run summary before the workflow remains red.
