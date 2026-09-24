@@ -84,6 +84,66 @@ class ChinaMwrTransportTests(unittest.TestCase):
         self.assertTrue(diagnostics["fallback_used"])
         self.assertIn("network is unreachable", diagnostics["prior_errors"][0])
 
+    def test_doh_address_recovers_name_resolution_failure(self):
+        # The 2026-09-17..22 evening failure: the runner cannot resolve the host.
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        calls = []
+
+        def post(url, headers, data, timeout):
+            calls.append((url, headers.get("Host")))
+            if url.startswith(f"http://{mwr.API_HOST}/"):
+                raise requests.ConnectionError(
+                    f"Failed to resolve '{mwr.API_HOST}' "
+                    "([Errno -3] Temporary failure in name resolution)"
+                )
+            response = mock.Mock()
+            response.raise_for_status.return_value = None
+            response.json.return_value = payload
+            return response
+
+        doh = mock.Mock()
+        doh.raise_for_status.return_value = None
+        doh.json.return_value = {"Status": 0, "Answer": [
+            {"name": f"{mwr.API_HOST}.", "type": 5, "data": "cdn.example.cn."},
+            {"name": "cdn.example.cn.", "type": 1, "data": "203.0.113.7"},
+        ]}
+        with mock.patch.object(mwr.requests, "post", side_effect=post), mock.patch.object(
+            mwr.requests, "get", return_value=doh
+        ) as get:
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "direct_official_api_doh_address")
+        self.assertEqual(diagnostics["resolved_address"], "203.0.113.7")
+        self.assertEqual(diagnostics["fetch_url"], mwr.API_URL)
+        self.assertEqual(
+            calls[-1],
+            (mwr.API_URL.replace(mwr.API_HOST, "203.0.113.7", 1), mwr.API_HOST),
+        )
+        # One DoH lookup, no relay request.
+        self.assertEqual(get.call_count, 1)
+        self.assertEqual(get.call_args.args[0], mwr.DOH_RESOLVERS[0])
+
+    def test_relay_still_follows_when_doh_cannot_resolve(self):
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        no_answer = mock.Mock()
+        no_answer.raise_for_status.return_value = None
+        no_answer.json.return_value = {"Status": 2}
+        relay = mock.Mock(text="Markdown Content:\n" + json.dumps(payload))
+        relay.raise_for_status.return_value = None
+        with mock.patch.object(
+            mwr.requests,
+            "post",
+            side_effect=requests.ConnectionError("Temporary failure in name resolution"),
+        ), mock.patch.object(
+            mwr.requests,
+            "get",
+            side_effect=[no_answer] * len(mwr.DOH_RESOLVERS) + [relay],
+        ):
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "jina_reader_relay")
+        self.assertTrue(any("DoH lookup failed" in e for e in diagnostics["prior_errors"]))
+
 
 class AbhsmTransportTests(unittest.TestCase):
     def test_pdf_payload_validation(self):

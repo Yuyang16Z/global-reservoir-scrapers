@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import ipaddress
 import json
 import re
 import sys
@@ -23,6 +24,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 import requests
@@ -30,7 +32,23 @@ import requests
 
 PAGE_URL = "http://xxfb.mwr.cn/sq_dxsk.html?v=1.0"
 API_URL = "http://xxfb.mwr.cn/OTMxbwsvgKjspwi/OTMbmdvbjQhky"
+API_HOST = urlsplit(API_URL).hostname
 RELAY_API_URL = f"https://r.jina.ai/{API_URL}"
+# JSON DNS-over-HTTPS endpoints, used only when the runner's own resolver cannot
+# resolve API_HOST. AliDNS comes first as the resolver nearest the mwr.cn name
+# servers; Google and Cloudflare are independent fallbacks.
+DOH_RESOLVERS = (
+    "https://dns.alidns.com/resolve",
+    "https://dns.google/resolve",
+    "https://cloudflare-dns.com/dns-query",
+)
+DOH_TIMEOUT_SECONDS = 15
+NAME_RESOLUTION_MARKERS = (
+    "Failed to resolve",  # urllib3 2.x NameResolutionError
+    "Temporary failure in name resolution",
+    "Name or service not known",
+    "nodename nor servname provided",
+)
 TZ = ZoneInfo("Asia/Shanghai")
 
 TAG_RE = re.compile(r"#([A-Za-z0-9_]+)otltag([\s\S]*?)#FontTag")
@@ -137,6 +155,46 @@ def parse_relay_payload(text: str) -> dict[str, Any]:
     return validate_api_payload(payload)
 
 
+def is_name_resolution_failure(exc: BaseException) -> bool:
+    """True when the host name could not be resolved, as opposed to a routing or HTTP failure."""
+    text = str(exc)
+    return any(marker in text for marker in NAME_RESOLUTION_MARKERS)
+
+
+def resolve_via_doh(host: str) -> tuple[list[str], str]:
+    """IPv4 addresses for host from the first DNS-over-HTTPS resolver that answers."""
+    errors: list[str] = []
+    for endpoint in DOH_RESOLVERS:
+        try:
+            response = requests.get(
+                endpoint,
+                params={"name": host, "type": "1"},  # 1 = A record
+                headers={"Accept": "application/dns-json"},
+                timeout=DOH_TIMEOUT_SECONDS,
+            )
+            response.raise_for_status()
+            addresses = []
+            for answer in response.json().get("Answer") or []:
+                if answer.get("type") != 1:
+                    continue  # CNAME hops carry a name, not an address
+                try:
+                    addresses.append(str(ipaddress.IPv4Address(answer.get("data"))))
+                except ValueError:
+                    continue
+            if addresses:
+                return addresses, endpoint
+            errors.append(f"{endpoint}: no A record")
+        except Exception as exc:
+            errors.append(f"{endpoint}: {exc}")
+    raise RuntimeError("DoH lookup failed: " + "; ".join(errors))
+
+
+def post_official_api(url: str, headers: dict[str, str], timeout_seconds: int) -> dict[str, Any]:
+    response = requests.post(url, headers=headers, data="null", timeout=timeout_seconds)
+    response.raise_for_status()
+    return validate_api_payload(response.json())
+
+
 def fetch_api_json(
     timeout_seconds: int,
     retries: int,
@@ -147,16 +205,10 @@ def fetch_api_json(
         "User-Agent": "Mozilla/5.0",
     }
     errors: list[str] = []
+    name_resolution_failed = False
     for attempt in range(retries + 1):
         try:
-            response = requests.post(
-                API_URL,
-                headers=headers,
-                data="null",
-                timeout=timeout_seconds,
-            )
-            response.raise_for_status()
-            payload = validate_api_payload(response.json())
+            payload = post_official_api(API_URL, headers, timeout_seconds)
             return payload, {
                 "transport": "direct_official_api",
                 "fetch_url": API_URL,
@@ -164,7 +216,38 @@ def fetch_api_json(
                 "prior_errors": errors,
             }
         except Exception as exc:
+            name_resolution_failed = name_resolution_failed or is_name_resolution_failure(exc)
             errors.append(f"direct attempt {attempt + 1}: {exc}")
+
+    # 2026-09-17..22: six evening runs failed because the runner's resolver could
+    # not resolve the MWR host ("Temporary failure in name resolution") while other
+    # hosts resolved, and the relay below could not fetch it either (HTTP 422).
+    # When - and only when - name resolution is what failed, look the host up
+    # through public DoH resolvers and send the same official request to that
+    # address with the original Host header. The official URL stays the source URL.
+    if name_resolution_failed:
+        try:
+            addresses, resolver = resolve_via_doh(API_HOST)
+        except Exception as exc:
+            errors.append(str(exc))
+        else:
+            for address in addresses:
+                try:
+                    payload = post_official_api(
+                        API_URL.replace(API_HOST, address, 1),
+                        {**headers, "Host": API_HOST},
+                        timeout_seconds,
+                    )
+                    return payload, {
+                        "transport": "direct_official_api_doh_address",
+                        "fetch_url": API_URL,
+                        "resolved_address": address,
+                        "resolver": resolver,
+                        "fallback_used": True,
+                        "prior_errors": errors,
+                    }
+                except Exception as exc:
+                    errors.append(f"direct via {address} ({resolver}): {exc}")
 
     # GitHub-hosted runners intermittently have no route to the MWR IPv4/IPv6
     # addresses. Jina Reader retrieves the same public official URL and wraps
@@ -189,8 +272,8 @@ def fetch_api_json(
             errors.append(f"relay attempt {attempt + 1}: {exc}")
 
     raise RuntimeError(
-        f"API request failed through both transports after {retries + 1} attempts each: "
-        + " | ".join(errors)
+        f"API request failed through every transport ({retries + 1} direct and "
+        f"{retries + 1} relay attempts): " + " | ".join(errors)
     )
 
 

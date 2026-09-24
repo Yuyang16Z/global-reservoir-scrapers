@@ -14,6 +14,10 @@ name: China MWR API scrape
 # IF THIS WORKFLOW FAILS AGAIN: read the failure mode before changing the schedule.
 #   `Network is unreachable` / `Connection timed out` -> routing problem. Check the
 #     runner's egress, the fallback path, and retry behaviour. Do NOT tune timing.
+#   `Temporary failure in name resolution` -> the runner's resolver, not the site
+#     (six evening runs 2026-09-17..22). The scraper now resolves the host through
+#     public DoH and retries the official request by address before the relay.
+#     Again a transport problem: do NOT tune timing.
 #   403 / 429 / CAPTCHA page / explicit ban / rejection tied to a UA or IP range
 #     -> only then treat it as bot detection.
 # Tuning the schedule against an L3 failure will mask the real cause.
