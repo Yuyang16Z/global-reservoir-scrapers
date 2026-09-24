@@ -60,6 +60,15 @@ EXCUSED: dict[str, str] = {
         "that file; the scraper probes the last eight Mondays every run as a "
         "resumption watch. Reported but not failed. Reviewed 2026-08-04."
     ),
+    "morocco/abhsm": (
+        "The daily barrage PDF stopped changing after the 2026-06-18 issue (every run "
+        "to 2026-07-24 re-read that report), and since 2026-08-04 www.abhsm.ma has "
+        "timed out on every run from GitHub-hosted runners. The scraper keeps probing "
+        "twice daily and logs source_unavailable, so a resumed bulletin shows up here "
+        "as a fresh date. Left unexcused it held this monitor red every day, which hid "
+        "new failures (luxembourg/age from 2026-09-15). Reported but not failed. "
+        "Excused 2026-09-24; review by 2026-10-24."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
