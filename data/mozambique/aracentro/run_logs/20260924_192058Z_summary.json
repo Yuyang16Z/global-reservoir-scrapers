@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-09-24 19:20:41Z",
+  "source": "mozambique/aracentro",
+  "url": "https://aracentroip.gov.mz/wp-sitemap-posts-my_bolentins-1.xml",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/mozambique/aracentro",
+  "status": "ok",
+  "errors": [],
+  "sitemap_pdfs": 562,
+  "new_bulletins": 2,
+  "retried_unavailable": 11,
+  "downloaded": 2,
+  "failed": 11,
+  "values_parsed": 0,
+  "rows_added": 0,
+  "rows_updated": 0,
+  "finished_at": "2026-09-24 19:20:58Z"
+}
