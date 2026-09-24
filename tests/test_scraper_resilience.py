@@ -52,6 +52,10 @@ luxembourg = load_module(
     "luxembourg_age_scraper",
     "scrapers/luxembourg/age/luxembourg_age_scraper.py",
 )
+aracentro = load_module(
+    "mozambique_aracentro_scraper",
+    "scrapers/mozambique/aracentro/mozambique_aracentro_scraper.py",
+)
 
 
 class ChinaMwrTransportTests(unittest.TestCase):
@@ -369,6 +373,47 @@ class LuxembourgNonJsonTests(unittest.TestCase):
             payload, graph = luxembourg.fetch_json(luxembourg.GRAPH_API_URL)
         self.assertEqual(payload, body)
         self.assertEqual(graph["options"]["stationNumberTrimmed"], "40")
+
+
+class AraCentroRetryTests(unittest.TestCase):
+    def test_transient_failures_are_retried_and_404s_are_not(self):
+        base = "https://aracentroip.gov.mz/wp-content/uploads/2024/02/"
+        urls = [base + f"{n}.pdf" for n in ("done", "new_ok", "new_down", "new_404",
+                                             "was_down", "was_404")]
+        pdf = mock.Mock(status_code=200, content=b"%PDF-1.4")
+        not_found = mock.Mock(status_code=404)
+        responses = {"new_ok": pdf, "new_down": None, "new_404": not_found,
+                     "was_down": pdf}
+        requested = []
+
+        def get(url, *, expect_pdf=False, return_404=False):
+            name = url.rsplit("/", 1)[1][:-4]
+            requested.append(name)
+            return responses[name]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            patches = {"RAW_DIR": out / "raw", "TS_DIR": out / "timeseries",
+                       "RUN_LOG_DIR": out / "run_logs", "MANIFEST": out / "manifest.csv"}
+            with mock.patch.multiple(aracentro, **patches), mock.patch.object(
+                aracentro, "sitemap_pdfs", return_value=urls
+            ), mock.patch.object(aracentro, "get_with_retries", side_effect=get), \
+                    mock.patch.object(aracentro, "parse_bulletin",
+                                      return_value=("2024-02-01", [])):
+                aracentro.save_manifest({
+                    "done.pdf": {"bulletin_file": "done.pdf", "status": "ok"},
+                    "was_down.pdf": {"bulletin_file": "was_down.pdf",
+                                     "status": "unavailable"},
+                    "was_404.pdf": {"bulletin_file": "was_404.pdf", "status": "missing"},
+                })
+                self.assertEqual(aracentro.main(), 0)
+                manifest = aracentro.load_manifest()
+        # Never-attempted bulletins first, then the earlier transient failure.
+        self.assertEqual(requested, ["new_ok", "new_down", "new_404", "was_down"])
+        self.assertEqual(manifest["new_down.pdf"]["status"], "unavailable")
+        self.assertEqual(manifest["new_404.pdf"]["status"], "missing")
+        self.assertEqual(manifest["was_down.pdf"]["status"], "no_reservoir_data")
+        self.assertEqual(manifest["was_404.pdf"]["status"], "missing")
 
 
 class FreshnessComponentTests(unittest.TestCase):

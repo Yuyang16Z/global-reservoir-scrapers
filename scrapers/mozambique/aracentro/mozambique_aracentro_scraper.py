@@ -98,7 +98,7 @@ def strip_accents(s: str) -> str:
                    if unicodedata.category(c) != "Mn")
 
 
-def get_with_retries(url: str, *, expect_pdf: bool = False):
+def get_with_retries(url: str, *, expect_pdf: bool = False, return_404: bool = False):
     for attempt in range(1, RETRIES + 1):
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
@@ -108,7 +108,7 @@ def get_with_retries(url: str, *, expect_pdf: bool = False):
             time.sleep(15 * attempt)
             continue
         if r.status_code == 404:
-            return None
+            return r if return_404 else None
         ok = r.status_code == 200 and (not expect_pdf or r.content.startswith(b"%PDF"))
         if ok:
             return r
@@ -274,6 +274,11 @@ def parse_bulletin(path: Path) -> tuple[str | None, list[dict]]:
     return date, rows
 
 
+def bulletin_name(url: str) -> str:
+    """Manifest key for a bulletin URL: its decoded file name, spaces as underscores."""
+    return requests.utils.unquote(url.rsplit("/", 1)[1]).replace(" ", "_")
+
+
 def load_manifest() -> dict[str, dict]:
     out: dict[str, dict] = {}
     if MANIFEST.exists():
@@ -359,13 +364,19 @@ def main() -> int:
     try:
         urls = sitemap_pdfs()
         manifest = load_manifest()
-        todo = [u for u in urls
-                if requests.utils.unquote(u.rsplit("/", 1)[1]).replace(" ", "_")
-                not in manifest]
+        # A download that failed for a transient reason is recorded "unavailable"
+        # and retried after the never-attempted bulletins; skipping every manifest
+        # entry would drop it for good. A 404 is recorded "missing" and not retried.
+        new = [u for u in urls if bulletin_name(u) not in manifest]
+        retry = [u for u in urls
+                 if manifest.get(bulletin_name(u), {}).get("status") == "unavailable"]
+        todo = new + retry
         log["sitemap_pdfs"] = len(urls)
-        log["new_bulletins"] = len(todo)
+        log["new_bulletins"] = len(new)
+        log["retried_unavailable"] = len(retry)
         if len(todo) > MAX_NEW_PER_RUN:
-            print(f"[INFO] {len(todo)} new bulletins; capping this run at "
+            print(f"[INFO] {len(todo)} bulletins to fetch ({len(new)} new, "
+                  f"{len(retry)} retried); capping this run at "
                   f"{MAX_NEW_PER_RUN} (the rest follow next run)", flush=True)
             todo = todo[:MAX_NEW_PER_RUN]
             log["capped_at"] = MAX_NEW_PER_RUN
@@ -373,17 +384,17 @@ def main() -> int:
         all_rows: list[dict] = []
         downloaded = failed = 0
         for url in todo:
-            name = requests.utils.unquote(url.rsplit("/", 1)[1]).replace(" ", "_")
+            name = bulletin_name(url)
             m = re.search(r"/uploads/(\d{4})/", url)
             year = m.group(1) if m else "unknown"
             dest = RAW_DIR / year / name
             dest.parent.mkdir(parents=True, exist_ok=True)
-            r = get_with_retries(url, expect_pdf=True)
-            if r is None:
+            r = get_with_retries(url, expect_pdf=True, return_404=True)
+            if r is None or r.status_code == 404:
                 failed += 1
                 manifest[name] = {"bulletin_file": name, "url": url,
                                   "obs_date": "", "local_path": "",
-                                  "status": "unavailable"}
+                                  "status": "unavailable" if r is None else "missing"}
                 continue
             dest.write_bytes(r.content)
             downloaded += 1
