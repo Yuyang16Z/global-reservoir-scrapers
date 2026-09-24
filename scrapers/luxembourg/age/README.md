@@ -61,8 +61,10 @@ OUTPUT_DIR=/tmp/luxembourg-age \
 ## Official sources and licence
 
 - Dataset and CC0 licence: https://data.public.lu/en/datasets/niveau-deau/
-- Graph API: https://inondations.lu/api/station/graph-data/40
-- Station page: https://inondations.lu/basins/sauer?lang=en&show-details=&station=40
+- Graph API: https://inondations.public.lu/api/station/graph-data/40 (the portal moved
+  from inondations.lu on 2026-09-15; the old host redirects every path to the new
+  homepage, so the scraper tries the candidates in `GRAPH_API_CANDIDATES` in order)
+- Station page: https://inondations.public.lu/en.html?lang=en&show-details=&station=40
 - Station sheet: http://geoportail.eau.etat.lu/pdf/hydrometrie/FichesStations/40-Esch-Sure.pdf
 - Full historical data request: https://eau.gouvernement.lu/fr/demarches/demande-de-donnees.html
 

@@ -26,8 +26,18 @@ DAILY_DIR = OUTPUT_DIR / "timeseries" / "daily"
 RAW_DIR = OUTPUT_DIR / "raw" / "daily"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
-GRAPH_API_URL = "https://inondations.lu/api/station/graph-data/40"
-STATION_PAGE_URL = "https://inondations.lu/basins/sauer?lang=en&show-details=&station=40"
+# On 2026-09-15 the portal moved from inondations.lu to inondations.public.lu, and the
+# old host now redirects every path, the API included, to the new homepage (HTTP 200,
+# text/html). The new site keeps the old page parameters (?station=..&show-details=),
+# so the API path is tried on the new host first; the old hosts stay as fallbacks in
+# case the move is reverted. The first candidate that serves station-40 data wins.
+GRAPH_API_URL = "https://inondations.public.lu/api/station/graph-data/40"
+GRAPH_API_CANDIDATES = (
+    GRAPH_API_URL,
+    "https://www.inondations.lu/api/station/graph-data/40",
+    "https://inondations.lu/api/station/graph-data/40",
+)
+STATION_PAGE_URL = "https://inondations.public.lu/en.html?lang=en&show-details=&station=40"
 DATASET_URL = "https://data.public.lu/en/datasets/niveau-deau/"
 STATION_SHEET_URL = (
     "http://geoportail.eau.etat.lu/pdf/hydrometrie/FichesStations/40-Esch-Sure.pdf"
@@ -167,6 +177,14 @@ def describe_non_json(payload: bytes, response: Any) -> str:
     title = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
     if title:
         parts.append(f"title={' '.join(title.group(1).split())!r}")
+    # A page instead of data: what it loads and any API paths it names are where a
+    # moved endpoint shows up.
+    scripts = re.findall(r"<script[^>]+src=[\"']([^\"']+)", text, re.IGNORECASE)
+    if scripts:
+        parts.append(f"scripts {scripts[:10]}")
+    api_refs = sorted(set(re.findall(r"[\"'`]((?:https?://[^\"'`\s]+)?/api/[^\"'`\s]*)", text)))
+    if api_refs:
+        parts.append(f"api references {api_refs[:10]}")
     parts.append(f"body starts {' '.join(text.split())[:NON_JSON_EXCERPT_CHARS]!r}")
     return ", ".join(parts)
 
@@ -318,6 +336,19 @@ def validate_source(graph: dict[str, Any]) -> None:
         raise RuntimeError("AGE response contains no level observations")
 
 
+def fetch_graph() -> tuple[bytes, dict[str, Any], str]:
+    """Station-40 graph data from the first candidate endpoint that serves it."""
+    errors: list[str] = []
+    for url in GRAPH_API_CANDIDATES:
+        try:
+            payload, graph = fetch_json(url)
+            validate_source(graph)
+            return payload, graph, url
+        except Exception as exc:
+            errors.append(str(exc) if url in str(exc) else f"{url}: {exc}")
+    raise RuntimeError("No graph API candidate served station 40: " + " || ".join(errors))
+
+
 def save_raw(payload: bytes, retrieved_at: datetime) -> Path:
     path = RAW_DIR / f"station_40_window_{retrieved_at.date().isoformat()}.json.gz"
     with gzip.open(path, "wb", compresslevel=9) as handle:
@@ -329,8 +360,7 @@ def run(max_lag_days: int) -> dict[str, Any]:
     ensure_dirs()
     write_static_metadata()
     retrieved_at = datetime.now(timezone.utc)
-    payload, graph = fetch_json(GRAPH_API_URL)
-    validate_source(graph)
+    payload, graph, source_api = fetch_graph()
     raw_path = save_raw(payload, retrieved_at)
 
     current_rows, counters = build_complete_daily_rows(graph["levels"])
@@ -353,7 +383,7 @@ def run(max_lag_days: int) -> dict[str, Any]:
 
     summary: dict[str, Any] = {
         "retrieved_at_utc": retrieved_at.isoformat(),
-        "source_api": GRAPH_API_URL,
+        "source_api": source_api,
         "reservoir_id": RESERVOIR_ID,
         "source_points": counters["source_points"],
         "complete_days_in_source_window": counters["accepted_complete_daily_mean"],

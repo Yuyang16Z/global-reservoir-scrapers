@@ -313,16 +313,17 @@ class PagasaFallbackTests(unittest.TestCase):
 
 
 class FakeUrlopenResponse:
-    def __init__(self, body: bytes, content_type: str):
+    def __init__(self, body: bytes, content_type: str, url: str | None = None):
         self.body = body
         self.status = 200
         self.headers = {"Content-Type": content_type}
+        self.url = url or luxembourg.GRAPH_API_URL
 
     def read(self) -> bytes:
         return self.body
 
     def geturl(self) -> str:
-        return luxembourg.GRAPH_API_URL
+        return self.url
 
     def __enter__(self):
         return self
@@ -362,6 +363,42 @@ class LuxembourgNonJsonTests(unittest.TestCase):
             "text/html",
         )
         self.assertIn("title='Maintenance'", message)
+
+    def test_moved_portal_falls_through_to_a_candidate_that_serves_station_40(self):
+        # What the old host has returned since 2026-09-15: the new site's homepage.
+        homepage = (b'\n<!DOCTYPE HTML><html><head><title>Inondations - Luxembourg</title>'
+                    b'<script src="/etc/designs/inondations/app.js"></script>'
+                    b'<script>var cfg = {data: "/api/station/graph-data/"};</script></head></html>')
+        station = json.dumps({
+            "options": {"stationNumberTrimmed": "40", "waterLevelUnit": "MetersOverSeaLevel"},
+            "levels": [{"date": "2026-09-24T00:00:00Z", "value": 321.0}],
+        }).encode()
+        second = luxembourg.GRAPH_API_CANDIDATES[1]
+
+        def urlopen(request, timeout):
+            if request.full_url == second:
+                return FakeUrlopenResponse(station, "application/json", second)
+            return FakeUrlopenResponse(homepage, "text/html", "https://inondations.public.lu/")
+
+        with mock.patch.object(luxembourg.urllib.request, "urlopen", side_effect=urlopen), \
+                mock.patch.object(luxembourg.time, "sleep"):
+            payload, graph, url = luxembourg.fetch_graph()
+        self.assertEqual(url, second)
+        self.assertEqual(payload, station)
+
+        # With no candidate serving data, the error names every URL and what the page loads.
+        with mock.patch.object(
+            luxembourg.urllib.request,
+            "urlopen",
+            return_value=FakeUrlopenResponse(homepage, "text/html", "https://inondations.public.lu/"),
+        ), mock.patch.object(luxembourg.time, "sleep"):
+            with self.assertRaises(RuntimeError) as raised:
+                luxembourg.fetch_graph()
+        message = str(raised.exception)
+        for candidate in luxembourg.GRAPH_API_CANDIDATES:
+            self.assertIn(candidate, message)
+        self.assertIn("scripts ['/etc/designs/inondations/app.js']", message)
+        self.assertIn("api references ['/api/station/graph-data/']", message)
 
     def test_json_payload_still_parses(self):
         body = b'{"options": {"stationNumberTrimmed": "40"}, "levels": []}'
