@@ -1,0 +1,34 @@
+name: tmp Luxembourg endpoint discovery
+
+# Temporary, removed before merge: the flood portal moved to inondations.public.lu
+# (AEM) and /api/station/graph-data/40 is a 404 there. List the endpoint-like
+# strings in the site's own scripts and station page to find where graphs load from.
+on:
+  push:
+    branches: [claude/friendly-rubin-w6s3d6]
+    paths: [.github/workflows/tmp_luxembourg_discovery.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Endpoint-like strings in the portal's own assets
+        run: |
+          base=https://inondations.public.lu
+          for p in \
+            "/fr.html?lang=fr&show-details=&station=40" \
+            /etc.clientlibs/inondations/clientlibs/base.js \
+            /etc.clientlibs/inondations/clientlibs/clientlib-dependencies.js; do
+            echo "=== ${p}"
+            if ! curl -sSL --max-time 60 -A "global-reservoir-scrapers/1.0" -o body -w "HTTP %{http_code}, %{size_download} bytes, final %{url_effective}\n" "${base}${p}"; then
+              echo "fetch failed"
+              continue
+            fi
+            grep -oE "[\"'\`][^\"'\` <>]*(/api|api/|graph|station|\.json|/bin/|servlet|hydro)[^\"'\` <>]*[\"'\`]" body | sort -u | head -120
+            grep -oE "data-[a-z-]*(url|api|endpoint|src|station)[a-z-]*=\"[^\"]*\"" body | sort -u | head -40
+            grep -oE "<script[^>]+src=\"[^\"]+\"" body | sort -u | head -40
+          done
