@@ -104,7 +104,12 @@ META_COLUMNS = ["reservoir_id", "reservoir_name", "reservoir_name_en", "country"
 MONTHS = {m: i for i, m in enumerate(
     ["January", "February", "March", "April", "May", "June", "July", "August",
      "September", "October", "November", "December"], 1)}
-DATE_RE = re.compile(r"\b(\d{1,2})\s+([A-Z][a-z]+)\s+(\d{4})\b")
+# The 2026-09-14 dashboard failed with "no dashboard date parsed" on both of its
+# runs and its PDF was not kept, so the variant it used is unknown. Accept the
+# common ones - "Sep"/"Sept", ordinal days ("14th"), a dropped space - and look
+# past a first match whose month is not recognised instead of giving up on it.
+MONTH_ALIASES = {**MONTHS, **{m[:3]: i for m, i in MONTHS.items()}, "Sept": 9}
+DATE_RE = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s*([A-Z][a-z]+)\.?\s+(\d{4})\b")
 NUM = r"-?\d[\d,]*(?:\.\d+)?"
 
 
@@ -195,6 +200,19 @@ def dam_rows_present(text: str) -> bool:
     return False
 
 
+def find_date(text: str) -> str | None:
+    """First "d Month yyyy" in text with a recognised month and a real date, as ISO."""
+    for m in DATE_RE.finditer(text):
+        month = MONTH_ALIASES.get(m.group(2))
+        if not month:
+            continue
+        try:
+            return datetime(int(m.group(3)), month, int(m.group(1))).date().isoformat()
+        except ValueError:
+            continue
+    return None
+
+
 def parse_dashboard(pdf_path: Path, fetched_at: str) -> tuple[str | None, list[dict]]:
     # The caption "MAJOR DAMS" also appears on the summary page, so pick the
     # page that actually carries dam rows rather than the first textual match.
@@ -211,16 +229,11 @@ def parse_dashboard(pdf_path: Path, fetched_at: str) -> tuple[str | None, list[d
     obs_date = prev_date = None
     for line in text.split("\n"):
         if "Previous week" in line or re.search(r"^\s*Ml\b", line):
-            m = DATE_RE.search(line)
-            if m and m.group(2) in MONTHS:
-                obs_date = (f"{int(m.group(3)):04d}-{MONTHS[m.group(2)]:02d}-"
-                            f"{int(m.group(1)):02d}")
+            obs_date = find_date(line)
+            if obs_date:
                 break
     if obs_date is None:
-        m = DATE_RE.search(text)
-        if m and m.group(2) in MONTHS:
-            obs_date = (f"{int(m.group(3)):04d}-{MONTHS[m.group(2)]:02d}-"
-                        f"{int(m.group(1)):02d}")
+        obs_date = find_date(text)
     if obs_date:
         d = datetime.strptime(obs_date, "%Y-%m-%d")
         prev_date = (d.toordinal() - 7)

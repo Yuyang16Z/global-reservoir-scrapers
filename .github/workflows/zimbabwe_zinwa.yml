@@ -37,23 +37,41 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
+        id: scrape
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/zimbabwe/zinwa
         run: python scrapers/zimbabwe/zinwa/zimbabwe_zinwa_scraper.py
 
+      # The page is overwritten in place, so a page the parser cannot read is still
+      # the only copy of that week's table (the 09-15/18/22 pages were lost this
+      # way). When the scrape fails, commit just the raw snapshot and the run log so
+      # the week can be re-parsed once the parser is fixed - never half-merged
+      # outputs. The failed scrape step still turns the run red.
       - name: Commit & push new data
+        if: ${{ !cancelled() && steps.scrape.outcome != 'skipped' }}
+        env:
+          SCRAPE_OUTCOME: ${{ steps.scrape.outcome }}
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/zimbabwe/zinwa
-          git add scrapers/zimbabwe/zinwa
+          if [ "$SCRAPE_OUTCOME" = "success" ]; then
+            git add data/zimbabwe/zinwa
+            git add scrapers/zimbabwe/zinwa
+            msg="scheduled scrape"
+          else
+            git add data/zimbabwe/zinwa/raw data/zimbabwe/zinwa/run_logs
+            # Revert whatever else the failed run touched: it must not be committed,
+            # and `git pull --rebase` below refuses to run over unstaged changes.
+            git checkout -- data/zimbabwe/zinwa
+            msg="failed scrape, raw page and run log kept"
+          fi
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
-          git commit -m "data(zimbabwe/zinwa): scheduled scrape ${ts}"
+          git commit -m "data(zimbabwe/zinwa): ${msg} ${ts}"
           # Several scrapers can finish at once and race for the ref, so retry
           # the rebase-and-push instead of failing a run whose data is fine.
           for attempt in 1 2 3 4 5; do

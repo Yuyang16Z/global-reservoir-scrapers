@@ -224,7 +224,7 @@
       "max_schedule_gap_hours": 1,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Append-only accumulator keyed on (prefecture, dam_jp, observed_at); a repeated observation time is written once. The accumulated file IS the series because the source publishes no history.",
-      "schedule_rationale": "No backfill path exists: historical queries return zero dam rows and the Wayback Machine holds no snapshot of this servlet, so anything a run misses is lost permanently. The source advances every 10-30 minutes, which is a continuous signal rather than a discrete expiring publication; the intended product is therefore an HOURLY sampled series. Running every 30 minutes gives each hourly slot two capture opportunities, so a single failed or delayed run does not create a hole. A twice-daily cadence would capture 2 of roughly 48 daily observations and is not appropriate here.",
+      "schedule_rationale": "No backfill path exists: historical queries return zero dam rows and the Wayback Machine holds no snapshot of this servlet, so anything a run misses is lost permanently. The source advances every 10-30 minutes, which is a continuous signal rather than a discrete expiring publication; the intended product is therefore an HOURLY sampled series. Running every 30 minutes gives each hourly slot two capture opportunities, so a single failed or delayed run does not create a hole. A twice-daily cadence would capture 2 of roughly 48 daily observations and is not appropriate here. Measured 2026-09-17..24: GitHub delivered 43 of 336 scheduled runs (about six a day), leaving 5-8 observed hours per prefecture per day; a complete hourly series needs the external dispatch trigger described in README.md (Scheduled runs).",
       "workflow": ".github/workflows/japan_prefectural.yml",
       "scraper": "scrapers/japan/prefectural/japan_prefectural_scraper.py",
       "data_path": "data/japan/prefectural",
@@ -244,7 +244,7 @@
       "max_schedule_gap_hours": 2,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Append-only accumulator keyed on (site, dam_jp, observed_at). Fukushima and Yamaguchi republish hourly; JWA and Hyogo publish daily and dedup to one row per observation date.",
-      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima and Yamaguchi advance hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated.",
+      "schedule_rationale": "No backfill path: these pages carry only the current value and the Wayback Machine does not hold the underlying tables. Fukushima and Yamaguchi advance hourly, so hourly capture with a 2-hour maximum gap gives each hourly observation two chances before it is replaced. The daily sites cost nothing extra because repeated observation dates are deduplicated. Measured 2026-09-17..24: GitHub delivered 41 of 168 scheduled runs (about six a day); a complete hourly series needs the external dispatch trigger described in README.md (Scheduled runs).",
       "workflow": ".github/workflows/japan_prefectural_static.yml",
       "scraper": "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
       "data_path": "data/japan/prefectural_static",
@@ -273,6 +273,27 @@
       "data_path": "data/japan/shimane",
       "deployment_status": "active",
       "licence_gate": "undeclared_review. Public commit authorised by the project owner on 2026-09-09; attribution to Shimane Prefecture recorded in the scraper README."
+    },
+    {
+      "source_id": "lesotho/lhda",
+      "country": "Lesotho",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 168,
+      "timezone": "Africa/Maseru",
+      "cron": [
+        "20 5 * * *",
+        "20 14 * * *"
+      ],
+      "max_schedule_gap_hours": 15,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Store each dam's fill percentage under the widget's own printed \"updated on\" date and merge on (measurement_date, reservoir_id), so repeated captures of an unchanged figure add nothing.",
+      "schedule_rationale": "07:20 and 16:20 Africa/Maseru. The homepage widget is overwritten in place, so an unobserved change is lost; the afternoon run recovers a failed morning run the same day. LHDA updates weekly (every printed date from 2026-08-30 to 2026-09-20 is a Sunday), so the declared cadence is 168h while polling stays twice daily because the widget keeps no archive. Registered 2026-09-24; deployed since 2026-09-01.",
+      "workflow": ".github/workflows/lesotho_lhda.yml",
+      "scraper": "scrapers/lesotho/lhda/lesotho_lhda_scraper.py",
+      "data_path": "data/lesotho/lhda",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
     },
     {
       "source_id": "luxembourg/age",
@@ -313,6 +334,26 @@
       "data_path": "data/malaysia/luas",
       "deployment_status": "active",
       "licence_gate": "Public commit remains subject to the LUAS terms and recorded reuse status."
+    },
+    {
+      "source_id": "malaysia/sarawak_rivers",
+      "country": "Malaysia",
+      "retention_class": "current_snapshot",
+      "retention_window_hours": null,
+      "publication_cadence_hours": 24,
+      "timezone": "Asia/Kuching",
+      "cron": [
+        "5 2,10 * * *"
+      ],
+      "max_schedule_gap_hours": 16,
+      "minimum_capture_opportunities": 2,
+      "overlap_strategy": "Each run writes the whole network's latest readings into the per-day file for the source's own observation date, keyed by station_id, so a rerun replaces rather than duplicates; station metadata merges by station_id.",
+      "schedule_rationale": "10:05 and 18:05 Asia/Kuching. The map page exposes only the latest reading per gauge (refreshed about every 15 minutes), so two separated snapshots a day build the series with one-run failure tolerance; the former 22:05 slot hit a near-midnight source quiet window. River and rainfall gauges, not reservoirs: registered 2026-09-24 so this cross-reference layer is freshness-monitored like the rest.",
+      "workflow": ".github/workflows/malaysia_sarawak_rivers.yml",
+      "scraper": "scrapers/malaysia/sarawak_rivers/sarawak_ihydro_scraper.py",
+      "data_path": "data/malaysia/sarawak_rivers",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
     },
     {
       "source_id": "morocco/abhsm",
@@ -591,6 +632,28 @@
       "data_path": "data/usa/nwps_tva",
       "deployment_status": "registered_pending_first_scheduled_run",
       "licence_gate": "BLOCKED for public redistribution. The NWS relay is U.S. public domain but the underlying TVA reuse terms could not be verified because tva.com refuses automated access; records carry licence_status=undeclared_review until a written TVA confirmation or a successful terms review is recorded."
+    },
+    {
+      "source_id": "zambia/zra_kariba",
+      "country": "Zambia",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 336,
+      "publication_cadence_hours": 72,
+      "timezone": "Africa/Lusaka",
+      "cron": [
+        "40 6 * * 1",
+        "40 6 * * 4",
+        "40 6 1 * *"
+      ],
+      "max_schedule_gap_hours": 96,
+      "minimum_capture_opportunities": 4,
+      "overlap_strategy": "Every run re-reads the whole ~14-day daily table and the current monthly table; rows merge on measurement_date and delivered values are never changed, so overlapping captures are idempotent.",
+      "schedule_rationale": "Monday and Thursday 08:40 Africa/Lusaka, plus the 1st for the monthly table. A day stays in the daily table about a fortnight, so roughly four runs see it. ZRA posts that table in batches (runs added 7 rows on 2026-09-07, none on 09-10 or 09-14, then 9 on 09-17), so the newest printed day trailed by up to 10.5 days. The declared cadence is therefore 72h: a 13-day stale budget (3 x 72 + 96) that does not fire between batches, while the first uncaptured day only drops out once 14 newer days are published. Registered 2026-09-24; deployed since 2026-09-01.",
+      "workflow": ".github/workflows/zambia_zra_kariba.yml",
+      "scraper": "scrapers/zambia/zra_kariba/zambia_zra_kariba_scraper.py",
+      "data_path": "data/zambia/zra_kariba",
+      "deployment_status": "active",
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
     },
     {
       "source_id": "zimbabwe/zinwa",

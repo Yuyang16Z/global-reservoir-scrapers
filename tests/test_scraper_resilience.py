@@ -48,6 +48,10 @@ mwr = load_module(
     "china_mwr_api_scraper",
     "scrapers/china/mwr_api/china_mwr_api_scraper.py",
 )
+luxembourg = load_module(
+    "luxembourg_age_scraper",
+    "scrapers/luxembourg/age/luxembourg_age_scraper.py",
+)
 
 
 class ChinaMwrTransportTests(unittest.TestCase):
@@ -79,6 +83,66 @@ class ChinaMwrTransportTests(unittest.TestCase):
         self.assertEqual(diagnostics["transport"], "jina_reader_relay")
         self.assertTrue(diagnostics["fallback_used"])
         self.assertIn("network is unreachable", diagnostics["prior_errors"][0])
+
+    def test_doh_address_recovers_name_resolution_failure(self):
+        # The 2026-09-17..22 evening failure: the runner cannot resolve the host.
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        calls = []
+
+        def post(url, headers, data, timeout):
+            calls.append((url, headers.get("Host")))
+            if url.startswith(f"http://{mwr.API_HOST}/"):
+                raise requests.ConnectionError(
+                    f"Failed to resolve '{mwr.API_HOST}' "
+                    "([Errno -3] Temporary failure in name resolution)"
+                )
+            response = mock.Mock()
+            response.raise_for_status.return_value = None
+            response.json.return_value = payload
+            return response
+
+        doh = mock.Mock()
+        doh.raise_for_status.return_value = None
+        doh.json.return_value = {"Status": 0, "Answer": [
+            {"name": f"{mwr.API_HOST}.", "type": 5, "data": "cdn.example.cn."},
+            {"name": "cdn.example.cn.", "type": 1, "data": "203.0.113.7"},
+        ]}
+        with mock.patch.object(mwr.requests, "post", side_effect=post), mock.patch.object(
+            mwr.requests, "get", return_value=doh
+        ) as get:
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "direct_official_api_doh_address")
+        self.assertEqual(diagnostics["resolved_address"], "203.0.113.7")
+        self.assertEqual(diagnostics["fetch_url"], mwr.API_URL)
+        self.assertEqual(
+            calls[-1],
+            (mwr.API_URL.replace(mwr.API_HOST, "203.0.113.7", 1), mwr.API_HOST),
+        )
+        # One DoH lookup, no relay request.
+        self.assertEqual(get.call_count, 1)
+        self.assertEqual(get.call_args.args[0], mwr.DOH_RESOLVERS[0])
+
+    def test_relay_still_follows_when_doh_cannot_resolve(self):
+        payload = {"returncode": 0, "result": [{"idNo": "encoded"}]}
+        no_answer = mock.Mock()
+        no_answer.raise_for_status.return_value = None
+        no_answer.json.return_value = {"Status": 2}
+        relay = mock.Mock(text="Markdown Content:\n" + json.dumps(payload))
+        relay.raise_for_status.return_value = None
+        with mock.patch.object(
+            mwr.requests,
+            "post",
+            side_effect=requests.ConnectionError("Temporary failure in name resolution"),
+        ), mock.patch.object(
+            mwr.requests,
+            "get",
+            side_effect=[no_answer] * len(mwr.DOH_RESOLVERS) + [relay],
+        ):
+            actual, diagnostics = mwr.fetch_api_json(10, 0)
+        self.assertEqual(actual, payload)
+        self.assertEqual(diagnostics["transport"], "jina_reader_relay")
+        self.assertTrue(any("DoH lookup failed" in e for e in diagnostics["prior_errors"]))
 
 
 class AbhsmTransportTests(unittest.TestCase):
@@ -186,6 +250,21 @@ class CapeTownFallbackTests(unittest.TestCase):
         self.assertEqual(url, capetown.FALLBACK_PDF_URL)
         self.assertEqual(get.call_count, 2)
 
+    def test_dashboard_date_variants(self):
+        for text, expected in (
+            ("Storage 03 August 2026 Previous week", "2026-08-03"),  # the usual form
+            ("14 Sept 2026", "2026-09-14"),
+            ("14th September 2026", "2026-09-14"),
+            ("14 Sep. 2026", "2026-09-14"),
+            ("14September 2026", "2026-09-14"),  # space lost in PDF extraction
+            # an unrecognised first match no longer hides a valid later one
+            ("Week 14 Spring 2026 - dam levels 14 September 2026", "2026-09-14"),
+            ("31 September 2026", None),  # not a real date
+            ("Rainfall since May 2026", None),  # no day
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(capetown.find_date(text), expected)
+
 
 class PagasaFallbackTests(unittest.TestCase):
     def test_official_fallback_follows_primary_timeout(self):
@@ -227,6 +306,69 @@ class PagasaFallbackTests(unittest.TestCase):
         self.assertEqual(page_date.isoformat(), "2026-08-27")
         self.assertEqual(observations, [observation])
         self.assertEqual(fetch.call_count, 2)
+
+
+class FakeUrlopenResponse:
+    def __init__(self, body: bytes, content_type: str):
+        self.body = body
+        self.status = 200
+        self.headers = {"Content-Type": content_type}
+
+    def read(self) -> bytes:
+        return self.body
+
+    def geturl(self) -> str:
+        return luxembourg.GRAPH_API_URL
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info) -> bool:
+        return False
+
+
+class LuxembourgNonJsonTests(unittest.TestCase):
+    def fetch_failure(self, body: bytes, content_type: str) -> str:
+        with mock.patch.object(
+            luxembourg.urllib.request,
+            "urlopen",
+            return_value=FakeUrlopenResponse(body, content_type),
+        ) as urlopen, mock.patch.object(luxembourg.time, "sleep"):
+            with self.assertRaises(RuntimeError) as raised:
+                luxembourg.fetch_json(luxembourg.GRAPH_API_URL, attempts=2)
+        self.assertEqual(urlopen.call_count, 2)
+        return str(raised.exception)
+
+    def test_non_json_success_says_what_came_back(self):
+        # The shape behind the 2026-09-15.. outage signature: one leading newline,
+        # then a non-JSON token, e.g. a PHP warning printed ahead of the payload.
+        message = self.fetch_failure(
+            b'\n<br />\n<b>Warning</b>:  Undefined index in <b>api.php</b><br />\n{"levels": []}',
+            "text/html; charset=UTF-8",
+        )
+        self.assertIn("Expecting value: line 2 column 1 (char 1)", message)
+        self.assertIn(f"HTTP 200 from {luxembourg.GRAPH_API_URL}", message)
+        self.assertIn("Content-Type='text/html; charset=UTF-8'", message)
+        # Whitespace is collapsed so the excerpt stays on one log line.
+        self.assertIn("body starts '<br /> <b>Warning</b>: Undefined index", message)
+
+    def test_html_page_title_is_reported(self):
+        message = self.fetch_failure(
+            b"<!DOCTYPE html><html><head><title>\n  Maintenance\n</title></head></html>",
+            "text/html",
+        )
+        self.assertIn("title='Maintenance'", message)
+
+    def test_json_payload_still_parses(self):
+        body = b'{"options": {"stationNumberTrimmed": "40"}, "levels": []}'
+        with mock.patch.object(
+            luxembourg.urllib.request,
+            "urlopen",
+            return_value=FakeUrlopenResponse(body, "application/json"),
+        ):
+            payload, graph = luxembourg.fetch_json(luxembourg.GRAPH_API_URL)
+        self.assertEqual(payload, body)
+        self.assertEqual(graph["options"]["stationNumberTrimmed"], "40")
 
 
 class FreshnessComponentTests(unittest.TestCase):

@@ -141,4 +141,43 @@ OUTPUT_DIR=/tmp/luas python scrapers/malaysia/luas/malaysia_luas_scraper.py
 
 GitHub Actions runs each country's workflow on a cron and commits new data
 back to the repo. See `.github/workflows/` for the exact schedules.
-GitHub cron is best-effort — actual fire time can lag 5–30 min during load.
+
+GitHub cron is best-effort, and in practice much looser than "a few minutes".
+Measured over 2026-09-17..24 (400 runs):
+
+- scheduled runs typically started 4–5 hours after their cron time (median
+  about 4.8 h);
+- schedules of up to four runs a day were all delivered, only late;
+- faster schedules were thinned to about six runs a day: `japan_prefectural`
+  (`*/30`) ran 43 of 336 scheduled times and `japan_prefectural_static`
+  (hourly) 41 of 168, leaving 5–8 observed hours per prefecture per day
+  instead of 24.
+
+So place runs such that a five-hour delay still lands inside the source's
+retention window, and do not rely on cron for spacing under about six hours.
+
+### Hourly sources: external trigger
+
+`workflow_dispatch` runs start within about a minute and are not thinned, so
+the two hourly Japanese workflows (current snapshots with no backfill) need an
+external scheduler calling the dispatch API for a complete hourly series:
+
+1. Create a fine-grained personal access token for this repository only, with
+   the single permission **Actions: Read and write**.
+2. Test it; `204` means the run was queued:
+
+   ```bash
+   curl -i -X POST \
+     -H "Authorization: Bearer $TOKEN" \
+     -H "Accept: application/vnd.github+json" \
+     -H "X-GitHub-Api-Version: 2022-11-28" \
+     https://api.github.com/repos/Yuyang16Z/global-reservoir-scrapers/actions/workflows/japan_prefectural.yml/dispatches \
+     -d '{"ref":"main"}'
+   ```
+
+3. At an external cron service (for example cron-job.org), create the same
+   request as two jobs: `japan_prefectural.yml` every 30 minutes and
+   `japan_prefectural_static.yml` every hour.
+
+Keep the cron schedules as a fallback. Each workflow's concurrency group
+serialises a dispatched run and a scheduled one that meet.
