@@ -1,0 +1,16 @@
+{
+  "started_at": "2026-09-25 00:51:13Z",
+  "source": "mozambique/aracentro",
+  "mode": "reparse",
+  "reparse_status": "no_reservoir_data",
+  "output_dir": "/home/user/global-reservoir-scrapers/data/mozambique/aracentro",
+  "status": "ok",
+  "skipped": [],
+  "errors": [],
+  "reparsed": 128,
+  "with_values": 46,
+  "values_parsed": 191,
+  "rows_added": 190,
+  "rows_updated": 0,
+  "finished_at": "2026-09-25 00:53:58Z"
+}
