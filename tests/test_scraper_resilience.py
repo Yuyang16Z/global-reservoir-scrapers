@@ -56,6 +56,10 @@ aracentro = load_module(
     "mozambique_aracentro_scraper",
     "scrapers/mozambique/aracentro/mozambique_aracentro_scraper.py",
 )
+zinwa = load_module(
+    "zimbabwe_zinwa_scraper",
+    "scrapers/zimbabwe/zinwa/zimbabwe_zinwa_scraper.py",
+)
 
 
 class ChinaMwrTransportTests(unittest.TestCase):
@@ -486,6 +490,67 @@ class FreshnessComponentTests(unittest.TestCase):
             [target["source_id"] for target in targets],
             ["taiwan/wra:daily", "taiwan/wra:intraday"],
         )
+
+
+# The ZINWA layout of the 2026-09-23 report: JSON-quoted keys, "apr" in place of
+# "m", catchment totals in the same format, and a REPORT object naming the date
+# "w" is measured from.
+ZINWA_QUOTED_PAGE = """<title>ZINWA · Dam Levels Intelligence Platform | 23 September 2026</title>
+<script>
+const gwayiDams = [
+    {"name": "LUNGWALA", "purpose": "IR", "net": 9.647, "present": 7.511, "pct": 77.9, "w": -0.9, "apr": -15.3},
+    {"name": "BULILIMA", "purpose": "IRWS", "net": 1.333, "present": 1.333, "pct": 100, "w": 0, "apr": 0},
+];
+const catchmentSummary = {
+    "gwayi": {"name": "Gwayi Catchment", "net": 119.819, "present": 88.384, "avg": 73.8, "w": -1.6, "apr": -23}
+};
+const REPORT = Object.freeze({ dateLabel: '23 September 2026', comparisonLabel: '16 Sep 2026', baselineLabel: '29 Apr 2026' });
+</script>
+"""
+
+
+class ZinwaQuotedLayoutTests(unittest.TestCase):
+    def test_quoted_keys_are_parsed_and_renamed_dams_keep_their_ids(self):
+        date, era, rows, attrs = zinwa.parse_page(ZINWA_QUOTED_PAGE)
+        self.assertEqual((date, era), ("2026-09-23", "C"))
+        self.assertEqual({(dam, var): val for dam, var, val in rows}, {
+            ("LUNGWALA", "full_supply_capacity_mcm"): 9.647,
+            ("LUNGWALA", "storage_mcm"): 7.511,
+            ("LUNGWALA", "storage_pct"): 77.9,
+            ("LUNGWALA", "storage_pct_change_week"): -0.9,
+            ("BULLIMA", "full_supply_capacity_mcm"): 1.333,
+            ("BULLIMA", "storage_mcm"): 1.333,
+            ("BULLIMA", "storage_pct"): 100.0,
+            ("BULLIMA", "storage_pct_change_week"): 0.0,
+        })
+        self.assertEqual(attrs["LUNGWALA"], {"catchment": "Gwayi", "purpose": "IR"})
+
+    def test_change_is_not_stored_as_weekly_unless_measured_over_a_week(self):
+        page = ZINWA_QUOTED_PAGE.replace("'16 Sep 2026'", "'09 Sep 2026'")
+        _, _, rows, _ = zinwa.parse_page(page)
+        self.assertEqual({var for _, var, _ in rows},
+                         {"full_supply_capacity_mcm", "storage_mcm", "storage_pct"})
+
+    def test_saved_raw_page_is_reparsed_without_fetching(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            raw = out / "raw" / "20260925_114659Z_dam_levels.html"
+            raw.parent.mkdir(parents=True)
+            raw.write_text(ZINWA_QUOTED_PAGE, encoding="utf-8")
+            patches = {"RAW_DIR": out / "raw", "TS_DIR": out / "timeseries",
+                       "META_DIR": out / "metadata", "RUN_LOG_DIR": out / "run_logs"}
+            with mock.patch.multiple(zinwa, **patches), \
+                    mock.patch.object(zinwa, "get_with_retries") as fetch:
+                self.assertEqual(zinwa.main(raw), 0)
+            fetch.assert_not_called()
+            with (out / "timeseries" / "zimbabwe_zinwa_timeseries.csv").open(
+                    encoding="utf-8") as f:
+                stored = list(csv.DictReader(f))
+            log = json.loads((out / "run_logs" / "runs.jsonl").read_text(encoding="utf-8"))
+        self.assertEqual(len(stored), 8)
+        self.assertEqual({r["obs_date"] for r in stored}, {"2026-09-23"})
+        self.assertEqual((log["raw_file"], log["reparsed_from_raw"]),
+                         ("20260925_114659Z_dam_levels.html", True))
 
 
 if __name__ == "__main__":
