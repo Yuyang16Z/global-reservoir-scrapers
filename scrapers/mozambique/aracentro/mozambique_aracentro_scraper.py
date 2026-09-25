@@ -21,6 +21,12 @@ Known quirks:
   reservoir-date-variable because they are the more precise record.
 - Seasonal ESTIAGEM / BALANCO reports are aggregates, not daily observations,
   and are skipped.
+- Some bulletins are published as page scans with no text layer. For those,
+  page 1 is OCR'd (Tesseract, Portuguese; system packages tesseract-ocr and
+  tesseract-ocr-por) and only the prose statement is read, with the same
+  parser. Rows are marked source_kind=prose_ocr and rank below text prose and
+  annex tables for the same reservoir-date-variable. Annex tables are not
+  OCR'd: multi-column OCR is error-prone and the prose carries most values.
 - The archive is append-only, so this scraper only downloads bulletins absent
   from its manifest; a run that finds nothing new is a success.
 
@@ -29,14 +35,21 @@ Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
   manifest.csv                       downloaded bulletin index
   timeseries/mozambique_aracentro_observations.csv   (long format, merged)
   run_logs/<stamp>_summary.json
+
+`--reparse STATUS` re-parses the archived bulletins whose manifest status is
+STATUS instead of downloading, e.g. `--reparse no_reservoir_data` after a
+parser change; their fetched_at is the re-parse time.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import os
 import re
+import subprocess
 import sys
+import tempfile
 import time
 import traceback
 import unicodedata
@@ -78,6 +91,21 @@ PT_MONTHS = {"janeiro": 1, "fevereiro": 2, "marco": 3, "abril": 4, "maio": 5,
 OBS_COLUMNS = ["obs_date", "reservoir_id", "variable", "value", "source_kind",
                "bulletin_file", "fetched_at"]
 MANIFEST_COLUMNS = ["bulletin_file", "url", "obs_date", "local_path", "status"]
+# merge_csv keeps the higher-ranked source for the same reservoir-date-variable
+SOURCE_RANK = {"table": 2, "prose": 1, "prose_ocr": 0}
+
+# A page with less extracted text than this is treated as a scan and OCR'd.
+MIN_TEXT_LAYER_CHARS = 50
+OCR_DPI = 300
+OCR_TIMEOUT = 300
+# Same bound as the annex parser; flood levels above 100% are real (Muda has
+# reported 116.77%), so this only rejects OCR'd percentages that lost a decimal point.
+MAX_STORAGE_PCT = 150
+
+
+class OcrUnavailable(RuntimeError):
+    """Tesseract or its Portuguese data is missing. Raised past the per-bulletin
+    error handling so a scan is never recorded as a bulletin without data."""
 
 
 def utc_now_iso() -> str:
@@ -252,18 +280,43 @@ def parse_annex(text: str) -> list[tuple[str, str, str, float]]:
     return out
 
 
+def ocr_page(page) -> str:
+    """Portuguese OCR of a pdfplumber page (single-column layout, --psm 4)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        png = Path(tmp) / "page.png"
+        page.to_image(resolution=OCR_DPI).save(png)
+        try:
+            r = subprocess.run(["tesseract", str(png), "-", "-l", "por", "--psm", "4"],
+                               capture_output=True, text=True, timeout=OCR_TIMEOUT)
+        except FileNotFoundError as exc:
+            raise OcrUnavailable("tesseract is not installed "
+                                 "(apt: tesseract-ocr tesseract-ocr-por)") from exc
+    if r.returncode != 0:
+        if "Failed loading language" in r.stderr:
+            raise OcrUnavailable("tesseract has no Portuguese data "
+                                 "(apt: tesseract-ocr-por)")
+        raise RuntimeError(f"tesseract exited {r.returncode}: {r.stderr.strip()[-300:]}")
+    return r.stdout
+
+
 def parse_bulletin(path: Path) -> tuple[str | None, list[dict]]:
     if re.search(r"ESTIAGEM|BALANCO|EPOCA", strip_accents(path.name), re.I):
         return fname_date(path.name), []
     rows: list[dict] = []
     with pdfplumber.open(path) as pdf:
         first = pdf.pages[0].extract_text() or ""
+        scanned = len(first.strip()) < MIN_TEXT_LAYER_CHARS
+        if scanned:
+            first = ocr_page(pdf.pages[0])
         date = printed_date(first[:400]) or fname_date(path.name)
         if not date:
             return None, []
         for d, dam, var, val in parse_prose(first, date):
+            if scanned and var == "storage_pct" and not 0 <= val <= MAX_STORAGE_PCT:
+                continue
             rows.append({"obs_date": d, "reservoir_id": dam, "variable": var,
-                         "value": f"{val:g}", "source_kind": "prose"})
+                         "value": f"{val:g}",
+                         "source_kind": "prose_ocr" if scanned else "prose"})
         for page in pdf.pages:
             t = page.extract_text() or ""
             if "LBUFEIRA" in t.upper():
@@ -314,8 +367,10 @@ def merge_csv(path: Path, columns: list[str], new_rows: list[dict],
         if old is None:
             added += 1
         else:
-            # the dated annex table outranks the prose statement
-            if old.get("source_kind") == "table" and norm["source_kind"] == "prose":
+            # the dated annex table outranks the prose statement, and text
+            # outranks OCR of a scanned bulletin
+            if (SOURCE_RANK.get(norm["source_kind"], 0)
+                    < SOURCE_RANK.get(old.get("source_kind"), 0)):
                 continue
             compare = [c for c in columns if c not in ("fetched_at", "bulletin_file")]
             if {c: old[c] for c in compare} == {c: norm[c] for c in compare}:
@@ -400,6 +455,8 @@ def main() -> int:
             downloaded += 1
             try:
                 date, rows = parse_bulletin(dest)
+            except OcrUnavailable:
+                raise
             except Exception as exc:  # noqa: BLE001 - one bad PDF must not kill the run
                 print(f"[WARN] parse failed for {name}: {exc!r}", flush=True)
                 manifest[name] = {"bulletin_file": name, "url": url,
@@ -437,5 +494,72 @@ def main() -> int:
         return 1
 
 
+def reparse(status: str) -> int:
+    """Re-parse the archived PDFs of manifest entries with `status`, without
+    downloading. Rows merge exactly as in a normal run; each entry's date and
+    status are refreshed, its url and local_path kept."""
+    ensure_dirs()
+    fetched_at = utc_now_iso()
+    log = {"started_at": fetched_at, "source": "mozambique/aracentro",
+           "mode": "reparse", "reparse_status": status,
+           "output_dir": str(OUTPUT_DIR), "status": "started", "skipped": [],
+           "errors": []}
+    try:
+        manifest = load_manifest()
+        all_rows: list[dict] = []
+        reparsed = with_values = 0
+        for name, entry in sorted(manifest.items()):
+            local = entry.get("local_path", "")
+            if entry.get("status") != status or "/raw/" not in local:
+                continue
+            path = RAW_DIR / local.rsplit("/raw/", 1)[1]
+            if not path.exists():
+                log["skipped"].append({"bulletin_file": name, "reason": "raw PDF not found"})
+                continue
+            try:
+                date, rows = parse_bulletin(path)
+            except OcrUnavailable:
+                raise
+            except Exception as exc:  # noqa: BLE001 - one bad PDF must not kill the run
+                log["skipped"].append({"bulletin_file": name, "reason": repr(exc)})
+                continue
+            reparsed += 1
+            with_values += bool(rows)
+            for row in rows:
+                row["bulletin_file"] = name
+                row["fetched_at"] = fetched_at
+            all_rows.extend(rows)
+            entry["obs_date"] = date or ""
+            entry["status"] = "ok" if rows else "no_reservoir_data"
+
+        added = updated = 0
+        if all_rows:
+            added, updated = merge_csv(
+                TS_DIR / "mozambique_aracentro_observations.csv",
+                OBS_COLUMNS, all_rows, ["obs_date", "reservoir_id", "variable"])
+        save_manifest(manifest)
+        log.update({"status": "ok", "reparsed": reparsed, "with_values": with_values,
+                    "values_parsed": len(all_rows), "rows_added": added,
+                    "rows_updated": updated, "finished_at": utc_now_iso()})
+        append_run_log(log)
+        print(f"[OK] re-parsed {reparsed} '{status}' bulletin(s), {with_values} with "
+              f"values: {len(all_rows)} values, {added} added / {updated} updated",
+              flush=True)
+        return 0
+    except Exception as exc:  # noqa: BLE001 - log and signal, as in main()
+        log["status"] = "error"
+        log["errors"].append({"message": str(exc),
+                              "traceback": traceback.format_exc()})
+        log["finished_at"] = utc_now_iso()
+        append_run_log(log)
+        print(f"[ERROR] {exc}", file=sys.stderr, flush=True)
+        return 1
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    ap = argparse.ArgumentParser(description="ARA-Centro bulletin scraper")
+    ap.add_argument("--reparse", metavar="STATUS",
+                    help="re-parse archived bulletins with this manifest status "
+                         "instead of downloading new ones")
+    args = ap.parse_args()
+    raise SystemExit(reparse(args.reparse) if args.reparse else main())
