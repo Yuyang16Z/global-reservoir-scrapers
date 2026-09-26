@@ -3,7 +3,7 @@ name: Luxembourg AGE reservoir level
 on:
   schedule:
     # 05:17/17:17 Luxembourg winter time; 06:17/18:17 summer time.
-    # The source exposes about five rolling days, so two daily runs provide recovery margin.
+    # The source exposes about seven rolling days, so two daily runs provide recovery margin.
     - cron: "17 4,16 * * *"
   workflow_dispatch: {}
 

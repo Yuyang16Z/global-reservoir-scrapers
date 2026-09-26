@@ -26,8 +26,17 @@ DAILY_DIR = OUTPUT_DIR / "timeseries" / "daily"
 RAW_DIR = OUTPUT_DIR / "raw" / "daily"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
-GRAPH_API_URL = "https://inondations.lu/api/station/graph-data/40"
-STATION_PAGE_URL = "https://inondations.lu/basins/sauer?lang=en&show-details=&station=40"
+# Around 2026-09-15 the portal moved from inondations.lu to an AEM site at
+# inondations.public.lu; the old host now redirects every path, its
+# /api/station/graph-data/40 included, to the new homepage, and that API path is a 404
+# on the new host. The new site's graph component for Barrage Esch-Sauer reads this
+# static JSON: one series, ts_path "0/40/W_out_LAC/15m.Cmd.RelAbs.P", unit "m", with the
+# last seven days as [local ISO timestamp, level] pairs.
+GRAPH_JSON_URL = "https://inondations.public.lu/content/dam/inondations/ctie/datas/Esch-Sure.json"
+STATION_TS_PATH_PREFIX = "0/40/"
+STATION_PAGE_URL = "https://inondations.public.lu/fr/sure/sure/barrage-esch-sauer.html"
+# Absolute levels around the lake sit near 315 m; a relative stage would be single metres.
+MIN_PLAUSIBLE_LEVEL_MASL = 100.0
 DATASET_URL = "https://data.public.lu/en/datasets/niveau-deau/"
 STATION_SHEET_URL = (
     "http://geoportail.eau.etat.lu/pdf/hydrometrie/FichesStations/40-Esch-Sure.pdf"
@@ -105,7 +114,7 @@ METADATA_ROW = {
     "last_updated": "2026-07-21 00:00:00+02:00",
     "station_id": "40",
     "station_name": "Barrage Esch-Sauer",
-    "download_url": GRAPH_API_URL,
+    "download_url": GRAPH_JSON_URL,
     "license": "Creative Commons Zero (CC0 1.0 Universal)",
     "reuse_status": "open_no_attribution",
     "attribution_text": (
@@ -167,11 +176,19 @@ def describe_non_json(payload: bytes, response: Any) -> str:
     title = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
     if title:
         parts.append(f"title={' '.join(title.group(1).split())!r}")
+    # A page instead of data: what it loads and any API paths it names are where a
+    # moved endpoint shows up.
+    scripts = re.findall(r"<script[^>]+src=[\"']([^\"']+)", text, re.IGNORECASE)
+    if scripts:
+        parts.append(f"scripts {scripts[:10]}")
+    api_refs = sorted(set(re.findall(r"[\"'`]((?:https?://[^\"'`\s]+)?/api/[^\"'`\s]*)", text)))
+    if api_refs:
+        parts.append(f"api references {api_refs[:10]}")
     parts.append(f"body starts {' '.join(text.split())[:NON_JSON_EXCERPT_CHARS]!r}")
     return ", ".join(parts)
 
 
-def fetch_json(url: str, attempts: int = 4) -> tuple[bytes, dict[str, Any]]:
+def fetch_json(url: str, attempts: int = 4) -> tuple[bytes, Any]:
     error: Exception | None = None
     for attempt in range(attempts):
         try:
@@ -308,14 +325,55 @@ def merge_daily_rows(
     return [merged[key] for key in sorted(merged)], new_dates, revised_dates
 
 
-def validate_source(graph: dict[str, Any]) -> None:
-    options = graph.get("options", {})
-    if options.get("stationNumberTrimmed") != "40":
-        raise RuntimeError("AGE response is no longer station 40")
-    if options.get("waterLevelUnit") != "MetersOverSeaLevel":
-        raise RuntimeError("AGE station 40 no longer reports metres over sea level")
-    if not isinstance(graph.get("levels"), list) or not graph["levels"]:
-        raise RuntimeError("AGE response contains no level observations")
+def select_series(document: Any) -> dict[str, Any]:
+    """The station-40 water-level series from the portal's graph JSON, checked."""
+    for series in document if isinstance(document, list) else [document]:
+        if not isinstance(series, dict):
+            continue
+        if not str(series.get("ts_path", "")).startswith(STATION_TS_PATH_PREFIX):
+            continue
+        if series.get("parametertype_name") != "W":
+            continue
+        if series.get("ts_unitsymbol") != "m":
+            raise RuntimeError(
+                f"AGE station 40 level unit is now {series.get('ts_unitsymbol')!r}, not 'm'"
+            )
+        data = series.get("data")
+        if not isinstance(data, list) or not data:
+            raise RuntimeError("AGE station 40 series contains no level observations")
+        values = sorted(row[1] for row in data
+                        if isinstance(row, list) and len(row) == 2
+                        and isinstance(row[1], (int, float)))
+        if not values or values[len(values) // 2] < MIN_PLAUSIBLE_LEVEL_MASL:
+            raise RuntimeError(
+                "AGE station 40 levels no longer look like metres over sea level"
+            )
+        return series
+    raise RuntimeError(
+        f"AGE graph JSON has no station-40 water-level series (ts_path "
+        f"{STATION_TS_PATH_PREFIX}..., parameter W)"
+    )
+
+
+def levels_from_series(series: dict[str, Any]) -> list[dict[str, Any]]:
+    """Convert [local ISO timestamp, level] rows into the points the daily builder reads.
+
+    The new JSON carries no per-point simulated flag. It is the portal's measured-level
+    series ("Donnees mesurees"; no forecast series is configured for this station), so
+    each point is passed on as measured. Rows that do not parse keep a missing time and
+    are counted as malformed.
+    """
+    points: list[dict[str, Any]] = []
+    for row in series["data"]:
+        try:
+            moment = datetime.fromisoformat(row[0])
+            if moment.tzinfo is None:
+                raise ValueError("timestamp without offset")
+            points.append({"time": moment.timestamp() * 1000, "level": float(row[1]),
+                           "simulated": False})
+        except (TypeError, ValueError, IndexError):
+            points.append({"simulated": False})
+    return points
 
 
 def save_raw(payload: bytes, retrieved_at: datetime) -> Path:
@@ -329,11 +387,11 @@ def run(max_lag_days: int) -> dict[str, Any]:
     ensure_dirs()
     write_static_metadata()
     retrieved_at = datetime.now(timezone.utc)
-    payload, graph = fetch_json(GRAPH_API_URL)
-    validate_source(graph)
+    payload, document = fetch_json(GRAPH_JSON_URL)
+    series = select_series(document)
     raw_path = save_raw(payload, retrieved_at)
 
-    current_rows, counters = build_complete_daily_rows(graph["levels"])
+    current_rows, counters = build_complete_daily_rows(levels_from_series(series))
     if not current_rows:
         raise RuntimeError("AGE rolling window yielded no complete Luxembourg local day")
 
@@ -353,7 +411,8 @@ def run(max_lag_days: int) -> dict[str, Any]:
 
     summary: dict[str, Any] = {
         "retrieved_at_utc": retrieved_at.isoformat(),
-        "source_api": GRAPH_API_URL,
+        "source_api": GRAPH_JSON_URL,
+        "source_ts_path": series.get("ts_path"),
         "reservoir_id": RESERVOIR_ID,
         "source_points": counters["source_points"],
         "complete_days_in_source_window": counters["accepted_complete_daily_mean"],
