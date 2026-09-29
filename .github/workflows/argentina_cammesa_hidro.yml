@@ -1,0 +1,81 @@
+name: Argentina CAMMESA hydro snapshot
+
+on:
+  # CAMMESA's site terms prohibit redistribution without its express
+  # authorisation (reuse_status `prohibited`, see DATA_LICENCE_NOTICE.md). The
+  # repository owner decided on 2026-09-28 to collect it here for research, with
+  # the PI managing the repository's public exposure. Presence in this
+  # repository is not permission to republish.
+  schedule:
+    # 09:15 and 20:15 America/Argentina/Buenos_Aires (UTC-3, no DST). The page
+    # for each day is a ROLLING WINDOW of about 32 days, and every run
+    # re-requests the whole window, so each page gets ~60 capture opportunities
+    # and a missed run or a GitHub cron delay loses nothing.
+    - cron: "15 12 * * *"
+    - cron: "15 23 * * *"
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Backfill start YYYY-MM-DD (optional; default = today - 40 days)"
+        required: false
+        default: ""
+      end_date:
+        description: "Backfill end YYYY-MM-DD (optional; default = Argentina today)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: argentina-cammesa-hidro
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/argentina/cammesa_hidro
+          START_DATE: ${{ inputs.start_date }}
+          END_DATE: ${{ inputs.end_date }}
+        run: python scrapers/argentina/cammesa_hidro/argentina_cammesa_hidro_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/argentina/cammesa_hidro
+          git add scrapers/argentina/cammesa_hidro
+          # Every run writes a run summary; commit only when a new or changed
+          # page was stored, so unchanged runs do not create empty-data commits.
+          if git diff --cached --quiet -- data/argentina/cammesa_hidro/raw data/argentina/cammesa_hidro/timeseries; then
+            echo "No new pages; not committing."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(argentina/cammesa_hidro): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

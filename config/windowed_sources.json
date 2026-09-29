@@ -674,6 +674,27 @@
       "data_path": "data/zimbabwe/zinwa",
       "deployment_status": "active",
       "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+    },
+    {
+      "source_id": "argentina/cammesa_hidro",
+      "country": "Argentina",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 768,
+      "publication_cadence_hours": 24,
+      "timezone": "America/Argentina/Buenos_Aires",
+      "cron": [
+        "15 12 * * *",
+        "15 23 * * *"
+      ],
+      "max_schedule_gap_hours": 13,
+      "minimum_capture_opportunities": 60,
+      "overlap_strategy": "Every run re-requests every page from Argentina today minus 40 days to today. Pages are stored once per content hash computed after removing the CDN's per-response <script id=\"f5_cspm\"> token, and the CSVs are rebuilt from raw pages keyed on (page_date, box_name, content hash), so reruns and overlapping captures add nothing; a genuine change to a page's data is kept as a new version.",
+      "schedule_rationale": "09:15 and 20:15 America/Argentina/Buenos_Aires. CAMMESA keeps one page per day for about 32 days: on 2026-09-28 the earliest page was 2026-08-28, 2026-08-27 had been online that morning and was gone by the evening, 2026-08-31 was never published, and the Internet Archive holds no copies. Because each run re-reads the whole window, every page gets about 60 capture opportunities; two runs a day leave a 13-hour maximum gap and survive GitHub cron delays or a failed run with weeks of margin. Declared cadence is 24h (one page per Argentina day). Registered and deployed 2026-09-28.",
+      "workflow": ".github/workflows/argentina_cammesa_hidro.yml",
+      "scraper": "scrapers/argentina/cammesa_hidro/argentina_cammesa_hidro_scraper.py",
+      "data_path": "data/argentina/cammesa_hidro",
+      "deployment_status": "active",
+      "licence_gate": "CAMMESA's site terms prohibit reproduction, modification, distribution or transmission without CAMMESA's express authorisation (`prohibited`; https://cammesaweb.cammesa.com/politicas-de-acceso/, checked 2026-09-28). Owner decision 2026-09-28: collect in this repository; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
     }
   ]
 }

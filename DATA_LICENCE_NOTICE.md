@@ -52,6 +52,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `burkinafaso/dgre` | DGRE Burkina Faso (decadal PDF notes) | `undeclared_review` | **No** |
 | `lesotho/lhda` | LHDA Lesotho (homepage dam widget) | `undeclared_review` | **No** |
 | `zambia/zra_kariba` | ZRA (Zambezi River Authority) | `undeclared_review` | **No** |
+| `argentina/cammesa_hidro` | CAMMESA (daily hydro snapshot page) | `prohibited` — site terms forbid reproduction or distribution without CAMMESA's express authorisation | **No** |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
@@ -94,6 +95,22 @@ half-monthly workflow is a resilience copy rather than a race against
 overwriting, and the source is deliberately not in the windowed-source
 registry. Its terms are undeclared like the rest - see the table above.
 
+## Owner decision 2026-09-28: CAMMESA (prohibited terms) collected here
+
+`argentina/cammesa_hidro` is the first source in this repository whose terms are
+not merely undeclared but explicitly **prohibit** reproduction, modification,
+distribution or transmission without the provider's express authorisation
+(CAMMESA, `https://cammesaweb.cammesa.com/politicas-de-acceso/`, checked
+2026-09-28). The licence gate in `WINDOWED_SOURCE_POLICY.md` therefore stopped
+for a human decision instead of relying on the 2026-08-04 decision.
+
+The repository owner decided on 2026-09-28 to run it in this repository anyway,
+stating that the PI (Prof. Ximing Cai) manages the permissions around the
+repository's public exposure. The source is a rolling window of about 32 days,
+so not collecting it would lose observations permanently. This decision covers
+this source only; it does not extend to other new sources, and it is not
+permission to republish CAMMESA data.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -102,5 +119,5 @@ registry. Its terms are undeclared like the rest - see the table above.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-08-10 (burkinafaso/dgre row added; owner decision of
-2026-08-04 unchanged).
+Last reviewed: 2026-09-28 (argentina/cammesa_hidro row and owner decision added;
+owner decision of 2026-08-04 unchanged).
