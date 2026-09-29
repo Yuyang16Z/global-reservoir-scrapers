@@ -194,7 +194,8 @@ def parse_prose(text: str, date: str) -> list[tuple[str, str, str, float]]:
             for n, p in zip(names, pcts):
                 if n:
                     out.append((date, n, "storage_pct", float(p.replace(",", "."))))
-    for v, n in re.findall(r"([0-9]+(?:[.,][0-9]+)?)\s*m\s?3/s\s+para\s+(?:a\s+)?"
+    # 2022-23 bulletins put a comma after the unit: "1891.60m³/s, para Cahora Bassa"
+    for v, n in re.findall(r"([0-9]+(?:[.,][0-9]+)?)\s*m\s?3/s,?\s+para\s+(?:a\s+)?"
                            r"([A-Za-z ]{3,25})", t):
         cand = re.sub(r"\s+E(\s+.*)?$", "",
                       n.strip().upper().replace("ALBUFEIRA DE ", ""))

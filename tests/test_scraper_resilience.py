@@ -608,6 +608,18 @@ class AraCentroOcrTests(unittest.TestCase):
                          [("scan.pdf", "100", "prose_ocr")])
 
 
+class AraCentroProseTests(unittest.TestCase):
+    def test_outflow_is_read_with_a_comma_after_the_unit(self):
+        # BH013_21.12.2022.pdf, as the 2022-23 bulletins word it
+        text = ("As albufeiras de Cahora Bassa, Chicamba e Muda registam níveis de "
+                "enchimento de 80.61%, 52.70% e 68.20%, respectivamente, com "
+                "efluências na ordem de 1891.60m³/s, para Cahora Bassa, 1.5 m³/s "
+                "para a albufeira de Muda.")
+        rows = aracentro.parse_prose(text, "2022-12-21")
+        self.assertIn(("2022-12-21", "CAHORA BASSA", "outflow_m3s", 1891.6), rows)
+        self.assertIn(("2022-12-21", "MUDA", "outflow_m3s", 1.5), rows)
+
+
 class FreshnessComponentTests(unittest.TestCase):
     def test_components_are_monitored_independently(self):
         source = {
