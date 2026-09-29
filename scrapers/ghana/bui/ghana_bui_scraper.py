@@ -1,15 +1,28 @@
 """Ghana Bui Power Authority reservoir-level scraper.
 
 Source:
-- https://buipower.com/data/water-level-public.json   rolling daily level trends
+- https://buipower.com/api/operations-dashboard.php   Operations Centre workbook: daily
+                                                       reservoir level, current month
+- https://buipower.com/data/water-level-public.json   older rolling daily level trends
 - https://buipower.com/data/generation-public.json    companion generation file
 - https://buipower.com/api/power_status.php           spot level + inflow/outflow
 
 Known quirks:
+- Since at least August 2026 `water-level-public.json` is frozen: its trend arrays end
+  on 2025-11-04 and its spot value is dated 2026-04-27 (checked 2026-09-29). The live
+  series now comes from the Operations Centre (https://buipower.com/operations-center),
+  whose API returns the rows of the BPA Daily Renewable Dashboard Workbook for the
+  CURRENT MONTH only (date parameters are ignored), marked Validated/Published, with a
+  publication lag of about a week (on 2026-09-29 the latest row was 2026-09-21,
+  generated 2026-09-22). Only Validated + Published rows are kept. Rows that are not
+  yet published when the month rolls over may never be served; each run keeps what
+  it sees. The page shows a data disclaimer (public operational information, not
+  certified data; research use needs formal confirmation from BPA), accepted by the
+  repository owner on 2026-09-29.
 - A browser User-Agent is REQUIRED: the site runs Mod_Security and answers
   bare clients with HTTP 406 "Not Acceptable".
 - `power_status.php` returns 406 even with a browser User-Agent from server
-  infrastructure (verified 2026-08-03). It is still probed every run because
+  infrastructure (verified 2026-08-03), and 409 since September 2026. It is still probed every run because
   it is the only public route to Bui inflow/outflow; a 406 is treated as an
   expected miss, not a run failure.
 - `water-level-public.json` is a ROLLING WINDOW of roughly one year, carried in
@@ -51,6 +64,7 @@ RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 LEVEL_URL = "https://buipower.com/data/water-level-public.json"
 GENERATION_URL = "https://buipower.com/data/generation-public.json"
 STATUS_URL = "https://buipower.com/api/power_status.php"
+OPS_URL = "https://buipower.com/api/operations-dashboard.php"
 SOURCE_PAGE = "https://buipower.com/"
 RESERVOIR_ID = "GH_BPA_BUI"
 TIMEOUT = 120
@@ -152,6 +166,25 @@ def level_rows(payload: dict, fetched_at: str) -> list[dict]:
     return list(best.values())
 
 
+def ops_rows(payload: dict, fetched_at: str) -> list[dict]:
+    """Daily reservoir levels from the Operations Centre workbook (Validated + Published rows)."""
+    out = []
+    for rec in payload.get("rows") or []:
+        if (str(rec.get("data_status", "")).strip().lower() != "validated"
+                or str(rec.get("publication_status", "")).strip().lower() != "published"):
+            continue
+        d = clean_date(rec.get("date"))
+        try:
+            level = round(float(rec.get("reservoir_level_masl")), 2)
+        except (TypeError, ValueError):
+            continue
+        if d and level > 0:                       # 0 is the dashboard's placeholder, not a level
+            out.append({"measurement_date": d, "water_level_masl": clean_num(level),
+                        "reservoir_id": RESERVOIR_ID,
+                        "source_array": "operations_dashboard", "fetched_at": fetched_at})
+    return out
+
+
 def status_row(payload: dict, fetched_at: str) -> dict | None:
     level = payload.get("water_level_m")
     if isinstance(level, dict):
@@ -214,26 +247,43 @@ def main() -> int:
     fetched_at = utc_now_iso()
     stamp = utc_stamp()
     log = {"started_at": fetched_at, "source": "ghana/bui",
-           "urls": [LEVEL_URL, GENERATION_URL, STATUS_URL],
+           "urls": [OPS_URL, LEVEL_URL, GENERATION_URL, STATUS_URL],
            "output_dir": str(OUTPUT_DIR), "status": "started", "errors": []}
     try:
-        # --- daily level trends (the series that matters)
+        # --- daily levels: the older trend file, then the Operations Centre workbook
+        by_date: dict[str, dict] = {}
         r = get_with_retries(LEVEL_URL)
-        if r is None:
-            raise RuntimeError("water-level-public.json unavailable after retries")
-        raw_path = RAW_DIR / f"water_level_{stamp}.json"
-        raw_path.write_bytes(r.content)
-        print(f"[SAVE] {raw_path} ({len(r.content)}B)", flush=True)
-        payload = json.loads(r.content)
-        rows = level_rows(payload, fetched_at)
+        if r is not None:
+            raw_path = RAW_DIR / f"water_level_{stamp}.json"
+            raw_path.write_bytes(r.content)
+            print(f"[SAVE] {raw_path} ({len(r.content)}B)", flush=True)
+            for row in level_rows(json.loads(r.content), fetched_at):
+                by_date[row["measurement_date"]] = row
+            log["raw_level_file"] = raw_path.name
+        else:
+            log["level_file_status"] = "unavailable"
+        o = get_with_retries(OPS_URL)
+        if o is not None and o.content.lstrip().startswith(b"{"):
+            ops_path = RAW_DIR / f"operations_dashboard_{stamp}.json"
+            ops_path.write_bytes(o.content)
+            print(f"[SAVE] {ops_path} ({len(o.content)}B)", flush=True)
+            ops_payload = json.loads(o.content)
+            ops = ops_rows(ops_payload, fetched_at)
+            for row in ops:                        # the validated workbook wins for a shared date
+                by_date[row["measurement_date"]] = row
+            log.update({"raw_operations_file": ops_path.name, "operations_records": len(ops),
+                        "operations_latest_complete_date":
+                            (ops_payload.get("meta") or {}).get("latest_complete_date")})
+        else:
+            log["operations_status"] = "unavailable"
+        rows = list(by_date.values())
         if not rows:
-            raise RuntimeError("level payload parsed to zero daily records")
+            raise RuntimeError("no daily level records from either level endpoint")
         added, updated = merge_csv(TS_DIR / "ghana_bui_daily.csv",
                                    DAILY_COLUMNS, rows, ["measurement_date"])
-        dates = sorted(row["measurement_date"] for row in rows)
+        dates = sorted(by_date)
         log.update({"level_records": len(rows), "date_range": [dates[0], dates[-1]],
-                    "rows_added": added, "rows_updated": updated,
-                    "raw_level_file": raw_path.name})
+                    "rows_added": added, "rows_updated": updated})
 
         # --- companion generation file (archived only)
         g = get_with_retries(GENERATION_URL)
@@ -245,8 +295,8 @@ def main() -> int:
         else:
             log["generation_status"] = "unavailable"
 
-        # --- spot status (inflow/outflow); 406 is the documented normal case
-        s = get_with_retries(STATUS_URL, tolerate=(406, 403))
+        # --- spot status (inflow/outflow); 406/409 are the documented normal case
+        s = get_with_retries(STATUS_URL, tolerate=(406, 409, 403))
         if s is not None and s.content.lstrip().startswith((b"{", b"[")):
             st_path = RAW_DIR / f"power_status_{stamp}.json"
             st_path.write_bytes(s.content)
