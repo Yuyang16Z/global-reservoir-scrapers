@@ -27,8 +27,8 @@
       "source_id": "ghana/bui",
       "country": "Ghana",
       "retention_class": "rolling_window",
-      "retention_window_hours": 8760,
-      "publication_cadence_hours": 24,
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 168,
       "timezone": "Africa/Accra",
       "cron": [
         "30 6 * * *",
@@ -36,13 +36,13 @@
       ],
       "max_schedule_gap_hours": 13,
       "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Merge the three overlapping trend arrays plus the spot value by date; the roughly one-year window gives ample recovery margin for missed runs.",
-      "schedule_rationale": "06:30 and 17:30 Africa/Accra. The level trends roll off after about a year and the spot inflow/outflow reading has no history at all, so the evening run captures intra-day changes the morning run would miss.",
+      "overlap_strategy": "Every run reads the Operations Centre workbook (api/operations-dashboard.php: the current month's Validated + Published daily rows) and the older trend file, merged by date with the workbook winning; two runs a day give about 60 capture opportunities per month.",
+      "schedule_rationale": "06:30 and 17:30 Africa/Accra. The level trends roll off after about a year and the spot inflow/outflow reading has no history at all, so the evening run captures intra-day changes the morning run would miss. Since 2026-09-29 the live level series comes from the Operations Centre workbook: it serves only the current month and was published about weekly with a lag of about a week (latest row 2026-09-21, generated 2026-09-22, checked 2026-09-29), so the declared cadence is 168 h; water-level-public.json has been frozen since 2025-11-04 (spot value 2026-04-27).",
       "workflow": ".github/workflows/ghana_bui.yml",
       "scraper": "scrapers/ghana/bui/ghana_bui_scraper.py",
       "data_path": "data/ghana/bui",
       "deployment_status": "active",
-      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release."
+      "licence_gate": "Data is `undeclared_review` and is collected for internal research (owner decision 2026-08-04: collect in place, human confirmation before any publication). Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md before release. The Operations Centre shows a data disclaimer (public operational information, not certified data; research, publication or other official use must be verified and formally confirmed by BPA), accepted by the repository owner on 2026-09-29."
     },
     {
       "source_id": "ghana/vra",
