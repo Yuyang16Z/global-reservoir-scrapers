@@ -313,16 +313,17 @@ class PagasaFallbackTests(unittest.TestCase):
 
 
 class FakeUrlopenResponse:
-    def __init__(self, body: bytes, content_type: str):
+    def __init__(self, body: bytes, content_type: str, url: str | None = None):
         self.body = body
         self.status = 200
         self.headers = {"Content-Type": content_type}
+        self.url = url or luxembourg.GRAPH_JSON_URL
 
     def read(self) -> bytes:
         return self.body
 
     def geturl(self) -> str:
-        return luxembourg.GRAPH_API_URL
+        return self.url
 
     def __enter__(self):
         return self
@@ -339,7 +340,7 @@ class LuxembourgNonJsonTests(unittest.TestCase):
             return_value=FakeUrlopenResponse(body, content_type),
         ) as urlopen, mock.patch.object(luxembourg.time, "sleep"):
             with self.assertRaises(RuntimeError) as raised:
-                luxembourg.fetch_json(luxembourg.GRAPH_API_URL, attempts=2)
+                luxembourg.fetch_json(luxembourg.GRAPH_JSON_URL, attempts=2)
         self.assertEqual(urlopen.call_count, 2)
         return str(raised.exception)
 
@@ -351,7 +352,7 @@ class LuxembourgNonJsonTests(unittest.TestCase):
             "text/html; charset=UTF-8",
         )
         self.assertIn("Expecting value: line 2 column 1 (char 1)", message)
-        self.assertIn(f"HTTP 200 from {luxembourg.GRAPH_API_URL}", message)
+        self.assertIn(f"HTTP 200 from {luxembourg.GRAPH_JSON_URL}", message)
         self.assertIn("Content-Type='text/html; charset=UTF-8'", message)
         # Whitespace is collapsed so the excerpt stays on one log line.
         self.assertIn("body starts '<br /> <b>Warning</b>: Undefined index", message)
@@ -363,16 +364,68 @@ class LuxembourgNonJsonTests(unittest.TestCase):
         )
         self.assertIn("title='Maintenance'", message)
 
+    def test_portal_page_lists_what_it_loads(self):
+        # What the old host has returned since 2026-09-15: the new site's homepage.
+        homepage = (b'\n<!DOCTYPE HTML><html><head><title>Inondations - Luxembourg</title>'
+                    b'<script src="/etc.clientlibs/inondations/clientlibs/base.js"></script>'
+                    b'<script>var cfg = {data: "/api/station/graph-data/"};</script></head></html>')
+        message = self.fetch_failure(homepage, "text/html")
+        self.assertIn("scripts ['/etc.clientlibs/inondations/clientlibs/base.js']", message)
+        self.assertIn("api references ['/api/station/graph-data/']", message)
+
     def test_json_payload_still_parses(self):
-        body = b'{"options": {"stationNumberTrimmed": "40"}, "levels": []}'
+        body = b'[{"ts_path": "0/40/W_out_LAC/15m.Cmd.RelAbs.P", "data": []}]'
         with mock.patch.object(
             luxembourg.urllib.request,
             "urlopen",
             return_value=FakeUrlopenResponse(body, "application/json"),
         ):
-            payload, graph = luxembourg.fetch_json(luxembourg.GRAPH_API_URL)
+            payload, document = luxembourg.fetch_json(luxembourg.GRAPH_JSON_URL)
         self.assertEqual(payload, body)
-        self.assertEqual(graph["options"]["stationNumberTrimmed"], "40")
+        self.assertEqual(document[0]["ts_path"], "0/40/W_out_LAC/15m.Cmd.RelAbs.P")
+
+
+def esch_sure_series(day="2026-09-18", level=314.65, **overrides):
+    """The new portal's Esch-Sure.json series: one full local day of 15-minute levels."""
+    rows = [[f"{day}T{h:02d}:{m:02d}:00.000+02:00", level] for h in range(24) for m in (0, 15, 30, 45)]
+    series = {"ts_path": "0/40/W_out_LAC/15m.Cmd.RelAbs.P", "ts_unitsymbol": "m",
+              "station_name": "Esch-Sure", "parametertype_name": "W", "rows": str(len(rows)),
+              "columns": "Timestamp,Value", "data": rows}
+    series.update(overrides)
+    return series
+
+
+class LuxembourgPortalJsonTests(unittest.TestCase):
+    def test_station_series_becomes_a_complete_daily_mean(self):
+        other_station = esch_sure_series(ts_path="0/7/W/15m.Cmd.RelAbs.P", level=2.1)
+        series = luxembourg.select_series([other_station, esch_sure_series()])
+        rows, counters = luxembourg.build_complete_daily_rows(luxembourg.levels_from_series(series))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["date"], "2026-09-18")
+        self.assertEqual(rows[0]["water_level_masl (m NN)"], "314.65000")
+        self.assertEqual(rows[0]["source_observation_count"], "96")
+        self.assertEqual(rows[0]["first_observation_local"], "2026-09-18T00:00:00+02:00")
+        self.assertEqual(counters["accepted_complete_daily_mean"], 1)
+
+    def test_partial_day_and_malformed_rows_are_not_averaged(self):
+        series = esch_sure_series()
+        series["data"] = series["data"][1:] + [["not a time", 314.6]]
+        rows, counters = luxembourg.build_complete_daily_rows(luxembourg.levels_from_series(series))
+        self.assertEqual(rows, [])
+        self.assertEqual(counters["excluded_malformed"], 1)
+        self.assertEqual(counters["excluded_incomplete_local_day"], 1)
+
+    def test_changed_series_is_rejected_loudly(self):
+        for document, expected in (
+            ([esch_sure_series(ts_unitsymbol="cm")], "unit is now 'cm'"),
+            ([esch_sure_series(level=2.4)], "no longer look like metres over sea level"),
+            ([esch_sure_series(data=[])], "contains no level observations"),
+            ([esch_sure_series(ts_path="0/41/W/15m")], "no station-40 water-level series"),
+        ):
+            with self.subTest(expected=expected):
+                with self.assertRaises(RuntimeError) as raised:
+                    luxembourg.select_series(document)
+                self.assertIn(expected, str(raised.exception))
 
 
 class AraCentroRetryTests(unittest.TestCase):
