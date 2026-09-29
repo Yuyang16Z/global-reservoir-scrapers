@@ -16,6 +16,11 @@ Known quirks:
     const x = { ... dams: [ {...} ] }
   Each object: { name: "X", purpose: "IR", net: <FSC Mm3>,
   present: <Mm3>, pct: <%>, w: <weekly % change>, m: <monthly % change> }.
+  Since the 23 September 2026 report the keys are JSON-quoted ("name": "X"),
+  w is the change since REPORT.comparisonLabel (stored as weekly only when
+  that date is 7 days before the report), and m is replaced by apr, the change
+  since REPORT.baselineLabel (29 Apr 2026). apr is not stored: it is a change
+  against a fixed baseline, derivable from storage_pct.
 - Older formats are kept as fallbacks in case the site reverts:
   era A (2017-2022) HTML table rows (name | FSC Mm3 | current Mm3 | % full,
   some years swap/omit columns), era B (2023-2025) Elementor text blocks
@@ -30,10 +35,14 @@ Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
                                              (obs_date, dam, variable)
 - metadata/zimbabwe_zinwa_dam_attributes.csv catchment/purpose per dam
 - run_logs/runs.jsonl                        one JSON line per run
+
+`--raw FILE` parses a saved raw snapshot instead of fetching, e.g. the page a
+failed run kept, once the parser handles its layout.
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
 import html as html_mod
 import json
@@ -83,6 +92,9 @@ ALIAS = {
     "DARWENDALE": "MANYAME",
     "LAKE CHIVERO": "CHIVERO",
     "EXCHANGE": "EXCHANGE",
+    # respelled in the 2026-09-23 report; keep the IDs used since July 2026
+    "BULILIMA": "BULLIMA",
+    "CHIWAKE": "CHWAKE",
 }
 
 AGG = ("TOTAL", "CATCHMENT", "NATIONAL", "AVERAGE", "DAM NAME", "DAM LEVEL",
@@ -260,11 +272,12 @@ def parse_era_c(text: str) -> tuple[list[tuple[str, str, float | None]],
         # last resort: any {name:"..", net:.., present:..} objects, no catchment
         blocks = [("", text)]
     for catchment, body in blocks:
-        for obj in re.findall(r"\{([^{}]*name\s*:[^{}]*)\}", body):
+        # keys are bare (name: "X") or, since 2026-09-23, quoted ("name": "X")
+        for obj in re.findall(r"\{([^{}]*name\"?\s*:[^{}]*)\}", body):
             if obj in seen_objs:
                 continue
             seen_objs.add(obj)
-            fields = dict(re.findall(r"(\w+)\s*:\s*\"?([^,\"}]*)\"?", obj))
+            fields = dict(re.findall(r"\"?(\w+)\"?\s*:\s*\"?([^,\"}]*)\"?", obj))
             name = canon(fields.get("name", ""))
             if not is_dam(name) or "net" not in fields:
                 continue
@@ -283,10 +296,20 @@ def parse_era_c(text: str) -> tuple[list[tuple[str, str, float | None]],
     return out, attrs
 
 
+def comparison_date(text: str) -> str | None:
+    """REPORT.comparisonLabel ('16 Sep 2026'): the date the page's w is measured from."""
+    m = re.search(r"comparisonLabel\s*:\s*['\"]([^'\"]+)['\"]", text)
+    return _try_date(m.group(1)) if m else None
+
+
 def parse_page(text: str):
     date = parse_asat(text)
     rows, attrs = parse_era_c(text)
     era = "C" if rows else None
+    since = comparison_date(text)
+    if rows and date and since and (datetime.strptime(date, "%Y-%m-%d")
+                                     - datetime.strptime(since, "%Y-%m-%d")).days != 7:
+        rows = [r for r in rows if r[1] != "storage_pct_change_week"]
     if not rows:
         rows = parse_era_a(text)
         era = "A" if rows else None
@@ -333,7 +356,7 @@ def fmt(v: float) -> str:
     return f"{v:g}"
 
 
-def main() -> int:
+def main(raw_file: Path | None = None) -> int:
     ensure_dirs()
     started = utc_now_iso()
     stamp = utc_stamp()
@@ -346,16 +369,22 @@ def main() -> int:
         "errors": [],
     }
     try:
-        r = get_with_retries(PAGE_URL)
-        if r.status_code != 200 or len(r.content) < 5000:
-            raise RuntimeError(f"unexpected response: HTTP {r.status_code}, "
-                               f"{len(r.content)} bytes")
-        raw_path = RAW_DIR / f"{stamp}_dam_levels.html"
-        raw_path.write_bytes(r.content)
-        print(f"[SAVE] {raw_path} ({len(r.content)}B)", flush=True)
-        log["raw_file"] = raw_path.name
+        if raw_file is not None:
+            content = raw_file.read_bytes()
+            log["raw_file"] = raw_file.name
+            log["reparsed_from_raw"] = True
+        else:
+            r = get_with_retries(PAGE_URL)
+            if r.status_code != 200 or len(r.content) < 5000:
+                raise RuntimeError(f"unexpected response: HTTP {r.status_code}, "
+                                   f"{len(r.content)} bytes")
+            content = r.content
+            raw_path = RAW_DIR / f"{stamp}_dam_levels.html"
+            raw_path.write_bytes(content)
+            print(f"[SAVE] {raw_path} ({len(content)}B)", flush=True)
+            log["raw_file"] = raw_path.name
 
-        text = r.content.decode("utf-8", errors="replace")
+        text = content.decode("utf-8", errors="replace")
         obs_date, era, rows, attrs = parse_page(text)
         if not obs_date:
             raise RuntimeError("could not find the page's printed as-at/Official date")
@@ -397,4 +426,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    ap = argparse.ArgumentParser(description="ZINWA dam-levels scraper")
+    ap.add_argument("--raw", type=Path, metavar="FILE",
+                    help="parse this saved raw snapshot instead of fetching the page")
+    raise SystemExit(main(ap.parse_args().raw))
