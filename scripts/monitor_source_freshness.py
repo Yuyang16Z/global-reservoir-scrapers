@@ -69,6 +69,15 @@ EXCUSED: dict[str, str] = {
         "new failures (luxembourg/age from 2026-09-15). Reported but not failed. "
         "Excused 2026-09-24; review by 2026-10-24."
     ),
+    "southafrica/dws_weekly": (
+        "The official DWS weekly State of Reservoirs PDF answers HTTP 403 to every probe "
+        "from GitHub-hosted runners (24 of 24 on 2026-09-29; outage handling since "
+        "2026-08-04), and the DWS-derived mirror stopped at the 2026-08-31 bulletin "
+        "(29 days old on 2026-09-29, past its 21-day limit). The scraper keeps probing "
+        "and logs source_unavailable, so a resumed bulletin shows up here as a fresh "
+        "date. Owner decision 2026-09-29: mark as known-stale. Reported but not failed. "
+        "Excused 2026-09-29; review by 2026-10-29."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
