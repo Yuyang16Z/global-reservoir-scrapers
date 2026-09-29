@@ -27,7 +27,9 @@ Known quirks:
   ("<Dam name> ... Dam Level - 97.3 %", numbers may contain stray spaces
   around the decimal point).
 - Dam names vary across eras; ALIAS canonicalises them (e.g. 2017
-  "Tokwe Mukorsi" == later "Tugwi-Mukosi").
+  "Tokwe Mukorsi" == later "Tugwi-Mukosi"). Digits are kept: BEIT BRIDGE 1
+  and BEIT BRIDGE 2 are different dams (until 2026-09-29 both were stored
+  as one "BEIT BRIDGE", whose rows held BEIT BRIDGE 2's values).
 
 Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
 - raw/<UTC stamp>_dam_levels.html            raw snapshot per run
@@ -143,7 +145,8 @@ def get_with_retries(url: str) -> requests.Response:
 
 def canon(name: str) -> str:
     s = html_mod.unescape(name)
-    s = re.sub(r"[^A-Za-z' \-]", " ", s).upper()
+    # digits stay: BEIT BRIDGE 1 and BEIT BRIDGE 2 are different dams
+    s = re.sub(r"[^A-Za-z0-9' \-]", " ", s).upper()
     s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"\s*-\s*", "-", s)
     s = ALIAS.get(s, s)
