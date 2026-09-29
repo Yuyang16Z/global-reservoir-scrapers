@@ -469,6 +469,141 @@ class AraCentroRetryTests(unittest.TestCase):
         self.assertEqual(manifest["was_404.pdf"]["status"], "missing")
 
 
+# Page 1 of a scanned bulletin as Tesseract reads it; "7475%" is 74.75% with the
+# decimal point lost, which the storage range check must drop.
+SCANNED_BULLETIN_OCR = """REPÚBLICA DE MOÇAMBIQUE
+BOLETIM HIDROLÓGICO Nº 089/ARA-C/2022-23
+Beira, 24 de Março de 2023
+1.3. Gestão das Principais Albufeiras
+As albufeiras de Cahora Bassa, Chicamba e Muda registam níveis de enchimento de
+93.97%, 7475% e 100% respectivamente, com efluências na ordem de 1845.71 m3/s
+para Cahora Bassa, 23.6 m3/s para Chicamba e 21.22 m3/s para a albufeira de Muda.
+"""
+
+
+def fake_pdf(*page_texts):
+    pages = [mock.Mock(**{"extract_text.return_value": text}) for text in page_texts]
+    opened = mock.MagicMock()
+    opened.__enter__.return_value.pages = pages
+    return opened, pages
+
+
+class AraCentroOcrTests(unittest.TestCase):
+    def test_scanned_bulletin_is_ocrd_and_marked(self):
+        opened, pages = fake_pdf(None, "")
+        with mock.patch.object(aracentro.pdfplumber, "open", return_value=opened), \
+                mock.patch.object(aracentro, "ocr_page",
+                                  return_value=SCANNED_BULLETIN_OCR) as ocr:
+            date, rows = aracentro.parse_bulletin(Path("BH089_24.03.2023.pdf"))
+        ocr.assert_called_once_with(pages[0])
+        self.assertEqual(date, "2023-03-24")
+        got = {(r["reservoir_id"], r["variable"]): r["value"] for r in rows}
+        self.assertEqual(got, {
+            ("CAHORA BASSA", "storage_pct"): "93.97",
+            ("MUDA", "storage_pct"): "100",
+            ("CAHORA BASSA", "outflow_m3s"): "1845.71",
+            ("CHICAMBA", "outflow_m3s"): "23.6",
+            ("MUDA", "outflow_m3s"): "21.22",
+        })
+        self.assertEqual({r["source_kind"] for r in rows}, {"prose_ocr"})
+
+    def test_text_bulletin_is_not_ocrd(self):
+        text = SCANNED_BULLETIN_OCR.replace("7475%", "74.75%")
+        opened, _ = fake_pdf(text)
+        with mock.patch.object(aracentro.pdfplumber, "open", return_value=opened), \
+                mock.patch.object(aracentro, "ocr_page") as ocr:
+            _, rows = aracentro.parse_bulletin(Path("BH089_24.03.2023.pdf"))
+        ocr.assert_not_called()
+        self.assertEqual(len(rows), 6)
+        self.assertEqual({r["source_kind"] for r in rows}, {"prose"})
+
+    def test_text_outranks_ocr_when_merging(self):
+        def row(variable, value, kind):
+            return {"obs_date": "2023-03-24", "reservoir_id": "MUDA",
+                    "variable": variable, "value": value, "source_kind": kind,
+                    "bulletin_file": f"{kind}.pdf", "fetched_at": "t"}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "obs.csv"
+            key = ["obs_date", "reservoir_id", "variable"]
+            aracentro.merge_csv(path, aracentro.OBS_COLUMNS, [
+                row("storage_pct", "99", "table"), row("outflow_m3s", "21", "prose"),
+                row("water_level_m", "5", "prose_ocr")], key)
+            added, updated = aracentro.merge_csv(path, aracentro.OBS_COLUMNS, [
+                row("storage_pct", "98", "prose_ocr"), row("outflow_m3s", "20", "prose_ocr"),
+                row("water_level_m", "6", "prose")], key)
+            with path.open(encoding="utf-8") as f:
+                stored = {r["variable"]: (r["value"], r["source_kind"])
+                          for r in csv.DictReader(f)}
+        self.assertEqual((added, updated), (0, 1))
+        self.assertEqual(stored, {"storage_pct": ("99", "table"),
+                                  "outflow_m3s": ("21", "prose"),
+                                  "water_level_m": ("6", "prose")})
+
+    def test_missing_tesseract_is_reported_as_unavailable(self):
+        page = mock.Mock()
+        page.to_image.return_value.save.side_effect = lambda p: Path(p).write_bytes(b"")
+        with mock.patch.object(aracentro.subprocess, "run",
+                               side_effect=FileNotFoundError("tesseract")):
+            with self.assertRaises(aracentro.OcrUnavailable):
+                aracentro.ocr_page(page)
+        no_por = mock.Mock(returncode=1, stdout="",
+                           stderr="Failed loading language 'por'\n")
+        with mock.patch.object(aracentro.subprocess, "run", return_value=no_por):
+            with self.assertRaises(aracentro.OcrUnavailable):
+                aracentro.ocr_page(page)
+
+    def test_missing_ocr_fails_the_run_instead_of_recording_the_scan(self):
+        url = "https://aracentroip.gov.mz/wp-content/uploads/2024/02/scan.pdf"
+        pdf = mock.Mock(status_code=200, content=b"%PDF-1.4")
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            patches = {"RAW_DIR": out / "raw", "TS_DIR": out / "timeseries",
+                       "RUN_LOG_DIR": out / "run_logs", "MANIFEST": out / "manifest.csv"}
+            with mock.patch.multiple(aracentro, **patches), \
+                    mock.patch.object(aracentro, "sitemap_pdfs", return_value=[url]), \
+                    mock.patch.object(aracentro, "get_with_retries", return_value=pdf), \
+                    mock.patch.object(aracentro, "parse_bulletin",
+                                      side_effect=aracentro.OcrUnavailable("no tesseract")):
+                self.assertEqual(aracentro.main(), 1)
+                self.assertEqual(aracentro.load_manifest(), {})
+
+    def test_reparse_reads_archived_pdfs_and_keeps_their_paths(self):
+        runner = "/home/runner/work/repo/repo/data/mozambique/aracentro/raw/"
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / "raw" / "2023").mkdir(parents=True)
+            (out / "raw" / "2023" / "scan.pdf").write_bytes(b"%PDF-1.4")
+            patches = {"RAW_DIR": out / "raw", "TS_DIR": out / "timeseries",
+                       "RUN_LOG_DIR": out / "run_logs", "MANIFEST": out / "manifest.csv"}
+            parsed_row = {"obs_date": "2023-03-24", "reservoir_id": "MUDA",
+                          "variable": "storage_pct", "value": "100",
+                          "source_kind": "prose_ocr"}
+            with mock.patch.multiple(aracentro, **patches), mock.patch.object(
+                    aracentro, "parse_bulletin",
+                    return_value=("2023-03-24", [parsed_row])) as parse:
+                aracentro.save_manifest({
+                    "scan.pdf": {"bulletin_file": "scan.pdf", "url": "u1", "obs_date": "",
+                                 "local_path": runner + "2023/scan.pdf",
+                                 "status": "no_reservoir_data"},
+                    "text.pdf": {"bulletin_file": "text.pdf", "url": "u2",
+                                 "obs_date": "2023-03-23",
+                                 "local_path": runner + "2023/text.pdf", "status": "ok"},
+                })
+                self.assertEqual(aracentro.reparse("no_reservoir_data"), 0)
+                manifest = aracentro.load_manifest()
+                with (out / "timeseries" / "mozambique_aracentro_observations.csv").open(
+                        encoding="utf-8") as f:
+                    stored = list(csv.DictReader(f))
+        parse.assert_called_once_with(out / "raw" / "2023" / "scan.pdf")
+        self.assertEqual(manifest["scan.pdf"]["status"], "ok")
+        self.assertEqual(manifest["scan.pdf"]["obs_date"], "2023-03-24")
+        self.assertEqual(manifest["scan.pdf"]["local_path"], runner + "2023/scan.pdf")
+        self.assertEqual(manifest["text.pdf"]["status"], "ok")
+        self.assertEqual([(r["bulletin_file"], r["value"], r["source_kind"]) for r in stored],
+                         [("scan.pdf", "100", "prose_ocr")])
+
+
 class FreshnessComponentTests(unittest.TestCase):
     def test_components_are_monitored_independently(self):
         source = {

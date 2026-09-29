@@ -38,6 +38,13 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Install OCR
+        # Some bulletins are published as page scans; the scraper OCRs their
+        # first page with Tesseract (Portuguese).
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr tesseract-ocr-por
+
       - name: Run scraper
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/mozambique/aracentro
