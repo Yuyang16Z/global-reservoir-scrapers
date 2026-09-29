@@ -699,6 +699,18 @@ class ZinwaQuotedLayoutTests(unittest.TestCase):
         self.assertEqual((log["raw_file"], log["reparsed_from_raw"]),
                          ("20260925_114659Z_dam_levels.html", True))
 
+    def test_numbered_dams_stay_apart(self):
+        page = ZINWA_QUOTED_PAGE.replace("const gwayiDams = [", """const mzingwaneDams = [
+    {"name": "BEIT BRIDGE 1", "purpose": "WS", "net": 0.5, "present": 0.47, "pct": 93.5, "w": 2, "apr": -6.5},
+    {"name": "BEIT BRIDGE 2", "purpose": "WS", "net": 2.1, "present": 0.31, "pct": 14.6, "w": -0.2, "apr": -3.4},
+];
+const gwayiDams = [""")
+        _, _, rows, attrs = zinwa.parse_page(page)
+        pct = {dam: val for dam, var, val in rows if var == "storage_pct"}
+        self.assertEqual((pct["BEIT BRIDGE 1"], pct["BEIT BRIDGE 2"]), (93.5, 14.6))
+        self.assertNotIn("BEIT BRIDGE", pct)
+        self.assertEqual(attrs["BEIT BRIDGE 2"]["catchment"], "Mzingwane")
+
 
 if __name__ == "__main__":
     unittest.main()

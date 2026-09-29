@@ -29,11 +29,16 @@ obs_date,dam,variable,value
 2026-07-27,BANGAZAAN,storage_pct,100
 2026-07-27,BANGAZAAN,storage_pct_change_month,0
 2026-07-27,BANGAZAAN,storage_pct_change_week,0
-2026-07-27,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-07-27,BEIT BRIDGE,storage_mcm,0.898
-2026-07-27,BEIT BRIDGE,storage_pct,16.9
-2026-07-27,BEIT BRIDGE,storage_pct_change_month,-3.4
-2026-07-27,BEIT BRIDGE,storage_pct_change_week,-0.3
+2026-07-27,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-07-27,BEIT BRIDGE 1,storage_mcm,1.331
+2026-07-27,BEIT BRIDGE 1,storage_pct,97.3
+2026-07-27,BEIT BRIDGE 1,storage_pct_change_month,0
+2026-07-27,BEIT BRIDGE 1,storage_pct_change_week,2.7
+2026-07-27,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-07-27,BEIT BRIDGE 2,storage_mcm,0.898
+2026-07-27,BEIT BRIDGE 2,storage_pct,16.9
+2026-07-27,BEIT BRIDGE 2,storage_pct_change_month,-3.4
+2026-07-27,BEIT BRIDGE 2,storage_pct_change_week,-0.3
 2026-07-27,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-07-27,BHIRI-MANYAME,storage_mcm,160.912
 2026-07-27,BHIRI-MANYAME,storage_pct,93.3
@@ -784,11 +789,16 @@ obs_date,dam,variable,value
 2026-08-03,BANGAZAAN,storage_pct,100
 2026-08-03,BANGAZAAN,storage_pct_change_month,0
 2026-08-03,BANGAZAAN,storage_pct_change_week,0
-2026-08-03,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-03,BEIT BRIDGE,storage_mcm,0.885
-2026-08-03,BEIT BRIDGE,storage_pct,16.7
-2026-08-03,BEIT BRIDGE,storage_pct_change_month,-3.7
-2026-08-03,BEIT BRIDGE,storage_pct_change_week,-0.2
+2026-08-03,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-03,BEIT BRIDGE 1,storage_mcm,1.368
+2026-08-03,BEIT BRIDGE 1,storage_pct,100
+2026-08-03,BEIT BRIDGE 1,storage_pct_change_month,2.7
+2026-08-03,BEIT BRIDGE 1,storage_pct_change_week,2.7
+2026-08-03,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-03,BEIT BRIDGE 2,storage_mcm,0.885
+2026-08-03,BEIT BRIDGE 2,storage_pct,16.7
+2026-08-03,BEIT BRIDGE 2,storage_pct_change_month,-3.7
+2026-08-03,BEIT BRIDGE 2,storage_pct_change_week,-0.2
 2026-08-03,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-03,BHIRI-MANYAME,storage_mcm,158.226
 2026-08-03,BHIRI-MANYAME,storage_pct,91.7
@@ -1539,11 +1549,16 @@ obs_date,dam,variable,value
 2026-08-14,BANGAZAAN,storage_pct,100
 2026-08-14,BANGAZAAN,storage_pct_change_month,0
 2026-08-14,BANGAZAAN,storage_pct_change_week,0
-2026-08-14,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-14,BEIT BRIDGE,storage_mcm,0.859
-2026-08-14,BEIT BRIDGE,storage_pct,16.2
-2026-08-14,BEIT BRIDGE,storage_pct_change_month,-4.2
-2026-08-14,BEIT BRIDGE,storage_pct_change_week,-0.4
+2026-08-14,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-14,BEIT BRIDGE 1,storage_mcm,1.368
+2026-08-14,BEIT BRIDGE 1,storage_pct,100
+2026-08-14,BEIT BRIDGE 1,storage_pct_change_month,2.7
+2026-08-14,BEIT BRIDGE 1,storage_pct_change_week,0.7
+2026-08-14,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-14,BEIT BRIDGE 2,storage_mcm,0.859
+2026-08-14,BEIT BRIDGE 2,storage_pct,16.2
+2026-08-14,BEIT BRIDGE 2,storage_pct_change_month,-4.2
+2026-08-14,BEIT BRIDGE 2,storage_pct_change_week,-0.4
 2026-08-14,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-14,BHIRI-MANYAME,storage_mcm,158.226
 2026-08-14,BHIRI-MANYAME,storage_pct,91.7
@@ -2294,11 +2309,16 @@ obs_date,dam,variable,value
 2026-08-19,BANGAZAAN,storage_pct,100
 2026-08-19,BANGAZAAN,storage_pct_change_month,0
 2026-08-19,BANGAZAAN,storage_pct_change_week,0
-2026-08-19,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-19,BEIT BRIDGE,storage_mcm,0.849
-2026-08-19,BEIT BRIDGE,storage_pct,16
-2026-08-19,BEIT BRIDGE,storage_pct_change_month,-4.3
-2026-08-19,BEIT BRIDGE,storage_pct_change_week,-0.3
+2026-08-19,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-19,BEIT BRIDGE 1,storage_mcm,1.368
+2026-08-19,BEIT BRIDGE 1,storage_pct,100
+2026-08-19,BEIT BRIDGE 1,storage_pct_change_month,2.7
+2026-08-19,BEIT BRIDGE 1,storage_pct_change_week,-2.3
+2026-08-19,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-19,BEIT BRIDGE 2,storage_mcm,0.849
+2026-08-19,BEIT BRIDGE 2,storage_pct,16
+2026-08-19,BEIT BRIDGE 2,storage_pct_change_month,-4.3
+2026-08-19,BEIT BRIDGE 2,storage_pct_change_week,-0.3
 2026-08-19,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-19,BHIRI-MANYAME,storage_mcm,158.226
 2026-08-19,BHIRI-MANYAME,storage_pct,91.7
@@ -3049,11 +3069,16 @@ obs_date,dam,variable,value
 2026-08-24,BANGAZAAN,storage_pct,100
 2026-08-24,BANGAZAAN,storage_pct_change_month,0
 2026-08-24,BANGAZAAN,storage_pct_change_week,0
-2026-08-24,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-24,BEIT BRIDGE,storage_mcm,0.846
-2026-08-24,BEIT BRIDGE,storage_pct,15.9
-2026-08-24,BEIT BRIDGE,storage_pct_change_month,-4.4
-2026-08-24,BEIT BRIDGE,storage_pct_change_week,-0.2
+2026-08-24,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-24,BEIT BRIDGE 1,storage_mcm,1.343
+2026-08-24,BEIT BRIDGE 1,storage_pct,98.2
+2026-08-24,BEIT BRIDGE 1,storage_pct_change_month,0.9
+2026-08-24,BEIT BRIDGE 1,storage_pct_change_week,-1.8
+2026-08-24,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-24,BEIT BRIDGE 2,storage_mcm,0.846
+2026-08-24,BEIT BRIDGE 2,storage_pct,15.9
+2026-08-24,BEIT BRIDGE 2,storage_pct_change_month,-4.4
+2026-08-24,BEIT BRIDGE 2,storage_pct_change_week,-0.2
 2026-08-24,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-24,BHIRI-MANYAME,storage_mcm,154.913
 2026-08-24,BHIRI-MANYAME,storage_pct,89.8
@@ -3804,11 +3829,16 @@ obs_date,dam,variable,value
 2026-08-26,BANGAZAAN,storage_pct,100
 2026-08-26,BANGAZAAN,storage_pct_change_month,0
 2026-08-26,BANGAZAAN,storage_pct_change_week,0
-2026-08-26,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-26,BEIT BRIDGE,storage_mcm,0.84
-2026-08-26,BEIT BRIDGE,storage_pct,15.8
-2026-08-26,BEIT BRIDGE,storage_pct_change_month,-4.5
-2026-08-26,BEIT BRIDGE,storage_pct_change_week,-0.2
+2026-08-26,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-26,BEIT BRIDGE 1,storage_mcm,1.337
+2026-08-26,BEIT BRIDGE 1,storage_pct,97.7
+2026-08-26,BEIT BRIDGE 1,storage_pct_change_month,0.4
+2026-08-26,BEIT BRIDGE 1,storage_pct_change_week,-2.5
+2026-08-26,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-26,BEIT BRIDGE 2,storage_mcm,0.84
+2026-08-26,BEIT BRIDGE 2,storage_pct,15.8
+2026-08-26,BEIT BRIDGE 2,storage_pct_change_month,-4.5
+2026-08-26,BEIT BRIDGE 2,storage_pct_change_week,-0.2
 2026-08-26,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-26,BHIRI-MANYAME,storage_mcm,154.913
 2026-08-26,BHIRI-MANYAME,storage_pct,89.8
@@ -4559,11 +4589,16 @@ obs_date,dam,variable,value
 2026-08-31,BANGAZAAN,storage_pct,100
 2026-08-31,BANGAZAAN,storage_pct_change_month,0
 2026-08-31,BANGAZAAN,storage_pct_change_week,0
-2026-08-31,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-08-31,BEIT BRIDGE,storage_mcm,0.949
-2026-08-31,BEIT BRIDGE,storage_pct,17.9
-2026-08-31,BEIT BRIDGE,storage_pct_change_month,-2.5
-2026-08-31,BEIT BRIDGE,storage_pct_change_week,1.9
+2026-08-31,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-08-31,BEIT BRIDGE 1,storage_mcm,1.306
+2026-08-31,BEIT BRIDGE 1,storage_pct,95.5
+2026-08-31,BEIT BRIDGE 1,storage_pct_change_month,0.4
+2026-08-31,BEIT BRIDGE 1,storage_pct_change_week,-2.7
+2026-08-31,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-08-31,BEIT BRIDGE 2,storage_mcm,0.949
+2026-08-31,BEIT BRIDGE 2,storage_pct,17.9
+2026-08-31,BEIT BRIDGE 2,storage_pct_change_month,-2.5
+2026-08-31,BEIT BRIDGE 2,storage_pct_change_week,1.9
 2026-08-31,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-08-31,BHIRI-MANYAME,storage_mcm,154.913
 2026-08-31,BHIRI-MANYAME,storage_pct,89.8
@@ -5314,11 +5349,16 @@ obs_date,dam,variable,value
 2026-09-02,BANGAZAAN,storage_pct,100
 2026-09-02,BANGAZAAN,storage_pct_change_month,0
 2026-09-02,BANGAZAAN,storage_pct_change_week,0
-2026-09-02,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-09-02,BEIT BRIDGE,storage_mcm,0.83
-2026-09-02,BEIT BRIDGE,storage_pct,15.6
-2026-09-02,BEIT BRIDGE,storage_pct_change_month,-4.7
-2026-09-02,BEIT BRIDGE,storage_pct_change_week,-0.2
+2026-09-02,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-09-02,BEIT BRIDGE 1,storage_mcm,1.295
+2026-09-02,BEIT BRIDGE 1,storage_pct,95
+2026-09-02,BEIT BRIDGE 1,storage_pct_change_month,-2.3
+2026-09-02,BEIT BRIDGE 1,storage_pct_change_week,-2.7
+2026-09-02,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-09-02,BEIT BRIDGE 2,storage_mcm,0.83
+2026-09-02,BEIT BRIDGE 2,storage_pct,15.6
+2026-09-02,BEIT BRIDGE 2,storage_pct_change_month,-4.7
+2026-09-02,BEIT BRIDGE 2,storage_pct_change_week,-0.2
 2026-09-02,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-09-02,BHIRI-MANYAME,storage_mcm,152.468
 2026-09-02,BHIRI-MANYAME,storage_pct,88.4
@@ -6063,10 +6103,14 @@ obs_date,dam,variable,value
 2026-09-23,BANGAZAAN,storage_mcm,2.825
 2026-09-23,BANGAZAAN,storage_pct,100
 2026-09-23,BANGAZAAN,storage_pct_change_week,0
-2026-09-23,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-09-23,BEIT BRIDGE,storage_mcm,0.787
-2026-09-23,BEIT BRIDGE,storage_pct,14.8
-2026-09-23,BEIT BRIDGE,storage_pct_change_week,-0.3
+2026-09-23,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-09-23,BEIT BRIDGE 1,storage_mcm,1.252
+2026-09-23,BEIT BRIDGE 1,storage_pct,91.5
+2026-09-23,BEIT BRIDGE 1,storage_pct_change_week,-2.4
+2026-09-23,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-09-23,BEIT BRIDGE 2,storage_mcm,0.787
+2026-09-23,BEIT BRIDGE 2,storage_pct,14.8
+2026-09-23,BEIT BRIDGE 2,storage_pct_change_week,-0.3
 2026-09-23,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-09-23,BHIRI-MANYAME,storage_mcm,146.687
 2026-09-23,BHIRI-MANYAME,storage_pct,85
@@ -6667,10 +6711,14 @@ obs_date,dam,variable,value
 2026-09-28,BANGAZAAN,storage_mcm,2.825
 2026-09-28,BANGAZAAN,storage_pct,100
 2026-09-28,BANGAZAAN,storage_pct_change_week,0
-2026-09-28,BEIT BRIDGE,full_supply_capacity_mcm,5.315
-2026-09-28,BEIT BRIDGE,storage_mcm,0.778
-2026-09-28,BEIT BRIDGE,storage_pct,14.6
-2026-09-28,BEIT BRIDGE,storage_pct_change_week,-0.2
+2026-09-28,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-09-28,BEIT BRIDGE 1,storage_mcm,1.279
+2026-09-28,BEIT BRIDGE 1,storage_pct,93.5
+2026-09-28,BEIT BRIDGE 1,storage_pct_change_week,1.8
+2026-09-28,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-09-28,BEIT BRIDGE 2,storage_mcm,0.778
+2026-09-28,BEIT BRIDGE 2,storage_pct,14.6
+2026-09-28,BEIT BRIDGE 2,storage_pct_change_week,-0.2
 2026-09-28,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
 2026-09-28,BHIRI-MANYAME,storage_mcm,145.898
 2026-09-28,BHIRI-MANYAME,storage_pct,84.6
