@@ -695,6 +695,28 @@
       "data_path": "data/argentina/cammesa_hidro",
       "deployment_status": "active",
       "licence_gate": "CAMMESA's site terms prohibit reproduction, modification, distribution or transmission without CAMMESA's express authorisation (`prohibited`; https://cammesaweb.cammesa.com/politicas-de-acceso/, checked 2026-09-28). Owner decision 2026-09-28: collect in this repository; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
+    },
+    {
+      "source_id": "costarica/cence_embalses",
+      "country": "Costa Rica",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 24,
+      "publication_cadence_hours": 24,
+      "timezone": "America/Costa_Rica",
+      "cron": [
+        "20 13 * * *",
+        "20 21 * * *",
+        "20 5 * * *"
+      ],
+      "max_schedule_gap_hours": 8,
+      "minimum_capture_opportunities": 3,
+      "overlap_strategy": "Every run reads the whole year-to-date chart of the four reservoirs (Cachi, Arenal, Pirris, Reventazon). A page is stored once per hash of its parsed daily chart data - the time banner, JSF ViewState and timestamped chart ids change on every request and are ignored - and the hourly table of each run is appended to raw/hourly_readings.jsonl keyed on its reading time. The CSVs are rebuilt from all stored pages keyed on (reservoir, observation_date); the latest capture wins and changed values are listed in the revisions CSV, so reruns and overlapping captures add nothing.",
+      "schedule_rationale": "07:20, 15:20 and 23:20 America/Costa_Rica (UTC-6, no DST). The chart shows only the current year (1 January to today, later days null) and nothing on the page selects an earlier year, so each value stays visible until the chart moves to the next year. The shortest-lived value is 31 December - published by about 01:00 local (checked 2026-10-01) and gone at the year change - which these runs capture three times; retention_window_hours states that worst case. Declared cadence 24h (one value per reservoir and day). Registered and deployed 2026-10-01. The Internet Archive's 33 captures of the page (2020-09 to 2026-06) can be imported with IMPORT_DIR to restore earlier years.",
+      "workflow": ".github/workflows/costarica_cence_embalses.yml",
+      "scraper": "scrapers/costarica/cence_embalses/costarica_cence_embalses_scraper.py",
+      "data_path": "data/costarica/cence_embalses",
+      "deployment_status": "active",
+      "licence_gate": "The page states '(c) ICE Todos los Derechos Reservados' and grants no reuse permission (`restricted_use`; https://apps.grupoice.com/CenceWeb/CenceBoletinIntraDiario.jsf?init=true, checked 2026-10-01). Owner decision 2026-10-01: collect in this repository like argentina/cammesa_hidro; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
     }
   ]
 }

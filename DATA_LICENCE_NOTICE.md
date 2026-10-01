@@ -53,6 +53,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `lesotho/lhda` | LHDA Lesotho (homepage dam widget) | `undeclared_review` | **No** |
 | `zambia/zra_kariba` | ZRA (Zambezi River Authority) | `undeclared_review` | **No** |
 | `argentina/cammesa_hidro` | CAMMESA (daily hydro snapshot page) | `prohibited` — site terms forbid reproduction or distribution without CAMMESA's express authorisation | **No** |
+| `costarica/cence_embalses` | ICE/CENCE (Boletin Intra-Diario reservoir levels) | `restricted_use` - "(c) ICE Todos los Derechos Reservados", no reuse permission | **No** |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
@@ -111,6 +112,17 @@ so not collecting it would lose observations permanently. This decision covers
 this source only; it does not extend to other new sources, and it is not
 permission to republish CAMMESA data.
 
+## Owner decision 2026-10-01: Costa Rica CENCE collected here
+
+`costarica/cence_embalses` captures the reservoir-level charts of ICE/CENCE's
+"Boletin Intra-Diario" page (Cachi, Arenal, Pirris, Reventazon). The page shows
+only the current year, so each year's daily levels disappear when the chart
+moves to the next year. Its footer reads "(c) ICE Todos los Derechos
+Reservados" and grants no reuse permission (`restricted_use`, checked
+2026-10-01). The repository owner decided on 2026-10-01 to collect it here "the
+CAMMESA way", with the PI managing the repository's public exposure. This covers
+this source only and is not permission to republish ICE data.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -119,5 +131,5 @@ permission to republish CAMMESA data.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-09-28 (argentina/cammesa_hidro row and owner decision added;
-owner decision of 2026-08-04 unchanged).
+Last reviewed: 2026-10-01 (costarica/cence_embalses row and owner decision added;
+argentina/cammesa_hidro 2026-09-28; owner decision of 2026-08-04 unchanged).

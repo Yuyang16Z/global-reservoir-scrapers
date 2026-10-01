@@ -1,0 +1,72 @@
+name: Costa Rica CENCE reservoir levels
+
+on:
+  # The page states "(c) ICE Todos los Derechos Reservados" and gives no reuse
+  # permission (reuse_status `restricted_use`, see DATA_LICENCE_NOTICE.md). The
+  # repository owner decided on 2026-10-01 to collect it here like CAMMESA, with
+  # the PI managing the repository's public exposure. Presence in this
+  # repository is not permission to republish.
+  schedule:
+    # 07:20, 15:20 and 23:20 America/Costa_Rica (UTC-6, no DST). The chart is a
+    # YEAR-TO-DATE window: every day of the current year stays visible until the
+    # chart moves to the next year, so the last day of a year (visible from
+    # about 01:00 to 24:00 on 31 December) is the shortest-lived value and still
+    # gets three capture opportunities.
+    - cron: "20 13 * * *"
+    - cron: "20 21 * * *"
+    - cron: "20 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: costarica-cence-embalses
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/costarica/cence_embalses
+        run: python scrapers/costarica/cence_embalses/costarica_cence_embalses_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/costarica/cence_embalses
+          git add scrapers/costarica/cence_embalses
+          # Every run writes a run summary; commit only when a new page, a new
+          # hourly reading or a changed table was stored.
+          if git diff --cached --quiet -- data/costarica/cence_embalses/raw data/costarica/cence_embalses/timeseries; then
+            echo "No new data; not committing."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(costarica/cence_embalses): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
