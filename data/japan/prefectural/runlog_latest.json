@@ -1,9 +1,9 @@
 {
-  "run_at": "20261002T042110Z",
+  "run_at": "20261002T104013Z",
   "per_site": [
     {
       "prefecture": "Niigata",
-      "rows": 16,
+      "rows": 20,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -15,7 +15,7 @@
     },
     {
       "prefecture": "Yamagata",
-      "rows": 15,
+      "rows": 16,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -52,7 +52,7 @@
     },
     {
       "prefecture": "Aomori",
-      "rows": 11,
+      "rows": 10,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -99,5 +99,5 @@
       }
     }
   ],
-  "rows": 90
+  "rows": 94
 }
