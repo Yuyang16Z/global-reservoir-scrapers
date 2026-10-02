@@ -1,10 +1,11 @@
-"""Temporary probe: what do GitHub runners get from the WRA endpoints?
+"""Temporary probe, round 2: how does FHY API v2 authenticate, and what does
+its reservoir Daily endpoint take and return?
 
 Run only on the claude/taiwan-wra-probe branch; prints to the job log.
+Long token-like strings are redacted before printing.
 """
 import json
 import re
-import socket
 import time
 from urllib.parse import urljoin
 
@@ -12,137 +13,120 @@ import requests
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36")
-JSON_HEADERS = {"User-Agent": UA, "Accept": "application/json, text/plain, */*"}
-HTML_HEADERS = {"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,*/*"}
-SHOW_HEADERS = ("Server", "Content-Type", "Location", "Retry-After", "X-Powered-By",
-                "X-AspNet-Version", "Via", "X-Cache", "Set-Cookie", "Cache-Control",
-                "Content-Length", "Date")
+H = {"User-Agent": UA, "Accept": "application/json, text/html, */*"}
 S = requests.Session()
+TOKEN = re.compile(r"[A-Za-z0-9+/_\-]{16,}={0,2}")
 
 
-def get(url, headers=None, label="", n=500, redirects=False):
+def redact(s):
+    return TOKEN.sub("<redacted>", s)
+
+
+def get(url, label="", n=400, **kw):
     t0 = time.time()
     print(f"\n### {label} GET {url}", flush=True)
     try:
-        r = S.get(url, headers=headers or JSON_HEADERS, timeout=40,
-                  allow_redirects=redirects)
+        r = S.get(url, headers=kw.pop("headers", H), timeout=40, **kw)
     except Exception as e:
         print(f"-> EXC {type(e).__name__}: {e}")
         return None
-    print(f"-> {r.status_code} {r.reason} in {time.time() - t0:.1f}s, {len(r.content)} bytes")
-    for k in SHOW_HEADERS:
-        if k in r.headers:
-            print(f"   {k}: {r.headers[k][:200]}")
+    print(f"-> {r.status_code} in {time.time() - t0:.1f}s, {len(r.content)} bytes, "
+          f"{r.headers.get('Content-Type', '')}")
     if n:
-        print("   body:", r.text[:n].replace("\r", " ").replace("\n", " "))
+        print("   body:", redact(r.text[:n].replace("\r", " ").replace("\n", " ")))
     return r
 
 
-def section(title):
-    print("\n" + "=" * 8 + f" {title} " + "=" * 8, flush=True)
+def section(t):
+    print("\n" + "=" * 8 + f" {t} " + "=" * 8, flush=True)
 
 
-section("runner")
-for host in ("fhy.wra.gov.tw", "opendata.wra.gov.tw"):
-    try:
-        print(host, sorted({a[4][0] for a in socket.getaddrinfo(host, 443)}))
-    except Exception as e:
-        print(host, "DNS EXC", e)
-r = get("https://ipinfo.io/json", label="runner egress", n=400)
+section("swagger UI page")
+ui = get("https://fhy.wra.gov.tw/Api/swagger/ui/index", n=0)
+spec_urls = []
+if ui is not None:
+    for m in re.findall(r"""(?:url|discoveryUrl|swaggerUrl)\s*[:=]\s*["']([^"']+)["']""", ui.text):
+        print("   ui config url:", m)
+        spec_urls.append(urljoin(ui.url, m))
+    for m in re.findall(r"""<script[^>]+src=["']([^"']+)["']""", ui.text):
+        print("   ui script:", m)
+        if "swagger-ui" not in m and "lib/" not in m:
+            js = get(urljoin(ui.url, m), label="ui js", n=0)
+            if js is not None:
+                for u in re.findall(r"""["']([^"']*(?:swagger/docs|swagger\.json)[^"']*)["']""", js.text):
+                    print("   js spec url:", u)
+                    spec_urls.append(urljoin(ui.url, u))
+    print("   ui text:", redact(re.sub(r"\s+", " ", ui.text))[:2500])
 
-section("v1 historical endpoint (what the scraper calls)")
-for d in ("2026-10-01", "2026-09-20", "2026-06-01"):
-    get(f"https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date={d}", label=f"v1 Daily {d}")
-get("https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=2026-09-20",
-    headers={"User-Agent": "curl/8.5.0", "Accept": "*/*"}, label="v1 Daily, curl UA")
-get("https://fhy.wra.gov.tw/WraApi/v1/Reservoir/RealTime", label="v1 RealTime", n=300)
-get("https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Station?$top=3", label="v1 Station", n=300)
-
-section("FHY API v2 candidates")
-for path in ("Api/v2/Reservoir/Station", "Api/v2/Reservoir/RealTime",
-             "Api/v2/Reservoir/Daily?date=2026-09-20", "Api/v2/Reservoir/Daily",
-             "Api/v2/Reservoir/Daily/2026-09-20", "Api/v2/Reservoir/History?date=2026-09-20",
-             "Api/v2/swagger/docs/v2", "Api/swagger/docs/v2", "Api/v2/swagger/ui/index",
-             "Api/swagger/ui/index", "Api/v2/help", "Api/help"):
-    get("https://fhy.wra.gov.tw/" + path, label="v2", n=300)
-
-section("FHY web front-end: which APIs does the official site call?")
-seen = set()
-for page in ("https://fhy.wra.gov.tw/fhyv2/monitor/reservoir", "https://fhy.wra.gov.tw/fhyv2/",
-             "https://fhy.wra.gov.tw/"):
-    r = get(page, headers=HTML_HEADERS, label="page", n=300, redirects=True)
-    if r is None or r.status_code != 200:
-        continue
-    scripts = re.findall(r'<script[^>]+src="([^"]+)"', r.text)
-    print("   scripts:", scripts[:20])
-    texts = [r.text]
-    for src in scripts[:15]:
-        u = urljoin(r.url, src)
-        if u in seen:
-            continue
-        seen.add(u)
-        try:
-            js = S.get(u, headers=HTML_HEADERS, timeout=40)
-            print(f"   fetched {u} -> {js.status_code}, {len(js.content)} bytes")
-            texts.append(js.text)
-        except Exception as e:
-            print(f"   fetched {u} -> EXC {e}")
-    found = set()
-    for t in texts:
-        found.update(re.findall(r'["\'`]((?:https?://[a-z.]*wra\.gov\.tw)?/?(?:[A-Za-z]+/)?(?:Api|WraApi|api)/v?\d?/?[A-Za-z0-9_/\-{}$.]*)', t))
-        found.update(m for m in re.findall(r'["\'`]([^"\'`\s]*[Rr]eservoir[^"\'`\s]*)["\'`]', t)
-                     if "/" in m and len(m) < 160)
-    print("   api-like strings:")
-    for f in sorted(found)[:200]:
-        print("     ", f)
-
-section("old ASP.NET reservoir pages")
-for page in ("https://fhy.wra.gov.tw/ReservoirPage_2011/StorageCapacity.aspx",
-             "https://fhy.wra.gov.tw/ReservoirPage_2011/Statistics.aspx"):
-    r = get(page, headers=HTML_HEADERS, label="aspx", n=0, redirects=True)
+section("spec")
+spec = None
+for u in spec_urls + ["https://fhy.wra.gov.tw/Api/swagger/docs/v1",
+                      "https://fhy.wra.gov.tw/Api/swagger/docs/v2",
+                      "https://fhy.wra.gov.tw/Api/swagger/v1/swagger.json",
+                      "https://fhy.wra.gov.tw/Api/swagger/v2/swagger.json",
+                      "https://fhy.wra.gov.tw/Api/swagger.json"]:
+    r = get(u, label="spec", n=200)
     if r is not None and r.status_code == 200:
-        names = re.findall(r'name="([^"]+)"', r.text)
-        print("   form fields:", names[:40])
+        try:
+            spec = r.json()
+            print("   -> JSON spec found")
+            break
+        except Exception:
+            pass
 
-section("opendata.wra.gov.tw: does the daily-operations dataset keep history?")
-uuids = {"51023e88-4c76-4dbc-bbb9-470da690d539": "daily ops",
-         "2be9044c-6e44-4856-aad5-dd108c2e6679": "water level",
-         "708a43b0-24dc-40b7-9ed2-fca6a291e7ae": "basic info"}
-for sw in ("https://opendata.wra.gov.tw/openapi/swagger/v1/swagger.json",
-           "https://opendata.wra.gov.tw/openapi/api/OpenData/openapiSwagger-generated",
-           "https://data.wra.gov.tw/openapi/swagger/v1/swagger.json"):
-    r = get(sw, label="swagger", n=200, redirects=True)
-    if r is None or r.status_code != 200:
-        continue
-    try:
-        spec = r.json()
-    except Exception as e:
-        print("   not JSON:", e)
-        continue
+if spec:
+    info = spec.get("info", {})
+    print("info.title:", info.get("title"), "| version:", info.get("version"))
+    print("info.description:", redact(str(info.get("description", "")))[:3000])
+    print("host/basePath/servers:", spec.get("host"), spec.get("basePath"), spec.get("servers"))
+    print("securityDefinitions:", json.dumps(spec.get("securityDefinitions")
+                                             or spec.get("components", {}).get("securitySchemes"),
+                                             ensure_ascii=False))
+    print("global security:", spec.get("security"))
     paths = spec.get("paths", {})
-    print(f"   {len(paths)} paths")
+    print(f"{len(paths)} paths; reservoir-related:")
     for p, ops in paths.items():
-        if any(u in p for u in uuids) or "{" in p and len(paths) < 40:
-            for method, op in ops.items():
-                params = [(q.get("name"), q.get("in"), (q.get("description") or "")[:80])
-                          for q in op.get("parameters", [])]
-                print(f"   {method.upper()} {p}: {op.get('summary', '')[:80]}")
-                for q in params:
-                    print("      param", q)
-    shown = [p for p in paths if any(u in p for u in uuids)]
-    if not shown:
-        print("   sample paths:", list(paths)[:15])
+        if "eservoir" not in p:
+            continue
+        for method, op in ops.items():
+            if not isinstance(op, dict):
+                continue
+            print(f"\n  {method.upper()} {p}  summary={op.get('summary')!r}")
+            if op.get("description"):
+                print("    description:", redact(str(op["description"]))[:600])
+            for q in op.get("parameters", []):
+                print("    param:", json.dumps({k: q.get(k) for k in
+                                                ("name", "in", "required", "type", "format",
+                                                 "description", "default", "enum")
+                                                if k in q}, ensure_ascii=False))
+            if op.get("security"):
+                print("    security:", op["security"])
+            ok = (op.get("responses") or {}).get("200") or {}
+            sch = ok.get("schema") or ((ok.get("content") or {}).get("application/json") or {}).get("schema")
+            print("    200 schema:", json.dumps(sch, ensure_ascii=False)[:300])
+    defs = spec.get("definitions") or spec.get("components", {}).get("schemas") or {}
+    for name, d in defs.items():
+        if "eservoir" in name:
+            props = d.get("properties", {})
+            print(f"\n  definition {name}: " + ", ".join(
+                f"{k}({v.get('type') or v.get('$ref', '')}{': ' + v['description'] if v.get('description') else ''})"
+                for k, v in props.items())[:1500])
 
-base = "https://opendata.wra.gov.tw/api/v2/51023e88-4c76-4dbc-bbb9-470da690d539"
-for q in ("?format=JSON&sort=_importdate+asc", "?format=JSON&sort=_importdate+desc&size=3",
-          "?format=JSON&page=2&size=100", "?format=JSON&date=2026-09-20"):
-    r = get(base + q, label="daily ops", n=0)
-    if r is not None and r.status_code == 200:
-        try:
-            rows = r.json()
-            dates = sorted({str(x.get("ObservationTime") or x.get("observationtime")
-                                or x.get("_importdate") or "")[:10] for x in rows})
-            print(f"   rows={len(rows)} keys={list(rows[0])[:20] if rows else []}")
-            print(f"   distinct dates: {dates[:10]}{' ...' if len(dates) > 10 else ''}")
-        except Exception as e:
-            print("   parse EXC", e, r.text[:200])
+section("how does the official front-end send the key?")
+app = get("https://fhy.wra.gov.tw/fhyv2/js/app.8496b7f3.js", label="app.js", n=0)
+vend = get("https://fhy.wra.gov.tw/fhyv2/js/chunk-vendors.4edb8c79.js", label="vendors", n=0)
+for name, r in (("app", app), ("vendors", vend)):
+    if r is None:
+        continue
+    for kw in ("Api/v2", "apikey", "ApiKey", "api_key", "x-api-key", "X-API-KEY", "Authorization",
+               "headers", "申請", "Key"):
+        for m in re.finditer(re.escape(kw), r.text):
+            ctx = r.text[max(0, m.start() - 160): m.end() + 160]
+            print(f"   [{name}] {kw}: ...{redact(ctx)}...")
+            break
+
+section("key application / docs pages")
+for u in ("https://fhy.wra.gov.tw/fhyv2/api", "https://fhy.wra.gov.tw/fhyv2/apikey",
+          "https://fhy.wra.gov.tw/fhyv2/opendata", "https://fhy.wra.gov.tw/Api/",
+          "https://fhy.wra.gov.tw/Api/v2/", "https://fhy.wra.gov.tw/Api/Account/Register"):
+    get(u, label="page", n=300)
