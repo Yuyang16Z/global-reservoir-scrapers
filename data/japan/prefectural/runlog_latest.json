@@ -1,9 +1,9 @@
 {
-  "run_at": "20261001T234253Z",
+  "run_at": "20261002T042110Z",
   "per_site": [
     {
       "prefecture": "Niigata",
-      "rows": 20,
+      "rows": 16,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -15,7 +15,7 @@
     },
     {
       "prefecture": "Yamagata",
-      "rows": 16,
+      "rows": 15,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -99,5 +99,5 @@
       }
     }
   ],
-  "rows": 95
+  "rows": 90
 }
