@@ -232,15 +232,64 @@ class TaiwanFallbackTests(unittest.TestCase):
             self.assertEqual({row["reservoir_id"] for row in rows}, {"A", "B"})
             self.assertEqual(taiwan.backfill_archived_current_daily(dirs, {}, {}), [])
 
-    def test_existing_current_fallback_is_reported_as_archived(self):
+    def test_missed_dates_are_the_days_between_tables(self):
         with tempfile.TemporaryDirectory() as tmp:
             daily_dir = Path(tmp)
-            (daily_dir / "taiwan_timeseries_2026-08-26.csv").touch()
-            status, note = taiwan.describe_current_daily_fallback(
-                "2026-08-26", False, [], daily_dir
+            for day in ("2026-09-27", "2026-09-30"):
+                (daily_dir / f"taiwan_timeseries_{day}.csv").touch()
+            (daily_dir / "taiwan_timeseries_notes.csv").touch()
+            self.assertEqual(taiwan.missed_dates_before(daily_dir, "2026-10-01"), [])
+            self.assertEqual(
+                taiwan.missed_dates_before(daily_dir, "2026-10-03"),
+                ["2026-10-01", "2026-10-02"],
             )
-        self.assertEqual(status, "already_archived")
-        self.assertIn("2026-08-26 was already archived", note)
+            self.assertEqual(taiwan.missed_dates_before(daily_dir, "2026-09-27"), [])
+
+    def test_run_files_the_snapshot_without_the_retired_history_api(self):
+        daily_ops = [
+            {"reservoiridentifier": "A", "reservoirname": "Alpha",
+             "datetime": "2026-10-01T00:00:00", "capacity": "12.5"},
+            {"reservoiridentifier": "B", "reservoirname": "Beta",
+             "datetime": "2026-10-01T00:00:00", "capacity": "8.5"},
+        ]
+        requested = []
+
+        def get_json(session, url, timeout=60):
+            requested.append(url)
+            return daily_ops if url == taiwan.CURRENT_DAILY_OPS_URL else []
+
+        def run(tmp):
+            logs = Path(tmp) / "run_logs"
+            for old in logs.glob("*_summary.json"):
+                old.unlink()
+            with mock.patch.dict(taiwan.os.environ, {"OUTPUT_DIR": tmp}), \
+                    mock.patch.object(taiwan, "get_json", side_effect=get_json), \
+                    mock.patch.object(taiwan, "emit_workflow_warning") as warn:
+                self.assertEqual(taiwan.main(), 0)
+            (summary_path,) = logs.glob("*_summary.json")
+            return json.loads(summary_path.read_text()), warn
+
+        with tempfile.TemporaryDirectory() as tmp:
+            daily_dir = Path(tmp) / "timeseries" / "daily"
+            daily_dir.mkdir(parents=True)
+            (daily_dir / "taiwan_timeseries_2026-09-28.csv").touch()
+            first, warn = run(tmp)
+            with (daily_dir / "taiwan_timeseries_2026-10-01.csv").open(
+                encoding="utf-8-sig", newline=""
+            ) as handle:
+                rows = list(csv.DictReader(handle))
+            second, second_warn = run(tmp)
+
+        self.assertFalse([u for u in requested if "fhy.wra.gov.tw" in u])
+        self.assertEqual({row["reservoir_id"] for row in rows}, {"A", "B"})
+        self.assertEqual(first["status"], "ok")
+        self.assertEqual(first["daily_snapshot_status"], "archived")
+        self.assertEqual(first["missed_dates"], ["2026-09-29", "2026-09-30"])
+        self.assertIn("2026-09-29 to 2026-09-30", warn.call_args.args[0])
+        # A later run on the same snapshot neither rewrites it nor repeats the gap.
+        self.assertEqual(second["daily_snapshot_status"], "already_archived")
+        self.assertNotIn("missed_dates", second)
+        second_warn.assert_not_called()
 
 
 class CapeTownFallbackTests(unittest.TestCase):

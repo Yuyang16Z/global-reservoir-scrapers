@@ -545,17 +545,16 @@
       "source_id": "taiwan/wra",
       "country": "Taiwan",
       "retention_class": "current_snapshot",
-      "retention_window_hours": 48,
+      "retention_window_hours": 24,
       "publication_cadence_hours": 24,
       "timezone": "Asia/Taipei",
       "cron": [
-        "45 1 * * 1",
-        "45 1 * * 4"
+        "45 1,13 * * *"
       ],
-      "max_schedule_gap_hours": 192,
+      "max_schedule_gap_hours": 12,
       "minimum_capture_opportunities": 2,
-      "overlap_strategy": "Re-fetch yesterday and today, archive raw responses, and merge by reservoir and date.",
-      "schedule_rationale": "09:45 and 21:45 Taiwan time capture two daily states and recover one missed run. Registry reconciled to the deployed workflow on 2026-08-04 (was ['45 1,13 * * *']); the workflow is authoritative because it is what runs.",
+      "overlap_strategy": "Archive the official open-data daily-operations snapshot (one day, the previous day's values) on every run, filed under the date the source reports; a later run that sees the same date leaves the archived table unchanged.",
+      "schedule_rationale": "The open-data daily-operations dataset is the only daily source WRA offers non-government users, and it holds one day. The keyless history API (fhy.wra.gov.tw/WraApi/v1) answers HTTP 503 on every path since 2026-06-13, while its successor FHY General API v2 needs a key issued to government bodies (checked from a GitHub runner on 2026-10-02). The weekly schedule used since July relied on that history API, so from July only the run days were archived (September: 9 of 30). Two runs 12 hours apart, 09:45 and 21:45 Taiwan time, keep at least one run in every 24-hour window even when GitHub starts them hours late.",
       "workflow": ".github/workflows/taiwan_wra.yml",
       "scraper": "scrapers/taiwan/wra/taiwan_wra_scraper.py",
       "data_path": "data/taiwan/wra",
