@@ -1,11 +1,11 @@
 {
-  "run_at": "2026-10-03T18:26:56Z",
+  "run_at": "2026-10-03T23:25:21Z",
   "url": "https://kasen.pref.ishikawa.lg.jp/dyn/dps/timeline/20261004/20261004_1_dam_60.json",
   "stations": 12,
-  "timestamps": 4,
+  "timestamps": 9,
   "first": "2026-10-04T00:00",
-  "last": "2026-10-04T03:00",
-  "parsed": 48,
-  "appended": 48,
+  "last": "2026-10-04T08:00",
+  "parsed": 108,
+  "appended": 60,
   "unmapped": []
 }
