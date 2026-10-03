@@ -60,7 +60,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
     ├── malaysia_sarawak_rivers.yml # cron 02:05 + 14:05 UTC
     ├── morocco_abhsm.yml           # cron 07:30 + 15:30 UTC
     ├── southafrica_dws_weekly.yml  # cron 06:00 UTC every Tuesday
-    ├── taiwan_wra.yml              # cron 01:45 UTC Mondays
+    ├── taiwan_wra.yml              # cron 01:45 + 13:45 UTC
     └── thailand_rid.yml            # cron 01:30 UTC Mondays
 ```
 
@@ -79,7 +79,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | Malaysia (nationwide) | MyWater Portal — JPS dams (16 static metadata) | **manual trigger only** (source static) | `scrapers/malaysia/mywater/mywater_jps_scraper.py` | ✅ v1 (2026-04-22) |
 | Morocco (Souss-Massa) | ABHSM daily barrage situation PDF (9 dams) | daily snapshot + raw PDF, 2× per day | `scrapers/morocco/abhsm/morocco_abhsm_scraper.py` | ✅ v1 (2026-04-29) |
 | South Africa (nationwide) | DWS Weekly State of the Reservoirs PDF (~222 reservoirs) | weekly snapshot, every Tuesday | `scrapers/southafrica/dws_weekly/dws_weekly_scraper.py` | ✅ v1 (2026-04-28) |
-| Taiwan (nationwide) | WRA open data + disaster-prevention APIs | weekly run, rolling 15-day backfill | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
+| Taiwan (nationwide) | WRA open data (one-day daily-operations snapshot) | daily snapshot, 2× per day (history API retired 2026-06) | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | weekly run, rolling 15-day backfill | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
 
 The retired China MWR screenshot/OCR collection is preserved read-only under

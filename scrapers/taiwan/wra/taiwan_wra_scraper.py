@@ -1,17 +1,18 @@
 """Taiwan WRA reservoir scraper.
 
-Sources:
-- Static name mapping:
-  https://data.wra.gov.tw/Service/OpenData.aspx?format=json&id=E2_7_00001
-- Daily operations:
-  https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=YYYY-MM-DD
-- Current realtime snapshot:
-  https://fhy.wra.gov.tw/WraApi/v1/Reservoir/RealTime
+Sources (WRA open data, opendata.wra.gov.tw):
+- Daily operations: one day per publication, the previous day's values
+- Current water level: the latest observations (intraday table)
+- Annual reservoir basic information (metadata)
 
-Default behavior:
-- Fetch yesterday + today in Taiwan time (UTC+8)
-- Write one daily snapshot CSV per date under timeseries/daily/
-- Keep metadata separate from daily observations
+The keyless history API (fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily) was
+retired in June 2026: every v1 path has answered "HTTP Error 503. The service
+is unavailable." since 2026-06-13. Its successor, FHY General API v2, needs a
+key that WRA issues to government bodies; its documentation sends other users
+to the open-data platform. So no source can supply a past day: each daily
+table is the official daily-operations snapshot, filed under the date the
+source reports, and a day the schedule misses is lost (logged as
+missed_dates).
 """
 from __future__ import annotations
 
@@ -29,7 +30,6 @@ from typing import Any
 import requests
 
 
-HIST_DAILY_URL = "https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date={date}"
 CURRENT_DAILY_OPS_URL = (
     "https://opendata.wra.gov.tw/api/v2/51023e88-4c76-4dbc-bbb9-470da690d539"
     "?format=JSON&sort=_importdate+asc"
@@ -221,47 +221,31 @@ def get_json(session: requests.Session, url: str, timeout: int = 60) -> Any:
     raise last_exc
 
 
-def is_source_unavailable(exc: Exception) -> bool:
-    if isinstance(exc, (requests.ConnectionError, requests.Timeout)):
-        return True
-    if isinstance(exc, requests.HTTPError) and exc.response is not None:
-        return exc.response.status_code >= 500
-    return False
-
-
-def emit_workflow_warning(message: str) -> None:
-    print(f"::warning title=Taiwan WRA source availability::{message}")
+def emit_workflow_warning(message: str, title: str = "Taiwan WRA source availability") -> None:
+    print(f"::warning title={title}::{message}")
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
     if summary_path:
         with open(summary_path, "a", encoding="utf-8") as f:
-            f.write(f"### Taiwan WRA source warning\n\n{message}\n")
+            f.write(f"### {title}\n\n{message}\n")
 
 
-def parse_date(s: str) -> datetime.date:
-    return datetime.strptime(s, "%Y-%m-%d").date()
-
-
-def target_dates() -> list[str]:
-    start = os.environ.get("TAIWAN_START_DATE")
-    end = os.environ.get("TAIWAN_END_DATE")
-    today = datetime.now(TAIWAN_TZ).date()
-
-    if start or end:
-        start_d = parse_date(start or end)
-        end_d = parse_date(end or start)
-    else:
-        start_d = today - timedelta(days=1)
-        end_d = today
-
-    if end_d < start_d:
-        raise ValueError("TAIWAN_END_DATE must be >= TAIWAN_START_DATE")
-
-    out: list[str] = []
-    cur = start_d
-    while cur <= end_d:
-        out.append(cur.isoformat())
-        cur += timedelta(days=1)
-    return out
+def missed_dates_before(daily_dir: Path, snapshot_date: str) -> list[str]:
+    """Days between the newest archived daily table older than `snapshot_date`
+    and `snapshot_date` itself. The open-data snapshot holds one day, so these
+    can no longer be fetched from any source the scraper may use."""
+    earlier = []
+    for path in daily_dir.glob("taiwan_timeseries_*.csv"):
+        try:
+            day = datetime.strptime(path.stem.rsplit("_", 1)[1], "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if day.isoformat() < snapshot_date:
+            earlier.append(day)
+    if not earlier:
+        return []
+    previous = max(earlier)
+    end = datetime.strptime(snapshot_date, "%Y-%m-%d").date()
+    return [(previous + timedelta(days=n)).isoformat() for n in range(1, (end - previous).days)]
 
 
 def ensure_dirs(base: Path) -> dict[str, Path]:
@@ -349,47 +333,6 @@ def normalize_basic_info(rows: list[dict]) -> dict[str, dict]:
             "last_capacity_survey_year_roc": _numeric(row.get("最近完成庫容測量時間")),
             "source_system": "opendata.wra.gov.tw Basic Information",
         }
-    return out
-
-
-def normalize_current_water_level(rows: list[dict]) -> dict[str, dict]:
-    out: dict[str, dict] = {}
-    for row in rows:
-        rid = get_id(row)
-        if not rid:
-            continue
-        record = {
-            "reservoir_id": rid,
-            "observation_time": clean_value(row.get("ObservationTime") or row.get("observationtime")),
-            "water_level_m": try_float(row.get("WaterLevel") or row.get("waterlevel")),
-            "percentage_storage_pct": try_float(row.get("PercentageStorage") or row.get("percentagestorage")),
-            "effective_storage_capacity_10k_m3": try_float(
-                row.get("EffectiveWaterStorageCapacity") or row.get("effectivewaterstoragecapacity")
-            ),
-            "rainfall_in_catchment_mm": try_float(
-                row.get("AccumulateRainfallInCatchment") or row.get("accumulaterainfallincatchment")
-            ),
-            "water_draw_10k_m3": try_float(row.get("WaterDraw") or row.get("waterdraw")),
-            "predetermined_crossflow_10k_m3": try_float(
-                row.get("PredeterminedCrossFlow") or row.get("predeterminedcrossflow")
-            ),
-            "desilting_tunnel_outflow_10k_m3": try_float(
-                row.get("DesiltingTunnelOutflow") or row.get("desiltingtunneloutflow")
-            ),
-            "drainage_tunnel_outflow_10k_m3": try_float(
-                row.get("DrainageTunnelOutflow") or row.get("drainagetunneloutflow")
-            ),
-            "power_outlet_outflow_10k_m3": try_float(
-                row.get("PowerOutletOutflow") or row.get("poweroutletoutflow")
-            ),
-            "spillway_outflow_10k_m3": try_float(row.get("SpillwayOutflow") or row.get("spillwayoutflow")),
-            "others_outflow_10k_m3": try_float(row.get("OthersOutflow") or row.get("othersoutflow")),
-            "status_type": clean_value(row.get("StatusType") or row.get("statustype")),
-            "outflow_total_10k_m3": try_float(row.get("TotalOutflow") or row.get("totaloutflow")),
-        }
-        prev = out.get(rid)
-        if prev is None or (record["observation_time"] or "") >= (prev.get("observation_time") or ""):
-            out[rid] = record
     return out
 
 
@@ -489,47 +432,6 @@ def select_current_daily_snapshot(
         if str(row.get("observation_time") or "").startswith(snapshot_date)
     }
     return snapshot_date, snapshot_map, dict(sorted(date_counts.items()))
-
-
-def normalize_daily(rows: list[dict], target_date: str) -> dict[str, dict]:
-    out: dict[str, dict] = {}
-    for row in rows:
-        rid = get_id(row)
-        if not rid:
-            continue
-        out[rid] = {
-            "reservoir_id": rid,
-            "reservoir_name": get_name(row),
-            "date": target_date,
-            "observation_time": clean_value(row.get("Time") or row.get("DateTime") or row.get("ObservationTime")),
-            "effective_storage_capacity_10k_m3": try_float(
-                row.get("EffectiveCapacity") or row.get("Capacity") or row.get("effectivewaterstoragecapacity")
-            ),
-            "rainfall_in_catchment_mm": try_float(
-                row.get("AccumulatedRainfall") or row.get("BasinRainfall") or row.get("AccumulateRainfallInCatchment")
-            ),
-            "inflow_total_10k_m3": try_float(row.get("InflowTotal") or row.get("Inflow") or row.get("inflowdischarge")),
-            "outflow_total_10k_m3": try_float(
-                row.get("OutflowTotal") or row.get("TotalOutflow") or row.get("Outflow") or row.get("totaloutflow")
-            ),
-            "water_draw_10k_m3": try_float(row.get("WaterDraw") or row.get("waterdraw")),
-            "predetermined_crossflow_10k_m3": try_float(
-                row.get("CrossFlow") or row.get("PredeterminedCrossFlow") or row.get("predeterminedcrossflow")
-            ),
-            "desilting_tunnel_outflow_10k_m3": try_float(
-                row.get("DesiltingTunnelOutflow") or row.get("desiltingtunneloutflow")
-            ),
-            "drainage_tunnel_outflow_10k_m3": try_float(
-                row.get("DrainageTunnelOutflow") or row.get("drainagetunneloutflow")
-            ),
-            "power_outlet_outflow_10k_m3": try_float(
-                row.get("PowerOutletOutflow") or row.get("poweroutletoutflow")
-            ),
-            "spillway_outflow_10k_m3": try_float(row.get("SpillwayOutflow") or row.get("spillwayoutflow")),
-            "others_outflow_10k_m3": try_float(row.get("OthersOutflow") or row.get("othersoutflow")),
-            "status_type": clean_value(row.get("StatusType") or row.get("statustype")),
-        }
-    return out
 
 
 def build_rows(
@@ -728,31 +630,6 @@ def backfill_archived_current_daily(
     return recovered
 
 
-def describe_current_daily_fallback(
-    snapshot_date: str | None,
-    fallback_used: bool,
-    recovered: list[dict[str, Any]],
-    daily_dir: Path,
-) -> tuple[str, str]:
-    recovered_dates = {str(item.get("date") or "") for item in recovered}
-    if snapshot_date and (fallback_used or snapshot_date in recovered_dates):
-        return (
-            "captured",
-            f"Captured the official current daily snapshot for {snapshot_date} instead.",
-        )
-    if snapshot_date and (
-        daily_dir / f"taiwan_timeseries_{snapshot_date}.csv"
-    ).is_file():
-        return (
-            "already_archived",
-            f"The official current daily snapshot for {snapshot_date} was already archived.",
-        )
-    return (
-        "unavailable",
-        "No current daily fallback fell inside the requested window.",
-    )
-
-
 def upsert_metadata(
     path: Path,
     basic_info_map: dict[str, dict],
@@ -848,11 +725,7 @@ def main() -> int:
     dirs = ensure_dirs(output_dir)
     manual_overrides = load_manual_overrides(script_dir / "manual_name_overrides.csv")
     coords_map = load_reservoir_coords(script_dir / "reservoir_coords.csv")
-    manual_backfill = bool(os.environ.get("TAIWAN_START_DATE") or os.environ.get("TAIWAN_END_DATE"))
-    skip_existing_env = os.environ.get("SKIP_EXISTING_DAILY")
-    skip_existing = (skip_existing_env != "0") if skip_existing_env is not None else (not manual_backfill)
     save_raw = os.environ.get("SAVE_RAW_JSON", "1") != "0"
-    dates = target_dates()
     today_tw = datetime.now(TAIWAN_TZ).date().isoformat()
 
     session = requests.Session()
@@ -861,10 +734,8 @@ def main() -> int:
     summary: dict[str, Any] = {
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "output_dir": str(output_dir),
-        "dates": dates,
         "files_written": [],
         "errors": [],
-        "records_per_date": {},
     }
 
     try:
@@ -884,6 +755,7 @@ def main() -> int:
         current_daily_ops_map: dict[str, dict] = {}
         current_daily_snapshot_date: str | None = None
         current_daily_snapshot_map: dict[str, dict] = {}
+        snapshot_was_archived = False
         try:
             current_daily_rows = get_json(session, CURRENT_DAILY_OPS_URL)
             current_daily_ops_map = normalize_current_daily_ops(
@@ -895,6 +767,9 @@ def main() -> int:
                 current_daily_date_counts,
             ) = select_current_daily_snapshot(current_daily_ops_map)
             if current_daily_snapshot_date:
+                snapshot_was_archived = (
+                    dirs["daily"] / f"taiwan_timeseries_{current_daily_snapshot_date}.csv"
+                ).exists()
                 summary["current_daily_snapshot"] = {
                     "date": current_daily_snapshot_date,
                     "rows": len(current_daily_snapshot_map),
@@ -908,12 +783,8 @@ def main() -> int:
             print(f"[WARN] current daily ops dataset unavailable: {e}", file=sys.stderr)
             summary["errors"].append({"current_daily_ops_warning": str(e)})
 
-        current_water_level_map: dict[str, dict] = {}
         try:
             water_level_rows = get_json(session, CURRENT_WATER_LEVEL_URL)
-            current_water_level_map = normalize_current_water_level(
-                water_level_rows if isinstance(water_level_rows, list) else []
-            )
             intraday_rows = normalize_current_water_level_intraday(
                 water_level_rows if isinstance(water_level_rows, list) else [],
                 basic_info_map,
@@ -938,119 +809,44 @@ def main() -> int:
             summary["archived_current_daily_backfill"] = recovered
             summary["files_written"].extend(item["output"] for item in recovered)
 
-        daily_success = 0
-        daily_skipped = 0
-        daily_unavailable: list[dict[str, str]] = []
-        historical_service_unavailable: str | None = None
-        current_daily_fallback_used = False
-        for date_str in dates:
-            daily_path = dirs["daily"] / f"taiwan_timeseries_{date_str}.csv"
-            # Keep today's file fresh because names/current water level come from
-            # current datasets and can improve over earlier runs. Historical files
-            # can stay immutable once written.
-            if skip_existing and daily_path.exists() and date_str != today_tw:
-                print(f"[SKIP] {daily_path.name}")
-                daily_skipped += 1
-                continue
-
-            print(f"[FETCH] {date_str}")
-            daily_rows: Any = None
-            daily_error: requests.RequestException | None = None
-            if historical_service_unavailable is None:
-                try:
-                    daily_rows = get_json(session, HIST_DAILY_URL.format(date=date_str))
-                except requests.RequestException as exc:
-                    if not is_source_unavailable(exc):
-                        raise
-                    daily_error = exc
-                    if (
-                        isinstance(exc, requests.HTTPError)
-                        and exc.response is not None
-                        and exc.response.status_code == 503
-                    ):
-                        historical_service_unavailable = str(exc)
-            else:
-                daily_error = requests.ConnectionError(
-                    "historical endpoint circuit open after HTTP 503: "
-                    f"{historical_service_unavailable}"
-                )
-
-            if daily_error is not None:
-                print(
-                    f"[WARN] daily dataset unavailable for {date_str}: {daily_error}",
-                    file=sys.stderr,
-                )
-                daily_unavailable.append(
-                    {
-                        "date": date_str,
-                        "error_type": daily_error.__class__.__name__,
-                        "error": str(daily_error),
-                    }
-                )
-
-            if daily_rows is not None:
-                if save_raw:
-                    raw_path = dirs["raw_daily"] / f"{date_str}.json"
-                    save_json(raw_path, daily_rows)
-                    summary["files_written"].append(str(raw_path))
-                daily_map = normalize_daily(
-                    daily_rows if isinstance(daily_rows, list) else [], date_str
-                )
-                rows = build_rows(
-                    date_str,
-                    basic_info_map,
-                    current_daily_ops_map,
-                    daily_map,
-                    current_water_level_map,
-                    manual_overrides,
-                    today_tw,
-                )
-            elif (
-                date_str == current_daily_snapshot_date
-                and current_daily_snapshot_map
-            ):
-                print(
-                    f"[FALLBACK] using official current daily snapshot for {date_str}"
-                )
-                if save_raw:
-                    raw_path = dirs["raw_daily"] / f"{date_str}_current_snapshot.json"
-                    save_json(raw_path, current_daily_rows)
-                    summary["files_written"].append(str(raw_path))
+        if current_daily_snapshot_date:
+            daily_path = dirs["daily"] / f"taiwan_timeseries_{current_daily_snapshot_date}.csv"
+            if not daily_path.exists():
+                # Only without SAVE_RAW_JSON; otherwise the backfill above has
+                # already filed the snapshot from its archived raw copy.
                 rows = build_current_snapshot_rows(
-                    date_str,
+                    current_daily_snapshot_date,
                     current_daily_snapshot_map,
                     basic_info_map,
                     manual_overrides,
                 )
-                current_daily_fallback_used = True
-            else:
-                continue
-
-            write_timeseries_csv(daily_path, rows)
-            print(f"[OK] {daily_path.name} ({len(rows)} rows)")
-            summary["records_per_date"][date_str] = len(rows)
-            summary["files_written"].append(str(daily_path))
-            daily_success += 1
-            time.sleep(0.4)
-
-        if daily_unavailable:
-            summary["source_unavailable_dates"] = daily_unavailable
-            summary["historical_endpoint_status"] = "unavailable"
-            fallback_status, fallback_note = describe_current_daily_fallback(
-                current_daily_snapshot_date,
-                current_daily_fallback_used,
-                recovered,
-                dirs["daily"],
+                write_timeseries_csv(daily_path, rows)
+                summary["files_written"].append(str(daily_path))
+                print(f"[OK] {daily_path.name} ({len(rows)} rows)")
+            summary["daily_snapshot_status"] = (
+                "already_archived" if snapshot_was_archived else "archived"
             )
-            summary["current_daily_fallback_status"] = fallback_status
+            # Only the run that files a date reports the gap before it, so a
+            # gap is reported once rather than by every later run that day.
+            missed = (
+                [] if snapshot_was_archived
+                else missed_dates_before(dirs["daily"], current_daily_snapshot_date)
+            )
+            if missed:
+                summary["missed_dates"] = missed
+                emit_workflow_warning(
+                    f"No daily table was archived for {len(missed)} day(s) before "
+                    f"{current_daily_snapshot_date} ({missed[0]} to {missed[-1]}). "
+                    "The open-data snapshot holds one day, so they cannot be fetched now.",
+                    title="Taiwan WRA missed days",
+                )
+        else:
+            summary["daily_snapshot_status"] = "unavailable"
             emit_workflow_warning(
-                "The historical daily endpoint is unavailable. " + fallback_note
+                "The daily-operations dataset gave no usable snapshot this run. "
+                "Each day stays in the dataset until it rolls over, so the next "
+                "scheduled run can still file it."
             )
-        if daily_success == 0 and daily_skipped != len(dates):
-            if daily_unavailable:
-                summary["status"] = "partial"
-            else:
-                raise RuntimeError("No Taiwan daily datasets were fetched successfully.")
 
         count = upsert_metadata(
             dirs["metadata"] / "taiwan_wra_reservoirs.csv",
@@ -1062,11 +858,6 @@ def main() -> int:
         print(f"[METADATA] {count} reservoirs")
         summary["files_written"].append(str(dirs["metadata"] / "taiwan_wra_reservoirs.csv"))
         summary["metadata_count"] = count
-        unresolved = sorted({
-            r["reservoir_id"]
-            for date_str in summary["records_per_date"]
-            for r in []
-        })
         unresolved = []
         for daily_file in sorted(dirs["daily"].glob("taiwan_timeseries_*.csv")):
             with open(daily_file, encoding="utf-8-sig", newline="") as f:
@@ -1077,7 +868,9 @@ def main() -> int:
         summary["unresolved_name_ids"] = unresolved
         if unresolved:
             print(f"[WARN] unresolved reservoir names: {', '.join(unresolved)}", file=sys.stderr)
-        summary["status"] = "partial" if daily_unavailable else "ok"
+        summary["status"] = (
+            "ok" if current_daily_snapshot_date else "source_unavailable"
+        )
         return_code = 0
     except Exception as e:
         summary["status"] = "error"
