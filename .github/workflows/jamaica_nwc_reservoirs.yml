@@ -1,0 +1,72 @@
+name: Jamaica NWC reservoir levels
+
+on:
+  # NWC's copyright notice allows personal and non-commercial reproduction with
+  # NWC named as the source; commercial redistribution needs NWC's written
+  # permission (reuse_status `attribution_required_review`, see
+  # DATA_LICENCE_NOTICE.md). The repository owner decided on 2026-10-04 to
+  # collect it here like CAMMESA and CENCE, with the PI managing the
+  # repository's public exposure. Presence in this repository is not
+  # permission to republish.
+  schedule:
+    # 09:40 and 17:40 America/Jamaica (UTC-5, no DST). The page shows only the
+    # latest WEEKLY reading of Mona Reservoir and Hermitage Dam and replaces it
+    # with the next one, so each reading is visible for about a week; two runs a
+    # day give about fourteen capture opportunities per reading.
+    - cron: "40 14 * * *"
+    - cron: "40 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jamaica-nwc-reservoirs
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/jamaica/nwc_reservoirs
+        run: python scrapers/jamaica/nwc_reservoirs/jamaica_nwc_reservoirs_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/jamaica/nwc_reservoirs
+          git add scrapers/jamaica/nwc_reservoirs
+          # Every run writes a run summary; commit only when a new page or a
+          # changed table was stored.
+          if git diff --cached --quiet -- data/jamaica/nwc_reservoirs/raw data/jamaica/nwc_reservoirs/timeseries; then
+            echo "No new data; not committing."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(jamaica/nwc_reservoirs): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

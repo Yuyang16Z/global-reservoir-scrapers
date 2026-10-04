@@ -54,6 +54,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `zambia/zra_kariba` | ZRA (Zambezi River Authority) | `undeclared_review` | **No** |
 | `argentina/cammesa_hidro` | CAMMESA (daily hydro snapshot page) | `prohibited` — site terms forbid reproduction or distribution without CAMMESA's express authorisation | **No** |
 | `costarica/cence_embalses` | ICE/CENCE (Boletin Intra-Diario reservoir levels) | `restricted_use` - "(c) ICE Todos los Derechos Reservados", no reuse permission | **No** |
+| `jamaica/nwc_reservoirs` | NWC Jamaica (Dam & Reservoir Levels page) | `attribution_required_review` - personal and non-commercial reproduction allowed with NWC named as the source; commercial redistribution needs written permission | **No** (non-commercial copies citing NWC only) |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
@@ -123,6 +124,19 @@ Reservados" and grants no reuse permission (`restricted_use`, checked
 CAMMESA way", with the PI managing the repository's public exposure. This covers
 this source only and is not permission to republish ICE data.
 
+## Owner decision 2026-10-04: Jamaica NWC collected here
+
+`jamaica/nwc_reservoirs` captures the "Dam & Reservoir Levels" page of the
+National Water Commission (NWC), Jamaica: the latest weekly reading of Mona
+Reservoir and Hermitage Dam (volume in million imperial gallons, percentage of
+capacity, reading date). Each reading replaces the previous one, so readings not
+captured are lost. NWC's copyright notice allows personal and non-commercial
+reproduction with NWC named as the source and requires written permission for
+commercial redistribution (`attribution_required_review`, checked 2026-10-04).
+The repository owner decided on 2026-10-04 to collect it here, archived weekly,
+with the PI managing the repository's public exposure. This covers this source
+only and is not permission to republish NWC data.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -131,5 +145,6 @@ this source only and is not permission to republish ICE data.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-10-01 (costarica/cence_embalses row and owner decision added;
-argentina/cammesa_hidro 2026-09-28; owner decision of 2026-08-04 unchanged).
+Last reviewed: 2026-10-04 (jamaica/nwc_reservoirs row and owner decision added;
+costarica/cence_embalses 2026-10-01; argentina/cammesa_hidro 2026-09-28; owner decision
+of 2026-08-04 unchanged).
