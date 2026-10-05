@@ -13,6 +13,7 @@ Arenal,2026-10-04T03:00,,543.04,2026-10-04T11:08:07+00:00,hourly_readings.jsonl
 Arenal,2026-10-04T10:00,,543.04,2026-10-04T17:40:12+00:00,hourly_readings.jsonl
 Arenal,2026-10-04T16:00,,543.04,2026-10-05T00:01:02+00:00,hourly_readings.jsonl
 Arenal,2026-10-05T05:00,,543.05,2026-10-05T12:18:45+00:00,hourly_readings.jsonl
+Arenal,2026-10-05T13:00,543.02,543.05,2026-10-05T21:14:47+00:00,hourly_readings.jsonl
 Cachí,2026-09-30T20:00,989.81,989.86,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Cachí,2026-10-01T01:00,,989.91,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Cachí,2026-10-01T11:00,990.0,989.89,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -27,6 +28,7 @@ Cachí,2026-10-04T03:00,,989.89,2026-10-04T11:08:07+00:00,hourly_readings.jsonl
 Cachí,2026-10-04T10:00,,990.0,2026-10-04T17:40:12+00:00,hourly_readings.jsonl
 Cachí,2026-10-04T16:00,,989.97,2026-10-05T00:01:02+00:00,hourly_readings.jsonl
 Cachí,2026-10-05T05:00,,989.93,2026-10-05T12:18:45+00:00,hourly_readings.jsonl
+Cachí,2026-10-05T13:00,990.0,990.01,2026-10-05T21:14:47+00:00,hourly_readings.jsonl
 Pirrís,2026-09-30T20:00,1203.88,1204.27,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T01:00,,1204.31,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T11:00,1203.94,1204.18,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -41,6 +43,7 @@ Pirrís,2026-10-04T03:00,,1204.06,2026-10-04T11:08:07+00:00,hourly_readings.json
 Pirrís,2026-10-04T10:00,,1204.16,2026-10-04T17:40:12+00:00,hourly_readings.jsonl
 Pirrís,2026-10-04T16:00,,1204.11,2026-10-05T00:01:02+00:00,hourly_readings.jsonl
 Pirrís,2026-10-05T05:00,,1204.12,2026-10-05T12:18:45+00:00,hourly_readings.jsonl
+Pirrís,2026-10-05T13:00,1203.92,1204.08,2026-10-05T21:14:47+00:00,hourly_readings.jsonl
 Reventazón,2026-09-30T20:00,254.37,255.06,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T01:00,,255.08,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T11:00,254.83,254.59,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -55,3 +58,4 @@ Reventazón,2026-10-04T03:00,,254.5,2026-10-04T11:08:07+00:00,hourly_readings.js
 Reventazón,2026-10-04T10:00,,254.49,2026-10-04T17:40:12+00:00,hourly_readings.jsonl
 Reventazón,2026-10-04T16:00,,254.27,2026-10-05T00:01:02+00:00,hourly_readings.jsonl
 Reventazón,2026-10-05T05:00,,254.44,2026-10-05T12:18:45+00:00,hourly_readings.jsonl
+Reventazón,2026-10-05T13:00,254.1,254.26,2026-10-05T21:14:47+00:00,hourly_readings.jsonl
