@@ -1,3 +1,5 @@
 reservoir,observation_date,storage_mg,storage_pct,capacity_mg,capacity_ml,status_label,trend,captured_utc,raw_file
 Hermitage Dam,2026-10-01,157.9,40.1,393.5,1789,Conserve,Trending down vs. last reading,2026-10-04T08:33:42+00:00,2026/20261004T083342Z__68e3c2400775.html.gz
+Hermitage Dam,2026-10-04,156.2,39.7,393.5,1789,Conserve,Trending down vs. last reading,2026-10-05T01:12:34+00:00,2026/20261005T011234Z__c7c33e8940a9.html.gz
 Mona Reservoir,2026-10-01,269.6,33.3,808.5,3675,Conserve,Trending down vs. last reading,2026-10-04T08:33:42+00:00,2026/20261004T083342Z__68e3c2400775.html.gz
+Mona Reservoir,2026-10-04,267,33,808.5,3675,Conserve,Trending down vs. last reading,2026-10-05T01:12:34+00:00,2026/20261005T011234Z__c7c33e8940a9.html.gz
