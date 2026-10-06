@@ -10,8 +10,14 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
   `https://opendata.wra.gov.tw/api/v2/2be9044c-6e44-4856-aad5-dd108c2e6679?format=JSON&sort=_importdate+asc`
 - Annual reservoir basic information:
   `https://opendata.wra.gov.tw/api/v2/708a43b0-24dc-40b7-9ed2-fca6a291e7ae?format=JSON&sort=_importdate+asc`
-- Historical daily endpoint:
-  `https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=YYYY-MM-DD`
+- Retired: the keyless history API
+  `https://fhy.wra.gov.tw/WraApi/v1/Reservoir/Daily?date=YYYY-MM-DD` has
+  answered "HTTP Error 503. The service is unavailable." on every path since
+  2026-06-13. Its successor, FHY General API v2
+  (`https://fhy.wra.gov.tw/Api/v2/Reservoir/Daily`, header `apikey`), needs a
+  key that WRA issues to government bodies; its documentation sends other
+  users to the open-data platform. No source this scraper may use can supply
+  a past day.
 - Static lat/lon lookup:
   `reservoir_coords.csv` (one-time extract, centroid of reservoir storage-area
   polygons from `gic.wra.gov.tw` SHP: `ressub` with `reservoir` as fallback,
@@ -25,22 +31,24 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 - `timeseries/daily/taiwan_timeseries_YYYY-MM-DD.csv`
 - `timeseries/intraday/taiwan_intraday_YYYY-MM-DD.csv`
 - `raw/static_reservoirs.json`
-- `raw/daily/YYYY-MM-DD.json`
-- `raw/realtime_YYYY-MM-DD.json`
+- `raw/current_daily_ops_YYYY-MM-DD.json`, `raw/current_water_level_YYYY-MM-DD.json`
+  (named after the run's Taiwan date)
+- `raw/daily/YYYY-MM-DD.json` (history API responses up to 2026-06-11)
 - `run_logs/<timestamp>_summary.json`
 
 ## Notes
 
-- Default run fetches **yesterday + today** in Taiwan time.
-- Manual backfill is supported via `TAIWAN_START_DATE` and `TAIWAN_END_DATE`.
-- Manual backfill overwrites the requested dates by default, so old daily files can be refreshed.
-- The historical `fhy.wra.gov.tw` daily endpoint supplies the per-date values.
-- The `opendata.wra.gov.tw` current datasets supply names, current water level,
-  storage percentage, and metadata enrichment.
-- If the historical endpoint returns HTTP 503, the run stops probing the rest
-  of that date window and records a `partial` result. The official current daily
-  dataset is archived under its own reported date as a fallback; it is never
-  relabelled as one of the unavailable historical dates.
+- Each run files the official daily-operations snapshot under the date the
+  source reports (normally yesterday in Taiwan time). A table already archived
+  for that date is left unchanged.
+- The snapshot holds one day and is replaced once a day, so a day is archived
+  only if a run lands while it is current. The workflow runs twice a day,
+  12 hours apart, for that reason. When a run finds days missing between the
+  newest earlier table and the snapshot, it lists them as `missed_dates` in its
+  run summary and raises a workflow warning; those days cannot be fetched
+  later.
+- `status` in the run summary is `ok` when a snapshot was filed or was already
+  archived, and `source_unavailable` when the dataset gave no usable snapshot.
 - Existing `raw/current_daily_ops_*.json` snapshots are used to recover missing
   daily CSVs under their dominant source-reported date. This recovers only
   observations actually archived by the project and does not invent gaps.
@@ -60,10 +68,6 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
 
 ```bash
 python scrapers/taiwan/wra/taiwan_wra_scraper.py
-
-# Backfill a range
-TAIWAN_START_DATE=2026-04-01 TAIWAN_END_DATE=2026-04-22 \
-python scrapers/taiwan/wra/taiwan_wra_scraper.py
 ```
 
 ## Environment variables
@@ -71,6 +75,4 @@ python scrapers/taiwan/wra/taiwan_wra_scraper.py
 | Variable | Default | Meaning |
 |---|---|---|
 | `OUTPUT_DIR` | `./taiwan_wra_outputs` next to the script | Where outputs are written |
-| `TAIWAN_START_DATE` / `TAIWAN_END_DATE` | unset | Inclusive date range (`YYYY-MM-DD`) |
-| `SKIP_EXISTING_DAILY` | `1` | Skip existing daily CSVs. Set `0` to overwrite |
 | `SAVE_RAW_JSON` | `1` | Save raw JSON payloads for audit/debug |

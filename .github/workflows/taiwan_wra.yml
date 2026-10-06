@@ -1,22 +1,20 @@
 name: Taiwan WRA scrape
 
-# WRA has a historical daily endpoint. Run weekly and fetch a rolling 15-day
-# window so the repo gets fewer bot commits while still tolerating one missed
-# weekly run.
+# WRA's daily reservoir figures reach non-government users only through its
+# open data, and the daily-operations dataset there holds a single day (the
+# previous day's values), replaced once a day. The keyless history API that a
+# weekly run used to backfill 15 days from (fhy.wra.gov.tw/WraApi/v1) was
+# retired in June 2026; its successor, FHY General API v2, needs a key WRA
+# issues to government bodies. So a day is lost unless a run lands inside its
+# 24-hour window. Scheduled runs start hours late, by varying amounts (median
+# about 5 h, see README.md "Scheduled runs"), so two consecutive once-a-day
+# runs can land more than 24 hours apart and skip a day. Runs 12 hours apart
+# keep at least one run in every window.
 on:
   schedule:
-    # Monday 01:45 UTC (09:45 Asia/Taipei), with Thursday as the recovery run
-    # so a failed Monday is retried before the next weekly window.
-    - cron: "45 1 * * 1"
-    - cron: "45 1 * * 4"
-  workflow_dispatch:
-    inputs:
-      start_date:
-        description: "Backfill start (YYYY-MM-DD). Leave blank for default (yesterday+today)."
-        required: false
-      end_date:
-        description: "Backfill end (YYYY-MM-DD)."
-        required: false
+    # 01:45 and 13:45 UTC (09:45 and 21:45 Asia/Taipei).
+    - cron: "45 1,13 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -42,29 +40,9 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Compute scrape window
-        id: scrape_window
-        env:
-          INPUT_START_DATE: ${{ github.event.inputs.start_date || '' }}
-          INPUT_END_DATE: ${{ github.event.inputs.end_date || '' }}
-          TZ: Asia/Taipei
-        run: |
-          if [ -n "$INPUT_START_DATE" ] || [ -n "$INPUT_END_DATE" ]; then
-            start="${INPUT_START_DATE:-$INPUT_END_DATE}"
-            end="${INPUT_END_DATE:-$INPUT_START_DATE}"
-          else
-            start=$(date -d "14 days ago" +"%Y-%m-%d")
-            end=$(date +"%Y-%m-%d")
-          fi
-          echo "start_date=${start}" >> "$GITHUB_OUTPUT"
-          echo "end_date=${end}" >> "$GITHUB_OUTPUT"
-
       - name: Run scraper
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/taiwan/wra
-          TAIWAN_START_DATE: ${{ steps.scrape_window.outputs.start_date }}
-          TAIWAN_END_DATE: ${{ steps.scrape_window.outputs.end_date }}
-          SKIP_EXISTING_DAILY: "1"
         run: python scrapers/taiwan/wra/taiwan_wra_scraper.py
 
       - name: Commit & push new data
