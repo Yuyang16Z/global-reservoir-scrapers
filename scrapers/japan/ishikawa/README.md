@@ -8,8 +8,10 @@ file layout and JSON shape:
     {"<station_id>": {"data60": [{"item_10": {"val": ...}, ..., "time": ...}]},
      "updateTime": ..., "observationTime": ...}
 
-The day file resets at midnight and past dates 404, so the late-day run is primary and
-the earlier ones are insurance.
+A new day file starts at 00:00 JST, and past day files stay up for a few days (checked
+2026-10-06: the three previous days complete, a week-old day 404). Every run also
+re-reads the last three days (`DAYS_BACK`), so a day's evening hours are filled in by
+the next morning's runs instead of depending on a run just before midnight.
 
 ## Field codes were verified here, not inherited
 

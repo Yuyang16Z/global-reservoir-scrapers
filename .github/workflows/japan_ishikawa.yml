@@ -1,8 +1,10 @@
 name: Japan Ishikawa dams scrape
 
-# The day file accumulates hourly points from 00:00 JST and resets at midnight; past
-# dates 404. The 23:50 JST run captures the whole day on its own; the others are
-# insurance against it failing.
+# One file per JST day holds that day's hourly points, and past day files stay up for
+# a few days (checked 2026-10-06: the three previous days complete, a week-old day
+# 404). Every run re-reads the last three days, so the evening hours that a run landing
+# before midnight misses are filled in by the next morning's runs; scheduled runs
+# start hours late, so no run can be relied on to land just before midnight.
 on:
   schedule:
     - cron: "55 14 * * *"
@@ -10,6 +12,10 @@ on:
     - cron: "55 2 * * *"
     - cron: "55 20 * * *"
   workflow_dispatch:
+    inputs:
+      days_back:
+        description: "Past day files to re-read (default 3; they expire within a week)"
+        required: false
 
 permissions:
   contents: write
@@ -36,6 +42,7 @@ jobs:
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/japan/ishikawa
           TZ: Asia/Tokyo
+          DAYS_BACK: ${{ github.event.inputs.days_back || '3' }}
         run: python scrapers/japan/ishikawa/japan_ishikawa_scraper.py
       - name: Commit & push new data
         run: |

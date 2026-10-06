@@ -60,6 +60,14 @@ zinwa = load_module(
     "zimbabwe_zinwa_scraper",
     "scrapers/zimbabwe/zinwa/zimbabwe_zinwa_scraper.py",
 )
+ishikawa = load_module(
+    "japan_ishikawa_scraper",
+    "scrapers/japan/ishikawa/japan_ishikawa_scraper.py",
+)
+shimane = load_module(
+    "japan_shimane_scraper",
+    "scrapers/japan/shimane/japan_shimane_scraper.py",
+)
 
 
 class ChinaMwrTransportTests(unittest.TestCase):
@@ -759,6 +767,67 @@ const gwayiDams = [""")
         self.assertEqual((pct["BEIT BRIDGE 1"], pct["BEIT BRIDGE 2"]), (93.5, 14.6))
         self.assertNotIn("BEIT BRIDGE", pct)
         self.assertEqual(attrs["BEIT BRIDGE 2"]["catchment"], "Mzingwane")
+
+
+class JapanDayFileTests(unittest.TestCase):
+    """Ishikawa and Shimane publish one file per JST day that stays up for days."""
+
+    @staticmethod
+    def ishikawa_day(day):
+        points = [{"time": f"{day:%Y-%m-%d}-{h:02d}-00", "item_10": {"val": "446.5"}}
+                  for h in range(24)]
+        return json.dumps({"21565_7_1": {"data60": points}, "updateTime": "x"}).encode()
+
+    @staticmethod
+    def shimane_day(day):
+        doc = {f"{day:%Y-%m-%d}-{h:02d}-00": {"8193_7_1": {"7_10": {"dt": "187.9"}}}
+               for h in range(24)}
+        doc["update"] = "x"
+        return json.dumps(doc).encode()
+
+    def run_scraper(self, module, payload):
+        from datetime import datetime as real_datetime
+        today = real_datetime.now(module.JST).date()
+        served = {today - module.timedelta(days=n) for n in (1, 2)}
+        requested = []
+
+        def get(url, attempts=3):
+            requested.append(url)
+            for day in served:
+                if f"{day:%Y%m%d}" in url:
+                    return payload(day)
+            return None                # today not published yet, day 3 expired
+
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(module, "OUT", Path(tmp)), \
+                mock.patch.object(module, "RAW", Path(tmp) / "raw"), \
+                mock.patch.object(module, "get", side_effect=get):
+            self.assertEqual(module.main(), 0)
+            with (Path(tmp) / "accumulated.csv").open(encoding="utf-8-sig") as fh:
+                rows = list(csv.DictReader(fh))
+            log = json.loads((Path(tmp) / "runlog_latest.json").read_text(encoding="utf-8"))
+        return today, requested, rows, log
+
+    def test_a_run_after_midnight_completes_the_previous_days(self):
+        for module, payload in ((ishikawa, self.ishikawa_day), (shimane, self.shimane_day)):
+            with self.subTest(module=module.__name__):
+                today, requested, rows, log = self.run_scraper(module, payload)
+                self.assertEqual(len(requested), module.DAYS_BACK + 1)
+                yesterday = f"{today - module.timedelta(days=1):%Y-%m-%d}"
+                hours = {r["observed_at"][11:] for r in rows if r["observed_at"].startswith(yesterday)}
+                self.assertEqual(len(hours), 24)
+                self.assertEqual(log["day_files"][f"{today:%Y%m%d}"], 0)
+                self.assertEqual(log["day_files"][yesterday.replace("-", "")], 24)
+
+    def test_a_404_is_not_retried(self):
+        for module in (ishikawa, shimane):
+            with self.subTest(module=module.__name__):
+                gone = module.urllib.error.HTTPError("u", 404, "Not Found", {}, None)
+                with mock.patch.object(module.urllib.request, "urlopen", side_effect=gone) as urlopen, \
+                        mock.patch.object(module.time, "sleep") as sleep:
+                    self.assertIsNone(module.get("https://example.invalid/x.json"))
+                self.assertEqual(urlopen.call_count, 1)
+                sleep.assert_not_called()
 
 
 if __name__ == "__main__":
