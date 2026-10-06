@@ -42,6 +42,26 @@ def page(mona_mg: str = "269.6", as_of: str = "01 Oct 26") -> bytes:
             + "</div></body></html>").encode("utf-8")
 
 
+def legacy_page() -> bytes:
+    """Trimmed copy of the layout used until mid-2026 (one <section> per reservoir), with the commented-out static
+    block the page carried, which must not be read."""
+    def section(name: str, cap: str, date: str, mg: str, pct: str) -> str:
+        return f"""<section class="p-4 rounded"><div class="row"><div class="col-lg-5">
+<p class="rounded h2 text-uppercase">{name}</p><div class=" conten py-4">
+<h2 class="text-white pl-4">Reservoir Levels | <strong>Weekly Summary</strong></h2>
+<h4 class="py-4 text-sm pl-4">{name.replace(' Levels', '')} Capacity <strong>{cap}</strong></h4>
+<div><h1 class="text-white">Last Updated Reading </h1><div><img src="images/calendar.png" alt="" />
+<span class="text-light">{date}</span></div></div><hr><div class="row">
+<div><img src="images/down_arrow.png" alt="Down Arrow"></div>
+<div><h1 class="font-secondary">{mg} MG</h1><p class="text-light">Reading per Million Gallons</p></div>
+<div><h1 class="font-secondary">{pct} %</h1><p class="text-light">Level Percentage</p></div>
+</div></div></div></div></section>"""
+    return ("<html><body><!-- <div><h1>33%</h1><h1>266.5 MG</h1><h1>808.5 Capacity</h1></div> -->"
+            + section("Mona Reservoir", "808.5 MG/3,675 ML", "Jul 08, 2026", "642.7", "79.5")
+            + section("Hermitage Dam Levels", "393.5 MG/1,789s ML", "Jul 08, 2026", "226.4", "57.5")
+            + "</body></html>").encode("utf-8")
+
+
 class NwcTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -70,6 +90,16 @@ class NwcTests(unittest.TestCase):
         self.assertEqual(mona["storage_pct"], 33.3)
         self.assertEqual(mona["capacity_ml"], 3675.0)                # thousands separator
         self.assertEqual(parsed["problems"], [])
+
+    def test_parse_legacy_layout(self):
+        parsed = self.mod.parse_page(legacy_page())
+        self.assertEqual(parsed["layout"], "weekly_summary_sections")
+        by = {r["reservoir"]: r for r in parsed["readings"]}
+        self.assertEqual(sorted(by), ["Hermitage Dam", "Mona Reservoir"])     # same names as the 2026 cards
+        self.assertEqual(by["Mona Reservoir"]["observation_date"], "2026-07-08")
+        self.assertEqual(by["Mona Reservoir"]["storage_mg"], 642.7)          # not the commented-out 266.5
+        self.assertEqual(by["Hermitage Dam"]["capacity_ml"], 1789.0)         # '1,789s ML' typo on the page
+        self.assertEqual(by["Hermitage Dam"]["storage_pct"], 57.5)
 
     def test_same_reading_stored_once_and_revision_listed(self):
         caps, s = [], self.summary()

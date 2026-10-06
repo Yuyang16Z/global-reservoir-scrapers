@@ -9,12 +9,16 @@ on:
   # repository's public exposure. Presence in this repository is not
   # permission to republish.
   schedule:
-    # 09:40 and 17:40 America/Jamaica (UTC-5, no DST). The page shows only the
-    # latest WEEKLY reading of Mona Reservoir and Hermitage Dam and replaces it
-    # with the next one, so each reading is visible for about a week; two runs a
-    # day give about fourteen capture opportunities per reading.
-    - cron: "40 14 * * *"
-    - cron: "40 22 * * *"
+    # 02:40, 08:40, 14:40 and 20:40 America/Jamaica (UTC-5, no DST). The page
+    # shows only the latest reading of Mona Reservoir and Hermitage Dam and
+    # replaces it with the next one. The page calls the readings weekly, but
+    # NWC posted readings dated 1, 4 and 5 October 2026, so a reading can be
+    # replaced within a day; four runs a day keep a capture opportunity in
+    # every six hours even when GitHub delays or drops a scheduled run.
+    - cron: "40 1 * * *"
+    - cron: "40 7 * * *"
+    - cron: "40 13 * * *"
+    - cron: "40 19 * * *"
   workflow_dispatch:
 
 permissions:

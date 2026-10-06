@@ -6,11 +6,13 @@ Source:
 The National Water Commission's page shows, for Mona Reservoir and Hermitage Dam (the two main storage sources of the
 Kingston & St Andrew supply), the LATEST weekly reading only: the stored volume in million imperial gallons (MG), the
 percentage of capacity, the capacity (MG and megalitres), the reading date ("As of: 01 Oct 26"), a status label and
-the trend against the previous reading. "Readings are taken weekly" (page text).
+the trend against the previous reading. The page calls the readings weekly; NWC posted readings dated 1, 4 and 5
+October 2026, so a reading can be replaced within a day.
 
-Retention: CURRENT SNAPSHOT. Each weekly reading replaces the previous one and nothing on the page or elsewhere on the
-site serves earlier readings; history survives only in Internet Archive captures (30 distinct, 2021-08 to 2026-07)
-and press releases. The archived captures can be imported with IMPORT_DIR.
+Retention: CURRENT SNAPSHOT. Each reading replaces the previous one and nothing on the page or elsewhere on the site
+serves earlier readings; history survives only in Internet Archive captures (30 distinct, 2021-08 to 2026-07) and
+press releases. Two layouts are read: the 2026 cards and the earlier one-<section>-per-reservoir "Weekly Summary"
+page. Archived captures can be imported with IMPORT_DIR.
 
 Design:
 - Each run fetches the page once. A page is stored only when its parsed readings are new (hash of the parsed readings,
@@ -148,6 +150,46 @@ def parse_cards(soup: BeautifulSoup) -> list[dict]:
     return readings
 
 
+LEGACY_CAPACITY_RE = re.compile(r"([A-Z][A-Za-z .]*?)\s+Capacity\s*:?\s*(-?\d[\d,]*(?:\.\d+)?)\s*MG\s*/\s*"
+                                r"(-?\d[\d,]*(?:\.\d+)?)\s*s?\s*ML", re.I)
+LEGACY_DATE_RE = re.compile(r"Last\s+Updated(?:\s+Reading)?\s*:?\s*([A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}|"
+                            r"\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\.?,?\s+\d{2,4})", re.I)
+LEGACY_MG_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*MG\s*Reading", re.I)
+LEGACY_PCT_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*%\s*Level\s+Percentage", re.I)
+
+
+def parse_sections(soup: BeautifulSoup) -> list[dict]:
+    """Layout to mid-2026: one <section> per reservoir, 'Reservoir Levels | Weekly Summary', '<name> Capacity
+    808.5 MG/3,675 ML', 'Last Updated Reading Jul 08, 2026', '642.7 MG Reading per Million Gallons', '79.5 % Level
+    Percentage' and an up or down arrow image. HTML comments (an older static block) are not read."""
+    readings = []
+    for sec in soup.find_all("section"):
+        text = re.sub(r"\s+", " ", sec.get_text(" ", strip=True))
+        cap = LEGACY_CAPACITY_RE.search(text)
+        if not cap or "Reading" not in text:
+            continue
+        date_m = LEGACY_DATE_RE.search(text)
+        mg = LEGACY_MG_RE.search(text)
+        pct = LEGACY_PCT_RE.search(text)
+        arrow = next((img.get("alt", "") for img in sec.find_all("img") if "arrow" in (img.get("alt", "") +
+                                                                                    img.get("src", "")).lower()), "")
+        # the name is the text in front of 'Capacity' in its own heading ('Mona Reservoir Capacity <strong>...')
+        node = sec.find(string=re.compile(r"Capacity", re.I))
+        name = re.split(r"(?i)\s*Capacity", str(node))[0].strip() if node else cap.group(1).strip()
+        readings.append({
+            "reservoir": re.sub(r"\s+Levels?$", "", re.sub(r"\s+", " ", name)),
+            "observation_date": parse_date(date_m.group(1)) if date_m else None,
+            "as_of_printed": date_m.group(1) if date_m else "",
+            "storage_mg": float(mg.group(1).replace(",", "")) if mg else None,
+            "storage_pct": float(pct.group(1).replace(",", "")) if pct else None,
+            "capacity_mg": float(cap.group(2).replace(",", "")),
+            "capacity_ml": float(cap.group(3).replace(",", "")),
+            "status_label": "",
+            "trend": arrow,
+        })
+    return readings
+
+
 def parse_page(body: bytes) -> dict:
     """Readings of one page: {layout, readings: [{reservoir, observation_date, storage_mg, storage_pct, capacity_mg,
     capacity_ml, status_label, trend}], problems: [...]}. A reading without a date or a volume is reported, not kept."""
@@ -155,6 +197,9 @@ def parse_page(body: bytes) -> dict:
     layout, readings = "", []
     if soup.select("div.res-card"):
         layout, readings = "res_card_2026", parse_cards(soup)
+    else:
+        readings = parse_sections(soup)
+        layout = "weekly_summary_sections" if readings else ""
     problems, kept = [], []
     for r in readings:
         if not r["observation_date"]:
@@ -164,7 +209,7 @@ def parse_page(body: bytes) -> dict:
         else:
             kept.append({k: v for k, v in r.items() if k != "as_of_printed"})
     if not layout:
-        problems.append("no reservoir card found (layout not recognised)")
+        problems.append("no reservoir card or 'Weekly Summary' section found (layout not recognised)")
     return {"layout": layout, "readings": kept, "problems": problems}
 
 
