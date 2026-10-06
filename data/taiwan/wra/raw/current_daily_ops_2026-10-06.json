@@ -241,21 +241,6 @@
   },
   {
     "basinrainfall": "0.0",
-    "capacity": "713.81",
-    "crossflow": "41.17",
-    "datetime": "2026-10-04T00:00:00",
-    "dwl": "205.25",
-    "inflow": "589.64",
-    "nwlmax": "214.75",
-    "outflow": "",
-    "outflowdischarge": "",
-    "outflowtotal": "41.17",
-    "regulatorydischarge": "",
-    "reservoiridentifier": "20503",
-    "reservoirname": "集集攔河堰"
-  },
-  {
-    "basinrainfall": "0.0",
     "capacity": "919.7",
     "crossflow": "0.0",
     "datetime": "2026-10-05T00:00:00",
@@ -373,6 +358,21 @@
     "regulatorydischarge": "",
     "reservoiridentifier": "31002",
     "reservoirname": "甲仙攔河堰"
+  },
+  {
+    "basinrainfall": "0.4",
+    "capacity": "713.81",
+    "crossflow": "44.21",
+    "datetime": "2026-10-05T00:00:00",
+    "dwl": "205.25",
+    "inflow": "554.94",
+    "nwlmax": "214.75",
+    "outflow": "",
+    "outflowdischarge": "",
+    "outflowtotal": "44.21",
+    "regulatorydischarge": "",
+    "reservoiridentifier": "20503",
+    "reservoirname": "集集攔河堰"
   },
   {
     "basinrainfall": "0.5",
@@ -495,7 +495,7 @@
     "reservoirname": "白河水庫"
   },
   {
-    "basinrainfall": "4.9",
+    "basinrainfall": "4.5",
     "capacity": "6.4",
     "crossflow": "170.55",
     "datetime": "2026-10-05T00:00:00",
@@ -510,7 +510,7 @@
     "reservoirname": "榮華壩"
   },
   {
-    "basinrainfall": "4.9",
+    "basinrainfall": "4.5",
     "capacity": "20526.0",
     "crossflow": "168.65",
     "datetime": "2026-10-05T00:00:00",
