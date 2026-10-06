@@ -5,9 +5,11 @@ unlike the others it publishes a real intra-day series, not a single current val
 
     https://www.suibou-shimane.jp/dyn/dps/json/<YYYYMMDD>/dam60.json
 
-The day file holds every hourly observation since 00:00 JST and resets at midnight;
-past dates 404 (verified 2026-09-10 for 20260901, 20260801, 20260101). One successful
-late-day run therefore captures the full 24 points; the earlier runs are insurance.
+The day file holds every hourly observation of that day since 00:00 JST. Past day
+files stay up for a few days (checked 2026-10-06: the three previous days complete;
+20260929 and the dates checked on 2026-09-10 404). Every run also re-reads the last
+three days (`DAYS_BACK`), so a day's evening hours are filled in by the next morning's
+runs instead of depending on a run just before midnight.
 
 ## Field codes were decoded, not guessed
 

@@ -6,10 +6,12 @@ far, this one publishes a real intra-day series rather than a single current val
 
     https://www.suibou-shimane.jp/dyn/dps/json/<YYYYMMDD>/dam60.json
 
-holds every hourly observation of the current day so far (00:00 onward) and resets at
-midnight. Past dates 404 — verified 2026-09-10 for 20260901, 20260801 and 20260101 —
-so one successful late-day run captures the full 24 points, and earlier runs in the
-day are insurance against that run failing.
+holds every hourly observation of that day from 00:00 onward. A day's file stays up for
+a few days after the day ends: checked from a GitHub runner on 2026-10-06, the three
+previous days answered complete (all 24 hours), while 20260929 and the older dates
+checked on 2026-09-10 (20260901, 20260801, 20260101) 404. Every run therefore re-reads
+the last DAYS_BACK days as well, so a day's evening hours no longer depend on a run
+landing just before midnight.
 
 FIELD CODES were decoded against the rendered table, not guessed. Dams whose inflow
 differs from outflow disambiguate the pairs:
@@ -51,6 +53,9 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
 ROOT = "https://www.suibou-shimane.jp"
 REFERER = f"{ROOT}/pc/dam/2110.html"
 JST = timezone(timedelta(hours=9))
+# Past day files each run re-reads; they stay up for at least three days. A manual run
+# can look further back after an outage (workflow input days_back).
+DAYS_BACK = int(os.environ.get("DAYS_BACK") or 3)
 
 FIELDS = {
     "7_10": ("water_level_masl", 1.0),
@@ -87,6 +92,11 @@ def get(url: str, attempts: int = 3) -> bytes | None:
             req = urllib.request.Request(url, headers={"User-Agent": UA, "Referer": REFERER})
             with urllib.request.urlopen(req, timeout=60) as r:
                 return r.read()
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return None            # day not published yet, or already expired
+            if i < attempts - 1:
+                time.sleep(3 * (i + 1))
         except (urllib.error.URLError, OSError, TimeoutError):
             if i < attempts - 1:
                 time.sleep(3 * (i + 1))
@@ -134,19 +144,23 @@ def parse(raw: bytes) -> list[dict]:
 
 
 def main() -> int:
-    day = datetime.now(JST).strftime("%Y%m%d")
-    url = f"{ROOT}/dyn/dps/json/{day}/dam60.json"
-    raw = get(url)
-    if raw is None:
-        print(f"fetch failed: {url}")
+    today = datetime.now(JST).date()
+    rows: list[dict] = []
+    day_files: dict[str, int] = {}
+    latest_raw = None
+    for back in range(DAYS_BACK, -1, -1):
+        day = (today - timedelta(days=back)).strftime("%Y%m%d")
+        raw = get(f"{ROOT}/dyn/dps/json/{day}/dam60.json")
+        day_rows = parse(raw) if raw is not None else []
+        day_files[day] = len({r["observed_at"] for r in day_rows})
+        if day_rows:
+            rows += day_rows
+            latest_raw = raw
+    if not rows:
+        print(f"no day file readable from {min(day_files)} to {max(day_files)}: {day_files}")
         return 1
     RAW.mkdir(parents=True, exist_ok=True)
-    (RAW / "dam60_latest.json").write_bytes(raw)
-
-    rows = parse(raw)
-    if not rows:
-        print(f"no rows parsed from {url} (soft-404 or empty day file)")
-        return 1
+    (RAW / "dam60_latest.json").write_bytes(latest_raw)
 
     OUT.mkdir(parents=True, exist_ok=True)
     acc = OUT / "accumulated.csv"
@@ -166,7 +180,7 @@ def main() -> int:
     stamps = sorted({r["observed_at"] for r in rows})
     (OUT / "runlog_latest.json").write_text(json.dumps(
         {"run_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-         "url": url, "stations": len({r["station_id"] for r in rows}),
+         "day_files": day_files, "stations": len({r["station_id"] for r in rows}),
          "timestamps": len(stamps), "first": stamps[0], "last": stamps[-1],
          "parsed": len(rows), "appended": len(new)},
         ensure_ascii=False, indent=2), encoding="utf-8")
