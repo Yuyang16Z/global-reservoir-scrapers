@@ -42,7 +42,7 @@ def page(mona_mg: str = "269.6", as_of: str = "01 Oct 26") -> bytes:
             + "</div></body></html>").encode("utf-8")
 
 
-def legacy_page() -> bytes:
+def legacy_page(label: str = "Last Updated Reading") -> bytes:
     """Trimmed copy of the layout used until mid-2026 (one <section> per reservoir), with the commented-out static
     block the page carried, which must not be read."""
     def section(name: str, cap: str, date: str, mg: str, pct: str) -> str:
@@ -50,7 +50,7 @@ def legacy_page() -> bytes:
 <p class="rounded h2 text-uppercase">{name}</p><div class=" conten py-4">
 <h2 class="text-white pl-4">Reservoir Levels | <strong>Weekly Summary</strong></h2>
 <h4 class="py-4 text-sm pl-4">{name.replace(' Levels', '')} Capacity <strong>{cap}</strong></h4>
-<div><h1 class="text-white">Last Updated Reading </h1><div><img src="images/calendar.png" alt="" />
+<div><h1 class="text-white">{label} </h1><div><img src="images/calendar.png" alt="" />
 <span class="text-light">{date}</span></div></div><hr><div class="row">
 <div><img src="images/down_arrow.png" alt="Down Arrow"></div>
 <div><h1 class="font-secondary">{mg} MG</h1><p class="text-light">Reading per Million Gallons</p></div>
@@ -100,6 +100,8 @@ class NwcTests(unittest.TestCase):
         self.assertEqual(by["Mona Reservoir"]["storage_mg"], 642.7)          # not the commented-out 266.5
         self.assertEqual(by["Hermitage Dam"]["capacity_ml"], 1789.0)         # '1,789s ML' typo on the page
         self.assertEqual(by["Hermitage Dam"]["storage_pct"], 57.5)
+        recorded = self.mod.parse_page(legacy_page("Last Recorded Reading"))           # wording of 2024
+        self.assertEqual({r["observation_date"] for r in recorded["readings"]}, {"2026-07-08"})
 
     def test_same_reading_stored_once_and_revision_listed(self):
         caps, s = [], self.summary()
