@@ -1,4 +1,4 @@
-name: Probe Taiwan WRA endpoints (temporary)
+name: Temporary probe (throwaway branch)
 
 on:
   push:
