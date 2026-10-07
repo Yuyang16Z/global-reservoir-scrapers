@@ -100,8 +100,9 @@ class NwcTests(unittest.TestCase):
         self.assertEqual(by["Mona Reservoir"]["storage_mg"], 642.7)          # not the commented-out 266.5
         self.assertEqual(by["Hermitage Dam"]["capacity_ml"], 1789.0)         # '1,789s ML' typo on the page
         self.assertEqual(by["Hermitage Dam"]["storage_pct"], 57.5)
-        recorded = self.mod.parse_page(legacy_page("Last Recorded Reading"))           # wording of 2024
-        self.assertEqual({r["observation_date"] for r in recorded["readings"]}, {"2026-07-08"})
+        for label in ("Last Recorded Reading", "Today's Reading"):                    # wordings of 2024 and 2026
+            other = self.mod.parse_page(legacy_page(label))
+            self.assertEqual({r["observation_date"] for r in other["readings"]}, {"2026-07-08"})
 
     def test_same_reading_stored_once_and_revision_listed(self):
         caps, s = [], self.summary()

@@ -152,7 +152,7 @@ def parse_cards(soup: BeautifulSoup) -> list[dict]:
 
 LEGACY_CAPACITY_RE = re.compile(r"([A-Z][A-Za-z .]*?)\s+Capacity\s*:?\s*(-?\d[\d,]*(?:\.\d+)?)\s*MG\s*/\s*"
                                 r"(-?\d[\d,]*(?:\.\d+)?)\s*s?\s*ML", re.I)
-LEGACY_DATE_RE = re.compile(r"Last\s+(?:Updated|Recorded|Reading)(?:\s+Reading)?\s*:?\s*([A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}|"
+LEGACY_DATE_RE = re.compile(r"(?:Last\s+(?:Updated|Recorded|Reading)(?:\s+Reading)?|Today'?s\s+Reading)\s*:?\s*([A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}|"
                             r"\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\.?,?\s+\d{2,4})", re.I)
 LEGACY_MG_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*MG\s*Reading", re.I)
 LEGACY_PCT_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*%\s*Level\s+Percentage", re.I)
@@ -160,7 +160,8 @@ LEGACY_PCT_RE = re.compile(r"(-?\d[\d,]*(?:\.\d+)?)\s*%\s*Level\s+Percentage", r
 
 def parse_sections(soup: BeautifulSoup) -> list[dict]:
     """Layout to mid-2026: one <section> per reservoir, 'Reservoir Levels | Weekly Summary', '<name> Capacity
-    808.5 MG/3,675 ML', 'Last Updated Reading Jul 08, 2026' ('Last Recorded Reading' in 2024), '642.7 MG Reading per
+    808.5 MG/3,675 ML', 'Last Updated Reading Jul 08, 2026' ('Last Recorded Reading' in 2024, "Today's Reading"
+    when the reading is from the day itself), '642.7 MG Reading per
     Million Gallons', '79.5 % Level Percentage' and an up or down arrow image. HTML comments (an older static block)
     are not read."""
     readings = []
