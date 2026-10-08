@@ -42,6 +42,7 @@ Cachí,2026-10-06T17:00,989.81,990.0,2026-10-07T00:49:58+00:00,hourly_readings.j
 Cachí,2026-10-07T04:00,,989.97,2026-10-07T11:48:51+00:00,hourly_readings.jsonl
 Cachí,2026-10-07T12:00,990.0,990.01,2026-10-07T19:24:50+00:00,hourly_readings.jsonl
 Cachí,2026-10-07T17:00,990.0,990.0,2026-10-08T01:05:22+00:00,hourly_readings.jsonl
+Cachí,2026-10-08T04:00,,989.93,2026-10-08T12:03:56+00:00,hourly_readings.jsonl
 Pirrís,2026-09-30T20:00,1203.88,1204.27,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T01:00,,1204.31,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T11:00,1203.94,1204.18,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -64,6 +65,7 @@ Pirrís,2026-10-06T17:00,1203.77,1204.11,2026-10-07T00:49:58+00:00,hourly_readin
 Pirrís,2026-10-07T04:00,,1204.1,2026-10-07T11:48:51+00:00,hourly_readings.jsonl
 Pirrís,2026-10-07T12:00,1203.98,1204.17,2026-10-07T19:24:50+00:00,hourly_readings.jsonl
 Pirrís,2026-10-07T17:00,1203.96,1204.05,2026-10-08T01:05:22+00:00,hourly_readings.jsonl
+Pirrís,2026-10-08T04:00,,1204.0,2026-10-08T12:03:56+00:00,hourly_readings.jsonl
 Reventazón,2026-09-30T20:00,254.37,255.06,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T01:00,,255.08,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T11:00,254.83,254.59,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -86,3 +88,4 @@ Reventazón,2026-10-06T17:00,253.74,253.72,2026-10-07T00:49:58+00:00,hourly_read
 Reventazón,2026-10-07T04:00,,253.44,2026-10-07T11:48:51+00:00,hourly_readings.jsonl
 Reventazón,2026-10-07T12:00,253.38,253.28,2026-10-07T19:24:50+00:00,hourly_readings.jsonl
 Reventazón,2026-10-07T17:00,253.14,253.07,2026-10-08T01:05:22+00:00,hourly_readings.jsonl
+Reventazón,2026-10-08T04:00,,252.8,2026-10-08T12:03:56+00:00,hourly_readings.jsonl
