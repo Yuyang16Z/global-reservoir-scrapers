@@ -21,6 +21,12 @@ Known quirks:
   line by the day's change, also in Mm3 (signed). The change is the source's
   own daily delta, not computed here.
 - Mm3 is written with a superscript 3 and may arrive as "Mm³" or "Mm3".
+- The plain homepage URL can be answered from a page cache that has stopped
+  refreshing. From the site update of 2026-10-07 to at least 2026-10-12 every
+  fetch got the same render (Last-Modified 2026-10-07 14:15:27 GMT) with the
+  widget frozen at 06/10/2026, while a fresh render showed 09/10/2026. The
+  cache does not answer URLs with a query string, so each fetch adds one it
+  has never seen.
 
 Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
   raw/abht_home_<stamp>.html
@@ -112,11 +118,16 @@ def is_source_unavailable(exc: Exception) -> bool:
     return False
 
 
+def fresh_home_url() -> str:
+    """The homepage under a query string the site's page cache has never seen."""
+    return f"{HOME_URL}?nocache={time.time_ns()}"
+
+
 def get_home() -> requests.Response:
     last_exc: Exception | None = None
     for attempt in range(1, REQUEST_ATTEMPTS + 1):
         try:
-            r = requests.get(HOME_URL, headers=HEADERS, timeout=TIMEOUT)
+            r = requests.get(fresh_home_url(), headers=HEADERS, timeout=TIMEOUT)
             r.raise_for_status()
             return r
         except requests.RequestException as exc:
@@ -257,6 +268,10 @@ def main() -> int:
            "output_dir": str(OUTPUT_DIR), "status": "started", "errors": []}
     try:
         r = get_home()
+        # A fresh render carries no Last-Modified; a cached page does, so a value
+        # here means the page cache is answering again.
+        log["url"] = r.url
+        log["last_modified"] = r.headers.get("Last-Modified")
         raw_path = RAW_DIR / f"abht_home_{utc_stamp()}.html"
         raw_path.write_bytes(r.content)
         print(f"[SAVE] {raw_path} ({len(r.content)}B)", flush=True)
