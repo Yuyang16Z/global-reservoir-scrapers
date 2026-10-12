@@ -28,6 +28,10 @@ abhsm = load_module(
     "morocco_abhsm_scraper",
     "scrapers/morocco/abhsm/morocco_abhsm_scraper.py",
 )
+abht = load_module(
+    "morocco_abht_scraper",
+    "scrapers/morocco/abht/morocco_abht_scraper.py",
+)
 taiwan = load_module(
     "taiwan_wra_scraper",
     "scrapers/taiwan/wra/taiwan_wra_scraper.py",
@@ -195,6 +199,41 @@ class AbhsmTransportTests(unittest.TestCase):
             with self.assertRaises(requests.exceptions.SSLError):
                 abhsm.fetch_pdf(Path(tmp) / "report.pdf")
             pinned.assert_not_called()
+
+
+class AbhtPageCacheTests(unittest.TestCase):
+    """From 2026-10-07 abht.ma answered the plain homepage URL from a frozen cache."""
+
+    @staticmethod
+    def page(date, hassan_mcm):
+        return (f'<a href="https://abht.ma/Barrage/hassan-1er/">Hassan 1er {hassan_mcm}Mm³ '
+                f'80.1% <i class="fa fa-arrow-down"></i> -0.457Mm³</a>'
+                f'<h2>Taux de remplissage <span>des Barrages</span></h2><h5>{date}</h5>').encode()
+
+    def respond(self, url, **kwargs):
+        if "?" in url:
+            return mock.Mock(url=url, headers={}, content=self.page("09/10/2026", "183.3"))
+        return mock.Mock(url=url, headers={"Last-Modified": "Wed, 07 Oct 2026 14:15:27 GMT"},
+                         content=self.page("06/10/2026", "183.9"))
+
+    def test_the_run_reads_a_fresh_render_not_the_cached_page(self):
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.multiple(abht, OUTPUT_DIR=Path(tmp), RAW_DIR=Path(tmp) / "raw",
+                                    TS_DIR=Path(tmp) / "ts", META_DIR=Path(tmp) / "meta",
+                                    RUN_LOG_DIR=Path(tmp) / "logs"), \
+                mock.patch.object(abht.requests, "get", side_effect=self.respond):
+            self.assertEqual(abht.main(), 0)
+            with (Path(tmp) / "ts" / "morocco_abht_timeseries.csv").open(encoding="utf-8") as fh:
+                rows = list(csv.DictReader(fh))
+            summary = next((Path(tmp) / "logs").glob("*_summary.json"))
+            log = json.loads(summary.read_text(encoding="utf-8"))
+        self.assertEqual([(r["measurement_date"], r["storage_mcm"]) for r in rows],
+                         [("2026-10-09", "183.3")])
+        self.assertTrue(log["url"].startswith(abht.HOME_URL + "?nocache="))
+        self.assertIsNone(log["last_modified"])
+
+    def test_each_fetch_uses_a_query_string_the_cache_has_not_seen(self):
+        self.assertNotEqual(abht.fresh_home_url(), abht.fresh_home_url())
 
 
 class TaiwanFallbackTests(unittest.TestCase):
