@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import http.client
 import importlib.util
 import json
 import sys
@@ -71,6 +72,14 @@ ishikawa = load_module(
 shimane = load_module(
     "japan_shimane_scraper",
     "scrapers/japan/shimane/japan_shimane_scraper.py",
+)
+prefectural = load_module(
+    "japan_prefectural_scraper",
+    "scrapers/japan/prefectural/japan_prefectural_scraper.py",
+)
+prefectural_static = load_module(
+    "japan_prefectural_static_scraper",
+    "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
 )
 
 
@@ -867,6 +876,58 @@ class JapanDayFileTests(unittest.TestCase):
                     self.assertIsNone(module.get("https://example.invalid/x.json"))
                 self.assertEqual(urlopen.call_count, 1)
                 sleep.assert_not_called()
+
+
+
+class JapanTruncatedBodyTests(unittest.TestCase):
+    """A page cut off mid-transfer is one failed site, not a failed run."""
+
+    class Truncated:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc_info) -> bool:
+            return False
+
+        def read(self) -> bytes:
+            raise http.client.IncompleteRead(b"<html>partial")
+
+    def test_fetch_treats_a_truncated_body_as_a_failed_fetch(self):
+        for module, target in ((prefectural_static, "https://example.invalid/dam.html"),
+                               (prefectural, "https://example.invalid/bousai")):
+            with self.subTest(module=module.__name__), \
+                    mock.patch.object(module.urllib.request, "urlopen",
+                                      side_effect=lambda *a, **k: self.Truncated()), \
+                    mock.patch.object(module.time, "sleep"):
+                self.assertIsNone(module.fetch(target))
+
+    def test_sites_read_before_a_truncated_page_are_kept(self):
+        page = ("<p>2026/10/10 15:00</p><table><tr><td>1</td><td>摺上川ダム</td>"
+                "<td>0</td><td>0</td><td>361.25</td><td>-</td></tr></table>").encode("utf-8")
+        site = prefectural_static.SITES["Fukushima"]
+        sites = {"Good": dict(site, url="https://good.invalid/"),
+                 "Cut": dict(site, url="https://cut.invalid/")}
+
+        def urlopen(req, timeout=None):
+            if "cut.invalid" in req.full_url:
+                return self.Truncated()
+            return FakeUrlopenResponse(page, "text/html", req.full_url)
+
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(prefectural_static, "OUT", Path(tmp)), \
+                mock.patch.object(prefectural_static, "RAW", Path(tmp) / "raw"), \
+                mock.patch.object(prefectural_static, "SITES", sites), \
+                mock.patch.object(prefectural_static.urllib.request, "urlopen",
+                                  side_effect=urlopen), \
+                mock.patch.object(prefectural_static.time, "sleep"):
+            self.assertEqual(prefectural_static.main(), 0)
+            with (Path(tmp) / "accumulated.csv").open(encoding="utf-8-sig") as fh:
+                rows = list(csv.DictReader(fh))
+            log = json.loads((Path(tmp) / "runlog_latest.json").read_text(encoding="utf-8"))
+        self.assertEqual([(r["site"], r["dam_jp"], r["observed_at"], r["water_level_m"])
+                          for r in rows],
+                         [("Good", "摺上川ダム", "2026-10-10T15:00", "361.25")])
+        self.assertEqual(log["per_site"][1], {"site": "Cut", "error": "fetch failed"})
 
 
 if __name__ == "__main__":
