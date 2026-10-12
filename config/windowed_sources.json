@@ -381,6 +381,7 @@
       "retention_class": "current_snapshot",
       "retention_window_hours": null,
       "publication_cadence_hours": 24,
+      "publication_weekdays_only": true,
       "timezone": "Africa/Casablanca",
       "cron": [
         "30 7 * * *",
@@ -389,7 +390,7 @@
       "max_schedule_gap_hours": 15,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Store each reading under the widget's own printed date and merge by (date, reservoir); a repeated snapshot rewrites equal values.",
-      "schedule_rationale": "08:30 and 17:30 Africa/Casablanca. The homepage fill-rate widget shows one date and is overwritten in place, so an unobserved change is lost permanently; the evening run recovers a failed morning run within the same publication day. Added 2026-08-04 because the project's original Moroccan source, ABHSM (Souss-Massa), went offline and last published 2026-06-18.",
+      "schedule_rationale": "08:30 and 17:30 Africa/Casablanca. The homepage fill-rate widget shows one date and is overwritten in place, so an unobserved change is lost permanently; the evening run recovers a failed morning run within the same publication day. Added 2026-08-04 because the project's original Moroccan source, ABHSM (Souss-Massa), went offline and last published 2026-06-18. ABHT publishes on working days only: none of the 31 observation dates archived from 2026-08-03 to 2026-10-06 is a Saturday or Sunday, so a Friday reading looked overdue every Monday (false alarms 2026-10-05 and 2026-10-06). Freshness therefore counts weekday hours only.",
       "workflow": ".github/workflows/morocco_abht.yml",
       "scraper": "scrapers/morocco/abht/morocco_abht_scraper.py",
       "data_path": "data/morocco/abht",

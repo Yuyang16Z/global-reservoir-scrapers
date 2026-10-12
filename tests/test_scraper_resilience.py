@@ -7,6 +7,7 @@ import json
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest import mock
 
@@ -742,6 +743,47 @@ class FreshnessComponentTests(unittest.TestCase):
             [target["source_id"] for target in targets],
             ["taiwan/wra:daily", "taiwan/wra:intraday"],
         )
+
+
+class FreshnessWeekdayTests(unittest.TestCase):
+    """ABHT publishes on working days only, so a weekend is not an outage."""
+
+    class MondayAfternoon(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 10, 12, 16, tzinfo=timezone.utc)
+
+    def test_weekday_hours_skip_the_weekend(self):
+        friday = datetime(2026, 10, 9, tzinfo=timezone.utc)
+        monday = datetime(2026, 10, 12, 16, tzinfo=timezone.utc)
+        self.assertEqual(freshness.weekday_hours(friday, monday), 24 + 16)
+        self.assertEqual(freshness.weekday_hours(monday, friday), 0)
+
+    def test_a_friday_reading_is_overdue_on_monday_only_for_a_daily_source(self):
+        sources = [{"source_id": sid, "data_path": f"data/{sid}", "deployment_status": "active",
+                    "publication_cadence_hours": 24, "max_schedule_gap_hours": 15,
+                    "publication_weekdays_only": weekdays_only}
+                   for sid, weekdays_only in (("daily", False), ("weekdays", True))]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry = root / "config" / "windowed_sources.json"
+            registry.parent.mkdir()
+            registry.write_text(json.dumps({"sources": sources}), encoding="utf-8")
+            for source in sources:
+                data_dir = root / source["data_path"]
+                data_dir.mkdir(parents=True)
+                (data_dir / "series.csv").write_text("measurement_date,value\n2026-10-09,1\n",
+                                                     encoding="utf-8")
+            report_path = root / "report.json"
+            with mock.patch.object(freshness, "ROOT", root), \
+                    mock.patch.object(freshness, "REGISTRY", registry), \
+                    mock.patch.object(freshness, "datetime", self.MondayAfternoon), \
+                    mock.patch.object(sys, "argv",
+                                      ["monitor", "--quiet", "--json", str(report_path)]):
+                self.assertEqual(freshness.main(), 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        self.assertEqual({r["source_id"]: r["state"] for r in report["sources"]},
+                         {"daily": "stale", "weekdays": "fresh"})
 
 
 # The ZINWA layout of the 2026-09-23 report: JSON-quoted keys, "apr" in place of

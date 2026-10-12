@@ -97,7 +97,9 @@ separately. A fresh high-frequency snapshot must not hide a stale daily series.
 
 When the latest archived observation is older than the expected publication
 cadence plus the documented grace period, treat the source as stale and repair
-or manually rerun it before the retention window closes.
+or manually rerun it before the retention window closes. For a source that
+publishes on working days only, set `publication_weekdays_only` so that the age
+counts Monday-Friday hours and a weekend is not mistaken for an outage.
 
 ## Completion checklist
 
