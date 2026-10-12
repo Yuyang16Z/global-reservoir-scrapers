@@ -19,6 +19,7 @@ Also deliberate:
 from __future__ import annotations
 
 import csv
+import http.client
 import json
 import os
 import re
@@ -101,7 +102,10 @@ def fetch(url: str, attempts: int = 3) -> str | None:
                 except UnicodeDecodeError:
                     continue
             return raw.decode("utf-8", errors="replace")
-        except (urllib.error.URLError, OSError, TimeoutError):
+        # A body cut off mid-transfer raises http.client.IncompleteRead, an HTTPException
+        # and not an OSError. Uncaught, Yamaguchi's truncated page ended the 2026-10-10
+        # 07:03Z run and discarded the sites already read; it is a failed fetch like any other.
+        except (urllib.error.URLError, http.client.HTTPException, OSError, TimeoutError):
             if i < attempts - 1:
                 time.sleep(3 * (i + 1))
     return None

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import http.client
 import os
 import json
 import re
@@ -104,7 +105,9 @@ def fetch(base: str, attempts: int = 3) -> str | None:
                 "User-Agent": UA, "Referer": f"{base}/main.html"})
             with urllib.request.urlopen(req, timeout=45) as r:
                 return r.read().decode("shift_jis", errors="replace")
-        except (urllib.error.URLError, OSError, TimeoutError):
+        # A truncated body raises http.client.IncompleteRead, which is not an OSError;
+        # uncaught it would end the run for every prefecture instead of this one.
+        except (urllib.error.URLError, http.client.HTTPException, OSError, TimeoutError):
             if i < attempts - 1:
                 time.sleep(3 * (i + 1))
     return None
