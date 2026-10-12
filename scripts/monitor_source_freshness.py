@@ -80,6 +80,17 @@ EXCUSED: dict[str, str] = {
         "date. Owner decision 2026-09-29: mark as known-stale. Reported but not failed. "
         "Excused 2026-09-29; review by 2026-10-29."
     ),
+    "ghana/bui": (
+        "Bui Power Authority has not republished its Operations Centre workbook since "
+        "2026-09-22 (rows end 2026-09-21), and the older water-level file has been "
+        "frozen since 2025-11-04. Probed from a runner on 2026-10-12: the Operations "
+        "Centre page itself fetches the same api/operations-dashboard.php with no "
+        "parameters, and a cache-busting query returns the same 2026-09-22 workbook, "
+        "so there is no newer public path. The scraper keeps reading it twice daily, so "
+        "a new workbook shows up here as a fresh date. Owner decision 2026-10-12: mark "
+        "as known-stale. Reported but not failed. "
+        "Excused 2026-10-12; review by 2026-10-26."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
