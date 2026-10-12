@@ -13,6 +13,8 @@ source's committed data, and compares both against
 `publication_cadence_hours * STALE_CADENCE_FACTOR + max_schedule_gap_hours` -
 never less than DATE_RESOLUTION_FLOOR_HOURS, because observation dates are read
 at day resolution and a shorter budget cannot be judged at that resolution.
+For a source registered with `"publication_weekdays_only": true` the age counts
+only Monday-Friday hours, so a Friday reading is not overdue on Monday.
 
 Exit codes:
   0  every source fresh (or explicitly excused)
@@ -177,6 +179,18 @@ def newest_observation(data_dir: Path) -> str | None:
     return best
 
 
+def weekday_hours(start: datetime, end: datetime) -> float:
+    """Hours between start and end that fall on Monday to Friday (UTC)."""
+    hours, t = 0.0, start
+    while t < end:
+        step_end = min(end, (t + timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0))
+        if t.weekday() < 5:
+            hours += (step_end - t).total_seconds() / 3600
+        t = step_end
+    return hours
+
+
 def freshness_targets(source: dict) -> list[dict]:
     """Return independently monitored data products for one source."""
     components = source.get("freshness_components")
@@ -187,6 +201,7 @@ def freshness_targets(source: dict) -> list[dict]:
                 "data_path": source["data_path"],
                 "publication_cadence_hours": source.get("publication_cadence_hours"),
                 "max_schedule_gap_hours": source.get("max_schedule_gap_hours"),
+                "publication_weekdays_only": source.get("publication_weekdays_only", False),
             }
         ]
     targets = []
@@ -203,6 +218,10 @@ def freshness_targets(source: dict) -> list[dict]:
                 "max_schedule_gap_hours": component.get(
                     "max_schedule_gap_hours",
                     source.get("max_schedule_gap_hours"),
+                ),
+                "publication_weekdays_only": component.get(
+                    "publication_weekdays_only",
+                    source.get("publication_weekdays_only", False),
                 ),
             }
         )
@@ -244,6 +263,9 @@ def main() -> int:
             obs = newest_observation(data_dir)
             obs_dt = parse_iso(obs) if obs else None
             obs_age_h = (now - obs_dt).total_seconds() / 3600 if obs_dt else None
+            weekdays_only = bool(target.get("publication_weekdays_only"))
+            if obs_dt and weekdays_only:
+                obs_age_h = weekday_hours(obs_dt, now)
             run_dt = parse_iso(str(run.get("finished_at") or run.get("started_at") or ""))
             run_age_h = (now - run_dt).total_seconds() / 3600 if run_dt else None
 
@@ -255,6 +277,7 @@ def main() -> int:
                 "state": "stale" if stale else "fresh",
                 "latest_observation": obs,
                 "observation_age_hours": round(obs_age_h, 1) if obs_age_h is not None else None,
+                "age_counts": "weekdays" if weekdays_only else "all_hours",
                 "stale_after_hours": round(budget_h, 1),
                 "latest_run_status": run.get("status"),
                 "latest_run_age_hours": round(run_age_h, 1) if run_age_h is not None else None,
@@ -278,7 +301,8 @@ def main() -> int:
             budget = r.get("stale_after_hours")
             budget_s = f"{budget/24:.1f}d" if budget is not None else "-"
             flag = "STALE" if r["state"] == "stale" else r["state"]
-            note = "  (excused)" if "excused" in r else ""
+            note = "  (weekdays only)" if r.get("age_counts") == "weekdays" else ""
+            note += "  (excused)" if "excused" in r else ""
             print(f"{r['source_id']:<{width}}  {flag:<20} "
                   f"latest={r.get('latest_observation') or '-':<12} "
                   f"age={age_s:>7} / budget={budget_s:>7} "
