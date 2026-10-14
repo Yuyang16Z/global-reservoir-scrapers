@@ -1,0 +1,72 @@
+name: Bolivia CNDC daily hydrological data
+
+on:
+  # CNDC's website footer reads "Todos los derechos reservados" and grants no
+  # reuse permission (reuse_status `restricted_use`, see DATA_LICENCE_NOTICE.md).
+  # The repository owner decided on 2026-10-14 to collect it here like CAMMESA,
+  # CENCE and NWC, with the PI managing the repository's public exposure.
+  # Presence in this repository is not permission to republish.
+  schedule:
+    # 02:25, 08:25, 14:25 and 20:25 America/La_Paz (UTC-4, no DST). The
+    # endpoint serves only the last 30 dates; every run re-reads all of them,
+    # so each date gets more than a hundred capture opportunities and a
+    # revision of a recent date is seen within six hours.
+    - cron: "25 6 * * *"
+    - cron: "25 12 * * *"
+    - cron: "25 18 * * *"
+    - cron: "25 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bolivia-cndc-datos-hidrologicos
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/bolivia/cndc_datos_hidrologicos
+        run: python scrapers/bolivia/cndc_datos_hidrologicos/bolivia_cndc_datos_hidrologicos_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/bolivia/cndc_datos_hidrologicos
+          git add scrapers/bolivia/cndc_datos_hidrologicos
+          # Every run writes a run summary; commit only when a new response or
+          # a changed table was stored.
+          if git diff --cached --quiet -- data/bolivia/cndc_datos_hidrologicos/raw data/bolivia/cndc_datos_hidrologicos/timeseries; then
+            echo "No new data; not committing."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(bolivia/cndc_datos_hidrologicos): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1

@@ -71,6 +71,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | Country | Source | Cadence | Script | Status |
 |---|---|---|---|---|
 | Argentina (Comahue, Yacyretá, Salto Grande, Patagonia, San Juan, Río Grande) | CAMMESA daily hydro snapshot page (15 reservoirs: level, turbined, spilled) | rolling ~32-day window, 2× per day, full-window re-fetch | `scrapers/argentina/cammesa_hidro/argentina_cammesa_hidro_scraper.py` | ✅ v1 (2026-09-28) |
+| Bolivia (Zongo, Taquesi, Corani, Misicuni, Miguilla, Kanata, San Jacinto) | CNDC daily hydrological data JSON (29 reservoirs and ponds: flow, start/end-of-day volume) | rolling 30-date window, 4x per day, full-window re-fetch | `scrapers/bolivia/cndc_datos_hidrologicos/bolivia_cndc_datos_hidrologicos_scraper.py` | ✅ v1 (2026-10-14) |
 | China (nationwide) | MWR 全国大型水库实时水情 API + font decoder (~570 reservoirs) | daily snapshot, 1× per day | `scrapers/china/mwr_api/china_mwr_api_scraper.py` | ✅ v1 (2026-06-29) |
 | India (AP / Telangana / Krishna basin) | APWRIMS public API (118 reservoirs) | recent-observation window, 2× per day | `scrapers/india/apwrims/india_apwrims_scraper.py` | ✅ v1 (2026-06-19) |
 | Japan (nationwide) | OpenGov / MLIT dam reservoir pages | daily scrape, 1× per day | `scrapers/japan/opengov/japan_opengov_scraper.py` | ✅ v1 (2026-04-22) |

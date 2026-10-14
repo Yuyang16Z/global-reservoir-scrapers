@@ -740,6 +740,29 @@
       "data_path": "data/jamaica/nwc_reservoirs",
       "deployment_status": "active",
       "licence_gate": "NWC's copyright notice allows personal and non-commercial public use and reproduction without charge, provided the copy is accurate, NWC is identified as the source and the copy is not presented as official or endorsed; reproduction for commercial redistribution needs NWC's written permission (`attribution_required_review`; https://www.nwcjamaica.com/copyright.php, checked 2026-10-04). Owner decision 2026-10-04: collect in this repository like argentina/cammesa_hidro and costarica/cence_embalses; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
+    },
+    {
+      "source_id": "bolivia/cndc_datos_hidrologicos",
+      "country": "Bolivia",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 720,
+      "publication_cadence_hours": 24,
+      "timezone": "America/La_Paz",
+      "cron": [
+        "25 6 * * *",
+        "25 12 * * *",
+        "25 18 * * *",
+        "25 0 * * *"
+      ],
+      "max_schedule_gap_hours": 7,
+      "minimum_capture_opportunities": 116,
+      "overlap_strategy": "Every run reads the list of available dates (fechas_disponibles) and requests each of them. A response is stored once per hash of its data part (fecha and sistemas; the rolling date list, which changes every day, is ignored), and the CSVs are rebuilt from the stored responses keyed on (record_date, data hash), so reruns and overlapping captures add nothing; a genuine change to a date's data is kept as a new version and listed in the all-versions CSV.",
+      "schedule_rationale": "02:25, 08:25, 14:25 and 20:25 America/La_Paz (UTC-4, no DST). The endpoint serves the last 30 dates (2026-09-15 to 2026-10-14 on 2026-10-14) and answers sin_datos for older ones; the current date is served shortly after midnight Bolivia time. Because each run re-reads the whole window, a date gets about 116 capture opportunities and a revision of a recent date is seen within six hours (end-of-day volumes look like programmed values: a date's end-of-day volume differs from the next date's start-of-day volume). Declared cadence 24h (one record per reservoir and date). Registered and deployed 2026-10-14; the first run stored all 30 available dates.",
+      "workflow": ".github/workflows/bolivia_cndc_datos_hidrologicos.yml",
+      "scraper": "scrapers/bolivia/cndc_datos_hidrologicos/bolivia_cndc_datos_hidrologicos_scraper.py",
+      "data_path": "data/bolivia/cndc_datos_hidrologicos",
+      "deployment_status": "active",
+      "licence_gate": "The website footer reads '(c) 2026 CNDC - Comite Nacional de Despacho de Carga de Bolivia. Todos los derechos reservados.' and grants no reuse permission (`restricted_use`; https://www.cndc.bo/, checked 2026-10-14). Owner decision 2026-10-14: collect in this repository like argentina/cammesa_hidro, costarica/cence_embalses and jamaica/nwc_reservoirs; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
     }
   ]
 }

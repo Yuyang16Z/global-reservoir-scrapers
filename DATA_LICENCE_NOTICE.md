@@ -55,6 +55,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `argentina/cammesa_hidro` | CAMMESA (daily hydro snapshot page) | `prohibited` — site terms forbid reproduction or distribution without CAMMESA's express authorisation | **No** |
 | `costarica/cence_embalses` | ICE/CENCE (Boletin Intra-Diario reservoir levels) | `restricted_use` - "(c) ICE Todos los Derechos Reservados", no reuse permission | **No** |
 | `jamaica/nwc_reservoirs` | NWC Jamaica (Dam & Reservoir Levels page) | `attribution_required_review` - personal and non-commercial reproduction allowed with NWC named as the source; commercial redistribution needs written permission | **No** (non-commercial copies citing NWC only) |
+| `bolivia/cndc_datos_hidrologicos` | CNDC Bolivia (daily hydrological data of the hydro reservoirs) | `restricted_use` - "(c) 2026 CNDC ... Todos los derechos reservados", no reuse permission | **No** |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
@@ -137,6 +138,19 @@ The repository owner decided on 2026-10-04 to collect it here, archived weekly,
 with the PI managing the repository's public exposure. This covers this source
 only and is not permission to republish NWC data.
 
+## Owner decision 2026-10-14: Bolivia CNDC collected here
+
+`bolivia/cndc_datos_hidrologicos` captures the JSON behind the daily
+hydrological table of CNDC (Comite Nacional de Despacho de Carga), Bolivia's
+power-system operator: per date, the flow, capacity and start- and end-of-day
+volume of 29 reservoirs and ponds of the hydro systems. The endpoint serves
+only the last 30 dates, so dates not captured are lost. The website footer
+reads "(c) 2026 CNDC - Comite Nacional de Despacho de Carga de Bolivia. Todos
+los derechos reservados." and grants no reuse permission (`restricted_use`,
+checked 2026-10-14). The repository owner decided on 2026-10-14 to collect it
+here, with the PI managing the repository's public exposure. This covers this
+source only and is not permission to republish CNDC data.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -145,6 +159,6 @@ only and is not permission to republish NWC data.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-10-04 (jamaica/nwc_reservoirs row and owner decision added;
-costarica/cence_embalses 2026-10-01; argentina/cammesa_hidro 2026-09-28; owner decision
+Last reviewed: 2026-10-14 (bolivia/cndc_datos_hidrologicos row and owner decision added;
+jamaica/nwc_reservoirs 2026-10-04; costarica/cence_embalses 2026-10-01; argentina/cammesa_hidro 2026-09-28; owner decision
 of 2026-08-04 unchanged).
