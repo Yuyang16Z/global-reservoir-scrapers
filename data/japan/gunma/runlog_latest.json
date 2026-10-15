@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-15T12:12:31Z",
+  "run_at": "2026-10-15T18:44:08Z",
   "dams": [
     "坂本ダム",
     "塩沢ダム",
@@ -9,10 +9,10 @@
     "霧積ダム"
   ],
   "timestamps": 25,
-  "first": "2026-10-14T21:00",
-  "last": "2026-10-15T21:00",
+  "first": "2026-10-15T03:00",
+  "last": "2026-10-16T03:00",
   "parsed": 150,
-  "appended": 72,
+  "appended": 36,
   "problems": [
     "4/m4102: parsed 0 points (markup changed?)",
     "4/m4103: parsed 0 points (markup changed?)",
