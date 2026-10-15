@@ -17,8 +17,22 @@ Retention classes, and why they differ:
   the oldest day as a new one arrives, so a day not captured within two weeks
   is lost. This is what the frequent schedule is for.
 - `kariba-reservoir-data` shows the current month and is replaced when the
-  month turns. Older months remain reachable as numbered pages, so history is
-  recoverable, but capturing monthly avoids depending on that.
+  month turns. Numbered pages kept older months only up to May 2021 (the newest
+  the project's 2026-09 crawl of the site found), so a later day's storage and
+  outflows survive only in captures taken while its month was on the page.
+
+Late values:
+- ZRA prints a day's turbine discharge, spillage and total outflow (now and
+  then its live storage too) a day or more after the day's level, so the first
+  capture of a day often lacks them: 2026-09-07 was captured with level and
+  storage only and its outflows (1,229 m3/s) were on the page by 2026-09-17.
+  Every run therefore replays all raw captures, oldest first, and a cell that
+  is still blank takes the value of the first later capture that prints it.
+  A value already held is never changed or blanked; a capture that prints it
+  differently is listed in zra_kariba_revisions.csv instead (ZRA restates
+  days). A difference of printed precision only (39 against 38.64) is not a
+  revision. Replaying also means a parser fix recovers what an earlier
+  capture held but the old parser missed.
 
 Known quirks:
 - The daily table prints "18-Aug" with no year. The year comes from the page's
@@ -27,15 +41,23 @@ Known quirks:
   walking the range rather than applied wholesale.
 - Percentages are "% usable storage" against the 475.50-488.50 m operating
   range, not against total capacity; they are recorded as the source states.
+- The monthly table names its year columns "September 2026" or, as on
+  2026-09-24, "Sep-26"; that capture parsed to nothing until both were read.
+- October's table prints its 31st row with an empty day cell. A row with an
+  empty day cell straight after day 30 of a 31-day month is read as day 31:
+  in the 2026 October page that row's 2024 cells (476.14 m, 4.46%) are the
+  values a 2025-11-01 capture printed under a "31" label.
 
 Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
   raw/lake_levels_<stamp>.html, reservoir_data_<stamp>.html
   timeseries/zambia_zra_kariba_daily.csv      (merged, idempotent)
   timeseries/zambia_zra_kariba_monthly.csv    (merged, idempotent)
+  zra_kariba_revisions.csv                    (only once a revision is seen)
   run_logs/<stamp>_summary.json
 """
 from __future__ import annotations
 
+import calendar
 import csv
 import html as html_mod
 import json
@@ -55,6 +77,8 @@ OUTPUT_DIR = Path(_env_out).expanduser().resolve() if _env_out else (BASE_DIR / 
 RAW_DIR = OUTPUT_DIR / "raw"
 TS_DIR = OUTPUT_DIR / "timeseries"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
+# Outside timeseries/ on purpose: readers glob zambia_zra_kariba_*.csv there.
+REVISIONS_PATH = OUTPUT_DIR / "zra_kariba_revisions.csv"
 
 LEVELS_URL = "https://www.zambezira.org/hydrology/lake-levels"
 MONTHLY_URL = "https://www.zambezira.org/hydrology/kariba-reservoir-data"
@@ -76,6 +100,12 @@ RANGE_RE = re.compile(r'content="(\d{4})-(\d{2})-(\d{2})T', re.I)
 ROW_RE = re.compile(r"<tr[^>]*>(.*?)</tr>", re.S | re.I)
 CELL_RE = re.compile(r"<t[dh][^>]*>(.*?)</t[dh]>", re.S | re.I)
 DAYMON_RE = re.compile(r"^\s*(\d{1,2})\s*-\s*([A-Za-z]{3})", re.I)
+# Year columns of the monthly table: "September 2026", or "Sep-26" as printed
+# on 2026-09-24.
+MONTH_YEAR_RE = re.compile(r"\b(" + "|".join(MONTHS) + r")\s+(20\d{2})\b", re.I)
+ABBR_YEAR_RE = re.compile(r"^\s*([A-Za-z]{3})[A-Za-z]*\s*[-' ]\s*(\d{2}|20\d{2})\s*$")
+REVISION_COLUMNS = ["table", "measurement_date", "column", "kept_value",
+                    "printed_value", "capture"]
 
 DAILY_COLUMNS = ["measurement_date", "reservoir_id", "water_level_masl",
                  "usable_storage_pct", "fetched_at"]
@@ -169,6 +199,21 @@ def parse_daily(page: str) -> list[dict]:
     return rows
 
 
+def header_months(row: list[str]) -> list[tuple[int, int]]:
+    """(month, year) of each year column a header row names, else []."""
+    found = []
+    for cell in row:
+        m = MONTH_YEAR_RE.search(cell)
+        if m:
+            found.append((MONTH_ABBR[m.group(1)[:3].lower()], int(m.group(2))))
+            continue
+        m = ABBR_YEAR_RE.match(cell)
+        if m and m.group(1).lower() in MONTH_ABBR:
+            y = int(m.group(2))
+            found.append((MONTH_ABBR[m.group(1).lower()], y + 2000 if y < 100 else y))
+    return found
+
+
 def parse_monthly(page: str) -> list[dict]:
     """Current-year rows from the monthly three-year table.
 
@@ -177,40 +222,50 @@ def parse_monthly(page: str) -> list[dict]:
     their own captures, so they are not re-emitted here.
     """
     header_rows = [cells(r) for r in ROW_RE.findall(page)]
-    header = next((h for h in header_rows if any(
-        mm in " ".join(h) for mm in MONTHS)), None)
-    if not header:
+    named = next((found for found in map(header_months, header_rows) if found), [])
+    if not named:
         log("  [warn] reservoir-data: month/year header not found")
         return []
-    joined = " ".join(header)
-    months_seen = [(m, i) for i, cell in enumerate(header) for m in MONTHS
-                   if m in cell]
-    years = [int(y) for y in re.findall(r"\b(20\d{2})\b", joined)]
-    if not months_seen or not years:
-        log("  [warn] reservoir-data: could not read month/year from header")
+    months = {m for m, _ in named}
+    years = {y for _, y in named}
+    if len(months) != 1:
+        log(f"  [warn] reservoir-data: header names several months {sorted(months)}")
         return []
-    month_num = MONTHS.index(months_seen[0][0]) + 1
+    month_num = months.pop()
     year = max(years)
 
-    body = [c for c in header_rows if c and re.fullmatch(r"\d{1,2}", c[0] or "")]
+    # October's table leaves its 31st day cell empty; that row is the one
+    # straight after day 30 (see the module docstring for the evidence).
+    body: list[tuple[int, list[str]]] = []
+    last_day = 0
+    for c in header_rows:
+        if not c:
+            continue
+        if re.fullmatch(r"\d{1,2}", c[0] or ""):
+            last_day = int(c[0])
+            body.append((last_day, c))
+        elif (not c[0] and last_day == 30 and any(c[1:])
+              and calendar.monthrange(year, month_num)[1] == 31):
+            last_day = 31
+            body.append((31, c))
     if not body:
         return []
-    width = max(len(c) for c in body)
+    width = max(len(c) for _, c in body)
     # Column positions are derived, not assumed: the earlier years each occupy
     # a level and a percentage, so whatever follows day + 2*(years-1) cells is
     # the current year's block. Assuming a fixed width silently produced zero
     # rows when the table carried 11 columns rather than the 12 guessed at.
-    leading = 1 + 2 * max(0, len(set(years)) - 1)
+    leading = 1 + 2 * max(0, len(years) - 1)
     tail = width - leading
     # current-year layout: level, live storage, % full, turbine, spillage, total
     CURRENT = ("water_level_masl", "live_storage_bcm", "usable_storage_pct",
                "turbine_discharge_m3s", "spillage_m3s", "total_outflow_m3s")
     rows: list[dict] = []
-    for c in body:
+    for day, c in body:
         if len(c) < width:
             continue
         try:
-            when = date(year, month_num, int(c[0]))
+            when = date(year, month_num, day)
         except ValueError:
             continue
         rec = {"measurement_date": when.isoformat(), "reservoir_id": RESERVOIR_ID}
@@ -228,28 +283,106 @@ def parse_monthly(page: str) -> list[dict]:
     return rows
 
 
-def merge(path: Path, columns: list[str], rows: list[dict], stamp: str) -> int:
-    """Idempotent merge on measurement_date; delivered values are never changed."""
-    existing: dict[str, dict] = {}
+def decimals(text: str) -> int:
+    return len(text.split(".")[1]) if "." in text else 0
+
+
+def same_reading(held: str, printed: str) -> bool:
+    """True when two printings are one reading, perhaps at different precision.
+
+    The daily table printed 2026-10-02 as 38.64 on 2026-10-05 and as 39 on
+    2026-10-15: a coarser print of the same number, not a restatement.
+    """
+    try:
+        a, b = float(held), float(printed)
+    except ValueError:
+        return held == printed
+    return abs(a - b) <= 0.5 * 10 ** -min(decimals(held), decimals(printed)) + 1e-9
+
+
+def apply_capture(table: str, held: dict[str, dict], columns: list[str],
+                  rows: list[dict], stamp: str, filled: list[dict],
+                  revisions: list[dict]) -> int:
+    """Merge one capture's rows into `held`; return the number of dates added.
+
+    A new date is added with this capture's stamp. For a date already held, a
+    blank cell takes this capture's value (appended to `filled`); a value
+    already held is never changed or blanked, and a capture printing a
+    different reading of it is appended to `revisions`.
+    """
+    keys = [c for c in columns if c not in ("measurement_date", "reservoir_id",
+                                            "fetched_at")]
+    added = 0
+    for r in rows:
+        d = r["measurement_date"]
+        cur = held.get(d)
+        if cur is None:
+            held[d] = {**{c: "" for c in columns}, **r, "fetched_at": stamp}
+            added += 1
+            continue
+        for c in keys:
+            new, old = (r.get(c) or "").strip(), (cur.get(c) or "").strip()
+            if not new:
+                continue
+            if not old:
+                cur[c] = new
+                filled.append({"table": table, "measurement_date": d,
+                               "column": c, "value": new, "capture": stamp})
+            elif not same_reading(old, new):
+                revisions.append({"table": table, "measurement_date": d,
+                                  "column": c, "kept_value": old,
+                                  "printed_value": new, "capture": stamp})
+    return added
+
+
+def replay(table: str, prefix: str, parser, path: Path, columns: list[str],
+           filled: list[dict], revisions: list[dict]) -> tuple[int, int]:
+    """Re-apply every raw capture of one table, oldest first, to its CSV.
+
+    Returns (dates added, captures read). Rows already in the CSV keep their
+    values and fetched_at; only blank cells and new dates can change, so a
+    rerun over the same captures changes nothing.
+    """
+    held: dict[str, dict] = {}
     if path.is_file():
         with path.open(encoding="utf-8-sig", newline="") as fh:
             for r in csv.DictReader(fh):
-                existing[r["measurement_date"]] = r
-    added = 0
-    for r in rows:
-        if r["measurement_date"] in existing:
-            continue
-        existing[r["measurement_date"]] = {**{c: "" for c in columns}, **r,
-                                           "fetched_at": stamp}
-        added += 1
+                held[r["measurement_date"]] = r
+    added = captures = 0
+    for raw in sorted(RAW_DIR.glob(f"{prefix}*.html")):
+        stamp = raw.stem[len(prefix):]
+        rows = parser(raw.read_text(encoding="utf-8"))
+        added += apply_capture(table, held, columns, rows, stamp, filled, revisions)
+        captures += 1
     TS_DIR.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8-sig", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=columns, extrasaction="ignore",
                            lineterminator="\n")
         w.writeheader()
-        for k in sorted(existing):
-            w.writerow(existing[k])
-    return added
+        for k in sorted(held):
+            w.writerow(held[k])
+    return added, captures
+
+
+def write_revisions(revisions: list[dict]) -> int:
+    """Rewrite the revision list; each printed value once, at its first capture.
+
+    Rebuilt from the replay on every run, so it needs no merging. Written only
+    once there is something to list.
+    """
+    first: dict[tuple, dict] = {}
+    for r in revisions:
+        key = (r["table"], r["measurement_date"], r["column"], r["printed_value"])
+        if key not in first or r["capture"] < first[key]["capture"]:
+            first[key] = r
+    if not first and not REVISIONS_PATH.is_file():
+        return 0
+    with REVISIONS_PATH.open("w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=REVISION_COLUMNS, lineterminator="\n")
+        w.writeheader()
+        for key in sorted(first, key=lambda k: (k[1], k[0], k[2], first[k]["capture"])):
+            w.writerow(first[key])
+    return len(first)
 
 
 def main() -> int:
@@ -268,28 +401,41 @@ def main() -> int:
         log("[warn] zambezira.org unreachable; recorded source_unavailable, exit 0")
         return 0
 
-    daily_added = monthly_added = 0
     if levels is not None:
         (RAW_DIR / f"lake_levels_{stamp}.html").write_text(levels.text,
                                                            encoding="utf-8")
-        rows = parse_daily(levels.text)
-        summary["daily_rows_seen"] = len(rows)
-        daily_added = merge(TS_DIR / "zambia_zra_kariba_daily.csv",
-                            DAILY_COLUMNS, rows, stamp)
+        summary["daily_rows_seen"] = len(parse_daily(levels.text))
     if monthly is not None:
         (RAW_DIR / f"reservoir_data_{stamp}.html").write_text(monthly.text,
                                                               encoding="utf-8")
-        rows = parse_monthly(monthly.text)
-        summary["monthly_rows_seen"] = len(rows)
-        monthly_added = merge(TS_DIR / "zambia_zra_kariba_monthly.csv",
-                              MONTHLY_COLUMNS, rows, stamp)
+        summary["monthly_rows_seen"] = len(parse_monthly(monthly.text))
+
+    # All captures so far, oldest first, this one included: a later capture
+    # fills the cells an earlier one lacked (see "Late values" above).
+    filled: list[dict] = []
+    revisions: list[dict] = []
+    daily_added, daily_read = replay(
+        "daily", "lake_levels_", parse_daily,
+        TS_DIR / "zambia_zra_kariba_daily.csv", DAILY_COLUMNS, filled, revisions)
+    monthly_added, monthly_read = replay(
+        "monthly", "reservoir_data_", parse_monthly,
+        TS_DIR / "zambia_zra_kariba_monthly.csv", MONTHLY_COLUMNS, filled, revisions)
+    revisions_listed = write_revisions(revisions)
 
     summary.update(status="ok", daily_added=daily_added,
-                   monthly_added=monthly_added, finished_at=utc_stamp())
+                   monthly_added=monthly_added,
+                   daily_filled=sum(f["table"] == "daily" for f in filled),
+                   monthly_filled=sum(f["table"] == "monthly" for f in filled),
+                   filled=filled, revisions_listed=revisions_listed,
+                   captures_replayed=daily_read + monthly_read,
+                   finished_at=utc_stamp())
     (RUN_LOG_DIR / f"{stamp}_summary.json").write_text(
         json.dumps(summary, indent=2), encoding="utf-8")
-    log(f"[done] daily +{daily_added} (seen {summary.get('daily_rows_seen', 0)}), "
-        f"monthly +{monthly_added} (seen {summary.get('monthly_rows_seen', 0)})")
+    log(f"[done] daily +{daily_added} (seen {summary.get('daily_rows_seen', 0)}, "
+        f"{summary['daily_filled']} cells filled), monthly +{monthly_added} "
+        f"(seen {summary.get('monthly_rows_seen', 0)}, "
+        f"{summary['monthly_filled']} cells filled), "
+        f"{revisions_listed} revision(s) listed")
     return 0
 
 

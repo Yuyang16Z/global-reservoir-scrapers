@@ -647,7 +647,7 @@
       ],
       "max_schedule_gap_hours": 96,
       "minimum_capture_opportunities": 4,
-      "overlap_strategy": "Every run re-reads the whole ~14-day daily table and the current monthly table; rows merge on measurement_date and delivered values are never changed, so overlapping captures are idempotent.",
+      "overlap_strategy": "Every run re-reads the whole ~14-day daily table and the current monthly table, then replays all raw captures oldest first: rows merge on measurement_date, a held value is never changed (a capture printing it differently goes to zra_kariba_revisions.csv), and a blank cell takes the value of the first later capture that prints it, because ZRA prints a day's outflows a day or more after its level. Overlapping captures are idempotent.",
       "schedule_rationale": "Monday and Thursday 08:40 Africa/Lusaka, plus the 1st for the monthly table. A day stays in the daily table about a fortnight, so roughly four runs see it. ZRA posts that table in batches (runs added 7 rows on 2026-09-07, none on 09-10 or 09-14, then 9 on 09-17), so the newest printed day trailed by up to 10.5 days. The declared cadence is therefore 72h: a 13-day stale budget (3 x 72 + 96) that does not fire between batches, while the first uncaptured day only drops out once 14 newer days are published. Registered 2026-09-24; deployed since 2026-09-01.",
       "workflow": ".github/workflows/zambia_zra_kariba.yml",
       "scraper": "scrapers/zambia/zra_kariba/zambia_zra_kariba_scraper.py",
