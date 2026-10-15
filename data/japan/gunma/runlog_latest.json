@@ -1,7 +1,6 @@
 {
-  "run_at": "2026-10-14T19:00:23Z",
+  "run_at": "2026-10-15T00:59:11Z",
   "dams": [
-    "四万川ダム",
     "坂本ダム",
     "塩沢ダム",
     "大仁田ダム",
@@ -10,9 +9,14 @@
     "霧積ダム"
   ],
   "timestamps": 25,
-  "first": "2026-10-14T03:00",
-  "last": "2026-10-15T03:00",
-  "parsed": 175,
-  "appended": 42,
-  "problems": []
+  "first": "2026-10-14T09:00",
+  "last": "2026-10-15T09:00",
+  "parsed": 150,
+  "appended": 36,
+  "problems": [
+    "4/m4102: parsed 0 points (markup changed?)",
+    "4/m4103: parsed 0 points (markup changed?)",
+    "4/m4104: parsed 0 points (markup changed?)",
+    "4/m4110: parsed 0 points (markup changed?)"
+  ]
 }
