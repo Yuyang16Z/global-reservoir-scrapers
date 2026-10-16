@@ -763,6 +763,26 @@
       "data_path": "data/bolivia/cndc_datos_hidrologicos",
       "deployment_status": "active",
       "licence_gate": "The website footer reads '(c) 2026 CNDC - Comite Nacional de Despacho de Carga de Bolivia. Todos los derechos reservados.' and grants no reuse permission (`restricted_use`; https://www.cndc.bo/, checked 2026-10-14). Owner decision 2026-10-14: collect in this repository like argentina/cammesa_hidro, costarica/cence_embalses and jamaica/nwc_reservoirs; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
+    },
+    {
+      "source_id": "turkey/koski",
+      "country": "Turkey",
+      "retention_class": "rolling_window",
+      "retention_window_hours": 52584,
+      "publication_cadence_hours": 24,
+      "timezone": "Europe/Istanbul",
+      "cron": [
+        "40 11 * * 1"
+      ],
+      "max_schedule_gap_hours": 168,
+      "minimum_capture_opportunities": 313,
+      "overlap_strategy": "Every run reads all four dam pages (Altınapa, Bağbaşı, Bozkır, Afşar), each of which shows the whole six-year window. A page is stored once per distinct table (hash of the table cells, not of the HTML); a page without a readable table is stored under raw/unparsed/ once per distinct content and the run is marked partial. The CSV is rebuilt from all stored pages keyed on (dam, measurement_date = the table's own 'Tarih'); the latest capture wins and changed values are listed in the revisions CSV, so reruns and overlapping captures add nothing. Cells are kept as published; columns are read by header name because 2020 pages print 'Gelen CM'/'Gelen LT' where today's print 'Doluluk Oranı'.",
+      "schedule_rationale": "Mondays 14:40 Europe/Istanbul (UTC+3, no DST). The Altınapa and Bağbaşı tables start six years before the day they are read (2020-09-08, 2020-09-30 and 2020-10-14 on the captures of 2026-09-08, 09-29 and 10-14), so a date leaves the page every day but stays visible for about 313 weekly runs; Bozkır and Afşar start at 2022-01-01, inside the window. A missed or delayed run therefore loses nothing, and a weekly run keeps the stored pages small (about 120 kB of gzipped HTML per week). Declared cadence 24h: Bağbaşı reports almost every day, Altınapa on working days; the freshness monitor allows 3 x 24h plus the 168h schedule gap. No published value changed between the three captures. Registered 2026-10-15 and seeded with the project's own captures of 2026-09-08, 09-29 and 10-14 (3,682 dam-dates from 2020-09-08, of which 58 had already left the pages); Internet Archive captures of the pages (2020-2026) can be imported with IMPORT_DIR.",
+      "workflow": ".github/workflows/turkey_koski.yml",
+      "scraper": "scrapers/turkey/koski/turkey_koski_scraper.py",
+      "data_path": "data/turkey/koski",
+      "deployment_status": "active",
+      "licence_gate": "KOSKİ publishes no reuse or redistribution terms; the site footer reads '© 2026 | www.koski.gov.tr Tüm Hakları Saklıdır' (All Rights Reserved) (`undeclared_review`; https://www.koski.gov.tr/koski/altinapa-baraj-degerleri, checked 2026-09-08). Owner decision 2026-10-15: collect in this repository like argentina/cammesa_hidro, costarica/cence_embalses, jamaica/nwc_reservoirs and bolivia/cndc_datos_hidrologicos; the PI (Prof. Ximing Cai) manages the repository's public exposure and any release. Presence in this repository is not permission to republish; see DATA_LICENCE_NOTICE.md."
     }
   ]
 }

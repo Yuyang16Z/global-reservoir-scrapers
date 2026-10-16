@@ -56,6 +56,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `costarica/cence_embalses` | ICE/CENCE (Boletin Intra-Diario reservoir levels) | `restricted_use` - "(c) ICE Todos los Derechos Reservados", no reuse permission | **No** |
 | `jamaica/nwc_reservoirs` | NWC Jamaica (Dam & Reservoir Levels page) | `attribution_required_review` - personal and non-commercial reproduction allowed with NWC named as the source; commercial redistribution needs written permission | **No** (non-commercial copies citing NWC only) |
 | `bolivia/cndc_datos_hidrologicos` | CNDC Bolivia (daily hydrological data of the hydro reservoirs) | `restricted_use` - "(c) 2026 CNDC ... Todos los derechos reservados", no reuse permission | **No** |
+| `turkey/koski` | KOSKİ Konya (dam readings pages of Altınapa, Bağbaşı, Bozkır, Afşar) | `undeclared_review` - no reuse terms; footer "Tüm Hakları Saklıdır" (all rights reserved) | **No** |
 
 Counting the nine African deployments listed further down, most data paths
 in this repository are in the "no" column, and the repository carries no
@@ -151,6 +152,20 @@ checked 2026-10-14). The repository owner decided on 2026-10-14 to collect it
 here, with the PI managing the repository's public exposure. This covers this
 source only and is not permission to republish CNDC data.
 
+## Owner decision 2026-10-15: Turkey KOSKİ collected here
+
+`turkey/koski` captures the four "Baraj Değerleri" pages of KOSKİ (Konya Su ve
+Kanalizasyon İdaresi), the water and sewerage administration of Konya: dated
+readings of Altınapa, Bağbaşı, Bozkır and Afşar dams (gauge height, elevation,
+volume, fill ratio). The Altınapa and Bağbaşı tables show only the last six
+years, so each day an early date leaves the page and is lost unless captured.
+KOSKİ publishes no reuse or redistribution terms and its footer reads
+"© 2026 | www.koski.gov.tr Tüm Hakları Saklıdır" (all rights reserved)
+(`undeclared_review`, checked 2026-09-08). The repository owner decided on
+2026-10-15 to collect it here, with the PI managing the repository's public
+exposure. This covers this source only and is not permission to republish
+KOSKİ data.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -159,6 +174,7 @@ source only and is not permission to republish CNDC data.
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
 
-Last reviewed: 2026-10-14 (bolivia/cndc_datos_hidrologicos row and owner decision added;
+Last reviewed: 2026-10-15 (turkey/koski row and owner decision added;
+bolivia/cndc_datos_hidrologicos 2026-10-14;
 jamaica/nwc_reservoirs 2026-10-04; costarica/cence_embalses 2026-10-01; argentina/cammesa_hidro 2026-09-28; owner decision
 of 2026-08-04 unchanged).

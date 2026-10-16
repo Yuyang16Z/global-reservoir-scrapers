@@ -1,0 +1,53 @@
+{
+ "source": "turkey/koski",
+ "agency": "KOSKİ (Konya Su ve Kanalizasyon İdaresi Genel Müdürlüğü), Konya, Turkey",
+ "started_utc": "2026-10-16T01:13:17+00:00",
+ "mode": "import",
+ "http_status": {},
+ "pages_ok": 12,
+ "unchanged": 0,
+ "new_raw_pages": [
+  "2026/afsar_20260908T070343Z__270d88cf1365.html.gz",
+  "2026/afsar_20260929T224953Z__092a544ab581.html.gz",
+  "2026/afsar_20261014T053456Z__f12866315f50.html.gz",
+  "2026/altinapa_20260908T070343Z__f85c3afa76ed.html.gz",
+  "2026/altinapa_20260929T224953Z__18a61a0ca7ff.html.gz",
+  "2026/altinapa_20261014T053456Z__f5d657d443de.html.gz",
+  "2026/bagbasi_20260908T070343Z__9c7dd482a57a.html.gz",
+  "2026/bagbasi_20260929T224953Z__eca0665969e8.html.gz",
+  "2026/bagbasi_20261014T053456Z__d212b281591a.html.gz",
+  "2026/bozkir_20260908T070343Z__a0a6badddb50.html.gz",
+  "2026/bozkir_20260929T224953Z__5dabb4851164.html.gz",
+  "2026/bozkir_20261014T053456Z__527ddd639678.html.gz"
+ ],
+ "errors": [],
+ "blocked": false,
+ "stored_pages": 12,
+ "reading_rows": 3682,
+ "revisions": 0,
+ "dams": {
+  "afsar": {
+   "readings": 204,
+   "first": "2022-01-01",
+   "last": "2026-10-13"
+  },
+  "altinapa": {
+   "readings": 1091,
+   "first": "2020-09-08",
+   "last": "2026-10-13"
+  },
+  "bagbasi": {
+   "readings": 2184,
+   "first": "2020-09-08",
+   "last": "2026-10-13"
+  },
+  "bozkir": {
+   "readings": 203,
+   "first": "2022-01-01",
+   "last": "2026-10-13"
+  }
+ },
+ "latest_observation_date": "2026-10-13",
+ "finished_utc": "2026-10-16T01:13:18+00:00",
+ "status": "ok"
+}

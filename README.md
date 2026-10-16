@@ -82,6 +82,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | South Africa (nationwide) | DWS Weekly State of the Reservoirs PDF (~222 reservoirs) | weekly snapshot, every Tuesday | `scrapers/southafrica/dws_weekly/dws_weekly_scraper.py` | ✅ v1 (2026-04-28) |
 | Taiwan (nationwide) | WRA open data (one-day daily-operations snapshot) | daily snapshot, 2× per day (history API retired 2026-06) | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | weekly run, rolling 15-day backfill | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
+| Turkey (Konya) | KOSKİ dam readings pages (Altınapa, Bağbaşı, Bozkır, Afşar: gauge height, elevation, volume, fill ratio) | rolling six-year window, weekly, full-window re-read | `scrapers/turkey/koski/turkey_koski_scraper.py` | ✅ v1 (2026-10-15) |
 
 The retired China MWR screenshot/OCR collection is preserved read-only under
 [`data/china/mwr_ocr_archive/`](data/china/mwr_ocr_archive/). All new China MWR
