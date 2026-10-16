@@ -1,9 +1,9 @@
 {
-  "run_at": "20261016T001154Z",
+  "run_at": "20261016T045004Z",
   "per_site": [
     {
       "prefecture": "Niigata",
-      "rows": 19,
+      "rows": 20,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -28,7 +28,7 @@
     },
     {
       "prefecture": "Fukui",
-      "rows": 13,
+      "rows": 12,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -41,7 +41,7 @@
     },
     {
       "prefecture": "Miyazaki",
-      "rows": 13,
+      "rows": 12,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -99,5 +99,5 @@
       }
     }
   ],
-  "rows": 93
+  "rows": 92
 }
