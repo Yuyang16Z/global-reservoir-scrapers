@@ -1,0 +1,50 @@
+{
+ "source": "turkey/koski",
+ "agency": "KOSKİ (Konya Su ve Kanalizasyon İdaresi Genel Müdürlüğü), Konya, Turkey",
+ "started_utc": "2026-10-16T03:49:49+00:00",
+ "mode": "fetch",
+ "http_status": {
+  "altinapa": 200,
+  "bagbasi": 200,
+  "bozkir": 200,
+  "afsar": 200
+ },
+ "pages_ok": 4,
+ "unchanged": 0,
+ "new_raw_pages": [
+  "2026/altinapa_20261016T034951Z__5df7879ce230.html.gz",
+  "2026/bagbasi_20261016T034957Z__1238c8092ec2.html.gz",
+  "2026/bozkir_20261016T035002Z__e30a00de6097.html.gz",
+  "2026/afsar_20261016T035006Z__0f544fc1eaa2.html.gz"
+ ],
+ "errors": [],
+ "blocked": false,
+ "stored_pages": 16,
+ "reading_rows": 3687,
+ "revisions": 0,
+ "dams": {
+  "afsar": {
+   "readings": 205,
+   "first": "2022-01-01",
+   "last": "2026-10-14"
+  },
+  "altinapa": {
+   "readings": 1093,
+   "first": "2020-09-08",
+   "last": "2026-10-15"
+  },
+  "bagbasi": {
+   "readings": 2185,
+   "first": "2020-09-08",
+   "last": "2026-10-14"
+  },
+  "bozkir": {
+   "readings": 204,
+   "first": "2022-01-01",
+   "last": "2026-10-14"
+  }
+ },
+ "latest_observation_date": "2026-10-15",
+ "finished_utc": "2026-10-16T03:50:06+00:00",
+ "status": "ok"
+}
