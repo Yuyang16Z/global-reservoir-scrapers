@@ -1,0 +1,19 @@
+{
+  "source": "burkinafaso/dgre",
+  "started_at": "2026-10-16T124158Z",
+  "sitemap": "https://dgre.gov.bf/sitemap.xml",
+  "new_files": [
+    "NOTE_DINFO_HYDRO_10_sept_2026.pdf",
+    "NOTE_DINFO_HYDRO_20_sept_2026_SIEM.pdf",
+    "NOTE_DINFO_HYDRO_30_Ao\u00fbt_2026_VF.pdf",
+    "Note_dinformation_hydrologique_30_sept_2026.pdf",
+    "DGRE_-_NOTE_DINFO_HYDRO_10_Aout_2026.pdf",
+    "NOTE_DINFO_HYDRO_20_Ao\u00fbt_2026_vuSIEM_2VWMMnA.pdf",
+    "DGRE_-_NOTE_DINFO_HYDRO__20_juillet_2026_.pdf"
+  ],
+  "skipped": 7,
+  "failed": [],
+  "status": "ok",
+  "inventory_total": 14,
+  "finished_at": "2026-10-16T124344Z"
+}
