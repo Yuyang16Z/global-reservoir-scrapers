@@ -1,0 +1,354 @@
+{
+ "source": "argentina/cammesa_hidro",
+ "agency": "CAMMESA (Compañía Administradora del Mercado Mayorista Eléctrico S.A.)",
+ "started_utc": "2026-10-17T15:28:53+00:00",
+ "requested_range": [
+  "2026-09-07",
+  "2026-10-17"
+ ],
+ "http_200": 31,
+ "http_404": 10,
+ "new_raw_pages": [
+  "20261017__2c3c2f9060c5.html"
+ ],
+ "errors": [],
+ "fetch_log": [
+  {
+   "requested_date": "2026-09-07",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:28:54+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-08",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:28:56+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-09",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:29:13+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-10",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:29:16+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-11",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:29:18+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-12",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:29:56+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-13",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:29:58+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-14",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:30:00+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-15",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:30:13+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-09-16",
+   "http_status": 200,
+   "bytes": 78415,
+   "content_sha256": "2098e9eec0b7",
+   "fetched_at_utc": "2026-10-17T15:30:16+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-17",
+   "http_status": 200,
+   "bytes": 78421,
+   "content_sha256": "e7d82ed25cdb",
+   "fetched_at_utc": "2026-10-17T15:30:38+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-18",
+   "http_status": 200,
+   "bytes": 78417,
+   "content_sha256": "d8cf455865cb",
+   "fetched_at_utc": "2026-10-17T15:30:41+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-19",
+   "http_status": 200,
+   "bytes": 78418,
+   "content_sha256": "1a0e6f563072",
+   "fetched_at_utc": "2026-10-17T15:30:43+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-20",
+   "http_status": 200,
+   "bytes": 78418,
+   "content_sha256": "fb482905d41a",
+   "fetched_at_utc": "2026-10-17T15:31:05+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-21",
+   "http_status": 200,
+   "bytes": 78422,
+   "content_sha256": "aa1e1730c0f6",
+   "fetched_at_utc": "2026-10-17T15:31:08+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-22",
+   "http_status": 200,
+   "bytes": 78420,
+   "content_sha256": "45327806ae2a",
+   "fetched_at_utc": "2026-10-17T15:31:10+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-23",
+   "http_status": 200,
+   "bytes": 78416,
+   "content_sha256": "87118fb05881",
+   "fetched_at_utc": "2026-10-17T15:31:49+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-24",
+   "http_status": 200,
+   "bytes": 78418,
+   "content_sha256": "6faf972e2e49",
+   "fetched_at_utc": "2026-10-17T15:31:51+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-25",
+   "http_status": 200,
+   "bytes": 78421,
+   "content_sha256": "0c86e146770f",
+   "fetched_at_utc": "2026-10-17T15:32:13+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-26",
+   "http_status": 200,
+   "bytes": 78415,
+   "content_sha256": "b4da19f64d7c",
+   "fetched_at_utc": "2026-10-17T15:32:16+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-27",
+   "http_status": 200,
+   "bytes": 78417,
+   "content_sha256": "3badc8599bdc",
+   "fetched_at_utc": "2026-10-17T15:32:18+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-28",
+   "http_status": 200,
+   "bytes": 78417,
+   "content_sha256": "51c5616ecc80",
+   "fetched_at_utc": "2026-10-17T15:32:57+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-29",
+   "http_status": 200,
+   "bytes": 78425,
+   "content_sha256": "19ca44639ccf",
+   "fetched_at_utc": "2026-10-17T15:32:59+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-30",
+   "http_status": 200,
+   "bytes": 78426,
+   "content_sha256": "d52ddcd70eee",
+   "fetched_at_utc": "2026-10-17T15:33:02+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-01",
+   "http_status": 200,
+   "bytes": 78447,
+   "content_sha256": "36caeb75a4f4",
+   "fetched_at_utc": "2026-10-17T15:33:04+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-02",
+   "http_status": 200,
+   "bytes": 78450,
+   "content_sha256": "72c251500e89",
+   "fetched_at_utc": "2026-10-17T15:33:43+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-03",
+   "http_status": 200,
+   "bytes": 78443,
+   "content_sha256": "304d124e236a",
+   "fetched_at_utc": "2026-10-17T15:33:45+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-04",
+   "http_status": 200,
+   "bytes": 78446,
+   "content_sha256": "25d24ee4813f",
+   "fetched_at_utc": "2026-10-17T15:33:48+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-05",
+   "http_status": 200,
+   "bytes": 78446,
+   "content_sha256": "c408447bdba6",
+   "fetched_at_utc": "2026-10-17T15:33:50+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-06",
+   "http_status": 200,
+   "bytes": 78447,
+   "content_sha256": "783624834ccf",
+   "fetched_at_utc": "2026-10-17T15:33:53+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-07",
+   "http_status": 200,
+   "bytes": 78445,
+   "content_sha256": "48c2a89d87d3",
+   "fetched_at_utc": "2026-10-17T15:34:31+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-08",
+   "http_status": 200,
+   "bytes": 78448,
+   "content_sha256": "53924dfcee34",
+   "fetched_at_utc": "2026-10-17T15:34:34+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-09",
+   "http_status": 200,
+   "bytes": 78451,
+   "content_sha256": "620ec9bf355a",
+   "fetched_at_utc": "2026-10-17T15:34:36+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-10",
+   "http_status": 200,
+   "bytes": 78446,
+   "content_sha256": "8d233155b458",
+   "fetched_at_utc": "2026-10-17T15:34:39+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-11",
+   "http_status": 200,
+   "bytes": 78450,
+   "content_sha256": "d374dd2c3397",
+   "fetched_at_utc": "2026-10-17T15:35:18+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-12",
+   "http_status": 404,
+   "bytes": 0,
+   "content_sha256": "",
+   "fetched_at_utc": "2026-10-17T15:35:39+00:00",
+   "stored_as": ""
+  },
+  {
+   "requested_date": "2026-10-13",
+   "http_status": 200,
+   "bytes": 78452,
+   "content_sha256": "dd0277332f99",
+   "fetched_at_utc": "2026-10-17T15:35:42+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-14",
+   "http_status": 200,
+   "bytes": 78450,
+   "content_sha256": "f9f021303dc5",
+   "fetched_at_utc": "2026-10-17T15:35:55+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-15",
+   "http_status": 200,
+   "bytes": 78450,
+   "content_sha256": "f6b595058000",
+   "fetched_at_utc": "2026-10-17T15:35:58+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-16",
+   "http_status": 200,
+   "bytes": 78450,
+   "content_sha256": "d94d1fa4b9af",
+   "fetched_at_utc": "2026-10-17T15:36:20+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-17",
+   "http_status": 200,
+   "bytes": 78449,
+   "content_sha256": "2c3c2f9060c5",
+   "fetched_at_utc": "2026-10-17T15:36:42+00:00",
+   "stored_as": "20261017__2c3c2f9060c5.html"
+  }
+ ],
+ "raw_pages": 49,
+ "page_dates": 49,
+ "earliest_page_date": "2026-08-28",
+ "latest_page_date": "2026-10-17",
+ "reservoir_rows": 784,
+ "river_rows": 637,
+ "page_date_mismatches": [],
+ "finished_utc": "2026-10-17T15:36:44+00:00",
+ "status": "ok"
+}
