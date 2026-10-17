@@ -39,6 +39,7 @@ Arenal,2026-10-16T02:00,,543.03,2026-10-16T09:52:51+00:00,hourly_readings.jsonl
 Arenal,2026-10-16T10:00,542.99,543.02,2026-10-16T17:32:02+00:00,hourly_readings.jsonl
 Arenal,2026-10-16T16:00,542.98,542.97,2026-10-16T23:42:05+00:00,hourly_readings.jsonl
 Arenal,2026-10-17T02:00,,542.99,2026-10-17T09:23:51+00:00,hourly_readings.jsonl
+Arenal,2026-10-17T09:00,,542.99,2026-10-17T16:31:19+00:00,hourly_readings.jsonl
 Cachí,2026-09-30T20:00,989.81,989.86,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Cachí,2026-10-01T01:00,,989.91,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Cachí,2026-10-01T11:00,990.0,989.89,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -89,6 +90,7 @@ Cachí,2026-10-16T02:00,,989.99,2026-10-16T09:52:51+00:00,hourly_readings.jsonl
 Cachí,2026-10-16T10:00,989.89,990.06,2026-10-16T17:32:02+00:00,hourly_readings.jsonl
 Cachí,2026-10-16T16:00,989.89,989.99,2026-10-16T23:42:05+00:00,hourly_readings.jsonl
 Cachí,2026-10-17T02:00,,990.06,2026-10-17T09:23:51+00:00,hourly_readings.jsonl
+Cachí,2026-10-17T09:00,,990.05,2026-10-17T16:31:19+00:00,hourly_readings.jsonl
 Pirrís,2026-09-30T20:00,1203.88,1204.27,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T01:00,,1204.31,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Pirrís,2026-10-01T11:00,1203.94,1204.18,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -139,6 +141,7 @@ Pirrís,2026-10-16T02:00,,1203.98,2026-10-16T09:52:51+00:00,hourly_readings.json
 Pirrís,2026-10-16T10:00,1204.0,1203.98,2026-10-16T17:32:02+00:00,hourly_readings.jsonl
 Pirrís,2026-10-16T16:00,1203.94,1204.07,2026-10-16T23:42:05+00:00,hourly_readings.jsonl
 Pirrís,2026-10-17T02:00,,1204.22,2026-10-17T09:23:51+00:00,hourly_readings.jsonl
+Pirrís,2026-10-17T09:00,,1204.23,2026-10-17T16:31:19+00:00,hourly_readings.jsonl
 Reventazón,2026-09-30T20:00,254.37,255.06,2026-10-01T02:00:00+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T01:00,,255.08,2026-10-01T08:50:42+00:00,hourly_readings.jsonl
 Reventazón,2026-10-01T11:00,254.83,254.59,2026-10-01T18:57:01+00:00,hourly_readings.jsonl
@@ -189,3 +192,4 @@ Reventazón,2026-10-16T02:00,,251.6,2026-10-16T09:52:51+00:00,hourly_readings.js
 Reventazón,2026-10-16T10:00,251.98,251.91,2026-10-16T17:32:02+00:00,hourly_readings.jsonl
 Reventazón,2026-10-16T16:00,251.78,251.73,2026-10-16T23:42:05+00:00,hourly_readings.jsonl
 Reventazón,2026-10-17T02:00,,251.46,2026-10-17T09:23:51+00:00,hourly_readings.jsonl
+Reventazón,2026-10-17T09:00,,251.28,2026-10-17T16:31:19+00:00,hourly_readings.jsonl
