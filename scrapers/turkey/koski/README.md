@@ -29,8 +29,12 @@ the run.
 
 **Seed and imports:** the archive was seeded on 2026-10-15 with the project's own captures of 2026-09-08, 2026-09-29
 and 2026-10-14 (origin `local_capture`; 3,682 dam-dates from 2020-09-08, of which 58 had already left the pages).
-Saved pages named `<slug>_<capture time UTC>.html` can be added with `IMPORT_DIR` (and `IMPORT_ORIGIN`, e.g.
-`internet_archive`), for instance Internet Archive captures of the four pages (2020-2026).
+On 2026-10-16 the 56 Internet Archive captures of the four pages (2020-03-20 to 2026-10-04, origin
+`internet_archive`) were added with `IMPORT_DIR`: 46 distinct tables (one empty page under `raw/unparsed/`), taking
+Altınapa back to 2017-04-24 and Bağbaşı to 2019-12-01. Before 2026-03 the pages printed 'Gelen CM' and 'Gelen LT'
+instead of 'Doluluk Oranı' and showed a shorter window (Altınapa about three years, Bağbaşı from 2019-12-01); those
+columns are kept as `gelen_cm` and `gelen_lt`. The captures agree with the project's own on every shared date; the
+revisions CSV lists the two dates KOSKİ corrected later (Bağbaşı 2020-09-18 and 2025-12-08).
 
 **Licence:** KOSKİ publishes no reuse or redistribution terms; the footer reads "© 2026 | www.koski.gov.tr Tüm
 Hakları Saklıdır" (all rights reserved) - `undeclared_review` (checked 2026-09-08). Collected here by the owner's

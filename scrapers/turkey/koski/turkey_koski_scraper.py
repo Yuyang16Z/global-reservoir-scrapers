@@ -24,7 +24,9 @@ Design:
   run ends as "partial", so a layout change loses no reading and is visible in the run log.
 - The CSV is rebuilt from every stored page on every run, keyed on (dam, measurement_date) where measurement_date is
   the table's own 'Tarih', never the fetch time; a later capture wins and a value that changes is listed in the
-  revisions CSV. A row dated more than a day after its capture is reported and not kept.
+  revisions CSV. A column the later page does not print keeps the earlier page's value (pages before 2026-03 print
+  'Gelen CM'/'Gelen LT', later ones 'Doluluk Oranı'), so raw_file names the latest page of the date only. A row dated
+  more than a day after its capture is reported and not kept.
 - Cell text is kept exactly as published. Nothing is converted, checked against other columns or blanked here; that
   happens in the project's delivery layer.
 - HTTP 403/412/429 stops the run (the project does not work around blocks).
@@ -254,6 +256,9 @@ def rebuild(captures: list[dict], summary: dict) -> None:
                                           "previous_value": old[f], "new_value": row[f],
                                           "previous_captured_utc": old["captured_utc"],
                                           "new_captured_utc": cap["captured_utc"], "new_raw_file": cap["raw_file"]})
+                # a column the later page does not print keeps the earlier page's value
+                for f in set(old) - set(row):
+                    row[f] = old[f]
             table[key] = row
     columns = ["dam", "measurement_date", *VALUE_COLUMNS, *sorted(extra), "captured_utc", "raw_file"]
     rows = [{c: r.get(c, "") for c in columns} for r in sorted(table.values(),

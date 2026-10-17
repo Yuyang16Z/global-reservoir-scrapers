@@ -109,6 +109,20 @@ class KoskiTests(unittest.TestCase):
         self.assertEqual(rows["2026-10-13"]["gelen_cm"], "")
         self.assertEqual(s["revisions"], 0)
 
+    def test_column_only_older_page_prints_is_kept(self):
+        caps, s = [], self.summary()
+        old = page([("12/01/2026", "1107", "1250.57", "19400000", "32", "1640")],
+                   ("Tarih", "Yükseklik", "Kot", "Hacim", "Gelen CM", "Gelen LT"))
+        self.mod.store("altinapa", old, datetime(2026, 1, 18, 2, 8, 49, tzinfo=timezone.utc),
+                       "internet_archive", caps, s)
+        self.mod.store("altinapa", page(CURRENT + [("12/01/2026", "1107", "1250.57", "19400000", "54")]),
+                       datetime(2026, 10, 14, 5, 34, 56, tzinfo=timezone.utc), "live", caps, s)
+        self.mod.rebuild(caps, s)
+        row = {r["measurement_date"]: r for r in self.rows()}["2026-01-12"]
+        self.assertEqual((row["gelen_lt"], row["doluluk_orani"]), ("1640", "54"))   # both pages' columns
+        self.assertTrue(row["raw_file"].startswith("2026/altinapa_20261014T053456Z"))  # the latest page
+        self.assertEqual(s["revisions"], 0)
+
     def test_unreadable_page_is_kept(self):
         caps, s = [], self.summary()
         self.mod.store("bozkir", b"<html><body><p>Bakim</p></body></html>",
