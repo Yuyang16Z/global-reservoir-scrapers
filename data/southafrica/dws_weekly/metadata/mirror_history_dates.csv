@@ -1,0 +1,6 @@
+reading_date,decision,dams,repeats_bulletin,share_identical,evidence,decided_at_utc
+2026-05-31,rejected_repeats_bulletin,216,20260525,0.986,data/southafrica/dws_weekly/raw/reservoirs_earth_history_20260531.csv,2026-10-20 10:50:49
+2026-06-03,rejected_repeats_bulletin,216,20260601,0.986,data/southafrica/dws_weekly/raw/reservoirs_earth_history_20260603.csv,2026-10-20 10:50:49
+2026-06-07,rejected_repeats_bulletin,216,20260601,0.986,data/southafrica/dws_weekly/raw/reservoirs_earth_history_20260607.csv,2026-10-20 10:50:49
+2026-06-09,rejected_repeats_bulletin,216,20260616,0.986,data/southafrica/dws_weekly/raw/reservoirs_earth_history_20260609.csv,2026-10-20 10:50:49
+2026-07-06,rejected_too_few_dams,6,,,data/southafrica/dws_weekly/raw/reservoirs_earth_history_20260706.csv,2026-10-20 10:50:49

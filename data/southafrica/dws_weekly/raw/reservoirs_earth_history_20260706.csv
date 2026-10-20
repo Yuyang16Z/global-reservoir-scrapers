@@ -1,0 +1,7 @@
+reading_date,slug,mirror_name,station_id,volume_mcm,fill_percentage,used,page_url,page_sha256
+2026-07-06,berg-river-dam,Berg River Dam,G1R004,113.1,89,yes,https://reservoirs.earth/south-africa/reservoirs/berg-river-dam,3c1c242f3f569099e463d547563dcb2d218b6aae0cab6be308262757eeebbcd1
+2026-07-06,steenbras-lower-dam,Steenbras-Lower Dam,G4R001,18.4,54.2,yes,https://reservoirs.earth/south-africa/reservoirs/steenbras-lower-dam,d7ab0072af205211fa4cb30efea522ea720937b963021b4f72950d845d0bb776
+2026-07-06,steenbras-upper-dam,Steenbras-Upper Dam,G4R007,31.5,98.6,yes,https://reservoirs.earth/south-africa/reservoirs/steenbras-upper-dam,8749c6de3989ed6f468d60f4e4ffd4f47df031bbf7208e986df037b29ea9ff3b
+2026-07-06,theewaterskloof-dam,Theewaterskloof Dam,H6R001,370.5,77.3,yes,https://reservoirs.earth/south-africa/reservoirs/theewaterskloof-dam,97e9f4d6439b2700be8e661f98002d25ffbe3aed26979f4ab2449c5c50ab2754
+2026-07-06,voelvlei-dam,Voelvlei Dam,G1R001,96.4,60.8,yes,https://reservoirs.earth/south-africa/reservoirs/voelvlei-dam,dfc59a3a4ea9b83809f7884f05692203763b74a8acf696432ba4531fbbb0b80b
+2026-07-06,wemmershoek-dam,Wemmershoek Dam,G1R002,58.7,99.9,yes,https://reservoirs.earth/south-africa/reservoirs/wemmershoek-dam,a02754654dd01566d979f40c17eb55ea5432873008bc2363613257b5596d0a41
