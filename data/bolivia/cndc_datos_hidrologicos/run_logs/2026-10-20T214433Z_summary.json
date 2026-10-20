@@ -1,0 +1,298 @@
+{
+ "source": "bolivia/cndc_datos_hidrologicos",
+ "agency": "CNDC (Comite Nacional de Despacho de Carga), Bolivia",
+ "started_utc": "2026-10-20T21:44:33+00:00",
+ "endpoint": "https://www.cndc.bo/wp-json/cndc/v1/datos-hidrologicos",
+ "http_200": 30,
+ "new_raw_files": [
+  "20261021__3e8efb7d06a3.json"
+ ],
+ "sin_datos": [],
+ "date_mismatches": [],
+ "errors": [],
+ "blocked": false,
+ "available_dates": [
+  "2026-09-22",
+  "2026-09-23",
+  "2026-09-24",
+  "2026-09-25",
+  "2026-09-26",
+  "2026-09-27",
+  "2026-09-28",
+  "2026-09-29",
+  "2026-09-30",
+  "2026-10-01",
+  "2026-10-02",
+  "2026-10-03",
+  "2026-10-04",
+  "2026-10-05",
+  "2026-10-06",
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09",
+  "2026-10-10",
+  "2026-10-11",
+  "2026-10-12",
+  "2026-10-13",
+  "2026-10-14",
+  "2026-10-15",
+  "2026-10-16",
+  "2026-10-17",
+  "2026-10-18",
+  "2026-10-19",
+  "2026-10-20",
+  "2026-10-21"
+ ],
+ "fetch_log": [
+  {
+   "requested_date": "2026-09-22",
+   "http_status": 200,
+   "bytes": 4210,
+   "data_sha256": "2f0ba5e7a064",
+   "fetched_at_utc": "2026-10-20T21:44:34+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-23",
+   "http_status": 200,
+   "bytes": 4195,
+   "data_sha256": "30ca42ad416c",
+   "fetched_at_utc": "2026-10-20T21:44:37+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-24",
+   "http_status": 200,
+   "bytes": 4205,
+   "data_sha256": "c5db85b3d50e",
+   "fetched_at_utc": "2026-10-20T21:44:40+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-25",
+   "http_status": 200,
+   "bytes": 4118,
+   "data_sha256": "3497bbc3ac1d",
+   "fetched_at_utc": "2026-10-20T21:44:43+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-26",
+   "http_status": 200,
+   "bytes": 4127,
+   "data_sha256": "6a983c60dbb9",
+   "fetched_at_utc": "2026-10-20T21:44:45+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-27",
+   "http_status": 200,
+   "bytes": 4072,
+   "data_sha256": "968b62965cd4",
+   "fetched_at_utc": "2026-10-20T21:44:48+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-28",
+   "http_status": 200,
+   "bytes": 4070,
+   "data_sha256": "9524c879e6e1",
+   "fetched_at_utc": "2026-10-20T21:44:51+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-29",
+   "http_status": 200,
+   "bytes": 4150,
+   "data_sha256": "b4171fb6fc00",
+   "fetched_at_utc": "2026-10-20T21:44:54+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-09-30",
+   "http_status": 200,
+   "bytes": 4138,
+   "data_sha256": "8c4b8c057596",
+   "fetched_at_utc": "2026-10-20T21:44:57+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-01",
+   "http_status": 200,
+   "bytes": 4151,
+   "data_sha256": "3a9f3c12e84b",
+   "fetched_at_utc": "2026-10-20T21:44:59+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-02",
+   "http_status": 200,
+   "bytes": 4133,
+   "data_sha256": "6e7ea938b32c",
+   "fetched_at_utc": "2026-10-20T21:45:02+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-03",
+   "http_status": 200,
+   "bytes": 4135,
+   "data_sha256": "739ca7e7efa8",
+   "fetched_at_utc": "2026-10-20T21:45:04+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-04",
+   "http_status": 200,
+   "bytes": 3937,
+   "data_sha256": "fc93fd8d2d00",
+   "fetched_at_utc": "2026-10-20T21:45:06+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-05",
+   "http_status": 200,
+   "bytes": 3938,
+   "data_sha256": "540945fee6e8",
+   "fetched_at_utc": "2026-10-20T21:45:09+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-06",
+   "http_status": 200,
+   "bytes": 4114,
+   "data_sha256": "afc24a3a26c3",
+   "fetched_at_utc": "2026-10-20T21:45:12+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-07",
+   "http_status": 200,
+   "bytes": 4151,
+   "data_sha256": "c48c455d3082",
+   "fetched_at_utc": "2026-10-20T21:45:15+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-08",
+   "http_status": 200,
+   "bytes": 4115,
+   "data_sha256": "c889d51cff50",
+   "fetched_at_utc": "2026-10-20T21:45:17+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-09",
+   "http_status": 200,
+   "bytes": 4112,
+   "data_sha256": "f61b110017e4",
+   "fetched_at_utc": "2026-10-20T21:45:20+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-10",
+   "http_status": 200,
+   "bytes": 4120,
+   "data_sha256": "a0fd0c535c40",
+   "fetched_at_utc": "2026-10-20T21:45:22+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-11",
+   "http_status": 200,
+   "bytes": 4088,
+   "data_sha256": "f4748a8a57ae",
+   "fetched_at_utc": "2026-10-20T21:45:25+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-12",
+   "http_status": 200,
+   "bytes": 3980,
+   "data_sha256": "849fba2c565f",
+   "fetched_at_utc": "2026-10-20T21:45:28+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-13",
+   "http_status": 200,
+   "bytes": 4118,
+   "data_sha256": "fe655f04f0b6",
+   "fetched_at_utc": "2026-10-20T21:45:30+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-14",
+   "http_status": 200,
+   "bytes": 4107,
+   "data_sha256": "86322cf34946",
+   "fetched_at_utc": "2026-10-20T21:45:33+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-15",
+   "http_status": 200,
+   "bytes": 4111,
+   "data_sha256": "76467740c7d4",
+   "fetched_at_utc": "2026-10-20T21:45:36+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-16",
+   "http_status": 200,
+   "bytes": 4100,
+   "data_sha256": "d40d0408cddb",
+   "fetched_at_utc": "2026-10-20T21:45:38+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-17",
+   "http_status": 200,
+   "bytes": 4067,
+   "data_sha256": "ff10c25a50e9",
+   "fetched_at_utc": "2026-10-20T21:45:41+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-18",
+   "http_status": 200,
+   "bytes": 4075,
+   "data_sha256": "815d976740e6",
+   "fetched_at_utc": "2026-10-20T21:45:44+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-19",
+   "http_status": 200,
+   "bytes": 4074,
+   "data_sha256": "579bf0104ad3",
+   "fetched_at_utc": "2026-10-20T21:45:46+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-20",
+   "http_status": 200,
+   "bytes": 4136,
+   "data_sha256": "2521e43ca721",
+   "fetched_at_utc": "2026-10-20T21:45:49+00:00",
+   "stored_as": "unchanged"
+  },
+  {
+   "requested_date": "2026-10-21",
+   "http_status": 200,
+   "bytes": 4129,
+   "data_sha256": "3e8efb7d06a3",
+   "fetched_at_utc": "2026-10-20T21:45:52+00:00",
+   "stored_as": "20261021__3e8efb7d06a3.json"
+  }
+ ],
+ "raw_files": 37,
+ "record_dates": 37,
+ "earliest_record_date": "2026-09-15",
+ "latest_record_date": "2026-10-21",
+ "rows": 1073,
+ "reservoirs": 29,
+ "dates_with_revisions": [],
+ "stored_date_mismatches": [],
+ "finished_utc": "2026-10-20T21:45:52+00:00",
+ "status": "ok"
+}
