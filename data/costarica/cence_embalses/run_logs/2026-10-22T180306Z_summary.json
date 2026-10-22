@@ -1,0 +1,43 @@
+{
+ "source": "costarica/cence_embalses",
+ "agency": "ICE - Centro Nacional de Control de Energia (CENCE), DOCSE",
+ "url": "https://apps.grupoice.com/CenceWeb/CenceBoletinIntraDiario.jsf?init=true",
+ "started_utc": "2026-10-22T18:03:06+00:00",
+ "http_status": 200,
+ "unchanged": 0,
+ "new_raw_pages": [
+  "2026/20261022T180321Z__5d19fbeb9b4a.html.gz"
+ ],
+ "errors": [],
+ "new_hourly_readings": 1,
+ "stored_pages": 41,
+ "daily_rows": 1180,
+ "planned_rows": 1460,
+ "real_level_rows": 1180,
+ "revisions": 15,
+ "reservoirs": {
+  "Arenal": {
+   "days": 295,
+   "first": "2026-01-01",
+   "last": "2026-10-22"
+  },
+  "Cachí": {
+   "days": 295,
+   "first": "2026-01-01",
+   "last": "2026-10-22"
+  },
+  "Pirrís": {
+   "days": 295,
+   "first": "2026-01-01",
+   "last": "2026-10-22"
+  },
+  "Reventazón": {
+   "days": 295,
+   "first": "2026-01-01",
+   "last": "2026-10-22"
+  }
+ },
+ "latest_observation_date": "2026-10-22",
+ "finished_utc": "2026-10-22T18:03:22+00:00",
+ "status": "ok"
+}
