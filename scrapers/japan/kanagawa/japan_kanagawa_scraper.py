@@ -34,6 +34,7 @@ from __future__ import annotations
 import csv
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -74,7 +75,10 @@ def fetch(attempts: int = 3) -> dict | None:
             req = urllib.request.Request(API, headers={"User-Agent": UA, "Referer": REFERER})
             with urllib.request.urlopen(req, timeout=45) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
-        except (urllib.error.URLError, OSError, TimeoutError, json.JSONDecodeError):
+        except (urllib.error.URLError, OSError, TimeoutError, json.JSONDecodeError) as exc:
+            # Name the failure. On 2026-10-21/22 the log said only "fetch failed" and a
+            # probe was needed to learn that every port refused the connection.
+            print(f"attempt {i + 1}/{attempts}: {type(exc).__name__}: {exc}", file=sys.stderr)
             if i < attempts - 1:
                 time.sleep(3 * (i + 1))
     return None

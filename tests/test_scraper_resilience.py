@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import contextlib
 import csv
 import http.client
 import importlib.util
+import io
 import json
 import sys
 import tempfile
@@ -81,6 +83,10 @@ prefectural = load_module(
 prefectural_static = load_module(
     "japan_prefectural_static_scraper",
     "scrapers/japan/prefectural_static/japan_prefectural_static_scraper.py",
+)
+kanagawa = load_module(
+    "japan_kanagawa_scraper",
+    "scrapers/japan/kanagawa/japan_kanagawa_scraper.py",
 )
 
 
@@ -970,6 +976,23 @@ class JapanTruncatedBodyTests(unittest.TestCase):
                           for r in rows],
                          [("Good", "摺上川ダム", "2026-10-10T15:00", "361.25")])
         self.assertEqual(log["per_site"][1], {"site": "Cut", "error": "fetch failed"})
+
+
+
+class KanagawaFetchErrorTests(unittest.TestCase):
+    """A failed fetch says why, not only "fetch failed"."""
+
+    def test_each_attempt_names_its_error(self):
+        refused = kanagawa.urllib.error.URLError(ConnectionRefusedError(111, "Connection refused"))
+        err = io.StringIO()
+        with mock.patch.object(kanagawa.urllib.request, "urlopen", side_effect=refused), \
+                mock.patch.object(kanagawa.time, "sleep"), \
+                contextlib.redirect_stderr(err):
+            self.assertIsNone(kanagawa.fetch())
+        lines = err.getvalue().splitlines()
+        self.assertEqual(len(lines), 3)
+        self.assertTrue(all("URLError" in line and "Connection refused" in line
+                            for line in lines), lines)
 
 
 if __name__ == "__main__":
