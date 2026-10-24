@@ -69,7 +69,9 @@ EXCUSED: dict[str, str] = {
         "twice daily and logs source_unavailable, so a resumed bulletin shows up here "
         "as a fresh date. Left unexcused it held this monitor red every day, which hid "
         "new failures (luxembourg/age from 2026-09-15). Reported but not failed. "
-        "Excused 2026-09-24; review by 2026-10-24."
+        "Excused 2026-09-24. Reviewed 2026-10-22: all 19 runs since 2026-10-12 still "
+        "timed out (last readable run 2026-07-24); owner kept the excuse. "
+        "Review by 2026-11-24."
     ),
     "ghana/bui": (
         "Bui Power Authority has not republished its Operations Centre workbook since "
@@ -80,7 +82,9 @@ EXCUSED: dict[str, str] = {
         "so there is no newer public path. The scraper keeps reading it twice daily, so "
         "a new workbook shows up here as a fresh date. Owner decision 2026-10-12: mark "
         "as known-stale. Reported but not failed. "
-        "Excused 2026-10-12; review by 2026-10-26."
+        "Excused 2026-10-12. Reviewed 2026-10-22: all 20 workbook captures since "
+        "2026-10-12 still carry generated_at 2026-09-22; owner kept the excuse. "
+        "Review by 2026-11-26."
     ),
 }
 
