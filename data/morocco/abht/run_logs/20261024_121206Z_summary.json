@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-10-24 12:08:55Z",
+  "source": "morocco/abht",
+  "url": "https://abht.ma/",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abht",
+  "status": "source_unavailable",
+  "errors": [
+    {
+      "message": "500 Server Error: Internal Server Error for url: https://abht.ma/?nocache=1792843866395181380",
+      "error_type": "HTTPError"
+    }
+  ],
+  "finished_at": "2026-10-24 12:12:06Z"
+}
