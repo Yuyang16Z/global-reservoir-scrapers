@@ -1,5 +1,5 @@
 {
-  "run_at": "20261023T231949Z",
+  "run_at": "20261024T014912Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -52,7 +52,7 @@
     },
     {
       "prefecture": "Aomori",
-      "rows": 11,
+      "rows": 10,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -92,5 +92,5 @@
       "error": "fetch failed"
     }
   ],
-  "rows": 90
+  "rows": 89
 }
