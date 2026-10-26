@@ -1,0 +1,37 @@
+{
+  "source": "zambia/zra_kariba",
+  "started_at": "2026-10-26T133247Z",
+  "daily_rows_seen": 14,
+  "monthly_rows_seen": 26,
+  "status": "ok",
+  "daily_added": 7,
+  "monthly_added": 7,
+  "daily_filled": 0,
+  "monthly_filled": 3,
+  "filled": [
+    {
+      "table": "monthly",
+      "measurement_date": "2026-10-19",
+      "column": "turbine_discharge_m3s",
+      "value": "1452",
+      "capture": "2026-10-26T133247Z"
+    },
+    {
+      "table": "monthly",
+      "measurement_date": "2026-10-19",
+      "column": "spillage_m3s",
+      "value": "0",
+      "capture": "2026-10-26T133247Z"
+    },
+    {
+      "table": "monthly",
+      "measurement_date": "2026-10-19",
+      "column": "total_outflow_m3s",
+      "value": "1452",
+      "capture": "2026-10-26T133247Z"
+    }
+  ],
+  "revisions_listed": 0,
+  "captures_replayed": 40,
+  "finished_at": "2026-10-26T133249Z"
+}
