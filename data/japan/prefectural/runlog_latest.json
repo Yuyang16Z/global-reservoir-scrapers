@@ -1,9 +1,9 @@
 {
-  "run_at": "20261026T003402Z",
+  "run_at": "20261026T054820Z",
   "per_site": [
     {
       "prefecture": "Niigata",
-      "rows": 19,
+      "rows": 18,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -92,5 +92,5 @@
       "error": "fetch failed"
     }
   ],
-  "rows": 89
+  "rows": 88
 }
