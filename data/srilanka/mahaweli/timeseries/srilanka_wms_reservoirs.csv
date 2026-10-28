@@ -18,7 +18,7 @@
 2026-10-20,2026-10-16,Alikotaara,Irrigation System,6.2,210.99,3.95,64,,13.83,183,mahaweli_daily_2026-10-20.pdf
 2026-10-21,2026-10-20,Alikotaara,Irrigation System,6.2,211.7,4.34,70,,19.32,183,mahaweli_daily_2026-10-21.pdf
 2026-10-26,2026-10-21,Alikotaara,Irrigation System,6.2,211.7,4.34,70,,19.35,183,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-23,Alikotaara,Irrigation System,6.2,211.29,4.11,66,,,183,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-23,Alikotaara,Irrigation System,6.2,211.29,4.11,66,,,183,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Angamuwa,Irrigation System,15.91,61.32,5.23,33,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Angamuwa,Irrigation System,15.91,61.2,4.93,31,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Angamuwa,Irrigation System,15.91,61.14,4.78,30,,,,mahaweli_daily_2026-09-11.pdf
@@ -52,6 +52,7 @@
 2026-10-23,2026-10-23,Angamuwa,Irrigation System,15.91,63.94,14.09,89,,47.8,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Angamuwa,Irrigation System,15.91,63.97,14.23,89,,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Angamuwa,Irrigation System,15.91,64.52,16.85,106,,84.24,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Angamuwa,Irrigation System,15.91,63.7,13.04,82,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,Basawakkulama,Irrigation System,2.04,84.28,1.1,54,,,155,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-10,Basawakkulama,Irrigation System,2.04,84.27,1.09,53,,,155,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-11,Basawakkulama,Irrigation System,2.04,84.27,1.09,53,,,155,mahaweli_daily_2026-09-14.pdf
@@ -74,7 +75,7 @@
 2026-10-20,2026-10-18,Basawakkulama,Irrigation System,2.04,83.92,0.88,43,,,155,mahaweli_daily_2026-10-20.pdf
 2026-10-21,2026-10-20,Basawakkulama,Irrigation System,2.04,83.9,0.87,43,,,155,mahaweli_daily_2026-10-21.pdf
 2026-10-26,2026-10-21,Basawakkulama,Irrigation System,2.04,83.92,0.88,43,,,155,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-26,Basawakkulama,Irrigation System,2.04,84.13,1,49,,,155,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-26,Basawakkulama,Irrigation System,2.04,84.13,1,49,,,155,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Bowatenna,Power Stations,23.5,240.88,0.52,2,,12.6,134,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Bowatenna,Power Stations,23.5,240.85,0.51,2,,12.6,134,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Bowatenna,Power Stations,23.5,241.09,0.58,2,,12.6,134,mahaweli_daily_2026-09-11.pdf
@@ -108,6 +109,7 @@
 2026-10-23,2026-10-23,Bowatenna,Power Stations,23.5,250.55,17.95,76,1.8,,134,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Bowatenna,Power Stations,23.5,250.23,16.65,71,5.2,,134,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Bowatenna,Power Stations,23.5,250.02,15.83,67,30.4,,134,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Bowatenna,Power Stations,23.5,249.71,14.67,62,,,134,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Castlereigh,Power Stations,48.3,1092.75,39.81,82,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Castlereigh,Power Stations,48.3,1092.62,39.44,82,14.5,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Castlereigh,Power Stations,48.3,1092.21,38.28,79,,,,mahaweli_daily_2026-09-11.pdf
@@ -141,6 +143,7 @@
 2026-10-23,2026-10-23,Castlereigh,Power Stations,48.3,1094.02,43.4,90,17.5,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Castlereigh,Power Stations,48.3,1093.41,41.67,86,38,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Castlereigh,Power Stations,48.3,1094.39,44.44,92,76,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Castlereigh,Power Stations,48.3,1094.4,44.47,92,1,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Chandrikawewa,Mahaweli System,27.71,59.19,19.62,71,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Chandrikawewa,Mahaweli System,27.71,59,18.9,68,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Chandrikawewa,Mahaweli System,27.71,58.68,17.71,64,,,,mahaweli_daily_2026-09-11.pdf
@@ -173,7 +176,7 @@
 2026-10-22,2026-10-22,Chandrikawewa,Mahaweli System,27.71,61.15,27.71,100,19.5,,,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Chandrikawewa,Mahaweli System,27.71,61.13,27.63,100,3.5,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Chandrikawewa,Mahaweli System,27.71,60.86,26.44,95,22.4,,,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Chandrikawewa,Mahaweli System,27.71,61.15,27.71,100,34.3,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Chandrikawewa,Mahaweli System,27.71,61.15,27.71,100,34.3,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-07,Dambarawa,Irrigation System,15.94,100.64,11.47,72,,,610,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Dambarawa,Irrigation System,15.94,100.64,11.47,72,,,610,mahaweli_daily_2026-09-09.pdf
 2026-09-14,2026-09-11,Dambarawa,Irrigation System,15.94,100.64,11.47,72,,,610,mahaweli_daily_2026-09-14.pdf
@@ -201,6 +204,7 @@
 2026-10-23,2026-10-23,Dambarawa,Irrigation System,15.94,100.85,12.09,76,,,610,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Dambarawa,Irrigation System,15.94,100.87,12.17,76,,,610,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Dambarawa,Irrigation System,15.94,100.87,12.17,76,,,610,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Dambarawa,Irrigation System,15.94,100.87,12.17,76,,,610,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Dambuluoya,Mini Hydro,11.7,161.83,10.52,90,,,2300,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Dambuluoya,Mini Hydro,11.7,161.82,10.47,89,,,2300,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Dambuluoya,Mini Hydro,11.7,161.68,9.98,85,,,2300,mahaweli_daily_2026-09-11.pdf
@@ -234,6 +238,7 @@
 2026-10-23,2026-10-23,Dambuluoya,Mini Hydro,11.7,161.97,11.04,94,,,2300,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Dambuluoya,Mini Hydro,11.7,161.93,10.86,93,70,,2300,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Dambuluoya,Mini Hydro,11.7,161.93,10.86,93,35,,2300,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Dambuluoya,Mini Hydro,11.7,161.91,10.81,92,,,2300,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Dayaraba,Power Stations,0.92,970.2,0.56,61,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Dayaraba,Power Stations,0.92,970.7,0.58,63,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Dayaraba,Power Stations,0.92,965.9,0.36,39,,,,mahaweli_daily_2026-09-11.pdf
@@ -264,7 +269,7 @@
 2026-10-22,2026-10-22,Dayaraba,Power Stations,0.92,976.1,0.94,102,,,,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Dayaraba,Power Stations,0.92,971.55,0.63,69,,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Dayaraba,Power Stations,0.92,971.35,0.62,67,,,,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Dayaraba,Power Stations,0.92,975.65,0.9,98,,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Dayaraba,Power Stations,0.92,975.65,0.9,98,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-23,2026-08-24,Diyabana,Mahaweli System,1.2,106,0.18,15,,,324,mahaweli_daily_2026-09-23.pdf
 2026-09-24,2026-09-24,Diyabana,Mahaweli System,1.2,106.25,0.24,20,,,324,mahaweli_daily_2026-09-24.pdf
 2026-09-25,2026-09-25,Diyabana,Mahaweli System,1.2,106.5,0.31,26,,,324,mahaweli_daily_2026-09-25.pdf
@@ -290,6 +295,7 @@
 2026-10-23,2026-10-23,Diyabana,Mahaweli System,1.2,107.43,0.68,56,,,324,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Diyabana,Mahaweli System,1.2,107.5,0.71,59,,,324,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Diyabana,Mahaweli System,1.2,107.52,0.72,60,,,324,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Diyabana,Mahaweli System,1.2,107.55,0.74,62,,,324,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,Giritale,Irrigation System,26.8,87.28,10.52,39,,,3500,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Giritale,Irrigation System,26.8,86.97,9.82,37,,,3500,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-14,Giritale,Irrigation System,26.8,86.97,9.82,37,84,,3500,mahaweli_daily_2026-09-14.pdf
@@ -319,6 +325,7 @@
 2026-10-23,2026-10-23,Giritale,Irrigation System,26.8,87.15,10.22,38,,,3500,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Giritale,Irrigation System,26.8,87.2,10.34,39,,,3500,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Giritale,Irrigation System,26.8,87.26,10.46,39,9.3,,3500,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Giritale,Irrigation System,26.8,86.97,9.82,37,,,3500,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-04,Hadapanagala,Irrigation System,20.5,22.96,13.49,66,,,1173,mahaweli_daily_2026-09-09.pdf
 2026-09-14,2026-09-09,Hadapanagala,Irrigation System,20.5,22.58,13.01,63,,,1173,mahaweli_daily_2026-09-14.pdf
 2026-09-15,2026-09-11,Hadapanagala,Irrigation System,20.5,22.33,12.69,62,,,1173,mahaweli_daily_2026-09-15.pdf
@@ -338,7 +345,7 @@
 2026-10-20,2026-10-16,Hadapanagala,Irrigation System,20.5,21.5,11.52,56,,,1173,mahaweli_daily_2026-10-20.pdf
 2026-10-21,2026-10-20,Hadapanagala,Irrigation System,20.5,21.25,11.14,54,,,1173,mahaweli_daily_2026-10-21.pdf
 2026-10-26,2026-10-21,Hadapanagala,Irrigation System,20.5,21.17,11.02,54,,,1173,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-23,Hadapanagala,Irrigation System,20.5,21,10.15,50,,,1173,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-23,Hadapanagala,Irrigation System,20.5,21,10.15,50,,,1173,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Hepolaoya,Mahaweli System,12.6,107.8,5.68,45,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Hepolaoya,Mahaweli System,12.6,109.2,8.38,66,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Hepolaoya,Mahaweli System,12.6,109.8,9.74,77,,,,mahaweli_daily_2026-09-11.pdf
@@ -372,6 +379,7 @@
 2026-10-23,2026-10-23,Hepolaoya,Mahaweli System,12.6,110.15,10.59,84,,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Hepolaoya,Mahaweli System,12.6,110.22,10.77,85,,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Hepolaoya,Mahaweli System,12.6,110.24,10.82,86,,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Hepolaoya,Mahaweli System,12.6,110.24,10.82,86,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Huruluwewa,Irrigation System,67.8,127.54,17.88,26,,,4300,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Huruluwewa,Irrigation System,67.8,127.54,17.88,26,,,4300,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Huruluwewa,Irrigation System,67.8,127.52,17.78,26,,,4300,mahaweli_daily_2026-09-11.pdf
@@ -405,6 +413,7 @@
 2026-10-23,2026-10-23,Huruluwewa,Irrigation System,67.8,128.25,22.71,33,3,,4300,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Huruluwewa,Irrigation System,67.8,128.3,23.04,34,67.4,,4300,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Huruluwewa,Irrigation System,67.8,128.54,24.87,37,20.8,,4300,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Huruluwewa,Irrigation System,67.8,128.57,25.11,37,,,4300,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Kalawewa,Mahaweli System,104,124.51,17.74,17,,,25365,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Kalawewa,Mahaweli System,104,124.51,17.68,17,,,25365,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kalawewa,Mahaweli System,104,124.36,16.12,15,,,25365,mahaweli_daily_2026-09-11.pdf
@@ -438,6 +447,7 @@
 2026-10-23,2026-10-23,Kalawewa,Mahaweli System,104,128.96,97.54,94,4,,25365,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Kalawewa,Mahaweli System,104,129.19,102.99,99,64,14.39,25365,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kalawewa,Mahaweli System,104,129.43,108.92,105,48,143.97,25365,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kalawewa,Mahaweli System,104,129.29,105.61,102,,117.49,25365,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Kaluganga,Mahaweli System,248,193.88,132.39,53,,,1080,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Kaluganga,Mahaweli System,248,193.87,132.33,53,,,1080,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kaluganga,Mahaweli System,248,193.82,132.02,53,,,1080,mahaweli_daily_2026-09-11.pdf
@@ -471,6 +481,7 @@
 2026-10-23,2026-10-23,Kaluganga,Mahaweli System,248,195.1,139.95,56,34,,1278,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Kaluganga,Mahaweli System,248,194.98,139.2,56,6,,1278,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kaluganga,Mahaweli System,248,194.89,138.64,56,16,,1278,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kaluganga,Mahaweli System,248,194.87,138.51,56,,,1278,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Kandalama,Mahaweli System,33.8,173.13,16.23,48,,,4500,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Kandalama,Mahaweli System,33.8,173.13,16.23,48,,,4500,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kandalama,Mahaweli System,33.8,173.13,16.23,48,,,4500,mahaweli_daily_2026-09-11.pdf
@@ -504,6 +515,7 @@
 2026-10-23,2026-10-23,Kandalama,Mahaweli System,33.8,174.8,24.99,74,4.3,,4500,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Kandalama,Mahaweli System,33.8,174.74,24.63,73,17.1,,4500,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kandalama,Mahaweli System,33.8,174.83,25.16,74,18.3,,4500,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kandalama,Mahaweli System,33.8,174.86,25.34,75,,,4500,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Kantale,Irrigation System,140.6,53.85,40.84,29,,,11896,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Kantale,Irrigation System,140.6,53.84,40.68,29,,,11896,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kantale,Irrigation System,140.6,53.82,40.44,29,,,11896,mahaweli_daily_2026-09-11.pdf
@@ -531,6 +543,7 @@
 2026-10-22,2026-10-22,Kantale,Irrigation System,140.6,55.38,62.19,44,115.2,,11896,mahaweli_daily_2026-10-22.pdf
 2026-10-26,2026-10-23,Kantale,Irrigation System,140.6,55.56,64.99,46,4.6,,11896,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kantale,Irrigation System,140.6,55.92,70.49,50,9.8,,11896,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kantale,Irrigation System,140.6,56.04,72.35,51,,,11896,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,Kaudulla,Irrigation System,128.3,67.28,27.53,21,,,10642,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kaudulla,Irrigation System,128.3,67.25,27.28,21,,,10642,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-14,Kaudulla,Irrigation System,128.3,67.37,28.41,22,7,,10642,mahaweli_daily_2026-09-14.pdf
@@ -559,6 +572,7 @@
 2026-10-22,2026-10-22,Kaudulla,Irrigation System,128.3,68.25,38.19,30,,,10642,mahaweli_daily_2026-10-22.pdf
 2026-10-26,2026-10-23,Kaudulla,Irrigation System,128.3,68.41,40.07,31,,,10642,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kaudulla,Irrigation System,128.3,68.97,47.35,37,11,,10642,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kaudulla,Irrigation System,128.3,69.09,49.11,38,,,10642,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Kotmale,Power Stations,170.9,687.42,89.24,52,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Kotmale,Power Stations,170.9,687.15,88.08,52,0.5,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Kotmale,Power Stations,170.9,686.5,85.31,50,1.2,,,mahaweli_daily_2026-09-11.pdf
@@ -591,6 +605,7 @@
 2026-10-23,2026-10-23,Kotmale,Power Stations,170.9,696.3,132.9,78,7.4,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Kotmale,Power Stations,170.9,696.37,133.28,78,,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Kotmale,Power Stations,170.9,698.64,146.13,86,52.4,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Kotmale,Power Stations,170.9,699.13,148.99,87,1.1,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Loggaloya,Mahaweli System,48,110.35,40.82,85,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Loggaloya,Mahaweli System,48,109.83,38.38,80,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Loggaloya,Mahaweli System,48,109.8,38.24,80,,,,mahaweli_daily_2026-09-11.pdf
@@ -624,6 +639,7 @@
 2026-10-23,2026-10-23,Loggaloya,Mahaweli System,48,110.88,43.4,90,,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Loggaloya,Mahaweli System,48,110.9,43.5,91,,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Loggaloya,Mahaweli System,48,110.92,43.6,91,,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Loggaloya,Mahaweli System,48,110.92,43.6,91,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-14,2026-09-06,Lunugamwehera,Irrigation System,226.9,54.5,128.81,57,,,10728,mahaweli_daily_2026-09-14.pdf
 2026-09-15,2026-09-13,Lunugamwehera,Irrigation System,226.9,54.16,121.85,54,,,10728,mahaweli_daily_2026-09-15.pdf
 2026-09-21,2026-09-15,Lunugamwehera,Irrigation System,226.9,54.16,121.85,54,1.2,,10728,mahaweli_daily_2026-09-21.pdf
@@ -642,7 +658,7 @@
 2026-10-16,2026-10-15,Lunugamwehera,Irrigation System,226.9,55.41,149.23,66,,,10728,mahaweli_daily_2026-10-16.pdf
 2026-10-20,2026-10-16,Lunugamwehera,Irrigation System,226.9,55.5,151.4,67,,,10728,mahaweli_daily_2026-10-20.pdf
 2026-10-26,2026-10-20,Lunugamwehera,Irrigation System,226.9,55.75,157.27,69,,,10728,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-25,Lunugamwehera,Irrigation System,226.9,56.05,164.85,73,,,10728,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-25,Lunugamwehera,Irrigation System,226.9,56.05,164.85,73,,,10728,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Maduruoya,Mini Hydro,596.6,85.79,150.04,25,,,23424,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Maduruoya,Mini Hydro,596.6,85.77,149.52,25,,,23424,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Maduruoya,Mini Hydro,596.6,85.73,148.5,25,,,23424,mahaweli_daily_2026-09-11.pdf
@@ -675,6 +691,7 @@
 2026-10-23,2026-10-23,Maduruoya,Mini Hydro,596.6,88,214.34,36,16.4,,21416,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Maduruoya,Mini Hydro,596.6,88.26,222.94,37,1.4,,21416,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Maduruoya,Mini Hydro,596.6,88.33,225.29,38,6,,21416,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Maduruoya,Mini Hydro,596.6,88.39,227.32,38,,,21416,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-07,Mapakada,Irrigation System,9.51,103.81,5.95,63,,,610,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Mapakada,Irrigation System,9.51,103.79,5.91,62,,,610,mahaweli_daily_2026-09-09.pdf
 2026-09-14,2026-09-11,Mapakada,Irrigation System,9.51,103.79,5.91,62,,,610,mahaweli_daily_2026-09-14.pdf
@@ -702,6 +719,7 @@
 2026-10-23,2026-10-23,Mapakada,Irrigation System,9.51,103.54,5.52,58,,,610,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Mapakada,Irrigation System,9.51,103.69,5.75,60,5.5,,610,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Mapakada,Irrigation System,9.51,103.69,5.75,60,13.4,,610,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Mapakada,Irrigation System,9.51,103.69,5.75,60,,,610,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,Minneriya,Irrigation System,135.7,89.37,50.84,37,,,9825,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Minneriya,Irrigation System,135.7,89.33,50.39,37,,,9825,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-14,Minneriya,Irrigation System,135.7,89.55,53.6,39,113.4,,9825,mahaweli_daily_2026-09-14.pdf
@@ -731,6 +749,7 @@
 2026-10-23,2026-10-23,Minneriya,Irrigation System,135.7,91.96,96.38,71,,,9825,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Minneriya,Irrigation System,135.7,91.99,97,71,,,9825,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Minneriya,Irrigation System,135.7,91.99,97,71,17.6,,9825,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Minneriya,Irrigation System,135.7,91.96,96.38,71,,20.22,9825,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Moragahakanda,Mini Hydro,557.9,177.95,375.08,67,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Moragahakanda,Mini Hydro,557.9,178.05,377.39,68,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Moragahakanda,Mini Hydro,557.9,178.3,383.21,69,,,,mahaweli_daily_2026-09-11.pdf
@@ -764,6 +783,7 @@
 2026-10-23,2026-10-23,Moragahakanda,Mini Hydro,557.9,181.95,473.57,85,4.3,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Moragahakanda,Mini Hydro,557.9,181.85,470.96,84,17.1,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Moragahakanda,Mini Hydro,557.9,182.05,476.2,85,18.3,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Moragahakanda,Mini Hydro,557.9,182.05,476.2,85,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Moussakele,Power Stations,123.3,1165.14,105.32,85,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Moussakele,Power Stations,123.3,1165.01,104.33,85,22.3,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Moussakele,Power Stations,123.3,1164.69,101.9,83,0.3,,,mahaweli_daily_2026-09-11.pdf
@@ -797,6 +817,7 @@
 2026-10-23,2026-10-23,Moussakele,Power Stations,123.3,1165.12,105.17,85,16.5,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Moussakele,Power Stations,123.3,1165.15,105.4,85,45,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Moussakele,Power Stations,123.3,1166.18,113.46,92,81,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Moussakele,Power Stations,123.3,1166.18,113.46,92,1.2,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-07,NDK,Mahaweli System,19.6,67.92,3.67,19,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,NDK,Mahaweli System,19.6,67.91,3.66,19,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,NDK,Mahaweli System,19.6,67.89,3.63,19,,,,mahaweli_daily_2026-09-11.pdf
@@ -817,6 +838,7 @@
 2026-10-22,2026-10-21,NDK,Mahaweli System,19.6,68.97,5.25,27,,,,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,NDK,Mahaweli System,19.6,69.37,5.94,30,,,,mahaweli_daily_2026-10-23.pdf
 2026-10-27,2026-10-26,NDK,Mahaweli System,19.6,69.48,6.14,31,,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,NDK,Mahaweli System,19.6,69.49,6.16,31,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Nachchaduwa,Irrigation System,55.7,98.96,20.52,37,,,2970,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Nachchaduwa,Irrigation System,55.7,98.96,20.52,37,,,2970,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Nachchaduwa,Irrigation System,55.7,98.93,20.26,36,,,2970,mahaweli_daily_2026-09-11.pdf
@@ -847,7 +869,7 @@
 2026-10-22,2026-10-22,Nachchaduwa,Irrigation System,55.7,100.38,36.43,65,23,,2970,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Nachchaduwa,Irrigation System,55.7,100.64,39.93,72,,,2970,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Nachchaduwa,Irrigation System,55.7,100.99,45.1,81,,,2970,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Nachchaduwa,Irrigation System,55.7,101.29,49.88,90,17.4,,2970,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Nachchaduwa,Irrigation System,55.7,101.29,49.88,90,17.4,,2970,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Nuwarawewa,Irrigation System,44.5,85.7,27.08,61,,,1050,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Nuwarawewa,Irrigation System,44.5,85.69,26.97,61,,,1050,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Nuwarawewa,Irrigation System,44.5,85.66,26.73,60,,,1050,mahaweli_daily_2026-09-11.pdf
@@ -877,7 +899,7 @@
 2026-10-22,2026-10-22,Nuwarawewa,Irrigation System,44.5,85.27,23.33,52,,,1159,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Nuwarawewa,Irrigation System,44.5,85.27,23.33,52,,,1159,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Nuwarawewa,Irrigation System,44.5,85.52,25.49,57,,,1159,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Nuwarawewa,Irrigation System,44.5,85.62,26.4,59,,,1159,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Nuwarawewa,Irrigation System,44.5,85.62,26.4,59,,,1159,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,PSS,Irrigation System,144.3,56.87,83.55,58,,,10365,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,PSS,Irrigation System,144.3,56.87,83.55,58,,,10365,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-14,PSS,Irrigation System,144.3,56.89,83.84,58,,,10365,mahaweli_daily_2026-09-14.pdf
@@ -905,7 +927,7 @@
 2026-10-22,2026-10-22,PSS,Irrigation System,144.3,57.33,92.76,64,,,10365,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,PSS,Irrigation System,144.3,57.36,93.39,65,,,10365,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,PSS,Irrigation System,144.3,57.36,93.39,65,,,10365,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,PSS,Irrigation System,144.3,57.36,93.39,65,,,10365,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,PSS,Irrigation System,144.3,57.36,93.39,65,,,10365,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Polgolla,Power Stations,4.11,440.38,3.67,89,,49.55,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Polgolla,Power Stations,4.11,440.64,3.94,96,,42.47,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Polgolla,Power Stations,4.11,440.32,3.61,88,,,,mahaweli_daily_2026-09-11.pdf
@@ -938,6 +960,7 @@
 2026-10-23,2026-10-23,Polgolla,Power Stations,4.11,440.52,3.82,93,5.8,91.29,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Polgolla,Power Stations,4.11,440.4,3.69,90,27.5,123.57,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Polgolla,Power Stations,4.11,440.52,3.82,93,69.3,162.93,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Polgolla,Power Stations,4.11,440.42,3.71,90,,57.08,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Puhulpola,Mahaweli System,0.63,985.55,0.59,93,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Puhulpola,Mahaweli System,0.63,985.25,0.56,89,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Puhulpola,Mahaweli System,0.63,985.9,0.62,99,,,,mahaweli_daily_2026-09-11.pdf
@@ -968,7 +991,7 @@
 2026-10-22,2026-10-22,Puhulpola,Mahaweli System,0.63,986,0.63,100,,,,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Puhulpola,Mahaweli System,0.63,985.9,0.62,99,,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Puhulpola,Mahaweli System,0.63,985.2,0.55,88,,,,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Puhulpola,Mahaweli System,0.63,986.15,0.65,103,,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Puhulpola,Mahaweli System,0.63,986.15,0.65,103,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Rajanganaya,Irrigation System,100.7,67.28,85.39,85,,,7214,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Rajanganaya,Irrigation System,100.7,67.28,85.39,85,,,7214,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Rajanganaya,Irrigation System,100.7,67.25,84.95,84,,,7214,mahaweli_daily_2026-09-11.pdf
@@ -1002,6 +1025,7 @@
 2026-10-23,2026-10-23,Rajanganaya,Irrigation System,100.7,67.07,82.31,82,26,138.89,7214,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Rajanganaya,Irrigation System,100.7,67.16,83.62,83,86,74.76,7214,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Rajanganaya,Irrigation System,100.7,66.92,80.15,80,24,140.22,7214,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Rajanganaya,Irrigation System,100.7,66.86,79.29,79,,223.42,7214,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Randenigala,Power Stations,801.5,217.06,489.65,61,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Randenigala,Power Stations,801.5,217.25,493.17,62,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Randenigala,Power Stations,801.5,217.69,501.35,63,,,,mahaweli_daily_2026-09-11.pdf
@@ -1035,6 +1059,7 @@
 2026-10-23,2026-10-23,Randenigala,Power Stations,801.5,222.83,601.89,75,6.1,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Randenigala,Power Stations,801.5,222.9,603.32,75,15.7,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Randenigala,Power Stations,801.5,222.91,603.52,75,10.5,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Randenigala,Power Stations,801.5,223.32,611.93,76,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Rantambe,Power Stations,7,150.42,4.52,65,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Rantambe,Power Stations,7,150.76,4.84,69,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Rantambe,Power Stations,7,150.82,4.89,70,,,,mahaweli_daily_2026-09-11.pdf
@@ -1068,6 +1093,7 @@
 2026-10-23,2026-10-23,Rantambe,Power Stations,7,149.95,4.1,59,6,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Rantambe,Power Stations,7,150.02,4.16,59,16,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Rantambe,Power Stations,7,149.79,3.96,57,12.6,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Rantambe,Power Stations,7,149.84,4.01,57,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-08,Ridiyagama,Irrigation System,32.1,19.51,29.16,91,,,6705,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Ridiyagama,Irrigation System,32.1,19.51,29.16,91,,,6705,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-14,Ridiyagama,Irrigation System,32.1,19.48,28.93,90,,,6705,mahaweli_daily_2026-09-14.pdf
@@ -1094,7 +1120,7 @@
 2026-10-22,2026-10-22,Ridiyagama,Irrigation System,32.1,19.94,32.71,102,10,,6705,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Ridiyagama,Irrigation System,32.1,19.91,32.5,101,,,6705,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Ridiyagama,Irrigation System,32.1,19.81,31.67,99,,,6705,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Ridiyagama,Irrigation System,32.1,19.81,31.67,99,23,,6705,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Ridiyagama,Irrigation System,32.1,19.81,31.67,99,23,,6705,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Samanalawewa,Power Stations,278,437.86,118.45,43,,,915,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Samanalawewa,Power Stations,278,437.61,117.19,42,,,915,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Samanalawewa,Power Stations,278,436.84,113.34,41,,,915,mahaweli_daily_2026-09-11.pdf
@@ -1128,6 +1154,7 @@
 2026-10-23,2026-10-23,Samanalawewa,Power Stations,278,443.79,151.32,54,4,,915,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Samanalawewa,Power Stations,278,444.94,158.36,57,16.5,,915,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Samanalawewa,Power Stations,278,446.8,170.23,61,77,,915,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Samanalawewa,Power Stations,278,447.31,173.6,62,,,915,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-07,Sorabora,Irrigation System,20.74,94.02,12.95,62,,,810,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Sorabora,Irrigation System,20.74,94.04,13.03,63,,,810,mahaweli_daily_2026-09-09.pdf
 2026-09-14,2026-09-11,Sorabora,Irrigation System,20.74,94.02,12.95,62,,,810,mahaweli_daily_2026-09-14.pdf
@@ -1155,6 +1182,7 @@
 2026-10-23,2026-10-23,Sorabora,Irrigation System,20.74,94.27,13.79,66,,,810,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Sorabora,Irrigation System,20.74,94.34,14.04,68,,,810,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Sorabora,Irrigation System,20.74,94.4,14.21,69,,,810,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Sorabora,Irrigation System,20.74,94.4,14.21,69,,,810,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Thuruvila,Irrigation System,10.07,102.73,5.81,58,,,190,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Thuruvila,Irrigation System,10.07,102.78,5.96,59,,,190,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Thuruvila,Irrigation System,10.07,102.78,5.96,59,,,190,mahaweli_daily_2026-09-11.pdf
@@ -1185,7 +1213,7 @@
 2026-10-22,2026-10-22,Thuruvila,Irrigation System,10.07,103.52,8.31,83,,,190,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Thuruvila,Irrigation System,10.07,103.65,8.76,87,,,190,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Thuruvila,Irrigation System,10.07,103.7,8.94,89,,,190,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Thuruvila,Irrigation System,10.07,103.9,9.68,96,,,190,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Thuruvila,Irrigation System,10.07,103.9,9.68,96,,,190,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Tissawewa,Irrigation System,4.3,90.78,3.39,79,,,365,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Tissawewa,Irrigation System,4.3,90.76,3.35,78,,,365,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Tissawewa,Irrigation System,4.3,90.73,3.31,77,,,365,mahaweli_daily_2026-09-11.pdf
@@ -1214,7 +1242,7 @@
 2026-10-22,2026-10-22,Tissawewa,Irrigation System,4.3,91.14,4.05,94,,,671,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Tissawewa,Irrigation System,4.3,91.19,4.16,97,,,671,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Tissawewa,Irrigation System,4.3,91.44,4.69,109,,,671,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Tissawewa,Irrigation System,4.3,91.58,5,116,,,671,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Tissawewa,Irrigation System,4.3,91.58,5,116,,,671,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Udawalawa,Mini Hydro,278.2,85.98,196.05,70,,,23256,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Udawalawa,Mini Hydro,278.2,86.02,197.13,71,,,23256,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Udawalawa,Mini Hydro,278.2,86.1,199.31,72,,,23256,mahaweli_daily_2026-09-11.pdf
@@ -1247,7 +1275,7 @@
 2026-10-22,2026-10-22,Udawalawa,Mini Hydro,278.2,87.59,243.04,87,4.3,,23256,mahaweli_daily_2026-10-22.pdf
 2026-10-23,2026-10-23,Udawalawa,Mini Hydro,278.2,87.62,243.99,88,5.4,,23256,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Udawalawa,Mini Hydro,278.2,87.55,241.79,87,9,,23256,mahaweli_daily_2026-10-26.pdf
-2026-10-27,2026-10-27,Udawalawa,Mini Hydro,278.2,87.75,248.1,89,63.7,,23256,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-27,Udawalawa,Mini Hydro,278.2,87.75,248.1,89,63.7,,23256,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Ulhitiya,Mahaweli System,145.3,103.21,79.5,55,,,22801,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Ulhitiya,Mahaweli System,145.3,103.2,79.34,55,,,22801,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Ulhitiya,Mahaweli System,145.3,103.19,79.19,54,,,22801,mahaweli_daily_2026-09-11.pdf
@@ -1281,6 +1309,7 @@
 2026-10-23,2026-10-23,Ulhitiya,Mahaweli System,145.3,105.99,130.11,90,21,,22801,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Ulhitiya,Mahaweli System,145.3,106.06,131.59,91,,,22801,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Ulhitiya,Mahaweli System,145.3,106.1,132.45,91,12.5,,22801,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Ulhitiya,Mahaweli System,145.3,106.12,132.88,91,,,22801,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Upper Kotmale,Power Stations,1.6,1193,1.35,84,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Upper Kotmale,Power Stations,1.6,1192.27,1.18,74,6.3,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Upper Kotmale,Power Stations,1.6,1192.09,1.15,72,,,,mahaweli_daily_2026-09-11.pdf
@@ -1314,6 +1343,7 @@
 2026-10-23,2026-10-23,Upper Kotmale,Power Stations,1.6,1194,1.6,100,7,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Upper Kotmale,Power Stations,1.6,1191.32,1,62,31.9,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Upper Kotmale,Power Stations,1.6,1194,1.6,100,60.1,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Upper Kotmale,Power Stations,1.6,1194,1.6,100,,,,mahaweli_daily_2026-10-28.pdf
 2026-09-09,2026-09-07,Vakaneri,Irrigation System,16.67,16.33,16.73,100,,0.42,4000,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Vakaneri,Irrigation System,16.67,16.3,16.63,100,,,4000,mahaweli_daily_2026-09-11.pdf
 2026-09-14,2026-09-13,Vakaneri,Irrigation System,16.67,16.3,16.63,100,,,4000,mahaweli_daily_2026-09-14.pdf
@@ -1340,6 +1370,7 @@
 2026-10-23,2026-10-23,Vakaneri,Irrigation System,16.67,15.18,12.14,73,,,4850,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Vakaneri,Irrigation System,16.67,15.44,13.14,79,,,4850,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Vakaneri,Irrigation System,16.67,15.59,13.74,82,6.3,,4850,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Vakaneri,Irrigation System,16.67,15.59,13.74,82,,,4850,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Vendrason,Irrigation System,24.7,49.65,5.97,24,,,708,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Vendrason,Irrigation System,24.7,49.63,5.91,24,,,708,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Vendrason,Irrigation System,24.7,49.63,5.91,24,,,708,mahaweli_daily_2026-09-11.pdf
@@ -1367,6 +1398,7 @@
 2026-10-22,2026-10-22,Vendrason,Irrigation System,24.7,50.24,7.57,31,,,708,mahaweli_daily_2026-10-22.pdf
 2026-10-26,2026-10-23,Vendrason,Irrigation System,24.7,50.24,7.57,31,,,708,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Vendrason,Irrigation System,24.7,50.29,7.72,31,,,708,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Vendrason,Irrigation System,24.7,50.29,7.72,31,,,708,mahaweli_daily_2026-10-28.pdf
 2026-09-08,2026-09-08,Victoria,Power Stations,723,428.01,506.28,70,,,,mahaweli_daily_2026-09-08.pdf
 2026-09-09,2026-09-09,Victoria,Power Stations,723,427.81,502.59,70,,,,mahaweli_daily_2026-09-09.pdf
 2026-09-11,2026-09-11,Victoria,Power Stations,723,427.32,493.64,68,,,,mahaweli_daily_2026-09-11.pdf
@@ -1400,3 +1432,4 @@
 2026-10-23,2026-10-23,Victoria,Power Stations,723,436.39,681.67,94,1.1,,,mahaweli_daily_2026-10-23.pdf
 2026-10-26,2026-10-26,Victoria,Power Stations,723,436.78,690.88,96,15.7,,,mahaweli_daily_2026-10-26.pdf
 2026-10-27,2026-10-27,Victoria,Power Stations,723,437.85,716.66,99,16.7,,,mahaweli_daily_2026-10-27.pdf
+2026-10-28,2026-10-28,Victoria,Power Stations,723,437.98,719.84,100,,,,mahaweli_daily_2026-10-28.pdf
