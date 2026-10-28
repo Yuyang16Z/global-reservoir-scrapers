@@ -1,248 +1,283 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta charset="UTF-8">
 
-<title>兵庫県／貯水状況</title>
+<title>貯水状況 | 兵庫県</title>
 
-<meta property="og:title" content="貯水状況" />
-<meta property="og:type" content="article" />
-<meta property="og:description" content="" />
-<meta property="og:url" content="https://web.pref.hyogo.lg.jp/kc02/ea02_000000005.html" />
-<meta property="og:image" content="https://web.pref.hyogo.lg.jp/shared/site_rn/images/sns/logo.jpg" />
-<meta property="og:site_name" content="兵庫県" />
-<meta property="og:locale" content="ja_JP" />
-<meta name="author" content="兵庫県" />
-<meta name="viewport" content="width=device-width, maximum-scale=3.0" />
-<meta name="format-detection" content="telephone=no" />
-<link href="/shared/site_rn/style/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/shared/site_rn/style/layout.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/shared/templates/free_rn/style/edit.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/shared/site_rn/style/tablet.css" rel="stylesheet" media="only screen and (min-width : 641px) and (max-width : 1024px)" type="text/css" id="tmp_tablet_css" class="mc_css" />
-<link href="/shared/templates/free_rn/style/edit_tb.css" rel="stylesheet" media="only screen and (min-width : 641px) and (max-width : 1024px)" type="text/css" class="mc_css" />
-<link href="/shared/site_rn/style/smartphone.css" rel="stylesheet" media="only screen and (max-width : 640px)" type="text/css" class="mc_css" />
-<link href="/shared/templates/free_rn/style/edit_sp.css" rel="stylesheet" media="only screen and (max-width : 640px)" type="text/css" class="mc_css" />
-<link href="/shared/site_rn/images/favicon/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-<link href="/shared/site_rn/images/favicon/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed" />
-<script type="text/javascript" src="/shared/site_rn/js/jquery.js"></script>
-<script type="text/javascript" src="/shared/site_rn/js/setting.js"></script>
-<script type="text/javascript" src="/shared/system/js/furigana/ysruby.js"></script>
-<script type="text/javascript" src="/shared/js/readspeaker.js"></script>
-<script type="text/javascript" src="/shared/js/ga.js"></script>
-
+<meta property="og:title" content="貯水状況">
+<meta property="og:type" content="article">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://web.pref.hyogo.lg.jp/kc02/ea02_000000005.html">
+<meta property="og:image" content="https://web.pref.hyogo.lg.jp/shared/site_2026rn/images/sns/logo.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://web.pref.hyogo.lg.jp/shared/site_2026rn/images/sns/summary.png">
+<meta property="og:site_name" content="兵庫県">
+<meta property="og:locale" content="ja_JP">
+<meta name="page_id" content="40112">
+<meta name="author" content="兵庫県">
+<meta name="viewport" content="width=device-width, maximum-scale=3.0">
+<meta name="format-detection" content="telephone=no">
+<link href="/shared/site_2026rn/style/default.css" rel="stylesheet" type="text/css" media="all">
+<link href="/shared/site_2026rn/style/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="/shared/templates/free_2026rn/style/edit.css" rel="stylesheet" type="text/css" media="all">
+<link href="/shared/site_2026rn/style/smartphone.css" rel="stylesheet" type="text/css" class="mc_css">
+<link href="/shared/templates/free_2026rn/style/edit_sp.css" rel="stylesheet" type="text/css" class="mc_css">
+<link href="/shared/site_2026rn/images/favicon/favicon.ico" rel="icon">
+<link href="/shared/site_2026rn/images/favicon/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+<script src="/shared/site_2026rn/js/jquery.js"></script>
+<script src="/shared/site_2026rn/js/setting.js"></script>
+<script src="/shared/system/js/furigana/ysruby.js"></script>
+<script data-key="56bdafd4ffb28b38" data-target="oto_reader_contents" data-kakkoyomi="on" data-closebtn="on" src="https://storage.otocreator.jp/-/js/widget.js"></script>
+<script src="/shared/js/ga.js"></script>
 
 
+
+<link rel="stylesheet" href="/shared/cogmo/cogmo-base.css">
+<link rel="stylesheet" href="/shared/cogmo/cogmo-gpt.css">
+<link rel="stylesheet" href="/shared/cogmo/cogmo-form.css">
+<link rel="stylesheet" href="/shared/cogmo/cogmo-add.css">
+<script src="/shared/cogmo/search_config.js"></script>
+<script src="/shared/cogmo/search-f1_config.js"></script>
+<script src="/shared/cogmo/search-f2_config.js"></script>
+<script src="/shared/cogmo/iso_codes.js"></script>
+<script src="/shared/cogmo/bundle.js" defer="defer"></script>
 </head>
 <body class="format_free no_javascript">
-<script type="text/javascript" src="/shared/site_rn/js/init.js"></script>
+<script src="/shared/site_2026rn/js/init.js"></script>
 <div id="tmp_wrapper">
 <noscript>
 <p>このサイトではJavaScriptを使用したコンテンツ・機能を提供しています。JavaScriptを有効にするとご利用いただけます。</p>
 </noscript>
 <p><a href="#tmp_honbun" class="skip">本文へスキップします。</a></p>
 
-<div id="tmp_wrap_header">
+<header id="tmp_wrap_header">
+<div class="container">
 <div id="tmp_header">
 <div id="tmp_hlogo">
-<p><a href="/index.html"><span>兵庫県 Hyogo Prefecture</span></a></p>
+<p><a href="/index.html"><span>兵庫県</span></a></p>
 </div>
-<ul id="tmp_hnavi_s">
-	<li id="tmp_hnavi_lmenu"><a href="javascript:void(0);">閲覧支援</a></li>
-	<li id="tmp_hnavi_mmenu"><a href="/cnavi/cnavi_kanri.html">情報を探す</a></li>
-	<li id="tmp_hnavi_rmenu"><a href="javascript:void(0);">災害・安全情報</a></li>
-</ul>
-<div class="region_info">
-<div class="box_find_info">
-<div class="info_heading">
-<p class="info_title">情報を探す</p>
-</div>
-<div class="info_main">
-<div class="method_wrap">
-<div class="method_search">
-<p><a href="/search/about.html">検索の方法</a></p>
-</div>
-<div id="tmp_search">
-<form action="/search/results.html" id="tmp_gsearch" name="tmp_gsearch">
-<div class="wrap_sch_box">
-<p class="sch_ttl"><label for="tmp_query">キーワードから探す</label></p>
-<p class="sch_box"><input id="tmp_query" name="q" size="31" type="text" /></p>
-</div>
-<div class="wrap_sch_box">
-<p class="sch_btn"><input id="tmp_func_sch_btn" name="sa" type="submit" value="検索" /></p>
-<p id="tmp_search_hidden"><input name="cx" type="hidden" value="016145232941732995403:kz3o2ig-nkm" /> <input name="ie" type="hidden" value="UTF-8" /> <input name="cof" type="hidden" value="FORID:9" /></p>
-</div>
-</form>
-</div>
-</div>
-<div id="tmp_keywords_load">&nbsp;</div>
-</div>
-</div>
-<div class="group_navi">
-<div id="tmp_gnavi">
-<div class="gnavi">
+<nav id="tmp_hnavi_s">
 <ul>
-	<li class="glist1"><a href="https://web.pref.hyogo.lg.jp/cgi-bin/event_cal_multi/calendar.cgi?type=2">イベント募集</a></li>
-	<li class="glist2"><a href="/shisetsu/index.html">施設案内</a></li>
-	<li class="glist3"><a href="/search/results.html?q=%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%B3%AA%E5%95%8F&amp;sa=%E6%A4%9C%E7%B4%A2&amp;cx=016145232941732995403%3Akz3o2ig-nkm&amp;ie=UTF-8&amp;cof=FORID%3A9">よくある質問</a></li>
-	<li class="glist4"><a href="/inquiry/inquiry.html">相談窓口</a></li>
-</ul>
-</div>
-</div>
-<div class="search_nav">
-<ul>
-	<li class="purpose_search_nav"><a href="/cnavi/cnavi_kanri.html#tmp_purpose_search">目的から探す</a>
-	<div id="tmp_purpose_box">
-	<div class="sub_search_ttl">
-	<p class="sub_search_ttl_text">目的から探す</p>
-	<p class="lnavi_close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
+	<li id="tmp_hnavi_smenu"><a href="javascript:void(0);"><span><span class="break_sp">閲覧支援・</span>Language</span></a>
+	<div id="tmp_sma_smenu" class="wrap_sma_sch">
+	<div class="container">
+	<div class="menu_conts">
+	<div class="wrap_setting">
+	<div class="menu_ttl">
+	<p>閲覧支援</p>
 	</div>
-	<div class="sub_menu_cnt">
-	<div class="sub_search_cnt">
-	<div class="purpose_navi">
-	<ul>
-		<li class="purpose_navi1"><a href="/pref/cate3_625.html">入札・公売情報</a></li>
-		<li class="purpose_navi2"><a href="/pref/cate2_616.html">職員採用</a></li>
-		<li class="purpose_navi3"><a href="/sr13/passport.html">パスポート</a></li>
-		<li class="purpose_navi4"><a href="/inquiry/license.html">許認可手続き</a></li>
-		<li class="purpose_navi5"><a href="/kk12/ac09_000000032.html">パブリックコメント</a></li>
-		<li class="purpose_navi6"><a href="/pref/cate3_661.html">オープンデータ</a></li>
-		<li class="purpose_navi7"><a href="/stat/cate2_711.html">統計情報</a></li>
-		<li class="purpose_navi8"><a href="/pref/cate2_613.html">県の概要</a></li>
+	<ul class="setting_list">
+		<li class="setting_alpha"><a href="/howto/moji.html"><span>文字サイズ・色合い変更</span></a></li>
+		<li class="setting_voice"><a href="javascript:void(0);"><span>音声読み上げ</span></a></li>
+		<li class="setting_furi"><a data-contents="tmp_wrapper" data-target="tmp_wrapper" href="javascript:void(0);" id="furigana"><span>ふりがなON</span></a></li>
+		<li class="setting_easy"><a href="/sr13/e-japanese/e-japanese.html"><span>やさしい日本語ページへ</span></a></li>
+	</ul>
+	</div>
+	<div class="wrap_languages">
+	<div class="menu_ttl">
+	<p lang="en">Language</p>
+	</div>
+	<div class="languages_cnt">
+	<ul class="lang_list">
 	</ul>
 	</div>
 	</div>
-	</div>
-	</div>
-	</li>
-	<li class="category_search_nav"><a href="/cnavi/cnavi_kanri.html#tmp_category_search">分類から探す</a>
-	<div id="tmp_category_box">
-	<div class="sub_search_ttl">
-	<p class="sub_search_ttl_text">分類から探す</p>
-	<p class="lnavi_close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
-	</div>
-	<div class="sub_menu_cnt">
-	<div class="sub_search_cnt">
-	<div class="category_list_wrap">
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/safe/index.html">防災・安心・安全</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/life/index.html">暮らし・教育</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/health/index.html">健康・医療・福祉</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/town/index.html">まちづくり・環境</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/work/index.html">しごと・産業</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/aff/index.html">食・農林水産</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/interaction/index.html">地域・交流・観光</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/pref/index.html">県政情報・統計（県政情報）</a></div>
-	</div>
-	<div class="category_box_item">
-	<div class="category_item_ttl"><a href="/stat/index.html">県政情報・統計（統計）</a></div>
-	</div>
-	</div>
+	<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
 	</div>
 	</div>
 	</div>
 	</li>
-	<li><a href="/org/index.html">組織から探す</a></li>
+	<li id="tmp_hnavi_imenu"><a href="/jigyoshajoho/index.html"><span>事業者向け情報</span></a></li>
 </ul>
-</div>
-</div>
-<div class="group_news">
-<div id="tmp_news_load">&nbsp;</div>
-<div class="prefectural_citizens">
-<div class="citizens_image">
-<p><img alt="" height="95" src="/shared/site_rn/images/header/img_info_center.jpg" width="81" /></p>
-</div>
-<div class="citizens_cap">
-<p><a href="/area/index.html">県民局・県民<br />
-センター情報</a></p>
-</div>
-</div>
-<div class="directional_nav">
 <ul>
-	<li class="release_link"><a href="/cgi-bin/press/press.cgi">記者発表</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="tmp_means">
-<div class="custom_container">
-<div id="tmp_setting">
-<ul>
-	<li class="func_language"><a href="/fl/index.html" lang="en">Foreign Language</a></li>
-	<li class="func_browser"><a href="javascript:void(0);" class="func_title">閲覧支援メニュー</a>
-	<div id="func_dropdown" class="func_cate">
-	<ul>
-		<li class="func_change"><a href="/howto/moji.html">文字サイズ・色合い変更</a></li>
-		<li class="func_speaker rs_skip"><a accesskey="L" href="//app-eas.readspeaker.com/cgi-bin/rsent?customerid=8960&amp;lang=ja_jp&amp;readid=tmp_main&amp;url=" onclick="readpage(this.href, 'tmp_readspeaker'); return false;" rel="nofollow" class="rs_href">音声読み上げ</a></li>
-		<li class="func_furigana"><a data-contents="tmp_main" data-target="tmp_main" href="javascript:void(0);" id="furigana">ふりがなON</a></li>
+	<li id="tmp_hnavi_emenu"><a href="/kinkyu/index.html"><span>緊急情報</span></a></li>
+	<li id="tmp_hnavi_mmenu"><a href="javascript:void(0);"><span><span class="break_sp">検索</span>メニュー</span></a>
+	<div id="tmp_sma_mmenu" class="wrap_sma_sch">
+	<div class="container">
+	<div class="menu_conts">
+	<div class="wrap_forms">
+	<div class="form_group">
+	<div class="wrap_sch_box">
+	<div class="menu_ttl">
+	<p class="sch_ttl"><label for="cogmo-search-form1">キーワードから探す</label></p>
+	</div>
+	<div class="sch_wrap">
+	<div config="Form1SearchConfig" id="cogmo-search-form1" class="cogmo-main"></div>
+	</div>
+	</div>
+	<div class="form_other">
+	<p class="form_note">検索結果の要約文が生成AIで作成されます。</p>
+	<p class="link_common"><a href="/search/about.html">検索の方法</a></p>
+	</div>
+	</div>
+	<div class="form_group">
+	<div id="tmp_sma_pageid_menu">
+	<div class="wrap_sch_box">
+	<div class="menu_ttl">
+	<p class="sch_ttl"><label for="id_search_txt_top">ページ番号から探す</label></p>
+	</div>
+	<div class="sch_wrap">
+	<p class="sch_box"><input id="id_search_txt_top" name="q" size="31" type="text"></p>
+	<p class="sch_btn"><input id="id_search_btn_top" name="sa" type="submit" value="検索"></p>
+	</div>
+	</div>
+	</div>
+	<div class="form_other">
+	<p class="link_common"><a href="/pref/pagebango.html">ページ番号検索とは</a></p>
+	</div>
+	</div>
+	</div>
+	<div class="wrap_category">
+	<div class="menu_ttl">
+	<p>分類から探す</p>
+	</div>
+	<div class="ctg_cnt">
+	<ul class="ctg_accordions">
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>防災・安全</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/safe/index.html">防災・安全</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>くらし・環境</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/life/index.html">くらし・環境</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>健康・福祉</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/health/index.html">健康・福祉</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>子育て・教育</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/kosodate/index.html">子育て・教育</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>文化・スポーツ</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/bunka/index.html">文化・スポーツ</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>しごと・産業</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/work/index.html">しごと・産業</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>食・農林水産</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/aff/index.html">食・農林水産</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>地域・交流・観光</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/interaction/index.html">地域・交流・観光</a></p>
+		</div>
+		</div>
+		</li>
+		<li class="ctg_accordion">
+		<p class="ctg_accordion_switch"><a href="javascript:void(0);"><span>県政情報</span></a></p>
+		<div class="ctg_accordion_cnt">
+		<div class="ctg_accordion_inner">
+		<p class="ctg_accordion_ttl link_common_simple"><a href="/pref/index.html">県政情報</a></p>
+		</div>
+		</div>
+		</li>
 	</ul>
 	</div>
+	</div>
+	<div class="wrap_purpose">
+	<div class="menu_ttl">
+	<p>目的から探す</p>
+	</div>
+	<ul class="purpose_list">
+		<li class="item"><a href="/sr13/passport.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_1.png" width="100"> </span> <span class="item_txt"><span>パスポート</span></span> </a></li>
+		<li class="item"><a href="/inquiry/license.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_2.png" width="100"> </span> <span class="item_txt"><span>許認可手続き</span></span> </a></li>
+		<li class="item"><a href="/shisetsu/index.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_3.png" width="100"> </span> <span class="item_txt"><span>施設案内</span></span> </a></li>
+		<li class="item"><a href="/pref/cate3_661.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_4.png" width="100"> </span> <span class="item_txt"><span>オープンデータ</span></span> </a></li>
+		<li class="item"><a href="/pref/cate3_621.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_5.png" width="100"> </span> <span class="item_txt"><span>条例・規則</span></span> </a></li>
+		<li class="item"><a href="/life/cate3_104.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_6.png" width="100"> </span> <span class="item_txt"><span>県税</span></span> </a></li>
+		<li class="item"><a href="/kk26/pa12_000000013.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_7.png" width="100"> </span> <span class="item_txt"><span>電子申請</span></span> </a></li>
+		<li class="item"><a href="/kk12/ac09_000000032.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_8.png" width="100"> </span> <span class="item_txt"><span>パブリックコメント</span></span> </a></li>
+	</ul>
+	<ul class="purpose_list type_hoz">
+		<li class="item"><a href="/org/index.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_9.png" width="100"> </span> <span class="item_txt"><span>組織情報一覧</span></span> </a></li>
+		<li class="item"><a href="/inquiry/inquiry.html"><span class="item_icon"><img alt="" height="100" src="/shared/site_2026rn/images/header/purpose_ic_10.png" width="100"> </span> <span class="item_txt"><span>相談窓口</span></span> </a></li>
+	</ul>
+	</div>
+	<div class="wrap_initiative">&nbsp;</div>
+	<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
+	</div>
+	</div>
+	</div>
 	</li>
 </ul>
+</nav>
 </div>
-<div class="emergency_aside">
-<ul>
-	<li class="link_emergency"><a href="/emergency_info/index.html">災害関連情報</a></li>
-	<li class="link_safety"><a href="/safety_info/index.html">安心・安全情報</a></li>
+<nav id="tmp_gnavi">
+<ul class="gnavi">
+	<li class="glist1"><a href="/safe/index.html"><span>防災・安全</span></a></li>
+	<li class="glist2"><a href="/life/index.html"><span>くらし・環境</span></a></li>
+	<li class="glist3"><a href="/health/index.html"><span>健康・福祉</span></a></li>
+	<li class="glist4"><a href="/kosodate/index.html"><span>子育て・教育</span></a></li>
+	<li class="glist5"><a href="/bunka/index.html"><span>文化・スポーツ</span></a></li>
+	<li class="glist6"><a href="/work/index.html"><span>しごと・産業</span></a></li>
+	<li class="glist7"><a href="/aff/index.html"><span>食・農林水産</span></a></li>
+	<li class="glist8"><a href="/interaction/index.html"><span>地域・交流・観光</span></a></li>
+	<li class="glist9"><a href="/pref/index.html"><span>県政情報</span></a></li>
 </ul>
+</nav>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div id="tmp_sma_menu">
-<div id="tmp_sma_lmenu" class="wrap_sma_sch">
-<div id="tmp_sma_func">&nbsp;</div>
-<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
-</div>
-<div id="tmp_sma_mmenu" class="wrap_sma_sch">
-<div id="tmp_sma_cnavi">&nbsp;</div>
-<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
-</div>
-<div id="tmp_sma_rmenu" class="wrap_sma_sch">
-<div id="tmp_sma_info">&nbsp;</div>
-<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
-</div>
+</header>
+<div id="tmp_otocreator">
+<div aria-hidden="true" id="otowidget" style="display:none;" class="drag-and-drop"></div>
 </div>
 
-<div id="tmp_wrap_main">
-<div id="tmp_main_content">
-<div id="tmp_main" class="column_lnavi">
-<div class="wrap_col_main">
-<div class="col_main">
-<div id="tmp_wrap_navigation">
+<div id="tmp_wrap_main" class="column_rnavi">
 <div id="tmp_pankuzu">
-<p><a href="/index.html">ホーム</a> &gt; <a href="/town/index.html">まちづくり・環境</a> &gt; <a href="/town/cate2_202.html">上下水道・工業用水道</a> &gt; <a href="/work/cate3_323.html">水道用水供給</a> &gt; <a href="/kc02/ea02_000000010.html">水道用水供給事業</a> &gt; 貯水状況</p>
+<div class="container">
+<p><a href="/index.html">ホーム</a> &gt; <a href="/life/index.html">くらし・環境</a> &gt; <a href="/town/cate2_202.html">上下水道・工業用水道</a> &gt; <a href="/work/cate3_323.html">水道用水供給</a> &gt; <a href="/kc02/ea02_000000010.html">水道用水供給事業</a> &gt; 貯水状況
+</p>
 </div>
-<div id="tmp_wrap_custom_update">
+</div>
+
 <div id="tmp_custom_update">
-
-
+<div class="container">
+<p id="tmp_print">印刷</p>
+<p id="tmp_pageid">ページ番号：40112</p>
 <p id="tmp_update">更新日：2026年10月20日</p>
+</div>
+</div>
 
-</div>
-</div>
-</div>
+<div id="tmp_main">
+<div class="container">
+<div class="wrap_col_main">
+<main class="col_main">
 <p id="tmp_honbun" class="skip">ここから本文です。</p>
-<div id="tmp_readspeaker" class="rs_preserve rs_skip rs_splitbutton rs_addtools rs_exp"></div>
-<div id="tmp_contents">
-
+<div id="tmp_contents" class="oto_reader_contents">
 
 
 <h1>貯水状況</h1>
@@ -527,56 +562,55 @@
 </table>
 <h3>その他</h3>
 <div class="section">
-<p>貯水情報は、兵庫県企業庁水道課ホームページにおいて、毎週月曜日（祝日の際はその翌日）の情報を、取りまとめ次第更新しています。<br />
+<p>貯水情報は、兵庫県企業庁水道課ホームページにおいて、毎週月曜日（祝日の際はその翌日）の情報を、取りまとめ次第更新しています。<br>
 なお、緊急性の高い新たな情報が入りましたら随時更新します。</p>
 </div>
-<div class="box_link">
-			<div class="box_link_ttl">
+<div class="box_link"><div class="box_link_ttl">
 			<p>関連リンク</p>
-			</div>
-			<div class="box_link_cnt">
+			</div><div class="box_link_cnt">
 			<ul>
 				<li><a href="http://www.river.go.jp/">国土交通省川の防災情報（外部サイトへリンク）</a></li>
 			</ul>
-			</div>
+			</div></div>
 </div>
 
 
-</div>
+
+
 
 <div id="tmp_inquiry">
 <div id="tmp_inquiry_ttl">
-<p>お問い合わせ</p>
+<h2>お問い合わせ</h2>
 </div>
 <div id="tmp_inquiry_cnt">
+<form method="post" action="https://web.pref.hyogo.lg.jp/cgi-bin/simple_faq/form.cgi">
 <div class="inquiry_parts">
 <p>
-部署名：企業庁&nbsp;水道課</p>
-<p>電話：078-362-3684</p>
+企業庁&nbsp;水道課
+</p>
+<p>電話番号：078-362-3684</p>
 <p>FAX：078-362-3962</p>
 <p>Eメール：<a href="mailto:suidouka&#64;pref.hyogo.lg.jp">suidouka&#64;pref.hyogo.lg.jp</a></p>
 </div>
+<p>
+<input type="hidden" name="code" value="070010020">
+<input type="hidden" name="dept" value="9504:9670:8674:8259:9172:9670:8840:8010:5271:9255:9421:8342:8425:3777:8591:10002:9172:8508:9172:3777:8923:8508:3777:8757:9255">
+<input type="hidden" name="page" value="/kc02/ea02_000000005.html">
+<input type="hidden" name="ENQ_RETURN_MAIL_SEND_FLG" value="1">
+<input type="hidden" name="publish_ssl_flg" value="1">
+</p>
+</form>
 </div>
 </div>
-
-
-<div id="box_recommended" class="box_recommended rs_preserve">
-<div class="recommended_ttl">
-<p class="ttl_ja">おすすめ記事</p>
-<p class="ttl_en">RECOMMENDED</p>
-</div>
-<div class="recommended_cnt">
-<ul id="recommended_list" class="recommended_list">
-</ul>
-<div class="btn_recommended">
-<a href="/recommend/index.html">おすすめ記事一覧</a>
-</div>
-</div>
-<div class="recommended_btn_close">
-<a href="javascript:void(0)">閉じる</a>
-</div>
+</main>
 </div>
 
+<div class="wrap_col_rgt_navi">
+<div class="col_rgt_navi">
+<div id="tmp_lnavi_wrap">
+<div class="rnavi_heading">
+<h2>同じカテゴリから探す</h2>
+</div>
 <div id="tmp_lnavi">
 <div id="tmp_lnavi_ttl">
 <p><a href="/kc02/ea02_000000010.html">水道用水供給事業</a></p>
@@ -589,67 +623,108 @@
 </ul>
 </div>
 </div>
+</div>
+</div>
+</div>
 
 </div>
 </div>
+<div id="tmp_box_recommended" class="box_recommended">
+<div class="container">
+<div class="recommended_ttl title_common_secondary">
+<h2>おすすめ記事</h2>
+</div>
+<div class="recommended_cnt">
+<ul id="recommended_list" class="recommended_list">
+<li>現在、おすすめ記事はありません</li>
+</ul>
+<div class="btn_recommended">
+<p><a href="/recommend/index.html">おすすめ記事一覧</a></p>
+</div>
+<div class="col_sch_input">
+<div class="form_group">
+<div class="title_common_secondary">
+<h2><label for="querycgm-form2">キーワードから探す</label></h2>
+</div>
+<div class="col_cnt">
+<div id="cogmo-search-form2" config="Form2SearchConfig" class="cogmo-main"></div>
+<div class="col_sch_desc">
+<div class="desc_inner">
+<p>検索結果の要約文が生成AIで作成されます。</p>
+</div>
+<p class="link_common"><a href="/search/about.html">検索の方法</a></p>
 </div>
 </div>
-<div id="tmp_footer_content">
+</div>
+<div class="form_group">
+<div class="title_common_secondary">
+<h2><label for="id_search_txt">ページ番号から探す</label></h2>
+</div>
+<div class="col_cnt">
+<div id="tmp_sma_pageid">
+<div class="wrap_sch_box">
+<p class="sch_box">
+<input id="id_search_txt" name="q" size="31" type="text" title="ページ番号を入力">
+</p>
+<p class="sch_btn">
+<input id="id_search_btn" name="sa" type="submit" value="検索">
+</p>
+</div>
+</div>
+<div class="col_sch_desc">
+<p class="link_common"><a href="/pref/pagebango.html">ページ番号検索とは</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer id="tmp_footer">
+<div class="container">
 <div class="pnavi">
-<div class="custom_container">
-<p class="ptop"><a href="#tmp_header">page top</a></p>
+<p class="ptop"><a href="#tmp_header">ページの先頭へ戻る</a></p>
 </div>
-</div>
-
-<div id="tmp_footer">
-<div class="custom_container">
-<div class="footer_front">
-<div class="footer_info">
-<div class="footer_front">
-<div class="footer_aside">
-<div class="footer_logo">
-<p><span>兵庫県庁</span></p>
-</div>
-<div class="company_num">
-<p>法人番号8000020280003</p>
-</div>
-</div>
+<ul class="fnavi">
+	<li class="link_common_simple"><a href="/about_link.html">リンク・著作権・免責事項</a></li>
+	<li class="link_common_simple"><a href="/about_handing.html">個人情報の取扱いについて</a></li>
+	<li class="link_common_simple"><a href="/accessibility/index.html">ウェブアクセシビリティ方針</a></li>
+	<li class="link_common_simple"><a href="/sitemap.html">サイトマップ</a></li>
+</ul>
 <div class="footer_cnt">
+<div class="footer_lft">
+<div class="footer_logo_wrap">
+<h2 class="footer_logo">兵庫県庁</h2>
+<p class="footer_corporate_num">法人番号8000020280003</p>
+</div>
 <address>
-<p><span class="dis_code">〒650-8567</span>兵庫県神戸市中央区下山手通5丁目10番1号</p>
-<p><span>電話番号：</span>078-341-7711（代表）</p>
+<p><span>〒650-8567<br>
+兵庫県神戸市中央区下山手通5丁目10番1号</span></p>
+<p><span>電話番号：078-341-7711（代表）</span></p>
 </address>
 </div>
-</div>
-</div>
-<div class="footer_nav">
-<ul class="fnavi">
-	<li><a href="/about_link.html">リンク・著作権・免責事項</a></li>
-	<li><a href="/about_handing.html">個人情報の取扱いについて</a></li>
-	<li><a href="/accessibility/index.html">ウェブアクセシビリティ方針</a></li>
-	<li><a href="/sitemap.html">サイトマップ</a></li>
-</ul>
-</div>
-</div>
-<div class="footer_bellow">
-<div class="directional_button">
+<div class="footer_rgt">
 <ul>
 	<li><a href="/map.html">県庁までの交通案内</a></li>
-	<li><a href="/pref/cate3_610.html">庁舎案内</a></li>
+	<li><a href="/pref/chosya-annai.html">庁舎案内</a></li>
+	<li><a href="/shisetsu/index.html">施設案内</a></li>
 </ul>
-</div>
-<div class="prefectural_info">
-<p lang="en" xml:lang="en" class="copyright">Copyright &copy; Hyogo Prefectural Government. All rights reserved.</p>
-</div>
-</div>
+<div class="footer_rgt_btm">
+<p class="sign_language_link"><a href="https://denwa-relay-service.jp/web_inquiry/important.php">手話リンク</a></p>
+<p class="link_use">利用方法：<a href="/kf10/universal/shuwalink.html">手話リンクについて</a>をご覧ください。</p>
 </div>
 </div>
+</div>
+</div>
+<p lang="en" class="copyright">Copyright &copy; Hyogo Prefectural Government. All rights reserved.</p>
+</footer>
 
 </div>
-</div>
-</div>
-<script type="text/javascript" src="/shared/site_rn/js/function.js"></script>
-<script type="text/javascript" src="/shared/site_rn/js/main.js"></script>
-<script type="text/javascript" src="/shared/system/js/tag/tag.js"></script>
-<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=160660129" async></script></body>
+<script src="/shared/site_2026rn/js/function.js"></script>
+<script src="/shared/site_2026rn/js/main.js"></script>
+<script src="/shared/system/js/tag/tag.js"></script>
+<script src="/shared/system/js/path_info/path_info.js"></script>
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=1373348354" async></script></body>
 </html>
