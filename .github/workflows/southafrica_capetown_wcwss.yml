@@ -11,7 +11,15 @@ on:
     # the source; Thursday is the recovery attempt.
     - cron: "0 9 * * 2"
     - cron: "0 9 * * 4"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      import_url:
+        description: >-
+          Recover a missed week: read the weekly table of a saved copy of the
+          "This week's dam levels" page (e.g. an Internet Archive capture)
+          instead of today's dashboard.
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -41,6 +49,7 @@ jobs:
         id: scrape
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/southafrica/capetown_wcwss
+          IMPORT_URL: ${{ github.event.inputs.import_url || '' }}
         run: python scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py
 
       # The dashboard PDF is overwritten weekly. Both runs for the 2026-09-14

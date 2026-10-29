@@ -1,10 +1,11 @@
 """South Africa - City of Cape Town WCWSS weekly dam storage scraper.
 
 Source:
-- https://resource.capetown.gov.za/documentcentre/Documents/
-  City%20research%20reports%20and%20review/damlevels.pdf
-- https://web1.capetown.gov.za/web1/newsandnotices/site-media/documents/damlevels.pdf
-  ("Weekly Water Dashboard", City of Cape Town)
+- https://www.capetown.gov.za/family-and-home/residential-utility-services/
+  residential-water-and-sanitation-services/this-weeks-dam-levels/
+  ("This week's dam levels", City of Cape Town). The page links the "Weekly
+  Water Dashboard" PDF (https://www.capetown.gov.za/media/nejl51ki/damlevels.pdf
+  from 2026-10-02 to at least 2026-10-29) and repeats its weekly table in HTML.
 
 Why this source exists in the repo:
 - The national DWS weekly bulletin stopped publishing after 2026-06-29: the
@@ -28,9 +29,23 @@ Known quirks:
 - Capacity is published in megalitres; storage volume is derived as
   capacity_ml * percent / 100 and reported in Ml, not invented in Mm3.
 - "VOELVLEI" is printed with a diaeresis; matching is accent-insensitive.
+- The dashboard moved. Until the 2026-10-05 dashboard it was read from
+  web1.capetown.gov.za/web1/newsandnotices/site-media/documents/damlevels.pdf
+  (resource.capetown.gov.za/documentcentre/.../damlevels.pdf, the canonical
+  copy, had not answered runners since August). After that the City updated
+  only the copy its "This week's dam levels" page links, while the web1 copy
+  stayed at 05 October 2026 and kept answering, so every run "succeeded" on a
+  frozen file until the freshness monitor flagged the source on 2026-10-29.
+  The dashboard is now found through that page's own link, and the old copies
+  are not read: a frozen fallback that answers hides exactly this failure.
+- The page's weekly table (Major dams | DD/MM/YYYY | Previous week | % year)
+  repeats the dashboard's current and previous-week percentages. With
+  IMPORT_URL set to a saved copy of the page, e.g. an Internet Archive capture,
+  that table is read instead of today's dashboard, to recover a missed week.
 
 Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
   raw/damlevels_<observation-date>.pdf
+  raw/damlevels_page_<observation-date>.html          (IMPORT_URL runs)
   metadata/southafrica_capetown_wcwss_reservoirs.csv
   timeseries/southafrica_capetown_wcwss_weekly.csv   (merged, idempotent)
   run_logs/<stamp>_summary.json
@@ -38,6 +53,7 @@ Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
 from __future__ import annotations
 
 import csv
+import html as html_mod
 import json
 import os
 import re
@@ -45,8 +61,9 @@ import sys
 import time
 import traceback
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urljoin
 
 import pdfplumber
 import requests
@@ -59,16 +76,13 @@ TS_DIR = OUTPUT_DIR / "timeseries"
 META_DIR = OUTPUT_DIR / "metadata"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
-PRIMARY_PDF_URL = (
-    "https://resource.capetown.gov.za/documentcentre/Documents/"
-    "City%20research%20reports%20and%20review/damlevels.pdf"
-)
-FALLBACK_PDF_URL = (
-    "https://web1.capetown.gov.za/web1/newsandnotices/"
-    "site-media/documents/damlevels.pdf"
-)
-PDF_URLS = (PRIMARY_PDF_URL, FALLBACK_PDF_URL)
-SOURCE_PAGE = "https://web1.capetown.gov.za/web1/newsandnotices/Home/Release/dam-levels"
+SOURCE_PAGE = ("https://www.capetown.gov.za/family-and-home/residential-utility-services/"
+               "residential-water-and-sanitation-services/this-weeks-dam-levels/")
+# The dashboard link SOURCE_PAGE carried from 2026-10-02 (Internet Archive) to at least
+# 2026-10-29. Read directly only when the page itself cannot be read.
+KNOWN_PDF_URL = "https://www.capetown.gov.za/media/nejl51ki/damlevels.pdf"
+PDF_LINK_RE = re.compile(r"""href=["']([^"']*damlevels[^"']*\.pdf)["']""", re.I)
+ZERO_WIDTH = dict.fromkeys(map(ord, "\u200b\u200c\u200d\ufeff"))
 SOURCE_AGENCY = "City of Cape Town"
 TIMEOUT = 120
 CONNECT_TIMEOUT = 15
@@ -139,13 +153,25 @@ def strip_accents(s: str) -> str:
                    if unicodedata.category(c) != "Mn")
 
 
-def fetch_pdf() -> tuple[bytes, str]:
+def dashboard_pdf_urls() -> list[str]:
+    """The dashboard PDF that SOURCE_PAGE links today, then the link it carried before."""
+    urls: list[str] = []
+    try:
+        r = requests.get(SOURCE_PAGE, headers=HEADERS, timeout=(CONNECT_TIMEOUT, TIMEOUT))
+        r.raise_for_status()
+        urls += [urljoin(r.url, html_mod.unescape(link)) for link in PDF_LINK_RE.findall(r.text)]
+        if not urls:
+            print(f"[WARN] no dashboard link on {SOURCE_PAGE}", file=sys.stderr, flush=True)
+    except requests.RequestException as exc:
+        print(f"[WARN] dam-levels page {SOURCE_PAGE}: {exc}", file=sys.stderr, flush=True)
+    urls.append(KNOWN_PDF_URL)
+    return list(dict.fromkeys(urls))
+
+
+def fetch_pdf(urls: list[str]) -> tuple[bytes, str]:
     last_exc: Exception | None = None
-    for url_index, url in enumerate(PDF_URLS):
-        # The legacy document-centre host is retained as the preferred canonical
-        # URL, but a connect timeout should move promptly to the City's official
-        # news-and-notices media endpoint.
-        attempts = 1 if url_index == 0 else REQUEST_ATTEMPTS
+    attempts = REQUEST_ATTEMPTS
+    for url in urls:
         for attempt in range(1, attempts + 1):
             try:
                 r = requests.get(
@@ -270,6 +296,65 @@ def parse_dashboard(pdf_path: Path, fetched_at: str) -> tuple[str | None, list[d
     return obs_date, rows
 
 
+def cell_text(fragment: str) -> str:
+    text = html_mod.unescape(re.sub(r"<[^>]+>", " ", fragment)).translate(ZERO_WIDTH)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def read_capacities() -> dict[str, float]:
+    """Capacity in Ml per reservoir, as the dashboards printed it (metadata CSV)."""
+    path = META_DIR / "southafrica_capetown_wcwss_reservoirs.csv"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        return {r["reservoir_id"]: v for r in csv.DictReader(f)
+                if (v := to_f(r.get("capacity_ml", ""))) is not None}
+
+
+def parse_weekly_table(page: str, fetched_at: str,
+                       capacities: dict[str, float]) -> tuple[str | None, list[dict]]:
+    """The page's weekly table: Major dams | DD/MM/YYYY | Previous week | % year.
+
+    The page prints percentages only, so the volume uses the capacity the
+    dashboards printed for the same dam.
+    """
+    for table in re.findall(r"<table\b.*?</table>", page, flags=re.S | re.I):
+        trs = re.findall(r"<tr\b.*?</tr>", table, flags=re.S | re.I)
+        cells = [[cell_text(c) for c in re.findall(r"<t[hd]\b.*?</t[hd]>", tr, flags=re.S | re.I)]
+                 for tr in trs]
+        if not cells or len(cells[0]) < 3:
+            continue
+        head = cells[0]
+        if not re.fullmatch(r"\d{2}/\d{2}/\d{4}", head[1]) or "previous week" not in head[2].lower():
+            continue
+        obs = datetime.strptime(head[1], "%d/%m/%Y").date()
+        rows: list[dict] = []
+        for row in cells[1:]:
+            flat = strip_accents(row[0]).upper() if row else ""
+            dam = next((v for printed, v in DAMS.items() if flat.startswith(printed)), None)
+            if dam is None or len(row) < 3:
+                continue
+            rid, name_en = dam
+            capacity = capacities.get(rid)
+            for day, raw, kind in ((obs, row[1], "current"),
+                                   (obs - timedelta(days=7), row[2], "previous_week")):
+                pct = to_f(raw)
+                if pct is None or not (0 <= pct <= 130):
+                    continue
+                rows.append({
+                    "measurement_date": day.isoformat(),
+                    "reservoir_id": rid,
+                    "reservoir_name": name_en,
+                    "capacity_ml": f"{capacity:g}" if capacity else "",
+                    "storage_pct": f"{pct:g}",
+                    "storage_ml": f"{capacity * pct / 100:.1f}" if capacity else "",
+                    "reading_kind": kind,
+                    "fetched_at": fetched_at,
+                })
+        return obs.isoformat(), rows
+    return None, []
+
+
 def merge_csv(path: Path, columns: list[str], new_rows: list[dict],
               key_fields: list[str]) -> tuple[int, int]:
     existing: dict[tuple, dict] = {}
@@ -322,15 +407,24 @@ def save_summary(log: dict) -> None:
 def main() -> int:
     ensure_dirs()
     fetched_at = utc_now_iso()
+    import_url = os.environ.get("IMPORT_URL", "").strip()
     log = {"started_at": fetched_at, "source": "southafrica/capetown_wcwss",
-           "urls": list(PDF_URLS), "output_dir": str(OUTPUT_DIR), "status": "started",
+           "page": SOURCE_PAGE, "output_dir": str(OUTPUT_DIR), "status": "started",
            "errors": []}
     try:
-        body, fetched_url = fetch_pdf()
-        log["fetched_url"] = fetched_url
-        tmp = RAW_DIR / f"damlevels_{utc_stamp()}.pdf"
-        tmp.write_bytes(body)
-        obs_date, rows = parse_dashboard(tmp, fetched_at)
+        if import_url:
+            log["import_url"] = import_url
+            r = requests.get(import_url, headers=HEADERS, timeout=(CONNECT_TIMEOUT, TIMEOUT))
+            r.raise_for_status()
+            body = r.content
+            obs_date, rows = parse_weekly_table(r.text, fetched_at, read_capacities())
+        else:
+            log["urls"] = dashboard_pdf_urls()
+            body, fetched_url = fetch_pdf(log["urls"])
+            log["fetched_url"] = fetched_url
+            tmp = RAW_DIR / f"damlevels_{utc_stamp()}.pdf"
+            tmp.write_bytes(body)
+            obs_date, rows = parse_dashboard(tmp, fetched_at)
         log["observation_date"] = obs_date
         log["rows_parsed"] = len(rows)
         if not obs_date:
@@ -338,11 +432,15 @@ def main() -> int:
         if not rows:
             raise RuntimeError("no dam rows parsed from the dashboard table")
 
-        final = RAW_DIR / f"damlevels_{obs_date}.pdf"
-        if final.exists():
-            tmp.unlink()
+        if import_url:
+            final = RAW_DIR / f"damlevels_page_{obs_date}.html"
+            final.write_bytes(body)
         else:
-            tmp.rename(final)
+            final = RAW_DIR / f"damlevels_{obs_date}.pdf"
+            if final.exists():
+                tmp.unlink()
+            else:
+                tmp.rename(final)
         print(f"[SAVE] {final} ({len(body)}B)", flush=True)
 
         added, updated = merge_csv(TS_DIR / "southafrica_capetown_wcwss_weekly.csv",
