@@ -30,6 +30,8 @@ Design:
 - Cell text is kept exactly as published. Nothing is converted, checked against other columns or blanked here; that
   happens in the project's delivery layer.
 - HTTP 403/412/429 stops the run (the project does not work around blocks).
+- A page that gets no HTTP answer in any attempt stops the run too: the site is unreachable, and
+  retrying the other three pages would outlast the job's time limit (2026-10-26).
 
 Licence: KOSKİ publishes no reuse or redistribution terms; the site footer reads "© 2026 | www.koski.gov.tr Tüm Hakları
 Saklıdır" (All Rights Reserved) (reuse_status `undeclared_review`, checked 2026-09-08). Collected here by owner
@@ -159,21 +161,24 @@ def data_hash(parsed: dict) -> str:
 
 
 def fetch(url: str) -> tuple[int, bytes, str]:
-    """GET with bounded retries on network and server errors; a block is returned at once."""
-    last = ""
+    """GET with bounded retries on network and server errors; a block is returned at once.
+
+    After the retries the last HTTP status is returned, or 0 if no attempt got an answer.
+    """
+    last, last_status = "", 0
     for attempt in range(len(REQUEST_BACKOFFS) + 1):
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             if r.status_code == 200:
                 return 200, r.content, ""
-            last = f"HTTP {r.status_code}"
+            last, last_status = f"HTTP {r.status_code}", r.status_code
             if r.status_code in BLOCKED:
                 return r.status_code, b"", last  # access control or rate limit: do not hammer
         except requests.RequestException as exc:
-            last = f"{type(exc).__name__}: {exc}"
+            last, last_status = f"{type(exc).__name__}: {exc}", 0
         if attempt < len(REQUEST_BACKOFFS):
             time.sleep(REQUEST_BACKOFFS[attempt])
-    return 0, b"", last
+    return last_status, b"", last
 
 
 def read_captures() -> list[dict]:
@@ -319,6 +324,16 @@ def main() -> int:
                 summary["errors"].append(f"{slug}: fetch failed: {err}")
                 if status in BLOCKED:
                     summary["blocked"] = True
+                    break
+                if status == 0:
+                    # No attempt got an HTTP answer: the site is unreachable from this runner.
+                    # Each further page would spend the same six minutes on retries, and four
+                    # of them outlast the job's 20-minute limit, which killed the 2026-10-26
+                    # run before this summary was written. The window is six years, so the
+                    # next run loses nothing.
+                    rest = list(DAMS)[i + 1:]
+                    if rest:
+                        summary["errors"].append(f"{', '.join(rest)}: not requested, site unreachable")
                     break
     if captures:
         rebuild(captures, summary)

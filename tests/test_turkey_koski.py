@@ -3,12 +3,14 @@ from __future__ import annotations
 import csv
 import gzip
 import importlib.util
+import json
 import os
 import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -152,6 +154,33 @@ class KoskiTests(unittest.TestCase):
         self.assertEqual(sorted((c["dam"], c["captured_utc"]) for c in caps),
                          [("altinapa", "2026-09-08T07:03:43+00:00"), ("bagbasi", "2020-09-20T00:45:18+00:00")])
         self.assertTrue(any("unknown dam" in e for e in s["errors"]))
+
+
+
+class KoskiOutageTests(unittest.TestCase):
+    """2026-10-26: four pages of retries against an unreachable site outlasted the job limit."""
+
+    setUp = KoskiTests.setUp
+    tearDown = KoskiTests.tearDown
+
+    def run_main(self, **get):
+        with mock.patch.object(self.mod.requests, "get", **get) as calls, \
+                mock.patch.object(self.mod.time, "sleep"):
+            code = self.mod.main()
+        summary = next((Path(self.tmp.name) / "run_logs").glob("*_summary.json"))
+        return code, json.loads(summary.read_text(encoding="utf-8")), calls.call_count
+
+    def test_no_answer_at_all_stops_after_the_first_page(self):
+        code, log, calls = self.run_main(side_effect=self.mod.requests.ConnectTimeout("timed out"))
+        self.assertEqual(code, 1)
+        self.assertEqual(calls, len(self.mod.REQUEST_BACKOFFS) + 1)  # one page's attempts
+        self.assertEqual(log["status"], "failed")
+        self.assertIn("bagbasi, bozkir, afsar: not requested, site unreachable", log["errors"])
+
+    def test_a_server_error_does_not_stop_the_other_pages(self):
+        code, log, calls = self.run_main(return_value=mock.Mock(status_code=503, content=b""))
+        self.assertEqual(calls, 4 * (len(self.mod.REQUEST_BACKOFFS) + 1))
+        self.assertEqual(log["http_status"], {"altinapa": 503, "bagbasi": 503, "bozkir": 503, "afsar": 503})
 
 
 if __name__ == "__main__":
