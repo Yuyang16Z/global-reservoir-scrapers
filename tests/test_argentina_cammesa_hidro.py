@@ -119,5 +119,29 @@ class FetchTests(unittest.TestCase):
         self.assertEqual(get.call_count, 1)
 
 
+
+class OutageTests(unittest.TestCase):
+    """2026-10-29: a run retrying an unreachable site was killed at the 20-minute job limit."""
+
+    def capture(self, **get):
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(cammesa, "RAW_DIR", Path(tmp) / "raw"), \
+                mock.patch.object(cammesa.time, "sleep"), \
+                mock.patch.object(cammesa.requests, "get", **get) as calls:
+            summary = {"http_200": 0, "http_404": 0, "new_raw_pages": [], "errors": []}
+            cammesa.capture(date(2026, 9, 20), date(2026, 9, 22), summary)
+        return summary, calls.call_count
+
+    def test_no_answer_at_all_ends_the_window(self):
+        summary, calls = self.capture(side_effect=cammesa.requests.ConnectTimeout("timed out"))
+        self.assertEqual(calls, len(cammesa.REQUEST_BACKOFFS) + 1)  # one date's attempts
+        self.assertEqual([r["requested_date"] for r in summary["fetch_log"]], ["2026-09-20"])
+        self.assertIn("2026-09-21..2026-09-22: not requested, site unreachable", summary["errors"])
+
+    def test_a_server_error_does_not_end_the_window(self):
+        summary, _ = self.capture(return_value=mock.Mock(status_code=503, content=b""))
+        self.assertEqual([r["http_status"] for r in summary["fetch_log"]], [503, 503, 503])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -20,6 +20,9 @@ monthly operation reports in February 2021.
 Design:
 - Every run re-requests every date from (Argentina today - WINDOW_DAYS) to today,
   so a missed or delayed run loses nothing while the window lasts.
+- A date that gets no HTTP answer in any attempt ends the run's requests: the site is
+  unreachable, and retrying the rest of the window would outlast the job's time
+  limit (2026-10-29). The next run asks for the whole window again.
 - The page's CDN (F5) injects <script id="f5_cspm"> with a random token into every
   response, so raw bytes differ on every request even when the data do not
   (verified 2026-09-28 on 31 pages). A page is stored once per *cleaned* content
@@ -121,19 +124,22 @@ def content_hash(body: bytes) -> str:
 
 
 def fetch(url: str) -> tuple[int, bytes, str]:
-    """GET with bounded retries on network errors. HTTP 404 means 'not (or no longer) published'."""
-    last = ""
+    """GET with bounded retries on network errors. HTTP 404 means 'not (or no longer) published'.
+
+    After the retries the last HTTP status is returned, or 0 if no attempt got an answer.
+    """
+    last, last_status = "", 0
     for attempt in range(len(REQUEST_BACKOFFS) + 1):
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             if r.status_code in (200, 404):
                 return r.status_code, (r.content if r.status_code == 200 else b""), ""
-            last = f"HTTP {r.status_code}"
+            last, last_status = f"HTTP {r.status_code}", r.status_code
         except requests.RequestException as exc:
-            last = f"{type(exc).__name__}: {exc}"
+            last, last_status = f"{type(exc).__name__}: {exc}", 0
         if attempt < len(REQUEST_BACKOFFS):
             time.sleep(REQUEST_BACKOFFS[attempt])
-    return 0, b"", last
+    return last_status, b"", last
 
 
 def number(text: str) -> float | None:
@@ -203,8 +209,18 @@ def capture(d0: date, d1: date, summary: dict) -> None:
             summary["http_404"] += 1
         else:
             summary["errors"].append(f"{d.isoformat()}: {err}")
+            log(f"CAMMESA hidro: {d.isoformat()}: {err}")
         fetch_log.append(dict(requested_date=d.isoformat(), http_status=status, bytes=len(body),
                               content_sha256=chash, fetched_at_utc=utc_now(), stored_as=stored or err))
+        if status == 0:
+            # No attempt got an HTTP answer: the site is unreachable from this runner, and
+            # every further date would spend the same five minutes on retries. Forty-one of
+            # them outlast the job's 20-minute limit, which kills the run before its summary
+            # is written (2026-10-29). The next run asks for the whole window again.
+            if d < d1:
+                summary["errors"].append(f"{d + timedelta(days=1)}..{d1}: not requested, "
+                                         "site unreachable")
+            break
         d += timedelta(days=1)
         time.sleep(PAUSE_SECONDS)
     summary["fetch_log"] = fetch_log
