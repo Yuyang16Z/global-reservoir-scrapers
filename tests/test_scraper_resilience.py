@@ -355,20 +355,92 @@ class TaiwanFallbackTests(unittest.TestCase):
         second_warn.assert_not_called()
 
 
+# The weekly table of the City's "This week's dam levels" page as served on
+# 2026-10-29, zero-width spaces included; the daily table above it is not weekly.
+CAPE_TOWN_PAGE = """<p>See the reading for 29 October 2026.</p>
+<table border="0"><thead><tr><th colspan="3">Current Dam Water Levels - 29/10/2026</th></tr></thead>
+<tbody><tr><td>Berg River</td><td>130 010</td><td>94.5</td></tr></tbody></table>
+<a href="/media/nejl51ki/damlevels.pdf">Weekly dashboard</a>
+<table border="0"><thead><tr><th colspan="1" rowspan="1">Major dams</th>
+<th colspan="1" rowspan="1">26/10/2026</th><th colspan="1" rowspan="1">Previous week</th>
+<th>% 2025</th></tr></thead><tbody>
+<tr><td>\u200bBerg River</td><td>94.5</td><td>93.2</td><td>99.6</td></tr>
+<tr><td>Steenbras Lower</td><td>48.2</td><td>48.3</td><td>92.1</td></tr>
+<tr><td>\u200b\u200bSteenbras Upper</td><td>101.1</td><td>100.2</td><td>99.3</td></tr>
+<tr><td>Theewaterskloof</td><td>73.3</td><td>73.9</td><td>82.0</td></tr>
+<tr><td>\u200bVo\u00eblvlei\u200b</td><td>55.3</td><td>56.3</td><td>98.3</td></tr>
+<tr><td>Wemmershoek</td><td>81.7</td><td>82.1</td><td>83.9</td></tr>
+<tr><td>Total Stored M\u200bl</td><td>661 656</td><td>664 637</td><td>796 140</td></tr>
+<tr><td>% Storage \u200b</td><td>73.7</td><td>74.0</td><td>88.6</td></tr>
+</tbody></table>"""
+CAPE_TOWN_CAPACITIES = {"ZA_CCT_BERG_RIVER": 130010.0, "ZA_CCT_STEENBRAS_LOWER": 33517.0,
+                        "ZA_CCT_STEENBRAS_UPPER": 31767.0, "ZA_CCT_THEEWATERSKLOOF": 480188.0,
+                        "ZA_CCT_VOELVLEI": 164095.0, "ZA_CCT_WEMMERSHOEK": 58644.0}
+
+
 class CapeTownFallbackTests(unittest.TestCase):
-    def test_official_media_endpoint_follows_primary_timeout(self):
+    """The web1 copy of damlevels.pdf froze at 2026-10-05 while the City kept publishing."""
+
+    def test_the_dashboard_is_found_through_the_page_link(self):
+        page = mock.Mock(text=CAPE_TOWN_PAGE, url=capetown.SOURCE_PAGE)
+        page.raise_for_status.return_value = None
+        with mock.patch.object(capetown.requests, "get", return_value=page):
+            urls = capetown.dashboard_pdf_urls()
+        self.assertEqual(urls, [capetown.KNOWN_PDF_URL])  # the page links that same file
+        moved = mock.Mock(text='<a href="/media/abc123/damlevels.pdf">x</a>', url=capetown.SOURCE_PAGE)
+        moved.raise_for_status.return_value = None
+        with mock.patch.object(capetown.requests, "get", return_value=moved):
+            urls = capetown.dashboard_pdf_urls()
+        self.assertEqual(urls, ["https://www.capetown.gov.za/media/abc123/damlevels.pdf",
+                                capetown.KNOWN_PDF_URL])
+
+    def test_an_unreadable_page_falls_back_to_the_known_link_only(self):
+        with mock.patch.object(capetown.requests, "get",
+                               side_effect=requests.ConnectionError("page down")):
+            self.assertEqual(capetown.dashboard_pdf_urls(), [capetown.KNOWN_PDF_URL])
+
+    def test_fetch_moves_to_the_next_link_after_its_attempts(self):
         payload = b"%PDF-" + b"x" * capetown.PDF_MIN_BYTES
         response = mock.Mock(content=payload)
         response.raise_for_status.return_value = None
-        with mock.patch.object(
-            capetown.requests,
-            "get",
-            side_effect=[requests.ConnectionError("primary timeout"), response],
-        ) as get:
-            body, url = capetown.fetch_pdf()
-        self.assertEqual(body, payload)
-        self.assertEqual(url, capetown.FALLBACK_PDF_URL)
-        self.assertEqual(get.call_count, 2)
+        down = [requests.ConnectionError("down")] * capetown.REQUEST_ATTEMPTS
+        with mock.patch.object(capetown.requests, "get", side_effect=[*down, response]) as get, \
+                mock.patch.object(capetown.time, "sleep"):
+            body, url = capetown.fetch_pdf(["https://example.invalid/a.pdf", capetown.KNOWN_PDF_URL])
+        self.assertEqual((body, url), (payload, capetown.KNOWN_PDF_URL))
+        self.assertEqual(get.call_count, capetown.REQUEST_ATTEMPTS + 1)
+
+    def test_weekly_table_from_the_page(self):
+        obs, rows = capetown.parse_weekly_table(CAPE_TOWN_PAGE, "t", CAPE_TOWN_CAPACITIES)
+        self.assertEqual(obs, "2026-10-26")
+        self.assertEqual(len(rows), 12)
+        by = {(r["measurement_date"], r["reservoir_id"]): r for r in rows}
+        # the same values and volumes the 2026-10-26 dashboard PDF gives
+        self.assertEqual(by[("2026-10-26", "ZA_CCT_BERG_RIVER")]["storage_ml"], "122859.4")
+        self.assertEqual(by[("2026-10-19", "ZA_CCT_BERG_RIVER")]["storage_ml"], "121169.3")
+        self.assertEqual(by[("2026-10-26", "ZA_CCT_VOELVLEI")]["storage_pct"], "55.3")
+        self.assertEqual(by[("2026-10-19", "ZA_CCT_VOELVLEI")]["reading_kind"], "previous_week")
+
+    def test_import_url_reads_the_page_table_into_the_weekly_series(self):
+        page = mock.Mock(text=CAPE_TOWN_PAGE, content=CAPE_TOWN_PAGE.encode("utf-8"))
+        page.raise_for_status.return_value = None
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            meta = root / "metadata" / "southafrica_capetown_wcwss_reservoirs.csv"
+            meta.parent.mkdir(parents=True)
+            meta.write_text("reservoir_id,capacity_ml\n" + "".join(
+                f"{k},{v:g}\n" for k, v in CAPE_TOWN_CAPACITIES.items()), encoding="utf-8")
+            with mock.patch.multiple(capetown, OUTPUT_DIR=root, RAW_DIR=root / "raw",
+                                     TS_DIR=root / "timeseries", META_DIR=root / "metadata",
+                                     RUN_LOG_DIR=root / "run_logs"), \
+                    mock.patch.dict("os.environ", {"IMPORT_URL": "https://web.archive.org/x"}), \
+                    mock.patch.object(capetown.requests, "get", return_value=page) as get:
+                self.assertEqual(capetown.main(), 0)
+            get.assert_called_once()
+            self.assertTrue((root / "raw" / "damlevels_page_2026-10-26.html").exists())
+            with (root / "timeseries" / "southafrica_capetown_wcwss_weekly.csv").open() as fh:
+                dates = sorted({r["measurement_date"] for r in csv.DictReader(fh)})
+        self.assertEqual(dates, ["2026-10-19", "2026-10-26"])
 
     def test_dashboard_date_variants(self):
         for text, expected in (

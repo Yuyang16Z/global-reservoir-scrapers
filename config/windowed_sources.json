@@ -493,7 +493,7 @@
       "max_schedule_gap_hours": 96,
       "minimum_capture_opportunities": 2,
       "overlap_strategy": "Merge by (printed dashboard date, reservoir). Each dashboard also prints the previous week's percentage, which is stored for its own date and is superseded by that week's own 'current' reading.",
-      "schedule_rationale": "11:00 SAST Tuesday and Thursday. The City of Cape Town publishes one weekly dashboard at a stable URL that is overwritten, so a missed week cannot be recovered from the source; Thursday is the recovery attempt. Added 2026-08-04 because the national DWS bulletin stopped publishing after 2026-06-29 and every downstream mirror froze on that date.",
+      "schedule_rationale": "11:00 SAST Tuesday and Thursday. The City of Cape Town publishes one weekly dashboard at a stable URL that is overwritten, so a missed week cannot be recovered from the source; Thursday is the recovery attempt. Added 2026-08-04 because the national DWS bulletin stopped publishing after 2026-06-29 and every downstream mirror froze on that date. From 2026-10-29 the dashboard is found through the link on the City's 'This week's dam levels' page: the web1 copy read until then froze at the 2026-10-05 dashboard while the City kept publishing.",
       "workflow": ".github/workflows/southafrica_capetown_wcwss.yml",
       "scraper": "scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py",
       "data_path": "data/southafrica/capetown_wcwss",
