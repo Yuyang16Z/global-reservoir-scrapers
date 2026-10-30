@@ -1,79 +1,94 @@
-"""Temporary probe, round 2: read the weekly dashboard PDF that the City of
-Cape Town's "This week's dam levels" page now links, with the scraper's own
-parser, and look for Internet Archive copies of the weeks we missed (10-12,
-10-19).
-
-capetown_scraper_current.py is a verbatim copy of main's
-scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py.
-Runs only on this throwaway branch; prints to the job log.
-"""
-import importlib.util
+"""Throwaway probe: does ABHT publish dam levels anywhere more often than the
+homepage widget? Prints dates and modified stamps only."""
+import json
 import re
-import tempfile
-from pathlib import Path
-from urllib.parse import urljoin
+import time
 
 import requests
 
-spec = importlib.util.spec_from_file_location("ct", "capetown_scraper_current.py")
-ct = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(ct)
-
-PAGE = ("https://www.capetown.gov.za/family-and-home/residential-utility-services/"
-        "residential-water-and-sanitation-services/this-weeks-dam-levels/")
+H = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/146.0.0.0 Safari/537.36")}
+DATE_RE = re.compile(r"\b\d{1,2}/\d{1,2}/20\d{2}\b|\b20\d{2}-\d{2}-\d{2}\b")
 
 
-def parse_pdf(label, body):
-    if not body.startswith(b"%PDF"):
-        print(f"   {label}: not a PDF ({body[:60]!r})")
-        return
-    with tempfile.TemporaryDirectory() as tmp:
-        p = Path(tmp) / "d.pdf"
-        p.write_bytes(body)
-        obs, rows = ct.parse_dashboard(p, "probe")
-    print(f"   {label}: {len(body)}B obs_date={obs} rows={len(rows)}")
-    for r in rows:
-        print("      ", {k: r.get(k) for k in ("measurement_date", "reservoir_id", "storage_pct",
-                                                 "storage_ml", "reading_kind")})
-
-
-page = requests.get(PAGE, headers=ct.HEADERS, timeout=(20, 60))
-print(f"== page HTTP {page.status_code} {len(page.content)}B")
-links = sorted(set(re.findall(r"href=[\"']([^\"']*damlevels[^\"']*\.pdf)", page.text, flags=re.I)))
-print("   pdf links:", links)
-for link in links:
-    url = urljoin(page.url, link)
-    r = requests.get(url, headers=ct.HEADERS, timeout=(20, 120))
-    print(f"== {url}: HTTP {r.status_code} type={r.headers.get('content-type')} "
-          f"last-modified={r.headers.get('last-modified')}")
-    if r.ok:
-        parse_pdf("current link", r.content)
-
-cdx = "https://web.archive.org/cdx/search/cdx"
-queries = {
-    "page": {"url": PAGE.split("://", 1)[1], "from": "20261001"},
-    "media pdfs": {"url": "capetown.gov.za/media/", "matchType": "prefix", "from": "20260901",
-                   "filter": "original:.*damlevels.*"},
-}
-for label, q in queries.items():
+def get(url, **kw):
+    sep = "&" if "?" in url else "?"
+    u = f"{url}{sep}nocache={time.time_ns()}"
+    t0 = time.time()
     try:
-        rows = requests.get(cdx, params={**q, "output": "json",
-                                         "fl": "timestamp,original,statuscode,digest"},
-                            timeout=90).json()
-    except Exception as exc:  # noqa: BLE001
-        print(f"== CDX {label}: {type(exc).__name__}: {exc}")
-        continue
-    print(f"== CDX {label}: {max(len(rows) - 1, 0)} captures")
-    seen = set()
-    for ts, original, status, digest in rows[1:]:
-        print(f"   {ts} {status} {digest[:10]} {original}")
-        if status != "200" or digest in seen:
-            continue
-        seen.add(digest)
-        snap = requests.get(f"https://web.archive.org/web/{ts}id_/{original}", timeout=120)
-        if original.lower().endswith(".pdf"):
-            parse_pdf(f"wayback {ts}", snap.content)
-        else:
-            heads = re.findall(r"<th[^>]*>\s*(\d{2}/\d{2}/\d{4})\s*</th>", snap.text)
-            pdfs = sorted(set(re.findall(r"media/[^\"']*damlevels[^\"']*", snap.text)))
-            print(f"   wayback {ts} page: weekly table header dates {heads[:4]}, pdf links {pdfs}")
+        r = requests.get(u, headers=H, timeout=60, **kw)
+    except Exception as exc:
+        print(f"  {url}: {type(exc).__name__}: {exc}")
+        return None
+    print(f"  {url}: HTTP {r.status_code}, {len(r.content)} B, {time.time() - t0:.1f}s, "
+          f"Last-Modified={r.headers.get('Last-Modified')}")
+    return r
+
+
+def text_of(html):
+    html = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", html)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+
+
+def dates(html):
+    found = {}
+    for d in DATE_RE.findall(html):
+        found[d] = found.get(d, 0) + 1
+    return sorted(found.items(), key=lambda kv: -kv[1])[:12]
+
+
+print("== homepage widget")
+r = get("https://abht.ma/")
+if r is not None:
+    t = text_of(r.text)
+    i = t.find("Taux de remplissage")
+    print("  widget:", t[i:i + 700] if i >= 0 else "caption not found")
+
+print("== situation-ressources-en-eau page")
+r = get("https://abht.ma/bassin/situation-ressources-en-eau/")
+if r is not None and r.ok:
+    t = text_of(r.text)
+    print("  dates:", dates(r.text))
+    for kw in ("remplissage", "Mm3", "Mm³", "%"):
+        i = t.find(kw)
+        if i >= 0:
+            print(f"  around {kw!r}:", t[max(0, i - 300):i + 500])
+            break
+    links = sorted(set(re.findall(r'href="([^"]+\.(?:pdf|xlsx?|png|jpe?g))"', r.text, re.I)))
+    print("  file links:", links[-25:])
+
+print("== one dam page")
+r = get("https://abht.ma/Barrage/lalla-takerkoust/")
+if r is not None and r.ok:
+    t = text_of(r.text)
+    print("  dates:", dates(r.text))
+    for kw in ("remplissage", "Mm3", "Mm³", "Volume"):
+        i = t.find(kw)
+        if i >= 0:
+            print(f"  around {kw!r}:", t[max(0, i - 300):i + 600])
+            break
+
+print("== WordPress REST: routes mentioning barrage / situation")
+r = get("https://abht.ma/wp-json/")
+if r is not None and r.ok:
+    try:
+        routes = r.json().get("routes", {})
+        hits = [k for k in routes if re.search(r"barrage|situation|remplissage|taux", k, re.I)]
+        print("  routes:", hits[:30])
+        types = [k for k in routes if k.startswith("/wp/v2/") and k.count("/") == 3]
+        print("  wp/v2 types:", types[:60])
+    except ValueError:
+        print("  not JSON")
+
+for path in ("wp/v2/pages?slug=situation-ressources-en-eau&_fields=id,slug,modified_gmt,date_gmt",
+             "wp/v2/barrage?per_page=20&_fields=id,slug,modified_gmt,date_gmt",
+             "wp/v2/posts?per_page=10&_fields=id,slug,modified_gmt,date_gmt",
+             "wp/v2/pages?per_page=10&orderby=modified&_fields=id,slug,modified_gmt"):
+    print(f"== REST {path}")
+    r = get(f"https://abht.ma/wp-json/{path}")
+    if r is not None and r.ok:
+        try:
+            print("  ", json.dumps(r.json())[:1500])
+        except ValueError:
+            print("   not JSON:", r.text[:200])
