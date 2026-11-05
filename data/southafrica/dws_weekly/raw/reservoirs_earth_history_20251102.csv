@@ -1,0 +1,211 @@
+reading_date,slug,mirror_name,station_id,volume_mcm,fill_percentage,used,page_url,page_sha256
+2025-11-02,albasini-dam,Albasini Dam,A9R001,27,95.7,yes,https://reservoirs.earth/south-africa/reservoirs/albasini-dam,8ddb0a6b0058e41d4b83bf3ab177fbb3800e46fcb119541fbb9a6b398267409a
+2025-11-02,albert-falls-dam,Albert Falls Dam,U2R003,267.1,93.5,yes,https://reservoirs.earth/south-africa/reservoirs/albert-falls-dam,98aa545828e5adcb485eaccb232315bf722b37deeae380a81d3535e7cbdc6de1
+2025-11-02,allemanskraal-dam,Allemanskraal Dam,C4R001,168.2,97.5,yes,https://reservoirs.earth/south-africa/reservoirs/allemanskraal-dam,dbd0acf6ba541b68cd9ed8b2059f1d945ea9a22b964ea3afd17659cc9eefc121
+2025-11-02,armenia-dam,Armenia Dam,D2R002,11.6,87.7,yes,https://reservoirs.earth/south-africa/reservoirs/armenia-dam,261b22c9894fd2d47669c4d5bf13a35ec472ec886be72f3d34650c7f81e7900e
+2025-11-02,belfort-dam,Belfort Dam,T3R001,0.4,100,yes,https://reservoirs.earth/south-africa/reservoirs/belfort-dam,8d2d4e8755a6412228e2649800c0e2a3734022bcd1e78d51f3a43a77610dd705
+2025-11-02,bellair-dam,Bellair Dam,J1R002,3.3,77.7,yes,https://reservoirs.earth/south-africa/reservoirs/bellair-dam,5828c483a7708184d43b03694c66c2b35b20dfea0cb36a7b3753df90176b04ff
+2025-11-02,berg-river-dam,Berg River Dam,G1R004,124.3,97.8,yes,https://reservoirs.earth/south-africa/reservoirs/berg-river-dam,1e3a353a641b4462b105c86d9682deded9c0fe8fcba6b5c780477bc949dd7a83
+2025-11-02,binfield-dam,Binfield Dam,R1R003,34.7,94.3,yes,https://reservoirs.earth/south-africa/reservoirs/binfield-dam,95608b60e88cc92c4bcc2f9d41b0e1f1be85cde0927787c3a8928248994477ff
+2025-11-02,bivane-dam,Bivane Dam,W4R002,112,98.2,yes,https://reservoirs.earth/south-africa/reservoirs/bivane-dam,986b473a9ef19fa7db8f5389ab43d67c67da175c91fe2919ab05ae481e41943d
+2025-11-02,bloemhof-dam,Bloemhof Dam,C9R002,1187.1,95.5,yes,https://reservoirs.earth/south-africa/reservoirs/bloemhof-dam,369d95fce32dd64ac083597010c7b7220350621047574fc0a9f61a02885d6bb9
+2025-11-02,blyderivierpoort-dam,Blyderivierpoort Dam,B6R003,43.1,79.3,yes,https://reservoirs.earth/south-africa/reservoirs/blyderivierpoort-dam,f3bcef822241a89796a813244813fecf402f3b9f3a5c1374ed9f70f4a5522ab3
+2025-11-02,boegoeberg-dam,Boegoeberg Dam,D7R001,16.4,69.5,yes,https://reservoirs.earth/south-africa/reservoirs/boegoeberg-dam,01d8209a6a7111027e354619888989cc183f6af27253bab2606f4a925601957c
+2025-11-02,boesmanskrantz-dam,Boesmanskrantz Dam,S3R005,4.8,99.7,yes,https://reservoirs.earth/south-africa/reservoirs/boesmanskrantz-dam,479c38091d1ce26e3769f05f9278c370e84a809706317147b5ab204c18610f04
+2025-11-02,bon-accord-dam,Bon Accord Dam,A2R002,4.8,108.2,yes,https://reservoirs.earth/south-africa/reservoirs/bon-accord-dam,9c353b86598c5bd4116431e793844569da69d6363a58dc9beb70146ed49c4d04
+2025-11-02,boskop-dam,Boskop Dam,C2R001,20.5,102.3,yes,https://reservoirs.earth/south-africa/reservoirs/boskop-dam,cb8b36959bb186d933a4023fd7e88482952f849c7cf862837ec2a937f3aa7811
+2025-11-02,bospoort-dam,Bospoort Dam,A2R006,15.9,100.8,yes,https://reservoirs.earth/south-africa/reservoirs/bospoort-dam,a025eab102c7e0b6eef3a0fb975767d370f53f130612bc03263c6d0f0f78e55f
+2025-11-02,brandvlei-dam,Brandvlei Dam,H1R001,216.6,75.7,yes,https://reservoirs.earth/south-africa/reservoirs/brandvlei-dam,4c08be1563341145cb269c86c707d270130868d5c45079f047638f613fa11961
+2025-11-02,bridle-drift-dam,Bridle Drift Dam,R2R003,88.8,90.6,yes,https://reservoirs.earth/south-africa/reservoirs/bridle-drift-dam,b8fa6a18e68810a6f8880a796540923412f7217081ab1679540323004a7e180f
+2025-11-02,bronkhorstspruit-dam,Bronkhorstspruit Dam,B2R001,57.2,100.4,yes,https://reservoirs.earth/south-africa/reservoirs/bronkhorstspruit-dam,5f5ce0a5f7e46b151da2be8fd0813a85afe7af7092163803c11b1ae0d15f611a
+2025-11-02,buffeljags-dam,Buffeljags Dam,H7R001,3.7,81.2,yes,https://reservoirs.earth/south-africa/reservoirs/buffeljags-dam,5fe9a2267af2719a13f36f3a4d8e5b6ed7cef8e38ea6674a529e03145c9f8880
+2025-11-02,buffelskloof-dam,Buffelskloof Dam,B4R004,4.8,91,yes,https://reservoirs.earth/south-africa/reservoirs/buffelskloof-dam,f55ec7dd0a503ea637f58867143caaefe90fb581ba72233d31d1858c95ddd633
+2025-11-02,buffelspoort-dam,Buffelspoort Dam,A2R005,10.2,100.3,yes,https://reservoirs.earth/south-africa/reservoirs/buffelspoort-dam,be1b98ad966313ae9691e3f1d4fbe2d0d0834b7d686049a969a89c85497c541e
+2025-11-02,bulshoek-dam,Bulshoek Dam,E1R001,3.3,68.6,yes,https://reservoirs.earth/south-africa/reservoirs/bulshoek-dam,d4053e621819418746aec8471a27817186c4823a2f6c148aa7e069266f2bd333
+2025-11-02,calitzdorp-dam,Calitzdorp Dam,J2R001,2.4,49.7,yes,https://reservoirs.earth/south-africa/reservoirs/calitzdorp-dam,8a3605d9f6b6b43e00bd00304d392675425f6d5548c04ea663ebadddd6555e78
+2025-11-02,cata-dam,Cata Dam,R1R002,10.6,87.2,yes,https://reservoirs.earth/south-africa/reservoirs/cata-dam,a5f904945f246de94e62000d67370631c1fc00a2a288a28064ef1990734e360c
+2025-11-02,ceres-dam,Ceres Dam,H1R003,12.5,72.5,yes,https://reservoirs.earth/south-africa/reservoirs/ceres-dam,e9ea867cb4081a0899efdb92506e591ddeb90af46752c7f46cd715733c46529b
+2025-11-02,clanwilliam-dam,Clanwilliam Dam,E1R002,113.7,92.8,yes,https://reservoirs.earth/south-africa/reservoirs/clanwilliam-dam,c162b54a049a6f5fd69eaa049a6e3f0f4e214ef644916abf008827426a7ee41c
+2025-11-02,corana-dam,Corana Dam,T2R003,0.7,92.4,yes,https://reservoirs.earth/south-africa/reservoirs/corana-dam,1d005e880487b13c121300796dc70a74afc3c32c9f47b8e252d0adeb1865a259
+2025-11-02,craigie-burn-dam,Craigie Burn Dam,V2R001,22.6,100.6,yes,https://reservoirs.earth/south-africa/reservoirs/craigie-burn-dam,dd145fa0ac8fb84abf4c363ee4871c7af2878b0f4475fd77bb8ec894dd0d1497
+2025-11-02,da-gama-dam,Da Gama Dam,X3R001,11.8,87,yes,https://reservoirs.earth/south-africa/reservoirs/da-gama-dam,37b4b84778650e9905d4e9de3fbb1ce51ee61f97e8ff02c5ec8c6b70d9f01bca
+2025-11-02,dap-naude-dam,Dap Naude Dam,B8R006,1.6,81.8,yes,https://reservoirs.earth/south-africa/reservoirs/dap-naude-dam,b8cde522990ba80a0dd5bc7a32f89ca7d5b4a61af2d6b764436417c46a093df4
+2025-11-02,darlington-dam,Darlington Dam,N2R001,68,37.8,yes,https://reservoirs.earth/south-africa/reservoirs/darlington-dam,55a7e6712978136be979e1a49fd170efbbf11ae8c81c62776de67ce54ed23a49
+2025-11-02,de-bos-dam,De Bos Dam,G4R010,5.5,96.1,yes,https://reservoirs.earth/south-africa/reservoirs/de-bos-dam,88ad103a57f299f1acff322616d8a481596b34d46617a4738c457c093b51cc51
+2025-11-02,de-hoop-dam,De Hoop Dam,B4R007,343.5,98.5,yes,https://reservoirs.earth/south-africa/reservoirs/de-hoop-dam,c0f85a7b87d17979e9cd405a3220148633e2f99b2f3f60a8514e815830672c25
+2025-11-02,de-mistkraal-dam,De Mistkraal Dam,Q8R001,1.5,72.4,yes,https://reservoirs.earth/south-africa/reservoirs/de-mistkraal-dam,e9d78ab05c6239c8aced74ca1badd03d869167a1457d5896766f02ccaad17b9f
+2025-11-02,debe-dam,Debe Dam,R1R005,2.8,43.5,yes,https://reservoirs.earth/south-africa/reservoirs/debe-dam,3a3588a435fa30eb6bec06dc59e62e53f67ed23b79cacaeaf184c5e2e7c860b2
+2025-11-02,disaneng-dam,Disaneng Dam,D4R003,13.6,96.1,yes,https://reservoirs.earth/south-africa/reservoirs/disaneng-dam,9d37c23e4b05acefcc7956813ff74b3f322beb3d65008954b8f7788fef000b3b
+2025-11-02,doorndraai-dam,Doorndraai Dam,A6R001,44.7,99.4,yes,https://reservoirs.earth/south-africa/reservoirs/doorndraai-dam,140ecf4e832f8afde7b350ea0d41e63674accd5469971c877faa667bd411fe1d
+2025-11-02,doornrivier-dam,Doornrivier Dam,S2R002,14.2,83,yes,https://reservoirs.earth/south-africa/reservoirs/doornrivier-dam,198c4815bf19a519fb801def5994fa333e95771aa1c3b628a6de789be6eb3fde
+2025-11-02,douglas-weir-dam,Douglas Weir Dam,C9R003,17.2,105.4,yes,https://reservoirs.earth/south-africa/reservoirs/douglas-weir-dam,694a3437d623580862f82960ce4edfb1c47e122a2c1295cbd43e718c5e70e9bd
+2025-11-02,driekoppies-dam,Driekoppies Dam,X1R004,211.6,84.3,yes,https://reservoirs.earth/south-africa/reservoirs/driekoppies-dam,f3d078850fca8c7790f19b6a5b1bfc8beacc8b412ac54800d79306467bdef694
+2025-11-02,driel-barrage-dam,Driel Barrage Dam,V1R002,8.1,92.9,yes,https://reservoirs.earth/south-africa/reservoirs/driel-barrage-dam,04dfe5e9d647f05f08bc9a482d7cbd5447fbf7314066cb89ac86ea3f1e8f3f43
+2025-11-02,duiwenhoks-dam,Duiwenhoks Dam,H8R001,4.6,74.4,yes,https://reservoirs.earth/south-africa/reservoirs/duiwenhoks-dam,8b2196590ee69fe3508dab9c8eb7da706863cf51393f6b249700faaa352acd85
+2025-11-02,ebenezer-dam,Ebenezer Dam,B8R001,66.4,96,yes,https://reservoirs.earth/south-africa/reservoirs/ebenezer-dam,37487d206e079cbef1e9dccf16f4a53cff33d515e8e52d82584b817b10a8e18f
+2025-11-02,egmont-dam,Egmont Dam,D2R001,8.3,90.8,yes,https://reservoirs.earth/south-africa/reservoirs/egmont-dam,51448e4d1a0ff259b9d2cda345415e47136ee81ff2cce7ba9eb52bc05bf640b0
+2025-11-02,eikenhof-dam,Eikenhof Dam,G4R002,27.5,95.2,yes,https://reservoirs.earth/south-africa/reservoirs/eikenhof-dam,5e5717dcb629bcc4c2253ed02612cb198fc6504e80c868478989dd1fd5816340
+2025-11-02,elands-drift-dam,Elandsdrift Dam,Q5R001,2.4,66.1,other_entry_chosen,https://reservoirs.earth/south-africa/reservoirs/elands-drift-dam,f595c15cb49933fe975c2823f196e9d23bd88f25955cf04e88ff8c6bd1bd4ce2
+2025-11-02,elandsdrift-dam,Elandsdrift Dam,Q5R001,2.1,60.2,yes,https://reservoirs.earth/south-africa/reservoirs/elandsdrift-dam,7f6c33ffab69ab4f257afee2f563b91bb594d4004b778f4af8fd082cc8d276c9
+2025-11-02,elandskloof-dam,Elandskloof Dam,H6R002,10.5,95.6,yes,https://reservoirs.earth/south-africa/reservoirs/elandskloof-dam,e97518e3b40aa6a7c99f2a4129aae5d45ce00e10ae4900343ba8d6b13ceb1bc7
+2025-11-02,erfenis-dam,Erfenis Dam,C4R002,182.4,85.3,yes,https://reservoirs.earth/south-africa/reservoirs/erfenis-dam,570681def080266022a3a9615675de1231649251019016073841eb90d871d84a
+2025-11-02,ernest-robertson-dam,Ernest Robertson Dam,K2R001,0.1,35.7,yes,https://reservoirs.earth/south-africa/reservoirs/ernest-robertson-dam,eacadbc83d1c50af2fce48bc90d7eed624659af749f561b7c9faa913a8891686
+2025-11-02,fika-patso-dam,Fika-Patso Dam,C8R008,23.1,78.2,yes,https://reservoirs.earth/south-africa/reservoirs/fika-patso-dam,c83aa499944504a5fd9bf4e15a58a87a04233c387b7c4cbda98f130970789444
+2025-11-02,flag-boshielo-dam,Flag Boshielo Dam,B5R002,172.1,92.9,yes,https://reservoirs.earth/south-africa/reservoirs/flag-boshielo-dam,96d72584778004ea59ff6748f09d7011dc3fd3d557a1805263c8deace2c61af7
+2025-11-02,floriskraal-dam,Floriskraal Dam,J1R003,18.1,38.7,yes,https://reservoirs.earth/south-africa/reservoirs/floriskraal-dam,31aa5364befc5e5cfa8e438eaa312353d2bf0283038f4995cac089641c0ed6dd
+2025-11-02,gamka-dam,Gamka Dam,J2R004,0.5,29.4,yes,https://reservoirs.earth/south-africa/reservoirs/gamka-dam,f63ba9dc0f3cd092925e60068ba58a73d8045a4824d19be941cbe26fd4983e04
+2025-11-02,gamkapoort-dam,Gamkapoort Dam,J2R006,7.7,21.5,yes,https://reservoirs.earth/south-africa/reservoirs/gamkapoort-dam,f3426ab04fb414b5ee14461c1e1c973cfbb989975b6b01f60dc98b3ca3bb5fba
+2025-11-02,garden-route-dam,Garden Route Dam,K3R002,7.1,57.2,yes,https://reservoirs.earth/south-africa/reservoirs/garden-route-dam,437a5aa52a332e2090c2e583fb9684183db7bfa636d685945bb7b81e3d22163a
+2025-11-02,gariep-dam,Gariep Dam,D3R002,4619.1,94.2,yes,https://reservoirs.earth/south-africa/reservoirs/gariep-dam,0cb6a4fa0168f2ef80902163a15846aa9077a7444585310c006a8a230fb263f7
+2025-11-02,glen-alpine-dam,Glen Alpine Dam,A6R002,11.5,60.7,yes,https://reservoirs.earth/south-africa/reservoirs/glen-alpine-dam,86f3dfe7d8dc49cc10027a2bf56f99fabe3f5b1ebf61c764e8aa8f5c6cfff0b6
+2025-11-02,glen-melville-dam,Glen Melville Dam,Q9R002,4.2,67.2,yes,https://reservoirs.earth/south-africa/reservoirs/glen-melville-dam,872744d729c3f23009df88ebbd2d99db2a32645faca6be9cee97a5fd2018a59c
+2025-11-02,goedertrouw-dam,Goedertrouw Dam,W1R001,285.3,94.7,yes,https://reservoirs.earth/south-africa/reservoirs/goedertrouw-dam,7b22a2d0cb7e3404a1af6a989827aa27cc9776142326840abca8898fcc0a9722
+2025-11-02,grassridge-dam,Grassridge Dam,Q1R001,20.5,46,yes,https://reservoirs.earth/south-africa/reservoirs/grassridge-dam,ed9ea15ec25807442e9784796b352513a7ca5594e7514823c4e185fd147cb5d2
+2025-11-02,groendal-dam,Groendal Dam,M1R001,10.3,88.4,yes,https://reservoirs.earth/south-africa/reservoirs/groendal-dam,b00ca42ad092bff413fb811ef9c131090ff50fe5c2fa7540993d9a407c0ecb22
+2025-11-02,grootdraai-dam,Grootdraai Dam,C1R002,324.3,92.7,yes,https://reservoirs.earth/south-africa/reservoirs/grootdraai-dam,1fcf49d7abb1c1a3a32ea688d4e7e3dc95c35be69022d400127771e73915d099
+2025-11-02,groothoek-dam,Groothoek Dam,C5R005,5.4,45.7,yes,https://reservoirs.earth/south-africa/reservoirs/groothoek-dam,700080993c33bd2096825bafef429eece22491451cccdc2445cb7cf95a268c1e
+2025-11-02,gubu-dam,Gubu Dam,S6R001,8.5,100,yes,https://reservoirs.earth/south-africa/reservoirs/gubu-dam,fbeb92418efe19ee3c7431eae19fd4754329ee33196cf49527dd5cc255c9bf02
+2025-11-02,haarlem-dam,Haarlem Dam,L8R002,2.6,57.5,yes,https://reservoirs.earth/south-africa/reservoirs/haarlem-dam,35bfad2da32fe6a2dec3a0208dc2bf6a2186792ecf42beff4477e5272cea7617
+2025-11-02,hans-merensky-dam,Hans Merensky Dam,B8R002,1.2,101.7,yes,https://reservoirs.earth/south-africa/reservoirs/hans-merensky-dam,17c50a89735961ad6cea7a98687af96853f27dda158e43baa41d0f2d1326116d
+2025-11-02,hartbeespoort-dam,Hartbeespoort Dam,A2R001,177.6,95.6,yes,https://reservoirs.earth/south-africa/reservoirs/hartbeespoort-dam,dfe182c8b8e30d4e7e2312635d389350692a4b535981de7ad5b8b9a2dc583890
+2025-11-02,hartebeestkuil-dam,Hartebeestkuil Dam,K1R001,4.1,57.7,yes,https://reservoirs.earth/south-africa/reservoirs/hartebeestkuil-dam,67b66067b34d5ca1208c9817b559e10c7b8897d09b1b8fbe3f52325d1edb04cf
+2025-11-02,hazelmere-dam,Hazelmere Dam,U3R001,37.9,102,yes,https://reservoirs.earth/south-africa/reservoirs/hazelmere-dam,068a6261d822766e699f5c12c5c60a9c6efd9ab0d73dd4ec4fd27f40d3264c25
+2025-11-02,heyshope-dam,Heyshope Dam,W5R004,445,100,yes,https://reservoirs.earth/south-africa/reservoirs/heyshope-dam,12cfc5a47344835b6f93ce262061a24abd7e65cdc084f95a269d1ccc09eb4607
+2025-11-02,hluhluwe-dam,Hluhluwe Dam,W3R001,25.2,97.4,yes,https://reservoirs.earth/south-africa/reservoirs/hluhluwe-dam,752c21b1d69968833b31f7db1634ab68eb83cd79fb507dd3c6f7430a18c5213c
+2025-11-02,houtrivier-dam,Houtrivier Dam,A7R002,5.4,81.1,yes,https://reservoirs.earth/south-africa/reservoirs/houtrivier-dam,176785cc08cb621556a94bb07eec14b9772ff93297d3e6c659b6b2f8f38f2673
+2025-11-02,impofu-dam,Impofu Dam,K9R002,49.5,46.8,yes,https://reservoirs.earth/south-africa/reservoirs/impofu-dam,b9c6bf0f8d6424b9d7bd62739441f8621fd861e5b365938fa1c984f305d98c43
+2025-11-02,inanda-dam,Inanda Dam,U2R004,239.2,100.7,yes,https://reservoirs.earth/south-africa/reservoirs/inanda-dam,aa3549fba63003abca423ec2423aa3bc4fb2deb38cec8e486478ce87828303c2
+2025-11-02,inyaka-dam,Inyaka Dam,X3R002,115.4,93.3,yes,https://reservoirs.earth/south-africa/reservoirs/inyaka-dam,1f4bf7b6de1430cc5df3cb547530fa7ce1d3783f2a7f0f595672b57f36c83c79
+2025-11-02,jericho-dam,Jericho Dam,W5R001,53,89.8,yes,https://reservoirs.earth/south-africa/reservoirs/jericho-dam,5fc20f386b41e093b1c4af2ccfc860becb96bc050e0b7ac698f4f2f2ee99fdcb
+2025-11-02,johan-neser-dam,Johan Neser Dam,C2R002,5.8,101.7,yes,https://reservoirs.earth/south-africa/reservoirs/johan-neser-dam,a2fbb16c8fedd598c4067b27604cfff02af684780034cc9d29eaa3d8b0905d2a
+2025-11-02,jozanashoek-dam,Jozanashoek Dam,D1R001,9.1,96.3,yes,https://reservoirs.earth/south-africa/reservoirs/jozanashoek-dam,a5fd180d926bb524be66860d5a2e55ec6286f475bc615fffc0ea54c3d2775343
+2025-11-02,kalkfontein-dam,Kalkfontein Dam,C5R002,311.2,95.7,yes,https://reservoirs.earth/south-africa/reservoirs/kalkfontein-dam,3f1498f3fca2b725b7882b3d8c73eddbe38c796e41e13a79da7c4a42736bf0ef
+2025-11-02,kammanassie-dam,Kammanassie Dam,J3R001,20.7,60.3,yes,https://reservoirs.earth/south-africa/reservoirs/kammanassie-dam,07974a88d78c39e2154ebbb6f7eeb5d3ee72fff5176ae5b40606b60e8ab0890d
+2025-11-02,karee-dam,Karee Dam,E4R001,0.9,85.4,yes,https://reservoirs.earth/south-africa/reservoirs/karee-dam,a980a28c7f77a63fa87ad4d649c636c97773166fdedd3d96612c79cd803dcf24
+2025-11-02,katrivier-dam,Katrivier Dam,Q9R001,24.8,99.7,yes,https://reservoirs.earth/south-africa/reservoirs/katrivier-dam,d2b08894b90b01251c885e3a293169a461fd8be8d0deb4d20e42c04797c0108f
+2025-11-02,keerom-dam,Keerom Dam,H4R002,9.1,93.1,yes,https://reservoirs.earth/south-africa/reservoirs/keerom-dam,b5c051078d8591919e24765be96930085251a82ef85d99db159c223d4b64c5f1
+2025-11-02,klaserie-dam,Klaserie Dam,B7R001,4.7,83.8,yes,https://reservoirs.earth/south-africa/reservoirs/klaserie-dam,4d6601f7bf6d9a96fd565e4a1b3aa797cd3dc940b496009cc2128570bec1815d
+2025-11-02,klein-maricopoort-dam,Klein-Maricopoort Dam,A3R002,7.3,101.3,yes,https://reservoirs.earth/south-africa/reservoirs/klein-maricopoort-dam,99b0ef8afb835b16805fee90c8056627cc55735b4f0ca015d11267af0e769b26
+2025-11-02,klerkskraal-dam,Klerkskraal Dam,C2R003,8.4,105.9,yes,https://reservoirs.earth/south-africa/reservoirs/klerkskraal-dam,a76d0eda977b157d69ee14f8ccca39d7716b00da7f2f2e8ca8e6e37bc1c518ce
+2025-11-02,klipberg-dam,Klipberg Dam,H4R003,1.2,59.5,yes,https://reservoirs.earth/south-africa/reservoirs/klipberg-dam,260e5e1523c7fae9223ddf9dd1936edac96d8a8d17dc38a6ff6de2a37ec22c3c
+2025-11-02,klipdrift-dam,Klipdrift Dam,C2R005,13,97.7,yes,https://reservoirs.earth/south-africa/reservoirs/klipdrift-dam,1c0af49d2f795db5414439f248593be8c5e0cfeea163703ac24a7d53e098feb7
+2025-11-02,klipfontein-dam,Klipfontein Dam,W2R001,18.1,100.1,yes,https://reservoirs.earth/south-africa/reservoirs/klipfontein-dam,f4823607e7bebea1fb6b4f72ac0625de2943c6d536aa5b814bf8475e2d49b63d
+2025-11-02,klipheuwel-dam,Klipheuwel Dam,K1R002,0.5,11.3,yes,https://reservoirs.earth/south-africa/reservoirs/klipheuwel-dam,b1d44265d148e17e2833dfc6a92515044613ec83ff7b981b4b209df67fadbdac
+2025-11-02,klipkopjes-dam,Klipkopjes Dam,X2R002,9.4,79.9,yes,https://reservoirs.earth/south-africa/reservoirs/klipkopjes-dam,1525339296733728cabc5e38914f7a0e979f63bcf0b73873d2056772e1578a83
+2025-11-02,klipvoor-dam,Klipvoor Dam,A2R012,27.1,66.3,yes,https://reservoirs.earth/south-africa/reservoirs/klipvoor-dam,1155e1a27fa9eef75c4016265d59b477bb075ed26a2598d8779971723f1bf696
+2025-11-02,knellpoort-dam,Knellpoort Dam,D2R006,128.8,98.9,yes,https://reservoirs.earth/south-africa/reservoirs/knellpoort-dam,44a25c1827a3bc0bfaa9a9ecbf21f82e7aab52f7045287df3296a55374bffa30
+2025-11-02,kommandodrift-dam,Kommandodrift Dam,Q4R002,43.2,77.1,yes,https://reservoirs.earth/south-africa/reservoirs/kommandodrift-dam,ead0056632c1904b85a8e23037c2bcb864e5509489edf6e041b98a4c48562e06
+2025-11-02,koppies-dam,Koppies Dam,C7R001,41,96.7,yes,https://reservoirs.earth/south-africa/reservoirs/koppies-dam,7eb3b96629bb9f6a2225d3091070c2ba9faba80648b3ff3b28ebf80d2d72c572
+2025-11-02,korentepoort-dam,Korentepoort Dam,H9R001,5.7,70.8,yes,https://reservoirs.earth/south-africa/reservoirs/korentepoort-dam,f6535e022397b972abe274e414a676a8034a1b9d308719826bb103616ca5b515
+2025-11-02,kosterrivier-dam,Kosterrivier Dam,A2R011,12.4,99.6,yes,https://reservoirs.earth/south-africa/reservoirs/kosterrivier-dam,04d785eeb21d797702196482047c0cabe09be087da1bf025ccd2564ba9f18818
+2025-11-02,kouga-dam,Kouga Dam,L8R001,80,63.5,yes,https://reservoirs.earth/south-africa/reservoirs/kouga-dam,31156dcae9c753487476df3b61be72d7f0801e3188f78781e3487b01ae36dbfa
+2025-11-02,kromellenboog-dam,Kromellenboog Dam,A3R003,5.4,62.2,yes,https://reservoirs.earth/south-africa/reservoirs/kromellenboog-dam,75826511cfd1b2e1f3221cff7b55e3d91fa0dbd7d581aee07bc2488aa65dc01f
+2025-11-02,kromrivier-dam,Kromrivier Dam,K9R001,23.1,65.4,yes,https://reservoirs.earth/south-africa/reservoirs/kromrivier-dam,0d054608897d104a977d87cdb34c3769e4e302419baf591b59738425c8bb1fcb
+2025-11-02,krugersdrift-dam,Krugersdrift Dam,C5R004,68.1,95.3,yes,https://reservoirs.earth/south-africa/reservoirs/krugersdrift-dam,94fe095e24313162c6421843d4064502e5c6311872e3bab8025e73e54cc240d7
+2025-11-02,kwaggaskloof-dam,Kwaggaskloof Dam,H4R004,124.8,73.6,yes,https://reservoirs.earth/south-africa/reservoirs/kwaggaskloof-dam,0b81f4865c174e80670c11a8fbbb7efbac486598c6c7c100732e119b84125ea8
+2025-11-02,kwena-dam,Kwena Dam,X2R005,123.8,78,yes,https://reservoirs.earth/south-africa/reservoirs/kwena-dam,3afdf7dbad51a796c37731b746c4d1736ece5dddbde940748896caf07ad561ae
+2025-11-02,laing-dam,Laing Dam,R2R001,18.9,100.1,yes,https://reservoirs.earth/south-africa/reservoirs/laing-dam,b5884e4bf0de5ffe560eb9e51ac7b678e61e6446d7e8a87a1ed2e3c9de66ec71
+2025-11-02,lake-arthur-dam,Lake Arthur Dam,Q4R001,2.3,20.1,yes,https://reservoirs.earth/south-africa/reservoirs/lake-arthur-dam,77c8947dcc9df21eefbdd4a666c4b484b2cc171ee559459adf09f2459bf819e6
+2025-11-02,lakenvallei-dam,Lakenvallei Dam,H2R002,10.4,100,yes,https://reservoirs.earth/south-africa/reservoirs/lakenvallei-dam,12c0fc1b76cef09f597a53b5e2e2c34ee68ec0bc0c602e7d2e23577612c993bd
+2025-11-02,leeugamka-dam,Leeugamka Dam,J2R002,3.5,26.3,yes,https://reservoirs.earth/south-africa/reservoirs/leeugamka-dam,d1d54ce503256b0c78b7b3b8557dfe6e8c602b67ab1cbcec267bb325bdf27e5b
+2025-11-02,lindleyspoort-dam,Lindleyspoort Dam,A2R007,12.9,91.1,yes,https://reservoirs.earth/south-africa/reservoirs/lindleyspoort-dam,0f4e9bd599736dc79942179b91b4501db8e82bf82933ad1ae4fc37d2b44c35e6
+2025-11-02,loerie-dam,Loerie Dam,L9R001,2.4,78.7,yes,https://reservoirs.earth/south-africa/reservoirs/loerie-dam,8f8b5233e8a15eafafc3ed65370ab53e625a4d61df2b24a7f6ad879dd71eba2d
+2025-11-02,longmere-dam,Longmere Dam,X2R001,3.5,82.9,yes,https://reservoirs.earth/south-africa/reservoirs/longmere-dam,32956d7218a74e2cdf2a70c716fe10aa453ca9818cd2fb58ac139360179a67bd
+2025-11-02,loskop-dam,Loskop Dam,B3R002,353.6,97.8,yes,https://reservoirs.earth/south-africa/reservoirs/loskop-dam,a9b172e359bf87150e324a4382f6207bed576612f97d2e43518574d4e6f4a537
+2025-11-02,lubisi-dam,Lubisi Dam,S2R001,43.1,37.9,yes,https://reservoirs.earth/south-africa/reservoirs/lubisi-dam,7967dc67bb77ededd7b093aaf7dfa0a5d2aa03c28f5edfbf19d7c0c2007f0f19
+2025-11-02,luphephe-dam,Luphephe Dam,A8R002,3.8,27.1,yes,https://reservoirs.earth/south-africa/reservoirs/luphephe-dam,891f16ddb1f01348065bb990184034128e068a371dc2b7d473b9e7687786afbf
+2025-11-02,mabeleni-dam,Mabeleni Dam,T2R002,2.1,100,yes,https://reservoirs.earth/south-africa/reservoirs/mabeleni-dam,99f2e588a5f650430afe47b21980a7cc35e9777da8b9fb963b42ec58a431a768
+2025-11-02,macubeni-dam,Macubeni Dam,S1R002,1.1,98.7,yes,https://reservoirs.earth/south-africa/reservoirs/macubeni-dam,4e6386b83c65ff088f15e05e69b6f55afae4b56e223d428f9dcce019b871412f
+2025-11-02,madikwe-dam,Madikwe Dam,A3R006,15.1,94.2,yes,https://reservoirs.earth/south-africa/reservoirs/madikwe-dam,bdbcd807f64c4dfbe9b6c96b772f5621909407b8983898c0e99d6f02846168c1
+2025-11-02,magoebaskloof-dam,Magoebaskloof Dam,B8R003,4.8,100.2,yes,https://reservoirs.earth/south-africa/reservoirs/magoebaskloof-dam,76782a6ea7beaf206bea44af73950657d7257bb16af7f0a0e8ec1b7ddf3bb026
+2025-11-02,marico-bosveld-dam,Marico-Bosveld Dam,A3R001,24.8,91.8,yes,https://reservoirs.earth/south-africa/reservoirs/marico-bosveld-dam,892af8aafaf869a58cabe06aa4ccc536b459d3857152f909b6abcfb58e494745
+2025-11-02,mearns-dam,Mearns Dam,V2R002,4.4,83.9,yes,https://reservoirs.earth/south-africa/reservoirs/mearns-dam,9e6292fbd979937706503af8ea4c5d1a705c108451accbd21ce99724c607b9ad
+2025-11-02,middel-letaba-dam,Middel-Letaba Dam,B8R007,9.1,5.3,yes,https://reservoirs.earth/south-africa/reservoirs/middel-letaba-dam,fc28f82babac551040eadf6d67f677d52c63c10adbf31288167cf3fa23f8b9a8
+2025-11-02,middelburg-dam,Middelburg Dam,B1R002,41.8,87,yes,https://reservoirs.earth/south-africa/reservoirs/middelburg-dam,2b2a2cc1076e8370079d2771b426f9246f8df4e00ed00fa3492b5877c5845769
+2025-11-02,midmar-dam,Midmar Dam,U2R001,223,94.7,yes,https://reservoirs.earth/south-africa/reservoirs/midmar-dam,33481b5479c2717e1a94a64a3956113366ce35bd8c92e405af8e9d1f5f09840e
+2025-11-02,miertjieskraal-dam,Miertjieskraal Dam,J1R004,0.8,53.7,yes,https://reservoirs.earth/south-africa/reservoirs/miertjieskraal-dam,346f0c4d34234529e528ed13ffd08f2a1e52ae8841e7b3a51c8ffae60842b572
+2025-11-02,misverstand-dam,Misverstand Dam,G1R003,5.7,100.8,yes,https://reservoirs.earth/south-africa/reservoirs/misverstand-dam,5d5f8b15c0c624e9318d826fc397c1d941630a26351dd9ef6d3f17ecd6cbe60e
+2025-11-02,mlanga-dam,Mlanga Dam,T7R001,1.3,82.6,yes,https://reservoirs.earth/south-africa/reservoirs/mlanga-dam,c1a57da1efd366c487a9f0eeb58b4eb77fae3ed4fce247b74454eedebd7d7dd0
+2025-11-02,mnyameni-dam,Mnyameni Dam,R1R004,1.8,99.8,yes,https://reservoirs.earth/south-africa/reservoirs/mnyameni-dam,4ca477662bd3567d4d9d44fa46cb949d7771f3b1aef9cb78beb7e7370dcd75bb
+2025-11-02,modjadji-dam,Modjadji Dam,B8R011,1.7,23.9,yes,https://reservoirs.earth/south-africa/reservoirs/modjadji-dam,4b99d74c1c1a1c8452d76f1ffcd2d2b3d51e0fc9bec90842c3793ae99b7ee645
+2025-11-02,molatedi-dam,Molatedi Dam,A3R004,197.4,98.3,yes,https://reservoirs.earth/south-africa/reservoirs/molatedi-dam,37eed20e02f6c6ed2d6480decfc968b86fabb95b547b82a57fda2e0b3ee5ba52
+2025-11-02,morgenstond-dam,Morgenstond Dam,W5R003,100.1,100.1,yes,https://reservoirs.earth/south-africa/reservoirs/morgenstond-dam,0c4d679182f69a622935dbdc02660063aca547a74dbb870f3866116c5aaf6e85
+2025-11-02,mutshedzi-dam,Mutshedzi Dam,A8R004,2.3,96.5,yes,https://reservoirs.earth/south-africa/reservoirs/mutshedzi-dam,4b26e00b0c7f2d6bc2dba714d8b437b3c861b5dd05801680b8d2a9b9dcbee8a3
+2025-11-02,nagle-dam,Nagle Dam,U2R002,23.3,99.9,yes,https://reservoirs.earth/south-africa/reservoirs/nagle-dam,5bd1e275885caa0e427e2e5d237f6d8df4405f00dcfcf5fe027d59679e6a21df
+2025-11-02,nahoon-dam,Nahoon Dam,R3R001,15.9,82.6,yes,https://reservoirs.earth/south-africa/reservoirs/nahoon-dam,d07347d11db4c3fddc7ae61e7540792b1dbf3407bebfea2ac4ceb814a69a6871
+2025-11-02,nandoni-dam,Nandoni Dam,A9R004,140.3,84.4,yes,https://reservoirs.earth/south-africa/reservoirs/nandoni-dam,d848e7101db0b344fee26b6fcf18540e5e221c58dc27eadb32e83b5e00506113
+2025-11-02,ncora-dam,Ncora Dam,S5R001,134.2,92.6,yes,https://reservoirs.earth/south-africa/reservoirs/ncora-dam,d56eb13f87fb062c73092ca200db30be6970a8721e676c4269f404145cbe9d16
+2025-11-02,ngotwane-dam,Ngotwane Dam,A1R001,14.1,73.7,yes,https://reservoirs.earth/south-africa/reservoirs/ngotwane-dam,ff0b6a59c772927d0ea5915d3f3f746b8f3e72bce40a91a87cc1cd9ee91c00fe
+2025-11-02,nooitgedacht-dam,Nooitgedacht Dam,X1R001,73.7,94,yes,https://reservoirs.earth/south-africa/reservoirs/nooitgedacht-dam,b1238aa93a5dbea3a83ba6fa3cead93226300598f151e2d12e26c214a6226c8d
+2025-11-02,nqadu-dam,Nqadu Dam,T3R004,1.1,81.8,yes,https://reservoirs.earth/south-africa/reservoirs/nqadu-dam,58e8434284598c8219fa14af02758c487083699398f7e7ed4b3b06e3e92e5bee
+2025-11-02,nqweba-dam,Nqweba Dam,N1R001,40,88.2,yes,https://reservoirs.earth/south-africa/reservoirs/nqweba-dam,ac48380ecb332335abc35f7cbb31243f5a2dcf05a0c5f95cc24201bf9792dbf3
+2025-11-02,nsami-dam,Nsami Dam,B8R009,13.9,63.3,yes,https://reservoirs.earth/south-africa/reservoirs/nsami-dam,2ea5ced085b0bae8364ed314522d052f472b6953fa0f5f8f82c87335ff5ec31f
+2025-11-02,ntenetyana-dam,Ntenetyana Dam,T3R003,1.4,84.6,yes,https://reservoirs.earth/south-africa/reservoirs/ntenetyana-dam,d668ca1a1177864c50c54a85424dcce761d5a379ba6f77f2a8ec4cf8d61d1b72
+2025-11-02,ntshingwayo-dam,Ntshingwayo Dam,V3R001,153.9,79.1,yes,https://reservoirs.earth/south-africa/reservoirs/ntshingwayo-dam,0169595b68bc671c2950fb0be1bb29e7095f4644284dfc2c846d825cc4550042
+2025-11-02,nuwejaars-dam,Nuwejaars Dam,P1R003,2.6,56.1,yes,https://reservoirs.earth/south-africa/reservoirs/nuwejaars-dam,103b3b405fc7a0f8201ad45e4848b690c837b4c6b76af90beeace8075fb42b2b
+2025-11-02,nwanedzi-dam,Nwanedzi Dam,A8R003,2.6,50.4,yes,https://reservoirs.earth/south-africa/reservoirs/nwanedzi-dam,aeb5abb0f1a50d04d2450b02a135e0fe753a20e35396e5e5ae5d4d0b5046a315
+2025-11-02,nzhelele-dam,Nzhelele Dam,A8R001,40.5,78.9,yes,https://reservoirs.earth/south-africa/reservoirs/nzhelele-dam,dea5348ed6cf64f1c720392023f7fb9f642022cb08097b944dd9f240fe9907e0
+2025-11-02,ohrigstad-dam,Ohrigstad Dam,B6R001,6.3,46.3,yes,https://reservoirs.earth/south-africa/reservoirs/ohrigstad-dam,b2669aa86b2d49959b658a525a32317b0fffaaccd96326cc0a722017f9e331c9
+2025-11-02,olifantsnek-dam,Olifantsnek Dam,A2R003,12.6,91.7,yes,https://reservoirs.earth/south-africa/reservoirs/olifantsnek-dam,2eb8a45c0e6182f94588b604d9bc323abbb6632f7fb32c4fb61abd6c3ad222e9
+2025-11-02,oukloof-dam,Oukloof Dam,J2R003,3.9,91.2,yes,https://reservoirs.earth/south-africa/reservoirs/oukloof-dam,ca5f92da428e249bac1294feb10f351a65d627006985a178035f490d54593624
+2025-11-02,oxkraal-dam,Oxkraal Dam,S3R003,13.2,87.2,yes,https://reservoirs.earth/south-africa/reservoirs/oxkraal-dam,ad81d91aa25e63708acc3ca777138aa54b5eadcd98c544ce96e0aa2f1b14b98c
+2025-11-02,pella-dam,Pella Dam,A3R007,1,48,yes,https://reservoirs.earth/south-africa/reservoirs/pella-dam,a38b708b1228db0ed70e9d7bcf66dbed1c3aa51e2e3dee995523acbcbff87934
+2025-11-02,pietersfontein-dam,Pietersfontein Dam,H3R002,1.5,77.2,yes,https://reservoirs.earth/south-africa/reservoirs/pietersfontein-dam,22c8037fbfba601fad889aa10864256dbf7fcc0dfce9bc230e70d69bf9c1f172
+2025-11-02,pongolapoort-dam,Pongolapoort Dam,W4R001,2198.9,91.8,yes,https://reservoirs.earth/south-africa/reservoirs/pongolapoort-dam,cb7552fb1384e81c03c667eab4b9d4f19a663daeccdc60390e7db64ca229e97c
+2025-11-02,poortjieskloof-dam,Poortjieskloof Dam,H3R001,8.2,84.6,yes,https://reservoirs.earth/south-africa/reservoirs/poortjieskloof-dam,121bb0a86019227ec69e64da7a8432ac5fa64dda859530a7e1d82dd123d13109
+2025-11-02,potchefstroom-dam,Potchefstroom Dam,C2R004,2.1,102.4,yes,https://reservoirs.earth/south-africa/reservoirs/potchefstroom-dam,79a04c0c1b45daa5887fe979b3e6960d5e899a1b0eb871d9817b228edd608e17
+2025-11-02,primkop-dam,Primkop Dam,X2R004,1.7,91.7,yes,https://reservoirs.earth/south-africa/reservoirs/primkop-dam,f3fb460b0e720fc74f60b52ba91eb7e315ef131f50397231c013133d6c90ac6b
+2025-11-02,prinsrivier-dam,Prinsrivier Dam,J1R001,0.4,17.9,yes,https://reservoirs.earth/south-africa/reservoirs/prinsrivier-dam,ae0ebb03ccb39c94f0d154637b1c98489f1d48b653d2f78dde3101a5a49c8a1c
+2025-11-02,rhenosterkop-dam,Rhenosterkop Dam,B3R005,200.1,97.8,yes,https://reservoirs.earth/south-africa/reservoirs/rhenosterkop-dam,22a83dc3f8d4c871b596b3f00d5fba7cb2b845082d907d209a3d69945bbf6489
+2025-11-02,rietspruit-dam,Rietspruit Dam,C2R007,6.9,94.7,yes,https://reservoirs.earth/south-africa/reservoirs/rietspruit-dam,2fe3aec6c83624f05d662ab35640f737b6a79f4eea6a23b86adf08ff3c81d774
+2025-11-02,rietvlei-dam,Rietvlei Dam,A2R004,12.3,100.2,yes,https://reservoirs.earth/south-africa/reservoirs/rietvlei-dam,e62250afbc9049054290019d3a81fbbfae4be1404c49bb62c12066b02fb563e2
+2025-11-02,roode-els-berg-dam,Roode Els Berg Dam,H2R001,7.6,97.8,yes,https://reservoirs.earth/south-africa/reservoirs/roode-els-berg-dam,c491d5385177790c7fc54cc663b5711ee216b1d8f79df1d7e34c8edabb5cd9df
+2025-11-02,roodefontein-dam,Roodefontein Dam,K6R001,0.9,46.8,yes,https://reservoirs.earth/south-africa/reservoirs/roodefontein-dam,71b5ce41b2f42480b483901d1192c82f522ecb93a8358739c0f9e407924a65cc
+2025-11-02,roodekopjes-dam,Roodekopjes Dam,A2R015,74.6,77.4,yes,https://reservoirs.earth/south-africa/reservoirs/roodekopjes-dam,5862a6192373b627bd8fbbb7edaf23f7f6012f807d97507ae8e3284b3244268e
+2025-11-02,roodeplaat-dam,Roodeplaat Dam,A2R009,41.4,100.5,yes,https://reservoirs.earth/south-africa/reservoirs/roodeplaat-dam,a2cf5f50385a81a623d8efb90b545d71ccba8a8cdec5901f6b4d88e00b6e608c
+2025-11-02,rooikrans-dam,Rooikrans Dam,R2R002,4.2,87.8,yes,https://reservoirs.earth/south-africa/reservoirs/rooikrans-dam,27e723b77cba8e4f328123dcb19e4429746adb99dea15783f68b12de5b295709
+2025-11-02,rust-de-winter-dam,Rust De Winter Dam,B3R001,28.5,101,yes,https://reservoirs.earth/south-africa/reservoirs/rust-de-winter-dam,41131ab7f904a55f9e8475ab57257dc472b99a1169df9c8ca484a75c2683cf03
+2025-11-02,rustfontein-dam,Rustfontein Dam,C5R003,33.8,46.8,yes,https://reservoirs.earth/south-africa/reservoirs/rustfontein-dam,140347a11efe1028297b4b5b5b24af30513befc9a0a36d113ed792ddd4f5e35b
+2025-11-02,sandile-dam,Sandile Dam,R1R001,25.7,86.5,yes,https://reservoirs.earth/south-africa/reservoirs/sandile-dam,bd5009bd7c24d0e9528cc4066a7d1a1d0c1b6fa286c1efe173e8aa2d357de888
+2025-11-02,saulspoort-dam,Saulspoort Dam,C8R004,15.3,101.9,yes,https://reservoirs.earth/south-africa/reservoirs/saulspoort-dam,d555d795b00ad34b8e507b04047f8137ea6cd1e2b40c72bc10357e299eae9a36
+2025-11-02,sehujwane-dam,Sehujwane Dam,A3R005,2.8,78.1,yes,https://reservoirs.earth/south-africa/reservoirs/sehujwane-dam,d59c101cee6669615b7d0c2cf87c3e17f18ca7705d01e030c4e814079bd3b52c
+2025-11-02,setumo-dam,Setumo Dam,D4R004,20.3,97.6,yes,https://reservoirs.earth/south-africa/reservoirs/setumo-dam,ae7feeec83644a3668f2229a9e741e6ac0af50029e2377080c89a6e0c3b9a4ae
+2025-11-02,spioenkop-dam,Spioenkop Dam,V1R001,271,100.1,yes,https://reservoirs.earth/south-africa/reservoirs/spioenkop-dam,8888b97fcea695f704f66bdce79127513f4c8a8640af9eaa93a5c269837e253e
+2025-11-02,spitskop-dam,Spitskop Dam,C3R002,48.1,83,yes,https://reservoirs.earth/south-africa/reservoirs/spitskop-dam,14b2a57beca41e79d9dc36a725c330354ba68ba05bab7ac2e12639a7727294b0
+2025-11-02,spring-grove-dam,Spring Grove Dam,V2R003,99.7,71.6,yes,https://reservoirs.earth/south-africa/reservoirs/spring-grove-dam,8d4a01002903582733bd45ea99a3d58cc715034a68e9aa423933d594fa7c234d
+2025-11-02,steenbras-lower-dam,Steenbras-Lower Dam,G4R001,30.4,89.6,yes,https://reservoirs.earth/south-africa/reservoirs/steenbras-lower-dam,7f711a0f35b0416196c9a9665d663f217f9428cbe8a372fca63ad7c06dc34213
+2025-11-02,steenbras-upper-dam,Steenbras-Upper Dam,G4R007,31.8,99.7,yes,https://reservoirs.earth/south-africa/reservoirs/steenbras-upper-dam,b3dce087e781bd4fe995fbc141e55d2c336ec4b7e8d1dd5315039eef747b777a
+2025-11-02,sterkfontein-dam,Sterkfontein Dam,C8R003,2593.4,99.1,yes,https://reservoirs.earth/south-africa/reservoirs/sterkfontein-dam,e01e3f4225c57491eef0caf3204aa720bdbb59f9ae77a10e8bb95b80447cc2e8
+2025-11-02,stettynskloof-dam,Stettynskloof Dam,H1R002,14.5,98.1,yes,https://reservoirs.earth/south-africa/reservoirs/stettynskloof-dam,c9c816d2510a2fbbafbf21807419b9c32ac44bddd7c0f50ec0ed427b3607de04
+2025-11-02,stompdrift-dam,Stompdrift Dam,J3R002,24.1,52,yes,https://reservoirs.earth/south-africa/reservoirs/stompdrift-dam,710be7460df083221396f4e4851b9f952aeb6b2c0552f57c3ff83221ea4c4963
+2025-11-02,swartruggens-dam,Swartruggens Dam,A2R013,0.5,101.4,yes,https://reservoirs.earth/south-africa/reservoirs/swartruggens-dam,f9e807d2048c7c153f046dad5797eab86094c24a55e9756ef5496cbbcedeef33
+2025-11-02,taung-dam,Taung Dam,C3R006,60.7,98.8,yes,https://reservoirs.earth/south-africa/reservoirs/taung-dam,dc943c2dab73670770ef0205f7ba5f67dc951b3dfd80e02e112cae817d5a2be3
+2025-11-02,thabina-dam,Thabina Dam,B8R012,3,88.5,yes,https://reservoirs.earth/south-africa/reservoirs/thabina-dam,b06c7d856b4f8e945220fe9708cfbec3f23efb235d6ac4e855fc81a36a512408
+2025-11-02,theewaterskloof-dam,Theewaterskloof Dam,H6R001,384.4,80.2,yes,https://reservoirs.earth/south-africa/reservoirs/theewaterskloof-dam,144e20b34d39c80adc674814b3b17fc9f542076317cfa1d0e9b5e4d0e0fae9b4
+2025-11-02,tierkloof-dam,Tierkloof Dam,J2R008,0,51.8,yes,https://reservoirs.earth/south-africa/reservoirs/tierkloof-dam,d52504d3feb0a02d1bae0b9c940860df1d868e99cd20e9400b341ce1257f794b
+2025-11-02,tierpoort-dam,Tierpoort Dam,C5R001,30.8,90.6,yes,https://reservoirs.earth/south-africa/reservoirs/tierpoort-dam,aa274d2fc11c6c95cc850fa78dc5a223763849747fc7bebc0f22c0f7e74fa50d
+2025-11-02,tonteldoos-dam,Tonteldoos Dam,B4R001,0.2,100.5,yes,https://reservoirs.earth/south-africa/reservoirs/tonteldoos-dam,1c1eb80f77dacdcfd9cf941c1231897f431996c55da6c2dc68622b7980780302
+2025-11-02,tours-dam,Tours Dam,B7R003,5.7,93.4,yes,https://reservoirs.earth/south-africa/reservoirs/tours-dam,ab3f756e3cb5243ec801933d61dc863302035812f3d45607f486aba1678cb481
+2025-11-02,tsojana-dam,Tsojana Dam,S5R002,12.3,99.8,yes,https://reservoirs.earth/south-africa/reservoirs/tsojana-dam,dae13c4d85af5012d664a3464fd27514990778ab0bfced10b41a2d6daa4ba4e4
+2025-11-02,tzaneen-dam,Tzaneen Dam,B8R005,76.4,66.8,yes,https://reservoirs.earth/south-africa/reservoirs/tzaneen-dam,f3dfa62f10dcf082df3c604a51017d75ec83e56c03ac46d6133779a289aef44a
+2025-11-02,umtata-dam,Umtata Dam,T2R001,236.4,96.6,yes,https://reservoirs.earth/south-africa/reservoirs/umtata-dam,4b13e73bb725a6e7f50ce5c927d2aa91934d7a26722b87e53440f20205444491
+2025-11-02,vaal-dam,Vaal Dam,C1R001,2589.2,101.1,yes,https://reservoirs.earth/south-africa/reservoirs/vaal-dam,a5ffe5641c7a041e4f4caccf28a705d76ab3c3382e1af282a716bd392e16914d
+2025-11-02,vaalharts-weir-dam,Vaalharts Weir Dam,C9R001,44.9,88.5,yes,https://reservoirs.earth/south-africa/reservoirs/vaalharts-weir-dam,0559f1e16e554530735da19d4577d7dcc8975412eed6016d3346f2aacca31292
+2025-11-02,vaalkop-dam,Vaalkop Dam,A2R014,26.1,50.8,yes,https://reservoirs.earth/south-africa/reservoirs/vaalkop-dam,3d3604c29f37203f9651f6da0e9b861dbe63f3ea651f3274fead7d6dad7f0808
+2025-11-02,vanderkloof-dam,Vanderkloof Dam,D3R003,2955.1,94.2,yes,https://reservoirs.earth/south-africa/reservoirs/vanderkloof-dam,11440b329cf838f0207541f515d1d8a57b7af49f7c75de7e42e320b9c82a3929
+2025-11-02,vergelegen-dam,Vergelegen Dam,B8R004,0.2,74,yes,https://reservoirs.earth/south-africa/reservoirs/vergelegen-dam,0232a201f45541c04f1a0fadfe49f2fd232a14af0cf2f83a08e992cdf0a2e384
+2025-11-02,vlugkraal-dam,Vlugkraal Dam,B4R002,0.4,97.5,yes,https://reservoirs.earth/south-africa/reservoirs/vlugkraal-dam,f7aa434b24ac765f8120a66a11e6ecb4748dfd413f6025c40d897401af0aab8f
+2025-11-02,voelvlei-dam,Voelvlei Dam,G1R001,153,96.5,yes,https://reservoirs.earth/south-africa/reservoirs/voelvlei-dam,d7c6ea3bcfd0d5afbe35163e7c8123c2b8d5c00ee429c55a5ddf1169b8a7fd96
+2025-11-02,vondo-dam,Vondo Dam,A9R002,27.7,90.8,yes,https://reservoirs.earth/south-africa/reservoirs/vondo-dam,29513b3ec686aa0739eded0c6e7f92cfbc5d74cadebbbcf8e1ce90310939bbac
+2025-11-02,vygeboom-dam,Vygeboom Dam,X1R003,76.1,97.5,yes,https://reservoirs.earth/south-africa/reservoirs/vygeboom-dam,2aecce652ab6289d31cd7712b4208ee0cb8b80ff6bdffc8858a3c3a7fff0c6fb
+2025-11-02,wagendrift-dam,Wagendrift Dam,V7R001,54.7,97.8,yes,https://reservoirs.earth/south-africa/reservoirs/wagendrift-dam,d64b1831269f3e69539e688cff29519bcdc1000282b006686e3067c3b1465666
+2025-11-02,waterdown-dam,Waterdown Dam,S3R001,37.1,98.9,yes,https://reservoirs.earth/south-africa/reservoirs/waterdown-dam,35ff1afb031917013fb725c87c895f1f8d91a695320a5f5e4074119b87d45be6
+2025-11-02,welbedacht-dam,Welbedacht Dam,D2R004,5.6,102.4,yes,https://reservoirs.earth/south-africa/reservoirs/welbedacht-dam,b88cb7344be2dbaaef8129f5abdcd7a66968260c4549968a1a90ce581b606258
+2025-11-02,wemmershoek-dam,Wemmershoek Dam,G1R002,48.9,83.1,yes,https://reservoirs.earth/south-africa/reservoirs/wemmershoek-dam,43555e02ac2366b9370ef22a4ee32bbe83cd7478023ec20551b0428a7f8d5fa8
+2025-11-02,westoe-dam,Westoe Dam,W5R002,37.3,62.1,yes,https://reservoirs.earth/south-africa/reservoirs/westoe-dam,781518452b9bed10b4870d627ca3ed6979c65e2c483fb39d22b05a83c9edad29
+2025-11-02,witbank-dam,Witbank Dam,B1R001,102.4,98.4,yes,https://reservoirs.earth/south-africa/reservoirs/witbank-dam,c0bb82becc7a8d7471977b284f8e361b4acff8e22ba28de414074262586d2c49
+2025-11-02,witklip-dam,Witklip Dam,X2R003,10.6,84.3,yes,https://reservoirs.earth/south-africa/reservoirs/witklip-dam,95ee1eb308376e673de00daedee22ab9ba0400f309d6b95ab1f49a388db65c42
+2025-11-02,wolwedans-dam,Wolwedans Dam,K2R002,18.4,74.6,yes,https://reservoirs.earth/south-africa/reservoirs/wolwedans-dam,6f029821e74370b75d858dfb71c6f3559f2cc4a1a09ac8e913038c80ebd7add2
+2025-11-02,woodstock-dam,Woodstock Dam,V1R003,322.8,90.8,yes,https://reservoirs.earth/south-africa/reservoirs/woodstock-dam,05aebfdeed1d9248c0142d7436d0b9ed367244dc7a6fd572ba5d620cbb6a9843
+2025-11-02,wriggleswade-dam,Wriggleswade Dam,S6R002,91.1,99.6,yes,https://reservoirs.earth/south-africa/reservoirs/wriggleswade-dam,4d90d74f377e765a8b8273ad806fbf8a3bfb55e40b370d041a25488df36f6c44
+2025-11-02,xonxa-dam,Xonxa Dam,S1R001,112.1,96.3,yes,https://reservoirs.earth/south-africa/reservoirs/xonxa-dam,d02926295fddca989966ff9e3538f4345f411f4617fc5bcee8acd9a200c99d70
