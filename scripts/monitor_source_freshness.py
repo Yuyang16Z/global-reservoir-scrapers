@@ -86,6 +86,14 @@ EXCUSED: dict[str, str] = {
         "2026-10-12 still carry generated_at 2026-09-22; owner kept the excuse. "
         "Review by 2026-11-26."
     ),
+    "turkey/koski": (
+        "www.koski.gov.tr has not answered since the 2026-10-19 capture (dam values to "
+        "2026-10-16): the 2026-10-26 run was cancelled, both manual runs on 2026-10-29 "
+        "failed or were cancelled, and the 2026-11-02 run retrieved no page. From the "
+        "project's own machine the connection also times out (2026-11-05, 2026-11-06). The "
+        "weekly run keeps probing, so a returning site shows up here as a fresh date. "
+        "Reported but not failed. Excused 2026-11-06. Review by 2026-12-07."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
