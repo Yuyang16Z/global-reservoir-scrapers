@@ -14,7 +14,9 @@ source's committed data, and compares both against
 never less than DATE_RESOLUTION_FLOOR_HOURS, because observation dates are read
 at day resolution and a shorter budget cannot be judged at that resolution.
 For a source registered with `"publication_weekdays_only": true` the age counts
-only Monday-Friday hours, so a Friday reading is not overdue on Monday.
+only Monday-Friday hours, so a Friday reading is not overdue on Monday. Dates
+after the source's own current date (in its registry timezone) are reported as
+`dates_after_today` but do not count as the newest observation.
 
 Exit codes:
   0  every source fresh (or explicitly excused)
@@ -33,6 +35,7 @@ import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "config" / "windowed_sources.json"
@@ -149,13 +152,38 @@ def newest_run(data_dir: Path) -> dict:
     return latest
 
 
-def newest_observation(data_dir: Path) -> str | None:
+def local_today(tz_name: str | None, now: datetime) -> str:
+    """The source's own calendar date at `now`, from its registry timezone."""
+    try:
+        return now.astimezone(ZoneInfo(tz_name)).date().isoformat()
+    except (TypeError, ValueError, KeyError):  # missing or unknown zone
+        # The latest date anywhere on Earth, so no current date is skipped.
+        return (now.astimezone(timezone.utc) + timedelta(hours=14)).date().isoformat()
+
+
+def newest_observation(data_dir: Path, today: str | None = None,
+                       ahead: set[str] | None = None) -> str | None:
     """Newest ISO date visible in this source's committed data.
 
     Reads CSV date-ish columns where possible and falls back to dated
     filenames, so it works across the repo's differing table layouts.
+    Dates after `today`, the source's own date, are not counted: CNDC Bolivia
+    serves programmed values for the coming days, and a reading stamped in the
+    future would make a stopped source look fresh. They are collected in `ahead`.
     """
     best: str | None = None
+
+    def consider(d: str | None) -> None:
+        nonlocal best
+        if not d:
+            return
+        if today is not None and d > today:
+            if ahead is not None:
+                ahead.add(d)
+            return
+        if best is None or d > best:
+            best = d
+
     for csv_path in sorted(data_dir.rglob("*.csv")):
         if "run_logs" in csv_path.parts:
             continue
@@ -176,9 +204,7 @@ def newest_observation(data_dir: Path) -> str | None:
                     continue
                 for row in reader:
                     for c in date_cols:
-                        d = cell_date(row.get(c) or "")
-                        if d and (best is None or d > best):
-                            best = d
+                        consider(cell_date(row.get(c) or ""))
         except (OSError, csv.Error, UnicodeDecodeError):
             continue
     if best is None:
@@ -187,9 +213,7 @@ def newest_observation(data_dir: Path) -> str | None:
         for p in data_dir.rglob("*"):
             if "run_logs" in p.parts:
                 continue
-            d = cell_date(p.name)
-            if d and (best is None or d > best):
-                best = d
+            consider(cell_date(p.name))
     return best
 
 
@@ -216,6 +240,7 @@ def freshness_targets(source: dict) -> list[dict]:
                 "publication_cadence_hours": source.get("publication_cadence_hours"),
                 "max_schedule_gap_hours": source.get("max_schedule_gap_hours"),
                 "publication_weekdays_only": source.get("publication_weekdays_only", False),
+                "timezone": source.get("timezone"),
             }
         ]
     targets = []
@@ -237,6 +262,7 @@ def freshness_targets(source: dict) -> list[dict]:
                     "publication_weekdays_only",
                     source.get("publication_weekdays_only", False),
                 ),
+                "timezone": component.get("timezone", source.get("timezone")),
             }
         )
     return targets
@@ -274,7 +300,8 @@ def main() -> int:
             grace = float(target.get("max_schedule_gap_hours") or cadence)
             budget_h = max(cadence * STALE_CADENCE_FACTOR + grace, DATE_RESOLUTION_FLOOR_HOURS)
 
-            obs = newest_observation(data_dir)
+            ahead: set[str] = set()
+            obs = newest_observation(data_dir, local_today(target.get("timezone"), now), ahead)
             obs_dt = parse_iso(obs) if obs else None
             obs_age_h = (now - obs_dt).total_seconds() / 3600 if obs_dt else None
             weekdays_only = bool(target.get("publication_weekdays_only"))
@@ -297,6 +324,8 @@ def main() -> int:
                 "latest_run_age_hours": round(run_age_h, 1) if run_age_h is not None else None,
                 "recent_run_statuses": run.get("recent_statuses"),
             }
+            if ahead:
+                row["dates_after_today"] = sorted(ahead)
             if obs_age_h is None:
                 row["state"] = "no_observation_date"
             if sid in EXCUSED:
@@ -316,6 +345,8 @@ def main() -> int:
             budget_s = f"{budget/24:.1f}d" if budget is not None else "-"
             flag = "STALE" if r["state"] == "stale" else r["state"]
             note = "  (weekdays only)" if r.get("age_counts") == "weekdays" else ""
+            later = r.get("dates_after_today")
+            note += f"  ({len(later)} later date(s) not counted, to {later[-1]})" if later else ""
             note += "  (excused)" if "excused" in r else ""
             print(f"{r['source_id']:<{width}}  {flag:<20} "
                   f"latest={r.get('latest_observation') or '-':<12} "
