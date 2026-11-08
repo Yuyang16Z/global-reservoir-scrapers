@@ -38,14 +38,19 @@ Known quirks:
   frozen file until the freshness monitor flagged the source on 2026-10-29.
   The dashboard is now found through that page's own link, and the old copies
   are not read: a frozen fallback that answers hides exactly this failure.
-- The page's weekly table (Major dams | DD/MM/YYYY | Previous week | % year)
-  repeats the dashboard's current and previous-week percentages. With
+- The page's weekly table (Major dams | D/M/YYYY | Previous week | % year)
+  repeats the dashboard's current and previous-week percentages. The day is
+  printed without a leading zero ("2/11/2026" beside "12/10/2026"). With
   IMPORT_URL set to a saved copy of the page, e.g. an Internet Archive capture,
   that table is read instead of today's dashboard, to recover a missed week.
+- From the 2026-11-02 dashboard the PDF holds images only, with no text to
+  extract, so both runs that week failed. When the PDF gives no date or no
+  dam rows, the run reads the page's weekly table instead. A page whose table
+  cannot be read either is kept under raw/ for inspection.
 
 Outputs (under OUTPUT_DIR, default <script_dir>/outputs):
   raw/damlevels_<observation-date>.pdf
-  raw/damlevels_page_<observation-date>.html          (IMPORT_URL runs)
+  raw/damlevels_page_<observation-date>.html          (when the page table is read)
   metadata/southafrica_capetown_wcwss_reservoirs.csv
   timeseries/southafrica_capetown_wcwss_weekly.csv   (merged, idempotent)
   run_logs/<stamp>_summary.json
@@ -153,17 +158,24 @@ def strip_accents(s: str) -> str:
                    if unicodedata.category(c) != "Mn")
 
 
-def dashboard_pdf_urls() -> list[str]:
-    """The dashboard PDF that SOURCE_PAGE links today, then the link it carried before."""
-    urls: list[str] = []
+def fetch_page() -> requests.Response | None:
+    """SOURCE_PAGE, or None when it cannot be read."""
     try:
         r = requests.get(SOURCE_PAGE, headers=HEADERS, timeout=(CONNECT_TIMEOUT, TIMEOUT))
         r.raise_for_status()
-        urls += [urljoin(r.url, html_mod.unescape(link)) for link in PDF_LINK_RE.findall(r.text)]
-        if not urls:
-            print(f"[WARN] no dashboard link on {SOURCE_PAGE}", file=sys.stderr, flush=True)
+        return r
     except requests.RequestException as exc:
         print(f"[WARN] dam-levels page {SOURCE_PAGE}: {exc}", file=sys.stderr, flush=True)
+        return None
+
+
+def dashboard_pdf_urls(page: requests.Response | None) -> list[str]:
+    """The dashboard PDF that the page links today, then the link it carried before."""
+    urls: list[str] = []
+    if page is not None:
+        urls += [urljoin(page.url, html_mod.unescape(link)) for link in PDF_LINK_RE.findall(page.text)]
+        if not urls:
+            print(f"[WARN] no dashboard link on {SOURCE_PAGE}", file=sys.stderr, flush=True)
     urls.append(KNOWN_PDF_URL)
     return list(dict.fromkeys(urls))
 
@@ -313,7 +325,7 @@ def read_capacities() -> dict[str, float]:
 
 def parse_weekly_table(page: str, fetched_at: str,
                        capacities: dict[str, float]) -> tuple[str | None, list[dict]]:
-    """The page's weekly table: Major dams | DD/MM/YYYY | Previous week | % year.
+    """The page's weekly table: Major dams | D/M/YYYY | Previous week | % year.
 
     The page prints percentages only, so the volume uses the capacity the
     dashboards printed for the same dam.
@@ -325,7 +337,7 @@ def parse_weekly_table(page: str, fetched_at: str,
         if not cells or len(cells[0]) < 3:
             continue
         head = cells[0]
-        if not re.fullmatch(r"\d{2}/\d{2}/\d{4}", head[1]) or "previous week" not in head[2].lower():
+        if not re.fullmatch(r"\d{1,2}/\d{1,2}/\d{4}", head[1]) or "previous week" not in head[2].lower():
             continue
         obs = datetime.strptime(head[1], "%d/%m/%Y").date()
         rows: list[dict] = []
@@ -411,20 +423,31 @@ def main() -> int:
     log = {"started_at": fetched_at, "source": "southafrica/capetown_wcwss",
            "page": SOURCE_PAGE, "output_dir": str(OUTPUT_DIR), "status": "started",
            "errors": []}
+    page: requests.Response | None = None
+    stored = False
     try:
+        tmp: Path | None = None
         if import_url:
             log["import_url"] = import_url
-            r = requests.get(import_url, headers=HEADERS, timeout=(CONNECT_TIMEOUT, TIMEOUT))
-            r.raise_for_status()
-            body = r.content
-            obs_date, rows = parse_weekly_table(r.text, fetched_at, read_capacities())
+            page = requests.get(import_url, headers=HEADERS, timeout=(CONNECT_TIMEOUT, TIMEOUT))
+            page.raise_for_status()
+            log["read_from"] = "page_table"
+            obs_date, rows = parse_weekly_table(page.text, fetched_at, read_capacities())
         else:
-            log["urls"] = dashboard_pdf_urls()
+            page = fetch_page()
+            log["urls"] = dashboard_pdf_urls(page)
             body, fetched_url = fetch_pdf(log["urls"])
             log["fetched_url"] = fetched_url
             tmp = RAW_DIR / f"damlevels_{utc_stamp()}.pdf"
             tmp.write_bytes(body)
+            log["read_from"] = "pdf"
             obs_date, rows = parse_dashboard(tmp, fetched_at)
+            if (not obs_date or not rows) and page is not None:
+                # From the 2026-11-02 dashboard the PDF holds images only.
+                print("[WARN] no date or dam rows in the dashboard PDF; reading the page table",
+                      file=sys.stderr, flush=True)
+                log["read_from"] = "page_table"
+                obs_date, rows = parse_weekly_table(page.text, fetched_at, read_capacities())
         log["observation_date"] = obs_date
         log["rows_parsed"] = len(rows)
         if not obs_date:
@@ -432,16 +455,20 @@ def main() -> int:
         if not rows:
             raise RuntimeError("no dam rows parsed from the dashboard table")
 
-        if import_url:
-            final = RAW_DIR / f"damlevels_page_{obs_date}.html"
-            final.write_bytes(body)
-        else:
-            final = RAW_DIR / f"damlevels_{obs_date}.pdf"
-            if final.exists():
+        saved: list[Path] = []
+        if log["read_from"] == "page_table":
+            saved.append(RAW_DIR / f"damlevels_page_{obs_date}.html")
+            saved[-1].write_bytes(page.content)
+        if tmp is not None:
+            saved.append(RAW_DIR / f"damlevels_{obs_date}.pdf")
+            if saved[-1].exists():
                 tmp.unlink()
             else:
-                tmp.rename(final)
-        print(f"[SAVE] {final} ({len(body)}B)", flush=True)
+                tmp.rename(saved[-1])
+        stored = True
+        final = saved[0]
+        for path in saved:
+            print(f"[SAVE] {path} ({path.stat().st_size}B)", flush=True)
 
         added, updated = merge_csv(TS_DIR / "southafrica_capetown_wcwss_weekly.csv",
                                    TS_COLUMNS, rows,
@@ -488,6 +515,11 @@ def main() -> int:
         log["status"] = "error"
         log["errors"].append({"message": str(exc),
                               "traceback": traceback.format_exc()})
+        if page is not None and not stored:
+            # The workflow commits raw/ from a failed run, so the page can be inspected.
+            kept = RAW_DIR / f"damlevels_page_{utc_stamp()}.html"
+            kept.write_bytes(page.content)
+            log["page_file"] = kept.name
         log["finished_at"] = utc_now_iso()
         save_summary(log)
         print(f"[ERROR] {exc}", file=sys.stderr)

@@ -388,19 +388,21 @@ class CapeTownFallbackTests(unittest.TestCase):
         page = mock.Mock(text=CAPE_TOWN_PAGE, url=capetown.SOURCE_PAGE)
         page.raise_for_status.return_value = None
         with mock.patch.object(capetown.requests, "get", return_value=page):
-            urls = capetown.dashboard_pdf_urls()
+            urls = capetown.dashboard_pdf_urls(capetown.fetch_page())
         self.assertEqual(urls, [capetown.KNOWN_PDF_URL])  # the page links that same file
         moved = mock.Mock(text='<a href="/media/abc123/damlevels.pdf">x</a>', url=capetown.SOURCE_PAGE)
         moved.raise_for_status.return_value = None
         with mock.patch.object(capetown.requests, "get", return_value=moved):
-            urls = capetown.dashboard_pdf_urls()
+            urls = capetown.dashboard_pdf_urls(capetown.fetch_page())
         self.assertEqual(urls, ["https://www.capetown.gov.za/media/abc123/damlevels.pdf",
                                 capetown.KNOWN_PDF_URL])
 
     def test_an_unreadable_page_falls_back_to_the_known_link_only(self):
         with mock.patch.object(capetown.requests, "get",
                                side_effect=requests.ConnectionError("page down")):
-            self.assertEqual(capetown.dashboard_pdf_urls(), [capetown.KNOWN_PDF_URL])
+            page = capetown.fetch_page()
+        self.assertIsNone(page)
+        self.assertEqual(capetown.dashboard_pdf_urls(page), [capetown.KNOWN_PDF_URL])
 
     def test_fetch_moves_to_the_next_link_after_its_attempts(self):
         payload = b"%PDF-" + b"x" * capetown.PDF_MIN_BYTES
@@ -444,6 +446,50 @@ class CapeTownFallbackTests(unittest.TestCase):
             with (root / "timeseries" / "southafrica_capetown_wcwss_weekly.csv").open() as fh:
                 dates = sorted({r["measurement_date"] for r in csv.DictReader(fh)})
         self.assertEqual(dates, ["2026-10-19", "2026-10-26"])
+
+    def test_the_day_is_printed_without_a_leading_zero(self):
+        page = CAPE_TOWN_PAGE.replace("26/10/2026", "2/11/2026")  # as the page has it since 2026-11-02
+        obs, rows = capetown.parse_weekly_table(page, "t", CAPE_TOWN_CAPACITIES)
+        self.assertEqual(obs, "2026-11-02")
+        self.assertEqual(sorted({r["measurement_date"] for r in rows}), ["2026-10-26", "2026-11-02"])
+
+    def run_scheduled(self, page_html):
+        """A scheduled run whose dashboard PDF has no text, like the 2026-11-02 one."""
+        page = mock.Mock(text=page_html, content=page_html.encode("utf-8"), url=capetown.SOURCE_PAGE)
+        page.raise_for_status.return_value = None
+        pdf = mock.Mock(content=b"%PDF-" + b"x" * capetown.PDF_MIN_BYTES)
+        pdf.raise_for_status.return_value = None
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        meta = root / "metadata" / "southafrica_capetown_wcwss_reservoirs.csv"
+        meta.parent.mkdir(parents=True)
+        meta.write_text("reservoir_id,capacity_ml\n" + "".join(
+            f"{k},{v:g}\n" for k, v in CAPE_TOWN_CAPACITIES.items()), encoding="utf-8")
+        with mock.patch.multiple(capetown, OUTPUT_DIR=root, RAW_DIR=root / "raw",
+                                 TS_DIR=root / "timeseries", META_DIR=root / "metadata",
+                                 RUN_LOG_DIR=root / "run_logs"), \
+                mock.patch.dict("os.environ", {"IMPORT_URL": ""}), \
+                mock.patch.object(capetown.requests, "get", side_effect=[page, pdf]), \
+                mock.patch.object(capetown, "parse_dashboard", return_value=(None, [])):
+            code = capetown.main()
+        log = json.loads(next((root / "run_logs").glob("*_summary.json")).read_text(encoding="utf-8"))
+        return code, root, log
+
+    def test_a_dashboard_without_text_is_read_from_the_page_table(self):
+        code, root, log = self.run_scheduled(CAPE_TOWN_PAGE.replace("26/10/2026", "2/11/2026"))
+        self.assertEqual((code, log["status"], log["read_from"]), (0, "ok", "page_table"))
+        self.assertEqual(sorted(p.name for p in (root / "raw").iterdir()),
+                         ["damlevels_2026-11-02.pdf", "damlevels_page_2026-11-02.html"])
+        with (root / "timeseries" / "southafrica_capetown_wcwss_weekly.csv").open() as fh:
+            dates = sorted({r["measurement_date"] for r in csv.DictReader(fh)})
+        self.assertEqual(dates, ["2026-10-26", "2026-11-02"])
+
+    def test_a_page_without_the_table_is_kept_for_inspection(self):
+        code, root, log = self.run_scheduled('<a href="/media/nejl51ki/damlevels.pdf">x</a>')
+        self.assertEqual((code, log["status"]), (1, "error"))
+        self.assertTrue((root / "raw" / log["page_file"]).exists())
+        self.assertEqual(len(list((root / "raw").glob("damlevels_2*.pdf"))), 1)  # the PDF, by stamp
 
     def test_dashboard_date_variants(self):
         for text, expected in (
