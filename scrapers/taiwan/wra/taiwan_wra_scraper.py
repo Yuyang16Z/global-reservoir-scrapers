@@ -45,6 +45,12 @@ BASIC_INFO_URL = (
 SOURCE_URL = "https://data.gov.tw/en/datasets/45501"
 SOURCE_AGENCY = "WRA"
 TAIWAN_TZ = timezone(timedelta(hours=8))
+# Intraday readings can be stamped a few minutes ahead of the fetch: the
+# 24:00 reading arrives as next day 00:00 just before midnight (6.6 minutes
+# ahead on 2026-05-06). The source has also served readings stamped 7 hours
+# (2026-07-01, thirteen island reservoirs) and 70 hours (2026-09-10) after the
+# fetch. A reading stamped later than this after the fetch is not kept.
+FUTURE_OBSERVATION_TOLERANCE = timedelta(hours=1)
 REQUEST_ATTEMPTS = 3
 REQUEST_BACKOFFS = (2, 8, 20)
 
@@ -341,7 +347,16 @@ def normalize_current_water_level_intraday(
     basic_info_map: dict[str, dict],
     current_daily_ops_map: dict[str, dict],
     manual_overrides: dict[str, dict],
+    fetched_tw: datetime | None = None,
+    rejected: list[dict] | None = None,
 ) -> list[dict]:
+    """Normalized intraday rows; a reading stamped after the fetch goes to `rejected`.
+
+    Observation times are naive Taiwan time, so they are compared with the
+    fetch time in Taiwan time. The raw payload keeps every reading.
+    """
+    latest = (fetched_tw or datetime.now(TAIWAN_TZ)).astimezone(TAIWAN_TZ).replace(tzinfo=None)
+    latest += FUTURE_OBSERVATION_TOLERANCE
     out: list[dict] = []
     for row in rows:
         rid = get_id(row)
@@ -351,6 +366,14 @@ def normalize_current_water_level_intraday(
         date = ""
         if obs_time:
             date = str(obs_time)[:10]
+            try:
+                stamped = datetime.fromisoformat(str(obs_time)[:19])
+            except ValueError:
+                stamped = None
+            if stamped is not None and stamped > latest:
+                if rejected is not None:
+                    rejected.append({"reservoir_id": rid, "observation_time": str(obs_time)})
+                continue
         out.append({
             "reservoir_id": rid,
             "reservoir_name": best_name(rid, get_name(row), current_daily_ops_map, basic_info_map, manual_overrides),
@@ -785,12 +808,22 @@ def main() -> int:
 
         try:
             water_level_rows = get_json(session, CURRENT_WATER_LEVEL_URL)
+            rejected_future: list[dict] = []
             intraday_rows = normalize_current_water_level_intraday(
                 water_level_rows if isinstance(water_level_rows, list) else [],
                 basic_info_map,
                 current_daily_ops_map,
                 manual_overrides,
+                fetched_tw=datetime.now(TAIWAN_TZ),
+                rejected=rejected_future,
             )
+            if rejected_future:
+                summary["rejected_future_intraday"] = rejected_future
+                emit_workflow_warning(
+                    f"Dropped {len(rejected_future)} intraday reading(s) stamped more than an "
+                    "hour after the fetch; raw/ keeps the source payload.",
+                    title="Taiwan WRA future-dated readings",
+                )
             if save_raw:
                 water_level_path = dirs["raw"] / f"current_water_level_{today_tw}.json"
                 save_json(water_level_path, water_level_rows)
