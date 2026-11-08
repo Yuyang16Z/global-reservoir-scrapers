@@ -54,6 +54,12 @@ API-first scraper for Taiwan reservoir data from the Water Resources Agency (WRA
   observations actually archived by the project and does not invent gaps.
 - The current water-level dataset is also written out as an intraday table so the
   hourly observations are preserved instead of only keeping one latest snapshot per reservoir.
+- A reading stamped more than an hour after the fetch is left out of the intraday
+  table and listed as `rejected_future_intraday` in the run summary; `raw/` keeps it.
+  The source has served such readings 7 hours ahead (2026-07-01, thirteen Kinmen
+  reservoirs) and 70 hours ahead (2026-09-10). Both were removed from the stored
+  intraday tables. A 24:00 reading published as next-day 00:00 a few minutes
+  before midnight is kept.
 - `lat` / `lon` are populated from `reservoir_coords.csv`, a static lookup derived
   from the WRA GIS `ressub` (storage-area) and `reservoir` (catchment) shapefiles.
   72 of 74 reservoirs currently resolve; the remaining 2 (珠螺水壩, 儲水沃上壩 in

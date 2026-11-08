@@ -358,6 +358,27 @@ class TaiwanFallbackTests(unittest.TestCase):
         second_warn.assert_not_called()
 
 
+class TaiwanFutureReadingTests(unittest.TestCase):
+    """The 2026-09-10 14:39 fetch carried a reading stamped 2026-09-13T13:00."""
+
+    def test_a_reading_stamped_after_the_fetch_is_dropped(self):
+        def reading(rid, stamp):
+            return {"ReservoirIdentifier": rid, "ObservationTime": stamp,
+                    "EffectiveWaterStorageCapacity": "3386.75"}
+
+        rejected = []
+        rows = taiwan.normalize_current_water_level_intraday(
+            [reading("10405", "2026-09-10T13:00:00"), reading("10405", "2026-09-13T13:00:00"),
+             reading("10201", "2026-09-10T15:00:00")],  # 21 minutes ahead, like a 24:00 reading
+            {}, {}, {},
+            fetched_tw=datetime(2026, 9, 10, 6, 39, 27, tzinfo=timezone.utc),
+            rejected=rejected,
+        )
+        self.assertEqual(sorted((r["reservoir_id"], r["observation_time"]) for r in rows),
+                         [("10201", "2026-09-10T15:00:00"), ("10405", "2026-09-10T13:00:00")])
+        self.assertEqual(rejected, [{"reservoir_id": "10405", "observation_time": "2026-09-13T13:00:00"}])
+
+
 # The weekly table of the City's "This week's dam levels" page as served on
 # 2026-10-29, zero-width spaces included; the daily table above it is not weekly.
 CAPE_TOWN_PAGE = """<p>See the reading for 29 October 2026.</p>
