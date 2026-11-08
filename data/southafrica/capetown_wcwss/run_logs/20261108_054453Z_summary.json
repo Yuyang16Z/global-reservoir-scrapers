@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-08 05:44:50Z",
+  "source": "southafrica/capetown_wcwss",
+  "page": "https://www.capetown.gov.za/family-and-home/residential-utility-services/residential-water-and-sanitation-services/this-weeks-dam-levels/",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/southafrica/capetown_wcwss",
+  "status": "error",
+  "errors": [
+    {
+      "message": "no dashboard date parsed",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/scrapers/southafrica/capetown_wcwss/southafrica_capetown_wcwss_scraper.py\", line 431, in main\n    raise RuntimeError(\"no dashboard date parsed\")\nRuntimeError: no dashboard date parsed\n"
+    }
+  ],
+  "import_url": "https://www.capetown.gov.za/family-and-home/residential-utility-services/residential-water-and-sanitation-services/this-weeks-dam-levels/",
+  "observation_date": null,
+  "rows_parsed": 0,
+  "finished_at": "2026-11-08 05:44:53Z"
+}
