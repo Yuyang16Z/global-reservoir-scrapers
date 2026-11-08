@@ -249,7 +249,10 @@ class AbhtPageCacheTests(unittest.TestCase):
         self.assertIsNone(log["last_modified"])
 
     def test_each_fetch_uses_a_query_string_the_cache_has_not_seen(self):
-        self.assertNotEqual(abht.fresh_home_url(), abht.fresh_home_url())
+        # Also when the clock has not moved between the two calls: a clock that
+        # ticks in microseconds (macOS) returns the same time_ns() for both.
+        with mock.patch.object(abht.time, "time_ns", return_value=1793024904390438000):
+            self.assertNotEqual(abht.fresh_home_url(), abht.fresh_home_url())
 
 
 class TaiwanFallbackTests(unittest.TestCase):

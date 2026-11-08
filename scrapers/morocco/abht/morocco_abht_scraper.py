@@ -44,6 +44,7 @@ import re
 import sys
 import time
 import traceback
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -119,8 +120,12 @@ def is_source_unavailable(exc: Exception) -> bool:
 
 
 def fresh_home_url() -> str:
-    """The homepage under a query string the site's page cache has never seen."""
-    return f"{HOME_URL}?nocache={time.time_ns()}"
+    """The homepage under a query string the site's page cache has never seen.
+
+    Random rather than a timestamp: a clock that ticks in microseconds (macOS)
+    gives two calls in the same tick the same time_ns().
+    """
+    return f"{HOME_URL}?nocache={uuid.uuid4().hex}"
 
 
 def get_home() -> requests.Response:
