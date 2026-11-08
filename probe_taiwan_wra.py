@@ -1,35 +1,31 @@
-"""Throwaway probe: what does Cape Town's weekly dam-levels page carry now?"""
-import re
-import time
-
+"""Throwaway probe: how far back do opengov.jp detail-page charts reach, and do they hold the archive's gaps?"""
+import importlib.util
 import requests
+from bs4 import BeautifulSoup
 
-H = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36")}
-PAGE = ("https://www.capetown.gov.za/family-and-home/residential-utility-services/"
-        "residential-water-and-sanitation-services/this-weeks-dam-levels/")
-
-t0 = time.time()
-r = requests.get(PAGE, headers=H, timeout=60)
-print(f"page: HTTP {r.status_code}, {len(r.content)} B, {time.time() - t0:.1f}s, final={r.url}")
-p = r.text
-tables = re.findall(r"<table\b.*?</table>", p, flags=re.S | re.I)
-print("tables:", len(tables))
-for t in tables:
-    print(re.sub(r"\s+", " ", t)[:2500])
-    print("-----")
-if not tables:
-    for kw in ("Major dams", "Previous week", "Current Dam", "dam levels", "Storage"):
-        for m in list(re.finditer(re.escape(kw), p, flags=re.I))[:2]:
-            print(f"around {kw!r}:", re.sub(r"\s+", " ", p[max(0, m.start() - 600):m.start() + 1500]))
-            print("-----")
-print("dates:", sorted(set(re.findall(r"\b\d{1,2}/\d{1,2}/20\d{2}\b|\b\d{1,2} (?:October|November) 2026\b", p)))[:20])
-links = sorted(set(re.findall(r'href="([^"]+\.pdf)"', p, re.I)))
-print("pdf links:", links)
-for link in links:
-    if "damlevel" not in link.lower():
-        continue
-    u = requests.compat.urljoin(PAGE, link)
-    h = requests.get(u, headers=H, timeout=60)
-    print(f"  {u}: HTTP {h.status_code}, {len(h.content)} B, Last-Modified={h.headers.get('Last-Modified')}, "
-          f"type={h.headers.get('Content-Type')}")
+spec = importlib.util.spec_from_file_location("og", "scrapers/japan/opengov/japan_opengov_scraper.py")
+og = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(og)
+GAPS = ["2026-04-23", "2026-05-01", "2026-06-01", "2026-06-21", "2026-06-22", "2026-06-25",
+        "2026-06-30", "2026-07-01", "2026-07-12", "2026-08-01", "2026-11-01"]
+s = requests.Session()
+s.headers.update({"User-Agent": og.USER_AGENT})
+lst = og.fetch_html(og.LIST_URL, s)
+records, last = og.parse_list_page(lst)
+print("list last updated:", last, "records:", len(records))
+for slug in ("agikawa", "aha"):
+    item = next(r for r in records if r.detail_slug.strip("/").endswith(slug)) if any(
+        r.detail_slug.strip("/").endswith(slug) for r in records) else records[0]
+    soup = BeautifulSoup(og.fetch_html(item.detail_url, s), "html.parser")
+    rows = og.parse_long_history_rows(soup, item.reservoir_id, item.reservoir_name)
+    dates = [r["date"] for r in rows]
+    flows = og.parse_recent_flow_table(soup, item.reservoir_id, item.reservoir_name)
+    print(item.detail_url, "updated:", og.extract_last_updated_source(soup))
+    print("  chart labels:", len(dates), "first:", dates[:2], "last:", dates[-3:])
+    print("  recent table:", len(flows), sorted(flows)[:1], sorted(flows)[-2:])
+    have = set(dates)
+    print("  gaps present in chart:", {g: (g in have) for g in GAPS})
+    for g in GAPS:
+        hit = next((r for r in rows if r["date"] == g), None)
+        if hit:
+            print("   ", g, hit["Storage Rate (%)"], hit["Storage Volume (千m^3)"], hit["Inflow (m^3/s)"])
