@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       start_date:
-        description: "Backfill start (YYYY-MM-DD). Leave blank for default (today in Japan)."
+        description: "Backfill start (YYYY-MM-DD); the range is rewritten. Leave blank for default (today in Japan, plus any earlier day missing from the archive)."
         required: false
       end_date:
         description: "Backfill end (YYYY-MM-DD)."
