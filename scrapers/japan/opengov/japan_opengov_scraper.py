@@ -374,6 +374,12 @@ def within_range(day: str, start_date: str, end_date: str) -> bool:
     return start_date <= day <= end_date
 
 
+def stored_dates(daily_dir: Path) -> list[str]:
+    """Days that already have a daily snapshot file, oldest first."""
+    prefix = "japan_opengov_timeseries_"
+    return sorted(path.stem[len(prefix):] for path in daily_dir.glob(f"{prefix}*.csv"))
+
+
 def ensure_dirs(base: Path) -> dict[str, Path]:
     dirs = {
         "metadata": base / "metadata",
@@ -389,6 +395,15 @@ def main() -> int:
     output_dir = Path(os.environ.get("OUTPUT_DIR", Path("data/japan/opengov"))).resolve()
     dirs = ensure_dirs(output_dir)
     start_date, end_date = target_dates()
+    # A default run keeps only today's rows, so a day the source publishes after
+    # that day's run was never stored: 2026-11-01 and ten earlier days. The
+    # detail charts carry every day of each dam's data period, so a default run
+    # also stores each earlier day inside the archive's span that has no file
+    # yet. Existing files are never rewritten; manual dates keep their range.
+    have = stored_dates(dirs["daily"])
+    manual = bool(os.environ.get("JAPAN_START_DATE") or os.environ.get("JAPAN_END_DATE"))
+    gap_from = start_date if manual or not have else have[0]
+    have_set = set(have)
     fetched_at = now_stamp()
     run_stamp = datetime.now(JAPAN_TZ).strftime("%Y%m%d_%H%M%S")
     summary_path = dirs["run_logs"] / f"{run_stamp}_summary.json"
@@ -427,8 +442,11 @@ def main() -> int:
                 )
 
                 for row in parse_long_history_rows(soup, item.reservoir_id, item.reservoir_name):
-                    if within_range(row["date"], start_date, end_date):
-                        daily_by_date[row["date"]].append(row)
+                    day = row["date"]
+                    if within_range(day, start_date, end_date) or (
+                        gap_from <= day < start_date and day not in have_set
+                    ):
+                        daily_by_date[day].append(row)
             except Exception as exc:
                 summary["errors"].append(
                     {
@@ -459,6 +477,7 @@ def main() -> int:
                 "date_count": len(daily_by_date),
                 "row_count": sum(len(rows) for rows in daily_by_date.values()),
                 "snapshot_files": snapshot_files,
+                "gap_dates": [day for day in sorted(daily_by_date) if day < start_date],
                 "list_last_updated": list_last_updated,
             }
         )

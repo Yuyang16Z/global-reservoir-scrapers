@@ -15,6 +15,7 @@ Outputs:
 Notes:
 
 - `Storage Rate (%)` and `Storage Volume (千m^3)` come from embedded chart JSON and support multi-year backfill.
+- A default run stores today (in Japan). It also stores any earlier day inside the archive's span that has no daily file yet, without rewriting existing files. A day the source publishes after that day's run is therefore picked up on a later run. `JAPAN_START_DATE` / `JAPAN_END_DATE` select an exact range instead and rewrite it.
 - `Inflow (m^3/s)` and `Outflow (m^3/s)` are only available for the recent visible daily table window, so older rows are usually blank for those fields.
 - `lat` / `lon` are currently blank because the page does not expose coordinates directly.
 
