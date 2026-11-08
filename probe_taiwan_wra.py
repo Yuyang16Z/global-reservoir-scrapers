@@ -1,10 +1,12 @@
 """Throwaway probe: how far back do opengov.jp detail-page charts reach, and do they hold the archive's gaps?"""
 import importlib.util
+import sys
 import requests
 from bs4 import BeautifulSoup
 
 spec = importlib.util.spec_from_file_location("og", "scrapers/japan/opengov/japan_opengov_scraper.py")
 og = importlib.util.module_from_spec(spec)
+sys.modules["og"] = og
 spec.loader.exec_module(og)
 GAPS = ["2026-04-23", "2026-05-01", "2026-06-01", "2026-06-21", "2026-06-22", "2026-06-25",
         "2026-06-30", "2026-07-01", "2026-07-12", "2026-08-01", "2026-11-01"]
