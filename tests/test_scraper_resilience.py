@@ -934,6 +934,47 @@ class FreshnessWeekdayTests(unittest.TestCase):
                          {"daily": "stale", "weekdays": "fresh"})
 
 
+class FreshnessFutureDateTests(unittest.TestCase):
+    """CNDC Bolivia serves programmed values for coming days; they are not fresh data."""
+
+    class Evening(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 11, 8, 20, tzinfo=timezone.utc)  # 11-09 05:00 in Tokyo
+
+    def test_dates_after_the_source_date_are_reported_but_not_counted(self):
+        series = {"current": ("America/La_Paz", ["2026-11-07", "2026-11-08", "2026-11-09"]),
+                  "stopped": ("America/La_Paz", ["2026-11-01", "2026-11-09"]),
+                  "tokyo": ("Asia/Tokyo", ["2026-11-08", "2026-11-09"])}
+        sources = [{"source_id": sid, "data_path": f"data/{sid}", "deployment_status": "active",
+                    "timezone": tz, "publication_cadence_hours": 24, "max_schedule_gap_hours": 8}
+                   for sid, (tz, _) in series.items()]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry = root / "config" / "windowed_sources.json"
+            registry.parent.mkdir()
+            registry.write_text(json.dumps({"sources": sources}), encoding="utf-8")
+            for sid, (_, days) in series.items():
+                data_dir = root / "data" / sid
+                data_dir.mkdir(parents=True)
+                (data_dir / "series.csv").write_text(
+                    "record_date,value\n" + "".join(f"{d},1\n" for d in days), encoding="utf-8")
+            report_path = root / "report.json"
+            with mock.patch.object(freshness, "ROOT", root), \
+                    mock.patch.object(freshness, "REGISTRY", registry), \
+                    mock.patch.object(freshness, "datetime", self.Evening), \
+                    mock.patch.object(sys, "argv",
+                                      ["monitor", "--quiet", "--json", str(report_path)]):
+                self.assertEqual(freshness.main(), 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        by = {r["source_id"]: r for r in report["sources"]}
+        self.assertEqual({sid: (r["state"], r["latest_observation"], r.get("dates_after_today"))
+                          for sid, r in by.items()},
+                         {"current": ("fresh", "2026-11-08", ["2026-11-09"]),
+                          "stopped": ("stale", "2026-11-01", ["2026-11-09"]),
+                          "tokyo": ("fresh", "2026-11-09", None)})
+
+
 # The ZINWA layout of the 2026-09-23 report: JSON-quoted keys, "apr" in place of
 # "m", catchment totals in the same format, and a REPORT object naming the date
 # "w" is measured from.
