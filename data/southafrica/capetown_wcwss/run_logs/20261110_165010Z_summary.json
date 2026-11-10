@@ -1,0 +1,20 @@
+{
+  "started_at": "2026-11-10 16:49:58Z",
+  "source": "southafrica/capetown_wcwss",
+  "page": "https://www.capetown.gov.za/family-and-home/residential-utility-services/residential-water-and-sanitation-services/this-weeks-dam-levels/",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/southafrica/capetown_wcwss",
+  "status": "ok",
+  "errors": [],
+  "urls": [
+    "https://www.capetown.gov.za/media/nejl51ki/damlevels.pdf"
+  ],
+  "fetched_url": "https://www.capetown.gov.za/media/nejl51ki/damlevels.pdf",
+  "read_from": "page_table",
+  "observation_date": "2026-11-09",
+  "rows_parsed": 12,
+  "dams": 6,
+  "rows_added": 6,
+  "rows_updated": 0,
+  "raw_file": "damlevels_page_2026-11-09.html",
+  "finished_at": "2026-11-10 16:50:10Z"
+}
