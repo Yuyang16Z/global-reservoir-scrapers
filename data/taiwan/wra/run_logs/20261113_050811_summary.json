@@ -1,0 +1,81 @@
+{
+  "started_at_utc": "2026-11-12T21:08:10.050244+00:00",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra",
+  "files_written": [
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/basic_info.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_daily_ops_2026-11-13.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/raw/current_water_level_2026-11-13.json",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/timeseries/intraday/taiwan_intraday_2026-11-13.csv",
+    "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/taiwan/wra/metadata/taiwan_wra_reservoirs.csv"
+  ],
+  "errors": [],
+  "current_daily_snapshot": {
+    "date": "2026-11-11",
+    "rows": 48,
+    "date_counts": {
+      "2026-11-11": 48,
+      "2026-11-12": 20
+    }
+  },
+  "rejected_future_intraday": [
+    {
+      "reservoir_id": "50213",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50208",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50209",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50214",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50203",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50204",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50206",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50210",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50205",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50202",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50207",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50212",
+      "observation_time": "2026-11-13T07:00:00"
+    },
+    {
+      "reservoir_id": "50201",
+      "observation_time": "2026-11-13T07:00:00"
+    }
+  ],
+  "daily_snapshot_status": "already_archived",
+  "metadata_count": 74,
+  "unresolved_name_ids": [
+    "40701"
+  ],
+  "status": "ok",
+  "finished_at_utc": "2026-11-12T21:08:11.582474+00:00"
+}
