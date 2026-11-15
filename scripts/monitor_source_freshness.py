@@ -97,6 +97,14 @@ EXCUSED: dict[str, str] = {
         "weekly run keeps probing, so a returning site shows up here as a fresh date. "
         "Reported but not failed. Excused 2026-11-06. Review by 2026-12-07."
     ),
+    "japan/opengov": (
+        "opengov.jp has not updated since 2026-11-03: the list page still reads 'Last "
+        "updated: 2026-11-03' on every daily run from 2026-11-04 to 2026-11-15, and 124 of "
+        "127 detail pages end on that date. The site answers normally; the data stopped "
+        "upstream. Each run fills any day the source later backfills (PR #38), so a "
+        "resumed source shows up here as a fresh date. Reported but not failed. Excused "
+        "2026-11-15. Review by 2026-12-15."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
