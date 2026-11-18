@@ -1,25 +1,21 @@
-"""Throwaway probe: NWC Jamaica certificate chain; VRA 403 page."""
-import socket, ssl, subprocess, requests
-
-print("== NWC chain (openssl s_client -showcerts)")
-out = subprocess.run("echo | openssl s_client -connect www.nwcjamaica.com:443 -servername www.nwcjamaica.com -showcerts 2>&1",
-                     shell=True, capture_output=True, text=True, timeout=60).stdout
-for line in out.splitlines():
-    if any(k in line for k in (" s:", " i:", "Verify return code", "verify error", "NotBefore", "NotAfter", "a:PKEY")):
-        print("  ", line.strip())
-print("== NWC leaf AIA / dates")
-leaf = subprocess.run("echo | openssl s_client -connect www.nwcjamaica.com:443 -servername www.nwcjamaica.com 2>/dev/null | openssl x509 -noout -subject -issuer -dates -ext authorityInfoAccess",
-                      shell=True, capture_output=True, text=True, timeout=60).stdout
-print(leaf)
-
-H = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36")}
-print("== VRA")
-for url in ("https://vra.com/resources/facts.php", "https://vra.com/", "https://www.vra.com/", "http://vra.com/"):
-    try:
-        r = requests.get(url, headers=H, timeout=60)
-        hdr = {k: v for k, v in r.headers.items() if k.lower() in ("server", "cf-ray", "x-sucuri-id", "x-cache", "content-type", "location", "x-powered-by")}
-        print(f"{url}: HTTP {r.status_code} {len(r.content)}B {hdr}")
-        print("   body:", r.text[:600].replace("\n", " "))
-    except Exception as exc:
-        print(f"{url}: {type(exc).__name__}: {exc}")
+"""Throwaway probe: fetch the DigiCert G5 intermediate and check that it completes the NWC chain."""
+import subprocess, tempfile, os, certifi, requests
+URL = "http://cacerts.digicert.com/DigiCertG5TLSRSA4096SHA3842021CA1-1.crt"
+der = requests.get(URL, timeout=60).content
+d = tempfile.mkdtemp()
+open(os.path.join(d, "i.der"), "wb").write(der)
+pem = subprocess.run(["openssl", "x509", "-inform", "DER", "-in", os.path.join(d, "i.der"), "-outform", "PEM"],
+                     capture_output=True, text=True).stdout
+open(os.path.join(d, "i.pem"), "w").write(pem)
+print(subprocess.run(["openssl", "x509", "-in", os.path.join(d, "i.pem"), "-noout", "-subject", "-issuer", "-dates",
+                      "-fingerprint", "-sha256"], capture_output=True, text=True).stdout)
+print("verify against certifi:", subprocess.run(["openssl", "verify", "-CAfile", certifi.where(), os.path.join(d, "i.pem")],
+                                                capture_output=True, text=True).stdout.strip())
+bundle = os.path.join(d, "bundle.pem")
+open(bundle, "w").write(open(certifi.where()).read() + "\n" + pem)
+r = requests.get("https://www.nwcjamaica.com/reservoir.php", timeout=60, verify=bundle,
+                 headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"})
+print("NWC with bundle:", r.status_code, len(r.content), "Hermitage" in r.text)
+print("PEM-BEGIN")
+print(pem)
+print("PEM-END")
