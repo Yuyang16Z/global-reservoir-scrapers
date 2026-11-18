@@ -2,13 +2,16 @@ from __future__ import annotations
 
 import csv
 import gzip
+import hashlib
 import importlib.util
 import os
+import ssl
 import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -133,6 +136,18 @@ class NwcTests(unittest.TestCase):
         self.mod.store(page(as_of="01 Oct 27"), datetime(2026, 10, 4, 14, 40, tzinfo=timezone.utc), "live", caps, s)
         self.assertTrue(any("after the capture" in e for e in s["errors"]))
         self.assertEqual(caps[0]["layout"], "unparsed")
+
+    def test_fetch_verifies_with_the_missing_intermediate(self):
+        """From 2026-11-13 the site sends its certificate without the DigiCert G5 intermediate."""
+        pem = self.mod.INTERMEDIATE_PEM.read_text(encoding="utf-8")
+        der = ssl.PEM_cert_to_DER_cert(pem)
+        self.assertEqual(hashlib.sha256(der).hexdigest().upper()[:8], "C6270A15")
+        page = mock.Mock(status_code=200, content=b"<html></html>")
+        with mock.patch.object(self.mod.requests, "get", return_value=page) as get:
+            self.assertEqual(self.mod.fetch()[0], 200)
+        bundle = Path(get.call_args.kwargs["verify"]).read_text(encoding="utf-8")
+        self.assertIn(pem.strip(), bundle)
+        self.assertIn(Path(self.mod.certifi.where()).read_text(encoding="utf-8").strip()[:200], bundle)
 
 
 if __name__ == "__main__":

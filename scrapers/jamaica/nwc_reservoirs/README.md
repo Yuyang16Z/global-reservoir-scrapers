@@ -27,3 +27,9 @@ public use and reproduction without charge, provided the copy is accurate, NWC i
 copy is not presented as official or endorsed; reproduction for commercial redistribution needs NWC's written
 permission - `attribution_required_review`. Collected here by the owner's decision of 2026-10-04; see
 `DATA_LICENCE_NOTICE.md`. Presence in this repository is not permission to republish.
+
+**Certificate:** the certificate installed on 2026-11-13 is served without its DigiCert G5 intermediate, so every run
+from 2026-11-15 failed with `CERTIFICATE_VERIFY_FAILED` (browsers fetch the intermediate themselves). The public
+intermediate is kept beside the scraper (`digicert_g5_tls_rsa4096_sha384_2021_ca1.pem`, sha256 `C6:27:0A:15:...:7B:A2`)
+and added to the CA store for the request; verification stays on. It is valid to 2031-04-13. It can be removed once
+the site sends the full chain.
