@@ -53,10 +53,12 @@ import json
 import os
 import re
 import sys
+import tempfile
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+import certifi
 import requests
 from bs4 import BeautifulSoup
 
@@ -68,6 +70,11 @@ TS_DIR = OUTPUT_DIR / "timeseries"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
 URL = "https://www.nwcjamaica.com/reservoir.php"
+# The certificate installed on 2026-11-13 (DigiCert G5 TLS RSA4096 SHA384 2021 CA1) is served without its
+# intermediate, so verification against the CA store fails ("unable to get local issuer certificate"); browsers
+# fetch the missing intermediate themselves. This is that public intermediate (sha256 C6:27:0A:15:...:7B:A2), added
+# to the CA store; it chains to DigiCert TLS RSA4096 Root G5 and verification stays on.
+INTERMEDIATE_PEM = BASE_DIR / "digicert_g5_tls_rsa4096_sha384_2021_ca1.pem"
 SOURCE_AGENCY = "National Water Commission (NWC), Jamaica"
 TIMEOUT = 60
 REQUEST_BACKOFFS = (10, 30, 90)
@@ -220,11 +227,20 @@ def data_hash(parsed: dict) -> str:
                                      ensure_ascii=False).encode("utf-8")).hexdigest()
 
 
+def ca_bundle() -> str:
+    """The certifi CA store plus the intermediate the site does not send, as one PEM file."""
+    path = Path(tempfile.gettempdir()) / "nwc_ca_bundle.pem"
+    path.write_text(Path(certifi.where()).read_text(encoding="utf-8") + "\n"
+                    + INTERMEDIATE_PEM.read_text(encoding="utf-8"), encoding="utf-8")
+    return str(path)
+
+
 def fetch() -> tuple[int, bytes, str]:
     last = ""
+    verify = ca_bundle()
     for attempt in range(len(REQUEST_BACKOFFS) + 1):
         try:
-            r = requests.get(URL, headers=HEADERS, timeout=TIMEOUT)
+            r = requests.get(URL, headers=HEADERS, timeout=TIMEOUT, verify=verify)
             if r.status_code == 200:
                 return 200, r.content, ""
             last = f"HTTP {r.status_code}"
