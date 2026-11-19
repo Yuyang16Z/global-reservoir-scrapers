@@ -1,10 +1,10 @@
 {
-  "ran_at_utc": "2026-11-19 11:08:32",
+  "ran_at_utc": "2026-11-19 19:59:01",
   "source_url": "https://apwrims.ap.gov.in/",
   "status": "success",
   "reservoir_count": 125,
   "metadata_rows": 125,
-  "no_data_count": 5,
+  "no_data_count": 4,
   "error_count": 0,
   "snapshot_dates": [
     "2025-10-07",
