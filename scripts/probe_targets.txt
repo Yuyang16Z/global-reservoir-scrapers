@@ -1,0 +1,35 @@
+# Ghana VRA (refused since 2026-11-15)
+https://vra.com/resources/facts.php
+https://vra.com/
+https://www.vra.com/resources/facts.php
+https://www.vra.com/
+http://vra.com/resources/facts.php
+http://www.vra.com/resources/facts.php
+# Morocco ABHSM (connect timeout since 2026-08-04)
+https://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
+http://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
+https://abhsm.ma/
+http://abhsm.ma/
+# Turkey KOSKI (no answer since 2026-10-19)
+https://www.koski.gov.tr/koski/altinapa-baraj-degerleri
+http://www.koski.gov.tr/koski/altinapa-baraj-degerleri
+https://koski.gov.tr/
+# Internet Archive: latest captures of the refused pages
+https://archive.org/wayback/available?url=vra.com/resources/facts.php
+https://archive.org/wayback/available?url=www.koski.gov.tr/koski/altinapa-baraj-degerleri
+https://archive.org/wayback/available?url=www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
+https://web.archive.org/cdx/search/cdx?url=vra.com/resources/facts.php&output=json&from=20261101&limit=40
+https://web.archive.org/cdx/search/cdx?url=vra.com/&output=json&from=20261101&limit=40
+https://web.archive.org/cdx/search/cdx?url=koski.gov.tr/koski/&matchType=prefix&output=json&from=20261001&limit=40&filter=original:.*baraj-degerleri.*
+https://web.archive.org/cdx/search/cdx?url=abhsm.ma/document/Remplissage_barrage/&matchType=prefix&output=json&from=20260601&limit=40
+# Candidate replacements and other sources seen failing
+https://www.maadialna.ma/
+https://www.agridata.tn/api/3/action/package_search?q=barrage&rows=3
+https://data.ibb.gov.tr/api/3/action/package_search?q=baraj&rows=3
+https://openapi.izmir.bel.tr/api/izsu/barajdurum
+https://iskiapi.iski.istanbul/api/iski/baraj/dolulukOranlari/v2
+https://www.namwater.com.na/
+https://buipower.com/api/operations-dashboard.php
+https://apwrims.ap.gov.in/api/reservoir/map/all
+https://www.onagri.nat.tn/Situation-des-barrages/fr/19
+https://opengov.jp/
