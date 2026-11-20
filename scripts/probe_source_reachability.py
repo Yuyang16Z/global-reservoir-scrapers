@@ -15,7 +15,8 @@ Usage:
 In a targets file, lines starting with '#' are comments. A URL may be followed
 by options separated by spaces (use \\s for a space inside a pattern):
   grep=REGEX     print up to 12 matches of REGEX in the response text
-  links=REGEX    print up to 40 (max=N) distinct href/src values matching REGEX
+  links=REGEX    print up to 40 distinct href/src values matching REGEX
+  max=N          raise both limits to N
   snippet=N      print the first N characters instead of 600
 """
 from __future__ import annotations
@@ -99,6 +100,22 @@ def reverse_dns(ip: str) -> str:
         return "-"
 
 
+def pdf_text(body: bytes) -> str:
+    """Text of the first three pages, when pdfplumber is installed."""
+    try:
+        import io
+
+        import pdfplumber
+    except ImportError:
+        return "(pdfplumber not installed)"
+    try:
+        with pdfplumber.open(io.BytesIO(body)) as pdf:
+            pages = [page.extract_text() or "" for page in pdf.pages[:3]]
+            return f"[{len(pdf.pages)} page(s)] " + re.sub(r"\s+", " ", " ".join(pages))
+    except Exception as exc:  # noqa: BLE001 - diagnostic output only
+        return f"(unreadable: {type(exc).__name__}: {exc})"
+
+
 def http_get(url: str, opts: dict | None = None) -> dict:
     opts = opts or {}
     out: dict = {}
@@ -125,13 +142,13 @@ def http_get(url: str, opts: dict | None = None) -> dict:
         "seconds": round(time.monotonic() - start, 1),
     })
     if body[:4] == b"%PDF":
-        out["snippet"] = "<PDF>"
+        out["snippet"] = "<PDF> " + pdf_text(body)[:int(opts.get("snippet") or SNIPPET)]
     else:
         text = resp.text if resp.encoding else body.decode("utf-8", "replace")
         if opts.get("grep"):
             found = [re.sub(r"\s+", " ", m.group(0))[:300]
                      for m in re.finditer(opts["grep"], text, re.I | re.S)]
-            out["grep"] = found[:12]
+            out["grep"] = found[:int(opts.get("max") or 12)]
             out["grep_total"] = len(found)
         if opts.get("links"):
             seen: list[str] = []

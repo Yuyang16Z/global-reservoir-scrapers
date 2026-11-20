@@ -39,7 +39,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install requests
+        run: pip install -r requirements.txt
 
       - name: Probe
         env:
@@ -51,6 +51,21 @@ jobs:
           else
             python scripts/probe_source_reachability.py --json probe_report.json --file scripts/probe_targets.txt
           fi
+
+      # Lines "@scraper <path>" in the targets file run that scraper against a
+      # scratch directory and print what it wrote. Nothing reaches data/.
+      - name: Dry-run scrapers
+        if: ${{ inputs.urls == '' }}
+        run: |
+          grep '^@scraper ' scripts/probe_targets.txt | while read -r _ path; do
+            out="$RUNNER_TEMP/dryrun/$(basename "$path" .py)"
+            echo "::group::dry run $path"
+            OUTPUT_DIR="$out" python "$path" && echo "exit 0" || echo "exit $?"
+            find "$out" -type f | sort
+            for f in "$out"/run_logs/*; do echo "--- $f"; tail -c 3000 "$f"; echo; done
+            for f in "$out"/timeseries/*.csv; do echo "--- $f"; tail -n 8 "$f"; done
+            echo "::endgroup::"
+          done || true
 
       - name: Upload report
         if: always()
