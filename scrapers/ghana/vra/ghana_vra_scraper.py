@@ -1,12 +1,25 @@
 """Ghana VRA Akosombo (Lake Volta) level scraper.
 
 Source:
-- https://vra.com/resources/facts.php   Volta River Authority facts page
-- https://vra.com/                      homepage widget (same reading)
+- https://www.vra.com/resources/facts.php   Volta River Authority facts page
+- https://www.vra.com/                      homepage widget (same reading)
 
 Known quirks:
-- Use the NON-www host. `www.vra.com` redirects to a broken
-  `~4008842.../htdocs/` path.
+- The host that answers has changed, so each page is tried on both, `www.vra.com`
+  first. Until 2026-11-14 only the bare `vra.com` served the pages
+  (`www.vra.com` redirected to a broken `~4008842.../htdocs/` path). Then the site
+  moved (now 206.188.193.10, vux.netsolhost.com): from GitHub runners `vra.com`
+  answered HTTP 403 on 2026-11-15..19 and refuses the TLS handshake since
+  2026-11-20 ("tlsv1 alert internal error" for that server name), so `www.vra.com`
+  is the only host that answers at all.
+- NOT YET WORKING AGAIN (2026-11-20): from one GitHub runner, `www.vra.com` served
+  both pages (layout unchanged, lake level of 2026-11-19) to a request that carried
+  User-Agent, Accept and Accept-Language, and answered this scraper's own request
+  (User-Agent only) with HTTP 403 (561 bytes) one minute later. Which of the two
+  differences the site acts on was not established, and the request headers here
+  are unchanged: whether to send more than a User-Agent to a host that refuses the
+  scraper is the repository owner's decision. Until then a run fails with the 403
+  recorded and the refused page saved.
 - The page is a CURRENT-VALUE SNAPSHOT with no archive, so anything not
   captured is lost; only continuous polling builds a series.
 - The reading is printed together with its OWN observation date, which lags
@@ -47,8 +60,11 @@ RAW_DIR = OUTPUT_DIR / "raw"
 TS_DIR = OUTPUT_DIR / "timeseries"
 RUN_LOG_DIR = OUTPUT_DIR / "run_logs"
 
-FACTS_URL = "https://vra.com/resources/facts.php"
-HOME_URL = "https://vra.com/"
+# Tried in this order for every page; see the host note in the module docstring.
+BASE_URLS = ("https://www.vra.com", "https://vra.com")
+PAGES = (("facts", "/resources/facts.php"), ("home", "/"))
+FACTS_URL = BASE_URLS[0] + PAGES[0][1]
+HOME_URL = BASE_URLS[0] + PAGES[1][1]
 RESERVOIR_ID = "GH_VRA_AKOSOMBO"
 TIMEOUT = 120
 RETRIES = 3
@@ -115,6 +131,22 @@ def get_with_retries(url: str):
                    "body": r.content}
         time.sleep(10 * attempt)
     return None, failure
+
+
+def get_page(path: str):
+    """Fetch one page from the first host that serves it.
+
+    Returns (response, url, failures); `failures` lists, in the order tried, what
+    each host that did not serve the page answered.
+    """
+    failures: list[dict] = []
+    for base in BASE_URLS:
+        url = base + path
+        r, failure = get_with_retries(url)
+        if r is not None:
+            return r, url, failures
+        failures.append({"url": url, **failure})
+    return None, None, failures
 
 
 def page_text(raw: bytes) -> str:
@@ -221,19 +253,27 @@ def main() -> int:
     try:
         rows: list[dict] = []
         pages_ok = 0
-        for url, slug in ((FACTS_URL, "facts"), (HOME_URL, "home")):
-            r, failure = get_with_retries(url)
-            if r is None:
-                log.setdefault("unavailable_pages", []).append(slug)
+        for slug, path in PAGES:
+            r, served_by, failures = get_page(path)
+            for n, failure in enumerate(failures):
+                # When no host served the page, keep what each one sent, so a block
+                # page can be read later. A page another host did serve needs no copy.
                 body = failure.pop("body", None)
-                if body:
-                    refused = RAW_DIR / (f"{slug}_{stamp}_refused_"
+                if body and r is None:
+                    host_tag = "" if n == 0 else f"_host{n + 1}"
+                    refused = RAW_DIR / (f"{slug}_{stamp}_refused{host_tag}_"
                                          f"http{failure['http_status']}.html")
                     refused.write_bytes(body[:200_000])
                     failure["saved_body"] = refused.name
                     print(f"[SAVE] {refused} ({len(body)}B)", flush=True)
-                log.setdefault("page_failures", {})[slug] = failure
+            if failures:
+                # The first host's answer, with the other hosts' answers beside it.
+                log.setdefault("page_failures", {})[slug] = {
+                    **failures[0], "other_hosts": failures[1:]}
+            if r is None:
+                log.setdefault("unavailable_pages", []).append(slug)
                 continue
+            log.setdefault("served_by", {})[slug] = served_by
             pages_ok += 1
             raw_path = RAW_DIR / f"{slug}_{stamp}.html"
             raw_path.write_bytes(r.content)

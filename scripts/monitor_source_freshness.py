@@ -77,25 +77,17 @@ EXCUSED: dict[str, str] = {
         "Review by 2026-11-24."
     ),
     "ghana/bui": (
-        "Bui Power Authority has not republished its Operations Centre workbook since "
-        "2026-09-22 (rows end 2026-09-21), and the older water-level file has been "
-        "frozen since 2025-11-04. Probed from a runner on 2026-10-12: the Operations "
-        "Centre page itself fetches the same api/operations-dashboard.php with no "
-        "parameters, and a cache-busting query returns the same 2026-09-22 workbook, "
-        "so there is no newer public path. The scraper keeps reading it twice daily, so "
-        "a new workbook shows up here as a fresh date. Owner decision 2026-10-12: mark "
-        "as known-stale. Reported but not failed. "
-        "Excused 2026-10-12. Reviewed 2026-10-22: all 20 workbook captures since "
-        "2026-10-12 still carry generated_at 2026-09-22; owner kept the excuse. "
-        "Review by 2026-11-26."
-    ),
-    "turkey/koski": (
-        "www.koski.gov.tr has not answered since the 2026-10-19 capture (dam values to "
-        "2026-10-16): the 2026-10-26 run was cancelled, both manual runs on 2026-10-29 "
-        "failed or were cancelled, and the 2026-11-02 run retrieved no page. From the "
-        "project's own machine the connection also times out (2026-11-05, 2026-11-06). The "
-        "weekly run keeps probing, so a returning site shows up here as a fresh date. "
-        "Reported but not failed. Excused 2026-11-06. Review by 2026-12-07."
+        "Bui Power Authority publishes its Operations Centre workbook irregularly. The "
+        "workbook of 2026-09-22 (rows to 2026-09-21) stayed unchanged until 2026-11-09; "
+        "the one generated 2026-11-09 still ends its daily rows on 2026-09-21 and adds "
+        "one level, 175.88 m for 2026-11-05, in its `latest` block, which the scraper "
+        "archives since 2026-11-20. The older water-level file has been frozen since "
+        "2025-11-04. The Operations Centre page fetches the same "
+        "api/operations-dashboard.php with no parameters, so there is no newer public "
+        "path. The scraper keeps reading it twice daily, so a new workbook shows up here "
+        "as a fresh date. Owner decision 2026-10-12: mark as known-stale. Reported but "
+        "not failed. Excused 2026-10-12. Reviewed 2026-10-22 and 2026-11-20. "
+        "Review by 2026-12-21."
     ),
     "japan/opengov": (
         "opengov.jp has not updated since 2026-11-03: the list page still reads 'Last "
