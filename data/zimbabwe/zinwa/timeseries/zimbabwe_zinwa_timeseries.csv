@@ -10335,3 +10335,595 @@ obs_date,dam,variable,value
 2026-11-13,ZIMUNYA,storage_mcm,0.553
 2026-11-13,ZIMUNYA,storage_pct,99.6
 2026-11-13,ZIMUNYA,storage_pct_change_week,0
+2026-11-18,AMAPONGOKWE,full_supply_capacity_mcm,37.587
+2026-11-18,AMAPONGOKWE,storage_mcm,31.804
+2026-11-18,AMAPONGOKWE,storage_pct,84.6
+2026-11-18,AMAPONGOKWE,storage_pct_change_week,-0.3
+2026-11-18,ANTELOPE,full_supply_capacity_mcm,12.525
+2026-11-18,ANTELOPE,storage_mcm,6.705
+2026-11-18,ANTELOPE,storage_pct,53.5
+2026-11-18,ANTELOPE,storage_pct_change_week,-1.3
+2026-11-18,ARCADIA,full_supply_capacity_mcm,55.293
+2026-11-18,ARCADIA,storage_mcm,45.467
+2026-11-18,ARCADIA,storage_pct,82.2
+2026-11-18,ARCADIA,storage_pct_change_week,-0.4
+2026-11-18,BANGA,full_supply_capacity_mcm,0.902
+2026-11-18,BANGA,storage_mcm,0.484
+2026-11-18,BANGA,storage_pct,53.7
+2026-11-18,BANGA,storage_pct_change_week,0
+2026-11-18,BANGALA,full_supply_capacity_mcm,126.588
+2026-11-18,BANGALA,storage_mcm,100.005
+2026-11-18,BANGALA,storage_pct,79
+2026-11-18,BANGALA,storage_pct_change_week,-3.4
+2026-11-18,BANGAZAAN,full_supply_capacity_mcm,2.825
+2026-11-18,BANGAZAAN,storage_mcm,2.768
+2026-11-18,BANGAZAAN,storage_pct,98
+2026-11-18,BANGAZAAN,storage_pct_change_week,-0.7
+2026-11-18,BEIT BRIDGE 1,full_supply_capacity_mcm,1.368
+2026-11-18,BEIT BRIDGE 1,storage_mcm,1.188
+2026-11-18,BEIT BRIDGE 1,storage_pct,86.8
+2026-11-18,BEIT BRIDGE 1,storage_pct_change_week,0
+2026-11-18,BEIT BRIDGE 2,full_supply_capacity_mcm,5.315
+2026-11-18,BEIT BRIDGE 2,storage_mcm,0.64
+2026-11-18,BEIT BRIDGE 2,storage_pct,12
+2026-11-18,BEIT BRIDGE 2,storage_pct_change_week,-0.7
+2026-11-18,BHIRI-MANYAME,full_supply_capacity_mcm,172.485
+2026-11-18,BHIRI-MANYAME,storage_mcm,136.811
+2026-11-18,BHIRI-MANYAME,storage_pct,79.3
+2026-11-18,BHIRI-MANYAME,storage_pct_change_week,-1
+2026-11-18,BIRI,full_supply_capacity_mcm,2.286
+2026-11-18,BIRI,storage_mcm,1.677
+2026-11-18,BIRI,storage_pct,73.4
+2026-11-18,BIRI,storage_pct_change_week,0
+2026-11-18,BLOCKLEY,full_supply_capacity_mcm,4.868
+2026-11-18,BLOCKLEY,storage_mcm,3.562
+2026-11-18,BLOCKLEY,storage_pct,73.2
+2026-11-18,BLOCKLEY,storage_pct_change_week,-1.1
+2026-11-18,BUBI LUPANE,full_supply_capacity_mcm,39.09
+2026-11-18,BUBI LUPANE,storage_mcm,29.397
+2026-11-18,BUBI LUPANE,storage_pct,75.2
+2026-11-18,BUBI LUPANE,storage_pct_change_week,-0.7
+2026-11-18,BULLIMA,full_supply_capacity_mcm,1.333
+2026-11-18,BULLIMA,storage_mcm,1.333
+2026-11-18,BULLIMA,storage_pct,100
+2026-11-18,BULLIMA,storage_pct_change_week,0
+2026-11-18,CACTUS POORT,full_supply_capacity_mcm,3.009
+2026-11-18,CACTUS POORT,storage_mcm,2.181
+2026-11-18,CACTUS POORT,storage_pct,72.5
+2026-11-18,CACTUS POORT,storage_pct_change_week,-0.2
+2026-11-18,CHAKO,full_supply_capacity_mcm,0.295
+2026-11-18,CHAKO,storage_mcm,0.295
+2026-11-18,CHAKO,storage_pct,100
+2026-11-18,CHAKO,storage_pct_change_week,0
+2026-11-18,CHEDOZVO,full_supply_capacity_mcm,2.865
+2026-11-18,CHEDOZVO,storage_mcm,2.865
+2026-11-18,CHEDOZVO,storage_pct,100
+2026-11-18,CHEDOZVO,storage_pct_change_week,0
+2026-11-18,CHESA,full_supply_capacity_mcm,0.477
+2026-11-18,CHESA,storage_mcm,0.477
+2026-11-18,CHESA,storage_pct,100
+2026-11-18,CHESA,storage_pct_change_week,0
+2026-11-18,CHIBERO,full_supply_capacity_mcm,3.12
+2026-11-18,CHIBERO,storage_mcm,1.198
+2026-11-18,CHIBERO,storage_pct,38.4
+2026-11-18,CHIBERO,storage_pct_change_week,-1.1
+2026-11-18,CHIKOMBA,full_supply_capacity_mcm,5.461
+2026-11-18,CHIKOMBA,storage_mcm,3.852
+2026-11-18,CHIKOMBA,storage_pct,70.5
+2026-11-18,CHIKOMBA,storage_pct_change_week,-1.2
+2026-11-18,CHIMHANDA,full_supply_capacity_mcm,3.469
+2026-11-18,CHIMHANDA,storage_mcm,1.501
+2026-11-18,CHIMHANDA,storage_pct,43.3
+2026-11-18,CHIMHANDA,storage_pct_change_week,0
+2026-11-18,CHIMWE,full_supply_capacity_mcm,6.416
+2026-11-18,CHIMWE,storage_mcm,6.298
+2026-11-18,CHIMWE,storage_pct,98.2
+2026-11-18,CHIMWE,storage_pct_change_week,-0.7
+2026-11-18,CHINYAMATUMWA,full_supply_capacity_mcm,2.319
+2026-11-18,CHINYAMATUMWA,storage_mcm,2.129
+2026-11-18,CHINYAMATUMWA,storage_pct,91.8
+2026-11-18,CHINYAMATUMWA,storage_pct_change_week,-0.6
+2026-11-18,CHITISA,full_supply_capacity_mcm,1.524
+2026-11-18,CHITISA,storage_mcm,1.151
+2026-11-18,CHITISA,storage_pct,75.5
+2026-11-18,CHITISA,storage_pct_change_week,0
+2026-11-18,CHIVAKE,full_supply_capacity_mcm,4.639
+2026-11-18,CHIVAKE,storage_mcm,4.639
+2026-11-18,CHIVAKE,storage_pct,100
+2026-11-18,CHIVAKE,storage_pct_change_week,0
+2026-11-18,CHIVERO,full_supply_capacity_mcm,247.181
+2026-11-18,CHIVERO,storage_mcm,151.742
+2026-11-18,CHIVERO,storage_pct,61.4
+2026-11-18,CHIVERO,storage_pct_change_week,-0.2
+2026-11-18,CHWAKE,full_supply_capacity_mcm,2.036
+2026-11-18,CHWAKE,storage_mcm,1.019
+2026-11-18,CHWAKE,storage_pct,50
+2026-11-18,CHWAKE,storage_pct_change_week,0
+2026-11-18,CLAW STAGE II,full_supply_capacity_mcm,65.455
+2026-11-18,CLAW STAGE II,storage_mcm,46.406
+2026-11-18,CLAW STAGE II,storage_pct,70.9
+2026-11-18,CLAW STAGE II,storage_pct_change_week,-0.8
+2026-11-18,CLIFTON,full_supply_capacity_mcm,10.807
+2026-11-18,CLIFTON,storage_mcm,1.27
+2026-11-18,CLIFTON,storage_pct,11.8
+2026-11-18,CLIFTON,storage_pct_change_week,-0.6
+2026-11-18,EASTWOLDS,full_supply_capacity_mcm,14.713
+2026-11-18,EASTWOLDS,storage_mcm,13.506
+2026-11-18,EASTWOLDS,storage_pct,91.8
+2026-11-18,EASTWOLDS,storage_pct_change_week,0
+2026-11-18,EXCHANGE,full_supply_capacity_mcm,14.506
+2026-11-18,EXCHANGE,storage_mcm,5.498
+2026-11-18,EXCHANGE,storage_pct,37.9
+2026-11-18,EXCHANGE,storage_pct_change_week,0.2
+2026-11-18,GONYE,full_supply_capacity_mcm,2
+2026-11-18,GONYE,storage_mcm,2
+2026-11-18,GONYE,storage_pct,100
+2026-11-18,GONYE,storage_pct_change_week,0
+2026-11-18,GOZHO,full_supply_capacity_mcm,1.325
+2026-11-18,GOZHO,storage_mcm,1.325
+2026-11-18,GOZHO,storage_pct,100
+2026-11-18,GOZHO,storage_pct_change_week,0
+2026-11-18,GWENORO,full_supply_capacity_mcm,29.554
+2026-11-18,GWENORO,storage_mcm,23.392
+2026-11-18,GWENORO,storage_pct,79.2
+2026-11-18,GWENORO,storage_pct_change_week,0
+2026-11-18,HAMA,full_supply_capacity_mcm,1.725
+2026-11-18,HAMA,storage_mcm,1.259
+2026-11-18,HAMA,storage_pct,73
+2026-11-18,HAMA,storage_pct_change_week,0
+2026-11-18,HARAVA,full_supply_capacity_mcm,9.026
+2026-11-18,HARAVA,storage_mcm,1.008
+2026-11-18,HARAVA,storage_pct,11.2
+2026-11-18,HARAVA,storage_pct_change_week,-3.9
+2026-11-18,INGWESI,full_supply_capacity_mcm,67.183
+2026-11-18,INGWESI,storage_mcm,56.368
+2026-11-18,INGWESI,storage_pct,83.9
+2026-11-18,INGWESI,storage_pct_change_week,-0.7
+2026-11-18,INSIZA,full_supply_capacity_mcm,173.491
+2026-11-18,INSIZA,storage_mcm,134.238
+2026-11-18,INSIZA,storage_pct,77.4
+2026-11-18,INSIZA,storage_pct_change_week,-0.7
+2026-11-18,INSUKAMINI,full_supply_capacity_mcm,7.792
+2026-11-18,INSUKAMINI,storage_mcm,5.94
+2026-11-18,INSUKAMINI,storage_pct,76.2
+2026-11-18,INSUKAMINI,storage_pct_change_week,-1.8
+2026-11-18,INYANKUNI,full_supply_capacity_mcm,74.52
+2026-11-18,INYANKUNI,storage_mcm,20.061
+2026-11-18,INYANKUNI,storage_pct,26.9
+2026-11-18,INYANKUNI,storage_pct_change_week,-0.2
+2026-11-18,JIRI,full_supply_capacity_mcm,20
+2026-11-18,JIRI,storage_mcm,20
+2026-11-18,JIRI,storage_pct,100
+2026-11-18,JIRI,storage_pct_change_week,0
+2026-11-18,KALOPE,full_supply_capacity_mcm,1.802
+2026-11-18,KALOPE,storage_mcm,0.393
+2026-11-18,KALOPE,storage_pct,21.8
+2026-11-18,KALOPE,storage_pct_change_week,-1.8
+2026-11-18,KARIBA,full_supply_capacity_mcm,64800
+2026-11-18,KARIBA,storage_mcm,19766.5
+2026-11-18,KARIBA,storage_pct,30.5
+2026-11-18,KARIBA,storage_pct_change_week,-0.9
+2026-11-18,KAROI,full_supply_capacity_mcm,1.352
+2026-11-18,KAROI,storage_mcm,0.794
+2026-11-18,KAROI,storage_pct,58.7
+2026-11-18,KAROI,storage_pct_change_week,-1.6
+2026-11-18,KHAMI,full_supply_capacity_mcm,3.256
+2026-11-18,KHAMI,storage_mcm,2.607
+2026-11-18,KHAMI,storage_pct,80.1
+2026-11-18,KHAMI,storage_pct_change_week,-0.8
+2026-11-18,KOTWA,full_supply_capacity_mcm,0.733
+2026-11-18,KOTWA,storage_mcm,0.733
+2026-11-18,KOTWA,storage_pct,100
+2026-11-18,KOTWA,storage_pct_change_week,0
+2026-11-18,KUDZWE,full_supply_capacity_mcm,2.077
+2026-11-18,KUDZWE,storage_mcm,2.077
+2026-11-18,KUDZWE,storage_pct,100
+2026-11-18,KUDZWE,storage_pct_change_week,0
+2026-11-18,KUSHINGA PHIKELELA,full_supply_capacity_mcm,7.721
+2026-11-18,KUSHINGA PHIKELELA,storage_mcm,4.394
+2026-11-18,KUSHINGA PHIKELELA,storage_pct,56.9
+2026-11-18,KUSHINGA PHIKELELA,storage_pct_change_week,-0.4
+2026-11-18,LOWER MGUSA,full_supply_capacity_mcm,1.517
+2026-11-18,LOWER MGUSA,storage_mcm,1.213
+2026-11-18,LOWER MGUSA,storage_pct,80
+2026-11-18,LOWER MGUSA,storage_pct_change_week,0
+2026-11-18,LOWER MUJENI,full_supply_capacity_mcm,10.126
+2026-11-18,LOWER MUJENI,storage_mcm,5.815
+2026-11-18,LOWER MUJENI,storage_pct,57.4
+2026-11-18,LOWER MUJENI,storage_pct_change_week,0
+2026-11-18,LOWER NCEMA,full_supply_capacity_mcm,14.876
+2026-11-18,LOWER NCEMA,storage_mcm,5.39
+2026-11-18,LOWER NCEMA,storage_pct,36.2
+2026-11-18,LOWER NCEMA,storage_pct_change_week,-1.6
+2026-11-18,LOWER ZIVAGWE,full_supply_capacity_mcm,6.993
+2026-11-18,LOWER ZIVAGWE,storage_mcm,5.602
+2026-11-18,LOWER ZIVAGWE,storage_pct,80.1
+2026-11-18,LOWER ZIVAGWE,storage_pct_change_week,-1.8
+2026-11-18,LUNGWALA,full_supply_capacity_mcm,9.647
+2026-11-18,LUNGWALA,storage_mcm,6.569
+2026-11-18,LUNGWALA,storage_pct,68.1
+2026-11-18,LUNGWALA,storage_pct_change_week,-2.5
+2026-11-18,MABVUTE,full_supply_capacity_mcm,3.219
+2026-11-18,MABVUTE,storage_mcm,2.797
+2026-11-18,MABVUTE,storage_pct,86.9
+2026-11-18,MABVUTE,storage_pct_change_week,-1
+2026-11-18,MABWEMATEMA,full_supply_capacity_mcm,2.798
+2026-11-18,MABWEMATEMA,storage_mcm,2.798
+2026-11-18,MABWEMATEMA,storage_pct,100
+2026-11-18,MABWEMATEMA,storage_pct_change_week,0
+2026-11-18,MAGUDU,full_supply_capacity_mcm,5.845
+2026-11-18,MAGUDU,storage_mcm,4.056
+2026-11-18,MAGUDU,storage_pct,69.4
+2026-11-18,MAGUDU,storage_pct_change_week,0
+2026-11-18,MAHUSEKWA,full_supply_capacity_mcm,2.992
+2026-11-18,MAHUSEKWA,storage_mcm,1.505
+2026-11-18,MAHUSEKWA,storage_pct,50.3
+2026-11-18,MAHUSEKWA,storage_pct_change_week,0
+2026-11-18,MAKONESE,full_supply_capacity_mcm,2
+2026-11-18,MAKONESE,storage_mcm,2
+2026-11-18,MAKONESE,storage_pct,100
+2026-11-18,MAKONESE,storage_pct_change_week,0
+2026-11-18,MAMINA,full_supply_capacity_mcm,11.361
+2026-11-18,MAMINA,storage_mcm,7.341
+2026-11-18,MAMINA,storage_pct,64.6
+2026-11-18,MAMINA,storage_pct_change_week,-1
+2026-11-18,MANANDA,full_supply_capacity_mcm,11.736
+2026-11-18,MANANDA,storage_mcm,8.062
+2026-11-18,MANANDA,storage_pct,68.7
+2026-11-18,MANANDA,storage_pct_change_week,-1.7
+2026-11-18,MANGWE,full_supply_capacity_mcm,8.713
+2026-11-18,MANGWE,storage_mcm,7.547
+2026-11-18,MANGWE,storage_pct,86.6
+2026-11-18,MANGWE,storage_pct_change_week,-0.8
+2026-11-18,MANJIRENJI,full_supply_capacity_mcm,274.179
+2026-11-18,MANJIRENJI,storage_mcm,215.564
+2026-11-18,MANJIRENJI,storage_pct,78.6
+2026-11-18,MANJIRENJI,storage_pct_change_week,-0.4
+2026-11-18,MANYAME,full_supply_capacity_mcm,480.236
+2026-11-18,MANYAME,storage_mcm,311.099
+2026-11-18,MANYAME,storage_pct,64.8
+2026-11-18,MANYAME,storage_pct_change_week,-4
+2026-11-18,MANYUCHI,full_supply_capacity_mcm,309.066
+2026-11-18,MANYUCHI,storage_mcm,273.637
+2026-11-18,MANYUCHI,storage_pct,88.5
+2026-11-18,MANYUCHI,storage_pct_change_week,-0.6
+2026-11-18,MAROVANYATI,full_supply_capacity_mcm,47.439
+2026-11-18,MAROVANYATI,storage_mcm,38.11
+2026-11-18,MAROVANYATI,storage_pct,80.3
+2026-11-18,MAROVANYATI,storage_pct_change_week,0
+2026-11-18,MASEMBURA,full_supply_capacity_mcm,25.775
+2026-11-18,MASEMBURA,storage_mcm,22.068
+2026-11-18,MASEMBURA,storage_pct,85.6
+2026-11-18,MASEMBURA,storage_pct_change_week,-0.9
+2026-11-18,MASHOKO,full_supply_capacity_mcm,1.512
+2026-11-18,MASHOKO,storage_mcm,1.197
+2026-11-18,MASHOKO,storage_pct,79.2
+2026-11-18,MASHOKO,storage_pct_change_week,0
+2026-11-18,MASHOLOMOSHE,full_supply_capacity_mcm,1.068
+2026-11-18,MASHOLOMOSHE,storage_mcm,1.068
+2026-11-18,MASHOLOMOSHE,storage_pct,100
+2026-11-18,MASHOLOMOSHE,storage_pct_change_week,0
+2026-11-18,MATEZVA,full_supply_capacity_mcm,12.057
+2026-11-18,MATEZVA,storage_mcm,12.005
+2026-11-18,MATEZVA,storage_pct,99.6
+2026-11-18,MATEZVA,storage_pct_change_week,-0.2
+2026-11-18,MAZOWE,full_supply_capacity_mcm,39.357
+2026-11-18,MAZOWE,storage_mcm,4.327
+2026-11-18,MAZOWE,storage_pct,11
+2026-11-18,MAZOWE,storage_pct_change_week,-0.1
+2026-11-18,MAZVIKADEI,full_supply_capacity_mcm,343.815
+2026-11-18,MAZVIKADEI,storage_mcm,195.3
+2026-11-18,MAZVIKADEI,storage_pct,56.8
+2026-11-18,MAZVIKADEI,storage_pct_change_week,-0.4
+2026-11-18,MBEMBESWANE,full_supply_capacity_mcm,1.6
+2026-11-18,MBEMBESWANE,storage_mcm,1.495
+2026-11-18,MBEMBESWANE,storage_pct,93.4
+2026-11-18,MBEMBESWANE,storage_pct_change_week,0
+2026-11-18,MBINDANGOMBE,full_supply_capacity_mcm,22.583
+2026-11-18,MBINDANGOMBE,storage_mcm,21.926
+2026-11-18,MBINDANGOMBE,storage_pct,97.1
+2026-11-18,MBINDANGOMBE,storage_pct_change_week,0.1
+2026-11-18,MGULULU,full_supply_capacity_mcm,1.966
+2026-11-18,MGULULU,storage_mcm,1.459
+2026-11-18,MGULULU,storage_pct,74.2
+2026-11-18,MGULULU,storage_pct_change_week,-1.1
+2026-11-18,MHAKWE,full_supply_capacity_mcm,0.524
+2026-11-18,MHAKWE,storage_mcm,0.251
+2026-11-18,MHAKWE,storage_pct,47.9
+2026-11-18,MHAKWE,storage_pct_change_week,-2.1
+2026-11-18,MHENDE,full_supply_capacity_mcm,3.642
+2026-11-18,MHENDE,storage_mcm,3.642
+2026-11-18,MHENDE,storage_pct,100
+2026-11-18,MHENDE,storage_pct_change_week,0
+2026-11-18,MHLANGWA,full_supply_capacity_mcm,4.239
+2026-11-18,MHLANGWA,storage_mcm,3.003
+2026-11-18,MHLANGWA,storage_pct,70.8
+2026-11-18,MHLANGWA,storage_pct_change_week,-1
+2026-11-18,MOZA,full_supply_capacity_mcm,3.213
+2026-11-18,MOZA,storage_mcm,1.598
+2026-11-18,MOZA,storage_pct,49.7
+2026-11-18,MOZA,storage_pct_change_week,-1.7
+2026-11-18,MPOPOMA,full_supply_capacity_mcm,2.159
+2026-11-18,MPOPOMA,storage_mcm,2.159
+2026-11-18,MPOPOMA,storage_pct,100
+2026-11-18,MPOPOMA,storage_pct_change_week,0
+2026-11-18,MTSHABEZI,full_supply_capacity_mcm,51.996
+2026-11-18,MTSHABEZI,storage_mcm,50.834
+2026-11-18,MTSHABEZI,storage_pct,97.8
+2026-11-18,MTSHABEZI,storage_pct_change_week,-0.4
+2026-11-18,MUCHEKERANWA,full_supply_capacity_mcm,66.08
+2026-11-18,MUCHEKERANWA,storage_mcm,51.597
+2026-11-18,MUCHEKERANWA,storage_pct,78.1
+2026-11-18,MUCHEKERANWA,storage_pct_change_week,-0.9
+2026-11-18,MUFURUDZI,full_supply_capacity_mcm,9.619
+2026-11-18,MUFURUDZI,storage_mcm,6.487
+2026-11-18,MUFURUDZI,storage_pct,67.4
+2026-11-18,MUFURUDZI,storage_pct_change_week,0
+2026-11-18,MUNDI MATAGA,full_supply_capacity_mcm,38.827
+2026-11-18,MUNDI MATAGA,storage_mcm,37.302
+2026-11-18,MUNDI MATAGA,storage_pct,96.1
+2026-11-18,MUNDI MATAGA,storage_pct_change_week,-1.2
+2026-11-18,MUNJANGANJA,full_supply_capacity_mcm,1.969
+2026-11-18,MUNJANGANJA,storage_mcm,1.451
+2026-11-18,MUNJANGANJA,storage_pct,73.7
+2026-11-18,MUNJANGANJA,storage_pct_change_week,-1.6
+2026-11-18,MUPFURE WEIRS,full_supply_capacity_mcm,3.835
+2026-11-18,MUPFURE WEIRS,storage_mcm,3.835
+2026-11-18,MUPFURE WEIRS,storage_pct,100
+2026-11-18,MUPFURE WEIRS,storage_pct_change_week,0
+2026-11-18,MUSAWEREMA,full_supply_capacity_mcm,7.316
+2026-11-18,MUSAWEREMA,storage_mcm,5.606
+2026-11-18,MUSAWEREMA,storage_pct,76.6
+2026-11-18,MUSAWEREMA,storage_pct_change_week,-0.6
+2026-11-18,MUSHANDIKE,full_supply_capacity_mcm,37.252
+2026-11-18,MUSHANDIKE,storage_mcm,28.534
+2026-11-18,MUSHANDIKE,storage_pct,76.6
+2026-11-18,MUSHANDIKE,storage_pct_change_week,-1.3
+2026-11-18,MUTERI,full_supply_capacity_mcm,74.214
+2026-11-18,MUTERI,storage_mcm,74.214
+2026-11-18,MUTERI,storage_pct,100
+2026-11-18,MUTERI,storage_pct_change_week,0
+2026-11-18,MUTIRIKWI,full_supply_capacity_mcm,1378.08
+2026-11-18,MUTIRIKWI,storage_mcm,1210.17
+2026-11-18,MUTIRIKWI,storage_pct,87.8
+2026-11-18,MUTIRIKWI,storage_pct_change_week,-0.4
+2026-11-18,MUZHWI,full_supply_capacity_mcm,106.961
+2026-11-18,MUZHWI,storage_mcm,102.13
+2026-11-18,MUZHWI,storage_pct,95.5
+2026-11-18,MUZHWI,storage_pct_change_week,-0.6
+2026-11-18,MWARAZI,full_supply_capacity_mcm,5.893
+2026-11-18,MWARAZI,storage_mcm,5.893
+2026-11-18,MWARAZI,storage_pct,100
+2026-11-18,MWARAZI,storage_pct_change_week,0
+2026-11-18,MWENJE NOAKES-STAGE II,full_supply_capacity_mcm,36.117
+2026-11-18,MWENJE NOAKES-STAGE II,storage_mcm,12.907
+2026-11-18,MWENJE NOAKES-STAGE II,storage_pct,35.7
+2026-11-18,MWENJE NOAKES-STAGE II,storage_pct_change_week,-1.1
+2026-11-18,MZINGWANE,full_supply_capacity_mcm,42.179
+2026-11-18,MZINGWANE,storage_mcm,11.765
+2026-11-18,MZINGWANE,storage_pct,27.9
+2026-11-18,MZINGWANE,storage_pct_change_week,-1.1
+2026-11-18,NEGOMO,full_supply_capacity_mcm,4.968
+2026-11-18,NEGOMO,storage_mcm,4.814
+2026-11-18,NEGOMO,storage_pct,96.9
+2026-11-18,NEGOMO,storage_pct_change_week,-2.9
+2026-11-18,NERUTANGA,full_supply_capacity_mcm,1.775
+2026-11-18,NERUTANGA,storage_mcm,1.775
+2026-11-18,NERUTANGA,storage_pct,100
+2026-11-18,NERUTANGA,storage_pct_change_week,1.4
+2026-11-18,NGESI,full_supply_capacity_mcm,22.686
+2026-11-18,NGESI,storage_mcm,10.09
+2026-11-18,NGESI,storage_pct,44.5
+2026-11-18,NGESI,storage_pct_change_week,-0.8
+2026-11-18,NGEZI,full_supply_capacity_mcm,72.32
+2026-11-18,NGEZI,storage_mcm,67.4
+2026-11-18,NGEZI,storage_pct,93.2
+2026-11-18,NGEZI,storage_pct_change_week,-0.1
+2026-11-18,NGONDOMA,full_supply_capacity_mcm,7.487
+2026-11-18,NGONDOMA,storage_mcm,3.701
+2026-11-18,NGONDOMA,storage_pct,49.4
+2026-11-18,NGONDOMA,storage_pct_change_week,-1.7
+2026-11-18,NGWANE,full_supply_capacity_mcm,1.1
+2026-11-18,NGWANE,storage_mcm,0.865
+2026-11-18,NGWANE,storage_pct,78.6
+2026-11-18,NGWANE,storage_pct_change_week,-1.5
+2026-11-18,NGWENYA,full_supply_capacity_mcm,2.541
+2026-11-18,NGWENYA,storage_mcm,1.339
+2026-11-18,NGWENYA,storage_pct,52.7
+2026-11-18,NGWENYA,storage_pct_change_week,-2.1
+2026-11-18,NYADIRE,full_supply_capacity_mcm,1.067
+2026-11-18,NYADIRE,storage_mcm,0.07
+2026-11-18,NYADIRE,storage_pct,6.6
+2026-11-18,NYADIRE,storage_pct_change_week,-1.1
+2026-11-18,NYAHANGARE,full_supply_capacity_mcm,0.275
+2026-11-18,NYAHANGARE,storage_mcm,0.275
+2026-11-18,NYAHANGARE,storage_pct,100
+2026-11-18,NYAHANGARE,storage_pct_change_week,0
+2026-11-18,NYAJENA,full_supply_capacity_mcm,4.667
+2026-11-18,NYAJENA,storage_mcm,4.428
+2026-11-18,NYAJENA,storage_pct,94.9
+2026-11-18,NYAJENA,storage_pct_change_week,-3
+2026-11-18,NYAKAMBIRI,full_supply_capacity_mcm,0.664
+2026-11-18,NYAKAMBIRI,storage_mcm,0.664
+2026-11-18,NYAKAMBIRI,storage_pct,100
+2026-11-18,NYAKAMBIRI,storage_pct_change_week,0
+2026-11-18,NYAMAFUFU,full_supply_capacity_mcm,9.113
+2026-11-18,NYAMAFUFU,storage_mcm,7.454
+2026-11-18,NYAMAFUFU,storage_pct,81.8
+2026-11-18,NYAMAFUFU,storage_pct_change_week,-0.9
+2026-11-18,NYAMAPUNGA,full_supply_capacity_mcm,1
+2026-11-18,NYAMAPUNGA,storage_mcm,1
+2026-11-18,NYAMAPUNGA,storage_pct,100
+2026-11-18,NYAMAPUNGA,storage_pct_change_week,0
+2026-11-18,NYAMAROPA,full_supply_capacity_mcm,1.622
+2026-11-18,NYAMAROPA,storage_mcm,1.622
+2026-11-18,NYAMAROPA,storage_pct,100
+2026-11-18,NYAMAROPA,storage_pct_change_week,0
+2026-11-18,NYAMBUYA,full_supply_capacity_mcm,2.102
+2026-11-18,NYAMBUYA,storage_mcm,2.102
+2026-11-18,NYAMBUYA,storage_pct,100
+2026-11-18,NYAMBUYA,storage_pct_change_week,0
+2026-11-18,NYANGOMBE,full_supply_capacity_mcm,1
+2026-11-18,NYANGOMBE,storage_mcm,1
+2026-11-18,NYANGOMBE,storage_pct,100
+2026-11-18,NYANGOMBE,storage_pct_change_week,0
+2026-11-18,NYATARE,full_supply_capacity_mcm,2.597
+2026-11-18,NYATARE,storage_mcm,2.389
+2026-11-18,NYATARE,storage_pct,92
+2026-11-18,NYATARE,storage_pct_change_week,0
+2026-11-18,NYAWA,full_supply_capacity_mcm,2.734
+2026-11-18,NYAWA,storage_mcm,2.639
+2026-11-18,NYAWA,storage_pct,96.5
+2026-11-18,NYAWA,storage_pct_change_week,0
+2026-11-18,ODZANI,full_supply_capacity_mcm,6.422
+2026-11-18,ODZANI,storage_mcm,3.334
+2026-11-18,ODZANI,storage_pct,51.9
+2026-11-18,ODZANI,storage_pct_change_week,-5.3
+2026-11-18,OSBORNE,full_supply_capacity_mcm,401.646
+2026-11-18,OSBORNE,storage_mcm,325.375
+2026-11-18,OSBORNE,storage_pct,81
+2026-11-18,OSBORNE,storage_pct_change_week,-1.1
+2026-11-18,PADRE'S POOL,full_supply_capacity_mcm,2.987
+2026-11-18,PADRE'S POOL,storage_mcm,2.704
+2026-11-18,PADRE'S POOL,storage_pct,90.5
+2026-11-18,PADRE'S POOL,storage_pct_change_week,-1.7
+2026-11-18,PEMBI,full_supply_capacity_mcm,2.029
+2026-11-18,PEMBI,storage_mcm,1.728
+2026-11-18,PEMBI,storage_pct,85.2
+2026-11-18,PEMBI,storage_pct_change_week,-0.2
+2026-11-18,POLLARDS,full_supply_capacity_mcm,3.22
+2026-11-18,POLLARDS,storage_mcm,2.35
+2026-11-18,POLLARDS,storage_pct,73
+2026-11-18,POLLARDS,storage_pct_change_week,-1.1
+2026-11-18,ROSWA,full_supply_capacity_mcm,2.819
+2026-11-18,ROSWA,storage_mcm,2.795
+2026-11-18,ROSWA,storage_pct,99.1
+2026-11-18,ROSWA,storage_pct_change_week,-0.2
+2026-11-18,RUFARO,full_supply_capacity_mcm,4.84
+2026-11-18,RUFARO,storage_mcm,4.075
+2026-11-18,RUFARO,storage_pct,84.2
+2026-11-18,RUFARO,storage_pct_change_week,-2.1
+2026-11-18,RUSAPE,full_supply_capacity_mcm,66.964
+2026-11-18,RUSAPE,storage_mcm,55.823
+2026-11-18,RUSAPE,storage_pct,83.4
+2026-11-18,RUSAPE,storage_pct_change_week,-1.5
+2026-11-18,RUTI,full_supply_capacity_mcm,152.308
+2026-11-18,RUTI,storage_mcm,86.077
+2026-11-18,RUTI,storage_pct,56.5
+2026-11-18,RUTI,storage_pct_change_week,-2.3
+2026-11-18,SADZA,full_supply_capacity_mcm,1.315
+2026-11-18,SADZA,storage_mcm,1.27
+2026-11-18,SADZA,storage_pct,96.6
+2026-11-18,SADZA,storage_pct_change_week,-0.2
+2026-11-18,SEBAKWE STAGE II,full_supply_capacity_mcm,265.733
+2026-11-18,SEBAKWE STAGE II,storage_mcm,201.942
+2026-11-18,SEBAKWE STAGE II,storage_pct,76
+2026-11-18,SEBAKWE STAGE II,storage_pct_change_week,-0.6
+2026-11-18,SEKE,full_supply_capacity_mcm,3.38
+2026-11-18,SEKE,storage_mcm,1.193
+2026-11-18,SEKE,storage_pct,35.3
+2026-11-18,SEKE,storage_pct_change_week,-15
+2026-11-18,SHANGANI,full_supply_capacity_mcm,13.388
+2026-11-18,SHANGANI,storage_mcm,8.333
+2026-11-18,SHANGANI,storage_pct,62.2
+2026-11-18,SHANGANI,storage_pct_change_week,-1.1
+2026-11-18,SHASHANI,full_supply_capacity_mcm,27.338
+2026-11-18,SHASHANI,storage_mcm,25.065
+2026-11-18,SHASHANI,storage_pct,91.7
+2026-11-18,SHASHANI,storage_pct_change_week,-0.7
+2026-11-18,SHURUGWI,full_supply_capacity_mcm,2.116
+2026-11-18,SHURUGWI,storage_mcm,1.548
+2026-11-18,SHURUGWI,storage_pct,73.2
+2026-11-18,SHURUGWI,storage_pct_change_week,-1
+2026-11-18,SILALABUHWA,full_supply_capacity_mcm,23.22
+2026-11-18,SILALABUHWA,storage_mcm,16.737
+2026-11-18,SILALABUHWA,storage_pct,72.1
+2026-11-18,SILALABUHWA,storage_pct_change_week,-2.1
+2026-11-18,SIWAZE,full_supply_capacity_mcm,2.325
+2026-11-18,SIWAZE,storage_mcm,1.833
+2026-11-18,SIWAZE,storage_pct,78.8
+2026-11-18,SIWAZE,storage_pct_change_week,-0.5
+2026-11-18,SIYA,full_supply_capacity_mcm,105.455
+2026-11-18,SIYA,storage_mcm,105.455
+2026-11-18,SIYA,storage_pct,100
+2026-11-18,SIYA,storage_pct_change_week,0
+2026-11-18,SMALL BRIDGE,full_supply_capacity_mcm,14.785
+2026-11-18,SMALL BRIDGE,storage_mcm,14.785
+2026-11-18,SMALL BRIDGE,storage_pct,100
+2026-11-18,SMALL BRIDGE,storage_pct_change_week,0
+2026-11-18,SOMALALA,full_supply_capacity_mcm,1.7
+2026-11-18,SOMALALA,storage_mcm,1.7
+2026-11-18,SOMALALA,storage_pct,100
+2026-11-18,SOMALALA,storage_pct_change_week,0
+2026-11-18,SUKWE,full_supply_capacity_mcm,1.7
+2026-11-18,SUKWE,storage_mcm,1.7
+2026-11-18,SUKWE,storage_pct,100
+2026-11-18,SUKWE,storage_pct_change_week,0
+2026-11-18,SURI SURI,full_supply_capacity_mcm,9.971
+2026-11-18,SURI SURI,storage_mcm,3.694
+2026-11-18,SURI SURI,storage_pct,37
+2026-11-18,SURI SURI,storage_pct_change_week,-1.3
+2026-11-18,TOKWANE,full_supply_capacity_mcm,14.454
+2026-11-18,TOKWANE,storage_mcm,5.451
+2026-11-18,TOKWANE,storage_pct,37.7
+2026-11-18,TOKWANE,storage_pct_change_week,16
+2026-11-18,TSHANGWA,full_supply_capacity_mcm,2.52
+2026-11-18,TSHANGWA,storage_mcm,1.83
+2026-11-18,TSHANGWA,storage_pct,72.6
+2026-11-18,TSHANGWA,storage_pct_change_week,-0.9
+2026-11-18,TUGWANE,full_supply_capacity_mcm,3.055
+2026-11-18,TUGWANE,storage_mcm,2.188
+2026-11-18,TUGWANE,storage_pct,71.6
+2026-11-18,TUGWANE,storage_pct_change_week,-1.2
+2026-11-18,TUGWI MUKOSI,full_supply_capacity_mcm,1802.6
+2026-11-18,TUGWI MUKOSI,storage_mcm,1780.7
+2026-11-18,TUGWI MUKOSI,storage_pct,98.8
+2026-11-18,TUGWI MUKOSI,storage_pct_change_week,-0.3
+2026-11-18,TULI MAKWE,full_supply_capacity_mcm,6.122
+2026-11-18,TULI MAKWE,storage_mcm,5.471
+2026-11-18,TULI MAKWE,storage_pct,89.4
+2026-11-18,TULI MAKWE,storage_pct_change_week,-2
+2026-11-18,TURRAMURA,full_supply_capacity_mcm,0.324
+2026-11-18,TURRAMURA,storage_mcm,0.156
+2026-11-18,TURRAMURA,storage_pct,48.1
+2026-11-18,TURRAMURA,storage_pct_change_week,0
+2026-11-18,UPPER INSIZA,full_supply_capacity_mcm,7.818
+2026-11-18,UPPER INSIZA,storage_mcm,3.146
+2026-11-18,UPPER INSIZA,storage_pct,40.2
+2026-11-18,UPPER INSIZA,storage_pct_change_week,-2.1
+2026-11-18,UPPER MGUSA,full_supply_capacity_mcm,3.134
+2026-11-18,UPPER MGUSA,storage_mcm,2.131
+2026-11-18,UPPER MGUSA,storage_pct,68
+2026-11-18,UPPER MGUSA,storage_pct_change_week,-2.4
+2026-11-18,UPPER NCEMA,full_supply_capacity_mcm,43.574
+2026-11-18,UPPER NCEMA,storage_mcm,17.169
+2026-11-18,UPPER NCEMA,storage_pct,39.4
+2026-11-18,UPPER NCEMA,storage_pct_change_week,-0.2
+2026-11-18,VALLEY,full_supply_capacity_mcm,5.427
+2026-11-18,VALLEY,storage_mcm,4.139
+2026-11-18,VALLEY,storage_pct,76.3
+2026-11-18,VALLEY,storage_pct_change_week,-2.1
+2026-11-18,WENIMBI,full_supply_capacity_mcm,21.932
+2026-11-18,WENIMBI,storage_mcm,6.193
+2026-11-18,WENIMBI,storage_pct,28.2
+2026-11-18,WENIMBI,storage_pct_change_week,-0.4
+2026-11-18,WHITEWATERS,full_supply_capacity_mcm,4.895
+2026-11-18,WHITEWATERS,storage_mcm,4.317
+2026-11-18,WHITEWATERS,storage_pct,88.2
+2026-11-18,WHITEWATERS,storage_pct_change_week,0
+2026-11-18,WILLIAM LAURIE,full_supply_capacity_mcm,16.874
+2026-11-18,WILLIAM LAURIE,storage_mcm,2.77
+2026-11-18,WILLIAM LAURIE,storage_pct,16.4
+2026-11-18,WILLIAM LAURIE,storage_pct_change_week,0
+2026-11-18,WOODLANDS,full_supply_capacity_mcm,2.454
+2026-11-18,WOODLANDS,storage_mcm,1.157
+2026-11-18,WOODLANDS,storage_pct,47.1
+2026-11-18,WOODLANDS,storage_pct_change_week,0
+2026-11-18,ZHOVHE,full_supply_capacity_mcm,130.46
+2026-11-18,ZHOVHE,storage_mcm,108.983
+2026-11-18,ZHOVHE,storage_pct,83.5
+2026-11-18,ZHOVHE,storage_pct_change_week,-0.9
+2026-11-18,ZIMUNYA,full_supply_capacity_mcm,0.555
+2026-11-18,ZIMUNYA,storage_mcm,0.553
+2026-11-18,ZIMUNYA,storage_pct,99.6
+2026-11-18,ZIMUNYA,storage_pct_change_week,0
