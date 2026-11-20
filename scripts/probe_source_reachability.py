@@ -246,6 +246,9 @@ def main() -> int:
         opts = dict(tok.split("=", 1) for tok in tokens[1:] if "=" in tok)
         targets.append((tokens[0], opts))
     if not targets:
+        if args.file and not args.urls:
+            print(f"no URLs listed in {args.file}; nothing to probe")
+            return 0
         parser.error("no http(s) URLs given")
     urls = [url for url, _ in targets]
 

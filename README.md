@@ -184,3 +184,18 @@ external scheduler calling the dispatch API for a complete hourly series:
 
 Keep the cron schedules as a fallback. Each workflow's concurrency group
 serialises a dispatched run and a scheduled one that meet.
+
+## When a source stops answering
+
+A scraper that fails on a GitHub-hosted runner can still work from a laptop, and
+the reverse. `scripts/probe_source_reachability.py` reports DNS, TCP, TLS and
+HTTP separately for each URL, from wherever it runs, so a dead site, a network
+the site refuses and a moved page can be told apart:
+
+```bash
+python scripts/probe_source_reachability.py https://www.vra.com/ https://vra.com/
+```
+
+To run it on a runner, start the "Probe source reachability" workflow by hand
+with the URLs, or list them in `scripts/probe_targets.txt` on a work branch and
+push (the file documents its options). It commits nothing.
