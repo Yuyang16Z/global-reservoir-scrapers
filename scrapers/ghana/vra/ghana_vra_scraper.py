@@ -10,8 +10,16 @@ Known quirks:
   (`www.vra.com` redirected to a broken `~4008842.../htdocs/` path). Then the site
   moved (now 206.188.193.10, vux.netsolhost.com): from GitHub runners `vra.com`
   answered HTTP 403 on 2026-11-15..19 and refuses the TLS handshake since
-  2026-11-20 ("tlsv1 alert internal error" for that server name), while
-  `www.vra.com` serves the same pages, unchanged in layout (checked 2026-11-20).
+  2026-11-20 ("tlsv1 alert internal error" for that server name), so `www.vra.com`
+  is the only host that answers at all.
+- NOT YET WORKING AGAIN (2026-11-20): from one GitHub runner, `www.vra.com` served
+  both pages (layout unchanged, lake level of 2026-11-19) to a request that carried
+  User-Agent, Accept and Accept-Language, and answered this scraper's own request
+  (User-Agent only) with HTTP 403 (561 bytes) one minute later. Which of the two
+  differences the site acts on was not established, and the request headers here
+  are unchanged: whether to send more than a User-Agent to a host that refuses the
+  scraper is the repository owner's decision. Until then a run fails with the 403
+  recorded and the refused page saved.
 - The page is a CURRENT-VALUE SNAPSHOT with no archive, so anything not
   captured is lost; only continuous polling builds a series.
 - The reading is printed together with its OWN observation date, which lags

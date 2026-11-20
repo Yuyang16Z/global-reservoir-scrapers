@@ -1,39 +1,20 @@
-# Round 3
-# Dry-run the changed scrapers on the runner (writes to a scratch directory)
-@scraper scrapers/ghana/vra/ghana_vra_scraper.py
-@scraper scrapers/ghana/bui/ghana_bui_scraper.py
-# Morocco: Ministry of Equipment and Water daily dam situation
-http://maghreb-assoudoud.water.gov.ma/ar/site/today snippet=2500 links=^(?!.*\.(css|png|jpe?g|svg|ico|woff2?|gif)).+$ max=60
-http://maghreb-assoudoud.water.gov.ma/fr/site/today snippet=2500 grep=<tr[^>]*>.{0,400}?</tr> max=6
-https://maghreb-assoudoud.water.gov.ma/ar/site/today snippet=300
-https://www.maadialna.ma/ar grep=.{300}etat_global\.pdf.{200} max=2
-https://www.maadialna.ma/sites/default/files/barrages/2026-11-18/ar/etat_global.pdf snippet=3500
-https://www.maadialna.ma/sites/default/files/barrages/2026-11-18/fr/etat_global.pdf snippet=1500
-https://www.maadialna.ma/sites/default/files/barrages/2026-11-20/ar/etat_global.pdf snippet=300
-https://www.maadialna.ma/sites/default/files/barrages/2026-11-19/ar/etat_global.pdf snippet=300
-https://www.maadialna.ma/sites/default/files/barrages/2026-06-18/ar/etat_global.pdf snippet=300
-https://www.maadialna.ma/sites/default/files/barrages/2025-11-18/ar/etat_global.pdf snippet=300
-https://www.maadialna.ma/sites/default/files/barrages/2024-11-18/ar/etat_global.pdf snippet=300
-# Tunisia: open-data catalogue and ONAGRI interactive pages
-https://catalog.agridata.tn/api/3/action/package_search?q=barrage&rows=100 snippet=100 grep="metadata_modified":\s"[^"]+",\s"name":\s"[^"]+" max=100
-https://www.onagri.nat.tn/barrages snippet=200 grep=20(25|26)-\d\d-\d\d max=12
-https://www.onagri.nat.tn/Barrages/fr/189 snippet=1500 grep=20(25|26)-\d\d-\d\d max=6
-https://www.onagri.nat.tn/Barrage/fr/188 snippet=1500 grep=(\d{1,2}[-/]\d{1,2}[-/]20(25|26)) max=6
-# Turkey: Izmir IZSU open-data API, Ankara ASKI
-https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus snippet=2500
-https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2026 snippet=1200
-https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?date=2026-11-10 snippet=1200
-https://acikveriwapi.izmir.bel.tr/docs/ snippet=1500 links=swagger|json|izsu grep=(?i)DamWaterStatus.{0,400} max=4
-https://acikveri.bizizmir.com/api/3/action/package_show?id=barajlarin-doluluk-oranlari snippet=50 grep="license_[a-z]+":\s"[^"]*" max=6
-https://www.aski.gov.tr/tr/Baraj.aspx snippet=200 grep=Toplam\sDoluluk.{0,3500} max=1
-# Ghana Bui: the script behind the Operations Centre page
-https://buipower.com/assets/js/operations-live.js snippet=200 grep=(fetch\(|\.php|\.json|\?)[^\n]{0,160} max=30
-# Namibia NamWater
-https://www.namwater.com.na/images/dambulletin/ snippet=600 links=pdf max=40
-https://www.namwater.com.na/index.php/about-us/divisions/planning-water-resources-management snippet=300 links=pdf|dam|bulletin max=30 grep=(?i)bulletin.{0,160}
-# Japan: MLIT Water Information System (upstream of opengov.jp)
-https://www1.river.go.jp/ snippet=100 links=^/(?!_next) max=40 grep=(利用規約|利用上の注意|一括).{0,160} max=40
-# Pakistan
-https://www.wapda.gov.pk/river-flow snippet=1500 grep=(?i)tarbela.{0,200} max=4
-https://pakirsa.gov.pk/DailyData.aspx snippet=1500 links=pdf|Daily max=20
-https://ffd.pmd.gov.pk/river-state?zoom=5 snippet=800 grep=(?i)tarbela.{0,200} max=3
+# Targets for the "Probe source reachability" workflow.
+#
+# Pushing a change to this file on a work branch (not main) probes the URLs
+# listed here from a GitHub-hosted runner. One URL per line; lines starting
+# with '#' are comments. Options follow the URL, separated by spaces (write \s
+# for a space inside a pattern):
+#
+#   grep=REGEX     print matches of REGEX in the response text
+#   links=REGEX    print href/src values matching REGEX
+#   max=N          print up to N matches / links (default 12 / 40)
+#   snippet=N      print the first N characters of the body (default 600)
+#
+# A line "@scraper <path>" runs that scraper with OUTPUT_DIR set to a scratch
+# directory and prints what it wrote; nothing reaches data/.
+#
+# Example:
+#   https://www.koski.gov.tr/koski/bagbasi-baraj-degerleri grep=\d\d/11/2026.{0,200}
+#   @scraper scrapers/ghana/bui/ghana_bui_scraper.py
+#
+# Keep this list empty on main.
