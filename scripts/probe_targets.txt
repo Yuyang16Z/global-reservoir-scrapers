@@ -1,35 +1,32 @@
-# Ghana VRA (refused since 2026-11-15)
+# Round 2 - Ghana VRA: which host and scheme still serve the lake level
+https://www.vra.com/resources/facts.php grep=Lake\s*Level.{0,300}
 https://vra.com/resources/facts.php
+https://www.vra.com/ grep=Lake\s*Level.{0,300}
+http://www.vra.com/resources/facts.php grep=Lake\s*Level.{0,300}
 https://vra.com/
-https://www.vra.com/resources/facts.php
-https://www.vra.com/
-http://vra.com/resources/facts.php
-http://www.vra.com/resources/facts.php
-# Morocco ABHSM (connect timeout since 2026-08-04)
-https://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
-http://www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
-https://abhsm.ma/
-http://abhsm.ma/
-# Turkey KOSKI (no answer since 2026-10-19)
-https://www.koski.gov.tr/koski/altinapa-baraj-degerleri
-http://www.koski.gov.tr/koski/altinapa-baraj-degerleri
-https://koski.gov.tr/
-# Internet Archive: latest captures of the refused pages
-https://archive.org/wayback/available?url=vra.com/resources/facts.php
-https://archive.org/wayback/available?url=www.koski.gov.tr/koski/altinapa-baraj-degerleri
-https://archive.org/wayback/available?url=www.abhsm.ma/document/Remplissage_barrage/remplissage_barrage.pdf
-https://web.archive.org/cdx/search/cdx?url=vra.com/resources/facts.php&output=json&from=20261101&limit=40
-https://web.archive.org/cdx/search/cdx?url=vra.com/&output=json&from=20261101&limit=40
-https://web.archive.org/cdx/search/cdx?url=koski.gov.tr/koski/&matchType=prefix&output=json&from=20261001&limit=40&filter=original:.*baraj-degerleri.*
-https://web.archive.org/cdx/search/cdx?url=abhsm.ma/document/Remplissage_barrage/&matchType=prefix&output=json&from=20260601&limit=40
-# Candidate replacements and other sources seen failing
-https://www.maadialna.ma/
-https://www.agridata.tn/api/3/action/package_search?q=barrage&rows=3
-https://data.ibb.gov.tr/api/3/action/package_search?q=baraj&rows=3
-https://openapi.izmir.bel.tr/api/izsu/barajdurum
-https://iskiapi.iski.istanbul/api/iski/baraj/dolulukOranlari/v2
-https://www.namwater.com.na/
-https://buipower.com/api/operations-dashboard.php
-https://apwrims.ap.gov.in/api/reservoir/map/all
-https://www.onagri.nat.tn/Situation-des-barrages/fr/19
-https://opengov.jp/
+# Turkey KOSKI: newest rows on the pages
+https://www.koski.gov.tr/koski/bagbasi-baraj-degerleri grep=\d\d/11/2026.{0,200}
+https://www.koski.gov.tr/koski/altinapa-baraj-degerleri grep=\d\d/11/2026.{0,200}
+# Ghana Bui: what the Operations Centre page calls
+https://buipower.com/operations-center links=\.js|api|\.json grep=(api/[\w\-]+\.php|data/[\w\-]+\.json)[^"'<]{0,80} max=60
+# Morocco: Maa Dialna (Ministry of Equipment and Water)
+https://www.maadialna.ma/fr links=^(?!.*\.(css|png|jpe?g|svg|ico|woff2?|gif)).+$ max=90 grep=[Bb]arrage.{0,140}
+https://www.maadialna.ma/fr/barrages grep=[Bb]arrage.{0,140}
+# Tunisia: open-data portal and ONAGRI
+https://catalog.agridata.tn/api/3/action/package_search?q=barrage&rows=30 snippet=4000
+https://www.agridata.tn/fr/dataset/?q=barrage links=dataset|barrage max=60
+https://www.onagri.nat.tn/Situation-des-barrages/fr/19 grep=BARRAGES-[0-9\-]+\.pdf links=barrage|uploads max=30
+https://www.onagri.nat.tn/barrages links=barrage|api|json|\.js max=40
+# Namibia NamWater
+https://www.namwater.com.na/ links=dam|bulletin|\.pdf|level|water max=60 grep=(?i)(dam\s|bulletin).{0,120}
+# Turkey: Izmir IZSU open data, Istanbul ISKI, Ankara ASKI
+https://openapi.izmir.bel.tr/api/izsu/barajdurum snippet=1500
+https://acikveri.bizizmir.com/api/3/action/package_show?id=barajlarin-doluluk-oranlari snippet=3500
+https://openfiles.izmir.bel.tr/309436/docs/izsu-baraj-doluluk-oranlari.csv snippet=1500
+https://iski.istanbul/baraj-doluluk/ links=api|baraj|\.js max=40 grep=https?://[\w\.\-]*iski[\w\.\-/]*api[\w\.\-/]*
+https://www.turkiye.gov.tr/istanbul-su-ve-kanalizasyon-idaresi-baraj-doluluk-oranlari grep=(?i)doluluk.{0,160} snippet=1500
+https://www.aski.gov.tr/tr/Baraj.aspx grep=(?i)(doluluk|baraj).{0,160} snippet=1200
+# Japan
+https://www.river.go.jp/kawabou/kwb_apend/html/caution.html grep=(定期|ツール|配信|機械的).{0,220} snippet=1500
+https://www1.river.go.jp/ snippet=800 links=. max=30
+https://opengov.jp/en/dam grep=(?i)last\s*updated.{0,80} snippet=500

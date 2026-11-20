@@ -12,7 +12,11 @@ Usage:
   python3 scripts/probe_source_reachability.py URL [URL ...]
   python3 scripts/probe_source_reachability.py --file targets.txt [--json out.json]
 
-Lines in a targets file starting with '#' are printed as section headings.
+In a targets file, lines starting with '#' are comments. A URL may be followed
+by options separated by spaces (use \\s for a space inside a pattern):
+  grep=REGEX     print up to 12 matches of REGEX in the response text
+  links=REGEX    print up to 40 (max=N) distinct href/src values matching REGEX
+  snippet=N      print the first N characters instead of 600
 """
 from __future__ import annotations
 
@@ -95,7 +99,8 @@ def reverse_dns(ip: str) -> str:
         return "-"
 
 
-def http_get(url: str) -> dict:
+def http_get(url: str, opts: dict | None = None) -> dict:
+    opts = opts or {}
     out: dict = {}
     start = time.monotonic()
     try:
@@ -123,16 +128,29 @@ def http_get(url: str) -> dict:
         out["snippet"] = "<PDF>"
     else:
         text = resp.text if resp.encoding else body.decode("utf-8", "replace")
+        if opts.get("grep"):
+            found = [re.sub(r"\s+", " ", m.group(0))[:300]
+                     for m in re.finditer(opts["grep"], text, re.I | re.S)]
+            out["grep"] = found[:12]
+            out["grep_total"] = len(found)
+        if opts.get("links"):
+            seen: list[str] = []
+            for m in re.finditer(r"""(?:href|src|action|data-url)\s*=\s*["']([^"']+)["']""", text, re.I):
+                link = m.group(1)
+                if re.search(opts["links"], link, re.I) and link not in seen:
+                    seen.append(link)
+            out["links"] = seen[:int(opts.get("max") or 40)]
         if "html" in out["content_type"].lower():
             title = re.search(r"<title[^>]*>(.*?)</title>", text, re.I | re.S)
             out["title"] = re.sub(r"\s+", " ", title.group(1)).strip()[:150] if title else ""
             text = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", text)
             text = re.sub(r"(?s)<[^>]+>", " ", text)
-        out["snippet"] = re.sub(r"\s+", " ", text).strip()[:SNIPPET]
+        out["snippet"] = re.sub(r"\s+", " ", text).strip()[:int(opts.get("snippet") or SNIPPET)]
     return out
 
 
-def probe(url: str, tls_matrix: bool) -> dict:
+def probe(target: tuple[str, dict], tls_matrix: bool) -> dict:
+    url, opts = target
     parts = urlsplit(url)
     host = parts.hostname or ""
     port = parts.port or (443 if parts.scheme == "https" else 80)
@@ -157,7 +175,7 @@ def probe(url: str, tls_matrix: bool) -> dict:
             result["tls"]["no_sni"] = tls_handshake(first, port, None, verify=False)
             other = host[4:] if host.startswith("www.") else f"www.{host}"
             result["tls"][f"sni={other}"] = tls_handshake(first, port, other, verify=False)
-    result["http"] = http_get(url)
+    result["http"] = http_get(url, opts)
     return result
 
 
@@ -182,6 +200,12 @@ def show(result: dict) -> None:
     if http.get("title"):
         print(f"  title : {http['title']}")
     print(f"  body  : {http.get('snippet', '')}")
+    if "grep" in http:
+        print(f"  grep  : {http['grep_total']} match(es)")
+        for found in http["grep"]:
+            print(f"    | {found}")
+    for link in http.get("links", []):
+        print(f"    > {link}")
 
 
 def main() -> int:
@@ -194,15 +218,19 @@ def main() -> int:
     parser.add_argument("--workers", type=int, default=8)
     args = parser.parse_args()
 
-    urls = list(args.urls)
+    lines = list(args.urls)
     if args.file:
-        for line in open(args.file, encoding="utf-8"):
-            line = line.strip()
-            if line and not line.startswith("#"):
-                urls.append(line)
-    urls = [u for u in urls if u.startswith(("http://", "https://"))]
-    if not urls:
+        lines += [line.strip() for line in open(args.file, encoding="utf-8")]
+    targets: list[tuple[str, dict]] = []
+    for line in lines:
+        tokens = line.split()
+        if not tokens or not tokens[0].startswith(("http://", "https://")):
+            continue
+        opts = dict(tok.split("=", 1) for tok in tokens[1:] if "=" in tok)
+        targets.append((tokens[0], opts))
+    if not targets:
         parser.error("no http(s) URLs given")
+    urls = [url for url, _ in targets]
 
     print(f"probing {len(urls)} URL(s) from {socket.gethostname()}")
     try:
@@ -211,7 +239,7 @@ def main() -> int:
         print("egress ip: unknown", type(exc).__name__)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        results = list(pool.map(lambda u: probe(u, args.tls_matrix), urls))
+        results = list(pool.map(lambda t: probe(t, args.tls_matrix), targets))
     for result in results:
         show(result)
     if args.json:
