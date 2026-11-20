@@ -1,5 +1,5 @@
 {
-  "run_at": "20261119T225959Z",
+  "run_at": "20261120T035640Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -28,7 +28,7 @@
     },
     {
       "prefecture": "Fukui",
-      "rows": 13,
+      "rows": 12,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -41,7 +41,7 @@
     },
     {
       "prefecture": "Miyazaki",
-      "rows": 11,
+      "rows": 12,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -52,7 +52,7 @@
     },
     {
       "prefecture": "Aomori",
-      "rows": 10,
+      "rows": 9,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -83,5 +83,5 @@
       "error": "fetch failed"
     }
   ],
-  "rows": 76
+  "rows": 75
 }
