@@ -38,23 +38,42 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scraper
+        id: scrape
         env:
           OUTPUT_DIR: ${{ github.workspace }}/data/ghana/vra
         run: python scrapers/ghana/vra/ghana_vra_scraper.py
 
+      # Ten runs in a row (2026-11-15 to 2026-11-19) got HTTP 403 from vra.com
+      # and committed nothing, so the newest run log in the repository stayed
+      # the last good one and the freshness monitor kept reporting run=ok.
+      # When the scrape fails, commit just the run log and the refused response
+      # the scraper saved - never half-merged outputs. The failed scrape step
+      # still turns the run red.
       - name: Commit & push new data
+        if: ${{ !cancelled() && steps.scrape.outcome != 'skipped' }}
+        env:
+          SCRAPE_OUTCOME: ${{ steps.scrape.outcome }}
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ghana/vra
-          git add scrapers/ghana/vra
+          if [ "$SCRAPE_OUTCOME" = "success" ]; then
+            git add data/ghana/vra
+            git add scrapers/ghana/vra
+            msg="scheduled scrape"
+          else
+            git add data/ghana/vra/raw data/ghana/vra/run_logs
+            # Revert whatever else the failed run touched: it must not be committed,
+            # and `git pull --rebase` below refuses to run over unstaged changes.
+            git checkout -- data/ghana/vra
+            msg="failed scrape, run log kept"
+          fi
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
-          git commit -m "data(ghana/vra): scheduled scrape ${ts}"
+          git commit -m "data(ghana/vra): ${msg} ${ts}"
           # Several scrapers can finish at once and race for the ref, so retry
           # the rebase-and-push instead of failing a run whose data is fine.
           for attempt in 1 2 3 4 5; do

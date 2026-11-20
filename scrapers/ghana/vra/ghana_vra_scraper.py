@@ -91,19 +91,30 @@ def ensure_dirs() -> None:
 
 
 def get_with_retries(url: str):
+    """Return (response, None) on success, else (None, failure).
+
+    `failure` describes the last attempt - {"error": ...} for a network error,
+    or {"http_status", "bytes", "body"} for a response the site did send but
+    that is not the page. The refused body is kept so a block page can be read
+    afterwards instead of guessed at from its size.
+    """
+    failure: dict = {}
     for attempt in range(1, RETRIES + 1):
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
         except requests.RequestException as exc:
             print(f"[WARN] {url} attempt {attempt}/{RETRIES}: {exc!r}", flush=True)
+            failure = {"error": repr(exc)}
             time.sleep(10 * attempt)
             continue
         if r.status_code == 200 and len(r.content) > 1500:
-            return r
+            return r, None
         print(f"[WARN] {url} attempt {attempt}/{RETRIES}: "
               f"HTTP {r.status_code}, {len(r.content)}B", flush=True)
+        failure = {"http_status": r.status_code, "bytes": len(r.content),
+                   "body": r.content}
         time.sleep(10 * attempt)
-    return None
+    return None, failure
 
 
 def page_text(raw: bytes) -> str:
@@ -211,9 +222,17 @@ def main() -> int:
         rows: list[dict] = []
         pages_ok = 0
         for url, slug in ((FACTS_URL, "facts"), (HOME_URL, "home")):
-            r = get_with_retries(url)
+            r, failure = get_with_retries(url)
             if r is None:
                 log.setdefault("unavailable_pages", []).append(slug)
+                body = failure.pop("body", None)
+                if body:
+                    refused = RAW_DIR / (f"{slug}_{stamp}_refused_"
+                                         f"http{failure['http_status']}.html")
+                    refused.write_bytes(body[:200_000])
+                    failure["saved_body"] = refused.name
+                    print(f"[SAVE] {refused} ({len(body)}B)", flush=True)
+                log.setdefault("page_failures", {})[slug] = failure
                 continue
             pages_ok += 1
             raw_path = RAW_DIR / f"{slug}_{stamp}.html"
