@@ -1,5 +1,5 @@
 {
-  "run_at": "20261121T174323Z",
+  "run_at": "20261121T224917Z",
   "per_site": [
     {
       "prefecture": "Niigata",
@@ -41,7 +41,7 @@
     },
     {
       "prefecture": "Miyazaki",
-      "rows": 12,
+      "rows": 11,
       "header_found": true,
       "skipped_no_time": 0,
       "mapped_columns": {
@@ -92,5 +92,5 @@
       "error": "fetch failed"
     }
   ],
-  "rows": 85
+  "rows": 84
 }
