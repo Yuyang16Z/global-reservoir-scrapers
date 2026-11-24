@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-24 02:58:47Z",
+  "source": "morocco/abht",
+  "url": "https://abht.ma/?nocache=7176a77b5c864f67b9179f7bf6634f28",
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/morocco/abht",
+  "status": "ok",
+  "errors": [],
+  "last_modified": null,
+  "observation_date": "2026-11-19",
+  "dams_parsed": 7,
+  "rows_added": 0,
+  "rows_updated": 0,
+  "raw_file": "abht_home_20261124_025850Z.html",
+  "finished_at": "2026-11-24 02:58:50Z"
+}
