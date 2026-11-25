@@ -1,0 +1,30 @@
+{
+  "ran_at_utc": "2026-11-25 12:08:25",
+  "source_url": "https://apwrims.ap.gov.in/",
+  "status": "success",
+  "reservoir_count": 125,
+  "metadata_rows": 125,
+  "no_data_count": 4,
+  "error_count": 0,
+  "snapshot_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2026-07-29",
+    "2026-11-21",
+    "2026-11-22",
+    "2026-11-23",
+    "2026-11-24",
+    "2026-11-25"
+  ],
+  "metadata_path": "india/apwrims/metadata/india_apwrims_reservoirs.csv",
+  "snapshot_paths": [
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2025-10-07.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2025-10-08.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-07-29.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-11-21.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-11-22.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-11-23.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-11-24.csv",
+    "india/apwrims/timeseries/daily/india_apwrims_timeseries_2026-11-25.csv"
+  ]
+}
