@@ -105,6 +105,14 @@ EXCUSED: dict[str, str] = {
         "resumed source shows up here as a fresh date. Reported but not failed. Excused "
         "2026-11-15. Review by 2026-12-15."
     ),
+    "ghana/vra": (
+        "vra.com has refused every request since 2026-11-16 (last capture 2026-11-11): from "
+        "GitHub runners every URL, plain and www, http and https, answers HTTP 403 from "
+        "openresty, and on 2026-11-26 a phone on a mobile network could not open the site "
+        "either (no secure connection). The site is down for everyone, not blocking these "
+        "runs. The twice-daily run keeps probing, so a returning site shows up here as a "
+        "fresh date. Reported but not failed. Excused 2026-11-26. Review by 2026-12-26."
+    ),
 }
 
 DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
