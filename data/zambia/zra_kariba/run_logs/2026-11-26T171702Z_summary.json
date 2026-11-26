@@ -1,0 +1,15 @@
+{
+  "source": "zambia/zra_kariba",
+  "started_at": "2026-11-26T171702Z",
+  "daily_rows_seen": 13,
+  "monthly_rows_seen": 23,
+  "status": "ok",
+  "daily_added": 0,
+  "monthly_added": 0,
+  "daily_filled": 0,
+  "monthly_filled": 0,
+  "filled": [],
+  "revisions_listed": 0,
+  "captures_replayed": 60,
+  "finished_at": "2026-11-26T171704Z"
+}
