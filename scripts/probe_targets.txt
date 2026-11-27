@@ -18,3 +18,21 @@
 #   @scraper scrapers/ghana/bui/ghana_bui_scraper.py
 #
 # Keep this list empty on main.
+
+# Izmir IZSU open-data API: licence text, how far back ?year= goes, empty answers
+https://acikveri.bizizmir.com/tr/license snippet=6000
+https://acikveri.bizizmir.com/en/license snippet=6000
+https://acikveri.bizizmir.com/api/3/action/package_show?id=barajlarin-doluluk-oranlari snippet=60 grep="(notes|title|metadata_modified|frequency|license_title|license_url)":\s"[^"]{0,700}" max=12
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus snippet=420 grep="statusCode":[^}]{0,80}
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2026 snippet=60 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2025 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2020 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2015 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2010 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2000 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=1990 snippet=300 grep="date":"\d{4}-\d\d-\d\d" max=1
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?year=2031 snippet=300
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?date=2031-01-01 snippet=300
+https://acikveriwapi.izmir.bel.tr/AcikVeriIzsuApi/DamWaterStatus?date=2026-11-10 snippet=60 grep="statusCode":[^}]{0,80}
+https://openfiles.izmir.bel.tr/309436/docs/izsu-baraj-doluluk-oranlari.csv snippet=1500
+https://acikveriwapi.izmir.bel.tr/docs/ snippet=200 links=. max=20 grep=<script[^>]*>.{0,400} max=4
