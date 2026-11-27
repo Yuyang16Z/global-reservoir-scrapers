@@ -83,7 +83,7 @@ subfolders. Output formats follow [`schema.md`](./schema.md).
 | Taiwan (nationwide) | WRA open data (one-day daily-operations snapshot) | daily snapshot, 2× per day (history API retired 2026-06) | `scrapers/taiwan/wra/taiwan_wra_scraper.py` | ✅ v1 (2026-04-22) |
 | Thailand (nationwide) | RID Royal Irrigation Dept JSON API (35 large + 448 medium) | weekly run, rolling 15-day backfill | `scrapers/thailand/rid/thailand_rid_scraper.py` | ✅ v1 (2026-04-22) |
 | Turkey (Konya) | KOSKİ dam readings pages (Altınapa, Bağbaşı, Bozkır, Afşar: gauge height, elevation, volume, fill ratio) | rolling six-year window, weekly, full-window re-read | `scrapers/turkey/koski/turkey_koski_scraper.py` | ✅ v1 (2026-10-15) |
-| Turkey (İzmir) | İZSU dam water status, İzmir open-data API (water volume, fill ratio, water elevation; five dams in 2026, six or seven facilities a day in earlier years) | permanent archive by year, daily, each new or changed date stored as served | `scrapers/turkey/izsu/turkey_izsu_scraper.py` | ✅ v1 (2026-11-27) |
+| Turkey (İzmir) | İZSU dam water status, İzmir open-data API (water volume, fill ratio, water elevation; eight facilities from 2009-03-12, five dams on the latest day) | permanent archive by year, daily, each new or changed date stored as served | `scrapers/turkey/izsu/turkey_izsu_scraper.py` | ✅ v1 (2026-11-27) |
 
 The retired China MWR screenshot/OCR collection is preserved read-only under
 [`data/china/mwr_ocr_archive/`](data/china/mwr_ocr_archive/). All new China MWR

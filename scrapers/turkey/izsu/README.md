@@ -8,18 +8,20 @@ and `?date=YYYY-MM-DD` (one day). İZSU (İzmir Su ve Kanalizasyon İdaresi) is 
 
 **What is captured:** per facility and date, `waterStatus`, `usableWaterStatus`, `occupancyRate` and `waterLevel`, as
 the text the API sent. The dataset describes them as the dams' daily water volume, fill ratio and water elevation; the
-answer itself states no units. On 2026-11-27 the latest day listed five dams (Tahtalı, Balçova, Ürkmez, Gördes,
-Alaçatı Kutlu Aktaş); earlier years list six or seven facilities a day. Nothing is converted, cross-checked or blanked
-here; the project's delivery layer does that.
+answer itself states no units. The first read, on 2026-11-27, found 36,549 records of eight facilities from
+2009-03-12 to 2026-11-27 (among them Güzelhisar Barajı and Karaçam Göleti); the latest day listed five dams (Tahtalı,
+Balçova, Ürkmez, Gördes, Alaçatı Kutlu Aktaş). Nothing is converted, cross-checked or blanked here; the project's
+delivery layer does that.
 
-**Retention:** `permanent_archive`, as far as observed: on 2026-11-27 `?year=2015` returned 2,256 records and
-`?year=2000` an empty list. Older dates can be queried directly, so the source is not in
+**Retention:** `permanent_archive`, as far as observed: on 2026-11-27 every year from 2009 to 2026 was served on
+request and 2006, 2007 and 2008 came back empty. Older dates can be queried directly, so the source is not in
 `config/windowed_sources.json` and a missed run loses nothing. The copy is kept because the portal's licence page says
 "Data providers do not guarantee the continuity of data", and the API this one replaced
 (`openapi.izmir.bel.tr/api/izsu/barajdurum`) answers HTTP 500 since November 2026.
 
 **Schedule:** daily, 16:23 Europe/Istanbul (13:23 UTC). The first run walks back year by year until three years in a
-row are empty and stores each year's answer once; a year whose request fails is asked for again by the next run.
+row are empty and stores each year's answer once (21 requests in 2 min 15 s on 2026-11-27); a year whose request
+fails is asked for again by the next run.
 Later runs ask for the current year (and the previous one in January), then for each new or changed date on its own.
 Requests are made one at a time, 3 s apart: sixteen concurrent requests on 2026-11-27 got HTTP 502 for two of them.
 Run the workflow by hand with `reread_all_years` to ask for the stored years again.

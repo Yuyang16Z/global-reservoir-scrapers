@@ -10,13 +10,14 @@ https://acikveri.bizizmir.com/dataset/barajlarin-doluluk-oranlari):
 {"data": [...], "statusCode": 200, "ok": true, "errorMessage": null}; each record has `date`, `waterStatus`,
 `usableWaterStatus`, `occupancyRate`, `waterLevel` and `damWellFacility` {`id`, `name`}. The dataset describes them as
 the dams' daily water volume, fill ratio and water elevation ("günlük su hacmi, doluluk oranı ve su kotu"); the answer
-itself states no units. On 2026-11-27 the latest day listed five dams (Tahtalı, Balçova, Ürkmez, Gördes, Alaçatı Kutlu
-Aktaş); earlier years list six or seven facilities a day.
+itself states no units. The first read, on 2026-11-27, found 36,549 records of eight facilities from 2009-03-12 to
+2026-11-27 (among them Güzelhisar Barajı and Karaçam Göleti); the latest day listed five dams (Tahtalı, Balçova,
+Ürkmez, Gördes, Alaçatı Kutlu Aktaş).
 
-Retention: PERMANENT ARCHIVE, as far as observed. On 2026-11-27 `?year=2015` returned 2,256 records and `?year=2000`
-an empty list; the API accepts years from 1900 to the current year plus one and answers HTTP 400 outside that. A
-missed run therefore loses nothing. This copy exists because the portal's licence page says "Data providers do not
-guarantee the continuity of data", and because the API this one replaced
+Retention: PERMANENT ARCHIVE, as far as observed. On 2026-11-27 every year from 2009 to 2026 was served on request
+and 2006, 2007 and 2008 came back empty; the API accepts years from 1900 to the current year plus one and answers
+HTTP 400 outside that. A missed run therefore loses nothing. This copy exists because the portal's licence page says
+"Data providers do not guarantee the continuity of data", and because the API this one replaced
 (openapi.izmir.bel.tr/api/izsu/barajdurum) answers HTTP 500 since November 2026.
 
 Design:
@@ -27,8 +28,8 @@ Design:
   served. More than MAX_DATE_REQUESTS such dates (the first run, or the first run after a long gap) store the year
   answer instead.
 - Every earlier year is asked for once and its answer stored, empty or not, walking back from the current year until
-  EMPTY_YEARS_STOP years in a row are empty. A year whose request fails is asked for again by the next run, so the
-  history completes itself. REREAD_ALL_YEARS=1 asks for the stored years again and stores an answer that differs.
+  EMPTY_YEARS_STOP years in a row are empty (21 requests in 2 min 15 s on 2026-11-27). A year whose request fails
+  is asked for again by the next run, so the history completes itself. REREAD_ALL_YEARS=1 asks for the stored years again and stores an answer that differs.
 - A stored answer is never overwritten. Tables are rebuilt from the stored answers on every run, so reruns are
   idempotent and a parser fix can be replayed over the whole archive. The values of a date that change are kept as a
   new version; the revisions table lists every version of such a date. A record's own `id` is not part of that
