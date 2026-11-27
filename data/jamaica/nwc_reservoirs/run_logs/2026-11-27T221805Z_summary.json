@@ -1,0 +1,30 @@
+{
+ "source": "jamaica/nwc_reservoirs",
+ "agency": "National Water Commission (NWC), Jamaica",
+ "url": "https://www.nwcjamaica.com/reservoir.php",
+ "started_utc": "2026-11-27T22:18:05+00:00",
+ "http_status": 200,
+ "unchanged": 0,
+ "new_raw_pages": [
+  "2026/20261127T221805Z__b6c0b3a31f34.html.gz"
+ ],
+ "errors": [],
+ "stored_pages": 52,
+ "reading_rows": 97,
+ "revisions": 2,
+ "reservoirs": {
+  "Hermitage Dam": {
+   "readings": 48,
+   "first": "2026-10-01",
+   "last": "2026-11-27"
+  },
+  "Mona Reservoir": {
+   "readings": 49,
+   "first": "2026-10-01",
+   "last": "2026-11-27"
+  }
+ },
+ "latest_observation_date": "2026-11-27",
+ "finished_utc": "2026-11-27T22:18:06+00:00",
+ "status": "ok"
+}

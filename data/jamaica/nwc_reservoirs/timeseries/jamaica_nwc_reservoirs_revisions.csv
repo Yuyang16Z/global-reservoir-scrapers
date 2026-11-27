@@ -1,1 +1,3 @@
 reservoir,observation_date,field,previous_value,new_value,previous_captured_utc,new_captured_utc,new_raw_file
+Hermitage Dam,2026-11-27,storage_mg,561.1,347,2026-11-27T17:39:42+00:00,2026-11-27T22:18:05+00:00,2026/20261127T221805Z__b6c0b3a31f34.html.gz
+Hermitage Dam,2026-11-27,storage_pct,142.6,88.183,2026-11-27T17:39:42+00:00,2026-11-27T22:18:05+00:00,2026/20261127T221805Z__b6c0b3a31f34.html.gz
