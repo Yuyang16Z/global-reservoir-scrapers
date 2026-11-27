@@ -18,6 +18,3 @@
 #   @scraper scrapers/ghana/bui/ghana_bui_scraper.py
 #
 # Keep this list empty on main.
-
-# One-off: do ?date= and ?year= give the same records for the same date?
-@scraper scripts/check_izsu_endpoints.py

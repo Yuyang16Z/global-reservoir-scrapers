@@ -26,7 +26,8 @@ Design:
 - Every run asks for the current year (and, in January, the previous one) and compares each date with the archive.
   A date that is new or whose values differ is then asked for on its own (`?date=`) and that answer is stored as
   served. More than MAX_DATE_REQUESTS such dates (the first run, or the first run after a long gap) store the year
-  answer instead.
+  answer instead. The two kinds of answer held identical records for the three dates compared on 2026-11-27
+  (2026-01-01, 2026-06-15, 2026-11-27); a date where they differ is reported as `endpoint_differences`.
 - Every earlier year is asked for once and its answer stored, empty or not, walking back from the current year until
   EMPTY_YEARS_STOP years in a row are empty (21 requests in 2 min 15 s on 2026-11-27). A year whose request fails
   is asked for again by the next run, so the history completes itself. REREAD_ALL_YEARS=1 asks for the stored years again and stores an answer that differs.
