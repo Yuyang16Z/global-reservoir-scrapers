@@ -1,0 +1,29 @@
+{
+  "started_at": "2026-11-23 18:41:35Z",
+  "source": "ghana/vra",
+  "urls": [
+    "https://vra.com/resources/facts.php",
+    "https://vra.com/"
+  ],
+  "output_dir": "/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/data/ghana/vra",
+  "status": "error",
+  "errors": [
+    {
+      "message": "both VRA pages unavailable after retries",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/global-reservoir-scrapers/global-reservoir-scrapers/scrapers/ghana/vra/ghana_vra_scraper.py\", line 245, in main\n    raise RuntimeError(\"both VRA pages unavailable after retries\")\nRuntimeError: both VRA pages unavailable after retries\n"
+    }
+  ],
+  "unavailable_pages": [
+    "facts",
+    "home"
+  ],
+  "page_failures": {
+    "facts": {
+      "error": "SSLError(MaxRetryError(\"HTTPSConnectionPool(host='vra.com', port=443): Max retries exceeded with url: /resources/facts.php (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1018)')))\"))"
+    },
+    "home": {
+      "error": "SSLError(MaxRetryError(\"HTTPSConnectionPool(host='vra.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1018)')))\"))"
+    }
+  },
+  "finished_at": "2026-11-23 18:43:37Z"
+}

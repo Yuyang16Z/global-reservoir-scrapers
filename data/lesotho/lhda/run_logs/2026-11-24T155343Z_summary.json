@@ -1,0 +1,16 @@
+{
+  "source": "lesotho/lhda",
+  "started_at": "2026-11-24T155343Z",
+  "url": "https://www.lhda.org.ls/",
+  "status": "ok",
+  "rows_seen": 1,
+  "rows_added": 0,
+  "observations": [
+    {
+      "measurement_date": "2026-11-22",
+      "reservoir_name": "Mohale",
+      "storage_pct": "100.43"
+    }
+  ],
+  "finished_at": "2026-11-24T155345Z"
+}
