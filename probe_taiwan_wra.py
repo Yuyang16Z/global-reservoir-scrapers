@@ -1,21 +1,22 @@
-"""Throwaway probe: fetch the DigiCert G5 intermediate and check that it completes the NWC chain."""
-import subprocess, tempfile, os, certifi, requests
-URL = "http://cacerts.digicert.com/DigiCertG5TLSRSA4096SHA3842021CA1-1.crt"
-der = requests.get(URL, timeout=60).content
-d = tempfile.mkdtemp()
-open(os.path.join(d, "i.der"), "wb").write(der)
-pem = subprocess.run(["openssl", "x509", "-inform", "DER", "-in", os.path.join(d, "i.der"), "-outform", "PEM"],
-                     capture_output=True, text=True).stdout
-open(os.path.join(d, "i.pem"), "w").write(pem)
-print(subprocess.run(["openssl", "x509", "-in", os.path.join(d, "i.pem"), "-noout", "-subject", "-issuer", "-dates",
-                      "-fingerprint", "-sha256"], capture_output=True, text=True).stdout)
-print("verify against certifi:", subprocess.run(["openssl", "verify", "-CAfile", certifi.where(), os.path.join(d, "i.pem")],
-                                                capture_output=True, text=True).stdout.strip())
-bundle = os.path.join(d, "bundle.pem")
-open(bundle, "w").write(open(certifi.where()).read() + "\n" + pem)
-r = requests.get("https://www.nwcjamaica.com/reservoir.php", timeout=60, verify=bundle,
-                 headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"})
-print("NWC with bundle:", r.status_code, len(r.content), "Hermitage" in r.text)
-print("PEM-BEGIN")
-print(pem)
-print("PEM-END")
+"""Throwaway probe: does www.vra.com answer 200 only when Accept / Accept-Language are sent?"""
+import time, requests
+UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36")
+SETS = {
+    "ua_only": {"User-Agent": UA},
+    "ua_accept": {"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"},
+    "ua_lang": {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"},
+    "ua_accept_lang": {"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                       "Accept-Language": "en-US,en;q=0.9"},
+}
+for rnd in range(2):
+    for name, h in SETS.items():
+        for url in ("https://www.vra.com/resources/facts.php",):
+            try:
+                r = requests.get(url, headers=h, timeout=60)
+                i = r.text.find("Lake Level")
+                print(f"round{rnd} {name:15s} {url}: HTTP {r.status_code} {len(r.content)}B "
+                      f"{r.text[i:i+90].split(chr(10))[0] if i >= 0 else ''}")
+            except Exception as exc:
+                print(f"round{rnd} {name:15s}: {type(exc).__name__}: {exc}")
+            time.sleep(5)
