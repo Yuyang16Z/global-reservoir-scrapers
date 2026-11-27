@@ -19,7 +19,5 @@
 #
 # Keep this list empty on main.
 
-# Dry-run the new Izmir IZSU scraper (first run: walks back through the years)
-@scraper scrapers/turkey/izsu/turkey_izsu_scraper.py
-# The API's own description of the fields, if it publishes one
-https://acikveriwapi.izmir.bel.tr/openapi/v1.json snippet=300 grep=(?i)"(waterStatus|usableWaterStatus|occupancyRate|waterLevel)"\s*:\s*\{[^}]{0,400} max=8
+# One-off: do ?date= and ?year= give the same records for the same date?
+@scraper scripts/check_izsu_endpoints.py
