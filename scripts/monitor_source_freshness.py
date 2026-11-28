@@ -106,12 +106,16 @@ EXCUSED: dict[str, str] = {
         "2026-11-15. Review by 2026-12-15."
     ),
     "ghana/vra": (
-        "vra.com has refused every request since 2026-11-16 (last capture 2026-11-11): from "
-        "GitHub runners every URL, plain and www, http and https, answers HTTP 403 from "
-        "openresty, and on 2026-11-26 a phone on a mobile network could not open the site "
-        "either (no secure connection). The site is down for everyone, not blocking these "
-        "runs. The twice-daily run keeps probing, so a returning site shows up here as a "
-        "fresh date. Reported but not failed. Excused 2026-11-26. Review by 2026-12-26."
+        "No reading since 2026-11-11. Since 2026-11-16 GitHub runners get HTTP 403 from "
+        "openresty on every URL, plain and www, http and https. The bare host vra.com is "
+        "broken for everyone: since 2026-11-20 it refuses the TLS handshake, and on "
+        "2026-11-26 a phone on a mobile network could not open it either. www.vra.com did "
+        "serve one runner on 2026-11-20, but on 2026-11-27 it refused eight requests "
+        "from a runner whatever the Accept / Accept-Language headers, so the 403 is not "
+        "about request headers; whether www.vra.com refuses runner addresses or everyone "
+        "is not established. The twice-daily run keeps probing, so a returning site shows "
+        "up here as a fresh date. Reported but not failed. Excused 2026-11-26. Review by "
+        "2026-12-26."
     ),
 }
 
