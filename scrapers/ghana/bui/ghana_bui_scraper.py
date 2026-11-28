@@ -19,6 +19,11 @@ Known quirks:
   it sees. The page shows a data disclaimer (public operational information, not
   certified data; research use needs formal confirmation from BPA), accepted by the
   repository owner on 2026-09-29.
+- The workbook's `latest` block carries the reservoir level under its OWN date,
+  `reservoir_date`, which can be weeks ahead of the newest row: the workbook generated
+  2026-11-09 still ends its rows on 2026-09-21 but gives 175.88 m for 2026-11-05
+  (`meta.latest_public_row_date` says the same date). That reading is merged under
+  `reservoir_date` as `operations_dashboard_latest`; a row for the same date wins.
 - A browser User-Agent is REQUIRED: the site runs Mod_Security and answers
   bare clients with HTTP 406 "Not Acceptable".
 - `power_status.php` returns 406 even with a browser User-Agent from server
@@ -185,6 +190,21 @@ def ops_rows(payload: dict, fetched_at: str) -> list[dict]:
     return out
 
 
+def ops_latest_row(payload: dict, fetched_at: str) -> dict | None:
+    """The level the workbook's `latest` block gives under its own `reservoir_date`."""
+    latest = payload.get("latest") or {}
+    d = clean_date(latest.get("reservoir_date"))
+    try:
+        level = round(float(latest.get("reservoir_level_masl")), 2)
+    except (TypeError, ValueError):
+        return None
+    if not d or level <= 0:                       # 0 is the dashboard's placeholder, not a level
+        return None
+    return {"measurement_date": d, "water_level_masl": clean_num(level),
+            "reservoir_id": RESERVOIR_ID,
+            "source_array": "operations_dashboard_latest", "fetched_at": fetched_at}
+
+
 def status_row(payload: dict, fetched_at: str) -> dict | None:
     level = payload.get("water_level_m")
     if isinstance(level, dict):
@@ -271,9 +291,16 @@ def main() -> int:
             ops = ops_rows(ops_payload, fetched_at)
             for row in ops:                        # the validated workbook wins for a shared date
                 by_date[row["measurement_date"]] = row
+            latest_row = ops_latest_row(ops_payload, fetched_at)
+            if latest_row and latest_row["measurement_date"] not in {
+                    row["measurement_date"] for row in ops}:
+                by_date[latest_row["measurement_date"]] = latest_row
+            ops_meta = ops_payload.get("meta") or {}
             log.update({"raw_operations_file": ops_path.name, "operations_records": len(ops),
-                        "operations_latest_complete_date":
-                            (ops_payload.get("meta") or {}).get("latest_complete_date")})
+                        "operations_generated_at": ops_meta.get("generated_at"),
+                        "operations_latest_complete_date": ops_meta.get("latest_complete_date"),
+                        "operations_latest_reservoir_date":
+                            latest_row["measurement_date"] if latest_row else None})
         else:
             log["operations_status"] = "unavailable"
         rows = list(by_date.values())

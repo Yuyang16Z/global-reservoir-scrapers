@@ -41,6 +41,7 @@ delivery layer). The governing rule is `SCHEMA_DELIVERY.md` §11:
 | `japan/opengov` | MLIT via OpenGov.jp | `open_attribution` (CC BY 4.0) | Yes, with attribution |
 | `luxembourg/age` | AGE Luxembourg | `open_no_attribution` (CC0 1.0) | Yes |
 | `taiwan/wra` | Taiwan WRA via data.gov.tw | `open_attribution` (OGDL v1) | Yes, with attribution |
+| `turkey/izsu` | İZSU via İzmir Büyükşehir Belediyesi's open-data portal | `open_attribution` (CC BY 4.0) | Yes, with attribution |
 | `india/apwrims` | CWC / India-WRIS | `attribution_required_review` | Not until the OGDL version is pinned |
 | `china/mwr`, `china/mwr_api` | MWR China | `undeclared_review` — source asserts copyright | **No** |
 | `malaysia/luas` | LUAS Selangor | `undeclared_review` | **No** |
@@ -71,7 +72,7 @@ gap between what is reachable and what is licensed:
    scrapers keep working; note that Actions minutes on private repositories are
    metered. This restores compliance immediately without touching history.
 2. **Remove the restricted sources' data** from the repository and keep only
-   the three open ones, moving the rest to private storage. Note that deleting
+   the four open ones, moving the rest to private storage. Note that deleting
    files does not remove them from git history — history rewriting or a fresh
    repository would be required for a clean result.
 3. **Obtain written permission** from each agency in the "no" column. This is
@@ -79,7 +80,7 @@ gap between what is reachable and what is licensed:
    starting for the sources the project depends on most.
 
 None of these is required by the owner's current decision. Treat every `data/`
-path except `japan/opengov`, `luxembourg/age`, and `taiwan/wra` as internal
+path except `japan/opengov`, `luxembourg/age`, `taiwan/wra`, and `turkey/izsu` as internal
 research material that happens to be reachable, not as published data.
 
 ## Africa deployments prepared 2026-08
@@ -166,6 +167,21 @@ KOSKİ publishes no reuse or redistribution terms and its footer reads
 exposure. This covers this source only and is not permission to republish
 KOSKİ data.
 
+## Added 2026-11-27: İzmir İZSU (open licence)
+
+`turkey/izsu` reads the dam water status API of İzmir Büyükşehir Belediyesi's
+open-data portal (dataset "Barajların Doluluk Oranları", published by İZSU).
+The portal's licence page reads "All materials under this site are licensed by
+Izmir Metropolitan Municipality under CC BY 4.0 international license, unless
+otherwise stated", allows copying, adapting and distributing, including
+commercially, with attribution, and adds "Data providers do not guarantee the
+continuity of data" (<https://acikveri.bizizmir.com/en/license>, checked
+2026-11-27); the dataset's own licence field names that page. It is
+`open_attribution`, so no owner decision of the kind recorded above was needed
+for the licence. Like `burkinafaso/dgre` it is a permanent archive (the API
+serves earlier years on request) and is deliberately not in the windowed-source
+registry.
+
 ## Attribution required where publication is permitted
 
 - Japan: "Source: MLIT Water Information System (Suimon-Suishitsu Database),
@@ -173,8 +189,10 @@ KOSKİ data.
 - Taiwan: "Source: Water Resources Agency (WRA), Taiwan, Open Government Data
   License v1 (data.gov.tw)."
 - Luxembourg: attribution not required under CC0; retained as good practice.
+- İzmir: "Source: İzmir Büyükşehir Belediyesi Açık Veri Portalı / İZSU,
+  CC BY 4.0 (https://acikveri.bizizmir.com/en/license)."
 
-Last reviewed: 2026-10-15 (turkey/koski row and owner decision added;
+Last reviewed: 2026-11-27 (turkey/izsu row added; turkey/koski row and owner decision 2026-10-15;
 bolivia/cndc_datos_hidrologicos 2026-10-14;
 jamaica/nwc_reservoirs 2026-10-04; costarica/cence_embalses 2026-10-01; argentina/cammesa_hidro 2026-09-28; owner decision
 of 2026-08-04 unchanged).

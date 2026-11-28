@@ -1,0 +1,20 @@
+# Targets for the "Probe source reachability" workflow.
+#
+# Pushing a change to this file on a work branch (not main) probes the URLs
+# listed here from a GitHub-hosted runner. One URL per line; lines starting
+# with '#' are comments. Options follow the URL, separated by spaces (write \s
+# for a space inside a pattern):
+#
+#   grep=REGEX     print matches of REGEX in the response text
+#   links=REGEX    print href/src values matching REGEX
+#   max=N          print up to N matches / links (default 12 / 40)
+#   snippet=N      print the first N characters of the body (default 600)
+#
+# A line "@scraper <path>" runs that scraper with OUTPUT_DIR set to a scratch
+# directory and prints what it wrote; nothing reaches data/.
+#
+# Example:
+#   https://www.koski.gov.tr/koski/bagbasi-baraj-degerleri grep=\d\d/11/2026.{0,200}
+#   @scraper scrapers/ghana/bui/ghana_bui_scraper.py
+#
+# Keep this list empty on main.

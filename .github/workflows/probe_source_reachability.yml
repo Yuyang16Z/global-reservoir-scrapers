@@ -1,0 +1,76 @@
+name: Probe source reachability
+
+# Diagnostic only: shows how a source answers from a GitHub-hosted runner, layer
+# by layer (DNS, TCP, TLS, HTTP). It reads; it commits nothing.
+#
+# Run it by hand with a list of URLs, or push a change to scripts/probe_targets.txt
+# on a work branch to probe the URLs listed there.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URLs to probe, separated by spaces (empty: scripts/probe_targets.txt)"
+        required: false
+        default: ""
+  push:
+    branches-ignore: [main]
+    paths:
+      - "scripts/probe_targets.txt"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: probe-source-reachability-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Probe
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: |
+          if [ -n "$PROBE_URLS" ]; then
+            # shellcheck disable=SC2086
+            python scripts/probe_source_reachability.py --json probe_report.json $PROBE_URLS
+          else
+            python scripts/probe_source_reachability.py --json probe_report.json --file scripts/probe_targets.txt
+          fi
+
+      # Lines "@scraper <path>" in the targets file run that scraper against a
+      # scratch directory and print what it wrote. Nothing reaches data/.
+      - name: Dry-run scrapers
+        if: ${{ inputs.urls == '' }}
+        run: |
+          grep '^@scraper ' scripts/probe_targets.txt | while read -r _ path; do
+            out="$RUNNER_TEMP/dryrun/$(basename "$path" .py)"
+            echo "::group::dry run $path"
+            OUTPUT_DIR="$out" python "$path" && echo "exit 0" || echo "exit $?"
+            find "$out" -type f | sort
+            for f in "$out"/run_logs/*; do echo "--- $f"; tail -c 3000 "$f"; echo; done
+            for f in "$out"/timeseries/*.csv; do echo "--- $f"; tail -n 8 "$f"; done
+            echo "::endgroup::"
+          done || true
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-report
+          path: probe_report.json
+          retention-days: 14

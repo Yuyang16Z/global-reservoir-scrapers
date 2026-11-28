@@ -1,0 +1,75 @@
+name: Turkey İZSU dam water status
+
+on:
+  # İzmir's open-data portal licenses its material CC BY 4.0 (reuse_status
+  # `open_attribution`, https://acikveri.bizizmir.com/en/license, checked
+  # 2026-11-27; see DATA_LICENCE_NOTICE.md). Attribution: "Source: İzmir
+  # Büyükşehir Belediyesi Açık Veri Portalı / İZSU, CC BY 4.0."
+  schedule:
+    # 16:23 Europe/Istanbul (UTC+3, no DST). When the day's record appears was
+    # not established: it was there at 21:56 Istanbul time on 2026-11-27. Every
+    # run reads the whole current year again and the API serves earlier years
+    # on request, so a day one run misses is taken by the next and a missed run
+    # loses nothing.
+    - cron: "23 13 * * *"
+  workflow_dispatch:
+    inputs:
+      reread_all_years:
+        description: "Ask for every stored year again and store an answer that differs"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: turkey-izsu
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          OUTPUT_DIR: ${{ github.workspace }}/data/turkey/izsu
+          REREAD_ALL_YEARS: ${{ inputs.reread_all_years && '1' || '' }}
+        run: python scrapers/turkey/izsu/turkey_izsu_scraper.py
+
+      - name: Commit & push new data
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/turkey/izsu
+          git add scrapers/turkey/izsu
+          # Every run writes a run summary; commit only when a new answer or a
+          # changed table was stored.
+          if git diff --cached --quiet -- data/turkey/izsu/raw data/turkey/izsu/timeseries data/turkey/izsu/metadata; then
+            echo "No new data; not committing."
+            exit 0
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "data(turkey/izsu): scheduled scrape ${ts}"
+          # Several scrapers can finish at once and race for the ref, so retry
+          # the rebase-and-push instead of failing a run whose data is fine.
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "push attempt ${attempt} lost the race; retrying"
+            sleep $((attempt * 10))
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
